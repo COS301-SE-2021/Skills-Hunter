@@ -17,6 +17,7 @@ NB: Make sure you create the SkillsHunterDB database if you don't have it.
 **********************UPDATING THE DATABASE(migrations terminal commands)*****************
 The terminal should be opened on the projects directory
 You might have to install dotnet as well if you don't have it
+Make sure Docker is running and the connection on your Azure Data Studio is established
 
 1. Add migrations(InitialCreate is the migration name)
     dotnet ef migrations add InitialCreate
