@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsHunterAPI", "SkillsHunterAPI\SkillsHunterAPI.csproj", "{1136A0DA-469D-42A3-989B-DA59F891FC56}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C55803D5-360D-4763-B0E8-75BB2A5C8365}"
-	ProjectSection(SolutionItems) = preProject
-		instructions.txt = instructions.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "u9RnIDKx51TyWlgmmKHLp4sFjRitsyOxQRfYBjzwCambbWHsd3mTViPSIUzeaFkQoB9Zz9JYOkDoDSo9aR0nOQ==",
+  "dgSpecHash": "wnzTZyBcwro8G3Qp9aGY6itaChoDLx68woLGhHYdr5sALkg+QrQR3TUwzwBJCdIbvt1JjG6o5vBSfHcafHfk4w==",
   "success": true,
-  "projectFilePath": "/Users/mxolisi/Projects/SkillsHunterAPI/SkillsHunterAPI/SkillsHunterAPI.csproj",
+  "projectFilePath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI/SkillsHunterAPI.csproj",
   "expectedPackageFiles": [
     "/Users/mxolisi/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/mxolisi/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",

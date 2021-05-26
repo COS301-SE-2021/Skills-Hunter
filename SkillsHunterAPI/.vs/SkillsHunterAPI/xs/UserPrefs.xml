@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{1136A0DA-469D-42A3-989B-DA59F891FC56}|Default">
+  <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SkillsHunterAPI/instructions.txt">
+    <Files>
+      <File FileName="SkillsHunterAPI/instructions.txt" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SkillsHunterAPI" expanded="True">
+            <Node name="SkillsHunterAPI" expanded="True">
+              <Node name="instructions.txt" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
