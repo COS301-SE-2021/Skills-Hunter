@@ -1,0 +1,38 @@
+﻿**************************DOCKER SETUP(terminal commands)**********************************
+
+1. Pull the latest MSSQL container from(https://hub.docker.com/_/microsoft-mssql-server):
+    docker pull mcr.microsoft.com/mssql/server:2019-latest
+
+2. Code to run the SQL Server container image: 
+   docker run --name mssql_docker -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=@SkillsHunter2021' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+
+**************************Azure Data Studio Connection**********************************
+
+Server: localhost
+Username: sa
+Password: @SkillsHunter2021
+
+NB: Make sure you create the SkillsHunterDB database if you don't have it.
+
+**********************UPDATING THE DATABASE(migrations terminal commands)*****************
+The terminal should be opened on the projects directory
+You might have to install dotnet as well if you don't have it
+Make sure Docker is running and the connection on your Azure Data Studio is established
+
+1. Add migrations(InitialCreate is the migration name)
+    dotnet ef migrations add InitialCreate
+
+2. Creating the database from a named migration:
+    dotnet ef database update InitialCreate
+
+3. Undo migrations/database creation:
+    dotnet ef migrations remove
+
+NB: Run these commands after every fetch/pull from git
+
+**********************************NuGet Packages**************************************
+
+-MicrosoftEntityFrameworkCore
+-MicrosoftEntityFrameworkCore.Design
+-MicrosoftEntityFrameworkCore.SqlServer
+-System.Linq
