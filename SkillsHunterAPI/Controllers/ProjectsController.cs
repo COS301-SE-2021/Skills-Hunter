@@ -56,7 +56,15 @@ namespace SkillsHunterAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProject(int id)
         {
-            return null;
+            var projectToDelete = await _projectRepository.GetProject(id);
+
+            if (projectToDelete == null)
+            {
+                return NotFound();
+            }
+
+            await _projectRepository.DeleteProject(projectToDelete.Id);
+            return NoContent();
         }
 
 
