@@ -30,7 +30,7 @@ namespace SkillsHunterAPI.Controllers
         //ActionResult provide the flexibility to return all the types like not found, bad request , e.t.c
         public async Task<ActionResult<Project>> GetProject(int id)
         {
-            return null;
+            return await _projectRepository.GetProject(id);
         }
 
         [HttpPost]
