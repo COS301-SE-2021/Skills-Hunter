@@ -17,9 +17,8 @@ namespace SkillsHunterAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Project>().ToTable("Project");
- 
+            modelBuilder.Entity<Project>().HasKey("ProjectId");
         }
 
     }

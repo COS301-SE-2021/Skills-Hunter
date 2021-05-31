@@ -1,0 +1,54 @@
+﻿<Properties StartupConfiguration="{37266854-C685-4ABA-A10F-8CEBC71E7153}|Default">
+  <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="obj/Debug/net5.0/SkillsHunterAPI.AssemblyInfo.cs">
+    <Files>
+      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="24" Column="15" />
+      <File FileName="Controllers/ProjectController.cs" Line="1" Column="1" />
+      <File FileName="Repositories/Project/ProjectRepository.cs" Line="1" Column="1" />
+      <File FileName="SkillsHunterAPIUnitTest/SkillsHunterUnitTest.cs" Line="16" Column="60" />
+      <File FileName="Models/Project/Project.cs" Line="1" Column="1" />
+      <File FileName="obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" Line="4" Column="12" />
+      <File FileName="obj/Debug/net5.0/SkillsHunterAPI.AssemblyInfo.cs" Line="17" Column="12" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SkillsHunterAPI" expanded="True">
+            <Node name="SkillsHunterAPI" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Project" expanded="True" />
+              </Node>
+              <Node name="Repositories" expanded="True">
+                <Node name="Project" expanded="True" />
+              </Node>
+              <Node name="SkillsHunterAPIUnitTest" expanded="True" />
+            </Node>
+            <Node name="SkillsHunterAPIUnitTest" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="ProjectUnitTest.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="SkillsHunterAPI" expanded="True" selected="True">
+            <Node name="SkillsHunterAPIUnitTest" expanded="True">
+              <Node name="SkillsHunterAPIUnitTest.Tests" expanded="True">
+                <Node name="ProjectUnitTest" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
