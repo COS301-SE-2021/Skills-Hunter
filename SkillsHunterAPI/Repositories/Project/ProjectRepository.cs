@@ -31,7 +31,8 @@ namespace SkillsHunterAPI.Repositories
 
         public async Task DeleteProject(int id)
         {
-
+            var ProjectToDelete = await _context.Projects.FindAsync(id);
+            _context.Projects.Remove(ProjectToDelete);
         }
 
         public async Task<Project> GetProject(int id)
