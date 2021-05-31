@@ -25,7 +25,25 @@ namespace SkillsHunterAPIUnitTest.Tests
         public void TestCreateProject() //Testing the creation of projects
         {
 
-            var testProjectController = new ProjectController(projectRepository);
+            
+        }
+
+        [Fact]
+        public void TestGetProjects()    //testing the function that retrieves projects from the database
+        {
+            //var testController = new 
+        }
+
+        [Fact]
+        public void TestUpdateProject()    //testing the function that updates only one project
+        {
+            //var testController = new 
+        }
+
+        [Fact]
+        public void TestDeleteProject()    //testing the function that deletes only one project
+        {
+            //var testController = new 
         }
     }
 }
