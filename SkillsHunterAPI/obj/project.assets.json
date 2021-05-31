@@ -6300,11 +6300,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SbonisoMasilela\\source\\repos\\SkillsHunterAPI\\SkillsHunterAPI.csproj",
+      "projectUniqueName": "D:\\301_Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj",
       "projectName": "SkillsHunterAPI",
-      "projectPath": "C:\\Users\\SbonisoMasilela\\source\\repos\\SkillsHunterAPI\\SkillsHunterAPI.csproj",
+      "projectPath": "D:\\301_Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj",
       "packagesPath": "C:\\Users\\SbonisoMasilela\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SbonisoMasilela\\source\\repos\\SkillsHunterAPI\\obj\\",
+      "outputPath": "D:\\301_Capstone\\Skills-Hunter\\SkillsHunterAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SbonisoMasilela\\AppData\\Roaming\\NuGet\\NuGet.Config",

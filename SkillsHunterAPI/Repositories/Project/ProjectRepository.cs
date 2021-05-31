@@ -23,9 +23,10 @@ namespace SkillsHunterAPI.Repositories
         
         public async Task<Project> CreateProject(Project project)
         {
+            _context.Projects.Add(project);
+            await _context.SaveChangesAsync();
 
-
-            return null;
+            return project;
         }
 
         public async Task DeleteProject(int id)
