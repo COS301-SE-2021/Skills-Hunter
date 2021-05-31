@@ -19,7 +19,7 @@ namespace SkillsHunterAPI.Models
         {
 
             modelBuilder.Entity<Project>().ToTable("Project");
- 
+            modelBuilder.Entity<Project>().HasKey("ProjectId");
         }
 
     }
