@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SkillsHunterAPI.Models
 {
-    public class ApplicationContextDB: DbContext
+    public class ApplicationDbContext: DbContext
     {
-        public ApplicationContextDB(DbContextOptions<ApplicationContextDB> options): base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
         {
             //Database.EnsureCreated();
         }

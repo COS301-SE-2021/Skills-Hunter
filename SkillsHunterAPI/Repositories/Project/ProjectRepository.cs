@@ -10,13 +10,13 @@ namespace SkillsHunterAPI.Repositories
     public class ProjectRepository : IProjectRepository
     {
 
-        private readonly ApplicationContextDB _context;
+        private readonly ApplicationDbContext _context;
 
         /// <summary>
         /// We inject the context through the constructor
         /// </summary>
         /// <param name="context"></param>
-        public ProjectRepository(ApplicationContextDB context)
+        public ProjectRepository(ApplicationDbContext context)
         {
             _context = context;
         }
