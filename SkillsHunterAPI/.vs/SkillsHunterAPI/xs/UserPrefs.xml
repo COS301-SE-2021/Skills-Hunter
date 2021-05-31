@@ -1,15 +1,27 @@
 ﻿<Properties StartupConfiguration="{37266854-C685-4ABA-A10F-8CEBC71E7153}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SkillsHunterAPIUnitTest/ProjectUnitTest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SkillsHunterAPIUnitTest/SkillsHunterUnitTest.cs">
     <Files>
-      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="1" Column="1" />
+      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="24" Column="86" />
+      <File FileName="Controllers/ProjectController.cs" Line="1" Column="1" />
+      <File FileName="Repositories/Project/ProjectRepository.cs" Line="1" Column="1" />
+      <File FileName="SkillsHunterAPIUnitTest/SkillsHunterUnitTest.cs" Line="2" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SkillsHunterAPI" expanded="True">
-            <Node name="SkillsHunterAPI" expanded="True" />
-            <Node name="SkillsHunterAPIUnitTest" expanded="True" />
+            <Node name="SkillsHunterAPI" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="Project" expanded="True" />
+              </Node>
+              <Node name="SkillsHunterAPIUnitTest" expanded="True" />
+            </Node>
+            <Node name="SkillsHunterAPIUnitTest" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="SkillsHunterUnitTest.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>

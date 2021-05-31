@@ -1,12 +1,20 @@
 using System;
 using Xunit;
-using SkillsHunterAPI;
+using SkillsHunterAPI.Controllers;
+using SkillsHunterAPI.Repositories;
 
 namespace SkillsHunterAPIUnitTest.Tests
 {
-    public class ProjectUnitTest
+    public class ProjectUnitTest: SkillsHunterAPIUnitTest
     {
         //TESTING ONLY THE PROJECT SUBSYSTEM
+        public ProjectUnitTest() : base()
+        {
+
+        }
+
+
+
         [Fact]
         public void TestGetProject()    //testing the function that retrieves only one project
         {
@@ -17,6 +25,7 @@ namespace SkillsHunterAPIUnitTest.Tests
         public void TestCreateProject() //Testing the creation of projects
         {
 
+            var testProjectController = new ProjectController(projectRepository);
         }
     }
 }
