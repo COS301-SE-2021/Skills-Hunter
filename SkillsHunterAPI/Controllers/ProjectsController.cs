@@ -23,7 +23,7 @@ namespace SkillsHunterAPI.Controllers
         [HttpGet]//This tells ASP.Net that the method will handle http get request
         public async Task<IEnumerable<Project>> GetProjects()
         {
-            return null;
+            return await _projectRepository.GetProjects();
         }
 
         [HttpGet("{id}")]//This tells ASP.Net that the method will handle http get request with an argument
