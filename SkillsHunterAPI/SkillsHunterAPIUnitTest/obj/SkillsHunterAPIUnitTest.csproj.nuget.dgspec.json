@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPITest/SkillsHunterAPITest.csproj": {}
+    "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTest.csproj": {}
   },
   "projects": {
     "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj": {
@@ -83,14 +83,14 @@
         }
       }
     },
-    "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPITest/SkillsHunterAPITest.csproj": {
+    "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPITest/SkillsHunterAPITest.csproj",
-        "projectName": "SkillsHunterAPITest",
-        "projectPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPITest/SkillsHunterAPITest.csproj",
+        "projectUniqueName": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTest.csproj",
+        "projectName": "SkillsHunterAPIUnitTest",
+        "projectPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTest.csproj",
         "packagesPath": "/Users/mxolisi/.nuget/packages/",
-        "outputPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPITest/obj/",
+        "outputPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPIUnitTest/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/mxolisi/.config/NuGet/NuGet.Config"
@@ -121,21 +121,25 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "MSTest.TestAdapter": {
-              "target": "Package",
-              "version": "[2.1.1, )"
-            },
-            "MSTest.TestFramework": {
-              "target": "Package",
-              "version": "[2.1.1, )"
-            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[16.7.1, )"
+              "version": "[16.10.0, )"
             },
             "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[1.3.0, )"
+              "version": "[3.0.3, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.3, )"
             }
           },
           "imports": [

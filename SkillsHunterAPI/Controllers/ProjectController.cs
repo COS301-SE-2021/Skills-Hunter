@@ -11,11 +11,11 @@ namespace SkillsHunterAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectsController : ControllerBase
+    public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _projectRepository;
 
-        public ProjectsController(IProjectRepository projectRepository)
+        public ProjectController(IProjectRepository projectRepository)
         {
             _projectRepository = projectRepository;
         }
