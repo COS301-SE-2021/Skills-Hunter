@@ -43,9 +43,14 @@ namespace SkillsHunterAPI.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateProject(int id, [FromBody] Project project)
         {
-            //var projectToUpdate = await _projectRepository.GetProject(project.Id);
+            if (id != project.Id)
+            {
+                return BadRequest();
+            }
 
-            return null;
+            await _projectRepository.UpdateProject(project);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
