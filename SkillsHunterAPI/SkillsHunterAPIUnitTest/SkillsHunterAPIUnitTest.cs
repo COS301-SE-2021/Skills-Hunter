@@ -13,7 +13,7 @@ namespace SkillsHunterAPIUnitTest.Tests
 
         public SkillsHunterAPIUnitTest()
         {
-            var dataStore = A.Fake<ApplicationContextDB>();
+            var dataStore = A.Fake<ApplicationDbContext>();
             projectRepository = new ProjectRepository(dataStore);
             projectController = new ProjectController(projectRepository);
         }
