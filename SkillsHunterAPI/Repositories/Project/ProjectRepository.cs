@@ -38,7 +38,7 @@ namespace SkillsHunterAPI.Repositories
 
         public async Task<Project> GetProject(int id)
         {
-            return null;
+            return await _context.Projects.FindAsync(id);
         }
 
         public async Task<IEnumerable<Project>> GetProjects()
