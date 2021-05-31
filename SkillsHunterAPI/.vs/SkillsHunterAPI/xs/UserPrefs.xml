@@ -1,36 +1,27 @@
-﻿<Properties StartupConfiguration="{D567ACBF-4FEA-4DF7-800A-ECFF4880557B}|Default">
-  <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ProjectsController.cs">
     <Files>
       <File FileName="Models/Project/Project.cs" Line="10" Column="29" />
-      <File FileName="Data/ApplicationContextDB.cs" Line="24" Column="6" />
-      <File FileName="instructions.txt" Line="7" Column="87" />
-      <File FileName="Controllers/ProjectsController.cs" Line="66" Column="77" />
-      <File FileName="Repositories/Project/IProjectRepository.cs" Line="1" Column="1" />
-      <File FileName="Repositories/Project/ProjectRepository.cs" Line="35" Column="2" />
-      <File FileName="appsettings.json" Line="2" Column="125" />
+      <File FileName="Data/ApplicationContextDB.cs" />
+      <File FileName="instructions.txt" />
+      <File FileName="Controllers/ProjectsController.cs" Line="43" Column="22" />
+      <File FileName="Repositories/Project/IProjectRepository.cs" />
+      <File FileName="appsettings.json" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SkillsHunterAPI" expanded="True">
-            <Node name="SkillsHunterAPI" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Project" expanded="True" />
-              </Node>
-              <Node name="Repositories" expanded="True">
-                <Node name="Project" expanded="True" />
-              </Node>
-              <Node name="appsettings.json" selected="True" />
-            </Node>
+            <Node name="SkillsHunterAPI" selected="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>SkillsHunterAPI.csproj</String>
+  </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
