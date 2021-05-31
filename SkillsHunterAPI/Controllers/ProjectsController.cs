@@ -37,13 +37,13 @@ namespace SkillsHunterAPI.Controllers
         public async Task<ActionResult<Project>> CreateProject([FromBody] Project project)
         {
             var newProject = await _projectRepository.CreateProject(project);
-            return CreatedAtAction(nameof(GetProjects), new { id = newProject.Id }, newProject);
+            return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
         }
 
         [HttpPut]
         public async Task<ActionResult> UpdateProject(int id, [FromBody] Project project)
         {
-            if (id != project.Id)
+            if (id != project.ProjectId)
             {
                 return BadRequest();
             }
@@ -63,7 +63,7 @@ namespace SkillsHunterAPI.Controllers
                 return NotFound();
             }
 
-            await _projectRepository.DeleteProject(projectToDelete.Id);
+            await _projectRepository.DeleteProject(projectToDelete.ProjectId);
             return NoContent();
         }
 
