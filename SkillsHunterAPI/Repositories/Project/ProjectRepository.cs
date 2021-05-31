@@ -48,7 +48,8 @@ namespace SkillsHunterAPI.Repositories
 
         public async Task UpdateProject(Project project)
         {
-           
+            _context.Entry(project).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }
