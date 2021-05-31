@@ -35,3 +35,14 @@ NB: Run these commands after every fetch/pull from git
 -MicrosoftEntityFrameworkCore.Design
 -MicrosoftEntityFrameworkCore.SqlServer
 -System.Linq
+
+
+***************************************Git ignore******************************************
+
+SkillsHunterAPI/Migrations/
+.DS_Store
+SkillsHunterAPI/.vs/
+SkillsHunterAPI/obj/
+SkillsHunterAPI/bin/
+SkillsHunterAPI/SkillsHunterAPITest/obj/
+SkillsHunterAPI/SkillsHunterAPITest/bin/
