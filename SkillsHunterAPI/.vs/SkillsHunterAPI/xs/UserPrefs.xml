@@ -1,4 +1,5 @@
-﻿<Properties>
+﻿<Properties StartupConfiguration="{37266854-C685-4ABA-A10F-8CEBC71E7153}|Default">
+  <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ProjectsController.cs">
     <Files>
       <File FileName="Models/Project/Project.cs" Line="10" Column="29" />
@@ -11,17 +12,12 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SkillsHunterAPI" expanded="True">
-            <Node name="SkillsHunterAPI" selected="True" />
-          </Node>
+          <Node name="SkillsHunterAPI" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <DisabledProjects>
-    <String>SkillsHunterAPI.csproj</String>
-  </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
