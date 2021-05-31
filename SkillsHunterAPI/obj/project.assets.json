@@ -6307,7 +6307,7 @@
       "outputPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/mxolisi/.config/NuGet/NuGet.Config"
+        "/Users/mxolisi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"

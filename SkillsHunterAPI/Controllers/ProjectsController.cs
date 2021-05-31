@@ -40,7 +40,7 @@ namespace SkillsHunterAPI.Controllers
             return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<ActionResult> UpdateProject(int id, [FromBody] Project project)
         {
             if (id != project.ProjectId)

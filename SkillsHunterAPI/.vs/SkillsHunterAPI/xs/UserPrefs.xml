@@ -1,13 +1,14 @@
 ﻿<Properties StartupConfiguration="{D567ACBF-4FEA-4DF7-800A-ECFF4880557B}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Repositories/Project/ProjectRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
     <Files>
-      <File FileName="Models/Project/Project.cs" Line="10" Column="21" />
-      <File FileName="Data/ApplicationContextDB.cs" Line="21" Column="63" />
-      <File FileName="instructions.txt" Line="1" Column="1" />
-      <File FileName="Controllers/ProjectsController.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Project.cs" Line="10" Column="29" />
+      <File FileName="Data/ApplicationContextDB.cs" Line="24" Column="6" />
+      <File FileName="instructions.txt" Line="7" Column="87" />
+      <File FileName="Controllers/ProjectsController.cs" Line="66" Column="77" />
       <File FileName="Repositories/Project/IProjectRepository.cs" Line="1" Column="1" />
-      <File FileName="Repositories/Project/ProjectRepository.cs" Line="1" Column="1" />
+      <File FileName="Repositories/Project/ProjectRepository.cs" Line="35" Column="2" />
+      <File FileName="appsettings.json" Line="2" Column="125" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,10 +21,9 @@
                 <Node name="Project" expanded="True" />
               </Node>
               <Node name="Repositories" expanded="True">
-                <Node name="Project" expanded="True">
-                  <Node name="ProjectRepository.cs" selected="True" />
-                </Node>
+                <Node name="Project" expanded="True" />
               </Node>
+              <Node name="appsettings.json" selected="True" />
             </Node>
           </Node>
         </State>
