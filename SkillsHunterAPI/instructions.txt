@@ -16,7 +16,7 @@ NB: Make sure you create the SkillsHunterDB database if you don't have it.
 
 **********************UPDATING THE DATABASE(migrations terminal commands)*****************
 The terminal should be opened on the projects directory
-You might have to install dotnet as well if you don't have it
+You might have to install dotnet and dotnet-ef as well if you don't have it (https://docs.microsoft.com/en-us/ef/core/cli/dotnet)
 
 1. Add migrations(InitialCreate is the migration name)
     dotnet ef migrations add InitialCreate
