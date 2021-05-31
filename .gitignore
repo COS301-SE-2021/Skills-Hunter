@@ -1,4 +1,4 @@
-SkillsHunterAPI/Migrations
+SkillsHunterAPI/Migrations/
 .DS_Store
-SkillsHunterAPI/bin
-SkillsHunterAPI/obj
+SkillsHunterAPI/bin/
+SkillsHunterAPI/obj/
