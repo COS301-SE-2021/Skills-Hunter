@@ -1,18 +1,8 @@
 .candidate-card {
-  max-width: 400px;
+  max-width: 450px;
 }
 
-// .candidate-card-skills {
-//   display: flex;
-// }
-
-.example-header-image {
-  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
-  background-size: cover;
+.candidate-invite {
+  display: flex;
+  text-align: center;
 }
-
-// .candidate-invite {
-//   display: flex;
-//   min-width: 300px;
-//   text-align: center;
-// }
