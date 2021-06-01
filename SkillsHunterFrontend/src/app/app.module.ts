@@ -9,6 +9,11 @@ import { LoginComponent } from './login/login.component';
 import { CreateprojectComponent } from './createproject/createproject.component';
 import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { HomeComponent } from './home/home.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule} from '@angular/material/expansion';
+import { ProjectComponent } from './home/project/project.component';
+import { ProjectItemComponent } from './home/project-item/project-item.component'
 
 @NgModule({
   declarations: [
@@ -16,13 +21,18 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     CreateprojectComponent,
     UpdateprojectComponent,
-    HomeComponent
+    HomeComponent,
+    ProjectComponent,
+    ProjectItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    MatCardModule,
+    MatButtonModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
