@@ -1,6 +1,4 @@
 import { Component, NgModule, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
-import { MaterialModule } from '../material/material.module';
 
 @Component({
   selector: 'app-updateproject',
