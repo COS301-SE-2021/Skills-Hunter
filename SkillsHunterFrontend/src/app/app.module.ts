@@ -36,7 +36,7 @@ import { ProjectCRUDService } from './services/project-crud.service';
     MaterialModule,
     MatCardModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
