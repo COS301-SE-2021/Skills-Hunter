@@ -4,7 +4,6 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-// import {c} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
@@ -15,9 +14,19 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatButtonModule
   ],
   exports:[
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatButtonModule
   ]
 })
 export class MaterialModule { }
