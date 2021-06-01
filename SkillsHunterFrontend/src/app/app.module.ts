@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -6,8 +5,10 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './login/login.component';
 import { CreateprojectComponent } from './createproject/createproject.component';
-import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { HomeComponent } from './home/home.component';
+import { UpdateprojectComponent } from './updateproject/updateproject.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     CreateprojectComponent,
     UpdateprojectComponent,
-    HomeComponent
+    HomeComponent, 
+    MatSliderModule,
   ],
   imports: [
     BrowserModule,
@@ -24,6 +26,7 @@ import { HomeComponent } from './home/home.component';
     MaterialModule, 
     BrowserAnimationsModule 
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
