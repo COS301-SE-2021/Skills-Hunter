@@ -1,2 +1,6 @@
-<p>home works!</p>
-<button  (click)="create()">Add new project</button>
+<mat-card id = "container">
+	<mat-card-title id = "cardTitle">{{title}}</mat-card-title>
+	<button mat-raised-button id = "createbtn">Create</button>
+
+	<app-project-item *ngFor = "let _project of _projects" [_project] = "_project"></app-project-item>
+</mat-card>
