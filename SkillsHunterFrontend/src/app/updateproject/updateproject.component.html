@@ -1,7 +1,16 @@
 
-<mat-menu #aboveMenu="matMenu" yPosition="above"></mat-menu>
+<mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>House Building Project</span>
+    <span class="example-spacer"></span>
 
-
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+</mat-toolbar>
+  
 <mat-card class="candidate-card">
     
     <mat-card-header>
@@ -32,4 +41,34 @@
             <button class="candidate-invite" mat-raised-button color="accent">Invite To Project</button>
     </mat-card-actions>
   </mat-card>
-  
+
+  <mat-card class="candidate-card">
+    
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Aston French</mat-card-title>
+      <mat-card-subtitle>Painter</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>
+            An artist with the brush.
+        </p>
+    </mat-card-content>
+
+    <mat-card class="candidate-card-skills">
+        <mat-card-title>Skills</mat-card-title>
+        <mat-chip-list aria-label="Candidate Skills">
+            <mat-chip color="primary" selected>Painting</mat-chip>
+            <mat-chip color="primary" >Carpentry</mat-chip> 
+            <mat-chip color="primary" >Plumbing</mat-chip>
+            <mat-chip color="primary" >CAD Software</mat-chip>
+            <mat-chip color="primary" selected>Drilling</mat-chip>
+            <mat-chip color="primary" >Architecture</mat-chip>
+        </mat-chip-list>        
+    </mat-card>
+
+    <mat-card-actions>
+            <button class="candidate-invite" mat-raised-button color="accent">Invite To Project</button>
+    </mat-card-actions>
+  </mat-card>
