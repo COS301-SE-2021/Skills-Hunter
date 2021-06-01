@@ -7,7 +7,6 @@ import { LoginComponent } from './login/login.component';
 import { CreateprojectComponent } from './createproject/createproject.component';
 import { HomeComponent } from './home/home.component';
 import { UpdateprojectComponent } from './updateproject/updateproject.component';
-import { MatSliderModule } from '@angular/material/slider';
 import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { BrowserModule } from '@angular/platform-browser';
     CreateprojectComponent,
     UpdateprojectComponent,
     HomeComponent, 
-    MatSliderModule,
   ],
   imports: [
     BrowserModule,
