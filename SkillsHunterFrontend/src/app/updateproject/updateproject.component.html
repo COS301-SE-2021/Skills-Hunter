@@ -1,10 +1,38 @@
-<div>
-<button mat-raised-button color="primary">Primary</button>
-</div>
 
-<div>
-<mat-radio-group>
-    <mat-radio-button value="1">Male</mat-radio-button>
-    <mat-radio-button value="2">Female</mat-radio-button>
- </mat-radio-group>
- <div>
+<mat-card class="candidate-card">
+    
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Martin Antoinette</mat-card-title>
+      <mat-card-subtitle>Carpenter</mat-card-subtitle>
+    </mat-card-header>
+
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    
+    <mat-card class="candidate-card-skills">
+        <mat-card-title>Skills</mat-card-title>
+        <mat-chip-list aria-label="Fish selection">
+            <mat-chip>One fish</mat-chip>
+            <mat-chip>Two fish</mat-chip>
+            <mat-chip color="primary" selected>Primary fish</mat-chip>
+            <mat-chip color="accent" selected>Accent fish</mat-chip>
+          </mat-chip-list>        
+
+
+    </mat-card>
+
+    
+    <mat-card-content>
+      
+    <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <button class="candidate-invite"  mat-raised-button color="accent">Invite To Project</button>
+    </mat-card-actions>
+  </mat-card>
+  
