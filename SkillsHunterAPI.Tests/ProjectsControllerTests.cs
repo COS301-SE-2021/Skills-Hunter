@@ -58,7 +58,29 @@ namespace SkillsHunterAPI.Tests
         [Fact]
         public void GetProjectById_ExistingIDPassed_ReturnsRightItem()
         {
-        
+            // Arrange
+            var testId = 2;
+            var proj1 = new Project
+            {
+                Id = 2,
+                Name = "Data Governance",
+                Description = "We do data governance",
+                Industry = "Data",
+                Owner = "Tim Dash",
+                Location = "Pretoria",
+                Skills = "Analysis,Excel,Word",
+                OpenForApplication = true
+            };
+
+
+            // Act
+            A.CallTo(() => _projectRepo.GetProject(testId)).Returns((proj1));
+            var actionResult = _controller.GetProject(testId).Result;
+
+
+            // Assert
+            Assert.IsType<Project>(actionResult.Value);
+            Assert.Equal(testId, (actionResult.Value as Project).Id);
         }
 
 
