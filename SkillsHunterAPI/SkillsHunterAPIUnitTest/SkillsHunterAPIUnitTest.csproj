@@ -23,4 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SkillsHunterAPI.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" />
+  </ItemGroup>
 </Project>

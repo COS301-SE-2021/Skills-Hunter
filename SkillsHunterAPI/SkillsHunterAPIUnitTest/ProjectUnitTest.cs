@@ -2,15 +2,25 @@ using System;
 using Xunit;
 using SkillsHunterAPI.Models;
 using System.Collections.Generic;
+using FakeItEasy;
+using System.Threading.Tasks;
+using System.Linq;
+using SkillsHunterAPI.Repositories;
+using SkillsHunterAPI.Controllers;
 
 namespace SkillsHunterAPIUnitTest.Tests
 {
-    public class ProjectUnitTest: SkillsHunterAPIUnitTest
+    public class ProjectUnitTest
     {
         //TESTING ONLY THE PROJECT SUBSYSTEM
-        public ProjectUnitTest() : base()
-        {
 
+        IProjectRepository projectRepository;
+        ProjectController projectController;
+
+        public ProjectUnitTest()
+        {
+            projectRepository = A.Fake<IProjectRepository>();
+            projectController = new ProjectController(projectRepository);
         }
 
 
@@ -42,9 +52,22 @@ namespace SkillsHunterAPIUnitTest.Tests
         }
 
         [Fact]
-        public void TestGetProjects()    //testing the function that retrieves projects from the database
+        public async Task TestGetProjectsAsync()    //testing the function that retrieves projects from the database
         {
-            //var testController = new 
+            //var testController = new
+            var count = 6;
+            var fakeProjects = A.CollectionOfFake<Project>(count);
+            A.CallTo(() => projectRepository.GetProjects()).Returns((fakeProjects));
+
+            //Act
+
+            var IEnumerable = await projectController.GetProjects();
+
+            //Assert
+
+            var result = IEnumerable.ToList();
+            var returnProjects = result.Count();
+            Assert.Equal(count, returnProjects);
         }
 
         [Fact]

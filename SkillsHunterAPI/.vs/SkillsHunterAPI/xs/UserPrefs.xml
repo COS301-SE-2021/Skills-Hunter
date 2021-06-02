@@ -4,12 +4,12 @@
     <Files>
       <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="10" Column="45" />
       <File FileName="Controllers/ProjectController.cs" />
-      <File FileName="Repositories/Project/ProjectRepository.cs" Line="16" Column="58" />
+      <File FileName="Repositories/Project/ProjectRepository.cs" />
       <File FileName="Models/Project/Project.cs" />
       <File FileName="obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
       <File FileName="obj/Debug/net5.0/SkillsHunterAPI.AssemblyInfo.cs" />
-      <File FileName="Data/ApplicationContextDB.cs" Line="7" Column="33" />
-      <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTest.cs" Line="2" Column="18" />
+      <File FileName="Data/ApplicationContextDB.cs" />
+      <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTest.cs" />
       <File FileName="Startup.cs" Line="34" Column="52" />
     </Files>
     <Pads>
@@ -28,11 +28,6 @@
               <Node name="Dependencies" expanded="True" />
             </Node>
           </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="SkillsHunterAPI" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
