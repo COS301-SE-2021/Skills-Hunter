@@ -26,13 +26,13 @@ namespace SkillsHunterAPIUnitTest.Tests
 
 
         [Fact]
-        public void TestGetProject()    //testing the function that retrieves only one project
+        public void testGetProject()    //testing the function that retrieves only one project
         {
             //var testController = new 
         }
 
         [Fact]
-        public void TestCreateProject() //Testing the creation of projects
+        public void testCreateProject() //Testing the creation of projects
         {
             Project project = new Project();
             project.Description = "Web development";
@@ -52,7 +52,7 @@ namespace SkillsHunterAPIUnitTest.Tests
         }
 
         [Fact]
-        public async Task TestGetProjectsAsync()    //testing the function that retrieves projects from the database
+        public async Task testGetProjects()    //testing the function that retrieves projects from the database
         {
             //var testController = new
             var count = 6;
@@ -71,13 +71,13 @@ namespace SkillsHunterAPIUnitTest.Tests
         }
 
         [Fact]
-        public void TestUpdateProject()    //testing the function that updates only one project
+        public void testUpdateProject()    //testing the function that updates only one project
         {
             //var testController = new 
         }
 
         [Fact]
-        public void TestDeleteProject()    //testing the function that deletes only one project
+        public void testDeleteProject()    //testing the function that deletes only one project
         {
             //var testController = new 
         }
