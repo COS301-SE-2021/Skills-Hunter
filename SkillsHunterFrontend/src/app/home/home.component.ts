@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Project } from './Project';
+import { project } from '../classes/project';
 import { Projects } from './mock-projects';
 import { Router } from '@angular/router';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { CreateprojectComponent } from './../createproject/createproject.component';
+import { ProjectCRUDService } from '../services/project-crud.service';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,12 @@ import { CreateprojectComponent } from './../createproject/createproject.compone
 
 export class HomeComponent implements OnInit {
   title :string = 'Projects';
-   _projects:Project[] = Projects;
+   _projects:project[] = Projects;
    
-  constructor(private _router: Router,private dialog:MatDialog) { }
+  constructor(private _router: Router,private dialog:MatDialog,private projectService:ProjectCRUDService) { }
 
   ngOnInit(): void {
+    this.projectService.getProjects().subscribe((projects) => (this._projects = projects));
   }
 
   create(){

@@ -4,14 +4,14 @@
 	                       (closed)="panelOpenState = false">
 	    <mat-expansion-panel-header>
 	      <mat-panel-title>
-	        <b>{{_project.name}}</b>
+	        <b>{{_project.projectName}}</b>
 	      </mat-panel-title>
 	      <mat-panel-description>
-	        Open : {{_project.openForApplication ? 'Yes' : 'No'}}
+	        Open : {{_project.openForApllication ? 'Yes' : 'No'}}
 	      </mat-panel-description>
 	    </mat-expansion-panel-header>
 	    <app-project [_project] = "_project"></app-project>
-	    <button mat-raised-button class = "btnProject">Update</button>
+	    <button mat-raised-button class = "btnProject">Match</button>
 	    <button mat-raised-button class = "btnProject">Remove</button>
 	  </mat-expansion-panel>
 	</mat-accordion>

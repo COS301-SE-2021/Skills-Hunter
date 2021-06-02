@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { Project } from '../Project';
+import { project } from '../../classes/project';
 
 @Component({
   selector: 'app-project',
@@ -7,7 +7,7 @@ import { Project } from '../Project';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
-  @Input() _project:Project= {id:-1,name:'',description:'',industry:'',owner:'',location:'',skills:[''],openForApplication:false};
+  @Input() _project:project= {projectName:'',description:'',industry:'',skill:'',openForApllication:false};
   
   constructor() { 
   }
