@@ -27,7 +27,14 @@ namespace SkillsHunterAPI.Tests
         [Fact]
         public async Task GetProjects_AllReturned()
         {
-            
+            //Arrange
+
+            var count = 6;
+            var fakeProjects = A.CollectionOfFake<Project>(count);
+            A.CallTo(() => _projectRepo.GetProjects()).Returns((fakeProjects));
+
+            _controller = new ProjectsController(_projectRepo);
+
         }
 
 
