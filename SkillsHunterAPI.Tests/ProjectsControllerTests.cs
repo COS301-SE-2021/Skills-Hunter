@@ -35,6 +35,16 @@ namespace SkillsHunterAPI.Tests
 
             _controller = new ProjectsController(_projectRepo);
 
+            //Act
+
+            var IEnumerable = await _controller.GetProjects();
+
+            //Assert
+
+            var result = IEnumerable.ToList();
+            var returnProjects = result.Count();
+            Assert.Equal(count, returnProjects);
+
         }
 
 
