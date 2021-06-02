@@ -88,7 +88,28 @@ namespace SkillsHunterAPI.Tests
         public void CreateProject_ValidObjectPassed_ReturnedResponseHasCreatedItem()
         {
             // Arrange
-      
+            var proj1 = new Project
+            {
+                Id = 4,
+                Name = "Data",
+                Description = "We are data",
+                Industry = "Data",
+                Owner = "Tim Brown",
+                Location = "Pretoria Callies",
+                Skills = "Analysis,Excel,Word",
+                OpenForApplication = true
+            };
+
+            // Act
+            A.CallTo(() => _projectRepo.CreateProject(proj1)).Returns(proj1);
+            var createdResponse = _controller.CreateProject(proj1);
+            var item = createdResponse.Result.Value as Project;
+
+
+            // Assert
+            Assert.IsType<Project>(item);
+            Assert.Equal("Data", (item.Name));
+
         }
 
 
