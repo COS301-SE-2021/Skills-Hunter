@@ -8,8 +8,8 @@ import { Candidate } from './Candidate';
 })
 export class CandidateComponent implements OnInit {
 
-  @Input() _candidate: Candidate = {id:-1, name:"", job:"", description:"", skills:[""]};
-  
+  @Input() candidateObject: Candidate = {id:-1, name:"Hello World", job:"Painter", description:"Describe the candidate", skills:[""]};
+
   constructor() { }
 
   ngOnInit(): void {
