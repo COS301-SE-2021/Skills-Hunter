@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable,of } from 'rxjs';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {project} from '../classes/project';
+import { Project } from '../home/Project';
+import { Projects } from '../home/mock-projects';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +22,9 @@ export class ProjectCRUDService {
         };
         console.log("posted data ",obj);
         return this.httpclient.post("http://localhost:65000/",obj);
+    }
+
+    getProjects():Observable<Project[]>{
+        return this.httpclient.get<Project[]>('http://localhost:5001/api/Project/getProjects'); 
     }
 }
