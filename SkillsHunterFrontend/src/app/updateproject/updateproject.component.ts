@@ -1,3 +1,5 @@
+import { Candidates } from './candidate/mock-candidates';
+import { Candidate } from './candidate/Candidate';
 import { Component, NgModule, OnInit } from '@angular/core';
 
 @Component({
@@ -7,6 +9,8 @@ import { Component, NgModule, OnInit } from '@angular/core';
 })
 
 export class UpdateprojectComponent implements OnInit {
+  title :string = 'Candidate';
+  _candidates:Candidate[] = Candidates;
 
   constructor() { }
 

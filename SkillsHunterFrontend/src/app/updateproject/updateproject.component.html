@@ -1,4 +1,4 @@
-<mat-toolbar>
+<!-- <mat-toolbar>
     <button mat-icon-button class="candidate-menu-icon" aria-label="Icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
@@ -8,19 +8,19 @@
     <button mat-icon-button class="candidate-menu-icon" aria-label="Icon-button with home icon">
         <mat-icon aria-hidden="false" aria-label="Home">home</mat-icon>
     </button>
-</mat-toolbar>
+</mat-toolbar> -->
   
 <mat-card class="candidate-card">
     
     <mat-card-header>
       <div mat-card-avatar class="candidate-menu-header-image"></div>
-      <mat-card-title>Martin Antoinette</mat-card-title>
-      <mat-card-subtitle>Carpenter</mat-card-subtitle>
+      <mat-card-title>{_candidate.name}</mat-card-title>
+      <mat-card-subtitle>{_candidate.job}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
         <p>
-            A driven Carpenter with versatility that is always appreciated in complex projects, requiring different skillsets.
+            {_candidate.description}
         </p>
     </mat-card-content>
 
@@ -41,7 +41,7 @@
     </mat-card-actions>
   </mat-card>
 
-  <mat-card class="candidate-card">
+  <!-- <mat-card class="candidate-card">
     
     <mat-card-header>
       <div mat-card-avatar class="candidate-menu-header-image"></div>
@@ -70,4 +70,4 @@
     <mat-card-actions>
             <button class="candidate-invite" mat-raised-button color="accent">Invite To Project</button>
     </mat-card-actions>
-  </mat-card>
+  </mat-card> -->
