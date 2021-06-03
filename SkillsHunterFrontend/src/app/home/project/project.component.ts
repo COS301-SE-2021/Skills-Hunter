@@ -9,6 +9,7 @@ import { Project } from '../Project';
 export class ProjectComponent implements OnInit {
   @Input() _project:Project= {id:-1,name:'',description:'',industry:'',owner:'',location:'',skills:[''],openForApplication:false};
   
+  
   constructor() { 
   }
 

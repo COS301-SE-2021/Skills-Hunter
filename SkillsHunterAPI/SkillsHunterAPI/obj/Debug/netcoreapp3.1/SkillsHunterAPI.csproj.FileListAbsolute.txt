@@ -122,3 +122,5 @@
 /Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI/obj/Debug/netcoreapp3.1/SkillsHunterAPI.dll
 /Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI/obj/Debug/netcoreapp3.1/SkillsHunterAPI.pdb
 /Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI/obj/Debug/netcoreapp3.1/SkillsHunterAPI.genruntimeconfig.cache
+C:\Users\PC1\Documents\GitHub\Skills-Hunter\SkillsHunterAPI\SkillsHunterAPI\obj\Debug\netcoreapp3.1\SkillsHunterAPI.dll
+C:\Users\PC1\Documents\GitHub\Skills-Hunter\SkillsHunterAPI\SkillsHunterAPI\obj\Debug\netcoreapp3.1\SkillsHunterAPI.pdb

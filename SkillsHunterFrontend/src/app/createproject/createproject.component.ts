@@ -40,11 +40,11 @@ export class CreateprojectComponent implements OnInit {
 
     if(<string><any>this.projectInfo.controls['openForApplication'].value=='yes')
     {
-      formData.openForApllication=true;
+      formData.openForApplication=true;
     }
     else
     {
-      formData.openForApllication=true;
+      formData.openForApplication=true;
     }
 
     //the service is called below 
@@ -56,7 +56,7 @@ export class CreateprojectComponent implements OnInit {
     );
   }
   
-  //close popup
+  //close dialog popup
   cancel()
   {
     this.dialogRef.close();

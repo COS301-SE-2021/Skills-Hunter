@@ -4,5 +4,5 @@ export class project
     description:string
     industry:string
     skill:string
-    openForApllication:boolean
+    openForApplication:boolean
 }
