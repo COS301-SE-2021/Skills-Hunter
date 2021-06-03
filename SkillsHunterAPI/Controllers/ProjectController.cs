@@ -38,7 +38,8 @@ namespace SkillsHunterAPI.Controllers
         public async Task<ActionResult<Project>> CreateProject([FromBody] Project project)
         {
             var newProject = await _projectRepository.CreateProject(project);
-            return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
+            //return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
+            return newProject;
         }
 
         [HttpPut]
