@@ -52,6 +52,62 @@ namespace SkillsHunterAPIUnitTest.Tests
         [Fact]
         public void testDeleteProject()    //testing the function that deletes only one project
         {
+            //Arrange
+
+            var proj1 = new Project
+            {
+                ProjectId = 1,
+                Name = "Data 1",
+                Description = "We are data",
+                Industry = "Data",
+                Owner = "Tim Brown",
+                Location = "Pretoria Callies",
+                Skills = "Analysis,Excel,Word",
+                OpenForApplication = true
+            };
+
+            A.CallTo(() => _projectRepo.CreateProject(proj1)).Returns(proj1);
+            var createdResponse1 = _controller.CreateProject(proj1);
+            //var item1 = createdResponse1.Result.Value as Project;
+
+            var proj2 = new Project
+            {
+                ProjectId = 2,
+                Name = "Data 2",
+                Description = "We are data",
+                Industry = "Data",
+                Owner = "Tim Brown",
+                Location = "Pretoria Callies",
+                Skills = "Analysis,Excel,Word",
+                OpenForApplication = true
+            };
+
+            //A.CallTo(() => _projectRepo.CreateProject(proj2)).Returns(proj2);
+            var createdResponse2 = _controller.CreateProject(proj2);
+            //var item2 = createdResponse2.Result.Value as Project;
+
+            var proj3 = new Project
+            {
+                ProjectId = 3,
+                Name = "Data 3",
+                Description = "We are data",
+                Industry = "Data",
+                Owner = "Tim Brown",
+                Location = "Pretoria Callies",
+                Skills = "Analysis,Excel,Word",
+                OpenForApplication = true
+            };
+
+            //A.CallTo(() => _projectRepo.CreateProject(proj3)).Returns(proj3);
+            var createdResponse3 = _controller.CreateProject(proj3);
+            //var item3 = createdResponse3.Result.Value as Project;
+
+            //Act
+
+            var actionResult = _controller.DeleteProject(2);
+
+            //Assert
+            Assert.Equal(2, _controller.GetProjects().Result.ToList().Count);
 
         }
     }
