@@ -8,6 +8,8 @@ import { CreateprojectComponent } from './createproject/createproject.component'
 import { HomeComponent } from './home/home.component';
 import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { CandidateComponent } from './updateproject/candidate/candidate.component';
+import { CandidateItemComponent } from './updateproject/candidate-item/candidate-item.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { BrowserModule } from '@angular/platform-browser';
     LoginComponent,
     CreateprojectComponent,
     UpdateprojectComponent,
-    HomeComponent, 
+    HomeComponent,
+    CandidateComponent,
+    CandidateItemComponent, 
   ],
   imports: [
     BrowserModule,
