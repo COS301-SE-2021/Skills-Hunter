@@ -1,18 +1,5 @@
-<!-- <mat-toolbar>
-    <button mat-icon-button class="candidate-menu-icon" aria-label="Icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>House Building Project</span>
-    <span class="candidate-menu-spacer"></span>
-
-    <button mat-icon-button class="candidate-menu-icon" aria-label="Icon-button with home icon">
-        <mat-icon aria-hidden="false" aria-label="Home">home</mat-icon>
-    </button>
-</mat-toolbar> -->
-  
-
 <div>
-	<app-project-item *ngFor = "let _candidate of _candidate" [_candidate] = "_candidate"></app-project-item>
+	<app-candidate-item *ngFor = "let candidate of _candidates" [_candidates] = "candidate"></app-candidate-item>
 </div>
 
   <!-- <mat-card class="candidate-card">

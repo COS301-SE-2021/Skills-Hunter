@@ -7,7 +7,8 @@ import { Candidate } from '../candidate/Candidate';
   styleUrls: ['./candidate-item.component.scss']
 })
 export class CandidateItemComponent implements OnInit {
-  @Input() _candidate: Candidate = {id:-1, name:"", description:"", skills:[""]};
+  // @Input() _candidate: Candidate = {id:-1, name:"", job:"", description:"", skills:[""]};
+  @Input() _candidate: Candidate;
   constructor() { }
 
   ngOnInit(): void {
