@@ -6,15 +6,15 @@ using SkillsHunterAPI.Repositories;
 
 namespace SkillsHunterAPIUnitTest.Tests
 {
-    public class SkillsHunterAPIUnitTest
+    public class SkillsHunterAPIUnitTestBase
     {
-        public ProjectRepository projectRepository;
+        public IProjectRepository projectRepository;
         public ProjectController projectController;
 
-        public SkillsHunterAPIUnitTest()
+        public SkillsHunterAPIUnitTestBase()
         {
-            var dataStore = A.Fake<ApplicationDbContext>();
-            projectRepository = new ProjectRepository(dataStore);
+         
+            projectRepository = A.Fake<IProjectRepository>();
             projectController = new ProjectController(projectRepository);
         }
     }

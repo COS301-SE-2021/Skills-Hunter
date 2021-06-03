@@ -1,31 +1,22 @@
-﻿<Properties StartupConfiguration="{37266854-C685-4ABA-A10F-8CEBC71E7153}|Default">
+﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SkillsHunterAPIUnitTest/ProjectUnitTest.cs">
     <Files>
-      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="10" Column="45" />
+      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="107" Column="59" />
       <File FileName="Controllers/ProjectController.cs" />
-      <File FileName="Repositories/Project/ProjectRepository.cs" Line="16" Column="58" />
-      <File FileName="Models/Project/Project.cs" />
-      <File FileName="obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
-      <File FileName="obj/Debug/net5.0/SkillsHunterAPI.AssemblyInfo.cs" />
-      <File FileName="Data/ApplicationContextDB.cs" Line="7" Column="33" />
-      <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTest.cs" Line="2" Column="18" />
-      <File FileName="Startup.cs" Line="34" Column="52" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPI" expanded="True">
-              <Node name="Data" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="Repositories" expanded="True">
+              <Node name="Models" expanded="True">
                 <Node name="Project" expanded="True" />
               </Node>
-              <Node name="Startup.cs" selected="True" />
+              <Node name="SkillsHunterAPIUnitTest" expanded="True" />
             </Node>
             <Node name="SkillsHunterAPIUnitTest" expanded="True">
-              <Node name="Dependencies" expanded="True" />
+              <Node name="ProjectUnitTest.cs" selected="True" />
             </Node>
           </Node>
         </State>
