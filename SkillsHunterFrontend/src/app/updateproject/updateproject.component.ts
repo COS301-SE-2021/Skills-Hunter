@@ -1,4 +1,4 @@
-import { Candidates } from './candidate/mock-candidates';
+import { CandidatesList } from './candidate/mock-candidates';
 import { Candidate } from './candidate/Candidate';
 import { Component, NgModule, OnInit } from '@angular/core';
 
@@ -10,7 +10,7 @@ import { Component, NgModule, OnInit } from '@angular/core';
 
 export class UpdateprojectComponent implements OnInit {
   title :string = 'Candidate';
-  _candidates:Candidate[] = Candidates;
+  candidatesList:Candidate[] = CandidatesList;
 
   constructor() { }
 
