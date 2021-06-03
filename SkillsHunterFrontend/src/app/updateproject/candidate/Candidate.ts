@@ -3,5 +3,5 @@ export interface Candidate{
 	name: string;
 	job: string
 	description: string;
-	skills: string[];
+	skills: string;
 } 
