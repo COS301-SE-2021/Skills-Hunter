@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { project } from '../classes/project';
+import { Project } from './Project';
 import { Projects } from './mock-projects';
 import { Router } from '@angular/router';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
@@ -14,7 +14,7 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 
 export class HomeComponent implements OnInit {
   title :string = 'Projects';
-   _projects:project[] = Projects;
+   _projects:Project[] = Projects;
    
   constructor(private _router: Router,private dialog:MatDialog,private projectService:ProjectCRUDService) { }
 

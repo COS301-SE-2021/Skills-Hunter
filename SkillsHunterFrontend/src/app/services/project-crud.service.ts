@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable,of } from 'rxjs';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {project} from '../classes/project';
+import { Project } from '../home/Project';
 import { Projects } from '../home/mock-projects';
 
 @Injectable({
@@ -24,7 +25,6 @@ export class ProjectCRUDService {
     }
 
     getProjects():Observable<project[]>{
-        return of(Projects);
-        //return this.http.get<project[]>('http://localhost:65000/'); 
+        return this.httpclient.get<project[]>('http://localhost:5001/api/Project/getProjects'); 
     }
 }

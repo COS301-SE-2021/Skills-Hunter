@@ -4,10 +4,10 @@
 	                       (closed)="panelOpenState = false">
 	    <mat-expansion-panel-header>
 	      <mat-panel-title>
-	        <b>{{_project.projectName}}</b>
+	        <b>{{_project.name}}</b>
 	      </mat-panel-title>
 	      <mat-panel-description>
-	        Open : {{_project.openForApllication ? 'Yes' : 'No'}}
+	        Open : {{_project.openForApplication ? 'Yes' : 'No'}}
 	      </mat-panel-description>
 	    </mat-expansion-panel-header>
 	    <app-project [_project] = "_project"></app-project>

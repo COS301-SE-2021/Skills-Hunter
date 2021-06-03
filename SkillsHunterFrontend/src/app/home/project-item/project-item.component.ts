@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { project} from '../../classes/Project';
+import { Project} from '../Project';
 @Component({
   selector: 'app-project-item',
   templateUrl: './project-item.component.html',
@@ -7,7 +7,7 @@ import { project} from '../../classes/Project';
 })
 export class ProjectItemComponent implements OnInit {
   panelOpenState :boolean = false;
-  @Input() _project:project = {projectName:'',description:'',industry:'',skill:'',openForApllication:false};
+  @Input() _project:Project = {id:-1,name:'',description:'',industry:'',owner:'',location:'',skills:'',openForApplication:false};
 
   constructor() { }
 
