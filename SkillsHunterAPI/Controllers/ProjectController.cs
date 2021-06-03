@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace SkillsHunterAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class ProjectController : ControllerBase
     {
@@ -21,26 +20,29 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/getProjects")]
         public async Task<IEnumerable<Project>> GetProjects()
         {
             return await _projectRepository.GetProjects();
         }
 
-        [HttpGet("{id}")]//This tells ASP.Net that the method will handle http get request with an argument
-        //ActionResult provide the flexibility to return all the types like not found, bad request , e.t.c
+        [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/getProject/{id}")]
         public async Task<ActionResult<Project>> GetProject(int id)
         {
             return await _projectRepository.GetProject(id);
         }
 
         [HttpPost]
+        [Route("api/[controller]/createProject")]
         public async Task<ActionResult<Project>> CreateProject([FromBody] Project project)
         {
             var newProject = await _projectRepository.CreateProject(project);
             return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
+        [Route("api/[controller]/updateProject/{id}")]
         public async Task<ActionResult> UpdateProject(int id, [FromBody] Project project)
         {
             if (id != project.ProjectId)
@@ -53,7 +55,8 @@ namespace SkillsHunterAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("api/[controller]/deleteProject/{id}")]
         public async Task<ActionResult> DeleteProject(int id)
         {
             var projectToDelete = await _projectRepository.GetProject(id);
