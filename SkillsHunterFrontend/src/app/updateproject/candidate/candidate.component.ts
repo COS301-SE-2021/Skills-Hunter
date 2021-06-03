@@ -8,7 +8,7 @@ import { Candidate } from './Candidate';
 })
 export class CandidateComponent implements OnInit {
 
-  @Input() candidateObject: Candidate = {id:-1, name:"Hello World", job:"Painter", description:"Describe the candidate", skills:[""]};
+  @Input() candidateObject: Candidate = {id:-1, name:"Candidate Name", job:"Candidate Job", description:"Candidate Description", skills:["Candidate","Skills"]};
 
   constructor() { }
 
