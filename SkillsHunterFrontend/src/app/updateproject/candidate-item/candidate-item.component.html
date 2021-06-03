@@ -1,1 +1,30 @@
-<p>candidate-item works!</p>
+<mat-card class="candidate-card">
+    
+    <mat-card-header>
+      <div mat-card-avatar class="candidate-menu-header-image"></div>
+      <mat-card-title>{_candidate.name}</mat-card-title>
+      <mat-card-subtitle>{_candidate.job}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>
+            {_candidate.description}
+        </p>
+    </mat-card-content>
+
+    <mat-card class="candidate-card-skills">
+        <mat-card-title>Skills</mat-card-title>
+        <mat-chip-list aria-label="Candidate Skills">
+            <mat-chip color="primary" selected>Carpentry</mat-chip> 
+            <mat-chip color="primary" >Plumbing</mat-chip>
+            <mat-chip color="primary" selected>Painting</mat-chip>
+            <mat-chip color="primary" selected>CAD Software</mat-chip>
+            <mat-chip color="primary" >Drilling</mat-chip>
+            <mat-chip color="primary" >Architecture</mat-chip>
+        </mat-chip-list>        
+    </mat-card>
+
+    <mat-card-actions>
+            <button class="candidate-invite" mat-raised-button color="accent">Invite To Project</button>
+    </mat-card-actions>
+  </mat-card>
