@@ -1,6 +1,6 @@
 export class project
 {
-    projectName:string
+    name:string
     description:string
     industry:string
     skill:string

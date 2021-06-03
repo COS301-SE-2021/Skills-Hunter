@@ -33,7 +33,7 @@ export class CreateprojectComponent implements OnInit {
   onSubmit(){
     var formData=new project();
 
-    formData.projectName=<string><any>this.projectInfo.controls['projectName'].value;
+    formData.name=<string><any>this.projectInfo.controls['projectName'].value;
     formData.description=<string><any>this.projectInfo.controls['description'].value;
     formData.industry=<string><any>this.projectInfo.controls['industry'].value;
     formData.skill=<string><any>this.projectInfo.controls['skill'].value;
