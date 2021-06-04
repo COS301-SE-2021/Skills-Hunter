@@ -8,7 +8,7 @@ export const Projects: Project[] = [
 		industry: 'IT',
 		owner:'',
 		location:'',
-		skills: 'Angular,Net Core',
+		skills: 'Angular, Net Core',
 		openForApplication: false
 	},
 	{
@@ -18,7 +18,7 @@ export const Projects: Project[] = [
 		industry: 'IT',
 		owner:'',
 		location:'',
-		skills: 'NodeJs,Firebase,Google Cloud Platform, Angular',
+		skills: 'NodeJs, Firebase, Google Cloud Platform, Angular',
 		openForApplication: true
 	},
 	{
@@ -28,7 +28,7 @@ export const Projects: Project[] = [
 		industry: 'IT',
 		owner:'',
 		location:'',
-		skills: 'MongoDB,Spring,Angular',
+		skills: 'MongoDB, Spring, Angular',
 		openForApplication: true
 	},
 	{
@@ -38,7 +38,7 @@ export const Projects: Project[] = [
 		industry: 'IT',
 		owner:'',
 		location:'',
-		skills: 'Docker,React/Vue,.Net Core',
+		skills: 'Docker, React/Vue,.Net Core',
 		openForApplication: true
 	}
 ];
