@@ -26,7 +26,7 @@ import { CandidateComponent } from './updateproject/candidate/candidate.componen
     UpdateprojectComponent,
     HomeComponent,
     ProjectComponent,
-    ProjectItemComponent
+    ProjectItemComponent,
     CandidateComponent,
   ],
   imports: [
@@ -43,11 +43,11 @@ import { CandidateComponent } from './updateproject/candidate/candidate.componen
 
   ],
   providers: [ProjectCRUDService],
-    MaterialModule, 
-    BrowserAnimationsModule 
-  ],
+    // MaterialModule, 
+    // BrowserAnimationsModule 
+  // ],
 
-  providers: [],
+  // providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
