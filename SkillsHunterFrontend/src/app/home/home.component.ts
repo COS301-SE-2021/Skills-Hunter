@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { CreateprojectComponent } from './../createproject/createproject.component';
 import { ProjectCRUDService } from '../services/project-crud.service';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-home',
