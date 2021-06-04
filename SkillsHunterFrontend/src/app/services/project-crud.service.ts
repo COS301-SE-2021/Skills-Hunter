@@ -13,12 +13,7 @@ export class ProjectCRUDService {
   //external api to create project is called here
   createProject(formData:project):Observable<any>
   {
-       let obj={
-            table:"FloorPlan",
-            request:"create",
-            data:project
-        };
-        console.log("posted data ",obj);
-        return this.httpclient.post("http://localhost:65000/",obj);
+       
+        return this.httpclient.post("http://localhost:5000/api/Project/createProject",formData);
     }
 }
