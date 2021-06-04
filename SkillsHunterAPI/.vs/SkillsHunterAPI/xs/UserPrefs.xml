@@ -1,29 +1,40 @@
 ﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SkillsHunterAPIUnitTest/ProjectUnitTest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Data/ApplicationContextDB.cs">
     <Files>
-      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="107" Column="59" />
-      <File FileName="Controllers/ProjectController.cs" />
+      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="110" Column="77" />
+      <File FileName="Controllers/ProjectController.cs" Line="14" Column="7" />
+      <File FileName="instructions.txt" Line="35" Column="37" />
+      <File FileName="obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" Line="4" Column="3" />
+      <File FileName="obj/Debug/net5.0/SkillsHunterAPI.AssemblyInfo.cs" Line="20" Column="68" />
+      <File FileName="Startup.cs" Line="44" Column="86" />
+      <File FileName="Properties/launchSettings.json" Line="25" Column="26" />
+      <File FileName="appsettings.json" Line="1" Column="1" />
+      <File FileName="Data/ApplicationContextDB.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPI" expanded="True">
-              <Node name="Models" expanded="True">
-                <Node name="Project" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="ApplicationContextDB.cs" selected="True" />
               </Node>
-              <Node name="SkillsHunterAPIUnitTest" expanded="True" />
+              <Node name="Properties" expanded="True" />
             </Node>
-            <Node name="SkillsHunterAPIUnitTest" expanded="True">
-              <Node name="ProjectUnitTest.cs" selected="True" />
-            </Node>
+            <Node name="SkillsHunterAPIUnitTest" expanded="True" />
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
-          <Node name="SkillsHunterAPI" expanded="True" selected="True" />
+          <Node name="SkillsHunterAPI" expanded="True" selected="True">
+            <Node name="SkillsHunterAPIUnitTest" expanded="True">
+              <Node name="SkillsHunterAPIUnitTest.Tests" expanded="True">
+                <Node name="ProjectUnitTest" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>

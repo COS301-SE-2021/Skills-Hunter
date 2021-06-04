@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Repositories;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace SkillsHunterAPI.Controllers
 {
     [ApiController]
+    //[EnableCors("mypolicy")]
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _projectRepository;

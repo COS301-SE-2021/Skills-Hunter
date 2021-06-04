@@ -37,10 +37,15 @@ namespace SkillsHunterAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SkillsHunterAPI", Version = "v1" });
             });
-            services.AddCors(c =>
+
+            services.AddCors(options =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            });
+                options.AddDefaultPolicy(
+                builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+               // options.AddPolicy("mypolicy", options => options.WithHeaders());
+            }
+
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,11 +58,12 @@ namespace SkillsHunterAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SkillsHunterAPI v1"));
             }
 
-            app.UseCors(options => options.AllowAnyOrigin());
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
