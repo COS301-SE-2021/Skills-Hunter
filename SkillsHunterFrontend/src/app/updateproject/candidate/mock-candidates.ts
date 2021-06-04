@@ -3,7 +3,7 @@ import { Candidate } from './Candidate';
 export const CandidatesList: Candidate[] = [
 	{
 		id: 0,
-		name: "Hugh Peanuts",
+		name: "Siviwe Kante",
 		job:"Painter",
 		description: "A skilled painter.",
 		skills: "Painting, Plumbing"
@@ -17,14 +17,14 @@ export const CandidatesList: Candidate[] = [
 	},
 	{
 		id: 2,
-		name: "Fergu Dash",
+		name: "Brittney Simmons",
 		job:"Architect",
 		description: "I make the best plans.",
 		skills: "Drawing, CADD"
 	},
 	{
 		id: 3,
-		name: "Brittney Simmons",
+		name: "Fergu Dash",
 		job:"Interior Designer",
 		description: "I turn houses into homes!",
 		skills: "Designing, CADD, Make-Up Artistry"

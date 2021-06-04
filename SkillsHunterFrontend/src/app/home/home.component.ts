@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { CreateprojectComponent } from './../createproject/createproject.component';
 import { ProjectCRUDService } from '../services/project-crud.service';
-import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-home',
@@ -31,12 +30,4 @@ export class HomeComponent implements OnInit {
     configDialog.height='80%';
     this.dialog.open(CreateprojectComponent ,configDialog);
   }
-
-  // updateProject(){
-  //   // const configDialog=new MatDialogConfig();
-  //   // configDialog.backdropClass="backGround";
-  //   // configDialog.width='40%';
-  //   // configDialog.height='80%';
-  //   this.dialog.open(UpdateprojectComponent ,configDialog);
-  // }
 }

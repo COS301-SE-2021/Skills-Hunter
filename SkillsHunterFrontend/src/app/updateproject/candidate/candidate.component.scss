@@ -2,7 +2,7 @@
   color: #003333;
   max-width: 450px;
   background-color: #e6ffff;
-  margin-bottom: 30px;
+  margin: 30px;
 }
 
 .candidate-card-skills {
@@ -18,8 +18,4 @@
 .candidate-menu-header-image {
   background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
-}
-
-.candidate-menu-spacer {
-  flex: 1 1 auto;
 }
