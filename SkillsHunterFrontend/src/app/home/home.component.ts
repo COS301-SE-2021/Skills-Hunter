@@ -1,3 +1,4 @@
+import { UpdateprojectComponent } from './../updateproject/updateproject.component';
 import { Component, OnInit } from '@angular/core';
 import { Project } from './Project';
 import { Projects } from './mock-projects';
@@ -30,4 +31,12 @@ export class HomeComponent implements OnInit {
     configDialog.height='80%';
     this.dialog.open(CreateprojectComponent ,configDialog);
   }
+
+  // updateProject(){
+  //   // const configDialog=new MatDialogConfig();
+  //   // configDialog.backdropClass="backGround";
+  //   // configDialog.width='40%';
+  //   // configDialog.height='80%';
+  //   this.dialog.open(UpdateprojectComponent ,configDialog);
+  // }
 }
