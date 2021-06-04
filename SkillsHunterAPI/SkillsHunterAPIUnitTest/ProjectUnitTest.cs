@@ -108,6 +108,50 @@ namespace SkillsHunterAPIUnitTest.Tests
         public void testUpdateProject()    //testing the function that updates only one project
         {
             //var testController = new 
+            // Arrange
+            var ProjectIdToBeUpdated = 1;
+            var proj1 = new Project
+            {
+                ProjectId = 1,
+                Name = "Data",
+                Description = "We are data",
+                Industry = "Data",
+                Owner = "Tim Brown",
+                Location = "Pretoria Callies",
+                Skills = "Analysis,Excel,Word",
+                OpenForApplication = true
+            };
+
+
+            // Act
+            A.CallTo(() => _projectRepo.CreateProject(proj1)).Returns(proj1);
+            var existingProject = _controller.GetProject(ProjectIdToBeUpdated);
+            var Result = existingProject.Result.Value;
+
+            var proj = new Project
+            {
+                ProjectId = Result.ProjectId,
+                Name = Result.Name,
+                Description = "This is new description",
+                Industry = Result.Industry,
+                Owner = Result.Owner,
+                Location = Result.Location,
+                Skills = Result.Skills,
+                OpenForApplication = Result.OpenForApplication
+
+        };
+      
+
+
+            // A.CallTo(() => _projectRepo.CreateProject(proj1)).Returns(proj1);
+            var updateData = _controller.UpdateProject(ProjectIdToBeUpdated, proj);
+
+    
+
+
+            // Assert
+            //Assert.IsType<Project>(updateData);
+      
         }
 
         [Fact]
