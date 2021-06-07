@@ -41,7 +41,8 @@ namespace SkillsHunterAPI.Controllers
         {
             Console.WriteLine("**********Debugginh******");
             var newProject = await _projectRepository.CreateProject(project);
-            return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
+            //return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
+            return newProject;
         }
 
         [HttpPut]
