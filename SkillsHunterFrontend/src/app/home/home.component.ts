@@ -5,6 +5,8 @@ import { Projects } from './mock-projects';
 import { Router } from '@angular/router';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { CreateprojectComponent } from './../createproject/createproject.component';
+import { projectService } from '../services/project-edit.service';
+import {project} from '../classes/project';
 import { ProjectCRUDService } from '../services/project-crud.service';
 
 @Component({
@@ -15,10 +17,16 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 
 export class HomeComponent implements OnInit {
   title :string = 'Projects';
+  
    _projects:Project[] = Projects;
    
   constructor(private _router: Router,private dialog:MatDialog,private projectService:ProjectCRUDService) { }
 
+  //this function sets(assigns) the project data from the 'projectService' 
+  set retData(_project:project)
+  {
+    this.projectData.projectBeingedited = _project;
+  }
   ngOnInit(): void {
     this.projectService.getProjects().subscribe((projects) => (this._projects = projects));
   }
