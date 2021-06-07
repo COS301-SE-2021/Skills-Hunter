@@ -33,18 +33,18 @@ export class CreateprojectComponent implements OnInit {
   onSubmit(){
     var formData=new project();
 
-    formData.name=<string><any>this.projectInfo.controls['projectName'].value;
-    formData.description=<string><any>this.projectInfo.controls['description'].value;
-    formData.industry=<string><any>this.projectInfo.controls['industry'].value;
-    formData.skill=<string><any>this.projectInfo.controls['skill'].value;
+    formData.Name=<string><any>this.projectInfo.controls['projectName'].value;
+    formData.Description=<string><any>this.projectInfo.controls['description'].value;
+    formData.Industry=<string><any>this.projectInfo.controls['industry'].value;
+    formData.Skill=<string><any>this.projectInfo.controls['skill'].value;
 
     if(<string><any>this.projectInfo.controls['openForApplication'].value=='yes')
     {
-      formData.openForApplication=true;
+      formData.OpenForApplication=true;
     }
     else
     {
-      formData.openForApplication=true;
+      formData.OpenForApplication=true;
     }
 
     //the service is called below 

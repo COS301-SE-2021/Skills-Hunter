@@ -23,11 +23,11 @@ export class UpdateprojectComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.projectInfo.controls['name'].setValue(this.getProjectInfo.name);
-    this.projectInfo.controls['description'].setValue(this.getProjectInfo.description);
-    this.projectInfo.controls['industry'].setValue(this.getProjectInfo.industry);
-    this.projectInfo.controls['skill'].setValue(this.getProjectInfo.skill);
-    this.projectInfo.controls['openForApplication'].setValue(this.getProjectInfo.openForApplication);
+    this.projectInfo.controls['name'].setValue(this.getProjectInfo.Name);
+    this.projectInfo.controls['description'].setValue(this.getProjectInfo.Description);
+    this.projectInfo.controls['industry'].setValue(this.getProjectInfo.Industry);
+    this.projectInfo.controls['skill'].setValue(this.getProjectInfo.Skill);
+    this.projectInfo.controls['openForApplication'].setValue(this.getProjectInfo.OpenForApplication);
   }
 
   skills: string[] = ['project Manager', 'C++', 'java', 'js'];
@@ -46,18 +46,18 @@ export class UpdateprojectComponent implements OnInit {
   onSubmit(){
     var formData=new project();
 
-    formData.name=<string><any>this.projectInfo.controls['projectName'].value;
-    formData.description=<string><any>this.projectInfo.controls['description'].value;
-    formData.industry=<string><any>this.projectInfo.controls['industry'].value;
-    formData.skill=<string><any>this.projectInfo.controls['skill'].value;
+    formData.Name=<string><any>this.projectInfo.controls['projectName'].value;
+    formData.Description=<string><any>this.projectInfo.controls['description'].value;
+    formData.Industry=<string><any>this.projectInfo.controls['industry'].value;
+    formData.Skill=<string><any>this.projectInfo.controls['skill'].value;
 
     if(<string><any>this.projectInfo.controls['openForApplication'].value=='yes')
     {
-      formData.openForApplication=true;
+      formData.OpenForApplication=true;
     }
     else
     {
-      formData.openForApplication=true;
+      formData.OpenForApplication=true;
     }
 
     //the service is called below 

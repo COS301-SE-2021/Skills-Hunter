@@ -1,8 +1,8 @@
 export class project
 {
-    name:string
-    description:string
-    industry:string
-    skill:string
-    openForApplication:boolean
+    Name:string
+    Description:string
+    Industry:string
+    Skill:string
+    OpenForApplication:boolean
 }
