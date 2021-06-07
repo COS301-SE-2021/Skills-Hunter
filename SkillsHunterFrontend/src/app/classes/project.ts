@@ -5,4 +5,6 @@ export class project
     Industry:string
     Skill:string
     OpenForApplication:boolean
+    Location: string;
+    Owner: string;
 }

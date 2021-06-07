@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace SkillsHunterAPI.Controllers
 {
     [ApiController]
-    //[EnableCors("mypolicy")]
+    [EnableCors()]
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _projectRepository;
@@ -39,6 +39,7 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/createProject")]
         public async Task<ActionResult<Project>> CreateProject([FromBody] Project project)
         {
+            Console.WriteLine("**********Debugginh******");
             var newProject = await _projectRepository.CreateProject(project);
             return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
         }
