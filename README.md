@@ -1,5 +1,6 @@
-# Skills Hunter
 ## Team Fully Developed
+
+# Skills Hunter
 Skills hunter is an application that will match the skills of individuals to the right project. Candidates looking for a project will be able to register on the platform and record their skill sets. Project owners or companies seeking to expand their teams can create profiles and projects on the platform. The core functionality of the system is the matching of candidates to project so that the Project owner can contact and recruit them.
 The idea is to implement a skills portal whereby skills or groups of skillsets can be configured by the organisation or project office, and the candidate can load their skillsets and experience on the platform.
 
