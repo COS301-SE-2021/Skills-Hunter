@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace SkillsHunterAPI.Controllers
 {
     [ApiController]
-    [EnableCors()]
+    //[EnableCors()]
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _projectRepository;
