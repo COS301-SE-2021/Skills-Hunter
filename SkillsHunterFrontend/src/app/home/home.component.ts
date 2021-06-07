@@ -1,3 +1,4 @@
+import { UpdateprojectComponent } from './../updateproject/updateproject.component';
 import { Component, OnInit } from '@angular/core';
 import { Project } from './Project';
 import { Projects } from './mock-projects';
@@ -6,7 +7,8 @@ import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { CreateprojectComponent } from './../createproject/createproject.component';
 import { projectService } from '../services/project-edit.service';
 import {project} from '../classes/project';
- 
+import { ProjectCRUDService } from '../services/project-crud.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,7 +20,7 @@ export class HomeComponent implements OnInit {
   
    _projects:Project[] = Projects;
    
-  constructor(private _router: Router,private dialog:MatDialog,private projectData:projectService) { }
+  constructor(private _router: Router,private dialog:MatDialog,private projectService:ProjectCRUDService) { }
 
   //this function sets(assigns) the project data from the 'projectService' 
   set retData(_project:project)
@@ -26,6 +28,7 @@ export class HomeComponent implements OnInit {
     this.projectData.projectBeingedited = _project;
   }
   ngOnInit(): void {
+    this.projectService.getProjects().subscribe((projects) => (this._projects = projects));
   }
 
   create(){

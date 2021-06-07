@@ -1,21 +1,20 @@
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
-
+  background-color: #e6ffff;
   min-height: 100%;
   padding: 20px;
 }
 
-.wrapper form
-{
+.wrapper form {
   width: 100%;
   text-align: center;
 }
-.h{
+.h {
   margin-bottom: 5%;
 }
-.mat-form-field{
-  width:60%;
+.mat-form-field {
+  width: 60%;
 }

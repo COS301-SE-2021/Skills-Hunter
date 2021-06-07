@@ -1,0 +1,25 @@
+<mat-card class="candidate-card">
+
+    <mat-card-header>
+      <div mat-card-avatar class="candidate-menu-header-image"></div>
+      <mat-card-title>{{candidateObject.name}}</mat-card-title>
+      <mat-card-subtitle>{{candidateObject.job}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>
+            {{candidateObject.description}}
+        </p>
+    </mat-card-content>
+
+    <mat-card class="candidate-card-skills">
+        <mat-card-title>Skills</mat-card-title>
+        <mat-chip-list aria-label="Candidate Skills">
+            <mat-chip color="primary" selected>{{candidateObject.skills}}</mat-chip>
+        </mat-chip-list>        
+    </mat-card>
+
+    <mat-card-actions>
+            <button class="candidate-invite" mat-raised-button color="accent">Invite To Project</button>
+    </mat-card-actions>
+  </mat-card>

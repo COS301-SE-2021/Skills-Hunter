@@ -17,8 +17,8 @@ export class CreateprojectComponent implements OnInit {
   }
 
   
-  skills: string[] = ['project Manager', 'C++', 'java', 'js'];
-  industries: string[] = ['finance','construction','agriculture'];
+  skills: string[] = ['Project Manager', 'C++', 'Java', 'JavaScript'];
+  industries: string[] = ['Finance','Construction','Agriculture'];
   open: string[] = ['yes','no'];
   
   projectInfo:FormGroup=new FormGroup({

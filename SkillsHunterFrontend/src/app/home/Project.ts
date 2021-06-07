@@ -5,6 +5,6 @@ export interface Project{
 	industry: string;
 	owner: string;
 	location: string;
-	skills: string[];
+	skills: string;
 	openForApplication: boolean;
 }

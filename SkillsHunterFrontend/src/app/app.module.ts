@@ -1,14 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { CreateprojectComponent } from './createproject/createproject.component';
-import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { HomeComponent } from './home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,7 +14,9 @@ import { ProjectComponent } from './home/project/project.component';
 import { ProjectItemComponent } from './home/project-item/project-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectCRUDService } from './services/project-crud.service';
-
+import { UpdateprojectComponent } from './updateproject/updateproject.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { CandidateComponent } from './updateproject/candidate/candidate.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,8 @@ import { ProjectCRUDService } from './services/project-crud.service';
     UpdateprojectComponent,
     HomeComponent,
     ProjectComponent,
-    ProjectItemComponent
+    ProjectItemComponent,
+    CandidateComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +43,11 @@ import { ProjectCRUDService } from './services/project-crud.service';
 
   ],
   providers: [ProjectCRUDService],
+    // MaterialModule, 
+    // BrowserAnimationsModule 
+  // ],
+
+  // providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

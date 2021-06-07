@@ -11,8 +11,8 @@
 	      </mat-panel-description>
 	    </mat-expansion-panel-header>
 	    <app-project [_project] = "_project"></app-project>
-	    <button mat-raised-button class = "btnProject">Update</button>
-	    <button mat-raised-button class = "btnProject">Remove</button>
+	    <button [routerLink]="['/updateproject']" routerLinkActive="router-link-active"  mat-raised-button class = "btnProject">Find Matching Candidates</button>
+	    <button mat-raised-button class = "btnProject">Remove Project</button>
 	  </mat-expansion-panel>
 	</mat-accordion>
 </div>
