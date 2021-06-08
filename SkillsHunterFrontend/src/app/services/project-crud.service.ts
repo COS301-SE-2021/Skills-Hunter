@@ -25,6 +25,7 @@ export class ProjectCRUDService {
     }
 
     getProjects():Observable<Project[]>{
+        //return of(Projects);
         return this.httpclient.get<Project[]>('http://localhost:5001/api/Project/getProjects'); 
     }
 }
