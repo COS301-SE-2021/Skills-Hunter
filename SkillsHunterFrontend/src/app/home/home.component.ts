@@ -22,11 +22,11 @@ export class HomeComponent implements OnInit {
    
   constructor(private _router: Router,private dialog:MatDialog,private projectService:ProjectCRUDService) { }
 
-  //this function sets(assigns) the project data from the 'projectService' 
-  set retData(_project:project)
-  {
-    this.projectData.projectBeingedited = _project;
-  }
+  // //this function sets(assigns) the project data from the 'projectService' 
+  // set retData(_project:project)
+  // {
+  //   this.projectData.projectBeingedited = _project;
+  // }
   ngOnInit(): void {
     this.projectService.getProjects().subscribe((projects) => (this._projects = projects));
   }
