@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path:'updateproject',
     component:UpdateprojectComponent
+  },
+  {
+    path:'',
+    component:HomeComponent
   }
 ];
 

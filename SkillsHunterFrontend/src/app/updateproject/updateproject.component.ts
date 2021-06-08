@@ -6,7 +6,7 @@ import {ProjectCRUDService} from '../services/project-crud.service'
 import { projectService } from '../services/project-edit.service';
 import { CandidatesList } from './candidate/mock-candidates';
 import { Candidate } from './candidate/Candidate';
-import {NgModule} from '@angular/core';
+// import {NgModule} from '@angular/core';
 
 @Component({
   selector: 'app-updateproject',
