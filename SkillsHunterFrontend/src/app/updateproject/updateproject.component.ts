@@ -6,7 +6,6 @@ import {ProjectCRUDService} from '../services/project-crud.service'
 import { projectService } from '../services/project-edit.service';
 import { CandidatesList } from './candidate/mock-candidates';
 import { Candidate } from './candidate/Candidate';
-import { Component, NgModule, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-updateproject',
@@ -66,7 +65,7 @@ export class UpdateprojectComponent implements OnInit {
     }
 
     //the service is called below 
-    this.projectCrud.createProject(formData)//change so it calls update
+    this.projectCrud.updateProject(formData)//change so it calls update
     .subscribe(
       data=>{
         console.log('Response post', data);
