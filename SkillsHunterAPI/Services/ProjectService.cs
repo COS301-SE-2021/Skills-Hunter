@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SkillsHunterAPI.Models;
+using SkillsHunterAPI.Models.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;

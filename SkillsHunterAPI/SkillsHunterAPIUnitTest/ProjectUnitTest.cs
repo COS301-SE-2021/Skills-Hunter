@@ -1,12 +1,12 @@
 using System;
 using Xunit;
-using SkillsHunterAPI.Models;
 using System.Collections.Generic;
 using FakeItEasy;
 using System.Threading.Tasks;
 using System.Linq;
 using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Controllers;
+using SkillsHunterAPI.Models.Project;
 
 namespace SkillsHunterAPIUnitTest.Tests
 {

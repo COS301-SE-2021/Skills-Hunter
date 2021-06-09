@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Models;
+using SkillsHunterAPI.Models.Project;
 using SkillsHunterAPI.Services;
 using System;
 using System.Collections.Generic;
