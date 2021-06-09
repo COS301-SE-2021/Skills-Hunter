@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SkillsHunterAPI.Repositories
+namespace SkillsHunterAPI.Services
 {
-    public interface IProjectRepository
+    public interface IProjectService
     {
         Task<IEnumerable<Project>> GetProjects();
         Task<Project> GetProject(int id);

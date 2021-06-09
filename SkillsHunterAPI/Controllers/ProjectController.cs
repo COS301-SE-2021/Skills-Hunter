@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Models;
-using SkillsHunterAPI.Repositories;
+using SkillsHunterAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,32 +12,32 @@ namespace SkillsHunterAPI.Controllers
     [ApiController]
     public class ProjectController : ControllerBase
     {
-        private readonly IProjectRepository _projectRepository;
+        private readonly IProjectService _projectService;
 
-        public ProjectController(IProjectRepository projectRepository)
+        public ProjectController(IProjectService projectService)
         {
-            _projectRepository = projectRepository;
+            _projectService = projectService;
         }
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
         [Route("api/[controller]/getProjects")]
         public async Task<IEnumerable<Project>> GetProjects()
         {
-            return await _projectRepository.GetProjects();
+            return await _projectService.GetProjects();
         }
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/getProject/{id}")]
         public async Task<ActionResult<Project>> GetProject(int id)
         {
-            return await _projectRepository.GetProject(id);
+            return await _projectService.GetProject(id);
         }
 
         [HttpPost]
         [Route("api/[controller]/createProject")]
         public async Task<ActionResult<Project>> CreateProject([FromBody] Project project)
         {
-            var newProject = await _projectRepository.CreateProject(project);
+            var newProject = await _projectService.CreateProject(project);
             //return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
             return newProject;
         }
@@ -51,7 +51,7 @@ namespace SkillsHunterAPI.Controllers
                 return BadRequest();
             }
 
-            await _projectRepository.UpdateProject(project);
+            await _projectService.UpdateProject(project);
 
             return NoContent();
         }
@@ -60,14 +60,14 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/deleteProject/{id}")]
         public async Task<ActionResult> DeleteProject(int id)
         {
-            var projectToDelete = await _projectRepository.GetProject(id);
+            var projectToDelete = await _projectService.GetProject(id);
 
             if (projectToDelete == null)
             {
                 return NotFound();
             }
 
-            await _projectRepository.DeleteProject(projectToDelete.ProjectId);
+            await _projectService.DeleteProject(projectToDelete.ProjectId);
             return NoContent();
         }
 

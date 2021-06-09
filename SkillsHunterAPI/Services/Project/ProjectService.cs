@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SkillsHunterAPI.Repositories
+namespace SkillsHunterAPI.Services
 {
-    public class ProjectRepository : IProjectRepository
+    public class ProjectService : IProjectService
     {
 
         private readonly ApplicationDbContext _context;
@@ -16,7 +16,7 @@ namespace SkillsHunterAPI.Repositories
         /// We inject the context through the constructor
         /// </summary>
         /// <param name="context"></param>
-        public ProjectRepository(ApplicationDbContext context)
+        public ProjectService(ApplicationDbContext context)
         {
             _context = context;
         }
