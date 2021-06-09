@@ -3,8 +3,6 @@ namespace SkillsHunterAPI.Models.User
 {
     public class WorkExperience
     {
-        public WorkExperience()
-        {
-        }
+        public string WorkExperienceID { get; set; }
     }
 }

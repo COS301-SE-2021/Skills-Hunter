@@ -3,6 +3,6 @@ namespace SkillsHunterAPI.Models.Project
 {
     public class ProjectSkill
     {
-        public int ProjectSkillID { get; set; }
+        public string ProjectSkillID { get; set; }
     }
 }
