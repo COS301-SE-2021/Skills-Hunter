@@ -24,7 +24,8 @@ export class ProjectCRUDService {
     return this.httpclient.post("http://localhost:5000/api/Project/createProject",formData);
 
   }
-    getProjects():Observable<Project[]>{
-        return this.httpclient.get<Project[]>('http://localhost:5001/api/Project/getProjects'); 
+
+  getProjects():Observable<Project[]>{
+        return this.httpclient.get<Project[]>('http://localhost:5000/api/Project/getProjects'); 
     }
 }
