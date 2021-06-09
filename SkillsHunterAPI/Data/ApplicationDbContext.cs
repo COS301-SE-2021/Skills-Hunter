@@ -29,25 +29,23 @@ namespace SkillsHunterAPI.Data
             modelBuilder.Entity<Project>().ToTable("Project");
             modelBuilder.Entity<Project>().HasKey("ProjectId");
 
-            modelBuilder.Entity<Project>().ToTable("User");
-            modelBuilder.Entity<Project>().HasKey("UserId");
+            modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<User>().HasKey("UserId");
 
-            modelBuilder.Entity<Project>().ToTable("Category");
-            modelBuilder.Entity<Project>().HasKey("CategoryId");
+            modelBuilder.Entity<Category>().ToTable("Category");
+            modelBuilder.Entity<Category>().HasKey("CategoryId");
 
-            modelBuilder.Entity<Project>().ToTable("Skill");
-            modelBuilder.Entity<Project>().HasKey("SkillId");
+            modelBuilder.Entity<Skill>().ToTable("Skill");
+            modelBuilder.Entity<Skill>().HasKey("SkillId");
 
-            modelBuilder.Entity<Project>().ToTable("ProjectSkill");
-            modelBuilder.Entity<Project>().HasKey("ProjectSkillId");
+            modelBuilder.Entity<ProjectSkill>().ToTable("ProjectSkill");
+            modelBuilder.Entity<ProjectSkill>().HasKey("ProjectSkillId");
 
-            modelBuilder.Entity<Project>().ToTable("UserSkill");
-            modelBuilder.Entity<Project>().HasKey("UserSkillId");
+            modelBuilder.Entity<UserSkill>().ToTable("UserSkill");
+            modelBuilder.Entity<UserSkill>().HasKey("UserSkillId");
 
-            modelBuilder.Entity<Project>().ToTable("WorkExperience");
-            modelBuilder.Entity<Project>().HasKey("WorkExperienceId");
-
-
+            modelBuilder.Entity<WorkExperience>().ToTable("WorkExperience");
+            modelBuilder.Entity<WorkExperience>().HasKey("WorkExperienceId");
         }
 
     }
