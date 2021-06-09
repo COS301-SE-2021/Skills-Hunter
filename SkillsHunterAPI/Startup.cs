@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using SkillsHunterAPI.Models.Project;
+using SkillsHunterAPI.Data;
 using SkillsHunterAPI.Services;
 
 namespace SkillsHunterAPI

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SkillsHunterAPI.Data;
 using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
 using System;

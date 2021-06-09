@@ -3,6 +3,6 @@ namespace SkillsHunterAPI.Models.User
 {
     public class UserSkill
     {
-        public string UserSkillID { get; set; }
+        public string UserSkillId { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace SkillsHunterAPI.Services
 {
-    public class UserService
+    public class UserService: IUserService
     {
         public UserService()
         {
