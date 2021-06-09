@@ -18,7 +18,7 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 export class HomeComponent implements OnInit {
   title :string = 'Projects';
   
-   _projects:Project[] = Projects;
+   _projects:Project[] ;//= Projects;
    
   constructor(private _router: Router,private dialog:MatDialog,private projectCrud:ProjectCRUDService,private projectData:projectService) { }
 
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     .subscribe(
       data=>{
         this._projects=data;
-       // console.log('Response post', data);
+        console.log('Response post', data);
       }
     );
 
