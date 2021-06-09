@@ -1,22 +1,20 @@
 ﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Project/Project.cs">
     <Files>
-      <File FileName="Models/Project/Project.cs" Line="8" Column="25" />
-      <File FileName="Controllers/ProjectController.cs" Line="70" Column="34" />
-      <File FileName="Repositories/Project/ProjectRepository.cs" Line="26" Column="44" />
-      <File FileName="Repositories/Project/IProjectRepository.cs" Line="16" Column="6" />
-      <File FileName="Models/User/User.cs" Line="1" Column="1" />
-      <File FileName="Models/User/WorkExperience.cs" Line="1" Column="1" />
-      <File FileName="Models/User/UserSkill.cs" Line="1" Column="1" />
-      <File FileName="Models/Project/ProjectSkill.cs" Line="1" Column="1" />
-      <File FileName="Models/Skill.cs" Line="1" Column="1" />
-      <File FileName="Models/Category.cs" Line="1" Column="1" />
-      <File FileName="Data/ApplicationContextDB.cs" Line="1" Column="1" />
-      <File FileName="SkillsHunterAPI.csproj" Line="1" Column="1" />
-      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="22" Column="50" />
-      <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTestBase.cs" Line="17" Column="55" />
-      <File FileName="Startup.cs" Line="33" Column="46" />
+      <File FileName="Models/Project/Project.cs" Line="10" Column="1" />
+      <File FileName="Controllers/ProjectController.cs" />
+      <File FileName="Models/User/User.cs" />
+      <File FileName="Models/User/WorkExperience.cs" />
+      <File FileName="Models/User/UserSkill.cs" />
+      <File FileName="Models/Project/ProjectSkill.cs" />
+      <File FileName="Models/Skill.cs" />
+      <File FileName="Models/Category.cs" />
+      <File FileName="Data/ApplicationContextDB.cs" />
+      <File FileName="SkillsHunterAPI.csproj" />
+      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" />
+      <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTestBase.cs" />
+      <File FileName="Startup.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -25,19 +23,17 @@
             <Node name="SkillsHunterAPI" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
-              <Node name="Models" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Project" expanded="True">
+                  <Node name="Project.cs" selected="True" />
+                </Node>
+              </Node>
               <Node name="Services" expanded="True">
                 <Node name="Project" expanded="True" />
               </Node>
               <Node name="SkillsHunterAPIUnitTest" expanded="True" />
-              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="SkillsHunterAPI" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
