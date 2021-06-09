@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   
    _projects:Project[] = Projects;
    
-  constructor(private _router: Router,private dialog:MatDialog,private projectService:ProjectCRUDService) { }
+  constructor(private _router: Router,private dialog:MatDialog,private projectCrud:ProjectCRUDService,private projectData:projectService) { }
 
   //this function sets(assigns) the project data from the 'projectService' 
   set retData(_project:project)
@@ -28,7 +28,15 @@ export class HomeComponent implements OnInit {
     this.projectData.projectBeingedited = _project;
   }
   ngOnInit(): void {
-    this.projectService.getProjects().subscribe((projects) => (this._projects = projects));
+    //read data of projects
+    this.projectCrud.getProjects()
+    .subscribe(
+      data=>{
+        this._projects=data;
+       // console.log('Response post', data);
+      }
+    );
+
   }
 
   create(){
