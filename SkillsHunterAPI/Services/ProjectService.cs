@@ -24,7 +24,9 @@ namespace SkillsHunterAPI.Services
         {
             _context = context;
         }
-        
+
+        //Project
+
         public async Task<ProjectResponse> CreateProject(ProjectRequest project)
         {
             //_context.Projects.Add(project);
@@ -54,6 +56,20 @@ namespace SkillsHunterAPI.Services
         {
             /*_context.Entry(project).State = EntityState.Modified;
             await _context.SaveChangesAsync();*/
+        }
+
+        //Project Skills
+
+        public async Task AddProjectSkill(ProjectSkill projectSkill)
+        {
+            _context.ProjectSkills.Add(projectSkill);
+            await _context.SaveChangesAsync();
+
+        }
+
+        public async Task RemoveProjectSkill(string projectSkillId)
+        {
+            
         }
     }
 }
