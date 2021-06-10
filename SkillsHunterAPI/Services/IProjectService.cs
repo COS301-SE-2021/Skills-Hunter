@@ -13,7 +13,7 @@ namespace SkillsHunterAPI.Services
     {
         //Project
         Task<IEnumerable<ProjectResponse>> GetProjects();
-        Task<Project> GetProject(string id);
+        Task<ProjectResponse> GetProject(string id);
         Task<ProjectResponse> CreateProject(ProjectRequest project);
         Task UpdateProject(ProjectRequest project);
         Task DeleteProject(string id);
