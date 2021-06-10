@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SkillsHunterAPI.Data;
 using SkillsHunterAPI.Models;
-using SkillsHunterAPI.Repositories;
 using SkillsHunterAPI.Services;
 using System;
 using System.Collections.Generic;
