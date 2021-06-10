@@ -81,7 +81,7 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/addProjectSkill")]
         public async Task<ActionResult> AddProjectSkill([FromBody] ProjectSkill projectSkill)
         {
-
+            await _projectService.AddProjectSkill(projectSkill);
             return NoContent();
         }
 
