@@ -11,10 +11,15 @@ namespace SkillsHunterAPI.Services
 {
     public interface IProjectService
     {
+        //Project
         Task<IEnumerable<Project>> GetProjects();
         Task<Project> GetProject(int id);
         Task<ProjectResponse> CreateProject(ProjectRequest project);
         Task UpdateProject(ProjectRequest project);
         Task DeleteProject(int id);
+
+        //Project Skills
+        Task AddProjectSkill(ProjectSkill projectSkill);
+        Task RemoveProjectSkill(string projectSkillId);
     }
 }
