@@ -187,6 +187,6 @@ namespace SkillsHunterAPIUnitTest.Tests
             //Assert
             Assert.Empty(_controller.GetProjects().Result.ToList());
 
-        }
-    }*/
+        }*/
+    }
 }
