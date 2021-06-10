@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/User/UserResponse.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Project/ProjectSkill.cs">
     <Files>
-      <File FileName="Models/Project/Project.cs" Line="6" Column="41" />
+      <File FileName="Models/Project/Project.cs" Line="16" Column="50" />
       <File FileName="Controllers/ProjectController.cs" />
       <File FileName="Models/User/User.cs" />
       <File FileName="Models/User/WorkExperience.cs" />
       <File FileName="Models/User/UserSkill.cs" />
-      <File FileName="Models/Project/ProjectSkill.cs" />
+      <File FileName="Models/Project/ProjectSkill.cs" Line="7" Column="16" />
       <File FileName="Models/Skill.cs" />
       <File FileName="Models/Category.cs" />
       <File FileName="SkillsHunterAPI.csproj" />
@@ -22,6 +22,8 @@
       <File FileName="instructions.txt" />
       <File FileName="Models/User/UserRequest.cs" />
       <File FileName="Models/User/UserResponse.cs" Line="4" Column="89" />
+      <File FileName="Models/Project/ProjectRequest.cs" Line="18" Column="32" />
+      <File FileName="Models/Project/ProjectResponse.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -31,10 +33,10 @@
               <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="Project" expanded="True" />
-                <Node name="User" expanded="True">
-                  <Node name="UserResponse.cs" selected="True" />
+                <Node name="Project" expanded="True">
+                  <Node name="ProjectSkill.cs" selected="True" />
                 </Node>
+                <Node name="User" expanded="True" />
               </Node>
               <Node name="Services" expanded="True" />
             </Node>
