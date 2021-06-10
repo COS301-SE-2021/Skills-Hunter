@@ -1,12 +1,12 @@
 using System;
 using Xunit;
-using SkillsHunterAPI.Models;
 using System.Collections.Generic;
 using FakeItEasy;
 using System.Threading.Tasks;
 using System.Linq;
-using SkillsHunterAPI.Repositories;
+using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Controllers;
+using SkillsHunterAPI.Models.Project;
 
 namespace SkillsHunterAPIUnitTest.Tests
 {
@@ -14,12 +14,12 @@ namespace SkillsHunterAPIUnitTest.Tests
     {
         //TESTING ONLY THE PROJECT SUBSYSTEM
 
-        IProjectRepository _projectRepo;
+        IProjectService _projectRepo;
         ProjectController _controller;
 
         public ProjectUnitTest()
         {
-            _projectRepo = A.Fake<IProjectRepository>();
+            _projectRepo = A.Fake<IProjectService>();
             _controller = new ProjectController(_projectRepo);
         }
 
