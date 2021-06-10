@@ -3,7 +3,6 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Models/User/UserResponse.cs">
     <Files>
       <File FileName="Models/Project/Project.cs" Line="6" Column="41" />
-      <File FileName="Models/Category.cs" Line="6" Column="33" />
       <File FileName="Controllers/ProjectController.cs" />
       <File FileName="Models/User/User.cs" />
       <File FileName="Models/User/WorkExperience.cs" />
