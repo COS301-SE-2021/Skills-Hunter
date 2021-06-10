@@ -31,9 +31,15 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/getProject/{id}")]
-        public async Task<ActionResult<Project>> GetProject(int id)
+        public async Task<ActionResult<ProjectResponse>> GetProject(string id)
         {
-            return await _projectService.GetProject(id);
+            ProjectResponse project = await _projectService.GetProject(id);
+
+            if (project == null) {
+                return NotFound();
+            }
+
+            return project;
         }
 
         [HttpPost]
