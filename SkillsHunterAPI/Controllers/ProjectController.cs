@@ -77,15 +77,19 @@ namespace SkillsHunterAPI.Controllers
 
         //Project Skills
 
+        [HttpPost]
+        [Route("api/[controller]/addProjectSkill")]
         public async Task<ActionResult> AddProjectSkill([FromBody] ProjectSkill projectSkill)
         {
 
             return NoContent();
         }
 
-        public async Task<ActionResult> RemoveProjectSkill(string projectSkillId)
+        [HttpDelete]
+        [Route("api/[controller]/deleteProjectSkill/{id}")]
+        public async Task<ActionResult> RemoveProjectSkill(string id)
         {
-            var projectSkill = await _projectService.GetProjectSkill(projectSkillId);
+            var projectSkill = await _projectService.GetProjectSkill(id);
 
             if (projectSkill == null)
             {
@@ -93,7 +97,7 @@ namespace SkillsHunterAPI.Controllers
             }
             else
             {
-                await _projectService.RemoveProjectSkill(projectSkillId);
+                await _projectService.RemoveProjectSkill(id);
             }
             return NoContent();
         }
