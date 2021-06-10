@@ -27,12 +27,12 @@ namespace SkillsHunterAPI.Services
 
         //Project
 
-        public async Task<ProjectResponse> CreateProject(ProjectRequest project)
+        public async Task<Project> CreateProject(Project project)
         {
-            //_context.Projects.Add(project);
+            _context.Projects.Add(project);
             await _context.SaveChangesAsync();
 
-            return new ProjectResponse();
+            return project;
         }
 
         public async Task DeleteProject(string id)
@@ -42,22 +42,20 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ProjectResponse> GetProject(string id)
+        public async Task<Project> GetProject(string id)
         {
-            //return await _context.Projects.FindAsync(id);
-            return new ProjectResponse();
+            return await _context.Projects.FindAsync(id);
         }
 
-        public async Task<IEnumerable<ProjectResponse>> GetProjects()
+        public async Task<IEnumerable<Project>> GetProjects()
         {
-            //return await _context.Projects.ToListAsync();
-            return new List<ProjectResponse>();
+            return await _context.Projects.ToListAsync();
         }
 
-        public async Task UpdateProject(ProjectRequest project)
+        public async Task UpdateProject(Project project)
         {
-            /*_context.Entry(project).State = EntityState.Modified;
-            await _context.SaveChangesAsync();*/
+            _context.Entry(project).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
 
         //Project Skills
