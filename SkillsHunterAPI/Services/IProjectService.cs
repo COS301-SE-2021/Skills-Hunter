@@ -21,5 +21,6 @@ namespace SkillsHunterAPI.Services
         //Project Skills
         Task AddProjectSkill(ProjectSkill projectSkill);
         Task RemoveProjectSkill(string projectSkillId);
+        Task<ProjectSkill> GetProjectSkill(string id);
     }
 }
