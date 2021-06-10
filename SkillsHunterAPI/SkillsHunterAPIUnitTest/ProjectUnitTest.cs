@@ -14,7 +14,7 @@ namespace SkillsHunterAPIUnitTest.Tests
     {
         //TESTING ONLY THE PROJECT SUBSYSTEM
 
-        IProjectService _projectRepo;
+        /*IProjectService _projectRepo;
         ProjectController _controller;
 
         public ProjectUnitTest()
@@ -188,5 +188,5 @@ namespace SkillsHunterAPIUnitTest.Tests
             Assert.Empty(_controller.GetProjects().Result.ToList());
 
         }
-    }
+    }*/
 }
