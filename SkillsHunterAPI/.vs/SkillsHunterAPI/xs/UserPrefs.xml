@@ -1,15 +1,27 @@
 ﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/User/UserResponse.cs">
     <Files>
-      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="144" Column="68" />
-      <File FileName="Controllers/ProjectController.cs" Line="42" Column="31" />
-      <File FileName="instructions.txt" Line="35" Column="37" />
-      <File FileName="obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" Line="4" Column="3" />
-      <File FileName="obj/Debug/net5.0/SkillsHunterAPI.AssemblyInfo.cs" Line="20" Column="68" />
-      <File FileName="Startup.cs" Line="1" Column="1" />
-      <File FileName="Properties/launchSettings.json" Line="1" Column="1" />
-      <File FileName="appsettings.json" Line="1" Column="1" />
+      <File FileName="Models/Project/Project.cs" Line="6" Column="41" />
+      <File FileName="Controllers/ProjectController.cs" />
+      <File FileName="Models/User/User.cs" />
+      <File FileName="Models/User/WorkExperience.cs" />
+      <File FileName="Models/User/UserSkill.cs" />
+      <File FileName="Models/Project/ProjectSkill.cs" />
+      <File FileName="Models/Skill.cs" />
+      <File FileName="Models/Category.cs" />
+      <File FileName="SkillsHunterAPI.csproj" />
+      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" />
+      <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTestBase.cs" />
+      <File FileName="Startup.cs" />
+      <File FileName="Services/IProjectService.cs" />
+      <File FileName="Controllers/UserController.cs" />
+      <File FileName="Services/ProjectService.cs" />
+      <File FileName="Services/IUserService.cs" />
+      <File FileName="Services/UserService.cs" />
+      <File FileName="instructions.txt" />
+      <File FileName="Models/User/UserRequest.cs" />
+      <File FileName="Models/User/UserResponse.cs" Line="4" Column="89" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,21 +29,14 @@
           <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPI" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Properties" expanded="True" />
-              <Node name="SkillsHunterAPIUnitTest" expanded="True" />
-              <Node name="appsettings.json" selected="True" />
-            </Node>
-            <Node name="SkillsHunterAPIUnitTest" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="SkillsHunterAPI" expanded="True" selected="True">
-            <Node name="SkillsHunterAPIUnitTest" expanded="True">
-              <Node name="SkillsHunterAPIUnitTest.Tests" expanded="True">
-                <Node name="ProjectUnitTest" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Project" expanded="True" />
+                <Node name="User" expanded="True">
+                  <Node name="UserResponse.cs" selected="True" />
+                </Node>
               </Node>
+              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>
