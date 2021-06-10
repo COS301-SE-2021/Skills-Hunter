@@ -1,6 +1,7 @@
 ﻿using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
 using SkillsHunterAPI.Models.Project.Request;
+using SkillsHunterAPI.Models.Project.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace SkillsHunterAPI.Services
     {
         Task<IEnumerable<Project>> GetProjects();
         Task<Project> GetProject(int id);
-        Task<Project> CreateProject(ProjectRequest project);
+        Task<ProjectResponse> CreateProject(ProjectRequest project);
         Task UpdateProject(ProjectRequest project);
         Task DeleteProject(int id);
     }
