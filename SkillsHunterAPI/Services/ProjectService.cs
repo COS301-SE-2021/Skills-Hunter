@@ -42,14 +42,16 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Project> GetProject(int id)
+        public async Task<ProjectResponse> GetProject(string id)
         {
-            return await _context.Projects.FindAsync(id);
+            //return await _context.Projects.FindAsync(id);
+            return new ProjectResponse();
         }
 
-        public async Task<IEnumerable<Project>> GetProjects()
+        public async Task<IEnumerable<ProjectResponse>> GetProjects()
         {
-            return await _context.Projects.ToListAsync();
+            //return await _context.Projects.ToListAsync();
+            return new List<ProjectResponse>();
         }
 
         public async Task UpdateProject(ProjectRequest project)
