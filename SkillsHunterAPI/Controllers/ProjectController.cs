@@ -33,11 +33,14 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getProject/{id}")]
         public async Task<ActionResult<ProjectResponse>> GetProject(string id)
         {
-            ProjectResponse project = await _projectService.GetProject(id);
+            Guid projectId = new Guid(id);
+            ProjectResponse project = await _projectService.GetProject(projectId);
 
             if (project == null) {
                 return NotFound();
             }
+
+            project.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(projectId);
 
             return project;
         }
