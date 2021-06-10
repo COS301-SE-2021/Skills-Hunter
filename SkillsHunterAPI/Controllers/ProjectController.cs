@@ -46,12 +46,26 @@ namespace SkillsHunterAPI.Controllers
             Project project = await _projectService.GetProject(projectId);
 
             ProjectResponse projectResponse = new ProjectResponse();
+            projectResponse.ProjectSkills = new List<ProjectSkill>();
 
             if (project == null) {
                 return null;
             }
 
-            projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(projectId);
+            projectResponse.ProjectId = project.ProjectId;
+            projectResponse.Owner = project.Owner;
+            projectResponse.Name = project.Name;
+            projectResponse.Description = project.Description;
+            projectResponse.DateCreated = project.DateCreated;
+            projectResponse.OpenForApplication = project.OpenForApplication;
+
+            IEnumerable<ProjectSkill> projectSkills = await _projectService.GetProjectSkills(projectId);
+
+            foreach (ProjectSkill projectSkill in projectSkills)
+            {
+                projectResponse.ProjectSkills.Add(projectSkill);
+            }
+
 
             return projectResponse;
         }
@@ -81,7 +95,7 @@ namespace SkillsHunterAPI.Controllers
                 await _projectService.AddProjectSkill(projectSkill);
             }
 
-            projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
+            //projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
 
             //var newProject = await _projectService.CreateProject(projectRequest);
             return CreatedAtAction(nameof(GetProject), new { id = newProject.ProjectId }, newProject);

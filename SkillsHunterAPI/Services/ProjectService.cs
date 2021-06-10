@@ -83,7 +83,7 @@ namespace SkillsHunterAPI.Services
 
         public async Task<IEnumerable<ProjectSkill>> GetProjectSkills(Guid projectId)
         {
-            return await _context.ProjectSkills.Where(ss => ss.ProjectSkillId == projectId).ToArrayAsync();
+            return await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToArrayAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SkillsHunterAPI.Models.Project.Response
@@ -13,7 +14,7 @@ namespace SkillsHunterAPI.Models.Project.Response
         public string Location { get; set; }
         public bool OpenForApplication { get; set; }
         public DateTime DateCreated { get; set; }
-        public ProjectSkill[] ProjectSkills { get; set; }
+        public List<ProjectSkill> ProjectSkills { get; set; }
 
         //public static implicit operator ProjectResponse(Project v)
         //{
