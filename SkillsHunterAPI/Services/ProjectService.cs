@@ -69,7 +69,9 @@ namespace SkillsHunterAPI.Services
 
         public async Task RemoveProjectSkill(string projectSkillId)
         {
-            
+            var projectSkill = await _context.ProjectSkills.FindAsync(projectSkillId);
+            _context.ProjectSkills.Remove(projectSkill);
+            await _context.SaveChangesAsync();
         }
     }
 }
