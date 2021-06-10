@@ -7,7 +7,7 @@ namespace SkillsHunterAPI.Models.Project
 {
     public class Project
     {
-        public int ProjectId { get; set; }
+        public Guid ProjectId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Owner { get; set; }
