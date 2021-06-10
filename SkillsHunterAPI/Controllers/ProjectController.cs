@@ -60,20 +60,43 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/createProject")]
         public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] ProjectRequest projectRequest)
         {
+            ProjectResponse projectResponse = new ProjectResponse();
+
+            Project newProject = new Project();
+            newProject.Description = projectRequest.Description;
+            newProject.Location = projectRequest.Location;
+            newProject.OpenForApplication = projectRequest.OpenForApplication;
+            newProject.Owner = new Guid(projectRequest.Owner);
+            newProject.Name = projectRequest.Name;
+            newProject.DateCreated = DateTime.Now;
+
+            //Adding the project to the database;
+            newProject = await _projectService.CreateProject(newProject);
+
+            //Adding the project skills to the database;
+
+            foreach (ProjectSkill projectSkill in projectRequest.ProjectSkills)
+            {
+                projectSkill.ProjectId = newProject.ProjectId;
+                await _projectService.AddProjectSkill(projectSkill);
+            }
+
+            projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
+
             //var newProject = await _projectService.CreateProject(projectRequest);
-            //return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
+            return CreatedAtAction(nameof(GetProject), new { id = newProject.ProjectId }, newProject);
             //return newProject;
-            return new ProjectResponse();
+            //return projectResponse;
         }
 
         [HttpPut]
         [Route("api/[controller]/updateProject/{id}")]
         public async Task<ActionResult> UpdateProject(int id, [FromBody] ProjectRequest projectRequest)
         {
-            if (id != projectRequest.ProjectId)
+            /*if (id != projectRequest.ProjectId)
             {
                 return BadRequest();
-            }
+            }*/
 
             //await _projectService.UpdateProject(projectRequest);
 
