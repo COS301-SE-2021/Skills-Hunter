@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
+using SkillsHunterAPI.Models.Project.Request;
+using SkillsHunterAPI.Models.Project.Response;
 using SkillsHunterAPI.Services;
 using System;
 using System.Collections.Generic;
@@ -36,23 +38,24 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/createProject")]
-        public async Task<ActionResult<Project>> CreateProject([FromBody] Project project)
+        public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] ProjectRequest projectRequest)
         {
-            var newProject = await _projectService.CreateProject(project);
+            var newProject = await _projectService.CreateProject(projectRequest);
             //return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
-            return newProject;
+            //return newProject;
+            return new ProjectResponse();
         }
 
         [HttpPut]
         [Route("api/[controller]/updateProject/{id}")]
-        public async Task<ActionResult> UpdateProject(int id, [FromBody] Project project)
+        public async Task<ActionResult> UpdateProject(int id, [FromBody] ProjectRequest projectRequest)
         {
-            if (id != project.ProjectId)
+            if (id != projectRequest.ProjectId)
             {
                 return BadRequest();
             }
 
-            await _projectService.UpdateProject(project);
+            await _projectService.UpdateProject(projectRequest);
 
             return NoContent();
         }
@@ -72,6 +75,32 @@ namespace SkillsHunterAPI.Controllers
             return NoContent();
         }
 
+        //Project Skills
+
+        [HttpPost]
+        [Route("api/[controller]/addProjectSkill")]
+        public async Task<ActionResult> AddProjectSkill([FromBody] ProjectSkill projectSkill)
+        {
+            await _projectService.AddProjectSkill(projectSkill);
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("api/[controller]/deleteProjectSkill/{id}")]
+        public async Task<ActionResult> RemoveProjectSkill(string id)
+        {
+            var projectSkill = await _projectService.GetProjectSkill(id);
+
+            if (projectSkill == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                await _projectService.RemoveProjectSkill(id);
+            }
+            return NoContent();
+        }
 
     }
 

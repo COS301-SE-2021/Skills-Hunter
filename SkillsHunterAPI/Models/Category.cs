@@ -3,6 +3,6 @@ namespace SkillsHunterAPI.Models
 {
     public class Category
     {
-        public string CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
     }
 }
