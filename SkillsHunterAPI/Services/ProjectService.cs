@@ -29,6 +29,7 @@ namespace SkillsHunterAPI.Services
 
         public async Task<Project> CreateProject(Project project)
         {
+            project.ProjectId = new Guid();
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();
 
@@ -62,6 +63,7 @@ namespace SkillsHunterAPI.Services
 
         public async Task AddProjectSkill(ProjectSkill projectSkill)
         {
+            projectSkill.ProjectSkillId = new Guid();
             _context.ProjectSkills.Add(projectSkill);
             await _context.SaveChangesAsync();
 
