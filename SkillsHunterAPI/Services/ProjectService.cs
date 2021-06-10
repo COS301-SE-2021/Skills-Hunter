@@ -2,6 +2,8 @@
 using SkillsHunterAPI.Data;
 using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
+using SkillsHunterAPI.Models.Project.Request;
+using SkillsHunterAPI.Models.Project.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +25,12 @@ namespace SkillsHunterAPI.Services
             _context = context;
         }
         
-        public async Task<Project> CreateProject(Project project)
+        public async Task<ProjectResponse> CreateProject(ProjectRequest project)
         {
-            _context.Projects.Add(project);
-            await _context.SaveChangesAsync();
+            /*_context.Projects.Add(project);
+            await _context.SaveChangesAsync();*/
 
-            return project;
+            return new ProjectResponse();
         }
 
         public async Task DeleteProject(int id)
@@ -48,10 +50,10 @@ namespace SkillsHunterAPI.Services
             return await _context.Projects.ToListAsync();
         }
 
-        public async Task UpdateProject(Project project)
+        public async Task UpdateProject(ProjectRequest project)
         {
-            _context.Entry(project).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            /*_context.Entry(project).State = EntityState.Modified;
+            await _context.SaveChangesAsync();*/
         }
     }
 }
