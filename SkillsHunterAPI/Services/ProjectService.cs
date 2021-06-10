@@ -27,8 +27,8 @@ namespace SkillsHunterAPI.Services
         
         public async Task<ProjectResponse> CreateProject(ProjectRequest project)
         {
-            /*_context.Projects.Add(project);
-            await _context.SaveChangesAsync();*/
+            //_context.Projects.Add(project);
+            await _context.SaveChangesAsync();
 
             return new ProjectResponse();
         }

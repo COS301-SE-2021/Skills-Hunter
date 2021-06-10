@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
 using SkillsHunterAPI.Models.Project.Request;
+using SkillsHunterAPI.Models.Project.Response;
 using SkillsHunterAPI.Services;
 using System;
 using System.Collections.Generic;
@@ -37,11 +38,12 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/createProject")]
-        public async Task<ActionResult<Project>> CreateProject([FromBody] ProjectRequest projectRequest)
+        public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] ProjectRequest projectRequest)
         {
             var newProject = await _projectService.CreateProject(projectRequest);
             //return CreatedAtAction(nameof(GetProjects), new { id = newProject.ProjectId }, newProject);
-            return newProject;
+            //return newProject;
+            return new ProjectResponse();
         }
 
         [HttpPut]
