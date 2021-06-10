@@ -75,6 +75,17 @@ namespace SkillsHunterAPI.Controllers
             return NoContent();
         }
 
+        //Project Skills
+
+        public async Task<ActionResult> AddProjectSkill(ProjectSkill projectSkill)
+        {
+            return NoContent();
+        }
+
+        public async Task<ActionResult> RemoveProjectSkill(string projectSkillId)
+        {
+            return NoContent();
+        }
 
     }
 

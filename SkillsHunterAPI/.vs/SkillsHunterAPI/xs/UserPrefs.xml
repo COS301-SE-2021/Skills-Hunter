@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/SkillRequest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Project/ProjectRequest.cs">
     <Files>
       <File FileName="Models/Project/Project.cs" Line="16" Column="50" />
       <File FileName="Controllers/ProjectController.cs" Line="41" Column="57" />
@@ -22,9 +22,8 @@
       <File FileName="instructions.txt" />
       <File FileName="Models/User/UserRequest.cs" />
       <File FileName="Models/User/UserResponse.cs" Line="4" Column="89" />
-      <File FileName="Models/Project/ProjectRequest.cs" Line="10" Column="43" />
+      <File FileName="Models/Project/ProjectRequest.cs" Line="17" Column="58" />
       <File FileName="Models/Project/ProjectResponse.cs" Line="14" Column="58" />
-      <File FileName="Models/SkillRequest.cs" Line="6" Column="44" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -34,7 +33,7 @@
               <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="SkillRequest.cs" selected="True" />
+                <Node name="Project" expanded="True" />
               </Node>
               <Node name="Services" expanded="True" />
               <Node name="SkillsHunterAPIUnitTest" expanded="True" />
