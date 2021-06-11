@@ -7,7 +7,7 @@ namespace SkillsHunterAPI.Models.Project.Request
     //This class will be used to contain all the Project data that is sent through with a Project creation or update request
     public class ProjectRequest
     {
-        public int ProjectId { get; set; }
+        public Guid ProjectId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Owner { get; set; }
