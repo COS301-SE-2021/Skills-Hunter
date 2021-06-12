@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CandidateComponent } from './updateproject/candidate/candidate.component';
+import { CandidateSearchComponent } from './candidate-search/candidate-search.component';
+import { ProjectSearchComponent } from './project-search/project-search.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { CandidateComponent } from './updateproject/candidate/candidate.componen
     UpdateprojectComponent,
     HomeComponent,
     CandidateComponent,
+    CandidateSearchComponent,
+    ProjectSearchComponent,
   ],
   imports: [
     BrowserModule,
