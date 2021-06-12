@@ -9,7 +9,7 @@ using SkillsHunterAPI.Models;
 namespace SkillsHunterAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210608025606_InitialCreate")]
+    [Migration("20210608180249_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
