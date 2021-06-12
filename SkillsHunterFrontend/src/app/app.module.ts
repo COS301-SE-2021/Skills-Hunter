@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CandidateComponent } from './updateproject/candidate/candidate.component';
 import { CandidateSearchComponent } from './candidate-search/candidate-search.component';
 import { ProjectSearchComponent } from './project-search/project-search.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProjectSearchComponent } from './project-search/project-search.componen
     AppRoutingModule,
     NoopAnimationsModule,
     MaterialModule, 
-    BrowserAnimationsModule 
+    BrowserAnimationsModule, 
+    ReactiveFormsModule
   ],
 
   providers: [],

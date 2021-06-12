@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UpdateprojectComponent } from './updateproject/updateproject.component';
+import { CandidateSearchComponent } from './candidate-search/candidate-search.component';
 
 const routes: Routes = [
   
@@ -19,9 +20,14 @@ const routes: Routes = [
     component:UpdateprojectComponent
   },
   {
+    path:'candidate-search',
+    component:CandidateSearchComponent
+  },
+  {
     path:'',
-    component:UpdateprojectComponent
+    component:CandidateSearchComponent
   }
+  
 ];
 
 @NgModule({
