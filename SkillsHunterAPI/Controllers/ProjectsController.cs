@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Models;
-using SkillsHunterAPI.Repositories;
+using SkillsHunterAPI.Models.Project;
+using SkillsHunterAPI.Models.Project.Request;
+using SkillsHunterAPI.Models.Project.Response;
+using SkillsHunterAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,33 +12,73 @@ using System.Threading.Tasks;
 
 namespace SkillsHunterAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class ProjectsController : ControllerBase
     {
-        private readonly IProjectRepository _projectRepository;
+        private readonly IProjectService _projectService;
 
+<<<<<<< HEAD:SkillsHunterAPI/Controllers/ProjectsController.cs
         public ProjectsController(IProjectRepository projectRepository)
+=======
+        public ProjectController(IProjectService projectService)
+>>>>>>> develop_backend:SkillsHunterAPI/Controllers/ProjectController.cs
         {
-            _projectRepository = projectRepository;
+            _projectService = projectService;
         }
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
-        public async Task<IEnumerable<Project>> GetProjects()
+        [Route("api/[controller]/getProjects")]
+        public async Task<IEnumerable<ProjectResponse>> GetProjects()
         {
-            return await _projectRepository.GetProjects();
+            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
+
+            List<Project> projects = (List<Project>)await _projectService.GetProjects();
+
+            foreach (Project project in projects)
+            {
+                projectResponses.Add((ProjectResponse)await GetProject(project.ProjectId.ToString()));
+            }
+
+            return projectResponses;
         }
 
-        [HttpGet("{id}")]//This tells ASP.Net that the method will handle http get request with an argument
-        //ActionResult provide the flexibility to return all the types like not found, bad request , e.t.c
-        public async Task<ActionResult<Project>> GetProject(int id)
+        [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/getProject/{id}")]
+        public async Task<ProjectResponse> GetProject(string id)
         {
-            return await _projectRepository.GetProject(id);
+            Guid projectId = new Guid(id);
+            Project project = await _projectService.GetProject(projectId);
+
+            ProjectResponse projectResponse = new ProjectResponse();
+            projectResponse.ProjectSkills = new List<ProjectSkill>();
+
+            if (project == null) {
+                return null;
+            }
+
+            projectResponse.ProjectId = project.ProjectId;
+            projectResponse.Owner = project.Owner;
+            projectResponse.Name = project.Name;
+            projectResponse.Description = project.Description;
+            projectResponse.DateCreated = project.DateCreated;
+            projectResponse.OpenForApplication = project.OpenForApplication;
+
+            IEnumerable<ProjectSkill> projectSkills = await _projectService.GetProjectSkills(projectId);
+
+            foreach (ProjectSkill projectSkill in projectSkills)
+            {
+                projectResponse.ProjectSkills.Add(projectSkill);
+            }
+
+
+            return projectResponse;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Project>> CreateProject([FromBody] Project project)
+        [Route("api/[controller]/createProject")]
+        public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] ProjectRequest projectRequest)
         {
+<<<<<<< HEAD:SkillsHunterAPI/Controllers/ProjectsController.cs
             var newProject = await _projectRepository.CreateProject(project);
             //return CreatedAtAction(nameof(GetProjects), new { id = newProject.Id }, newProject);
             return newProject;
@@ -46,28 +89,96 @@ namespace SkillsHunterAPI.Controllers
         {
             //var projectToUpdate = await _projectRepository.GetProject(project.Id);
             if (id != project.Id)
+=======
+            ProjectResponse projectResponse = new ProjectResponse();
+
+            Project newProject = new Project();
+            newProject.Description = projectRequest.Description;
+            newProject.Location = projectRequest.Location;
+            newProject.OpenForApplication = projectRequest.OpenForApplication;
+            newProject.Owner = new Guid(projectRequest.Owner);
+            newProject.Name = projectRequest.Name;
+            newProject.DateCreated = DateTime.Now;
+
+            //Adding the project to the database;
+            newProject = await _projectService.CreateProject(newProject);
+
+            //Adding the project skills to the database;
+
+            foreach (ProjectSkill projectSkill in projectRequest.ProjectSkills)
             {
-                return BadRequest();
+                projectSkill.ProjectId = newProject.ProjectId;
+                await _projectService.AddProjectSkill(projectSkill);
             }
 
-            await _projectRepository.UpdateProject(project);
+            //projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
+
+            //var newProject = await _projectService.CreateProject(projectRequest);
+            return CreatedAtAction(nameof(GetProject), new { id = newProject.ProjectId }, newProject);
+            //return newProject;
+            //return projectResponse;
+        }
+
+        [HttpPut]
+        [Route("api/[controller]/updateProject/{id}")]
+        public async Task<ActionResult> UpdateProject(int id, [FromBody] ProjectRequest projectRequest)
+        {
+            /*if (id != projectRequest.ProjectId)
+>>>>>>> develop_backend:SkillsHunterAPI/Controllers/ProjectController.cs
+            {
+                return BadRequest();
+            }*/
+
+            //await _projectService.UpdateProject(projectRequest);
 
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("api/[controller]/deleteProject/{id}")]
         public async Task<ActionResult> DeleteProject(int id)
         {
-            var projectToDelete = await _projectRepository.GetProject(id);
+            Guid projectId = new Guid();
+            var projectToDelete = await _projectService.GetProject(projectId);
 
             if (projectToDelete == null)
             {
                 return NotFound();
             }
 
+<<<<<<< HEAD:SkillsHunterAPI/Controllers/ProjectsController.cs
             await _projectRepository.DeleteProject(projectToDelete.Id);
+=======
+            await _projectService.DeleteProject(projectToDelete.ProjectId);
+>>>>>>> develop_backend:SkillsHunterAPI/Controllers/ProjectController.cs
             return NoContent();
 
+        //Project Skills
+
+        [HttpPost]
+        [Route("api/[controller]/addProjectSkill")]
+        public async Task<ActionResult> AddProjectSkill([FromBody] ProjectSkill projectSkill)
+        {
+            await _projectService.AddProjectSkill(projectSkill);
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("api/[controller]/deleteProjectSkill/{id}")]
+        public async Task<ActionResult> RemoveProjectSkill(string id)
+        {
+            //var projectSkill = await _projectService.GetProjectSkill(id);
+
+            //if (projectSkill == null)
+            //{
+            //    return NotFound();
+            //}
+            //else
+            //{
+            //    await _projectService.RemoveProjectSkill(id);
+            //}
+            return NoContent();
+        }
 
         }
     }
