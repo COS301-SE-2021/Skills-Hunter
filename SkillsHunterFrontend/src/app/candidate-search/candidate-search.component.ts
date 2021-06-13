@@ -110,4 +110,7 @@ export class CandidateSearchComponent implements OnInit {
     return this.stateGroups;
   }
 
+  writeSomething(){
+    console.log("This has been selected!");
+  }
 }
