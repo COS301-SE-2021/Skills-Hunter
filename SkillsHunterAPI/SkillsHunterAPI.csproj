@@ -19,7 +19,4 @@
     <Folder Include="Models\User\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Models\Project\Requests\" />
-  </ItemGroup>
 </Project>
