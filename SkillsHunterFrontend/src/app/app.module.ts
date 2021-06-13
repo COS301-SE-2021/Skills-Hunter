@@ -34,7 +34,7 @@ import { CandidateOverviewComponent } from './candidate-search/candidate-overvie
     BrowserAnimationsModule, 
     ReactiveFormsModule
   ],
-
+  entryComponents:[CandidateOverviewComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

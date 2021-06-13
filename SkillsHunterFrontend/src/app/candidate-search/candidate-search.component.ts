@@ -1,8 +1,11 @@
+import { CandidatesList } from './../updateproject/candidate/mock-candidates';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
+import {MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { CandidateOverviewComponent } from './candidate-overview/candidate-overview.component';
 
 export interface StateGroup {
   letter: string;
@@ -90,7 +93,7 @@ export class CandidateSearchComponent implements OnInit {
 
   stateGroupOptions: Observable<StateGroup[]>;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.stateGroupOptions = this.stateForm.get('stateGroup')!.valueChanges
@@ -110,7 +113,17 @@ export class CandidateSearchComponent implements OnInit {
     return this.stateGroups;
   }
 
-  writeSomething(){
-    console.log("This has been selected!");
+  showCandidateOverview() : void{
+    let dialogRef = this.dialog.open(CandidateOverviewComponent);
+    dialogRef.afterClosed().subscribe(result => 
+    { 
+      console.log('Dialogue Result: ${result}');
+    });
+    
   }
+
+  // closeCandidateOverview(): void{
+  //   this.dialogRef.close();
+  // }
+
 }

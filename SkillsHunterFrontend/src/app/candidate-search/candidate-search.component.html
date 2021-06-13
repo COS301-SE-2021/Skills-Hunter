@@ -8,10 +8,12 @@
            [matAutocomplete]="autoGroup">
       <mat-autocomplete #autoGroup="matAutocomplete">
         <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
-          <mat-option *ngFor="let name of group.names" [value]="name" (click)="writeSomething()">
+          <mat-option *ngFor="let name of group.names" [value]="name" (click)="showCandidateOverview()">
             {{name}}
           </mat-option>
       </mat-optgroup>
     </mat-autocomplete>
   </mat-form-field>
 </form>
+
+<!-- <button mat-raised-button (click)="showCandidateOverview()">View Candidate</button> -->
