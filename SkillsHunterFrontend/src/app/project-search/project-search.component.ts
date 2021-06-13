@@ -6,13 +6,6 @@ import {startWith, map} from 'rxjs/operators';
 import {MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 
-@Component({
-  selector: 'app-project-search',
-  templateUrl: './project-search.component.html',
-  styleUrls: ['./project-search.component.scss']
-})
-
-
 export interface StateGroup {
   letter: string;
   names: string[];
@@ -25,12 +18,12 @@ export const _filter = (opt: string[], value: string): string[] => {
 };
 
 @Component({
-  selector: 'app-candidate-search',
-  templateUrl: './candidate-search.component.html',
-  styleUrls: ['./candidate-search.component.scss']
+  selector: 'app-project-search',
+  templateUrl: './project-search.component.html',
+  styleUrls: ['./project-search.component.scss']
 })
 
-export class CandidateSearchComponent implements OnInit {
+export class ProjectSearchComponent implements OnInit {
 
   stateForm: FormGroup = this._formBuilder.group({
     stateGroup: '',
@@ -120,7 +113,7 @@ export class CandidateSearchComponent implements OnInit {
   }
 
   showProjectOverview() : void{
-    let dialogRef = this.dialog.open(CandidateOverviewComponent);
+    let dialogRef = this.dialog.open(ProjectOverviewComponent);
     dialogRef.afterClosed().subscribe(result => 
     { 
       console.log('Dialogue Result: ${result}');
