@@ -1,0 +1,48 @@
+﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
+  <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Project/Project.cs">
+    <Files>
+      <File FileName="Models/Project/Project.cs" Line="10" Column="1" />
+      <File FileName="Models/User/User.cs" />
+      <File FileName="Models/User/WorkExperience.cs" />
+      <File FileName="Models/User/UserSkill.cs" />
+      <File FileName="Models/Project/ProjectSkill.cs" />
+      <File FileName="Models/Skill.cs" />
+      <File FileName="Models/Category.cs" />
+      <File FileName="SkillsHunterAPI.csproj" />
+      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" />
+      <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTestBase.cs" />
+      <File FileName="Startup.cs" />
+      <File FileName="Services/IProjectService.cs" />
+      <File FileName="Services/ProjectService.cs" />
+      <File FileName="Services/IUserService.cs" />
+      <File FileName="Services/UserService.cs" />
+      <File FileName="instructions.txt" />
+      <File FileName="Models/User/UserRequest.cs" />
+      <File FileName="Models/User/UserResponse.cs" />
+      <File FileName="Models/Project/ProjectRequest.cs" />
+      <File FileName="Models/Project/ProjectResponse.cs" />
+      <File FileName="Properties/launchSettings.json" />
+      <File FileName="appsettings.json" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SkillsHunterAPI" expanded="True">
+            <Node name="SkillsHunterAPI" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>../SkillsHunterAPI.Tests/SkillsHunterAPI.Tests.csproj</String>
+    <String>SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTest.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
