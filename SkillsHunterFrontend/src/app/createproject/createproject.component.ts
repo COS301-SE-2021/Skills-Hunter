@@ -35,8 +35,8 @@ export class CreateprojectComponent implements OnInit {
 
     formData.Name="Skills Hunter";//<string><any>this.projectInfo.controls['projectName'].value;
     formData.Description="Website";//<string><any>this.projectInfo.controls['description'].value;
-    formData.Industry="IT";//<string><any>this.projectInfo.controls['industry'].value;
-    formData.Skill="C++";//<string><any>this.projectInfo.controls['skill'].value;
+    //formData.Industry="IT";//<string><any>this.projectInfo.controls['industry'].value;
+    //formData.Skill="C++";//<string><any>this.projectInfo.controls['skill'].value;
     //Mock
     
     formData.Owner = "Mxo";

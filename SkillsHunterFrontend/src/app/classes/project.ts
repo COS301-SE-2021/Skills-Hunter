@@ -1,10 +1,11 @@
 export class project
 {
-    Name:string
-    Description:string
-    Industry:string
-    Skill:string
-    OpenForApplication:boolean
-    Location: string;
-    Owner: string;
+    Id: number;
+	Name: string;
+	Description: string;
+	Industry;
+	Owner: string;
+	Location: string;
+	Skill: string[];
+	OpenForApplication: boolean;
 }
