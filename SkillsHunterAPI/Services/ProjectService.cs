@@ -27,22 +27,23 @@ namespace SkillsHunterAPI.Services
 
         //Project
 
-        public async Task<ProjectResponse> CreateProject(ProjectRequest project)
+        public async Task<Project> CreateProject(Project project)
         {
-            //_context.Projects.Add(project);
+            project.ProjectId = new Guid();
+            _context.Projects.Add(project);
             await _context.SaveChangesAsync();
 
-            return new ProjectResponse();
+            return project;
         }
 
-        public async Task DeleteProject(int id)
+        public async Task DeleteProject(Guid id)
         {
             var ProjectToDelete = await _context.Projects.FindAsync(id);
             _context.Projects.Remove(ProjectToDelete);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Project> GetProject(int id)
+        public async Task<Project> GetProject(Guid id)
         {
             return await _context.Projects.FindAsync(id);
         }
@@ -52,31 +53,37 @@ namespace SkillsHunterAPI.Services
             return await _context.Projects.ToListAsync();
         }
 
-        public async Task UpdateProject(ProjectRequest project)
+        public async Task UpdateProject(Project project)
         {
-            /*_context.Entry(project).State = EntityState.Modified;
-            await _context.SaveChangesAsync();*/
+            _context.Entry(project).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
 
         //Project Skills
 
         public async Task AddProjectSkill(ProjectSkill projectSkill)
         {
+            projectSkill.ProjectSkillId = new Guid();
             _context.ProjectSkills.Add(projectSkill);
             await _context.SaveChangesAsync();
 
         }
 
-        public async Task RemoveProjectSkill(string projectSkillId)
+        public async Task RemoveProjectSkill(Guid projectSkillId)
         {
             var projectSkill = await _context.ProjectSkills.FindAsync(projectSkillId);
             _context.ProjectSkills.Remove(projectSkill);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ProjectSkill> GetProjectSkill(string id)
+        public async Task<ProjectSkill> GetProjectSkill(Guid id)
         {
             return await _context.ProjectSkills.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<ProjectSkill>> GetProjectSkills(Guid projectId)
+        {
+            return await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToArrayAsync();
         }
     }
 }
