@@ -13,6 +13,7 @@ import { CandidateSearchComponent } from './candidate-search/candidate-search.co
 import { ProjectSearchComponent } from './project-search/project-search.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CandidateOverviewComponent } from './candidate-search/candidate-overview/candidate-overview.component';
+import { ProjectOverviewComponent } from './project-search/project-overview/project-overview.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CandidateOverviewComponent } from './candidate-search/candidate-overvie
     CandidateSearchComponent,
     ProjectSearchComponent,
     CandidateOverviewComponent,
+    ProjectOverviewComponent,
   ],
   imports: [
     BrowserModule,
