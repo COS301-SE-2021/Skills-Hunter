@@ -16,12 +16,12 @@ namespace SkillsHunterAPI.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly IProjectService _projectService;
-        private readonly ISkillService _skillService;
+        //private readonly ISkillService _skillService;
 
-        public ProjectController(IProjectService projectService, ISkillService skillService)
+        public ProjectController(IProjectService projectService)
         {
             _projectService = projectService;
-            _skillService = skillService;
+            //_skillService = skillService;
         }
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
@@ -67,8 +67,8 @@ namespace SkillsHunterAPI.Controllers
             {
                 SkillRR skill = new SkillRR();
                 skill.SkillId = projectSkill.SkillId;
-                Skill refSkill = await _skillService.GetSkill(projectSkill.SkillId);
-                skill.SkillName = refSkill.Name;
+                //Skill refSkill = await _skillService.GetSkill(projectSkill.SkillId);
+                skill.SkillName = "SkillOne";
                 projectResponse.ProjectSkills.Add(skill);
             }
 
@@ -91,7 +91,7 @@ namespace SkillsHunterAPI.Controllers
             newProject.Description = projectRequest.Description;
             newProject.Location = projectRequest.Location;
             newProject.OpenForApplication = projectRequest.OpenForApplication;
-            newProject.Owner = new Guid(projectRequest.Owner);
+            newProject.Owner = projectRequest.Owner;
             newProject.Name = projectRequest.Name;
             newProject.DateCreated = DateTime.Now;
 
