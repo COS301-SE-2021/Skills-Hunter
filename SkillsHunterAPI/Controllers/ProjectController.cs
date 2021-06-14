@@ -95,6 +95,18 @@ namespace SkillsHunterAPI.Controllers
                 await _projectService.AddProjectSkill(projectSkill);
             }*/
 
+            List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(newProject.ProjectId);
+
+            foreach (SkillRR projectSkill in projectRequest.ProjectSkills)
+            {
+                ProjectSkill newProjectSkill = new ProjectSkill();
+                newProjectSkill.ProjectId = newProject.ProjectId;
+                newProjectSkill.SkillId = projectSkill.SkillId;
+                //ProjectSkill RefprojectSkill = await _projectService.GetProjectSkillBySkillId(projectSkill.SkillId, newProject.ProjectId);
+                await _projectService.AddProjectSkill(newProjectSkill);
+            }
+
+
             //projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
 
             //var newProject = await _projectService.CreateProject(projectRequest);
