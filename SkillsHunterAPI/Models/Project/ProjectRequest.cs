@@ -14,6 +14,6 @@ namespace SkillsHunterAPI.Models.Project.Request
         public string Location { get; set; }
         public bool OpenForApplication { get; set; }
         public DateTime DateCreated { get; set; }
-        public ProjectSkill[] ProjectSkills { get; set; }
+        public SkillRR[] ProjectSkills { get; set; }
     }
 }
