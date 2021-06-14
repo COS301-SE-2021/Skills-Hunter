@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SkillsHunterAPI.Services
 {
-    interface ISkillService
+    public interface ISkillService
     {
         Task<IEnumerable<Skill>> GetSkills();
         Task<Skill> GetSkill(Guid id);

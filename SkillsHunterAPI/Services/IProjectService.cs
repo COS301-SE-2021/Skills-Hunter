@@ -22,7 +22,7 @@ namespace SkillsHunterAPI.Services
         Task AddProjectSkill(ProjectSkill projectSkill);
         Task RemoveProjectSkill(Guid projectSkillId);
         Task<ProjectSkill> GetProjectSkill(Guid ProjectID);
-        Task<ProjectSkill> GetProjectSkillBySkillId(Guid id);
+        Task<ProjectSkill> GetProjectSkillBySkillId(Guid SkillId, Guid ProjectId);
         Task<IEnumerable<ProjectSkill>> GetProjectSkills(Guid projectId);
     }
 }

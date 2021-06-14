@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Skill.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Services/IProjectService.cs">
     <Files>
       <File FileName="Models/Project/Project.cs" Line="15" Column="1" />
       <File FileName="SkillsHunterAPI.csproj" />
@@ -11,13 +11,14 @@
       <File FileName="Properties/launchSettings.json" />
       <File FileName="appsettings.json" />
       <File FileName="Program.cs" />
-      <File FileName="Controllers/ProjectController.cs" Line="69" Column="14" />
-      <File FileName="Models/SkillRR.cs" Line="11" Column="32" />
+      <File FileName="Controllers/ProjectController.cs" Line="24" Column="42" />
+      <File FileName="Models/SkillRR.cs" Line="11" Column="46" />
       <File FileName="Services/IUserService.cs" Line="1" Column="1" />
       <File FileName="Services/IProjectService.cs" Line="25" Column="78" />
       <File FileName="Services/ProjectService.cs" Line="89" Column="65" />
       <File FileName="Models/Project/ProjectSkill.cs" Line="9" Column="11" />
       <File FileName="Models/Skill.cs" Line="1" Column="1" />
+      <File FileName="Services/ISkillService.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -25,10 +26,10 @@
           <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPI" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Skill.cs" selected="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="IProjectService.cs" selected="True" />
               </Node>
-              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>
