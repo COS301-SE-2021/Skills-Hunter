@@ -46,7 +46,7 @@ namespace SkillsHunterAPI.Controllers
             Project project = await _projectService.GetProject(projectId);
 
             ProjectResponse projectResponse = new ProjectResponse();
-            projectResponse.ProjectSkills = new List<ProjectSkill>();
+            //projectResponse.ProjectSkills = new List<ProjectSkill>();
 
             if (project == null) {
                 return null;
@@ -61,10 +61,10 @@ namespace SkillsHunterAPI.Controllers
 
             IEnumerable<ProjectSkill> projectSkills = await _projectService.GetProjectSkills(projectId);
 
-            foreach (ProjectSkill projectSkill in projectSkills)
+           /* foreach (ProjectSkill projectSkill in projectSkills)
             {
                 projectResponse.ProjectSkills.Add(projectSkill);
-            }
+            }*/
 
 
             return projectResponse;
@@ -89,11 +89,11 @@ namespace SkillsHunterAPI.Controllers
 
             //Adding the project skills to the database;
 
-            foreach (ProjectSkill projectSkill in projectRequest.ProjectSkills)
+            /*foreach (ProjectSkill projectSkill in projectRequest.ProjectSkills)
             {
-                projectSkill.ProjectId = newProject.ProjectId;
+                projectSkill.SF = newProject.ProjectId;
                 await _projectService.AddProjectSkill(projectSkill);
-            }
+            }*/
 
             //projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
 
