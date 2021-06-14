@@ -14,7 +14,7 @@ namespace SkillsHunterAPI.Models.Project.Response
         public string Location { get; set; }
         public bool OpenForApplication { get; set; }
         public DateTime DateCreated { get; set; }
-        public List<ProjectSkill> ProjectSkills { get; set; }
+        public List<SkillRR> ProjectSkills { get; set; }
 
         //public static implicit operator ProjectResponse(Project v)
         //{
