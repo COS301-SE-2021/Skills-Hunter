@@ -28,9 +28,13 @@ const routes: Routes = [
     path:'project-search',
     component:ProjectSearchComponent
   },
+  // {
+  //   path:'',
+  //   component:ProjectSearchComponent
+  // }
   {
     path:'',
-    component:ProjectSearchComponent
+    component:UpdateprojectComponent
   }
   
 ];

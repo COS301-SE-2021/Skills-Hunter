@@ -34,7 +34,7 @@ import { ProjectOverviewComponent } from './project-search/project-overview/proj
     NoopAnimationsModule,
     MaterialModule, 
     BrowserAnimationsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule, 
   ],
   entryComponents:[CandidateOverviewComponent],
   providers: [],
