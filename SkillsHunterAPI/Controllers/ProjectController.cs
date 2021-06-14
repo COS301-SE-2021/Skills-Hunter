@@ -59,7 +59,14 @@ namespace SkillsHunterAPI.Controllers
             projectResponse.DateCreated = project.DateCreated;
             projectResponse.OpenForApplication = project.OpenForApplication;
 
-            IEnumerable<ProjectSkill> projectSkills = await _projectService.GetProjectSkills(projectId);
+            List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(projectId);
+
+            foreach (ProjectSkill projectSkill in projectSkills)
+            {
+                SkillRR skill = new SkillRR();
+                skill.SkillId = projectSkill.SkillId;
+
+            }
 
            /* foreach (ProjectSkill projectSkill in projectSkills)
             {

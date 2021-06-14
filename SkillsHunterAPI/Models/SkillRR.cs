@@ -8,6 +8,6 @@ namespace SkillsHunterAPI.Models
     public class SkillRR
     {
         public Guid SkillId { get; set; }
-        public String Name { get; set; }
+        public String SkillName { get; set; }
     }
 }
