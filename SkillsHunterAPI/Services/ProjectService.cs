@@ -88,7 +88,7 @@ namespace SkillsHunterAPI.Services
 
         public async Task<ProjectSkill> GetProjectSkillBySkillId(Guid SkillId, Guid ProjectId)
         {
-            //return _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToArrayAsync();
+            return await _context.ProjectSkills.Where(ss => ss.ProjectId == ProjectId && ss.SkillId == SkillId).FirstAsync();
         }
     }
 }
