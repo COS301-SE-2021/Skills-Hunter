@@ -34,7 +34,7 @@ namespace SkillsHunterAPI.Controllers
 
             foreach (Project project in projects)
             {
-                projectResponses.Add((ProjectResponse)await GetProject(project.ProjectId.ToString()));
+                projectResponses.Add(await GetProject(project.ProjectId.ToString()));
             }
 
             return projectResponses;
@@ -65,10 +65,12 @@ namespace SkillsHunterAPI.Controllers
 
             foreach (ProjectSkill projectSkill in projectSkills)
             {
-                SkillRR skill = new SkillRR();
-                skill.SkillId = projectSkill.SkillId;
-                //Skill refSkill = await _skillService.GetSkill(projectSkill.SkillId);
-                skill.SkillName = "SkillOne";
+                SkillRR skill = new()
+                {
+                    SkillId = projectSkill.SkillId,
+                    //Skill refSkill = await _skillService.GetSkill(projectSkill.SkillId);
+                    SkillName = "SkillOne"
+                };
                 projectResponse.ProjectSkills.Add(skill);
             }
 
