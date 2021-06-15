@@ -75,7 +75,7 @@ namespace SkillsHunterAPI.Controllers
 
 
                     skill.SkillId = projectSkill.SkillId;
-                //Skill refSkill = await _skillService.GetSkill(projectSkill.SkillId);
+                //Skill refSkill = await _skillService.GetSkill(projectSkill.SkillId);  //To be used when the skill service is implemented
                 skill.SkillName = "SkillOne";
                
                 projectResponse.ProjectSkills.Add(skill);
