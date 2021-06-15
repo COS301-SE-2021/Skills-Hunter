@@ -31,7 +31,11 @@ namespace SkillsHunterAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
+            //AAdding Application services
             services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<ISkillService, SkillService>();
+
+
             services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
