@@ -16,10 +16,12 @@ namespace SkillsHunterAPI.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly IProjectService _projectService;
+        private readonly ISkillService _skillService;
 
-        public ProjectController(IProjectService projectService)
+        public ProjectController(IProjectService projectService, ISkillService skillService)
         {
             _projectService = projectService;
+            _skillService = skillService;
         }
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
@@ -32,7 +34,13 @@ namespace SkillsHunterAPI.Controllers
 
             foreach (Project project in projects)
             {
-                projectResponses.Add((ProjectResponse)await GetProject(project.ProjectId.ToString()));
+                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
+
+                if (retrievedProject != null)
+                {
+                    projectResponses.Add(retrievedProject);
+                }
+                
             }
 
             return projectResponses;
@@ -46,7 +54,7 @@ namespace SkillsHunterAPI.Controllers
             Project project = await _projectService.GetProject(projectId);
 
             ProjectResponse projectResponse = new ProjectResponse();
-            projectResponse.ProjectSkills = new List<ProjectSkill>();
+            projectResponse.ProjectSkills = new List<SkillRR>();
 
             if (project == null) {
                 return null;
@@ -59,12 +67,24 @@ namespace SkillsHunterAPI.Controllers
             projectResponse.DateCreated = project.DateCreated;
             projectResponse.OpenForApplication = project.OpenForApplication;
 
-            IEnumerable<ProjectSkill> projectSkills = await _projectService.GetProjectSkills(projectId);
+            List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(projectId);
 
             foreach (ProjectSkill projectSkill in projectSkills)
             {
-                projectResponse.ProjectSkills.Add(projectSkill);
+                SkillRR skill = new SkillRR();
+
+
+                    skill.SkillId = projectSkill.SkillId;
+                //Skill refSkill = await _skillService.GetSkill(projectSkill.SkillId);  //To be used when the skill service is implemented
+                skill.SkillName = "SkillOne";
+               
+                projectResponse.ProjectSkills.Add(skill);
             }
+
+           /* foreach (ProjectSkill projectSkill in projectSkills)
+            {
+                projectResponse.ProjectSkills.Add(projectSkill);
+            }*/
 
 
             return projectResponse;
@@ -80,7 +100,7 @@ namespace SkillsHunterAPI.Controllers
             newProject.Description = projectRequest.Description;
             newProject.Location = projectRequest.Location;
             newProject.OpenForApplication = projectRequest.OpenForApplication;
-            newProject.Owner = new Guid(projectRequest.Owner);
+            newProject.Owner = projectRequest.Owner;
             newProject.Name = projectRequest.Name;
             newProject.DateCreated = DateTime.Now;
 
@@ -89,11 +109,23 @@ namespace SkillsHunterAPI.Controllers
 
             //Adding the project skills to the database;
 
-            foreach (ProjectSkill projectSkill in projectRequest.ProjectSkills)
+            /*foreach (ProjectSkill projectSkill in projectRequest.ProjectSkills)
             {
-                projectSkill.ProjectId = newProject.ProjectId;
+                projectSkill.SF = newProject.ProjectId;
                 await _projectService.AddProjectSkill(projectSkill);
+            }*/
+
+            List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(newProject.ProjectId);
+
+            foreach (SkillRR projectSkill in projectRequest.ProjectSkills)
+            {
+                ProjectSkill newProjectSkill = new ProjectSkill();
+                newProjectSkill.ProjectId = newProject.ProjectId;
+                newProjectSkill.SkillId = projectSkill.SkillId;
+                //ProjectSkill RefprojectSkill = await _projectService.GetProjectSkillBySkillId(projectSkill.SkillId, newProject.ProjectId);
+                await _projectService.AddProjectSkill(newProjectSkill);
             }
+
 
             //projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
 

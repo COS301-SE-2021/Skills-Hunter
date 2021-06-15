@@ -8,14 +8,16 @@ namespace SkillsHunterAPIUnitTest.Tests
 {
     public class SkillsHunterAPIUnitTestBase
     {
-        public IProjectService projectRepository;
+        public IProjectService projectService;
+        public ISkillService skillService;
         public ProjectController projectController;
 
         public SkillsHunterAPIUnitTestBase()
         {
-         
-            projectRepository = A.Fake<IProjectService>();
-            projectController = new ProjectController(projectRepository);
+
+            projectService = A.Fake<IProjectService>();
+            skillService = A.Fake<ISkillService>();
+            projectController = new ProjectController(projectService, skillService);
         }
     }
 }
