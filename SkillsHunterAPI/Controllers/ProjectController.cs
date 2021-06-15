@@ -16,12 +16,12 @@ namespace SkillsHunterAPI.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly IProjectService _projectService;
-        private readonly ISkillService _skillService;
+        //private readonly ISkillService _skillService;
 
-        public ProjectController(IProjectService projectService, ISkillService skillService)
+        public ProjectController(IProjectService projectService)
         {
             _projectService = projectService;
-            _skillService = skillService;
+            //_skillService = skillService;
         }
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
@@ -34,7 +34,13 @@ namespace SkillsHunterAPI.Controllers
 
             foreach (Project project in projects)
             {
-                projectResponses.Add(await GetProject(project.ProjectId.ToString()));
+                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
+
+                if (retrievedProject != null)
+                {
+                    projectResponses.Add(retrievedProject);
+                }
+                
             }
 
             return projectResponses;

@@ -11,5 +11,10 @@ namespace SkillsHunterAPI.Models
         public String SkillName { get; set; }
 
         public SkillRR() { }
+        public SkillRR(Guid skillId, string skillName)
+        {
+            SkillId = skillId;
+            SkillName = skillName;
+        }
     }
 }
