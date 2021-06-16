@@ -41,5 +41,24 @@ namespace SkillsHunterAPI.Services
 
             return response;
         }
+
+        public async Task<LogInResponse> LogIn(LogInRequest request){
+
+        }
+        public async Task<LogOutResponse> LogOut(LogOutRequest request){
+
+        }
+        public async Task<UpdateResponse> UpdateUser(UpdateRequest request){
+
+        }
+        public async Task<DeleteResponse> DeleteUser(DeleteRequest request){
+
+        }
+        public async Task<GetAllResponse> GetAllUsers(GetAllRequest request){
+
+        }
+        public async Task<GetResponse> GetUser(GetUserRequest request){
+
+        }
     }
 }
