@@ -136,15 +136,24 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpPut]
-        [Route("api/[controller]/updateProject/{id}")]
-        public async Task<ActionResult> UpdateProject(int id, [FromBody] ProjectRequest projectRequest)
+        [Route("api/[controller]/updateProject/")]
+        public async Task<ActionResult> UpdateProject([FromBody] ProjectRequest projectRequest)
         {
-            /*if (id != projectRequest.ProjectId)
+
+
+            Guid projectId = new Guid(projectRequest.ProjectId);
+            Project project = await _projectService.GetProject(projectId);
+
+            if (project == null )
             {
                 return BadRequest();
-            }*/
+            }
 
-            //await _projectService.UpdateProject(projectRequest);
+
+
+
+
+
 
             return NoContent();
         }
