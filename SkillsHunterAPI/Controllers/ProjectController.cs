@@ -167,6 +167,13 @@ namespace SkillsHunterAPI.Controllers
             List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);
 
 
+            Guid _projectID = new Guid(projectRequest.ProjectId);
+            foreach (SkillRR skillFromRequest in projectRequest.ProjectSkills)
+            {
+                ProjectSkill projectSkill = await _projectService.GetProjectSkillBySkillId(skillFromRequest.SkillId, _projectID);
+            }
+
+
 
             return NoContent();
         }
