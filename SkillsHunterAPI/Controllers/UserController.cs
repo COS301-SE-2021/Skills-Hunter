@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Models.User;
+using SkillsHunterAPI.Controllers.Requests;
+using SkillsHunterAPI.Controllers.Responses;
+using System.Threading.Tasks;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -18,16 +21,10 @@ namespace SkillsHunterAPI.Controllers
         [HttpPost]
         [Route("api/[controller]/register")]
         
-        public async Task<ActionResult> register(registerRequest projectRequest)
+        public async Task<registerResponse> register(registerRequest projectRequest)
         {
-            /*if (id != projectRequest.ProjectId)
-            {
-                return BadRequest();
-            }*/
-
-            //await _projectService.UpdateProject(projectRequest);
-
-            return NoContent();
+            var result = await _userService.register(projectRequest);
+            return result;
         }
     }
 }
