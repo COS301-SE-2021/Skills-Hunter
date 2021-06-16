@@ -15,12 +15,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon'; 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatGridListModule} from '@angular/material/grid-list'; 
+import {MatTableModule} from '@angular/material/table';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [],
-  imports: [MatDividerModule, MatSliderModule,MatSelectModule,MatRadioModule,MatDatepickerModule, MatButtonModule, MatBadgeModule, BrowserAnimationsModule, MatExpansionModule, MatListModule, MatMenuModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatAutocompleteModule, MatGridListModule],
-  exports: [MatDividerModule, MatSliderModule,MatSelectModule,MatRadioModule,MatDatepickerModule, MatButtonModule, MatBadgeModule, BrowserAnimationsModule, MatExpansionModule, MatListModule, MatMenuModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatAutocompleteModule, MatGridListModule],
+  imports: [MatDividerModule, MatSliderModule,MatSelectModule,MatRadioModule,MatDatepickerModule, MatButtonModule, MatBadgeModule, BrowserAnimationsModule, MatExpansionModule, MatListModule, MatMenuModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatAutocompleteModule, MatGridListModule, MatTableModule],
+  exports: [MatDividerModule, MatSliderModule,MatSelectModule,MatRadioModule,MatDatepickerModule, MatButtonModule, MatBadgeModule, BrowserAnimationsModule, MatExpansionModule, MatListModule, MatMenuModule, MatCardModule, MatChipsModule, MatToolbarModule, MatIconModule, MatAutocompleteModule, MatGridListModule, MatTableModule],
 })
 export class MaterialModule { }
