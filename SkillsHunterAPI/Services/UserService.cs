@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using SkillsHunterAPI.Controllers.Responses;
-using SkillsHunterAPI.Controllers.Requests;
 using SkillsHunterAPI.Models.User;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;

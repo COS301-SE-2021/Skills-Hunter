@@ -1,6 +1,4 @@
-﻿using System;
-using SkillsHunterAPI.Controllers.Requests;
-using SkillsHunterAPI.Controllers.Responses;
+﻿using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
 
 namespace SkillsHunterAPI.Services
