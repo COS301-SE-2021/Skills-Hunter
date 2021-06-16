@@ -1,6 +1,7 @@
 ﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Models/User/User.cs">
+
     <Files>
       <File FileName="Models/Project/Project.cs" Line="15" Column="1" />
       <File FileName="SkillsHunterAPI.csproj" />
@@ -41,7 +42,6 @@
                 <Node name="Skill" expanded="True" />
                 <Node name="User" expanded="True" />
               </Node>
-              <Node name="Services" expanded="True" />
               <Node name="SkillsHunterAPIUnitTest" expanded="True" />
             </Node>
           </Node>
