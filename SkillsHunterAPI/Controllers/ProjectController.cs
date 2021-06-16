@@ -159,16 +159,16 @@ namespace SkillsHunterAPI.Controllers
             ProjectToUpdate.Owner = projectRequest.Owner;
             ProjectToUpdate.Name = projectRequest.Name;
             ProjectToUpdate.DateCreated = DateTime.Now;
-            ProjectToUpdate.ProjectId = new Guid(projectRequest.ProjectId);
+            Guid PID = new Guid(projectRequest.ProjectId);
 
 
-            await _projectService.UpdateProject(ProjectToUpdate);
+            await _projectService.UpdateProject(PID, ProjectToUpdate);
 
 
             List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);
 
 
-            Guid _projectID = new Guid(projectRequest.ProjectId);
+            /*Guid _projectID = new Guid(projectRequest.ProjectId);
             foreach (SkillRR skillFromRequest in projectRequest.ProjectSkills)
             {
                 ProjectSkill projectSkill = await _projectService.GetProjectSkillBySkillId(skillFromRequest.SkillId, _projectID);
@@ -195,7 +195,7 @@ namespace SkillsHunterAPI.Controllers
                     await _projectService.RemoveProjectSkill(projectSkill.SkillId);
                 }
 
-            }
+            }*/
 
 
 
