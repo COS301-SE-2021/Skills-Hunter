@@ -34,6 +34,7 @@ namespace SkillsHunterAPI
             //AAdding Application services
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<ISkillService, SkillService>();
+            services.AddScoped<IUserService, UserService>();
 
 
             services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
