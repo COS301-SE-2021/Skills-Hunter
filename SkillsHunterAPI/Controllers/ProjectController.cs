@@ -150,6 +150,16 @@ namespace SkillsHunterAPI.Controllers
             }
 
 
+            ProjectResponse projectResponse = new ProjectResponse();
+
+            Project ProjectToUpdate = new Project();
+            ProjectToUpdate.Description = projectRequest.Description;
+            ProjectToUpdate.Location = projectRequest.Location;
+            ProjectToUpdate.OpenForApplication = projectRequest.OpenForApplication;
+            ProjectToUpdate.Owner = projectRequest.Owner;
+            ProjectToUpdate.Name = projectRequest.Name;
+            ProjectToUpdate.DateCreated = DateTime.Now;
+
 
 
 
