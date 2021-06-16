@@ -53,9 +53,17 @@ namespace SkillsHunterAPI.Services
             return await _context.Projects.ToListAsync();
         }
 
-        public async Task UpdateProject(Project project)
+        public async Task UpdateProject(Guid projectId, Project project)
         {
-            _context.Entry(project).State = EntityState.Modified;
+            //_context.Entry(project).State = EntityState.Modified;
+            Project projectFromDb = await _context.Projects.FindAsync(projectId);
+
+            projectFromDb.Name = project.Name;
+            projectFromDb.OpenForApplication = project.OpenForApplication;
+            projectFromDb.Owner = project.Owner;
+            projectFromDb.Location = project.Location;
+            projectFromDb.DateCreated = project.DateCreated;
+            projectFromDb.Description = project.Description;
             await _context.SaveChangesAsync();
         }
 

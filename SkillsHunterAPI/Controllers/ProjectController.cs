@@ -136,32 +136,100 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpPut]
-        [Route("api/[controller]/updateProject/{id}")]
-        public async Task<ActionResult> UpdateProject(int id, [FromBody] ProjectRequest projectRequest)
+        [Route("api/[controller]/updateProject/")]
+        public async Task<ActionResult> UpdateProject([FromBody] ProjectRequest projectRequest)
         {
-            /*if (id != projectRequest.ProjectId)
+
+
+            Guid projectId = new Guid(projectRequest.ProjectId);
+            Project project = await _projectService.GetProject(projectId);
+
+            if (project == null )
             {
                 return BadRequest();
+            }
+
+
+            ProjectResponse projectResponse = new ProjectResponse();
+
+            Project ProjectToUpdate = new Project();
+            ProjectToUpdate.Description = projectRequest.Description;
+            ProjectToUpdate.Location = projectRequest.Location;
+            ProjectToUpdate.OpenForApplication = projectRequest.OpenForApplication;
+            ProjectToUpdate.Owner = projectRequest.Owner;
+            ProjectToUpdate.Name = projectRequest.Name;
+            ProjectToUpdate.DateCreated = DateTime.Now;
+            Guid PID = new Guid(projectRequest.ProjectId);
+
+
+            await _projectService.UpdateProject(PID, ProjectToUpdate);
+
+
+            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);
+
+
+            /*Guid _projectID = new Guid(projectRequest.ProjectId);
+            foreach (SkillRR skillFromRequest in projectRequest.ProjectSkills)
+            {
+                ProjectSkill projectSkill = await _projectService.GetProjectSkillBySkillId(skillFromRequest.SkillId, _projectID);
+
+                if(projectSkill == null)
+                {
+                    ProjectSkill newProjectSkill = new ProjectSkill();
+                    newProjectSkill.ProjectId = _projectID;
+                    newProjectSkill.SkillId = projectSkill.SkillId;
+                    await _projectService.AddProjectSkill(newProjectSkill);
+                }
+
+            }
+
+
+            foreach (ProjectSkill projectSkill in projectSkillsFromDB)
+            {
+                SkillRR projectSkillRevised = new SkillRR();
+                projectSkillRevised.SkillId = projectSkill.SkillId;
+                projectSkillRevised.SkillName = "SkillOne";
+
+                if(!projectRequest.ProjectSkills.Contains(projectSkillRevised))
+                {
+                    await _projectService.RemoveProjectSkill(projectSkill.SkillId);
+                }
+
             }*/
 
-            //await _projectService.UpdateProject(projectRequest);
+
+
 
             return NoContent();
         }
 
         [HttpDelete]
         [Route("api/[controller]/deleteProject/{id}")]
-        public async Task<ActionResult> DeleteProject(int id)
+        public async Task<ActionResult> DeleteProject(String id)
         {
-            Guid projectId = new Guid();
+            Guid projectId = new Guid(id);
             var projectToDelete = await _projectService.GetProject(projectId);
+            List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(projectId);
+
+
+
+            /*This checks if the project exists, if not then it returns not found */
 
             if (projectToDelete == null)
             {
                 return NotFound();
             }
 
+
+            //This calls the service to delete the project from the db
             await _projectService.DeleteProject(projectToDelete.ProjectId);
+
+
+            /*This calls the service to delete project skill from the db*/
+            foreach(ProjectSkill projectSkill in projectSkills)
+            {
+                await _projectService.RemoveProjectSkill(projectSkill.ProjectSkillId);
+            }
             return NoContent();
         }
 
