@@ -18,27 +18,27 @@ namespace SkillsHunterAPI.Services
             _userManager = userManager;
         }
 
-        public async Task<registerResponse> register(registerRequest request){
-            var user = new User {   firstName = request.firstName,
-                                    lastName = request.lastName,
-                                    email = request.email,
-                                    phoneNumber = request.phoneNumber,
-                                    startDate = request.startDate,
-                                    openForWork = request.openForWork,
-                                    userType = request.userType,
+        public async Task<registerResponse> register(FegisterRequest request){
+            var user = new User {   FirstName = request.FirstName,
+                                    LastName = request.LastName,
+                                    Email = request.Email,
+                                    PhoneNumber = request.PhoneNumber,
+                                    StartDate = request.StartDate,
+                                    OpenForWork = request.OpenForWork,
+                                    UserType = request.UserType,
                                 }; 
 
-            var result = await _userManager.CreateAsync(user, request.password);
+            var result = await _userManager.CreateAsync(user, request.Password);
             registerResponse response = new registerResponse();
             if (result.Succeeded) { 
-                response.success = true;
+                response.Success = true;
             } else { 
-                List<string> errors = new List<string>();
-                foreach (var error in result.Errors) { 
-                    errors.Add(error.Description); 
+                List<string> Errors = new List<string>();
+                foreach (var Error in result.Errors) { 
+                    Errors.Add(Error.Description); 
                 }
-                response.success = false;
-                response.errors = errors.ToArray(); 
+                response.Success = false;
+                response.Errors = Errors.ToArray(); 
             }  
 
             return response;
