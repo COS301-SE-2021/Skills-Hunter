@@ -18,7 +18,7 @@ namespace SkillsHunterAPI.Services
             _userManager = userManager;
         }
 
-        public async Task<registerResponse> register(FegisterRequest request){
+        public async Task<RegisterResponse> register(RegisterRequest request){
             var user = new User {   FirstName = request.FirstName,
                                     LastName = request.LastName,
                                     Email = request.Email,
@@ -29,7 +29,7 @@ namespace SkillsHunterAPI.Services
                                 }; 
 
             var result = await _userManager.CreateAsync(user, request.Password);
-            registerResponse response = new registerResponse();
+            RegisterResponse response = new RegisterResponse();
             if (result.Succeeded) { 
                 response.Success = true;
             } else { 
