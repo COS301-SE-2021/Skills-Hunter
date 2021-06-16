@@ -159,6 +159,7 @@ namespace SkillsHunterAPI.Controllers
             ProjectToUpdate.Owner = projectRequest.Owner;
             ProjectToUpdate.Name = projectRequest.Name;
             ProjectToUpdate.DateCreated = DateTime.Now;
+            ProjectToUpdate.ProjectId = new Guid(projectRequest.ProjectId);
 
 
             await _projectService.UpdateProject(ProjectToUpdate);
