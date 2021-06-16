@@ -16,7 +16,8 @@ namespace SkillsHunterAPI.Services
             _userManager = userManager;
         }
 
-        public async Task<RegisterResponse> Register(RegisterRequest request){
+        public async Task<RegisterResponse> Register(RegisterRequest request)
+        {
             var user = new User {   FirstName = request.FirstName,
                                     LastName = request.LastName,
                                     Email = request.Email,
@@ -28,11 +29,16 @@ namespace SkillsHunterAPI.Services
 
             var result = await _userManager.CreateAsync(user, request.Password);
             RegisterResponse response = new RegisterResponse();
-            if (result.Succeeded) { 
+
+            if (result.Succeeded)
+            { 
                 response.Success = true;
-            } else { 
+            }
+            else
+            { 
                 List<string> Errors = new List<string>();
-                foreach (var Error in result.Errors) { 
+                foreach (var Error in result.Errors)
+                { 
                     Errors.Add(Error.Description); 
                 }
                 response.Success = false;
@@ -42,22 +48,33 @@ namespace SkillsHunterAPI.Services
             return response;
         }
 
-        public async Task<LogInResponse> LogIn(LogInRequest request){
+        public async Task<LogInResponse> LogIn(LogInRequest request)
+        {
+            return await null;
+        }
+
+        public async Task<LogOutResponse> LogOut(LogOutRequest request)
+        {
 
         }
-        public async Task<LogOutResponse> LogOut(LogOutRequest request){
+
+        public async Task<UpdateResponse> UpdateUser(UpdateRequest request)
+        {
 
         }
-        public async Task<UpdateResponse> UpdateUser(UpdateRequest request){
+
+        public async Task<DeleteResponse> DeleteUser(DeleteRequest request)
+        {
 
         }
-        public async Task<DeleteResponse> DeleteUser(DeleteRequest request){
+
+        public async Task<GetAllResponse> GetAllUsers(GetAllRequest request)
+        {
 
         }
-        public async Task<GetAllResponse> GetAllUsers(GetAllRequest request){
 
-        }
-        public async Task<GetResponse> GetUser(GetUserRequest request){
+        public async Task<GetResponse> GetUser(GetUserRequest request)
+        {
 
         }
     }

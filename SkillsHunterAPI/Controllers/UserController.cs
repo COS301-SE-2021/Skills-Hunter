@@ -57,17 +57,18 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getall")]
-        public async Task<GetAllResponse> GetAllUsers(){
+        public async Task<GetAllResponse> GetAllUsers()
+        {
             var response = await _userService.GetAllUsers(new GetAllRequest());
             return response;
         }
 
         [HttpGet]
         [Route("api/[controller]/get")]
-        public async Task<GetResponse> GetUser(GetUserRequest request){
+        public async Task<GetResponse> GetUser(GetUserRequest request)
+        {
             var response = await _userService.GetUser(request);
             return response;
         }
-        
     }
 }
