@@ -13,7 +13,7 @@ namespace SkillsHunterAPI.Controllers.Requests
         public DateTime startDate{get;set;}
         public Boolean openForWork{get;set;}
         public UserType userType{get;set;}
-        public UserSkill skills{get;set;}
-        public WorkExperience experience{get;set;}
+        public Guid[] skills{get;set;}
+        public WorkExperience[] experience{get;set;}
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Services;
-using SkillsHunterAPI.Models.User;
 using SkillsHunterAPI.Controllers.Requests;
 using SkillsHunterAPI.Controllers.Responses;
+using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -12,19 +13,19 @@ namespace SkillsHunterAPI.Controllers
     public class UserController: ControllerBase
     {
         private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        public UserController(UserManager<User> userManager, SignInManager<User> signManager)
         {
-            _userService = userService;
+            _userService = new UserService(userManager,signManager);
         }
 
 
         [HttpPost]
         [Route("api/[controller]/register")]
         
-        public async Task<registerResponse> register(registerRequest projectRequest)
+        public async Task<registerResponse> register(registerRequest request)
         {
-            var result = await _userService.register(projectRequest);
-            return result;
+            var response = await _userService.register(request);
+            return response;
         }
     }
 }

@@ -7,6 +7,6 @@ namespace SkillsHunterAPI.Services
 {
     public interface IUserService
     {
-        Task<registerResponse> register(registerRequest projectRequest);
+        Task<registerResponse> register(registerRequest request);
     }
 }
