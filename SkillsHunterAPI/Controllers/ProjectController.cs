@@ -151,17 +151,22 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpDelete]
         [Route("api/[controller]/deleteProject/{id}")]
-        public async Task<ActionResult> DeleteProject(int id)
+        public async Task<ActionResult> DeleteProject(String id)
         {
-            Guid projectId = new Guid();
+            Guid projectId = new Guid(id);
             var projectToDelete = await _projectService.GetProject(projectId);
+            List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(projectId);
+
 
             if (projectToDelete == null)
             {
                 return NotFound();
             }
 
+            //This delete the project from the db
             await _projectService.DeleteProject(projectToDelete.ProjectId);
+
+
             return NoContent();
         }
 
