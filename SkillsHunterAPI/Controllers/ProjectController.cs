@@ -171,7 +171,31 @@ namespace SkillsHunterAPI.Controllers
             foreach (SkillRR skillFromRequest in projectRequest.ProjectSkills)
             {
                 ProjectSkill projectSkill = await _projectService.GetProjectSkillBySkillId(skillFromRequest.SkillId, _projectID);
+
+                if(projectSkill == null)
+                {
+                    ProjectSkill newProjectSkill = new ProjectSkill();
+                    newProjectSkill.ProjectId = _projectID;
+                    newProjectSkill.SkillId = projectSkill.SkillId;
+                    await _projectService.AddProjectSkill(newProjectSkill);
+                }
+
             }
+
+
+            foreach (ProjectSkill projectSkill in projectSkillsFromDB)
+            {
+                SkillRR projectSkillRevised = new SkillRR();
+                projectSkillRevised.SkillId = projectSkill.SkillId;
+                projectSkillRevised.SkillName = "SkillOne";
+
+                if(!projectRequest.ProjectSkills.Contains(projectSkillRevised))
+                {
+                    await _projectService.RemoveProjectSkill(projectSkill.SkillId);
+                }
+
+            }
+
 
 
 
