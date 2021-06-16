@@ -166,7 +166,11 @@ namespace SkillsHunterAPI.Controllers
             //This delete the project from the db
             await _projectService.DeleteProject(projectToDelete.ProjectId);
 
-
+            /*This delete project skill from the db*/
+            foreach(ProjectSkill projectSkill in projectSkills)
+            {
+                await _projectService.RemoveProjectSkill(projectSkill.ProjectSkillId);
+            }
             return NoContent();
         }
 
