@@ -161,7 +161,10 @@ namespace SkillsHunterAPI.Controllers
             ProjectToUpdate.DateCreated = DateTime.Now;
 
 
+            await _projectService.UpdateProject(ProjectToUpdate);
 
+
+            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);
 
 
 
