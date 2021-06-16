@@ -20,9 +20,9 @@ namespace SkillsHunterAPI.Controllers
         [HttpPost]
         [Route("api/[controller]/register")]
         
-        public async Task<RegisterResponse> register(RegisterRequest request)
+        public async Task<RegisterResponse> Register(RegisterRequest request)
         {
-            var response = await _userService.register(request);
+            var response = await _userService.Register(request);
             return response;
         }
     }

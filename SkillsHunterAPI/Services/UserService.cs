@@ -16,7 +16,7 @@ namespace SkillsHunterAPI.Services
             _userManager = userManager;
         }
 
-        public async Task<RegisterResponse> register(RegisterRequest request){
+        public async Task<RegisterResponse> Register(RegisterRequest request){
             var user = new User {   FirstName = request.FirstName,
                                     LastName = request.LastName,
                                     Email = request.Email,
