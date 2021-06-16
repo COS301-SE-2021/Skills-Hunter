@@ -158,15 +158,20 @@ namespace SkillsHunterAPI.Controllers
             List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(projectId);
 
 
+
+            /*This checks if the project exists, if not then it returns not found */
+
             if (projectToDelete == null)
             {
                 return NotFound();
             }
 
-            //This delete the project from the db
+
+            //This calls the service to delete the project from the db
             await _projectService.DeleteProject(projectToDelete.ProjectId);
 
-            /*This delete project skill from the db*/
+
+            /*This calls the service to delete project skill from the db*/
             foreach(ProjectSkill projectSkill in projectSkills)
             {
                 await _projectService.RemoveProjectSkill(projectSkill.ProjectSkillId);
