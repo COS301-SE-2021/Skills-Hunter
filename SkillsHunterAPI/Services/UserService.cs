@@ -10,8 +10,8 @@ namespace SkillsHunterAPI.Services
 {
     public class UserService: IUserService
     {
-        private SignInManager<User> _signManager; 
-        private UserManager<User> _userManager;
+        private readonly SignInManager<User> _signManager; 
+        private readonly UserManager<User> _userManager;
         private readonly ApplicationDbContext _context;
 
         public UserService(UserManager<User> userManager, SignInManager<User> signManager,ApplicationDbContext context)
