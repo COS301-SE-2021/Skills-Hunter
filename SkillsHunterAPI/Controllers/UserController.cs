@@ -50,7 +50,22 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/login")]
         public async Task<LogInResponse> LogIn(LogInRequest request)
         {
-            return null;
+            User loginUser = await _userService.LogIn(request.Email, request.Password);
+
+            LogInResponse response = new LogInResponse();
+
+            if (loginUser == null)
+            {
+                response.Validated = false;
+            }
+            else
+            {
+                response.UserName = loginUser.Name;
+                response.UserId = response.UserId;
+                response.Validated = true;
+            }
+
+            return response;
         }
 
         [HttpGet]
