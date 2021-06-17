@@ -24,10 +24,7 @@ namespace SkillsHunterAPI.Services
             var user = new User {   FirstName = request.FirstName,
                                     LastName = request.LastName,
                                     Email = request.Email,
-                                    PhoneNumber = request.PhoneNumber,
-                                    StartDate = request.StartDate,
-                                    OpenForWork = request.OpenForWork,
-                                    UserType = request.UserType,
+                                    UserType = request.UserType
                                 }; 
 
             var result = await _userManager.CreateAsync(user, request.Password);
@@ -53,7 +50,7 @@ namespace SkillsHunterAPI.Services
 
         public async Task<LogInResponse> LogIn(LogInRequest request)
         {
-            return await null;
+
         }
 
         public async Task<LogOutResponse> LogOut(LogOutRequest request)
@@ -78,7 +75,7 @@ namespace SkillsHunterAPI.Services
             
             response.Accounts = result.ToArray();
             response.Success = true;
-            
+
             return response;
         }
 
