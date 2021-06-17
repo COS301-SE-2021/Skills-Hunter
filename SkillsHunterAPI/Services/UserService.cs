@@ -27,9 +27,9 @@ namespace SkillsHunterAPI.Services
             return result;
         }
 
-        public async Task<LogInResponse> LogIn(LogInRequest request)
+        public async Task<SignInResult> LogIn(User request)
         {
-            return new LogInResponse();
+            var result = await _signManager.PasswordSignInAsync(request,request.Password,false);
         }
 
         public async Task<LogOutResponse> LogOut(LogOutRequest request)
