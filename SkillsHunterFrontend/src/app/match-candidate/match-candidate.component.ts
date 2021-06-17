@@ -10,6 +10,9 @@ import { CandidatesList } from './candidate-card/mock-candidates';
 export class MatchCandidateComponent implements OnInit {
   title :string = 'Candidate';
   candidatesList:Candidate[] = CandidatesList;
+  candidateName = '';  
+
+  // SearchAndFilterCandidatePipe
 
   constructor() { }
 

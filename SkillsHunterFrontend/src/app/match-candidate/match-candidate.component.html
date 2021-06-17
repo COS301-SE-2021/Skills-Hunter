@@ -1,1 +1,4 @@
-<app-candidate-card *ngFor = "let candidate of candidatesList" [card_candidate]="candidate"></app-candidate-card>
+<!-- <label> Search Candidates </label>
+<input [(ngModel)]="candidateName"> -->
+
+<app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate:'Painter':'job'" [card_candidate]="candidate"></app-candidate-card>
