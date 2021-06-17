@@ -10,27 +10,23 @@ namespace SkillsHunterAPI.Services
 {
     public class UserService: IUserService
     {
-        private readonly SignInManager<User> _signManager; 
-        private readonly UserManager<User> _userManager;
         private readonly ApplicationDbContext _context;
 
-        public UserService(UserManager<User> userManager, SignInManager<User> signManager,ApplicationDbContext context)
+        public UserService(ApplicationDbContext context)
         {
-            _signManager = signManager;
-            _userManager = userManager;
             _context = context;
         }
 
-        public async Task<IdentityResult> AddUser(User request)
-        {
-            var result = await _userManager.CreateAsync(request, request.Password);
-            return result;
-        }
+        // public async Task<IdentityResult> AddUser(User request)
+        // {
+        //     var result = await _userManager.CreateAsync(request, request.Password);
+        //     return result;
+        // }
 
-        public async Task<SignInResult> LogIn(User request)
-        {
-            return await _signManager.PasswordSignInAsync(request,request.Password,false,false);
-        }
+        // public async Task<SignInResult> LogIn(User request)
+        // {
+        //     return await _signManager.PasswordSignInAsync(request,request.Password,false,false);
+        // }
 
         public async Task<LogOutResponse> LogOut(LogOutRequest request)
         {

@@ -1,15 +1,14 @@
 ﻿using System;
 using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 
 namespace SkillsHunterAPI.Services
 {
     public interface IUserService
     {
-        Task<IdentityResult> AddUser(User request);
+        // Task<IdentityResult> AddUser(User request);
         
-        Task<SignInResult> LogIn(User request);
+        // Task<SignInResult> LogIn(User request);
         
         Task<LogOutResponse> LogOut(LogOutRequest request);
         
