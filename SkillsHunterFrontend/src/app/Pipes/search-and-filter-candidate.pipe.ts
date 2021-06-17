@@ -10,29 +10,39 @@ export class SearchAndFilterCandidatePipe implements PipeTransform {
   transform(value: any[], filterString: string, propertyToFilter: string): any[] {
     const resultArray = [];
 
-    // const sortField = args[0];
-    // const sortDirection = args[1];
-    // let multiplier = 1;
-
-    // if(sortDirection === 'desc')
-    //   multiplier = 1;
-
-    // value.sort((a : any, b : any) => {
-    //   if(a[sortField] < b[sortField])
-    //     return -1*multiplier;
-    //   else if (a[sortField] < b[sortField])
-    //     return 1*multiplier;
-    //   else
-    //     return 0;
-    // }
-    // );
-
     if(value.length === 0 || filterString==='' || propertyToFilter==='')
       return value;
 
+      // id: number;
+      // name: string;
+      // job: string
+      // description: string;
+      // skills: string;
+    
+    const numOfKeysInObject : number = Object.keys(value[0]).length;
+    let keyInFocus : string = '';
+
     for(const item of value){
-      if(item[propertyToFilter].includes(filterString))
-        resultArray.push(item);
+      console.log(JSON.stringify(item["name"]));
+  
+      // console.log(JSON.stringify(item));
+
+
+      for(var key=0; key<numOfKeysInObject; key++){
+
+        keyInFocus = Object.keys(item)[key];
+
+
+
+        // console.log(keyInFocus);
+        // if(item[keyInFocus].includes(filterString)){
+        //   resultArray.push(item);
+        // }
+
+      }
+
+      // if(item[propertyToFilter].includes(filterString))
+      //   resultArray.push(item);
     }
 
     return resultArray;

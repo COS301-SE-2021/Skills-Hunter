@@ -1,31 +1,13 @@
-<div id="searchPanel">
-    <label> Search Candidates </label>
-
-    <div>
-        <div class="filterDIV">
-            <input [(ngModel)]='filterQuery'>
-        </div>
-
-        <div class="filterDIV">
-        <mat-form-field appearance="fill">
-        <mat-label>Filter Using</mat-label>
-        <select matNativeControl required [(ngModel)]='filterCategory' >
-            <option value="name">Name</option>
-            <option value="job">Job</option>
-            <option value="description">Description</option>
-            <option value="skills">Skills</option>
-        </select>
-        </mat-form-field>
-        </div>
-    </div>
+<div>
+<mat-form-field class="example-form-field">
+    <mat-label>Search For A Candidate:</mat-label>
+    <input matInput type="text" [(ngModel)]="filterQuery">
+    <button *ngIf="filterQuery" matSuffix mat-icon-button aria-label="Clear" (click)="filterQuery=''">
+      <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
 </div>
 
-<app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery:filterCategory" [card_candidate]="candidate"></app-candidate-card>
-
-<!-- <form class="example-form">  
-    <mat-form-field class="example-full-width">
-      <mat-label>Search for a Candidate</mat-label>
-      <textarea matInput placeholder="Candidate..."></textarea>
-    </mat-form-field>
-</form> -->
+<!-- <app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery:filterCategory" [card_candidate]="candidate"></app-candidate-card> -->
+<app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery:'name'" [card_candidate]="candidate"></app-candidate-card>
 
