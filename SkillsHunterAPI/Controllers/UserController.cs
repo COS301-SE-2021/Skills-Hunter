@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -11,9 +10,10 @@ namespace SkillsHunterAPI.Controllers
     public class UserController: ControllerBase
     {
         private readonly IUserService _userService;
-        public UserController(UserManager<User> userManager, SignInManager<User> signManager)
+
+        public UserController(IUserService userService)
         {
-            _userService = new UserService(userManager,signManager);
+            _userService = userService;
         }
 
 
