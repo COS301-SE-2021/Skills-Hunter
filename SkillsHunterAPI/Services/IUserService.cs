@@ -1,14 +1,15 @@
 ﻿using System;
 using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace SkillsHunterAPI.Services
 {
     public interface IUserService
     {
-         Task<User> AddUser(User request);
+        Task<User> AddUser(User request);
         
-         Task<User> LogIn(User request);
+        Task<User> LogIn(string email, string pass);
         
         Task<LogOutResponse> LogOut(LogOutRequest request);
         
@@ -16,7 +17,7 @@ namespace SkillsHunterAPI.Services
         
         Task<DeleteResponse> DeleteUser(DeleteRequest request);
         
-        Task<GetAllResponse> GetAllUsers(GetAllRequest request);
+        Task<IEnumerable<User>> GetAllUsers();
         
         Task<User> GetUser(Guid request);
 
