@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatchCandidateComponent } from './match-candidate/match-candidate.component';
 import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
+import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidate.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CandidateCardComponent } from './match-candidate/candidate-card/candida
     // CandidateComponent,
     MatchCandidateComponent,
     CandidateCardComponent,
+    SearchAndFilterCandidatePipe,
   ],
   imports: [
     BrowserModule,
