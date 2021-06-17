@@ -5,12 +5,17 @@ import { HomeComponent } from './home/home.component';
 import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { ProjectCRUDService } from './services/project-crud.service';
 import {projectService} from './services/project-edit.service';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   
   {
     path:'login',
     component:LoginComponent
+  },
+  {
+    path:'register',
+    component:RegisterComponent
   },
   {
     path:'home',

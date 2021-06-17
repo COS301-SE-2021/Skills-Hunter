@@ -17,6 +17,7 @@ import { ProjectCRUDService } from './services/project-crud.service';
 import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CandidateComponent } from './updateproject/candidate/candidate.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CandidateComponent } from './updateproject/candidate/candidate.componen
     ProjectComponent,
     ProjectItemComponent,
     CandidateComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
