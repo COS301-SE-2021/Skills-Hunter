@@ -1,7 +1,6 @@
 ﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/User/User.cs">
-
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/User/LogInRequest.cs">
     <Files>
       <File FileName="Models/Project/Project.cs" Line="15" Column="1" />
       <File FileName="SkillsHunterAPI.csproj" />
@@ -12,22 +11,23 @@
       <File FileName="Properties/launchSettings.json" />
       <File FileName="appsettings.json" />
       <File FileName="Program.cs" />
-      <File FileName="Controllers/ProjectController.cs" Line="194" Column="84" />
-      <File FileName="Services/IUserService.cs" Line="6" Column="1" />
-      <File FileName="Services/IProjectService.cs" Line="1" Column="1" />
+      <File FileName="Controllers/ProjectController.cs" />
+      <File FileName="Services/IUserService.cs" />
+      <File FileName="Services/IProjectService.cs" />
       <File FileName="Services/ProjectService.cs" />
-      <File FileName="Models/Project/ProjectSkill.cs" Line="1" Column="1" />
-      <File FileName="Services/ISkillService.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/ProjectSkill.cs" />
+      <File FileName="Services/ISkillService.cs" />
       <File FileName="Models/Project/ProjectResponse.cs" />
       <File FileName="Models/Skill/SkillRR.cs" />
-      <File FileName="Models/User/UserResponse.cs" Line="2" Column="1" />
-      <File FileName="Models/User/User.cs" Line="1" Column="13" />
-      <File FileName="Models/User/UserSkill.cs" Line="2" Column="1" />
-      <File FileName="Models/User/WorkExperience.cs" Line="2" Column="1" />
-      <File FileName="Controllers/UserController.cs" Line="14" Column="1" />
-      <File FileName="Services/UserService.cs" Line="1" Column="1" />
-      <File FileName="Models/User/RegisterResponse.cs" Line="14" Column="2" />
-      <File FileName="Models/Project/ProjectRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/User/UserResponse.cs" />
+      <File FileName="Models/User/User.cs" Line="11" Column="6" />
+      <File FileName="Models/User/UserSkill.cs" />
+      <File FileName="Models/User/WorkExperience.cs" />
+      <File FileName="Controllers/UserController.cs" Line="56" Column="1" />
+      <File FileName="Services/UserService.cs" />
+      <File FileName="Models/User/RegisterResponse.cs" />
+      <File FileName="Models/Project/ProjectRequest.cs" />
+      <File FileName="Models/User/LogInRequest.cs" Line="14" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -36,11 +36,11 @@
             <Node name="SkillsHunterAPI" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="Project" expanded="True">
-                  <Node name="ProjectRequest.cs" selected="True" />
-                </Node>
+                <Node name="Project" expanded="True" />
                 <Node name="Skill" expanded="True" />
-                <Node name="User" expanded="True" />
+                <Node name="User" expanded="True">
+                  <Node name="LogInRequest.cs" selected="True" />
+                </Node>
               </Node>
               <Node name="SkillsHunterAPIUnitTest" expanded="True" />
             </Node>
