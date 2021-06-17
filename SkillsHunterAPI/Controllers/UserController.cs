@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -93,19 +94,34 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/getall")]
-        public async Task<GetAllResponse> GetAllUsers()
+        [Route("api/[controller]/getAllUsers")]
+        public async Task<IEnumerable<GetAllResponse>> GetAllUsers()
         {
             //var response = await _userService.GetAllUsers(new GetAllRequest());
             return null;
         }
 
         [HttpGet]
-        [Route("api/[controller]/get")]
-        public async Task<GetResponse> GetUser(GetUserRequest request)
+        [Route("api/[controller]/getUser/{id}")]
+        public async Task<GetUserResponse> GetUser(string id)
         {
-            //var response = await _userService.GetUser(request);
-            return null;
+            User user = await _userService.GetUser(new Guid(id));
+
+            GetUserResponse response = new GetUserResponse();
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            response.Email = user.Email;
+            response.Name = user.Name;
+            response.OpenForWork = user.OpenForWork;
+            response.Phone = user.Phone;
+            response.Surname = user.Surname;
+            response.UserId = user.UserId;
+
+            return response;
         }
     }
 }
