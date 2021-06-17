@@ -20,18 +20,36 @@ namespace SkillsHunterAPI.Controllers
         [HttpPost]
         [Route("api/[controller]/register")]
 
-        public Task<RegisterResponse> Register(RegisterRequest request)
+        public async Task<RegisterResponse> Register(RegisterRequest request)
         {
-            //var response = await _userService.AddUser(request);
-            return null;
+            User newUser = new User();
+            newUser.Name = request.Name;
+            newUser.Surname = request.Surname;
+            newUser.Phone = request.Phone;
+            newUser.Password = request.Password;
+            newUser.UserType = request.Role;
+            //newUser.StartDate = request.St
+            newUser = await _userService.AddUser(newUser);
+
+            RegisterResponse response = new RegisterResponse();
+
+            if (newUser != null)
+            {
+                response.Successful = true;
+            }
+            else
+            {
+                response.Successful = false;
+            }
+
+            return response;
         }
 
 
         [HttpPost]
         [Route("api/[controller]/login")]
-        public Task<LogInResponse> LogIn(LogInRequest request)
+        public async Task<LogInResponse> LogIn(LogInRequest request)
         {
-            //var response = await _userService.LogIn(request);
             return null;
         }
 
