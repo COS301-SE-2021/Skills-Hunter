@@ -21,7 +21,7 @@ namespace SkillsHunterAPI.Services
             _context = context;
         }
 
-        public async Task<IdentityResult> Register(User request)
+        public async Task<IdentityResult> AddUser(User request)
         {
             var result = await _userManager.CreateAsync(request, request.Password);
             return result;
