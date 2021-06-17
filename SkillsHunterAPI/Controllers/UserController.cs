@@ -19,38 +19,42 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/register")]
-        
+
         public async Task<RegisterResponse> Register(RegisterRequest request)
         {
-            var response = await _userService.Register(request);
-            return response;
+            //var response = await _userService.AddUser(request);
+            return null;
         }
 
 
         [HttpPost]
         [Route("api/[controller]/login")]
-        public async Task<LogInResponse> LogIn(LogInRequest request){
-            var response = await _userService.LogIn(request);
-            return response;
+        public async Task<LogInResponse> LogIn(LogInRequest request)
+        {
+            //var response = await _userService.LogIn(request);
+            return null;
         }
 
         [HttpGet]
         [Route("api/[controller]/logOut")]
-        public async Task<LogOutResponse> LogOut(){
+        public async Task<LogOutResponse> LogOut()
+        {
             var response = await _userService.LogOut(new LogOutRequest());
             return response;
         }
 
         [HttpPost]
         [Route("api/[controller]/update")]
-        public async Task<UpdateResponse> UpdateUser(UpdateRequest request){
+        public async Task<UpdateResponse> UpdateUser(UpdateRequest request)
+        {
             var response = await _userService.UpdateUser(request);
             return response;
         }
 
         [HttpGet]
         [Route("api/[controller]/delete")]
-        public async Task<DeleteResponse> DeleteUser(DeleteRequest request){
+        public async Task<DeleteResponse> DeleteUser(DeleteRequest request)
+        {
             var response = await _userService.DeleteUser(request);
             return response;
         }
@@ -67,8 +71,8 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/get")]
         public async Task<GetResponse> GetUser(GetUserRequest request)
         {
-            var response = await _userService.GetUser(request);
-            return response;
+            //var response = await _userService.GetUser(request);
+            return null;
         }
     }
 }

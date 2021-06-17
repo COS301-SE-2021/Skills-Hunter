@@ -10,26 +10,22 @@ namespace SkillsHunterAPI.Services
 {
     public class UserService: IUserService
     {
-        private readonly SignInManager<User> _signManager; 
-        private readonly UserManager<User> _userManager;
         private readonly ApplicationDbContext _context;
 
-        public UserService(UserManager<User> userManager, SignInManager<User> signManager,ApplicationDbContext context)
+        public UserService(ApplicationDbContext context)
         {
-            _signManager = signManager;
-            _userManager = userManager;
             _context = context;
         }
 
-        public async Task<IdentityResult> AddUser(User request)
+        public async Task<User> AddUser(User request)
         {
-            var result = await _userManager.CreateAsync(request, request.Password);
-            return result;
+            //var result = await _userManager.CreateAsync(request, request.Password);
+            return null;
         }
 
-        public async Task<LogInResponse> LogIn(LogInRequest request)
+        public async Task<User> LogIn(User request)
         {
-            return new LogInResponse();
+            return null;
         }
 
         public async Task<LogOutResponse> LogOut(LogOutRequest request)
@@ -58,20 +54,13 @@ namespace SkillsHunterAPI.Services
             return response;
         }
 
-        public async Task<GetResponse> GetUser(GetUserRequest request)
+        public async Task<User> GetUser(Guid request)
         {
-            var result = await _context.Users.FindAsync(request.UserId);
-            GetResponse response = new GetResponse();
-
-            response.Account = result;
-            response.Success = true;
-
-            return response;
+            return await _context.Users.FindAsync(request);
         }
         // Crud operations on the User Skill Model
         public async Task AddUserSkill(UserSkill request)
         {
-
             request.UserSkillId = new Guid();
             
             _context.UserSkills.Add(request);
