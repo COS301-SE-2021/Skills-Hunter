@@ -19,7 +19,7 @@ namespace SkillsHunterAPI.Services
         
         Task<GetAllResponse> GetAllUsers(GetAllRequest request);
         
-        Task<GetResponse> GetUser(GetUserRequest request);
+        Task<User> GetUser(Guid request);
 
         // Crud operations on the User Skill Model
         Task AddUserSkill(UserSkill request);

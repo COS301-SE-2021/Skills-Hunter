@@ -29,7 +29,7 @@ namespace SkillsHunterAPI.Services
 
         public async Task<SignInResult> LogIn(User request)
         {
-            var result = await _signManager.PasswordSignInAsync(request,request.Password,false);
+            return await _signManager.PasswordSignInAsync(request,request.Password,false,false);
         }
 
         public async Task<LogOutResponse> LogOut(LogOutRequest request)
@@ -58,20 +58,13 @@ namespace SkillsHunterAPI.Services
             return response;
         }
 
-        public async Task<GetResponse> GetUser(GetUserRequest request)
+        public async Task<User> GetUser(Guid request)
         {
-            var result = await _context.Users.FindAsync(request.UserId);
-            GetResponse response = new GetResponse();
-
-            response.Account = result;
-            response.Success = true;
-
-            return response;
+            return await _context.Users.FindAsync(request);
         }
         // Crud operations on the User Skill Model
         public async Task AddUserSkill(UserSkill request)
         {
-
             request.UserSkillId = new Guid();
             
             _context.UserSkills.Add(request);
