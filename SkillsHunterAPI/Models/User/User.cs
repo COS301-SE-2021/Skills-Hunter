@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
 namespace SkillsHunterAPI.Models.User
@@ -13,19 +12,16 @@ namespace SkillsHunterAPI.Models.User
         Admin = 3
     }
 
-    public class User : IdentityUser<Guid>
+    public class User
     {
-        //public Guid UserId {get; set; }
+        public Guid UserId {get; set; }
         public string Name {get; set; }
-        
         public string Surname {get; set; }
-        
+        public string Email {get; set; }
         public string Password {get; set; }
-        
+        public string PhoneNumber {get; set; }
         public DateTime StartDate {get; set; }
-        
         public Boolean OpenForWork {get; set; }
-        
         public UserType UserType {get; set; }
     }
 }

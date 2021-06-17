@@ -1,15 +1,15 @@
 ﻿using System;
 using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace SkillsHunterAPI.Services
 {
     public interface IUserService
     {
-        Task<IdentityResult> AddUser(User request);
+        Task<User> AddUser(User request);
         
-        Task<LogInResponse> LogIn(LogInRequest request);
+        Task<User> LogIn(string email, string pass);
         
         Task<LogOutResponse> LogOut(LogOutRequest request);
         
@@ -17,9 +17,9 @@ namespace SkillsHunterAPI.Services
         
         Task<DeleteResponse> DeleteUser(DeleteRequest request);
         
-        Task<GetAllResponse> GetAllUsers(GetAllRequest request);
+        Task<IEnumerable<User>> GetAllUsers();
         
-        Task<GetResponse> GetUser(GetUserRequest request);
+        Task<User> GetUser(Guid request);
 
         // Crud operations on the User Skill Model
         Task AddUserSkill(UserSkill request);
