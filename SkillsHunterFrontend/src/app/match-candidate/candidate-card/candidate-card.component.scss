@@ -3,7 +3,9 @@
   width: 300px;
   background-color: #e6ffff;
   margin: 20px;
-  display: inline-block;
+  // display: inline-block;
+  float: left;
+  width: 25%;
 }
 
 .candidate-card-skills {
