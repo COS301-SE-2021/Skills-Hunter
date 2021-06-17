@@ -23,26 +23,21 @@ export class SearchAndFilterCandidatePipe implements PipeTransform {
     let keyInFocus : string = '';
 
     for(const item of value){
-      console.log(JSON.stringify(item["name"]));
-  
-      // console.log(JSON.stringify(item));
-
 
       for(var key=0; key<numOfKeysInObject; key++){
+        
+        keyInFocus = ''+ Object.values(item)[key];
 
-        keyInFocus = Object.keys(item)[key];
+        if(keyInFocus.toLowerCase().includes(filterString.toLowerCase())){
+          
+          // check for primary key to avoid duplicates:
 
-
-
-        // console.log(keyInFocus);
-        // if(item[keyInFocus].includes(filterString)){
-        //   resultArray.push(item);
-        // }
+          // add if there are not duplicates:
+          resultArray.push(item);
+        }
 
       }
 
-      // if(item[propertyToFilter].includes(filterString))
-      //   resultArray.push(item);
     }
 
     return resultArray;
