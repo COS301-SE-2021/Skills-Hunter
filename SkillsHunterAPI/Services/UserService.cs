@@ -17,16 +17,16 @@ namespace SkillsHunterAPI.Services
             _context = context;
         }
 
-        // public async Task<IdentityResult> AddUser(User request)
-        // {
-        //     var result = await _userManager.CreateAsync(request, request.Password);
-        //     return result;
-        // }
+        public async Task<User> AddUser(User request)
+        {
+            //var result = await _userManager.CreateAsync(request, request.Password);
+            return null;
+        }
 
-        // public async Task<SignInResult> LogIn(User request)
-        // {
-        //     return await _signManager.PasswordSignInAsync(request,request.Password,false,false);
-        // }
+        public async Task<User> LogIn(User request)
+        {
+            return null;
+        }
 
         public async Task<LogOutResponse> LogOut(LogOutRequest request)
         {

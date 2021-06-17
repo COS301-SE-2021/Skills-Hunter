@@ -6,9 +6,9 @@ namespace SkillsHunterAPI.Services
 {
     public interface IUserService
     {
-        // Task<IdentityResult> AddUser(User request);
+         Task<User> AddUser(User request);
         
-        // Task<SignInResult> LogIn(User request);
+         Task<User> LogIn(User request);
         
         Task<LogOutResponse> LogOut(LogOutRequest request);
         
