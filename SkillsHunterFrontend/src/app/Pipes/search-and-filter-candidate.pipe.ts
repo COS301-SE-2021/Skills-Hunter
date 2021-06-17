@@ -27,13 +27,23 @@ export class SearchAndFilterCandidatePipe implements PipeTransform {
       for(var key=0; key<numOfKeysInObject; key++){
         
         keyInFocus = ''+ Object.values(item)[key];
+        let bCardExists = false;
+
+        // Object.values(item)[0]
 
         if(keyInFocus.toLowerCase().includes(filterString.toLowerCase())){
           
           // check for primary key to avoid duplicates:
+          for(var x=0; x<resultArray.length; x++){
+            if(resultArray[x].id === Object.values(item)[0]){
+                  bCardExists = true;
+                  break;
+            }
+          }
 
           // add if there are not duplicates:
-          resultArray.push(item);
+          if(!bCardExists)
+            resultArray.push(item);
         }
 
       }
@@ -42,5 +52,6 @@ export class SearchAndFilterCandidatePipe implements PipeTransform {
 
     return resultArray;
   }
+
 
 }
