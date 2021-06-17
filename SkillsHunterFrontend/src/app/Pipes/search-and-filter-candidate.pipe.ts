@@ -27,13 +27,11 @@ export class SearchAndFilterCandidatePipe implements PipeTransform {
     // }
     // );
 
-
     if(value.length === 0 || filterString==='' || propertyToFilter==='')
       return value;
 
     for(const item of value){
-      // if(item[propertyToFilter] === filterString)
-      if(filterString.includes(item[propertyToFilter]))
+      if(item[propertyToFilter].includes(filterString))
         resultArray.push(item);
     }
 

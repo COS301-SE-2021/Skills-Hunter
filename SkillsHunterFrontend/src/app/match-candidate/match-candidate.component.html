@@ -2,11 +2,11 @@
     <label> Search Candidates </label>
 
     <div>
-<!-- <input [(ngModel)]="candidateName"> -->
+
         <div class="filterDIV">
-            <input>
+            <input [(ngModel)]='filterQuery'>
         </div>
-        
+
         <div class="filterDIV">
         <mat-form-field appearance="fill">
         <mat-label>Filter Using</mat-label>
@@ -21,9 +21,7 @@
     </div>
 </div>
 
-<!-- <app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate:'Painter':'job'" [card_candidate]="candidate"></app-candidate-card> -->
-
-<app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate:'':'job'" [card_candidate]="candidate"></app-candidate-card>
+<app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery:'name'" [card_candidate]="candidate"></app-candidate-card>
 
 <!-- <form class="example-form">  
     <mat-form-field class="example-full-width">
