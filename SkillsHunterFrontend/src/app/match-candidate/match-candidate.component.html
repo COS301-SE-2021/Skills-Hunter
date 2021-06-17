@@ -2,7 +2,6 @@
     <label> Search Candidates </label>
 
     <div>
-
         <div class="filterDIV">
             <input [(ngModel)]='filterQuery'>
         </div>
@@ -10,18 +9,18 @@
         <div class="filterDIV">
         <mat-form-field appearance="fill">
         <mat-label>Filter Using</mat-label>
-        <select matNativeControl required>
-            <option value="Name">Name</option>
-            <option value="Job">Job</option>
-            <option value="Description">Description</option>
-            <option value="Skills">Skills</option>
+        <select matNativeControl required [(ngModel)]='filterCategory' >
+            <option value="name">Name</option>
+            <option value="job">Job</option>
+            <option value="description">Description</option>
+            <option value="skills">Skills</option>
         </select>
         </mat-form-field>
         </div>
     </div>
 </div>
 
-<app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery:'name'" [card_candidate]="candidate"></app-candidate-card>
+<app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery:filterCategory" [card_candidate]="candidate"></app-candidate-card>
 
 <!-- <form class="example-form">  
     <mat-form-field class="example-full-width">
