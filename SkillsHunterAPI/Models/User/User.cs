@@ -13,12 +13,19 @@ namespace SkillsHunterAPI.Models.User
         Admin = 3
     }
 
-    public class User : IdentityUser
+    public class User : IdentityUser<Guid>
     {
-        public string FirstName { get; set; }
-        public string LastName {get;set;}
-        public DateTime StartDate{get;set;}
-        public Boolean OpenForWork{get;set;}
-        public UserType UserType{get;set;}
+        //public Guid UserId {get; set; }
+        public string FirstName {get; set; }
+        
+        public string LastName {get; set; }
+        
+        public string Password {get; set; }
+        
+        public DateTime StartDate {get; set; }
+        
+        public Boolean OpenForWork {get; set; }
+        
+        public UserType UserType {get; set; }
     }
 }

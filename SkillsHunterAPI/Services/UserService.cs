@@ -21,33 +21,10 @@ namespace SkillsHunterAPI.Services
             _context = context;
         }
 
-        public async Task<RegisterResponse> Register(RegisterRequest request)
+        public async Task<IdentityResult> Register(User request)
         {
-            var user = new User {   FirstName = request.FirstName,
-                                    LastName = request.LastName,
-                                    Email = request.Email,
-                                    UserType = request.UserType
-                                }; 
-
-            var result = await _userManager.CreateAsync(user, request.Password);
-            RegisterResponse response = new RegisterResponse();
-
-            if (result.Succeeded)
-            { 
-                response.Success = true;
-            }
-            else
-            { 
-                List<string> Errors = new List<string>();
-                foreach (var Error in result.Errors)
-                { 
-                    Errors.Add(Error.Description); 
-                }
-                response.Success = false;
-                response.Errors = Errors.ToArray(); 
-            }  
-
-            return response;
+            var result = await _userManager.CreateAsync(request, request.Password);
+            return result;
         }
 
         public async Task<LogInResponse> LogIn(LogInRequest request)
@@ -90,6 +67,74 @@ namespace SkillsHunterAPI.Services
             response.Success = true;
 
             return response;
+        }
+        // Crud operations on the User Skill Model
+        public async Task AddUserSkill(UserSkill request)
+        {
+
+            request.UserSkillId = new Guid();
+            
+            _context.UserSkills.Add(request);
+            await _context.SaveChangesAsync();
+        }
+        
+        public async Task UpdateUserSkill(Guid userSkillId, UserSkill request)
+        {
+
+            UserSkill result = await _context.UserSkills.FindAsync(userSkillId);
+
+            result.SkillID = request.SkillID;
+            result.Weight = request.Weight;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteUserSkill(Guid id)
+        {
+
+            var result = await _context.UserSkills.FindAsync(id);
+
+            _context.UserSkills.Remove(result);
+            await _context.SaveChangesAsync();
+        }
+        
+        public async Task<UserSkill> GetUserSkill(Guid id)
+        {
+            return await _context.UserSkills.FindAsync(id);
+        }
+
+        // Crud operations on the Work Experience Model
+
+        public async Task AddWorkExperience(WorkExperience request)
+        {
+
+            request.WorkExperienceId = new Guid();
+            
+            _context.WorkExperiences.Add(request);
+            await _context.SaveChangesAsync();
+        }
+        
+        public async Task UpdateWorkExperience(Guid workExperienceID, WorkExperience request)
+        {
+
+            WorkExperience result = await _context.WorkExperiences.FindAsync(request.WorkExperienceId);
+
+            result.ProjectId = request.ProjectId;
+            result.startDate = request.startDate;
+            result.endDate = request.endDate;
+            result.performanceRating = request.performanceRating;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteWorkExperience(Guid id){
+            var result = await _context.WorkExperiences.FindAsync(id);
+
+            _context.WorkExperiences.Remove(result);
+            await _context.SaveChangesAsync();
+        }
+        
+        public async Task<WorkExperience> GetWorkExperience(Guid id){
+            return await _context.WorkExperiences.FindAsync(id);
         }
     }
 }
