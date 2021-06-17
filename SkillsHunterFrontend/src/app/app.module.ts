@@ -9,11 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CandidateComponent } from './updateproject/candidate/candidate.component';
-import { CandidateSearchComponent } from './candidate-search/candidate-search.component';
-import { ProjectSearchComponent } from './project-search/project-search.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CandidateOverviewComponent } from './candidate-search/candidate-overview/candidate-overview.component';
-import { ProjectOverviewComponent } from './project-search/project-overview/project-overview.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +19,6 @@ import { ProjectOverviewComponent } from './project-search/project-overview/proj
     UpdateprojectComponent,
     HomeComponent,
     CandidateComponent,
-    CandidateSearchComponent,
-    ProjectSearchComponent,
-    CandidateOverviewComponent,
-    ProjectOverviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +28,6 @@ import { ProjectOverviewComponent } from './project-search/project-overview/proj
     BrowserAnimationsModule, 
     ReactiveFormsModule, 
   ],
-  entryComponents:[CandidateOverviewComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
