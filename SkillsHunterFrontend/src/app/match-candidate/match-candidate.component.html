@@ -1,4 +1,31 @@
 <!-- <label> Search Candidates </label>
 <input [(ngModel)]="candidateName"> -->
 
-<app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate:'Painter':'job'" [card_candidate]="candidate"></app-candidate-card>
+
+<!-- <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Favorite food</mat-label>
+      <input matInput placeholder="Ex. Pizza" value="Sushi">
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <mat-label>Leave a comment</mat-label>
+      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+    </mat-form-field>
+</form> -->
+  
+<div>
+<mat-form-field appearance="fill">
+  <mat-label>Cars</mat-label>
+  <select matNativeControl required>
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+  </select>
+</mat-form-field>
+</div>
+
+<!-- <app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate:'Painter':'job'" [card_candidate]="candidate"></app-candidate-card> -->
+
+<app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate:'':'job'" [card_candidate]="candidate"></app-candidate-card>
