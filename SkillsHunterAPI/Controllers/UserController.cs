@@ -95,9 +95,19 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getAllUsers")]
-        public async Task<IEnumerable<GetAllResponse>> GetAllUsers()
+        public async Task<IEnumerable<GetUserResponse>> GetAllUsers()
         {
-            //var response = await _userService.GetAllUsers(new GetAllRequest());
+            List<GetUserResponse> response = new List<GetUserResponse>();
+
+            List<User> usersFromDb = (List<User>)await _userService.GetAllUsers();
+
+            foreach (User user in usersFromDb)
+            {
+                GetUserResponse tempUser = await GetUser(user.UserId.ToString());
+
+                response.Add(tempUser);
+            }
+
             return null;
         }
 
