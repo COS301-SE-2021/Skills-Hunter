@@ -1,8 +1,10 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using SkillsHunterAPI.Models.User;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using SkillsHunterAPI.Data;
 
 namespace SkillsHunterAPI.Services
 {
@@ -50,22 +52,22 @@ namespace SkillsHunterAPI.Services
 
         public async Task<LogInResponse> LogIn(LogInRequest request)
         {
-
+            return new LogInResponse();
         }
 
         public async Task<LogOutResponse> LogOut(LogOutRequest request)
         {
-            
+            return new LogOutResponse();
         }
 
         public async Task<UpdateResponse> UpdateUser(UpdateRequest request)
         {
-
+            return new UpdateResponse();
         }
 
         public async Task<DeleteResponse> DeleteUser(DeleteRequest request)
         {
-
+            return new DeleteResponse();
         }
 
         public async Task<GetAllResponse> GetAllUsers(GetAllRequest request)
