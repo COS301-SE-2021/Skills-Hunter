@@ -16,9 +16,9 @@ namespace SkillsHunterAPI.Models.User
     public class User : IdentityUser<Guid>
     {
         //public Guid UserId {get; set; }
-        public string FirstName {get; set; }
+        public string Name {get; set; }
         
-        public string LastName {get; set; }
+        public string Surname {get; set; }
         
         public string Password {get; set; }
         
