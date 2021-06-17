@@ -58,10 +58,12 @@ namespace SkillsHunterAPI.Services
             foreach (var user in allUsers)
             {
 
-                if(user.Email == email){
-                    
+                if(user.Email == email && user.Password == Hash(pass)){
+                    result = user;
+                    break;
                 }    
             }
+            return result;
         }
 
         public async Task<LogOutResponse> LogOut(LogOutRequest request)
@@ -81,13 +83,7 @@ namespace SkillsHunterAPI.Services
 
         public async Task<IEnumerable<User>> GetAllUsers()
         {
-            var result =  await _context.Users.ToListAsync();
-            GetAllResponse response = new GetAllResponse(); 
-            
-            response.Accounts = result.ToArray();
-            response.Success = true;
-
-            return null;
+            return await _context.Users.ToListAsync();
         }
 
         public async Task<User> GetUser(Guid request)
