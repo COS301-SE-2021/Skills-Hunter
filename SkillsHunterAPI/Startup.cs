@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SkillsHunterAPI.Data;
 using SkillsHunterAPI.Models;
+using SkillsHunterAPI.Models.User;
 using SkillsHunterAPI.Services;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace SkillsHunterAPI
 
 
             services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -13,7 +13,7 @@ namespace SkillsHunterAPI.Models.User
         Admin = 3
     }
 
-    public class User : IdentityUser<Guid>
+    public class User : IdentityUser
     {
         public string FirstName { get; set; }
         public string LastName {get;set;}
