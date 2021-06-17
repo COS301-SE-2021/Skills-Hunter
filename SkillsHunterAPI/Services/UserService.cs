@@ -23,7 +23,7 @@ namespace SkillsHunterAPI.Services
             return null;
         }
 
-        public async Task<User> LogIn(User request)
+        public async Task<User> LogIn(string email, string pass)
         {
             return null;
         }
@@ -43,7 +43,7 @@ namespace SkillsHunterAPI.Services
             return new DeleteResponse();
         }
 
-        public async Task<GetAllResponse> GetAllUsers(GetAllRequest request)
+        public async Task<IEnumerable<User>> GetAllUsers()
         {
             var result =  await _context.Users.ToListAsync();
             GetAllResponse response = new GetAllResponse(); 
@@ -51,7 +51,7 @@ namespace SkillsHunterAPI.Services
             response.Accounts = result.ToArray();
             response.Success = true;
 
-            return response;
+            return null;
         }
 
         public async Task<User> GetUser(Guid request)
@@ -64,7 +64,7 @@ namespace SkillsHunterAPI.Services
             request.UserSkillId = new Guid();
             
             _context.UserSkills.Add(request);
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
         }
         
         public async Task UpdateUserSkill(Guid userSkillId, UserSkill request)

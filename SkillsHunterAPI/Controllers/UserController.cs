@@ -20,7 +20,7 @@ namespace SkillsHunterAPI.Controllers
         [HttpPost]
         [Route("api/[controller]/register")]
 
-        public async Task<RegisterResponse> Register(RegisterRequest request)
+        public Task<RegisterResponse> Register(RegisterRequest request)
         {
             //var response = await _userService.AddUser(request);
             return null;
@@ -29,7 +29,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/login")]
-        public async Task<LogInResponse> LogIn(LogInRequest request)
+        public Task<LogInResponse> LogIn(LogInRequest request)
         {
             //var response = await _userService.LogIn(request);
             return null;
@@ -37,18 +37,18 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/logOut")]
-        public async Task<LogOutResponse> LogOut()
+        public Task<LogOutResponse> LogOut()
         {
-            var response = await _userService.LogOut(new LogOutRequest());
-            return response;
+           // var response = await _userService.LogOut(new LogOutRequest());
+            return null;
         }
 
         [HttpPost]
         [Route("api/[controller]/update")]
-        public async Task<UpdateResponse> UpdateUser(UpdateRequest request)
+        public Task<UpdateResponse> UpdateUser(UpdateRequest request)
         {
-            var response = await _userService.UpdateUser(request);
-            return response;
+            //var response = await _userService.UpdateUser(request);
+            return null;
         }
 
         [HttpGet]
@@ -63,8 +63,8 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getall")]
         public async Task<GetAllResponse> GetAllUsers()
         {
-            var response = await _userService.GetAllUsers(new GetAllRequest());
-            return response;
+            //var response = await _userService.GetAllUsers(new GetAllRequest());
+            return null;
         }
 
         [HttpGet]
