@@ -6,19 +6,20 @@ import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './login/login.component';
 import { CreateprojectComponent } from './createproject/createproject.component';
 import { HomeComponent } from './home/home.component';
-import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { CandidateComponent } from './updateproject/candidate/candidate.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatchCandidateComponent } from './match-candidate/match-candidate.component';
+import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CreateprojectComponent,
-    UpdateprojectComponent,
     HomeComponent,
-    CandidateComponent,
+    // CandidateComponent,
+    MatchCandidateComponent,
+    CandidateCardComponent,
   ],
   imports: [
     BrowserModule,
