@@ -26,9 +26,9 @@ export class UpdateprojectComponent implements OnInit {
     return this.projectData.projectBeingedited;
   }
 
-  skills: string[] = ['project Manager', 'C++', 'java', 'js',"Angular","Net Core"];
-  industries: string[] = ['finance','construction','agriculture','IT'];
-  open: string[] = ['yes','no'];
+  skills: string[] = ['Project Manager', 'C++', 'Java', 'JavaScript',"Angular","DotNet Core"];
+  industries: string[] = ['Finance','Construction','Agriculture','IT'];
+  open: string[] = ['Yes','No'];
   
   ngOnInit(): void {
 
@@ -36,7 +36,7 @@ export class UpdateprojectComponent implements OnInit {
     this.projectInfo.controls['description'].setValue(this.getProjectInfo.Description);
     this.projectInfo.controls['industry'].setValue(this.getProjectInfo.Industry.slice());
     this.projectInfo.controls['skill'].setValue(this.getProjectInfo.Skill.slice());
-    this.projectInfo.controls['openForApplication'].setValue("yes");
+    this.projectInfo.controls['openForApplication'].setValue("Yes");
   }
 
  
