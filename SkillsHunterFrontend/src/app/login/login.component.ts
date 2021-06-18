@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormControl,Validators} from '@angular/forms';
+import {login} from '../classes/login';
+import {LoginRegisterService} from '../services/login-register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +11,7 @@ import {FormGroup,FormControl,Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginRegisterService,private _router: Router) { }
 
   ngOnInit(): void {
     this.buttonLogin = "";
@@ -17,9 +20,8 @@ export class LoginComponent implements OnInit {
   }
 
   hide = true;// for hiding password in UI
-  _username:string;
-  _password:string;
-  _match:boolean;
+  
+  _match=true;
   buttonLogin:string;
 
   LoginForm = new FormGroup({  
@@ -27,11 +29,29 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
 
-  
-
   onSubmit() 
   {
-    this.buttonLogin="clicked";
+    //this.buttonLogin="clicked";
+    var formData=new login();
+    
+    formData.Email= this.LoginForm.get('email').value;
+    formData.Password = this.LoginForm.get('password').value;
+    
+   this.loginService.login(formData)
+    .subscribe(
+      data=>{
+        console.log('Response post', data);
+        if(data.Validated)
+        {
+          this._match=true;
+          this._router.navigate([`home`]);
+        }
+        else
+        {
+          this._match=false;
+        }
+      }
+    );
 
   }
 }
