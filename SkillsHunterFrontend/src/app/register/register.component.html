@@ -1,69 +1,115 @@
 <div class="wrapper">
-    <div id="SHdiv">
-        <h1 id="SH">Skills Hunter</h1>
+  <div id="SHdiv">
+    <h1 id="SH">Skills Hunter</h1>
+  </div>
+  <h2 id="registerL">REGISTER</h2>
+  <form
+    [formGroup]="registationForm"
+    (ngSubmit)="onSubmit()"
+    class="registrationForm"
+  >
+    <mat-form-field class="field">
+      <mat-label>name</mat-label>
+      <input formControlName="name" matInput required />
+      <!-- mat-error is for validation -->
+      <mat-error
+        *ngIf="
+          registationForm.controls['name'].hasError('pattern') &&
+          !registationForm.controls['name'].hasError('required')
+        "
+      >
+        please enter a valid name containing characters only
+      </mat-error>
+      <mat-error *ngIf="registationForm.controls['name'].hasError('required')">
+        name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field class="field">
+      <mat-label>surname</mat-label>
+      <input formControlName="surname" matInput required />
+      <!-- mat-error is for validation -->
+      <mat-error
+        *ngIf="
+          registationForm.controls['surname'].hasError('pattern') &&
+          !registationForm.controls['surname'].hasError('required')
+        "
+      >
+        please enter a valid surname containing characters only
+      </mat-error>
+      <mat-error
+        *ngIf="registationForm.controls['surname'].hasError('required')"
+      >
+        surname is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field class="field">
+      <mat-label>email</mat-label>
+      <input formControlName="email" matInput required />
+      <!-- mat-error is for validation -->
+      <mat-error
+        *ngIf="
+          registationForm.controls['email'].hasError('email') &&
+          !registationForm.controls['email'].hasError('required')
+        "
+      >
+        please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="registationForm.controls['email'].hasError('required')">
+        email address is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field class="field">
+      <mat-label>password</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        required
+        [type]="hide ? 'password' : 'text'"
+      />
+      <mat-error
+        *ngIf="registationForm.controls['password'].hasError('required')"
+      >
+        Password is <strong>required</strong>
+      </mat-error>
+
+      <button
+        id="pbutton"
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+        type="button"
+      >
+        <mat-icon id="pIcon">{{
+          hide ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="form-group">
+      <button
+        id="register"
+        class="btn btn-primary"
+        [disabled]="
+          registationForm.controls['name'].invalid ||
+          registationForm.controls['surname'].invalid ||
+          registationForm.controls['email'].invalid ||
+          registationForm.controls['password'].invalid
+        "
+        type="submit"
+      >
+        Register</button
+      ><br /><br />
+      <p *ngIf="!_match" class="alert alert-danger">Something went wrong</p>
+      <a id="registerlink" [routerLink]="['/login']">Log in instead </a>
     </div>
-    <h2 id="registerL">REGISTER</h2>
-    <form  [formGroup]="registationForm" (ngSubmit)="onSubmit()" class="registrationForm">
-
-        <mat-form-field class="field">
-            <mat-label>name</mat-label>
-            <input formControlName="name" matInput required>
-            <!-- mat-error is for validation -->
-            <mat-error *ngIf="registationForm.controls['name'].hasError('pattern')  && !registationForm.controls['name'].hasError('required')">
-                please enter a valid name containing characters only
-            </mat-error>
-            <mat-error *ngIf="registationForm.controls['name'].hasError('required')">
-                name is <strong>required</strong>
-            </mat-error>           
-        </mat-form-field>
-        <br/>
-
-        <mat-form-field class="field">
-            <mat-label>surname</mat-label>
-            <input formControlName="surname" matInput required>
-            <!-- mat-error is for validation -->
-            <mat-error *ngIf="registationForm.controls['surname'].hasError('pattern')  && !registationForm.controls['surname'].hasError('required')">
-                please enter a valid surname containing characters only
-            </mat-error>
-            <mat-error *ngIf="registationForm.controls['surname'].hasError('required')">
-                surname is <strong>required</strong>
-            </mat-error>           
-        </mat-form-field>
-        <br/>
-
-        <mat-form-field class="field">
-            <mat-label>email</mat-label>
-            <input formControlName="email" matInput required>
-            <!-- mat-error is for validation -->
-            <mat-error *ngIf="registationForm.controls['email'].hasError('email')  && !registationForm.controls['email'].hasError('required')">
-                please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="registationForm.controls['email'].hasError('required')">
-                email address is <strong>required</strong>
-            </mat-error>           
-        </mat-form-field>
-        <br/>
-
-       <mat-form-field class="field" >
-            <mat-label>password</mat-label>
-            <input formControlName="password" matInput required [type]="hide ? 'password' : 'text'" >
-            <mat-error *ngIf="registationForm.controls['password'].hasError('required')">
-                Password is <strong>required</strong>
-            </mat-error>
-            
-            <button id="pbutton"  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
-            <mat-icon id="pIcon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            
-        </mat-form-field>
-
-        <div class="form-group" >
-            <button id="register" class="btn btn-primary" [disabled]="registationForm.controls['name'].invalid || registationForm.controls['surname'].invalid || registationForm.controls['email'].invalid || registationForm.controls['password'].invalid" type="submit" >Register</button><br><br>
-            <p *ngIf="!_match" class="alert alert-danger"> 
-                Something went wrong            
-            </p> 
-            <a id="registerlink" [routerLink]="['/login']">Log in instead </a>  
-         </div>
-    </form>
-    <br/>
+  </form>
+  <br />
 </div>

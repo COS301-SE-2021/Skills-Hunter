@@ -14,13 +14,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatchCandidateComponent } from './match-candidate/match-candidate.component';
 import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
 import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidate.pipe';
+import { ProjectComponent } from './home/project/project.component';
+import { ProjectItemComponent } from './home/project-item/project-item.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ProjectCRUDService } from './services/project-crud.service';
+import { UpdateprojectComponent } from './updateproject/updateproject.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CreateprojectComponent,
+    UpdateprojectComponent,
     HomeComponent,
+    ProjectComponent,
+    ProjectItemComponent,
+    RegisterComponent,
     MatchCandidateComponent,
     CandidateCardComponent,
     SearchAndFilterCandidatePipe,
@@ -33,6 +43,14 @@ import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidat
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    NoopAnimationsModule,
+    MaterialModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
