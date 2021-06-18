@@ -23,15 +23,15 @@ export class SearchAndFilterCandidatePipe implements PipeTransform {
 
           // check if key is an array and process it differently:
           // if(Array.isArray(Object.keys(item)[key])){
-          //   return resultArray;
+          //   console.log("NAZO");
           // }
           // else{
             if(keyInFocus.toLowerCase().includes(filterString.toLowerCase())){
               // add if there are not duplicates:
               if(!this.isDuplicateCardFound(resultArray, item.id))
                 resultArray.push(item);
-              
-          }
+            }
+          // }
         }
       }
 
@@ -46,7 +46,6 @@ export class SearchAndFilterCandidatePipe implements PipeTransform {
 
       for(var x=0; x<_arr.length; x++)
             if(_arr[x].id === _id){
-                console.log("Card is found! ");
                   bCardExists = true;
                   break;
             }
