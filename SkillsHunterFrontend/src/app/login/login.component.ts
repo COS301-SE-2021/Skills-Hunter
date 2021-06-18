@@ -14,15 +14,13 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginRegisterService,private _router: Router) { }
 
   ngOnInit(): void {
-    this.buttonLogin = "";
-
+    
     document.getElementById("tool").style.display = "none";
   }
 
   hide = true;// for hiding password in UI
   
   _match=true;
-  buttonLogin:string;
 
   LoginForm = new FormGroup({  
     email: new FormControl('', [Validators.required,Validators.email]) ,  
@@ -31,7 +29,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() 
   {
-    //this.buttonLogin="clicked";
     var formData=new login();
     
     formData.Email= this.LoginForm.get('email').value;

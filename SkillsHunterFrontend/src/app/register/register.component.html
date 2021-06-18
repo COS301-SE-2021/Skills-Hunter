@@ -59,8 +59,8 @@
 
         <div class="form-group" >
             <button id="register" class="btn btn-primary" [disabled]="registationForm.controls['name'].invalid || registationForm.controls['surname'].invalid || registationForm.controls['email'].invalid || registationForm.controls['password'].invalid" type="submit" >Register</button><br><br>
-            <p *ngIf="buttonLogin != '' && !_match" class="alert alert-danger"> 
-                Invalid Username or Password !              
+            <p *ngIf="!_match" class="alert alert-danger"> 
+                Something went wrong            
             </p> 
             <a id="registerlink" [routerLink]="['/login']">Log in instead </a>  
          </div>
