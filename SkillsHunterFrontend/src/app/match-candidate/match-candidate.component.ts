@@ -11,7 +11,6 @@ export class MatchCandidateComponent implements OnInit {
   title :string = 'Candidate';
   candidatesList:Candidate[] = CandidatesList;
   filterQuery: string = '';
-  filterCategory: string = '';
 
   constructor() { }
 

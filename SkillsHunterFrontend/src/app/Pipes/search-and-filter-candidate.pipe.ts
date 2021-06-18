@@ -5,19 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchAndFilterCandidatePipe implements PipeTransform {
 
-  
   // transform(value: Array<string>, args: any[]): any {
-  transform(value: any[], filterString: string, propertyToFilter: string): any[] {
+  transform(value: any[], filterString: string): any[] {
     const resultArray = [];
 
-    if(value.length === 0 || filterString==='' || propertyToFilter==='')
+    if(value.length === 0 || filterString==='')
       return value;
-
-      // id: number;
-      // name: string;
-      // job: string
-      // description: string;
-      // skills: string;
     
     const numOfKeysInObject : number = Object.keys(value[0]).length;
     let keyInFocus : string = '';
@@ -27,31 +20,57 @@ export class SearchAndFilterCandidatePipe implements PipeTransform {
       for(var key=0; key<numOfKeysInObject; key++){
         
         keyInFocus = ''+ Object.values(item)[key];
-        let bCardExists = false;
 
-        // Object.values(item)[0]
+          // check if key is an array and process it differently:
+          // if(Array.isArray(Object.keys(item)[key])){
+          //   return resultArray;
+          // }
+          // else{
+            if(keyInFocus.toLowerCase().includes(filterString.toLowerCase())){
+              // add if there are not duplicates:
+              if(!this.isDuplicateCardFound(resultArray, item.id))
+                resultArray.push(item);
+              
+          }
+        }
+      }
 
-        if(keyInFocus.toLowerCase().includes(filterString.toLowerCase())){
-          
-          // check for primary key to avoid duplicates:
-          for(var x=0; x<resultArray.length; x++){
-            if(resultArray[x].id === Object.values(item)[0]){
+      return resultArray;
+    }
+
+
+    isDuplicateCardFound(_arr : any[], _id : string): boolean{
+      // check for primary key to avoid duplicates:
+  
+        let bCardExists: boolean = false;
+
+      for(var x=0; x<_arr.length; x++)
+            if(_arr[x].id === _id){
+                console.log("Card is found! ");
                   bCardExists = true;
                   break;
             }
-          }
 
-          // add if there are not duplicates:
-          if(!bCardExists)
-            resultArray.push(item);
-        }
-
-      }
-
+        return bCardExists;
     }
 
-    return resultArray;
+
   }
 
+  // isDuplicateCardFound(_arr : any[], _id : string): boolean{
+  //   let bCardExists: boolean = false;
+    
+    // console.log("ID is = "+_id);
 
-}
+    // check for primary key to avoid duplicates:
+    // for(var x=0; x<_arr.length; x++)
+    //     if(_arr[x].id === _id){
+            // console.log("Card is found! ");
+        //       bCardExists = true;
+        //       break;
+        // }
+
+        // console.log("Card is found! ");
+    // return bCardExists;
+    
+// }
