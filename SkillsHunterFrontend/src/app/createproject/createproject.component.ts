@@ -19,7 +19,7 @@ export class CreateprojectComponent implements OnInit {
   
   skills: string[] = ['Project Manager', 'C++', 'Java', 'JavaScript'];
   industries: string[] = ['Finance','Construction','Agriculture'];
-  open: string[] = ['yes','no'];
+  open: string[] = ['Yes','No'];
   
   projectInfo:FormGroup=new FormGroup({
     projectName:new FormControl('',[Validators.required]),
@@ -42,7 +42,7 @@ export class CreateprojectComponent implements OnInit {
     formData.Owner = "Mxo";
     formData.Location = "Hatfield";
 
-    if(<string><any>this.projectInfo.controls['openForApplication'].value=='yes')
+    if(<string><any>this.projectInfo.controls['openForApplication'].value=='Yes')
     {
       formData.OpenForApplication=true;
     }

@@ -28,14 +28,14 @@
           </mat-form-field><br/>
 
           <mat-form-field >
-            <mat-label>Skills required</mat-label>
+            <mat-label>Skills Required</mat-label>
             <mat-select formControlName="skill" multiple>
               <mat-option style="color:black" *ngFor="let skill of skills" [value]="skill" >{{skill}}</mat-option>
             </mat-select>
           </mat-form-field><br/>
 
           <mat-form-field >
-            <mat-label>Is the project open for applications?</mat-label>
+            <mat-label>Is the Project open for Applications?</mat-label>
             <mat-select formControlName="openForApplication" >
               <mat-option style="color:black" *ngFor="let o of open" [value]="o" >{{o}}</mat-option>
             </mat-select>
