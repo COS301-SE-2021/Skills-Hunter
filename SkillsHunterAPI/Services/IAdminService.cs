@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SkillsHunterAPI.Models.Skill;
 
 namespace SkillsHunterAPI.Services
 {
     public interface IAdminService
+    {
+        Task<Skill> AddSkill(Skill skill);
     {
 }

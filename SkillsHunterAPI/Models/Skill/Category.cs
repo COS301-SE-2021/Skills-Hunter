@@ -1,5 +1,5 @@
 ﻿using System;
-namespace SkillsHunterAPI.Models
+namespace SkillsHunterAPI.Models.Skill
 {
     public class Category
     {

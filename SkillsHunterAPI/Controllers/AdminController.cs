@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Services;
-using SkillsHunterAPI.Models.User;
+using SkillsHunterAPI.Models.Skill;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -19,9 +19,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/addSkill")]
-        public async Task<ActionResult<ProjectResponse>> AddSkill([FromBody] ProjectRequest projectRequest)
+        public async Task<AddSkillResponse> AddSkill([FromBody] AddSkillRequest request)
         {
-
+            
         }
 
     }

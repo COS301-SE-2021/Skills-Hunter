@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 
 namespace SkillsHunterAPI.Models.Skill
 {
-    public class Skill
+    public class AddSkillRequest
     {
-        public Guid SkillId { get; set; }
         public String Name { get; set; }
         public Guid CategoryId { get; set; }
     }
