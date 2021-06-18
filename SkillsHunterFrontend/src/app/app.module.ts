@@ -18,7 +18,6 @@ import { ProjectComponent } from './home/project/project.component';
 import { ProjectItemComponent } from './home/project-item/project-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectCRUDService } from './services/project-crud.service';
-import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { RegisterComponent } from './register/register.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 
@@ -27,7 +26,7 @@ import { UpdateProjectComponent } from './update-project/update-project.componen
     AppComponent,
     LoginComponent,
     CreateprojectComponent,
-    UpdateprojectComponent,
+    UpdateProjectComponent,
     HomeComponent,
     ProjectComponent,
     ProjectItemComponent,

@@ -17,7 +17,7 @@ export class UpdateProjectComponent implements OnInit {
   candidatesList: Candidate[] = CandidatesList;
 
   constructor(
-    public dialogRef: MatDialogRef<UpdateprojectComponent>,
+    public dialogRef: MatDialogRef<UpdateProjectComponent>,
     private projectCrud: ProjectCRUDService,
     private projectData: projectService
   ) {}
