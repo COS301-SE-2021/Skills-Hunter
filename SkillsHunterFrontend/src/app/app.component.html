@@ -1,13 +1,22 @@
 <div class="content-body">
-  
   <mat-toolbar class="toolbar-bar" id="tool">
-    <button mat-icon-button class="toolbar-icon" aria-label="Icon-button with menu icon">
+    <button
+      mat-icon-button
+      class="toolbar-icon"
+      aria-label="Icon-button with menu icon"
+    >
       <mat-icon>menu</mat-icon>
     </button>
     <span>Skills Hunter</span>
     <span class="toolbar-spacer"></span>
-    <button mat-icon-button class="toolbar-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon [routerLink]="['/home']" routerLinkActive="router-link-active"  >home</mat-icon>
+    <button
+      mat-icon-button
+      class="toolbar-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon [routerLink]="['/home']" routerLinkActive="router-link-active"
+        >home</mat-icon
+      >
     </button>
   </mat-toolbar>
   <router-outlet></router-outlet>
