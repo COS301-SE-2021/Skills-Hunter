@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginRegisterService,private _router: Router) { }
 
   ngOnInit(): void {
-    
+
     document.getElementById("tool").style.display = "none";
   }
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     formData.Email= this.LoginForm.get('email').value;
     formData.Password = this.LoginForm.get('password').value;
     
-   this.loginService.login(formData)
+   /*this.loginService.login(formData)
     .subscribe(
       data=>{
         console.log('Response post', data);
@@ -48,7 +48,16 @@ export class LoginComponent implements OnInit {
           this._match=false;
         }
       }
-    );
+    );*/
 
+    if(true)
+    {
+      this._match=true;
+      this._router.navigate([`home`]);
+    }
+    else
+    {
+      this._match=false;
+    }
   }
 }

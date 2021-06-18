@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
     formData.Password = this.registationForm.get('password').value;
     formData.Role= "projectOwner";
     
-   this.registerService.login(formData)
+   /*this.registerService.login(formData)
     .subscribe(
       data=>{
 
@@ -52,7 +52,16 @@ export class RegisterComponent implements OnInit {
           this._match=false;
         }
       }
-    );
+    );*/
+    if(true)
+    {
+      this._match=true;
+      this._router.navigate([`login`]);
+    }
+    else
+    {
+      this._match=false;
+    }
 
   }
 }
