@@ -1,1 +1,13 @@
-<app-candidate-card *ngFor = "let candidate of candidatesList" [card_candidate]="candidate"></app-candidate-card>
+<div>
+<mat-form-field class="example-form-field">
+    <mat-label>Search For A Candidate:</mat-label>
+    <input matInput type="text" [(ngModel)]="filterQuery">
+    <button *ngIf="filterQuery" matSuffix mat-icon-button aria-label="Clear" (click)="filterQuery=''">
+      <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
+</div>
+
+<!-- <app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery:filterCategory" [card_candidate]="candidate"></app-candidate-card> -->
+<app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery" [card_candidate]="candidate"></app-candidate-card>
+

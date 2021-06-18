@@ -7,9 +7,10 @@ import { LoginComponent } from './login/login.component';
 import { CreateprojectComponent } from './createproject/createproject.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatchCandidateComponent } from './match-candidate/match-candidate.component';
 import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
+import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidate.pipe';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,9 @@ import { CandidateCardComponent } from './match-candidate/candidate-card/candida
     LoginComponent,
     CreateprojectComponent,
     HomeComponent,
-    // CandidateComponent,
     MatchCandidateComponent,
     CandidateCardComponent,
+    SearchAndFilterCandidatePipe,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,8 @@ import { CandidateCardComponent } from './match-candidate/candidate-card/candida
     NoopAnimationsModule,
     MaterialModule, 
     BrowserAnimationsModule, 
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
+    FormsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]

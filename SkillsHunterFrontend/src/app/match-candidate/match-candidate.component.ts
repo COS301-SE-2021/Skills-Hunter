@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Candidate } from './candidate-card/Candidate';
 import { CandidatesList } from './candidate-card/mock-candidates';
 
@@ -10,6 +10,7 @@ import { CandidatesList } from './candidate-card/mock-candidates';
 export class MatchCandidateComponent implements OnInit {
   title :string = 'Candidate';
   candidatesList:Candidate[] = CandidatesList;
+  filterQuery: string = '';
 
   constructor() { }
 
