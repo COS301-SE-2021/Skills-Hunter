@@ -17,7 +17,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatGridListModule} from '@angular/material/grid-list'; 
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input'; 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({

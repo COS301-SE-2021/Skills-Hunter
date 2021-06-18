@@ -18,7 +18,6 @@ import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidat
     LoginComponent,
     CreateprojectComponent,
     HomeComponent,
-    // CandidateComponent,
     MatchCandidateComponent,
     CandidateCardComponent,
     SearchAndFilterCandidatePipe,
@@ -30,7 +29,7 @@ import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidat
     MaterialModule, 
     BrowserAnimationsModule, 
     ReactiveFormsModule,
-    FormsModule 
+    FormsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
