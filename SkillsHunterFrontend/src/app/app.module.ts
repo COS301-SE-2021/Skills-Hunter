@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProjectCRUDService } from './services/project-crud.service';
 import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { RegisterComponent } from './register/register.component';
+import { UpdateProjectComponent } from './update-project/update-project.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { RegisterComponent } from './register/register.component';
     MatchCandidateComponent,
     CandidateCardComponent,
     SearchAndFilterCandidatePipe,
+    UpdateProjectComponent,
   ],
   imports: [
     BrowserModule,
