@@ -1,4 +1,3 @@
-import { UpdateprojectComponent } from './../updateproject/updateproject.component';
 import { Component, OnInit } from '@angular/core';
 import { Project } from './Project';
 import { Projects } from './mock-projects';
@@ -18,17 +17,27 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 export class HomeComponent implements OnInit {
   title :string = 'Projects';
   
-   _projects:Project[] = Projects;
+   _projects:project[] = Projects;
    
-  constructor(private _router: Router,private dialog:MatDialog,private projectService:ProjectCRUDService) { }
+  constructor(private _router: Router,private dialog:MatDialog,private projectCrud:ProjectCRUDService,private projectData:projectService) { }
+
 
   // //this function sets(assigns) the project data from the 'projectService' 
   // set retData(_project:project)
   // {
   //   this.projectData.projectBeingedited = _project;
   // }
+  
   ngOnInit(): void {
-    this.projectService.getProjects().subscribe((projects) => (this._projects = projects));
+    //read data of projects
+    /*this.projectCrud.getProjects()
+    .subscribe(
+      data=>{
+        this._projects=data;
+        console.log('Response post', data);
+      }
+    );*/
+
   }
 
   create(){

@@ -17,9 +17,23 @@ export class ProjectCRUDService {
   {
       // console.log("Req: "+formData.name);
         return this.httpclient.post("http://localhost:5000/api/Project/createProject",formData);
-    }
+  }
 
-    getProjects():Observable<Project[]>{
-        return this.httpclient.get<Project[]>('http://localhost:5001/api/Project/getProjects'); 
+  //external api to update project is called here
+  updateProject(formData:project):Observable<any>
+  {
+    return this.httpclient.post("http://localhost:5000/api/Project/createProject",formData);
+
+  }
+
+  //external api to delete project is called here
+  deleteProject(formData:project):Observable<any>
+  {
+    return this.httpclient.post("http://localhost:5000/api/Project/createProject",formData)
+  }
+  
+  //external api to read project is called here
+  getProjects():Observable<Project[]>{
+        return this.httpclient.get<Project[]>('http://localhost:5000/api/Project/getProjects'); 
     }
 }

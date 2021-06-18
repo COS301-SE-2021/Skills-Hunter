@@ -6,7 +6,7 @@ import {ProjectCRUDService} from '../services/project-crud.service'
 import { projectService } from '../services/project-edit.service';
 import { CandidatesList } from './candidate/mock-candidates';
 import { Candidate } from './candidate/Candidate';
-// import {NgModule} from '@angular/core';
+
 
 @Component({
   selector: 'app-updateproject',
@@ -26,18 +26,20 @@ export class UpdateprojectComponent implements OnInit {
     return this.projectData.projectBeingedited;
   }
 
+  skills: string[] = ['project Manager', 'C++', 'java', 'js',"Angular","Net Core"];
+  industries: string[] = ['finance','construction','agriculture','IT'];
+  open: string[] = ['yes','no'];
+  
   ngOnInit(): void {
 
-    this.projectInfo.controls['name'].setValue(this.getProjectInfo.Name);
+    this.projectInfo.controls['projectName'].setValue(this.getProjectInfo.Name);
     this.projectInfo.controls['description'].setValue(this.getProjectInfo.Description);
-    this.projectInfo.controls['industry'].setValue(this.getProjectInfo.Industry);
-    this.projectInfo.controls['skill'].setValue(this.getProjectInfo.Skill);
-    this.projectInfo.controls['openForApplication'].setValue(this.getProjectInfo.OpenForApplication);
+    this.projectInfo.controls['industry'].setValue(this.getProjectInfo.Industry.slice());
+    this.projectInfo.controls['skill'].setValue(this.getProjectInfo.Skill.slice());
+    this.projectInfo.controls['openForApplication'].setValue("yes");
   }
 
-  skills: string[] = ['project Manager', 'C++', 'java', 'js'];
-  industries: string[] = ['finance','construction','agriculture'];
-  open: string[] = ['yes','no'];
+ 
   
   projectInfo:FormGroup=new FormGroup({
     projectName:new FormControl('',[Validators.required]),
@@ -50,12 +52,11 @@ export class UpdateprojectComponent implements OnInit {
   //when submit is clicked this function is called to send info to service
   onSubmit(){
     var formData=new project();
-
+    formData.Id=this.getProjectInfo.Id;
     formData.Name=<string><any>this.projectInfo.controls['projectName'].value;
     formData.Description=<string><any>this.projectInfo.controls['description'].value;
-    formData.Industry=<string><any>this.projectInfo.controls['industry'].value;
-    formData.Skill=<string><any>this.projectInfo.controls['skill'].value;
-
+    formData.Industry=<string[]><any>this.projectInfo.controls['industry'].value;
+    formData.Skill=<string[]><any>this.projectInfo.controls['skill'].value;
     if(<string><any>this.projectInfo.controls['openForApplication'].value=='yes')
     {
       formData.OpenForApplication=true;
@@ -65,13 +66,22 @@ export class UpdateprojectComponent implements OnInit {
       formData.OpenForApplication=true;
     }
 
+    //set new info on the card(replace old info with new after submit is clicked)
+    this.getProjectInfo.Name=formData.Name
+    this.getProjectInfo.Description=formData.Description;
+    this.getProjectInfo.Industry=formData.Industry;
+    this.getProjectInfo.Skill=formData.Skill;
+    this.getProjectInfo.OpenForApplication=formData.OpenForApplication;
+
     //the service is called below 
-    this.projectCrud.createProject(formData)//change so it calls update
+    this.projectCrud.updateProject(formData)//change so it calls update
     .subscribe(
       data=>{
         console.log('Response post', data);
       }
     );
+
+    this.dialogRef.close();
   }
 
   //close dialog popup

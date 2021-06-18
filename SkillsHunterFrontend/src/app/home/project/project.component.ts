@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { Project } from '../Project';
+import { project } from '../../classes/project';
 
 @Component({
   selector: 'app-project',
@@ -7,18 +7,16 @@ import { Project } from '../Project';
   styleUrls: ['./project.component.scss']
 })
 
-	// id: number;
-	// name: string;
-	// description: string;
-	// industry: string;
-	// owner: string;
-	// location: string;
-	// skills: string[];
-	// openForApplication: boolean;
-
 export class ProjectComponent implements OnInit {
-  @Input() _project:Project= {id:-1,name:'',description:'',industry:'',owner:'',location:'',skills:'',openForApplication:false};
-  
+  @Input() _project:project = {
+    Id:-1,
+    Name:'',
+    Description:'',
+    Industry:'',
+    Owner:'',
+    Location:'',
+    Skill:[] ,
+    OpenForApplication:false};  
   
   constructor() { 
   }
