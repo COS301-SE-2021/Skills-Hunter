@@ -24,6 +24,6 @@
 </div>
 
 <app-project-card
-  *ngFor="let project of Projects | searchAndFilterCandidate: filterQuery"
+  *ngFor="let project of _projects | searchAndFilterCandidate: filterQuery"
   [card_project]="project"
 ></app-project-card>

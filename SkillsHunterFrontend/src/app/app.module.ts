@@ -19,6 +19,8 @@ import { ProjectCRUDService } from './services/project-crud.service';
 import { RegisterComponent } from './register/register.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { ProjectCardComponent } from './home/project-card/project-card.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,6 @@ import { ProjectCardComponent } from './home/project-card/project-card.component
     CandidateCardComponent,
     SearchAndFilterCandidatePipe,
     UpdateProjectComponent,
-    ProjectCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +51,8 @@ import { ProjectCardComponent } from './home/project-card/project-card.component
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

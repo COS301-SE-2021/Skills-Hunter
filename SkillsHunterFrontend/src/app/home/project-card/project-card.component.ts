@@ -12,15 +12,8 @@ import { UpdateProjectComponent } from 'src/app/update-project/update-project.co
 })
 export class ProjectCardComponent implements OnInit {
   panelOpenState: boolean = false;
-  @Input() _project: Project = {
-    id: -1,
-    Name: '',
-    Description: '',
-    Owner: '',
-    Location: '',
-    Skill: [],
-    OpenForApplication: false,
-  };
+
+  @Input() card_project: Project;
 
   constructor(
     private dialog: MatDialog,

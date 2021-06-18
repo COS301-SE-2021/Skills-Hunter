@@ -6,6 +6,7 @@ import { CreateprojectComponent } from './../createproject/createproject.compone
 import { projectService } from '../services/project-edit.service';
 import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
+import { MaterialModule } from '../material/material.module';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 })
 export class HomeComponent implements OnInit {
   title: string = 'Projects';
-
+  filterQuery: string = '';
   _projects: Project[] = Projects;
 
   constructor(
