@@ -1,4 +1,68 @@
-<div class="itemContainer" id="{{ _project.id }}">
+<!-- id: number;
+  Name: string;
+  Description: string;
+  Owner: string;
+  Location: string;
+  Skill: string[];
+  OpenForApplication: boolean; -->
+
+<mat-card class="project-card">
+  <mat-card-header>
+    <div mat-card-avatar class="project-menu-header-image"></div>
+    <mat-card-title>{{ card_project.name }}</mat-card-title>
+    <mat-card-subtitle>{{ card_project.owner }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-accordion>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <b>{{ View More }}</b>
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+          Open : {{ _project.OpenForApplication ? "Yes" : "No" }}
+        </mat-panel-description> -->
+      </mat-expansion-panel-header>
+      <!-- <app-project [_project]="_project"></app-project> -->
+
+      <mat-card-content>
+        <p>
+          {{ card_project.description }}
+        </p>
+      </mat-card-content>
+
+      <mat-card class="project-card-skills">
+        <mat-card-title>Required Skills</mat-card-title>
+        <mat-chip-list aria-label="Candidate Skills">
+          <mat-chip color="primary" selected>{{
+            card_project.skills
+          }}</mat-chip>
+        </mat-chip-list>
+      </mat-card>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-card-actions>
+    <button class="project-find-candidates" mat-raised-button color="accent">
+      Match Candidates
+    </button>
+
+    <button class="project-find-candidates" mat-raised-button color="accent">
+      Remove Project
+    </button>
+
+    <button class="project-find-candidates" mat-raised-button color="accent">
+      Update
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<!-- ENDS HERE  -->
+
+<!-- <div class="itemContainer" id="{{ _project.id }}">
   <mat-accordion>
     <mat-expansion-panel
       (opened)="panelOpenState = true"
@@ -30,4 +94,4 @@
       </button>
     </mat-expansion-panel>
   </mat-accordion>
-</div>
+</div> -->
