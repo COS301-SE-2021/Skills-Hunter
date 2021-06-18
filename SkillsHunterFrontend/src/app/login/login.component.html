@@ -17,7 +17,7 @@
         </mat-form-field>
         <br/>
 
-       <mat-form-field class="field" color="primary">
+       <mat-form-field class="field" color="accent">
             <mat-label>password</mat-label>
             <input formControlName="password" matInput required [type]="hide ? 'password' : 'text'" >
             <mat-error *ngIf="LoginForm.controls['password'].hasError('required')">
@@ -33,11 +33,11 @@
         <a href="#" id="forgot">Forgot your password?</a>
         <div class="form-group" >
         <button id="login" class="btn btn-primary" [disabled]="LoginForm.controls['email'].invalid || LoginForm.controls['password'].invalid" type="submit" >Login</button><br><br>
-        <p *ngIf="buttonLogin != '' && !_match" class="alert alert-danger"> 
+        <p *ngIf="!_match" class="alert alert-danger"> 
             Invalid Username or Password !              
         </p> 
+            <p id="accountLink"><a id="registerlink" [routerLink]="['/register']">don't have an account? Register </a></p>  
         </div>
-        <p id="accountLink"><a herf="#" id="registerlink">don't have an account? Register </a></p> 
 
     </form>
 </div>
