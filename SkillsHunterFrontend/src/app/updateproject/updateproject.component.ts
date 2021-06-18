@@ -7,6 +7,7 @@ import { projectService } from '../services/project-edit.service';
 import { CandidatesList } from './candidate/mock-candidates';
 import { Candidate } from './candidate/Candidate';
 
+
 @Component({
   selector: 'app-updateproject',
   templateUrl: './updateproject.component.html',

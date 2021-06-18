@@ -1,19 +1,15 @@
 ﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Properties/launchSettings.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
     <Files>
-      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="32" Column="1" />
-      <File FileName="Controllers/ProjectController.cs" Line="1" Column="1" />
-      <File FileName="instructions.txt" />
-      <File FileName="obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
-      <File FileName="obj/Debug/net5.0/SkillsHunterAPI.AssemblyInfo.cs" />
-      <File FileName="Startup.cs" Line="44" Column="22" />
+      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="144" Column="68" />
+      <File FileName="Controllers/ProjectController.cs" Line="42" Column="31" />
+      <File FileName="instructions.txt" Line="35" Column="37" />
+      <File FileName="obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" Line="4" Column="3" />
+      <File FileName="obj/Debug/net5.0/SkillsHunterAPI.AssemblyInfo.cs" Line="20" Column="68" />
+      <File FileName="Startup.cs" Line="1" Column="1" />
       <File FileName="Properties/launchSettings.json" Line="1" Column="1" />
       <File FileName="appsettings.json" Line="1" Column="1" />
-      <File FileName="Data/ApplicationContextDB.cs" />
-      <File FileName="Repositories/Project/ProjectRepository.cs" />
-      <File FileName="Models/Project/Project.cs" />
-      <File FileName="Program.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,16 +17,9 @@
           <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPI" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Project" expanded="True" />
-              </Node>
-              <Node name="Properties" expanded="True">
-                <Node name="launchSettings.json" selected="True" />
-              </Node>
-              <Node name="Repositories" expanded="True">
-                <Node name="Project" expanded="True" />
-              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="SkillsHunterAPIUnitTest" expanded="True" />
+              <Node name="appsettings.json" selected="True" />
             </Node>
             <Node name="SkillsHunterAPIUnitTest" expanded="True" />
           </Node>
@@ -38,7 +27,13 @@
       </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
-          <Node name="SkillsHunterAPI" expanded="True" selected="True" />
+          <Node name="SkillsHunterAPI" expanded="True" selected="True">
+            <Node name="SkillsHunterAPIUnitTest" expanded="True">
+              <Node name="SkillsHunterAPIUnitTest.Tests" expanded="True">
+                <Node name="ProjectUnitTest" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>

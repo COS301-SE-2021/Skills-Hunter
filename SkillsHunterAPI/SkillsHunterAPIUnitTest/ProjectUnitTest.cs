@@ -26,21 +26,82 @@ namespace SkillsHunterAPIUnitTest.Tests
 
 
         [Fact]
-        public void testGetProject()    //testing the function that retrieves only one project
+        public void testGetProjectByID()    //testing the function that retrieves only one project
         {
-            //var testController = new 
+            // Arrange
+            var testId = 2;
+            var proj1 = new Project
+            {
+                ProjectId = 2,
+                Name = "Data Governance",
+                Description = "We do data governance",
+                Industry = "Data",
+                Owner = "Tim Dash",
+                Location = "Pretoria",
+                Skills = "Analysis,Excel,Word",
+                OpenForApplication = true
+            };
+
+
+            // Act
+            A.CallTo(() => _projectRepo.GetProject(testId)).Returns((proj1));
+            var actionResult = _controller.GetProject(testId).Result;
+
+
+            // Assert
+            Assert.IsType<Project>(actionResult.Value);
+            Assert.Equal(testId, (actionResult.Value as Project).ProjectId);
+
         }
 
         [Fact]
         public void testCreateProject() //Testing the creation of projects
         {
-            
+            // Arrange
+            var proj1 = new Project
+            {
+                ProjectId = 4,
+                Name = "Data",
+                Description = "We are data",
+                Industry = "Data",
+                Owner = "Tim Brown",
+                Location = "Pretoria Callies",
+                Skills = "Analysis,Excel,Word",
+                OpenForApplication = true
+            };
+
+
+            // Act
+            A.CallTo(() => _projectRepo.CreateProject(proj1)).Returns(proj1);
+            var createdResponse = _controller.CreateProject(proj1);
+            var item = createdResponse.Result.Value as Project;
+
+
+            // Assert
+            Assert.IsType<Project>(item);
+            Assert.Equal("Data", (item.Name));
+
         }
 
         [Fact]
         public async Task testGetProjects()    //testing the function that retrieves projects from the database
         {
-           
+            //Arrange
+
+            var count = 6;
+            var fakeProjects = A.CollectionOfFake<Project>(count);
+            A.CallTo(() => _projectRepo.GetProjects()).Returns((fakeProjects));
+
+            //Act
+
+            var IEnumerable = await _controller.GetProjects();
+
+            //Assert
+
+            var result = IEnumerable.ToList();
+            var returnProjects = result.Count();
+            Assert.Equal(count, returnProjects);
+
         }
 
         [Fact]
@@ -70,44 +131,17 @@ namespace SkillsHunterAPIUnitTest.Tests
             var createdResponse1 = _controller.CreateProject(proj1);
             //var item1 = createdResponse1.Result.Value as Project;
 
-            var proj2 = new Project
-            {
-                ProjectId = 2,
-                Name = "Data 2",
-                Description = "We are data",
-                Industry = "Data",
-                Owner = "Tim Brown",
-                Location = "Pretoria Callies",
-                Skills = "Analysis,Excel,Word",
-                OpenForApplication = true
-            };
-
-            //A.CallTo(() => _projectRepo.CreateProject(proj2)).Returns(proj2);
-            var createdResponse2 = _controller.CreateProject(proj2);
-            //var item2 = createdResponse2.Result.Value as Project;
-
-            var proj3 = new Project
-            {
-                ProjectId = 3,
-                Name = "Data 3",
-                Description = "We are data",
-                Industry = "Data",
-                Owner = "Tim Brown",
-                Location = "Pretoria Callies",
-                Skills = "Analysis,Excel,Word",
-                OpenForApplication = true
-            };
 
             //A.CallTo(() => _projectRepo.CreateProject(proj3)).Returns(proj3);
-            var createdResponse3 = _controller.CreateProject(proj3);
+            var createdResponse3 = _controller.CreateProject(proj1);
             //var item3 = createdResponse3.Result.Value as Project;
 
             //Act
 
-            var actionResult = _controller.DeleteProject(2);
+            var actionResult = _controller.DeleteProject(1);
 
             //Assert
-            Assert.Equal(2, _controller.GetProjects().Result.ToList().Count);
+            Assert.Empty(_controller.GetProjects().Result.ToList());
 
         }
     }
