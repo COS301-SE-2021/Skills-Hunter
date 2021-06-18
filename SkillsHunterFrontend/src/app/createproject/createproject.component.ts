@@ -1,3 +1,4 @@
+import { Projects } from './../home/mock-projects';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -51,9 +52,10 @@ export class CreateprojectComponent implements OnInit {
       formData.OpenForApplication = true;
     }
 
-    //the service is called below
+    // the service is called below
     this.projectCrud.createProject(formData).subscribe((data) => {
-      console.log('Response post', data);
+      // console.log('Response post', data);
+      console.log('Creating a Project...');
     });
   }
 

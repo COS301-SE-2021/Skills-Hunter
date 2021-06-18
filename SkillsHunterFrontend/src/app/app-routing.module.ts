@@ -6,6 +6,7 @@ import { MatchCandidateComponent } from './match-candidate/match-candidate.compo
 import { RegisterComponent } from './register/register.component';
 import { ProjectCRUDService } from './services/project-crud.service';
 import { projectService } from './services/project-edit.service';
+import { UpdateProjectComponent } from './update-project/update-project.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'match-candidate',
     component: MatchCandidateComponent,
+  },
+  {
+    path: 'update-project',
+    component: UpdateProjectComponent,
   },
   {
     path: '',

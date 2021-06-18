@@ -1,18 +1,16 @@
-import { Projects } from './../mock-projects';
-import { MatIconModule } from '@angular/material/icon';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Project } from '../../classes/Project';
-import { projectService } from '../../services/project-edit.service';
-import { ProjectCRUDService } from '../../services/project-crud.service';
+import { Project } from 'src/app/classes/Project';
+import { ProjectCRUDService } from 'src/app/services/project-crud.service';
+import { projectService } from 'src/app/services/project-edit.service';
 import { UpdateProjectComponent } from 'src/app/update-project/update-project.component';
 
 @Component({
-  selector: 'app-project-item',
-  templateUrl: './project-item.component.html',
-  styleUrls: ['./project-item.component.scss'],
+  selector: 'app-project-card',
+  templateUrl: './project-card.component.html',
+  styleUrls: ['./project-card.component.scss'],
 })
-export class ProjectItemComponent implements OnInit {
+export class ProjectCardComponent implements OnInit {
   panelOpenState: boolean = false;
   @Input() _project: Project = {
     id: -1,
@@ -51,10 +49,7 @@ export class ProjectItemComponent implements OnInit {
 
   delete(project) {
     if (confirm(`Are you sure to delete ${project.Name}`)) {
-      document.getElementById(project.Id).style.display = 'none';
-
-      // console.log("Projects are the following: "+ Projects);
-      // console.log(Projects);
+      document.getElementById(project.id).style.display = 'none';
 
       //the service is called below
       this.projectCrud

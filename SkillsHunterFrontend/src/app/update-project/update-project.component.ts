@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { project } from '../classes/project';
+import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
 import { projectService } from '../services/project-edit.service';
 import { CandidatesList } from '../match-candidate/candidate-card/mock-candidates';
@@ -23,7 +23,7 @@ export class UpdateProjectComponent implements OnInit {
   ) {}
 
   //this function retrieves the data that was set by the component calling this dialog/pop up
-  get getProjectInfo(): project {
+  get getProjectInfo(): Project {
     return this.projectData.projectBeingedited;
   }
 
@@ -43,9 +43,6 @@ export class UpdateProjectComponent implements OnInit {
     this.projectInfo.controls['description'].setValue(
       this.getProjectInfo.Description
     );
-    this.projectInfo.controls['industry'].setValue(
-      this.getProjectInfo.Industry.slice()
-    );
     this.projectInfo.controls['skill'].setValue(
       this.getProjectInfo.Skill.slice()
     );
@@ -55,23 +52,19 @@ export class UpdateProjectComponent implements OnInit {
   projectInfo: FormGroup = new FormGroup({
     projectName: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    industry: new FormControl('', [Validators.required]),
     skill: new FormControl('', [Validators.required]),
     openForApplication: new FormControl('', [Validators.required]),
   });
 
   //when submit is clicked this function is called to send info to service
   onSubmit() {
-    var formData = new project();
-    formData.Id = this.getProjectInfo.Id;
+    var formData = new Project();
+    formData.id = this.getProjectInfo.id;
     formData.Name = <string>(
       (<any>this.projectInfo.controls['projectName'].value)
     );
     formData.Description = <string>(
       (<any>this.projectInfo.controls['description'].value)
-    );
-    formData.Industry = <string[]>(
-      (<any>this.projectInfo.controls['industry'].value)
     );
     formData.Skill = <string[]>(<any>this.projectInfo.controls['skill'].value);
     if (
@@ -86,7 +79,6 @@ export class UpdateProjectComponent implements OnInit {
     //set new info on the card(replace old info with new after submit is clicked)
     this.getProjectInfo.Name = formData.Name;
     this.getProjectInfo.Description = formData.Description;
-    this.getProjectInfo.Industry = formData.Industry;
     this.getProjectInfo.Skill = formData.Skill;
     this.getProjectInfo.OpenForApplication = formData.OpenForApplication;
 

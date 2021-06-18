@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { register } from '../classes/register';
 import { LoginRegisterService } from '../services/login-register.service';
 import { Router } from '@angular/router';
+import { Register } from '../classes/Register';
 
 @Component({
   selector: 'app-register',
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
   });
 
   onSubmit() {
-    var formData = new register();
+    var formData = new Register();
 
     formData.Name = this.registationForm.get('name').value;
     formData.Surname = this.registationForm.get('surname').value;
