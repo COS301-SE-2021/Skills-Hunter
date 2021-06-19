@@ -1,45 +1,52 @@
 ﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/UserController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Project/Application.cs">
     <Files>
-      <File FileName="Models/Project/Project.cs" Line="15" Column="1" />
+      <File FileName="Models/Project/Project.cs" Line="10" Column="9" />
       <File FileName="SkillsHunterAPI.csproj" />
       <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" />
       <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTestBase.cs" />
-      <File FileName="Startup.cs" Line="46" Column="1" />
+      <File FileName="Startup.cs" />
       <File FileName="instructions.txt" />
       <File FileName="Properties/launchSettings.json" />
       <File FileName="appsettings.json" />
-      <File FileName="Program.cs" Line="23" Column="54" />
-      <File FileName="Controllers/ProjectController.cs" Line="195" Column="21" />
-      <File FileName="Services/IUserService.cs" Line="20" Column="29" />
-      <File FileName="Services/IProjectService.cs" Line="26" Column="40" />
-      <File FileName="Services/ProjectService.cs" Line="1" Column="1" />
+      <File FileName="Program.cs" />
+      <File FileName="Controllers/ProjectController.cs" />
+      <File FileName="Services/IUserService.cs" />
+      <File FileName="Services/IProjectService.cs" />
+      <File FileName="Services/ProjectService.cs" />
       <File FileName="Models/Project/ProjectSkill.cs" />
-      <File FileName="Services/ISkillService.cs" Line="1" Column="1" />
+      <File FileName="Services/ISkillService.cs" />
       <File FileName="Models/Project/ProjectResponse.cs" />
-      <File FileName="Models/Skill/SkillRR.cs" />
-      <File FileName="Models/User/UserResponse.cs" Line="8" Column="1" />
-      <File FileName="Models/User/User.cs" Line="16" Column="43" />
-      <File FileName="Models/User/UserSkill.cs" Line="11" Column="6" />
+      <File FileName="Models/Skill/SkillRR.cs" Line="1" Column="1" />
+      <File FileName="Models/User/UserResponse.cs" />
+      <File FileName="Models/User/User.cs" />
+      <File FileName="Models/User/UserSkill.cs" />
       <File FileName="Models/User/WorkExperience.cs" />
-      <File FileName="Services/UserService.cs" Line="58" Column="28" />
-      <File FileName="Models/User/RegisterResponse.cs" Line="14" Column="2" />
-      <File FileName="Models/Project/ProjectRequest.cs" Line="1" Column="1" />
-      <File FileName="Models/User/LogInRequest.cs" Line="10" Column="36" />
-      <File FileName="Models/User/GetResponse.cs" Line="8" Column="9" />
-      <File FileName="Models/User/GetAllResponse.cs" Line="1" Column="1" />
-      <File FileName="Models/User/GetAllRequest.cs" Line="1" Column="1" />
-      <File FileName="Models/User/UpdateRequest.cs" Line="1" Column="1" />
-      <File FileName="Models/User/UpdateResponse.cs" Line="1" Column="1" />
-      <File FileName="Models/User/LogInResponse.cs" Line="1" Column="1" />
-      <File FileName="Models/User/LogOutResponse.cs" Line="1" Column="1" />
-      <File FileName="Services/SkillService.cs" Line="15" Column="1" />
-      <File FileName="Data/ApplicationDbContext.cs" Line="9" Column="37" />
-      <File FileName="Migrations/20210614184946_Migration_01.Designer.cs" Line="8" Column="23" />
-      <File FileName="Migrations/ApplicationDbContextModelSnapshot.cs" Line="7" Column="23" />
-      <File FileName="Controllers/UserController.cs" Line="62" Column="45" />
-      <File FileName="Models/User/RegisterRequest.cs" Line="1" Column="1" />
+      <File FileName="Services/UserService.cs" />
+      <File FileName="Models/User/RegisterResponse.cs" />
+      <File FileName="Models/Project/ProjectRequest.cs" />
+      <File FileName="Models/User/LogInRequest.cs" />
+      <File FileName="Models/User/GetAllResponse.cs" />
+      <File FileName="Models/User/GetAllRequest.cs" />
+      <File FileName="Models/User/UpdateRequest.cs" />
+      <File FileName="Models/User/UpdateResponse.cs" />
+      <File FileName="Models/User/LogInResponse.cs" />
+      <File FileName="Models/User/LogOutResponse.cs" />
+      <File FileName="Services/SkillService.cs" />
+      <File FileName="Data/ApplicationDbContext.cs" />
+      <File FileName="Migrations/ApplicationDbContextModelSnapshot.cs" />
+      <File FileName="Controllers/UserController.cs" />
+      <File FileName="Models/User/RegisterRequest.cs" />
+      <File FileName="Models/Skill/Skill.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/Category.cs" Line="8" Column="48" />
+      <File FileName="Controllers/AdminController.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/AddSkillRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/AddSkillResponse.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/RemoveSkillRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/RemoveSkillResponse.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/AddCategoryRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Application.cs" Line="6" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -48,13 +55,11 @@
             <Node name="SkillsHunterAPI" expanded="True">
               <Node name="Dependencies" expanded="True" />
               <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="User" expanded="True">
-                  <Node name="RegisterRequest.cs" selected="True" />
+                <Node name="Project" expanded="True">
+                  <Node name="Application.cs" selected="True" />
                 </Node>
               </Node>
-              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>
