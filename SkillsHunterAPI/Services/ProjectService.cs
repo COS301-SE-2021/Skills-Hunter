@@ -98,5 +98,17 @@ namespace SkillsHunterAPI.Services
         {
             return await _context.ProjectSkills.Where(ss => ss.ProjectId == ProjectId && ss.SkillId == SkillId).FirstAsync();
         }
+
+        public async Task<bool> ApplyForProject(Guid userId,Guid ProjectId){
+            bool applicationSuccess = false;
+
+            return applicationSuccess;
+        }
+
+        public async Task<bool> InviteCandidate(Guid userId,Guid ProjectId){
+            bool invitationSuccess = false;
+
+            return invitationSuccess;
+        }
     }
 }

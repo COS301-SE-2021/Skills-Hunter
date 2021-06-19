@@ -4,7 +4,7 @@ namespace SkillsHunterAPI.Models.Skill
 {
     public class AddSkillResponse
     {
-        public bool success;
-        public Skill skill;
+        public bool Success { get; set; }
+        public Skill Added { get; set; }
     }
 }
