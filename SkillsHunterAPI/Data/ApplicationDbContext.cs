@@ -2,6 +2,7 @@
 using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
 using SkillsHunterAPI.Models.User;
+using SkillsHunterAPI.Models.Skill;
 using System;
 using System.Collections.Generic;
 using System.Linq;
