@@ -34,6 +34,7 @@ import { MatInputModule } from '@angular/material/input';
     CandidateCardComponent,
     SearchAndFilterCandidatePipe,
     UpdateProjectComponent,
+    ProjectCardComponent,
   ],
   imports: [
     BrowserModule,
