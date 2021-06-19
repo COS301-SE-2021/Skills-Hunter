@@ -102,6 +102,28 @@ namespace SkillsHunterAPI.Services
         public async Task<bool> ApplyForProject(Guid userId,Guid ProjectId){
             bool applicationSuccess = false;
 
+
+            Application applicationFromDB = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
+
+            if (applicationFromDB != null)
+            {
+                return false;
+            }
+
+            Application newApplication = new Application();
+            newApplication.ApplicationId = new Guid();
+            newApplication.ProjectId = ProjectId;
+            newApplication.ApplicantId = userId;
+
+            _ = _context.Applications.AddAsync(newApplication);
+
+            applicationFromDB = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
+
+            if (applicationFromDB != null)
+            {
+                return false;
+            }
+
             return applicationSuccess;
         }
 
