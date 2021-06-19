@@ -17,11 +17,20 @@ namespace SkillsHunterAPI.Services
         }
 
         public async Task<Skill> AddSkill(Skill skill){
+            skill.SkillId = new Guid();
+            
+            _context.Skills.Add(skill);
+            await _context.SaveChangesAsync();
+
             return skill;
         }
 
         public async Task<Skill> RemoveSkill(Guid id){
-            return new Skill();
+            var result = await _context.Skills.FindAsync(id);
+
+            _context.Skills.Remove(result);
+            await _context.SaveChangesAsync();
+            return result;
         }
 
         public async Task<Project> RemoveProject(Guid id){
@@ -29,6 +38,11 @@ namespace SkillsHunterAPI.Services
         }
 
         public async Task<Category> AddCategory(Category category){
+            category.CategoryId = new Guid();
+            
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+
             return category;
         }
     }
