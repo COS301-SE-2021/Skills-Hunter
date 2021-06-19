@@ -260,6 +260,17 @@ namespace SkillsHunterAPI.Controllers
             return NoContent();
         }
 
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/applyForProject")]
+        public async Task<ApplyForProjectResponse> ApplyForProject([FromBody] ApplyForProjectRequest request){
+            return new ApplyForProjectResponse();
+        }
+
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/inviteCandidate")]
+        public async Task<InviteCandidateResponse> InviteCandidate([FromBody] InviteCandidateRequest request){
+            return new InviteCandidateResponse();
+        }
     }
 
 }

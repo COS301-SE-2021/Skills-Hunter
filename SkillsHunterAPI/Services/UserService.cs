@@ -2,7 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using SkillsHunterAPI.Models.User;
-using Microsoft.AspNetCore.Identity;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Collections.Generic;
 using SkillsHunterAPI.Data;
 
@@ -12,20 +13,57 @@ namespace SkillsHunterAPI.Services
     {
         private readonly ApplicationDbContext _context;
 
+        private string Hash(string Password){
+            // generate a 128-bit salt using a secure PRNG
+            byte[] salt = new byte[128 / 8];
+            
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+    
+            // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: Password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA1,
+                iterationCount: 10000,
+                numBytesRequested: 256 / 8));
+
+            return hashed;
+        }
+
         public UserService(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<User> AddUser(User request)
+        public User AddUser(User request)
         {
-            //var result = await _userManager.CreateAsync(request, request.Password);
-            return null;
+            request.UserId = new Guid();
+
+        
+            request.Password = Hash(request.Password);
+            
+            _context.Users.Add(request);
+
+            return request;
         }
 
         public async Task<User> LogIn(string email, string pass)
         {
-            return null;
+            var allUsers = await _context.Users.ToListAsync();
+            User result = new User();
+            
+            foreach (var user in allUsers)
+            {
+
+                if(user.Email == email && user.Password == Hash(pass)){
+                    result = user;
+                    break;
+                }    
+            }
+            return result;
         }
 
         public async Task<LogOutResponse> LogOut(LogOutRequest request)
@@ -45,13 +83,7 @@ namespace SkillsHunterAPI.Services
 
         public async Task<IEnumerable<User>> GetAllUsers()
         {
-            var result =  await _context.Users.ToListAsync();
-            GetAllResponse response = new GetAllResponse(); 
-            
-            response.Accounts = result.ToArray();
-            response.Success = true;
-
-            return null;
+            return await _context.Users.ToListAsync();
         }
 
         public async Task<User> GetUser(Guid request)
@@ -64,7 +96,6 @@ namespace SkillsHunterAPI.Services
             request.UserSkillId = new Guid();
             
             _context.UserSkills.Add(request);
-            //await _context.SaveChangesAsync();
         }
         
         public async Task UpdateUserSkill(Guid userSkillId, UserSkill request)
