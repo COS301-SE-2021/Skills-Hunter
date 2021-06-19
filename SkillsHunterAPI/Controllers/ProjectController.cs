@@ -262,8 +262,21 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/applyForProject")]
-        public async Task<ApplyForProjectResponse> ApplyForProject([FromBody] ApplyForProjectRequest request){
-            return new ApplyForProjectResponse();
+        public async Task<ApplyForProjectResponse> ApplyForProject([FromBody] ApplyForProjectRequest request)
+        {
+            ApplyForProjectResponse applyForProjectResponse = new ApplyForProjectResponse();
+
+             var reqStatus = _projectService.ApplyForProject(request.UserId, request.ProjectId);
+
+            if (reqStatus != null)
+            {
+                applyForProjectResponse.Success = true;
+            }
+            else
+            {
+                applyForProjectResponse.Success = false;
+            }
+            return applyForProjectResponse;
         }
 
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
