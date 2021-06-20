@@ -1,37 +1,69 @@
 ﻿<Properties StartupConfiguration="{68CE87AB-DD58-46B9-8816-45626CED79C0}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Project/InviteCandidateRequest.cs">
     <Files>
-      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="144" Column="68" />
-      <File FileName="Controllers/ProjectController.cs" Line="42" Column="31" />
-      <File FileName="instructions.txt" Line="35" Column="37" />
-      <File FileName="obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" Line="4" Column="3" />
-      <File FileName="obj/Debug/net5.0/SkillsHunterAPI.AssemblyInfo.cs" Line="20" Column="68" />
-      <File FileName="Startup.cs" Line="1" Column="1" />
-      <File FileName="Properties/launchSettings.json" Line="1" Column="1" />
+      <File FileName="Models/Project/Project.cs" Line="13" Column="26" />
+      <File FileName="SkillsHunterAPI.csproj" />
+      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" />
+      <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTestBase.cs" />
+      <File FileName="Startup.cs" />
+      <File FileName="instructions.txt" Line="25" Column="5" />
+      <File FileName="Properties/launchSettings.json" />
       <File FileName="appsettings.json" Line="1" Column="1" />
+      <File FileName="Program.cs" />
+      <File FileName="Controllers/ProjectController.cs" Line="271" Column="26" />
+      <File FileName="Services/IUserService.cs" />
+      <File FileName="Services/IProjectService.cs" Line="27" Column="9" />
+      <File FileName="Services/ProjectService.cs" Line="154" Column="25" />
+      <File FileName="Models/Project/ProjectSkill.cs" />
+      <File FileName="Services/ISkillService.cs" />
+      <File FileName="Models/Project/ProjectResponse.cs" />
+      <File FileName="Models/Skill/SkillRR.cs" />
+      <File FileName="Models/User/UserResponse.cs" />
+      <File FileName="Models/User/User.cs" />
+      <File FileName="Models/User/UserSkill.cs" />
+      <File FileName="Models/User/WorkExperience.cs" />
+      <File FileName="Services/UserService.cs" />
+      <File FileName="Models/User/RegisterResponse.cs" />
+      <File FileName="Models/Project/ProjectRequest.cs" />
+      <File FileName="Models/User/LogInRequest.cs" />
+      <File FileName="Models/User/GetAllResponse.cs" />
+      <File FileName="Models/User/GetAllRequest.cs" />
+      <File FileName="Models/User/UpdateRequest.cs" />
+      <File FileName="Models/User/UpdateResponse.cs" />
+      <File FileName="Models/User/LogInResponse.cs" />
+      <File FileName="Models/User/LogOutResponse.cs" />
+      <File FileName="Services/SkillService.cs" />
+      <File FileName="Data/ApplicationDbContext.cs" Line="1" Column="1" />
+      <File FileName="Controllers/UserController.cs" Line="1" Column="1" />
+      <File FileName="Models/User/RegisterRequest.cs" />
+      <File FileName="Models/Skill/Skill.cs" />
+      <File FileName="Models/Skill/Category.cs" />
+      <File FileName="Controllers/AdminController.cs" />
+      <File FileName="Models/Skill/AddSkillRequest.cs" />
+      <File FileName="Models/Skill/AddSkillResponse.cs" />
+      <File FileName="Models/Skill/RemoveSkillRequest.cs" />
+      <File FileName="Models/Skill/RemoveSkillResponse.cs" />
+      <File FileName="Models/Skill/AddCategoryRequest.cs" />
+      <File FileName="Models/Project/ApplyForProjectRequest.cs" Line="6" Column="20" />
+      <File FileName="Models/Project/ApplyForProjectResponse.cs" />
+      <File FileName="Models/Project/Invitation.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/InviteCandidateRequest.cs" Line="9" Column="44" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPI" expanded="True">
+              <Node name="Dependencies" expanded="True" />
               <Node name="Controllers" expanded="True" />
-              <Node name="Properties" expanded="True" />
-              <Node name="SkillsHunterAPIUnitTest" expanded="True" />
-              <Node name="appsettings.json" selected="True" />
-            </Node>
-            <Node name="SkillsHunterAPIUnitTest" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="SkillsHunterAPI" expanded="True" selected="True">
-            <Node name="SkillsHunterAPIUnitTest" expanded="True">
-              <Node name="SkillsHunterAPIUnitTest.Tests" expanded="True">
-                <Node name="ProjectUnitTest" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Project" expanded="True">
+                  <Node name="InviteCandidateRequest.cs" selected="True" />
+                </Node>
               </Node>
+              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -39,6 +71,9 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>../SkillsHunterAPI.Tests/SkillsHunterAPI.Tests.csproj</String>
+  </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

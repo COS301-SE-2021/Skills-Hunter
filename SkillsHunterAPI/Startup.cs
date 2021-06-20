@@ -8,12 +8,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SkillsHunterAPI.Data;
 using SkillsHunterAPI.Models;
-using SkillsHunterAPI.Repositories;
+using SkillsHunterAPI.Models.User;
+using SkillsHunterAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace SkillsHunterAPI
 {
@@ -30,8 +34,16 @@ namespace SkillsHunterAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddScoped<IProjectRepository, ProjectRepository>();
+
+            //AAdding Application services
+            services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<ISkillService, SkillService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAdminService, AdminService>();
+
+
             services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -42,7 +54,7 @@ namespace SkillsHunterAPI
             {
                 options.AddDefaultPolicy(
                 builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-               // options.AddPolicy("mypolicy", options => options.WithHeaders());
+                // options.AddPolicy("mypolicy", options => options.WithHeaders());
             }
 
             );
