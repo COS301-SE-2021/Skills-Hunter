@@ -27,6 +27,15 @@
         <p>
           {{ card_project.Description }}
         </p>
+
+        <mat-card class="project-card-skills">
+          <mat-card-title>Skills</mat-card-title>
+          <mat-chip-list aria-label="Project Required Skills">
+            <mat-chip color="primary" selected>{{
+              card_project.Skill
+            }}</mat-chip>
+          </mat-chip-list>
+        </mat-card>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-card-content>
