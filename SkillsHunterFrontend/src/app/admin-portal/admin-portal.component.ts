@@ -1,5 +1,7 @@
 import { Skills } from './../mock-data/mock-skills';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
+import { Skill } from '../classes/Skill';
 
 @Component({
   selector: 'app-admin-portal',
@@ -13,4 +15,17 @@ export class AdminPortalComponent implements OnInit {
 
   displayedColumns: string[] = ['name'];
   dataSource = Skills;
+
+  @ViewChild(MatTable) table: MatTable<Skill>;
+
+  addData() {
+    const randomElementIndex = Math.floor(Math.random() * Skills.length);
+    this.dataSource.push(Skills[randomElementIndex]);
+    this.table.renderRows();
+  }
+
+  removeData() {
+    this.dataSource.pop();
+    this.table.renderRows();
+  }
 }
