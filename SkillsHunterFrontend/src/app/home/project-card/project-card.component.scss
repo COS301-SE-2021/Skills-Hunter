@@ -21,20 +21,38 @@
   display: inline-block;
 }
 
+:root {
+  --visFind: flex;
+  --visDelete:flex;
+  --visUpdate:flex;
+  --visAppl:flex;
+  --visCancel:flex;
+}
 .card-project-find {
   float: left;
   width: 140px;
+  display: var(--visFind);
 }
 
 .card-project-delete {
   float: none;
   left: 4.5%;
   width: 140px;
+  display: var(--visDelete);
 }
 
 .card-project-update {
   float: right;
   width: 140px;
+  display: var(--visUpdate);
+}
+
+.card-project-apply{
+  display: var(--visAppl);
+}
+
+.card-project-cancelappl{
+  display: var(--visCancel);
 }
 
 .project-card-skills {
@@ -45,3 +63,7 @@
   background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
 }
+
+
+
+
