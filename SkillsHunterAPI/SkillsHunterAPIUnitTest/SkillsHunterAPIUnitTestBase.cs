@@ -2,20 +2,22 @@
 using FakeItEasy;
 using SkillsHunterAPI.Controllers;
 using SkillsHunterAPI.Models;
-using SkillsHunterAPI.Repositories;
+using SkillsHunterAPI.Services;
 
 namespace SkillsHunterAPIUnitTest.Tests
 {
     public class SkillsHunterAPIUnitTestBase
     {
-        public IProjectRepository projectRepository;
+        public IProjectService projectService;
+        public ISkillService skillService;
         public ProjectController projectController;
 
         public SkillsHunterAPIUnitTestBase()
         {
-         
-            projectRepository = A.Fake<IProjectRepository>();
-            projectController = new ProjectController(projectRepository);
+
+            projectService = A.Fake<IProjectService>();
+            skillService = A.Fake<ISkillService>();
+            projectController = new ProjectController(projectService, skillService);
         }
     }
 }
