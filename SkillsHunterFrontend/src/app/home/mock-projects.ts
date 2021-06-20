@@ -8,7 +8,16 @@ export const Projects: project[] = [
 		Industry:  ["IT","agriculture"],
 		Owner:'',
 		Location:'',
-		Skill: ["Angular","Net Core"],
+		Skill: [
+			{
+				"SkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+				"SkillName":"Angular"
+			},
+			{
+				"SkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+				"SkillName":"Net Core"
+			}
+		],
 		OpenForApplication: false
 	},
 	{
@@ -18,7 +27,20 @@ export const Projects: project[] = [
 		Industry: ["IT"],
 		Owner:'',
 		Location:'',
-		Skill: ["Docker"," React/Vue",".Net Core"],
+		Skill: [
+			{
+				"SkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+				"SkillName":"Docker"
+			},
+			{
+				"SkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+				"SkillName":" React/Vue"
+			},
+			{
+				"SkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+				"SkillName":".Net Core"
+			}
+		],
 		OpenForApplication: true
 	},
 	{
@@ -28,7 +50,20 @@ export const Projects: project[] = [
 		Industry:  ["IT"],
 		Owner:'',
 		Location:'',
-		Skill: ["Docker"," React/Vue",".Net Core"],
+		Skill: [
+			{
+				"SkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+				"SkillName":"Docker"
+			},
+			{
+				"SkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+				"SkillName":" React/Vue"
+			},
+			{
+				"SkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+				"SkillName":".Net Core"
+			}
+		],
 		OpenForApplication: true
 	},
 	{
@@ -38,7 +73,20 @@ export const Projects: project[] = [
 		Industry:  ["IT"],
 		Owner:'',
 		Location:'',
-		Skill: ["Docker"," React/Vue",".Net Core"],
+		Skill: [
+			{
+				"SkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+				"SkillName":"Docker"
+			},
+			{
+				"SkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+				"SkillName":" React/Vue"
+			},
+			{
+				"SkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+				"SkillName":".Net Core"
+			}
+		],
 		OpenForApplication: true
 	}
 ];
