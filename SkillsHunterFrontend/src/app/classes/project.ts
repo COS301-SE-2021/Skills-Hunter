@@ -6,6 +6,6 @@ export class project
 	Industry;
 	Owner: string;
 	Location: string;
-	Skill: string[];
+	Skill;
 	OpenForApplication: boolean;
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { project } from '../../classes/project';
-
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -22,6 +21,7 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("skill: "+ this._project.Skill);
   }
 
 }
