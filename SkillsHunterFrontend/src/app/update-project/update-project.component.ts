@@ -59,7 +59,7 @@ export class UpdateProjectComponent implements OnInit {
   //when submit is clicked this function is called to send info to service
   onSubmit() {
     var formData = new Project();
-    formData.id = this.getProjectInfo.id;
+    formData.ProjectId = this.getProjectInfo.ProjectId;
     formData.Name = <string>(
       (<any>this.projectInfo.controls['projectName'].value)
     );
