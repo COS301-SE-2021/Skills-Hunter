@@ -19,8 +19,6 @@ export class AdminAddSkillComponent implements OnInit {
   });
 
   onSubmit() {
-    console.log('Hello Skills = ' + skillData);
-
     var skillData = new Skill();
 
     skillData.SkillId = Skills.length;

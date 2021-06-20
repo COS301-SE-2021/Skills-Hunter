@@ -51,6 +51,8 @@ export class AdminPortalComponent implements OnInit {
     configDialog.width = '43%';
     configDialog.height = '60%';
     this.dialog.open(AdminAddSkillComponent, configDialog);
+
+    // refresh the list of skills:
     this.dataSourceTB = new MatTableDataSource(Skills);
     this.table.renderRows();
   }
