@@ -30,7 +30,7 @@ export class AdminPortalComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  columnsToDisplay = ['name'];
+  columnsToDisplay = ['SkillName'];
   dataSource = Skills;
   expandedElement: Skill | null;
   dataSourceTB = new MatTableDataSource(Skills);
@@ -45,8 +45,17 @@ export class AdminPortalComponent implements OnInit {
     this.table.renderRows();
   }
 
-  removeData() {
-    this.dataSource.pop();
+  removeData(Skill_ID: string) {
+    // this.dataSource.pop();
+
+    for (var index = 0; index < Skills.length; index++) {
+      if (
+        Skills[index].SkillId.toString().toLowerCase() ===
+        Skill_ID.toString().toLowerCase()
+      )
+        Skills.splice(index, 1);
+    }
+
     // refresh the list of skills:
     this.dataSourceTB = new MatTableDataSource(Skills);
     this.table.renderRows();
@@ -54,6 +63,7 @@ export class AdminPortalComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue);
     // refresh the list of skills:
     this.dataSourceTB = new MatTableDataSource(Skills);
     this.dataSourceTB.filter = filterValue.trim().toLowerCase();
