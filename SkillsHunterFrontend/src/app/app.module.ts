@@ -22,6 +22,7 @@ import { ProjectCardComponent } from './home/project-card/project-card.component
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
+import { AdminPortalCardComponent } from './admin-portal/admin-portal-card/admin-portal-card.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AdminPortalComponent } from './admin-portal/admin-portal.component';
     UpdateProjectComponent,
     ProjectCardComponent,
     AdminPortalComponent,
+    AdminPortalCardComponent,
   ],
   imports: [
     BrowserModule,
