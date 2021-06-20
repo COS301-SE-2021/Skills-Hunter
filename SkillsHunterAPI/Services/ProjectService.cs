@@ -148,7 +148,7 @@ namespace SkillsHunterAPI.Services
             newInvitation.InviteeId = inviteeId;
             newInvitation.ProjectId = ProjectId;
             newInvitation.Message = message;
-            newInvitation.InviteDate = new DateTime();
+            newInvitation.InviteDate = DateTime.Now;
             newInvitation.InvitationId = new Guid();
 
             _context.Add(newInvitation);

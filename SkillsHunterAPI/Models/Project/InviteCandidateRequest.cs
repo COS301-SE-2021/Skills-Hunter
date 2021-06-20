@@ -7,6 +7,5 @@ namespace SkillsHunterAPI.Models.Project
         public Guid ProjectId { get; set; }
         public Guid InviteeId { get; set; }
         public String Message { get; set; }
-        public DateTime InviteDate { get; set; }
     }
 }
