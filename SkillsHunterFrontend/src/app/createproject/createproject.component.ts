@@ -34,15 +34,6 @@ export class CreateprojectComponent implements OnInit {
   onSubmit() {
     var formData = new Project();
 
-    formData.Name = 'Skills Hunter'; //<string><any>this.projectInfo.controls['projectName'].value;
-    formData.Description = 'Website'; //<string><any>this.projectInfo.controls['description'].value;
-    //formData.Industry="IT";//<string><any>this.projectInfo.controls['industry'].value;
-    //formData.Skill="C++";//<string><any>this.projectInfo.controls['skill'].value;
-    //Mock
-
-    formData.Owner = 'Mxo';
-    formData.Location = 'Hatfield';
-
     if (
       <string>(<any>this.projectInfo.controls['openForApplication'].value) ==
       'Yes'
@@ -52,10 +43,34 @@ export class CreateprojectComponent implements OnInit {
       formData.OpenForApplication = true;
     }
 
+    // Generate random number for Project ID:
+    let max = 1000;
+    let min = Projects.length;
+
+    formData.ProjectId = (
+      Math.floor(Math.random() * (max - min + 1)) + min
+    ).toString();
+
+    formData.Name = <string>(
+      (<any>this.projectInfo.controls['projectName'].value)
+    );
+    formData.Description = <string>(
+      (<any>this.projectInfo.controls['description'].value)
+    );
+
+    formData.Owner = 'Mxo Developers';
+    formData.Location = 'Hatfield';
+
+    formData.Skill = (<string>(<any>this.projectInfo.controls['skill'].value))
+      .toString()
+      .split(',');
+
+    Projects.push(formData);
+
     // the service is called below
     this.projectCrud.createProject(formData).subscribe((data) => {
       // console.log('Response post', data);
-      console.log('Creating a Project...');
+      console.log('Creating A Project...');
     });
   }
 
