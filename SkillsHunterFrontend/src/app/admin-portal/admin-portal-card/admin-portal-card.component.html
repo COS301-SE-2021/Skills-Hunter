@@ -1,23 +1,16 @@
 <mat-card class="skill-card">
   <mat-card-header>
     <div mat-card-avatar class="skill-menu-header-image"></div>
-    <mat-card-title>{{ card_skill.name }}</mat-card-title>
+    <mat-card-title>{{ card_skill.SkillName }}</mat-card-title>
     <!-- <mat-card-subtitle>{{card_candidate.job}}</mat-card-subtitle> -->
   </mat-card-header>
 
   <mat-card-content>
     <p>
       <!-- {{ card_skill.description }} -->
-      A description of {{ card_skill.name }}.
+      A description of {{ card_skill.SkillName }}.
     </p>
   </mat-card-content>
-
-  <!-- <mat-card class="skill-card-skills">
-        <mat-card-title>Skills</mat-card-title>
-        <mat-chip-list aria-label="Candidate Skills">
-            <mat-chip color="primary" selected>{{card_skill.skills}}</mat-chip>
-        </mat-chip-list>        
-    </mat-card> -->
 
   <mat-card-actions>
     <button class="skill-remove" mat-raised-button color="accent">
