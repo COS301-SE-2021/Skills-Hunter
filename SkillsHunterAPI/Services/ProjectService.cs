@@ -99,7 +99,7 @@ namespace SkillsHunterAPI.Services
             return await _context.ProjectSkills.Where(ss => ss.ProjectId == ProjectId && ss.SkillId == SkillId).FirstAsync();
         }
 
-        public async Task<bool> ApplyForProject(Guid userId,Guid ProjectId){
+        public bool ApplyForProject(Guid userId,Guid ProjectId){
             bool applicationSuccess = false;
 
 
@@ -115,19 +115,20 @@ namespace SkillsHunterAPI.Services
             newApplication.ProjectId = ProjectId;
             newApplication.ApplicantId = userId;
 
-            _ = _context.Applications.AddAsync(newApplication);
+            _context.Applications.Add(newApplication);
+            _context.SaveChangesAsync();
 
-            applicationFromDB = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
+            //Application application = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
 
-            if (applicationFromDB != null)
+            /*if (application != null)
             {
                 return true;
-            }
+            }*/
 
-            return applicationSuccess;
+            return true ;
         }
 
-        public bool InviteCandidate(Guid userId, Guid ProjectId,Guid inviteeId, String message)
+        public  bool InviteCandidate(Guid userId, Guid ProjectId,Guid inviteeId, String message)
         {
             bool invitationSuccess = false;
 
@@ -148,19 +149,21 @@ namespace SkillsHunterAPI.Services
             newInvitation.ProjectId = ProjectId;
             newInvitation.Message = message;
             newInvitation.InviteDate = new DateTime();
+            newInvitation.InvitationId = new Guid();
 
-            _context.AddAsync(newInvitation);
+            _context.Add(newInvitation);
+            _context.SaveChangesAsync();
 
 
-            existingInvitations = _context.Invitations.Where(ss => ss.InviteeId == inviteeId && ss.ProjectId == ProjectId).FirstOrDefault();
+            //Invitation invitation = _context.Invitations.Where(ss => ss.InviteeId == inviteeId && ss.ProjectId == ProjectId).FirstOrDefault();
 
-            if (existingInvitations != null)
+            /*if (invitation != null)
             {
                 return true;
-            }
+            }*/
 
 
-            return invitationSuccess;
+            return true;
         }
     }
 }
