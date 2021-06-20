@@ -121,7 +121,7 @@ namespace SkillsHunterAPI.Services
 
             if (applicationFromDB != null)
             {
-                return false;
+                return true;
             }
 
             return applicationSuccess;
