@@ -48,8 +48,8 @@ export class AdminPortalComponent implements OnInit {
   addSkill() {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
-    configDialog.width = '30%';
-    configDialog.height = '50%';
+    configDialog.width = '43%';
+    configDialog.height = '60%';
     this.dialog.open(AdminAddSkillComponent, configDialog);
     this.dataSourceTB = new MatTableDataSource(Skills);
     this.table.renderRows();
