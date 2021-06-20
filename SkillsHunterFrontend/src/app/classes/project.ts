@@ -1,10 +1,9 @@
-export class project
-{
-    Name:string
-    Description:string
-    Industry:string
-    Skill:string
-    OpenForApplication:boolean
-    Location: string;
-    Owner: string;
+export class Project {
+  ProjectId: string;
+  Name: string;
+  Description: string;
+  Owner: string;
+  Location: string;
+  Skill: string[];
+  OpenForApplication: boolean;
 }

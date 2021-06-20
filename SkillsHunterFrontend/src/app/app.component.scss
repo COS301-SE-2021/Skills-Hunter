@@ -1,9 +1,11 @@
 .content-body {
   min-height: 100%;
-  padding: 60px 1rem;
+  // padding: 60px 1rem;
+  // padding-bottom: 50px;
   display: block;
 }
 
-.toolbar-bar {
+toolbar-bar {
+  padding-bottom: 50px;
   background-color: #00b3b3;
 }

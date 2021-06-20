@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <h1>Please Enter The Project Details Below:</h1>
+  <h1>Update Project Details</h1>
   <form [formGroup]="projectInfo" (ngSubmit)="onSubmit()">
     <mat-form-field>
       <mat-label>Project Name</mat-label>
@@ -37,7 +37,7 @@
     ><br />
 
     <mat-form-field>
-      <mat-label>Is the Project Open For Applications?</mat-label>
+      <mat-label>Is the Project open for Applications?</mat-label>
       <mat-select formControlName="openForApplication">
         <mat-option style="color: black" *ngFor="let o of open" [value]="o">{{
           o
@@ -52,10 +52,10 @@
       [disabled]="projectInfo.invalid"
       value="submit"
     >
-      Submit</button
+      submit</button
     >&nbsp;
     <button id="cancel" class="btn btn-danger" (click)="cancel()">
-      Cancel
+      cancel
     </button>
   </form>
 </div>

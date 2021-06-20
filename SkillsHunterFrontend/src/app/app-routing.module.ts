@@ -2,29 +2,42 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { UpdateprojectComponent } from './updateproject/updateproject.component';
+import { MatchCandidateComponent } from './match-candidate/match-candidate.component';
+import { RegisterComponent } from './register/register.component';
 import { ProjectCRUDService } from './services/project-crud.service';
-import {projectService} from './services/project-edit.service';
+import { projectService } from './services/project-edit.service';
+import { UpdateProjectComponent } from './update-project/update-project.component';
 
 const routes: Routes = [
-  
   {
-    path:'login',
-    component:LoginComponent
+    path: 'login',
+    component: LoginComponent,
   },
   {
-    path:'home',
-    component:HomeComponent
+    path: 'register',
+    component: RegisterComponent,
   },
   {
-    path:'updateproject',
-    component:UpdateprojectComponent
-  }
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
+    path: 'match-candidate',
+    component: MatchCandidateComponent,
+  },
+  {
+    path: 'update-project',
+    component: UpdateProjectComponent,
+  },
+  {
+    path: '',
+    component: HomeComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [ProjectCRUDService,projectService]
+  providers: [ProjectCRUDService, projectService],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

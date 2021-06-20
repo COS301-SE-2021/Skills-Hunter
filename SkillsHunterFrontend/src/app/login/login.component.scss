@@ -1,0 +1,63 @@
+#SHdiv{
+
+  margin-top:-4%;
+  margin-bottom: 5%;
+  background-color: #93A8AC;
+  padding-top: 0.6%;
+}
+
+#SH{
+  font-size: 40px;
+  font-family: 'Staatliches', cursive;
+}
+
+#loginL{
+
+  font-size: 25px;
+}
+
+#pbutton{
+    background-color: white;
+    border: none ;
+    color: grey;
+    border-radius: 5px 5px 5px 5px;
+   
+  } 
+
+  #pbutton:active{
+    border: none !important;
+    border-color: white;
+    background-color: white;
+  }
+
+.wrapper {
+    display: flex;
+    flex-direction: column; 
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+
+.LoginForm {
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+#login{
+    margin-top:3%;
+    width:50%;
+  }
+.field{
+    width:50%;
+    font-size: 20px;
+    }
+
+#forgot{
+  position: relative;
+  right:-15%;
+  margin-bottom: 5%;
+  }
+
+  #registerlink{
+    color:rgb(0, 140, 255);
+  }

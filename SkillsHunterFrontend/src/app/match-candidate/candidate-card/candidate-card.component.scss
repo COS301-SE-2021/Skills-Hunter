@@ -1,8 +1,11 @@
 .candidate-card {
   color: #003333;
-  max-width: 450px;
+  width: 300px;
   background-color: #e6ffff;
-  margin: 30px;
+  margin: 20px;
+  display: inline-block;
+  // float: left;
+  // width: 25%;
 }
 
 .candidate-card-skills {
