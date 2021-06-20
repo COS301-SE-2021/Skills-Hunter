@@ -41,7 +41,12 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button class="card-project-find" mat-raised-button color="accent">
+    <button
+      class="card-project-find"
+      mat-raised-button
+      color="accent"
+      [routerLink]="['/match-candidate']"
+    >
       Match Candidates
     </button>
 
