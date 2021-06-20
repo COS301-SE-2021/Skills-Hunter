@@ -107,7 +107,36 @@ namespace SkillsHunterAPI.Services
 
         public bool InviteCandidate(Guid userId, Guid ProjectId,Guid inviteeId, String message)
         {
-            bool invitationSuccess = false; 
+            bool invitationSuccess = false;
+
+
+            Invitation existingInvitations = _context.Invitations.Where(ss => ss.InviteeId == inviteeId && ss.ProjectId == ProjectId).FirstOrDefault();
+
+            
+            if(existingInvitations != null)
+            {
+                return false;
+            }
+
+
+            Invitation newInvitation = new Invitation();
+
+            newInvitation.InviterId = userId;
+            newInvitation.InviteeId = inviteeId;
+            newInvitation.ProjectId = ProjectId;
+            newInvitation.Message = message;
+            newInvitation.InviteDate = new DateTime();
+
+            _context.AddAsync(newInvitation);
+
+
+            existingInvitations = _context.Invitations.Where(ss => ss.InviteeId == inviteeId && ss.ProjectId == ProjectId).FirstOrDefault();
+
+            if (existingInvitations != null)
+            {
+                return true;
+            }
+
 
             return invitationSuccess;
         }
