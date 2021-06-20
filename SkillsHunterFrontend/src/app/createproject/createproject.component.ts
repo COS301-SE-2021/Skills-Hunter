@@ -1,4 +1,4 @@
-import { Projects } from './../home/mock-projects';
+import { Projects } from './../mock-data/mock-projects';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';

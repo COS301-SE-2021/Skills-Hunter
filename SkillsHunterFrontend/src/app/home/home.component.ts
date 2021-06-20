@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Projects } from './mock-projects';
+import { Projects } from '../mock-data/mock-projects';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateprojectComponent } from './../createproject/createproject.component';

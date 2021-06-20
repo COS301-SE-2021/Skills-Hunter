@@ -1,7 +1,7 @@
-import { Projects } from './../mock-projects';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Project } from 'src/app/classes/Project';
+import { Projects } from 'src/app/mock-data/mock-projects';
 import { ProjectCRUDService } from 'src/app/services/project-crud.service';
 import { projectService } from 'src/app/services/project-edit.service';
 import { UpdateProjectComponent } from 'src/app/update-project/update-project.component';

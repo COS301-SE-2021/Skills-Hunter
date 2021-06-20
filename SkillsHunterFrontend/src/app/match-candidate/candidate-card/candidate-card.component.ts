@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Candidate } from 'src/app/classes/Candidate';
 import { MaterialModule } from 'src/app/material/material.module';
-import { Candidate } from './Candidate';
 
 @Component({
   selector: 'app-candidate-card',

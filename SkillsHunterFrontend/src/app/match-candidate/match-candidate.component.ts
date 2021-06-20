@@ -1,20 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Candidate } from './candidate-card/Candidate';
+import { Candidate } from '../classes/Candidate';
 import { CandidatesList } from './candidate-card/mock-candidates';
 
 @Component({
   selector: 'app-match-candidate',
   templateUrl: './match-candidate.component.html',
-  styleUrls: ['./match-candidate.component.scss']
+  styleUrls: ['./match-candidate.component.scss'],
 })
 export class MatchCandidateComponent implements OnInit {
-  title :string = 'Candidate';
-  candidatesList:Candidate[] = CandidatesList;
+  title: string = 'Candidate';
+  candidatesList: Candidate[] = CandidatesList;
   filterQuery: string = '';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
