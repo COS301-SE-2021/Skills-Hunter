@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Candidate } from '../classes/Candidate';
 import { Project } from '../classes/Project';
-import { CandidatesList } from '../match-candidate/candidate-card/mock-candidates';
+import { CandidatesList } from '../mock-data/mock-candidates';
 import { ProjectCRUDService } from '../services/project-crud.service';
 import { projectService } from '../services/project-edit.service';
 

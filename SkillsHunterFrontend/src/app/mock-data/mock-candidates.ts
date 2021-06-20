@@ -1,4 +1,4 @@
-import { Candidate } from './../../classes/Candidate';
+import { Candidate } from '../classes/Candidate';
 
 export const CandidatesList: Candidate[] = [
   {

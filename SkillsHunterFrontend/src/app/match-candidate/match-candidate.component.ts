@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Candidate } from '../classes/Candidate';
-import { CandidatesList } from './candidate-card/mock-candidates';
+import { CandidatesList } from '../mock-data/mock-candidates';
 
 @Component({
   selector: 'app-match-candidate',
