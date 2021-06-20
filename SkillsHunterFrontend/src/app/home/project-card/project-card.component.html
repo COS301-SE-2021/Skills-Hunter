@@ -1,0 +1,83 @@
+<!-- id: number;
+  Name: string;
+  Description: string;
+  Owner: string;
+  Location: string;
+  Skill: string[];
+  OpenForApplication: boolean; -->
+
+<mat-card class="project-card">
+  <mat-card-header>
+    <div mat-card-avatar class="project-menu-header-image"></div>
+    <mat-card-title>{{ card_project.Name }}</mat-card-title>
+    <mat-card-subtitle>{{ card_project.Owner }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <b>View More </b>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          {{ card_project.Description }}
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button class="project-find-candidates" mat-raised-button color="accent">
+      Match Candidates
+    </button>
+
+    <button class="project-find-candidates" mat-raised-button color="accent">
+      Remove Project
+    </button>
+
+    <button class="project-find-candidates" mat-raised-button color="accent">
+      Update
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<!-- ENDS HERE  -->
+
+<!-- <div class="itemContainer" id="{{ _project.id }}">
+  <mat-accordion>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <b>{{ _project.Name }}</b>
+        </mat-panel-title>
+        <mat-panel-description>
+          Open : {{ _project.OpenForApplication ? "Yes" : "No" }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-project [_project]="_project"></app-project>
+
+      <button
+        [routerLink]="['/match-candidate']"
+        mat-raised-button
+        class="btnProject"
+      >
+        Find Matching Candidates
+      </button>
+
+      <button mat-raised-button class="btnProject" (click)="delete(_project)">
+        Remove Project
+      </button>
+      <button mat-raised-button class="btnProject" (click)="update(_project)">
+        Update
+      </button>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div> -->

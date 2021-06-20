@@ -1,0 +1,35 @@
+.itemContainer {
+  margin-bottom: 20px;
+}
+
+.btnProject {
+  margin: 10px 20px 0px 0px;
+  // background-color: rgb(46, 108, 133);
+  background-color: #f5d142;
+  // color:white;
+}
+
+.project-card {
+  color: #003333;
+  width: 450px;
+  background-color: #e6ffff;
+  margin: 20px;
+  display: inline-block;
+  // float: left;
+  // width: 25%;
+}
+
+.project-card-skills {
+  background-color: #00b3b3;
+}
+
+.project-invite {
+  width: 100%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.project-menu-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}

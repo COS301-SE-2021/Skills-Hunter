@@ -1,8 +1,29 @@
-<mat-card id="container">
+<!-- <mat-card id="container">
   <mat-card-title id="cardTitle">{{ title }}</mat-card-title>
   <button mat-raised-button id="createbtn" (click)="create()">Create</button>
   <app-project-card
     *ngFor="let _project of _projects"
     [_project]="_project"
   ></app-project-card>
-</mat-card>
+</mat-card> -->
+
+<div>
+  <mat-form-field class="example-form-field">
+    <mat-label>Search Projects:</mat-label>
+    <input matInput type="text" [(ngModel)]="filterQuery" />
+    <button
+      *ngIf="filterQuery"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="filterQuery = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<app-project-card
+  *ngFor="let project of _projects | searchAndFilterCandidate: filterQuery"
+  [card_project]="project"
+></app-project-card>

@@ -14,13 +14,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatchCandidateComponent } from './match-candidate/match-candidate.component';
 import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
 import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidate.pipe';
-import { ProjectComponent } from './home/project/project.component';
-import { ProjectItemComponent } from './home/project-item/project-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectCRUDService } from './services/project-crud.service';
 import { RegisterComponent } from './register/register.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
-import { ProjectCardComponent } from './home/project/project-card/project-card.component';
+import { ProjectCardComponent } from './home/project-card/project-card.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,6 @@ import { ProjectCardComponent } from './home/project/project-card/project-card.c
     CreateprojectComponent,
     UpdateProjectComponent,
     HomeComponent,
-    ProjectComponent,
-    ProjectItemComponent,
     RegisterComponent,
     MatchCandidateComponent,
     CandidateCardComponent,
@@ -54,6 +52,8 @@ import { ProjectCardComponent } from './home/project/project-card/project-card.c
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
