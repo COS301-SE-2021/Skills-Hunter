@@ -21,7 +21,7 @@
       >
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <b>View More </b>
+            <b>View Project Details</b>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <p>
@@ -32,12 +32,12 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button class="project-find-candidates" mat-raised-button color="accent">
+    <button class="card-project-find" mat-raised-button color="accent">
       Match Candidates
     </button>
 
     <button
-      class="project-find-candidates"
+      class="card-project-delete"
       mat-raised-button
       color="accent"
       (click)="delete(card_project)"
@@ -46,7 +46,7 @@
     </button>
 
     <button
-      class="project-find-candidates"
+      class="card-project-update"
       mat-raised-button
       color="accent"
       (click)="update(card_project)"
