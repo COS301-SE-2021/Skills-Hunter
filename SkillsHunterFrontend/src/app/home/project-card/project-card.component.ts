@@ -1,3 +1,4 @@
+import { Projects } from './../mock-projects';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Project } from 'src/app/classes/Project';
@@ -31,8 +32,8 @@ export class ProjectCardComponent implements OnInit {
     this.projectData.projectBeingedited = project;
   }
 
-  update(project) {
-    this.setProjectInfo = project;
+  update(_project: Project) {
+    this.setProjectInfo = _project;
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '40%';
@@ -40,16 +41,20 @@ export class ProjectCardComponent implements OnInit {
     this.dialog.open(UpdateProjectComponent, configDialog);
   }
 
-  delete(project) {
-    if (confirm(`Are you sure to delete ${project.Name}`)) {
-      document.getElementById(project.id).style.display = 'none';
+  delete(_project: Project) {
+    if (confirm(`Are you sure to delete ${_project.Name}`)) {
+      for (let [i, proj] of Projects.entries()) {
+        if (proj.id == _project.id) {
+          Projects.splice(i, 1);
+        }
+      }
 
       //the service is called below
-      this.projectCrud
-        .createProject(project) //change so it calls update
-        .subscribe((data) => {
-          console.log('Response post', data);
-        });
+      // this.projectCrud
+      //   .createProject(_project) //change so it calls update
+      //   .subscribe((data) => {
+      //     console.log('Response post', data);
+      //   });
     }
   }
 }
