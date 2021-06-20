@@ -1,0 +1,32 @@
+<h1>Please Enter The Skill Details Below:</h1>
+<form [formGroup]="skillForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Skill Name</mat-label>
+    <input class="skillInput" formControlName="skillName" matInput />
+    <!-- mat-error is for validation -->
+    <mat-error *ngIf="skillForm.controls['skillName'].hasError('required')">
+      The skill name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <br />
+</form>
+
+<div class="skillActions">
+  <button
+    id="skillAdd"
+    class="btn btn-primary"
+    type="submit"
+    [disabled]="skillForm.invalid"
+    value="submit"
+  >
+    Add Skill</button
+  >&nbsp;
+  <button
+    id="cancel"
+    class="btn btn-danger"
+    id="skillCancel"
+    (click)="cancel()"
+  >
+    Cancel
+  </button>
+</div>
