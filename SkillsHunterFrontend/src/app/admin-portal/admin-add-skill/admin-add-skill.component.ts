@@ -32,8 +32,6 @@ export class AdminAddSkillComponent implements OnInit {
     skillData.SkillWeight = 0;
 
     Skills.push(skillData);
-
-    // this.cancel();
   }
 
   //close dialog popup
