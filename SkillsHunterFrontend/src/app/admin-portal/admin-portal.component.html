@@ -15,7 +15,7 @@
     <button
       mat-raised-button
       color="accent"
-      (click)="addData()"
+      (click)="addSkill()"
       class="add-skill-button"
     >
       Add Skill
@@ -61,7 +61,7 @@
           <button
             mat-raised-button
             [disabled]="!dataSource.length"
-            (click)="removeData(element.SkillId)"
+            (click)="removeSkill(element.SkillId)"
             color="accent"
             class="remove-skill-button"
           >

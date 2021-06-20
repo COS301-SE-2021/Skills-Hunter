@@ -9,6 +9,14 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import { AdminAddSkillComponent } from './admin-add-skill/admin-add-skill.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-portal',
@@ -26,7 +34,7 @@ import {
   ],
 })
 export class AdminPortalComponent implements OnInit {
-  constructor() {}
+  constructor(private _router: Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -37,17 +45,17 @@ export class AdminPortalComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<Skill>;
 
-  addData() {
-    const randomElementIndex = Math.floor(Math.random() * Skills.length);
-    this.dataSource.push(Skills[randomElementIndex]);
-    // refresh the list of skills:
+  addSkill() {
+    const configDialog = new MatDialogConfig();
+    configDialog.backdropClass = 'backGround';
+    configDialog.width = '30%';
+    configDialog.height = '50%';
+    this.dialog.open(AdminAddSkillComponent, configDialog);
     this.dataSourceTB = new MatTableDataSource(Skills);
     this.table.renderRows();
   }
 
-  removeData(Skill_ID: string) {
-    // this.dataSource.pop();
-
+  removeSkill(Skill_ID: string) {
     for (var index = 0; index < Skills.length; index++) {
       if (
         Skills[index].SkillId.toString().toLowerCase() ===

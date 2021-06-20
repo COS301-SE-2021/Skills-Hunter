@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminPortalCardComponent } from './admin-portal-card.component';
+import { AdminAddSkillComponent } from './admin-add-skill.component';
 
-describe('AdminPortalCardComponent', () => {
-  let component: AdminPortalCardComponent;
-  let fixture: ComponentFixture<AdminPortalCardComponent>;
+describe('AdminAddSkillComponent', () => {
+  let component: AdminAddSkillComponent;
+  let fixture: ComponentFixture<AdminAddSkillComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminPortalCardComponent ]
+      declarations: [ AdminAddSkillComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminPortalCardComponent);
+    fixture = TestBed.createComponent(AdminAddSkillComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

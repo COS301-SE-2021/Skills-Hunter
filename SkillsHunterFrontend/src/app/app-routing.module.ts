@@ -8,6 +8,7 @@ import { ProjectCRUDService } from './services/project-crud.service';
 import { projectService } from './services/project-edit.service';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
+import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'admin-portal',
     component: AdminPortalComponent,
+  },
+  {
+    path: 'admin-add-skill',
+    component: AdminAddSkillComponent,
   },
   {
     path: '',
