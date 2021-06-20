@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProjectCRUDService } from './services/project-crud.service';
 import { projectService } from './services/project-edit.service';
 import { UpdateProjectComponent } from './update-project/update-project.component';
+import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 
 const routes: Routes = [
   {
@@ -30,8 +31,13 @@ const routes: Routes = [
     component: UpdateProjectComponent,
   },
   {
+    path: 'admin-portal',
+    component: AdminPortalComponent,
+  },
+  {
     path: '',
-    component: HomeComponent,
+    component: AdminPortalComponent,
+    // component: HomeComponent,
   },
 ];
 
