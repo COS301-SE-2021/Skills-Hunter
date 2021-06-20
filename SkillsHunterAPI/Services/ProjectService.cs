@@ -105,8 +105,9 @@ namespace SkillsHunterAPI.Services
             return applicationSuccess;
         }
 
-        public async Task<bool> InviteCandidate(Guid userId,Guid ProjectId){
-            bool invitationSuccess = false;
+        public bool InviteCandidate(Guid userId, Guid ProjectId,Guid inviteeId, String message)
+        {
+            bool invitationSuccess = false; 
 
             return invitationSuccess;
         }

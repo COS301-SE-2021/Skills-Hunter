@@ -26,6 +26,8 @@ namespace SkillsHunterAPI.Data
         public DbSet<UserSkill> UserSkills { get; set; }
         public DbSet<WorkExperience> WorkExperiences { get; set; }
 
+        public DbSet<Invitation> Invitations { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Project>().ToTable("Project");
@@ -48,6 +50,9 @@ namespace SkillsHunterAPI.Data
 
             modelBuilder.Entity<WorkExperience>().ToTable("WorkExperience");
             modelBuilder.Entity<WorkExperience>().HasKey("WorkExperienceId");
+
+            modelBuilder.Entity<Invitation>().ToTable("Invitation");
+            modelBuilder.Entity<Invitation>().HasKey("InvitationId");
         }
 
     }
