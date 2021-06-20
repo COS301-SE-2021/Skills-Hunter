@@ -268,8 +268,27 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/inviteCandidate")]
-        public async Task<InviteCandidateResponse> InviteCandidate([FromBody] InviteCandidateRequest request){
-            return new InviteCandidateResponse();
+        public InviteCandidateResponse InviteCandidate([FromBody] InviteCandidateRequest request)
+        {
+            //This create an Invite candidate response object
+            InviteCandidateResponse inviteCandidateResponse = new InviteCandidateResponse();
+
+
+            var InviteStatus = _projectService.InviteCandidate(request.UserId, request.ProjectId, request.InviteeId, request.Message);
+
+            if (InviteStatus != null)
+            {
+                inviteCandidateResponse.Success = true;
+            }
+            else
+            {
+                inviteCandidateResponse.Success = false;
+            }
+
+
+            return inviteCandidateResponse;
+
+
         }
     }
 
