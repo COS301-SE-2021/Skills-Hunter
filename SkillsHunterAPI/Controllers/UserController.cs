@@ -29,8 +29,7 @@ namespace SkillsHunterAPI.Controllers
             newUser.Phone = request.Phone;
             newUser.Password = request.Password;
             newUser.UserType = request.Role;
-            //newUser.StartDate = request.St
-            newUser = _userService.AddUser(newUser);
+            newUser = await _userService.AddUser(newUser);
 
             RegisterResponse response = new RegisterResponse();
 
