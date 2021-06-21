@@ -84,7 +84,7 @@ namespace SkillsHunterAPIUnitTest.Tests
 
             // Act
             A.CallTo(() => _adminService.RemoveSkill(removeSkillRequest.SkillId)); // _projectService.CreateProject(p.Returns(proj1);
-            var createdResponse = _controller.RemoveSkill(removeSkillRequest.SkillId);
+            var createdResponse = _controller.RemoveSkill(removeSkillRequest);
             var item = createdResponse.Result as RemoveSkillResponse;
 
             // Assert

@@ -11,7 +11,7 @@ namespace SkillsHunterAPI.Services
         
         Task<User> LogIn(string email, string pass);
         
-        Task<LogOutResponse> LogOut(LogOutRequest request);
+        //Task<LogOutResponse> LogOut(LogOutRequest request);
         
         Task<UpdateResponse> UpdateUser(UpdateRequest request);
         

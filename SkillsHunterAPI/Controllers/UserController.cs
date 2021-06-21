@@ -104,7 +104,9 @@ namespace SkillsHunterAPI.Controllers
 
             foreach (User user in usersFromDb)
             {
-                GetUserResponse tempUser = await GetUser(user.UserId.ToString());
+                GetUserRequest getUserRequest = new GetUserRequest();
+                getUserRequest.UserId = user.UserId;
+                GetUserResponse tempUser = await GetUser(getUserRequest);
 
                 response.Add(tempUser);
             }
@@ -113,10 +115,10 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/getUser")]
-        public async Task<GetUserResponse> GetUser([FromBody]string id)
+        [Route("api/[controller]/getUser/{id}")]
+        public async Task<GetUserResponse> GetUser([FromRoute]GetUserRequest getUserRequest)
         {
-            User user = await _userService.GetUser(new Guid(id));
+            User user = await _userService.GetUser(getUserRequest.UserId);
 
             GetUserResponse response = new GetUserResponse();
 
