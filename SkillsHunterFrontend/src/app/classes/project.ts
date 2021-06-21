@@ -7,3 +7,4 @@ export class Project {
   Skill: string[];
   OpenForApplication: boolean;
 }
+
