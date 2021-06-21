@@ -68,11 +68,11 @@ export class ProjectCardComponent implements OnInit {
 
   delete(_project: Project) {
     if (confirm(`Are you sure to delete ${_project.Name}`)) {
-      /*for (let [i, proj] of Projects.entries()) {
+      for (let [i, proj] of Projects.entries()) {
         if (proj.ProjectId == _project.ProjectId) {
           Projects.splice(i, 1);
         }
-      }*/
+      }
 
       //the service is called below
         this.projectCrud

@@ -1,5 +1,5 @@
-export interface Skill {
-  id: number;
-  name: string;
-  weight: number;
+export class Skill {
+  SkillId: number;
+  SkillName: string;
+  SkillWeight: number;
 }

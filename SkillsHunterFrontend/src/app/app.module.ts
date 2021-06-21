@@ -21,6 +21,8 @@ import { UpdateProjectComponent } from './update-project/update-project.componen
 import { ProjectCardComponent } from './home/project-card/project-card.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AdminPortalComponent } from './admin-portal/admin-portal.component';
+import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { MatInputModule } from '@angular/material/input';
     SearchAndFilterCandidatePipe,
     UpdateProjectComponent,
     ProjectCardComponent,
+    AdminPortalComponent,
+    AdminAddSkillComponent,
   ],
   imports: [
     BrowserModule,

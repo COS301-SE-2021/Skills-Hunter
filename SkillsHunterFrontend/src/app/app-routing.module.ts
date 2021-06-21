@@ -7,6 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { ProjectCRUDService } from './services/project-crud.service';
 import { projectService } from './services/project-edit.service';
 import { UpdateProjectComponent } from './update-project/update-project.component';
+import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
+import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 
 const routes: Routes = [
   {
@@ -30,9 +32,19 @@ const routes: Routes = [
     component: UpdateProjectComponent,
   },
   {
-    path: '',
-    component: LoginComponent,
+    path: 'admin-add-skill',
+    component: AdminAddSkillComponent,
   },
+  {
+    path: 'admin-portal',
+    component: AdminPortalComponent,
+  },
+  {
+    path: '',
+    component: AdminPortalComponent,
+    // component: LoginComponent,
+  }
+
 ];
 
 @NgModule({
