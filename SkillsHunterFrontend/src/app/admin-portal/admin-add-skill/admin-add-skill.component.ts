@@ -22,17 +22,20 @@ export class AdminAddSkillComponent implements OnInit {
   onSubmit() {
     var skillData = new Skill();
 
-    skillData.SkillId = Skills.length.toString();
+    // skillData.SkillId = Skills.length.toString();
 
     skillData.Name = <string>(
       (<any>this.skillForm.controls['skillName'].value)
     );
 
-    skillData.CategoryId = 'Category';
+    skillData.CategoryId = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
 
     Skills.push(skillData);
 
-    this.adminSkillOperations.adminAddSkill(skillData);
+        // the service is called below
+        this.adminSkillOperations.adminAddSkill(skillData).subscribe((data) => {
+          console.log('Creating a Skill\n', data);
+        });
 
     this.cancel();
   }
