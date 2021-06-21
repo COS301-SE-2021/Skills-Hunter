@@ -31,7 +31,7 @@
           style="color: black"
           *ngFor="let skill of skills"
           [value]="skill"
-          >{{ skill }}</mat-option
+          >{{ skill.SkillName }}</mat-option
         >
       </mat-select> </mat-form-field
     ><br />
@@ -52,10 +52,23 @@
       [disabled]="projectInfo.invalid"
       value="submit"
     >
+      submit</button
+    >&nbsp;
+    <button id="cancel" class="btn btn-danger" (click)="cancel()">
+      cancel
+    </button>
+
+    <!-- <button
+      id="submit"
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="projectInfo.invalid"
+      value="submit"
+    >
       Submit</button
     >&nbsp;
     <button id="cancel" class="btn btn-danger" (click)="cancel()">
       Cancel
-    </button>
+    </button> -->
   </form>
 </div>

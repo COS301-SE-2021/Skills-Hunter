@@ -1,9 +1,11 @@
+import { Skill } from 'src/app/classes/Skill';
 import { Projects } from './../mock-data/mock-projects';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
+import { Skills } from '../mock-data/mock-skills';
 
 @Component({
   selector: 'app-createproject',
@@ -18,14 +20,12 @@ export class CreateprojectComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  skills: string[] = ['Project Manager', 'C++', 'Java', 'JavaScript'];
-  industries: string[] = ['Finance', 'Construction', 'Agriculture'];
+  skills: Skill[] = Skills;
   open: string[] = ['Yes', 'No'];
 
   projectInfo: FormGroup = new FormGroup({
     projectName: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    industry: new FormControl('', [Validators.required]),
     skill: new FormControl('', [Validators.required]),
     openForApplication: new FormControl('', [Validators.required]),
   });
