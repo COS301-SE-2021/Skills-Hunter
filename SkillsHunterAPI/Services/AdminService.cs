@@ -16,6 +16,10 @@ namespace SkillsHunterAPI.Services
             _context = context;
         }
 
+        public async Task<List<Skill>> GetSkills(){
+            return await _context.Skills.ToListAsync();
+        }
+
         public async Task<Skill> AddSkill(Skill skill){
             skill.SkillId = new Guid();
             

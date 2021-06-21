@@ -62,5 +62,15 @@ namespace SkillsHunterAPI.Controllers
             return new RemoveProjectResponse();
         }
 
+        [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/getSkills")]
+        public async Task<GetSkillsResponse> GetSkills()
+        {
+
+                GetSkillsResponse skills = new GetSkillsResponse();
+                skills.skills = (await _adminService.GetSkills()).ToArray();
+                return skills;
+        }
+
     }
 }
