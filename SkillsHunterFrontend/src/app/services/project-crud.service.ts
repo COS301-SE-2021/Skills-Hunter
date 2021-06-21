@@ -40,4 +40,11 @@ export class ProjectCRUDService {
       'http://localhost:5000/api/Project/getProjects'
     );
   }
+
+  apply(formData):Observable <any>{
+    return this.httpclient.post(
+      'http://localhost:5000/api/Project/createProject',
+      formData
+    );
+  }
 }
