@@ -41,8 +41,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: AdminPortalComponent,
-    // component: HomeComponent,
+    component: HomeComponent,
   },
 ];
 
