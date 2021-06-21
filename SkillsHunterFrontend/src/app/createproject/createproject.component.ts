@@ -32,6 +32,9 @@ export class CreateprojectComponent implements OnInit {
 
   //when submit is clicked this function is called to send info to service
   onSubmit() {
+
+    this.cancel();
+    
     var formData = new Project();
 
     if (
@@ -72,6 +75,8 @@ export class CreateprojectComponent implements OnInit {
       // console.log('Response post', data);
       console.log('Creating A Project...');
     });
+
+    
   }
 
   //close dialog popup
