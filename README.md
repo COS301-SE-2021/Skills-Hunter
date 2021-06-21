@@ -16,7 +16,7 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
 <a href="https://drive.google.com/file/d/1flkNQRhYlqgMYURzUFFEKd5kKJDB5QWt/view?usp=sharing">Skills hunter SRS Demo 1 Google Drive</a><br>
 
 ## Project Management Tool
-* <a href="#c">Github</a>
+* <a href="https://github.com/COS301-SE-2021/Skills-Hunter/projects/1">Github</a>
 
 ## Coding standards
 <a href="#"> Coding standards </a><br>
