@@ -17,6 +17,7 @@ import {
 } from '@angular/material/dialog';
 import { AdminAddSkillComponent } from './admin-add-skill/admin-add-skill.component';
 import { Router } from '@angular/router';
+import { AdminDashboardService } from '../services/admin-dashboard.service';
 
 @Component({
   selector: 'app-admin-portal',
@@ -34,7 +35,7 @@ import { Router } from '@angular/router';
   ],
 })
 export class AdminPortalComponent implements OnInit {
-  constructor(private _router: Router, private dialog: MatDialog) {}
+  constructor(private _router: Router, private dialog: MatDialog,private adminSkillOperations: AdminDashboardService) {}
 
   ngOnInit(): void {}
 
