@@ -30,7 +30,7 @@ export class AdminAddSkillComponent implements OnInit {
 
     skillData.CategoryId = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
 
-    // Skills.push(skillData);
+    Skills.push(skillData);
 
         // the service is called below
         this.adminSkillOperations.adminAddSkill(skillData).subscribe((data) => {
