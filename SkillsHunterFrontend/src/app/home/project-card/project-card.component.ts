@@ -79,7 +79,7 @@ export class ProjectCardComponent implements OnInit {
     console.log(_project.ProjectId);
     var formData = new Apply();
     formData.UserId=localStorage.getItem('userID');
-    formData.ProjectId=_project.ProjectId;
+    formData.ProjectId="3fa85f64-5717-4562-b3fc-2c963f66afa4"//_project.ProjectId;
 
 
      //the service is called below;
