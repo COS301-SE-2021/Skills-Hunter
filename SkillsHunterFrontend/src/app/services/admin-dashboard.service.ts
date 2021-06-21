@@ -26,7 +26,7 @@ adminAddSkill(formData: Skill): Observable<any> {
 
 //send request to back end to validate user login details
 adminRemoveSkill(formData: Skill): Observable<any> {
-  return this.httpclient.delete<Skill>(this.endPoint + 'Admin/removeSkill' + formData.SkillId, this.httpHeader);
+  return this.httpclient.delete<Skill>(this.endPoint + 'Admin/removeSkill&skillId=' + formData.SkillId, this.httpHeader);
 }
 
 }
