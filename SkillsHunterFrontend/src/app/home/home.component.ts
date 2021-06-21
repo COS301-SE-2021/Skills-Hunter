@@ -7,6 +7,7 @@ import { projectService } from '../services/project-edit.service';
 import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
 import { MaterialModule } from '../material/material.module';
+import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 
 @Component({
   selector: 'app-home',
