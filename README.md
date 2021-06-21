@@ -48,10 +48,10 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
  </details>
  
  > <b>Joseph Makgopa: </b> <br>
- * <a href=""> GitHub  Profile  Page</a><br>
- * <a href=""> LinkedIn  Account </a><br>
+ * <a href="https://github.com/Thuso-Khoza"> GitHub  Profile  Page</a><br>
+ * <a href="https://www.linkedin.com/in/joseph-makgopa-318430210"> LinkedIn  Account </a><br>
  <details>
-  <summary><b>Description</b></summary>
+  <summary><b>Software Engineering student at university of pretoria</b></summary>
  </details>
  
  > <b>Tshepang Mogaila: </b> <br>
