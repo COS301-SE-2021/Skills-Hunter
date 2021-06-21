@@ -24,13 +24,14 @@ namespace SkillsHunterAPI.Controllers
         public async Task<RegisterResponse> Register(RegisterRequest request)
         {
             User newUser = new User();
+
             newUser.Name = request.Name;
             newUser.Surname = request.Surname;
             newUser.Phone = request.Phone;
             newUser.Password = request.Password;
+            newUser.Email = request.Email;
             newUser.UserType = request.Role;
-            //newUser.StartDate = request.St
-            newUser = _userService.AddUser(newUser);
+            newUser = await _userService.AddUser(newUser);
 
             RegisterResponse response = new RegisterResponse();
 
@@ -62,7 +63,7 @@ namespace SkillsHunterAPI.Controllers
             else
             {
                 response.UserName = loginUser.Name;
-                response.UserId = response.UserId;
+                response.UserId = loginUser.UserId;
                 response.Validated = true;
             }
 
