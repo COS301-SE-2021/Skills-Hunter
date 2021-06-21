@@ -39,12 +39,22 @@ export class AdminPortalComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  columnsToDisplay = ['SkillName'];
+  columnsToDisplay = ['Name'];
   dataSource = Skills;
   expandedElement: Skill | null;
   dataSourceTB = new MatTableDataSource(Skills);
 
   @ViewChild(MatTable) table: MatTable<Skill>;
+
+  // getSkills(){
+  //   this.adminSkillOperations.adminGetSkills().subscribe((data) => {
+  //     console.log('Getting all Skills\n', data);
+      
+      // this.dataSource = data;
+
+      // dataSourceTB = new MatTableDataSource(data);
+  //   });
+  // }
 
   addSkill() {
     const configDialog = new MatDialogConfig();
@@ -66,20 +76,15 @@ export class AdminPortalComponent implements OnInit {
         Skill_ID.toString().toLowerCase()
       )
         Skills.splice(index, 1);
-
-      // this.adminSkillOperations.adminRemoveSkill(skill);
-              // the service is called below
-              this.adminSkillOperations.adminRemoveSkill(skill).subscribe((data) => {
-                console.log('Creating a Skill\n', data);
-              });
-    }
-
+      }    
+    // the service is called below
+    this.adminSkillOperations.adminRemoveSkill(skill).subscribe((data) => {
+      console.log('Removing a Skill\n', data);
+    });
+    
     // refresh the list of skills:
     this.dataSourceTB = new MatTableDataSource(Skills);
     this.table.renderRows();
-
-    // send request to backend:
-    this.adminSkillOperations.adminRemoveSkill(skill);
   }
 
   applyFilter(event: Event) {
