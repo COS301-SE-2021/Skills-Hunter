@@ -1,9 +1,9 @@
-<button mat-raised-button id="createbtn" (click)="create()">
-  Create Project
-</button>
+<div class="homeOptions">
+  <button mat-raised-button id="createbtn" (click)="create()">
+    Create Project
+  </button>
 
-<div>
-  <mat-form-field class="example-form-field">
+  <mat-form-field class="example-form-field" id="searchProjectsinput">
     <mat-label>Search Projects:</mat-label>
     <input matInput type="text" [(ngModel)]="filterQuery" />
     <button
