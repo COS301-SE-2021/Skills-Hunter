@@ -5,6 +5,7 @@ import { Projects } from 'src/app/mock-data/mock-projects';
 import { ProjectCRUDService } from 'src/app/services/project-crud.service';
 import { projectService } from 'src/app/services/project-edit.service';
 import { UpdateProjectComponent } from 'src/app/update-project/update-project.component';
+import { Apply } from 'src/app/classes/Apply';
 
 @Component({
   selector: 'app-project-card',
@@ -22,7 +23,22 @@ export class ProjectCardComponent implements OnInit {
     private projectCrud: ProjectCRUDService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    if(localStorage.getItem('role')=='candidate'){
+
+      document.documentElement.style.setProperty('--visFind', 'none');
+      document.documentElement.style.setProperty('--visUpdate', 'none');
+      document.documentElement.style.setProperty('--visDelete', 'none');
+      document.documentElement.style.setProperty('--visCancel', 'none');
+    }
+    else{
+      document.documentElement.style.setProperty('--visAppl', 'none');
+      document.documentElement.style.setProperty('--visCancel', 'none');
+    }
+    
+
+  }
 
   get getProjectInfo(): Project {
     return this.projectData.projectBeingedited;
@@ -44,7 +60,7 @@ export class ProjectCardComponent implements OnInit {
   delete(_project: Project) {
     if (confirm(`Are you sure to delete ${_project.Name}`)) {
       for (let [i, proj] of Projects.entries()) {
-        if (proj.id == _project.id) {
+        if (proj.ProjectId == _project.ProjectId) {
           Projects.splice(i, 1);
         }
       }
@@ -56,5 +72,21 @@ export class ProjectCardComponent implements OnInit {
       //     console.log('Response post', data);
       //   });
     }
+  }
+
+  apply(_project: Project){
+
+    console.log(_project.ProjectId);
+    var formData = new Apply();
+    formData.UserId=localStorage.getItem('userID');
+    formData.ProjectId=_project.ProjectId;
+
+
+     //the service is called below;
+       this.projectCrud
+         .apply(formData) //change so it calls update
+         .subscribe((data) => {
+           console.log('Response post', data);
+         });
   }
 }
