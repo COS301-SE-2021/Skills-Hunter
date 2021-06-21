@@ -17,5 +17,31 @@ namespace SkillsHunterAPIUnitTest.Tests
             _adminService = A.Fake<IAdminService>();
             _controller = A.Fake<AdminController>();
         }
+
+        [Fact]
+        public void testAddCategory()
+        {
+            var cat1 = new Category
+            {
+                Name = "Web dev",
+                //CategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
+            };
+
+            var addCategoryRequest = new AddCategoryRequest
+            {
+                Name = "Web dev",
+                //CategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
+            };
+
+
+            // Act
+            A.CallTo(() => _adminService.AddCategory(cat1)).Returns(cat1); // _projectService.CreateProject(p.Returns(proj1);
+            var createdResponse = _controller.AddCategory(addCategoryRequest);
+            var item = createdResponse.Result as AddCategoryResponse;
+
+            // Assert
+            Assert.IsType<AddCategoryResponse>(item);
+            Assert.True(item.Success);
+        }
     }
 }
