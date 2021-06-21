@@ -4,6 +4,7 @@ using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
 using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Project.Response;
+using SkillsHunterAPI.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,7 +106,10 @@ namespace SkillsHunterAPI.Services
 
             Application applicationFromDB = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
 
-            if (applicationFromDB != null)
+            User userFromDB = _context.Users.Where(ss => ss.UserId == userId).FirstOrDefault();
+            Project projectFromDB = _context.Projects.Where(ss => ss.ProjectId == ProjectId).FirstOrDefault();
+;
+            if (applicationFromDB != null || userFromDB == null || projectFromDB == null)
             {
                 return false;
             }
