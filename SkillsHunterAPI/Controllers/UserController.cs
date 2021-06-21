@@ -21,7 +21,7 @@ namespace SkillsHunterAPI.Controllers
         [HttpPost]
         [Route("api/[controller]/register")]
 
-        public async Task<RegisterResponse> Register(RegisterRequest request)
+        public async Task<RegisterResponse> Register([FromBody]RegisterRequest request)
         {
             User newUser = new User();
 
@@ -50,7 +50,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/login")]
-        public async Task<LogInResponse> LogIn(LogInRequest request)
+        public async Task<LogInResponse> LogIn([FromBody]LogInRequest request)
         {
             User loginUser = await _userService.LogIn(request.Email, request.Password);
 
@@ -80,7 +80,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/update")]
-        public Task<UpdateResponse> UpdateUser(UpdateRequest request)
+        public Task<UpdateResponse> UpdateUser([FromBody]UpdateRequest request)
         {
             //var response = await _userService.UpdateUser(request);
             return null;
@@ -88,7 +88,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/delete")]
-        public async Task<DeleteResponse> DeleteUser(DeleteRequest request)
+        public async Task<DeleteResponse> DeleteUser([FromBody]DeleteRequest request)
         {
             var response = await _userService.DeleteUser(request);
             return response;
@@ -113,8 +113,8 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/getUser/{id}")]
-        public async Task<GetUserResponse> GetUser(string id)
+        [Route("api/[controller]/getUser")]
+        public async Task<GetUserResponse> GetUser([FromBody]string id)
         {
             User user = await _userService.GetUser(new Guid(id));
 

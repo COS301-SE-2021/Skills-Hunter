@@ -48,7 +48,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/getProject/{id}")]
-        public async Task<ProjectResponse> GetProject(string id)
+        public async Task<ProjectResponse> GetProject([FromRoute] string id)
         {
             Guid projectId = new Guid(id);
             Project project = await _projectService.GetProject(projectId);
@@ -136,7 +136,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpPut]
-        [Route("api/[controller]/updateProject/")]
+        [Route("api/[controller]/updateProject")]
         public async Task<ActionResult> UpdateProject([FromBody] ProjectRequest projectRequest)
         {
 
@@ -204,8 +204,8 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("api/[controller]/deleteProject/{id}")]
-        public async Task<ActionResult> DeleteProject(String id)
+        [Route("api/[controller]/deleteProject")]
+        public async Task<ActionResult> DeleteProject([FromBody]String id)
         {
             Guid projectId = new Guid(id);
             var projectToDelete = await _projectService.GetProject(projectId);
@@ -244,7 +244,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("api/[controller]/deleteProjectSkill/{id}")]
+        [Route("api/[controller]/deleteProjectSkill")]
         public async Task<ActionResult> RemoveProjectSkill(string id)
         {
             //var projectSkill = await _projectService.GetProjectSkill(id);
