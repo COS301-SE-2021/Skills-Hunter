@@ -66,10 +66,10 @@ namespace SkillsHunterAPI.Services
             return result;
         }
 
-        public async Task<LogOutResponse> LogOut(LogOutRequest request)
+        /*public async Task<LogOutResponse> LogOut(LogOutRequest request)
         {
             return new LogOutResponse();
-        }
+        }*/
 
         public async Task<UpdateResponse> UpdateUser(UpdateRequest request)
         {

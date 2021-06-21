@@ -46,21 +46,21 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/removeSkill")]
-        public async Task<RemoveSkillResponse> RemoveSkill([FromBody]Guid id)
+        public async Task<RemoveSkillResponse> RemoveSkill([FromBody]RemoveSkillRequest removeSkillRequest)
         {
             RemoveSkillResponse response = new RemoveSkillResponse();
             
             response.Success = true;
-            response.Removed = await _adminService.RemoveSkill(id);
+            response.Removed = await _adminService.RemoveSkill(removeSkillRequest.SkillId);
 
             return response;
         }
 
-        [HttpPost]
+        /*[HttpPost]
         [Route("api/[controller]/removeProject")]
         public async Task<RemoveProjectResponse> RemoveProject([FromBody]Guid id){
             return new RemoveProjectResponse();
-        }
+        }*/
 
     }
 }

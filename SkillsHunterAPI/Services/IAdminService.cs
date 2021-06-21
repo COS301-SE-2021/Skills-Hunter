@@ -13,6 +13,6 @@ namespace SkillsHunterAPI.Services
         Task<Skill> AddSkill(Skill skill);
         Task<Category> AddCategory(Category category);
         Task<Skill> RemoveSkill(Guid id);
-        Task<Project> RemoveProject(Guid id);
+        //Task<Project> RemoveProject(Guid id);
     }
 }
