@@ -51,7 +51,10 @@ export class LoginComponent implements OnInit {
     );*/
 
     if (true) {
-      localStorage.setItem('role', 'candidate');
+      localStorage.setItem('role', 'Admin');
+      //localStorage.setItem('role', 'Candidate');
+      //localStorage.setItem('role', 'ProjectOwner');
+
       localStorage.setItem('userID', '#dkdkfj23');
       this._match = true;
       this._router.navigate([`home`]);
