@@ -67,7 +67,11 @@ export class AdminPortalComponent implements OnInit {
       )
         Skills.splice(index, 1);
 
-      this.adminSkillOperations.adminRemoveSkill(skill);
+      // this.adminSkillOperations.adminRemoveSkill(skill);
+              // the service is called below
+              this.adminSkillOperations.adminRemoveSkill(skill).subscribe((data) => {
+                console.log('Creating a Skill\n', data);
+              });
     }
 
     // refresh the list of skills:
