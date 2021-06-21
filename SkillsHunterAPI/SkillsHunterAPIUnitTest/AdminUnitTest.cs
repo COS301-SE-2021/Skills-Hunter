@@ -72,5 +72,25 @@ namespace SkillsHunterAPIUnitTest.Tests
             Assert.True(item.Success);
         }
 
+
+
+        [Fact]
+        public void testRemoveSkill()
+        {
+            var removeSkillRequest = new RemoveSkillRequest
+            {
+                SkillId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
+            };
+
+            // Act
+            A.CallTo(() => _adminService.RemoveSkill(removeSkillRequest.SkillId)); // _projectService.CreateProject(p.Returns(proj1);
+            var createdResponse = _controller.RemoveSkill(removeSkillRequest);
+            var item = createdResponse.Result as RemoveSkillResponse;
+
+            // Assert
+            Assert.IsType<RemoveSkillResponse>(item);
+            Assert.True(item.Success);
+        }
+
     }
 }

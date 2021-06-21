@@ -15,6 +15,6 @@ namespace SkillsHunterAPI.Services
         Task<List<Skill>> GetSkills();
         Task<Category> AddCategory(Category category);
         Task<Skill> RemoveSkill(Guid id);
-        Task<Project> RemoveProject(Guid id);
+        //Task<Project> RemoveProject(Guid id);
     }
 }

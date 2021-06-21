@@ -32,14 +32,18 @@ namespace SkillsHunterAPI.Services
         public async Task<Skill> RemoveSkill(Guid id){
             var result = await _context.Skills.FindAsync(id);
 
-            _context.Skills.Remove(result);
+            if(result != null)
+            {
+                _context.Skills.Remove(result);
+            }
+            
             await _context.SaveChangesAsync();
             return result;
         }
 
-        public async Task<Project> RemoveProject(Guid id){
+        /*public async Task<Project> RemoveProject(Guid id){
             return new Project();
-        }
+        }*/
 
         public async Task<Category> AddCategory(Category category){
             category.CategoryId = new Guid();

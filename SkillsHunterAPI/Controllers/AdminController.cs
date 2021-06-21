@@ -44,23 +44,23 @@ namespace SkillsHunterAPI.Controllers
             return response; 
         }
 
-        [HttpDelete]
-        [Route("api/[controller]/removeSkill/{id}")]
-        public async Task<RemoveSkillResponse> RemoveSkill(Guid id)
+        [HttpPost]
+        [Route("api/[controller]/removeSkill")]
+        public async Task<RemoveSkillResponse> RemoveSkill([FromBody]RemoveSkillRequest removeSkillRequest)
         {
             RemoveSkillResponse response = new RemoveSkillResponse();
             
             response.Success = true;
-            response.Removed = await _adminService.RemoveSkill(id);
+            response.Removed = await _adminService.RemoveSkill(removeSkillRequest.SkillId);
 
             return response;
         }
 
-        [HttpDelete]
-        [Route("api/[controller]/removeProject/{id}")]
-        public async Task<RemoveProjectResponse> RemoveProject(Guid id){
+        /*[HttpPost]
+        [Route("api/[controller]/removeProject")]
+        public async Task<RemoveProjectResponse> RemoveProject([FromBody]Guid id){
             return new RemoveProjectResponse();
-        }
+        }*/
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
         [Route("api/[controller]/getSkills")]
