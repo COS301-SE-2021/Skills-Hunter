@@ -10,7 +10,7 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
  ## SRS Document
 <a href="https://www.overleaf.com/read/zfmmmbtkknzf">Current SRS document on overleaf </a><br>
 
-## SRS Document
+## Architectural requirements
 <a href="https://drive.google.com/file/d/1naUG3VyWgjxio-1HNTj0MlShryxLx7pQ/view?usp=sharing">Current Architectural document on Google drive </a><br>
 
 <a href="https://drive.google.com/file/d/1flkNQRhYlqgMYURzUFFEKd5kKJDB5QWt/view?usp=sharing">Skills hunter SRS Demo 1 Google Drive</a><br>
