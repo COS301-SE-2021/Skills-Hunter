@@ -27,9 +27,8 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
 ## Team Members
 
 > <b>Emmanuel Khoza: </b> <br>
- * <a href=""> GitHub  Profile  Page</a><br>
- * <a href=""> LinkedIn  Account </a><br>
- * <a href=""> GitHub  Account </a><br>
+ * <a href="https://github.com/Thuso-Khoza"> GitHub  Profile  Page</a><br>
+ * <a href="https://www.linkedin.com/in/emmanuel-khoza-04b27b168/"> LinkedIn  Account </a><br>
  <details>
   <summary><b>Description</b></summary>
  </details>
@@ -37,7 +36,6 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
  > <b> Mxolisi Mkanzi: </b> <br>
  * <a href=""> GitHub  Profile  Page</a><br>
  * <a href=""> LinkedIn  Account </a><br>
- * <a href=""> GitHub  Account </a><br>
  <details>
   <summary><b>Description</b></summary>
  </details>
@@ -45,7 +43,6 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
  > <b>Sboniso Masilela: </b> <br>
  * <a href="https://github.com/10416260"> GitHub  Profile  Page</a><br>
  * <a href="https://www.linkedin.com/in/sboniso-masilela-b0a5a335/"> LinkedIn  Account </a><br>
- * <a href="https://github.com/10416260"> GitHub  Account </a><br>
  <details>
   <summary><b>Description</b></summary>
  </details>
@@ -53,7 +50,6 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
  > <b>Joseph Makgopa: </b> <br>
  * <a href=""> GitHub  Profile  Page</a><br>
  * <a href=""> LinkedIn  Account </a><br>
- * <a href=""> GitHub  Account </a><br>
  <details>
   <summary><b>Description</b></summary>
  </details>
@@ -61,7 +57,6 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
  > <b>Tshepang Mogaila: </b> <br>
  * <a href=""> GitHub  Profile  Page</a><br>
  * <a href=""> LinkedIn  Account </a><br>
- * <a href=""> GitHub  Account </a><br>
  <details>
   <summary><b>Description</b></summary>
  </details>
