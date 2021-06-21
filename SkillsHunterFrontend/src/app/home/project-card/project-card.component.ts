@@ -76,7 +76,7 @@ export class ProjectCardComponent implements OnInit {
 
       //the service is called below
         this.projectCrud
-         .deleteProject(_project) //change so it calls update
+         .deleteProject(_project.ProjectId) //change so it calls update
          .subscribe((data) => {
            console.log('Response post', data);
          });

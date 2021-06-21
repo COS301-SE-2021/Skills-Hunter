@@ -27,10 +27,9 @@ export class ProjectCRUDService {
   }
 
   //external api to delete project is called here
-  deleteProject(formData: Project): Observable<any> {
-    return this.httpclient.post(
-      'http://localhost:5000/api/Project/createProject',
-      formData
+  deleteProject(formData): Observable<any> {
+    return this.httpclient.delete(
+      'http://localhost:5000/api/Project/deleteProjectSkill/' + formData
     );
   }
 
