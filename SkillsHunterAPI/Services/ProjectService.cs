@@ -138,9 +138,12 @@ namespace SkillsHunterAPI.Services
 
 
             Invitation existingInvitations = _context.Invitations.Where(ss => ss.InviteeId == inviteeId && ss.ProjectId == ProjectId).FirstOrDefault();
+            User ownerFromDB = _context.Users.Where(ss => ss.UserId == userId).FirstOrDefault();
+            User inviteeFromDB = _context.Users.Where(ss => ss.UserId == inviteeId).FirstOrDefault();
+            Project projectFromDB = _context.Projects.Where(ss => ss.ProjectId == ProjectId).FirstOrDefault();
 
-            
-            if(existingInvitations != null)
+
+            if (existingInvitations != null || ownerFromDB == null || inviteeFromDB == null || projectFromDB == null || projectFromDB.Owner != userId)
             {
                 return false;
             }
