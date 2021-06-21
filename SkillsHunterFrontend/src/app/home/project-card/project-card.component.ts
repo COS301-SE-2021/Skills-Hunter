@@ -25,12 +25,21 @@ export class ProjectCardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(localStorage.getItem('role')=='candidate'){
+    if(localStorage.getItem('role')=='Candidate'){
 
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visDelete', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
+      document.getElementById("createbtn").style.visibility = "hidden";
+    }
+    else if(localStorage.getItem('role')=='Admin'){
+      document.documentElement.style.setProperty('--visFind', 'none');
+      document.documentElement.style.setProperty('--visUpdate', 'none');
+      document.documentElement.style.setProperty('--visAppl', 'none');
+      document.documentElement.style.setProperty('--visCancel', 'none');
+      document.getElementById("createbtn").style.visibility = "hidden";
+
     }
     else{
       document.documentElement.style.setProperty('--visAppl', 'none');
@@ -59,18 +68,18 @@ export class ProjectCardComponent implements OnInit {
 
   delete(_project: Project) {
     if (confirm(`Are you sure to delete ${_project.Name}`)) {
-      for (let [i, proj] of Projects.entries()) {
+      /*for (let [i, proj] of Projects.entries()) {
         if (proj.ProjectId == _project.ProjectId) {
           Projects.splice(i, 1);
         }
-      }
+      }*/
 
       //the service is called below
-      // this.projectCrud
-      //   .createProject(_project) //change so it calls update
-      //   .subscribe((data) => {
-      //     console.log('Response post', data);
-      //   });
+        this.projectCrud
+         .deleteProject(_project) //change so it calls update
+         .subscribe((data) => {
+           console.log('Response post', data);
+         });
     }
   }
 
