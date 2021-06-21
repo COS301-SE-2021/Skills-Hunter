@@ -24,7 +24,7 @@ export class AdminAddSkillComponent implements OnInit {
 
     skillData.SkillId = Skills.length.toString();
 
-    skillData.SkillName = <string>(
+    skillData.Name = <string>(
       (<any>this.skillForm.controls['skillName'].value)
     );
 
