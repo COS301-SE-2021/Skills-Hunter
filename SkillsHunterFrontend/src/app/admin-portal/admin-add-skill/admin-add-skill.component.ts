@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Skills } from 'src/app/mock-data/mock-skills';
+import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
 
 @Component({
   selector: 'app-admin-add-skill',
@@ -10,7 +11,7 @@ import { Skills } from 'src/app/mock-data/mock-skills';
   styleUrls: ['./admin-add-skill.component.scss'],
 })
 export class AdminAddSkillComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<AdminAddSkillComponent>) {}
+  constructor(public dialogRef: MatDialogRef<AdminAddSkillComponent>, private adminSkillOperations: AdminDashboardService) {}
 
   ngOnInit(): void {}
 
@@ -30,6 +31,9 @@ export class AdminAddSkillComponent implements OnInit {
     skillData.CategoryId = 'Category';
 
     Skills.push(skillData);
+
+    this.adminSkillOperations.adminAddSkill(skillData);
+
     this.cancel();
   }
 

@@ -58,18 +58,24 @@ export class AdminPortalComponent implements OnInit {
     this.table.renderRows();
   }
 
-  removeSkill(Skill_ID: string) {
+  removeSkill(skill: Skill) {
+    let Skill_ID =  skill.SkillId;
     for (var index = 0; index < Skills.length; index++) {
       if (
         Skills[index].SkillId.toString().toLowerCase() ===
         Skill_ID.toString().toLowerCase()
       )
         Skills.splice(index, 1);
+
+      this.adminSkillOperations.adminRemoveSkill(skill);
     }
 
     // refresh the list of skills:
     this.dataSourceTB = new MatTableDataSource(Skills);
     this.table.renderRows();
+
+    // send request to backend:
+    this.adminSkillOperations.adminRemoveSkill(skill);
   }
 
   applyFilter(event: Event) {

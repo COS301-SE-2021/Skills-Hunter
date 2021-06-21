@@ -3,7 +3,7 @@ import { AdminAddSkillComponent } from './../admin-portal/admin-add-skill/admin-
 import { AdminPortalComponent } from './../admin-portal/admin-portal.component';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +12,21 @@ export class AdminDashboardService {
 
   constructor(private httpclient: HttpClient) { }
 
-//send request to back end to validate user login details
+  endPoint = 'http://localhost:5000/api/';
+
+  httpHeader = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }  
+
 adminAddSkill(formData: Skill): Observable<any> {
-  return this.httpclient.post(
-    'http://localhost:5000/api/Admin/addSkill',
-    formData
-  );
+  return this.httpclient.post<Skill>(this.endPoint+'Admin/addSkill', JSON.stringify(Skill), this.httpHeader);
+}
+
+//send request to back end to validate user login details
+adminRemoveSkill(formData: Skill): Observable<any> {
+  return this.httpclient.delete<Skill>(this.endPoint + 'Admin/removeSkill' + formData.SkillId, this.httpHeader);
 }
 
 }
