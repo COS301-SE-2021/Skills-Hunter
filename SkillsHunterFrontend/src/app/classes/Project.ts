@@ -1,5 +1,5 @@
 export class Project {
-  id: number;
+  ProjectId: string;
   Name: string;
   Description: string;
   Owner: string;
