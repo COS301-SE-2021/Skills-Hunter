@@ -69,14 +69,15 @@ export class AdminPortalComponent implements OnInit {
   }
 
   removeSkill(skill: Skill) {
-    let Skill_ID =  skill.SkillId;
-    for (var index = 0; index < Skills.length; index++) {
-      if (
-        Skills[index].SkillId.toString().toLowerCase() ===
-        Skill_ID.toString().toLowerCase()
-      )
-        Skills.splice(index, 1);
-      }    
+    // let Skill_ID =  skill.SkillId;
+    // for (var index = 0; index < Skills.length; index++) {
+    //   if (
+    //     Skills[index].SkillId.toString().toLowerCase() ===
+    //     Skill_ID.toString().toLowerCase()
+    //   )
+    //     Skills.splice(index, 1);
+    //   } 
+    Skills.shift();   
     // the service is called below
     this.adminSkillOperations.adminRemoveSkill(skill).subscribe((data) => {
       console.log('Removing a Skill\n', data);
