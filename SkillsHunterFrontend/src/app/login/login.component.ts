@@ -52,11 +52,15 @@ export class LoginComponent implements OnInit {
 
     if (true) {
 
-      // localStorage.setItem('role', 'Admin');
-      //localStorage.setItem('role', 'Candidate');
-      localStorage.setItem('role', 'ProjectOwner');
 
-      localStorage.setItem('userID', '3fa85f64-5717-4562-b3fc-2c963f66afa6');
+      /*localStorage.setItem('role', 'ProjectOwner');
+      localStorage.setItem('userID', '5670EB33-F5ED-48A1-824F-CDD334279B63');*/
+
+     localStorage.setItem('role', 'Admin');
+      localStorage.setItem('userID', '61811B1B-3B31-420F-82FE-CE91DBAFC289');
+
+     /* localStorage.setItem('role', 'Candidate');
+      localStorage.setItem('userID', '5670EB33-F5ED-48A1-824F-CDD334279B63');*/
 
       this._match = true;
       this._router.navigate([`home`]);
