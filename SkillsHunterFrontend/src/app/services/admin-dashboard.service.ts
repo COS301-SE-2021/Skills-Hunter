@@ -20,17 +20,16 @@ export class AdminDashboardService {
     })
   }  
 
-adminAddSkill(formData: Skill): Observable<any> {
+adminGetSkills(): Observable<Skill[]> {
+  return this.httpclient.get<Skill[]>(this.endPoint+'Admin/getSkills');
+}
+
+adminAddSkill(formData: Skill): Observable<Skill> {
   console.log(formData);
   return this.httpclient.post<Skill>(this.endPoint+'Admin/addSkill', JSON.stringify(formData), this.httpHeader);
 }
 
-//send request to back end to validate user login details
-// adminRemoveSkill(formData: Skill): Observable<any> {
-//   return this.httpclient.delete<Skill>(this.endPoint + 'Admin/removeSkill&skillId=' + formData.SkillId, this.httpHeader);
-// }
-
-adminRemoveSkill(formData: Skill): Observable<any> {
+adminRemoveSkill(formData: Skill): Observable<Skill> {
   return this.httpclient.post<Skill>(this.endPoint+'Admin/removeSkill', formData.SkillId, this.httpHeader);
 }
 

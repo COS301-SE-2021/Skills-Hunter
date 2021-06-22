@@ -41,7 +41,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    // component: AdminPortalComponent,
     component: LoginComponent,
   }
 

@@ -11,6 +11,8 @@ namespace SkillsHunterAPI.Services
     public interface IAdminService
     {
         Task<Skill> AddSkill(Skill skill);
+
+        Task<List<Skill>> GetSkills();
         Task<Category> AddCategory(Category category);
         Task<Skill> RemoveSkill(Guid id);
         //Task<Project> RemoveProject(Guid id);
