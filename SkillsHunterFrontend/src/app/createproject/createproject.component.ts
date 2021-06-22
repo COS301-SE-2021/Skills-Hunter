@@ -41,30 +41,30 @@ export class CreateprojectComponent implements OnInit {
       <string>(<any>this.projectInfo.controls['openForApplication'].value) ==
       'Yes'
     ) {
-      formData.OpenForApplication = true;
+      formData.openForApplication = true;
     } else {
-      formData.OpenForApplication = true;
+      formData.openForApplication = true;
     }
 
     // Generate random number for Project ID:
     let max = 1000;
     let min = Projects.length;
 
-    formData.ProjectId = (
+    formData.projectId = (
       Math.floor(Math.random() * (max - min + 1)) + min
     ).toString();
 
-    formData.Name = <string>(
+    formData.name = <string>(
       (<any>this.projectInfo.controls['projectName'].value)
     );
-    formData.Description = <string>(
+    formData.description = <string>(
       (<any>this.projectInfo.controls['description'].value)
     );
 
-    formData.Owner = 'Mxo Developers';
-    formData.Location = 'Hatfield';
+    formData.owner = 'Mxo Developers';
+    formData.location = 'Hatfield';
 
-    formData.Skill = (<string>(<any>this.projectInfo.controls['skill'].value))
+    formData.skill = (<string>(<any>this.projectInfo.controls['skill'].value))
       .toString()
       .split(',');
 
