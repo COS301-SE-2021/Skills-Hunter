@@ -25,7 +25,6 @@ export class CreateprojectComponent implements OnInit {
   projectInfo: FormGroup = new FormGroup({
     projectName: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    industry: new FormControl('', [Validators.required]),
     skill: new FormControl('', [Validators.required]),
     openForApplication: new FormControl('', [Validators.required]),
   });
