@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SkillsHunterAPI.Models.User
@@ -22,5 +23,9 @@ namespace SkillsHunterAPI.Models.User
         
         [Required]
         public UserType Role {get; set;}
+
+        public DateTime StartDate {get; set; }
+        
+        public Boolean OpenForWork {get; set; }
     }
 }

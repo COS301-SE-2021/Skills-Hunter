@@ -5,6 +5,10 @@ using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -22,9 +26,32 @@ namespace SkillsHunterAPI.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("api/[controller]/register")]
-        public async Task<RegisterResponse> Register([FromBody]RegisterRequest request)
+        public IActionResult Register([FromBody]RegisterRequest request)
         {
-            return new RegisterResponse();
+            // map model to entity
+            User user = new User()
+            {
+                Name = request.Name,
+                Surname = request.Surname,
+                Phone = request.Phone,
+                Email = request.Email,
+                UserType = request.Role,
+                StartDate = request.StartDate,
+                OpenForWork = request.OpenForWork,
+            };
+
+            try
+            {
+                // create user
+                _userService.Create(user, request.Password);
+                return Ok();
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception
+                return BadRequest(new { message = error.Message });
+            }
+
         }
 
         [AllowAnonymous]
