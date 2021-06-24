@@ -9,7 +9,7 @@ namespace SkillsHunterAPI.Services
     {
         User Create(User request,string password);
         
-        Task<User> LogIn(string email, string pass);
+        User Authenticate(string email, string pass);
         
         //Task<LogOutResponse> LogOut(LogOutRequest request);
         
