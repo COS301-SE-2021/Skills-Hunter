@@ -21,16 +21,17 @@ namespace SkillsHunterAPI.Controllers
         [HttpPost]
         [Route("api/[controller]/register")]
 
-        public async Task<RegisterResponse> Register(RegisterRequest request)
+        public async Task<RegisterResponse> Register([FromBody]RegisterRequest request)
         {
             User newUser = new User();
+
             newUser.Name = request.Name;
             newUser.Surname = request.Surname;
             newUser.Phone = request.Phone;
             newUser.Password = request.Password;
+            newUser.Email = request.Email;
             newUser.UserType = request.Role;
-            //newUser.StartDate = request.St
-            newUser = _userService.AddUser(newUser);
+            newUser = await _userService.AddUser(newUser);
 
             RegisterResponse response = new RegisterResponse();
 
@@ -49,7 +50,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/login")]
-        public async Task<LogInResponse> LogIn(LogInRequest request)
+        public async Task<LogInResponse> LogIn([FromBody]LogInRequest request)
         {
             User loginUser = await _userService.LogIn(request.Email, request.Password);
 
@@ -62,7 +63,7 @@ namespace SkillsHunterAPI.Controllers
             else
             {
                 response.UserName = loginUser.Name;
-                response.UserId = response.UserId;
+                response.UserId = loginUser.UserId;
                 response.Validated = true;
             }
 
@@ -79,7 +80,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/update")]
-        public Task<UpdateResponse> UpdateUser(UpdateRequest request)
+        public Task<UpdateResponse> UpdateUser([FromBody]UpdateRequest request)
         {
             //var response = await _userService.UpdateUser(request);
             return null;
@@ -87,7 +88,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/delete")]
-        public async Task<DeleteResponse> DeleteUser(DeleteRequest request)
+        public async Task<DeleteResponse> DeleteUser([FromBody]DeleteRequest request)
         {
             var response = await _userService.DeleteUser(request);
             return response;
@@ -103,7 +104,9 @@ namespace SkillsHunterAPI.Controllers
 
             foreach (User user in usersFromDb)
             {
-                GetUserResponse tempUser = await GetUser(user.UserId.ToString());
+                GetUserRequest getUserRequest = new GetUserRequest();
+                getUserRequest.UserId = user.UserId;
+                GetUserResponse tempUser = await GetUser(getUserRequest);
 
                 response.Add(tempUser);
             }
@@ -113,9 +116,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getUser/{id}")]
-        public async Task<GetUserResponse> GetUser(string id)
+        public async Task<GetUserResponse> GetUser([FromRoute]GetUserRequest getUserRequest)
         {
-            User user = await _userService.GetUser(new Guid(id));
+            User user = await _userService.GetUser(getUserRequest.UserId);
 
             GetUserResponse response = new GetUserResponse();
 
