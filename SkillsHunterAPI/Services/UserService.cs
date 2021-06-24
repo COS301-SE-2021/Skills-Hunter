@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Collections.Generic;
 using SkillsHunterAPI.Data;
+using System.Linq;
 
 namespace SkillsHunterAPI.Services
 {
@@ -13,35 +14,41 @@ namespace SkillsHunterAPI.Services
     {
         private readonly ApplicationDbContext _context;
 
-        private string Hash(string Password){
-            // generate a 128-bit salt using a secure PRNG
-            // byte[] salt = new byte[128 / 8];
-            
-            // using (var rng = RandomNumberGenerator.Create())
-            // {
-            //     rng.GetBytes(salt);
-            // }
-    
-            // // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
-            // string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-            //     password: Password,
-            //     salt: salt,
-            //     prf: KeyDerivationPrf.HMACSHA1,
-            //     iterationCount: 10000,
-            //     numBytesRequested: 256 / 8));
-
-            // return hashed;
-            return Password;
-        }
-
         public UserService(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<User> AddUser(User request)
+        public User Create(User user,string password)
         {
-            return request;
+            if (string.IsNullOrWhiteSpace(password))
+                throw new Exception("Password is required");
+
+            if (_context.Users.Any(x => x.Email == user.Email))
+                throw new Exception("Email \"" + user.Email + "\" is already taken");
+
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            return user;
+        }
+
+        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            if (password == null) throw new ArgumentNullException("password");
+            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
+
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
         }
 
         public async Task<User> LogIn(string email, string pass)
