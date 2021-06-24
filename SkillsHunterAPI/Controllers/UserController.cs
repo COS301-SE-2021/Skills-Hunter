@@ -4,9 +4,11 @@ using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SkillsHunterAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     public class UserController: ControllerBase
     {
@@ -17,16 +19,15 @@ namespace SkillsHunterAPI.Controllers
             _userService = userService;
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         [Route("api/[controller]/register")]
-
         public async Task<RegisterResponse> Register([FromBody]RegisterRequest request)
         {
             return new RegisterResponse();
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         [Route("api/[controller]/login")]
         public async Task<LogInResponse> LogIn([FromBody]LogInRequest request)
