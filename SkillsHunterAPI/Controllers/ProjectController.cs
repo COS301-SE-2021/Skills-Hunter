@@ -90,6 +90,36 @@ namespace SkillsHunterAPI.Controllers
             return projectResponse;
         }
 
+
+
+        [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/getProjects")]
+        public async Task<IEnumerable<ProjectResponse>> GetProjectsByOwnerId()
+        {
+            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
+
+            List<Project> projects = (List<Project>)await _projectService.GetProjects();
+
+            var LoggedInOwner = new Guid();
+
+            foreach (Project project in projects)
+            {
+                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
+
+                if (retrievedProject != null && retrievedProject.Owner == LoggedInOwner)
+                {
+                    projectResponses.Add(retrievedProject);
+                }
+
+            }
+
+            return projectResponses;
+        }
+
+
+
+
+
         [HttpPost]
         [Route("api/[controller]/createProject")]
         public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] ProjectRequest projectRequest)
