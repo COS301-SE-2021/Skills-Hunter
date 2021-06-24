@@ -100,7 +100,10 @@ namespace SkillsHunterAPI.Controllers
 
             List<Project> projects = (List<Project>)await _projectService.GetProjects();
 
+            
+            //This gets identity of the user logged-in
             var LoggedInOwner = new Guid();
+
 
             foreach (Project project in projects)
             {
