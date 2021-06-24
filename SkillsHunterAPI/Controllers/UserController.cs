@@ -23,28 +23,7 @@ namespace SkillsHunterAPI.Controllers
 
         public async Task<RegisterResponse> Register([FromBody]RegisterRequest request)
         {
-            User newUser = new User();
-
-            newUser.Name = request.Name;
-            newUser.Surname = request.Surname;
-            newUser.Phone = request.Phone;
-            newUser.Password = request.Password;
-            newUser.Email = request.Email;
-            newUser.UserType = request.Role;
-            newUser = await _userService.AddUser(newUser);
-
-            RegisterResponse response = new RegisterResponse();
-
-            if (newUser != null)
-            {
-                response.Successful = true;
-            }
-            else
-            {
-                response.Successful = false;
-            }
-
-            return response;
+            return new RegisterResponse();
         }
 
 

@@ -41,28 +41,12 @@ namespace SkillsHunterAPI.Services
 
         public async Task<User> AddUser(User request)
         {
-            request.UserId = Guid.NewGuid();
-
-            request.Password = Hash(request.Password);            
-            _context.Users.Add(request);
-            await _context.SaveChangesAsync();
-
             return request;
         }
 
         public async Task<User> LogIn(string email, string pass)
         {
-            var allUsers = await _context.Users.ToListAsync();
             User result = null;
-            
-            foreach (var user in allUsers)
-            {
-
-                if(user.Email == email && user.Password == Hash(pass)){
-                    result = user;
-                    break;
-                }    
-            }
             return result;
         }
 
