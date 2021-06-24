@@ -56,10 +56,36 @@ namespace SkillsHunterAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("api/[controller]/login")]
-        public async Task<LogInResponse> LogIn([FromBody]LogInRequest request)
+        [Route("api/[controller]/Authenticate")]
+        public IActionResult Authenticate([FromBody]AuthenticateRequest request)
         {
-            return new LogInResponse();
+            var user = _userService.Authenticate(request.Email, request.Password);
+
+            if (user == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("Skills hunter validation string");
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.UserId.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+            // return basic user info and authentication token
+            return Ok(new
+            {
+                Id = user.UserId,
+                Name = user.Name,
+                Surname = user.Surname,
+                Token = tokenString
+            });
         }
 
         [HttpGet]
