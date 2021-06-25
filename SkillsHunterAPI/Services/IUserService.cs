@@ -19,7 +19,7 @@ namespace SkillsHunterAPI.Services
         
         Task<IEnumerable<User>> GetAllUsers();
         
-        Task<User> GetUser(Guid request);
+        User GetUser(Guid request);
 
         Task AddUserSkill(UserSkill request);
         

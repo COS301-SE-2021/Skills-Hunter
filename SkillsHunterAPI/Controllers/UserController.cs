@@ -124,7 +124,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 GetUserRequest getUserRequest = new GetUserRequest();
                 getUserRequest.UserId = user.UserId;
-                GetUserResponse tempUser = await GetUser(getUserRequest);
+                GetUserResponse tempUser =  GetUser(getUserRequest);
 
                 response.Add(tempUser);
             }
@@ -134,9 +134,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getUser/{id}")]
-        public async Task<GetUserResponse> GetUser([FromRoute]GetUserRequest getUserRequest)
+        public GetUserResponse GetUser([FromRoute]GetUserRequest getUserRequest)
         {
-            User user = await _userService.GetUser(getUserRequest.UserId);
+            User user = _userService.GetUser(getUserRequest.UserId);
 
             GetUserResponse response = new GetUserResponse();
 
