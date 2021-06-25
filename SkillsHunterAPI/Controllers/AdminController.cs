@@ -5,9 +5,11 @@ using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Project;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SkillsHunterAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     public class AdminController: ControllerBase
     {
