@@ -12,4 +12,6 @@ export class InviteCandidateComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
 }
