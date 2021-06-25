@@ -26,12 +26,14 @@ export class InviteCandidateComponent implements OnInit {
       "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "projectId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "inviteeId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "message": "string"
+      "message": "message is this!"
     }
 
-    formData.message = <string>(
-      (<any>this.invitationForm.controls['candidateMessage'].value)
-    );
+    // formData.message = <string>(
+    //   (<any>this.invitationForm.controls['candidateMessage'].value)
+    // );
+    
+    console.log("MESSAGE IS = "+formData.message);
     
     this.projService.inviteCandidate(formData).subscribe((data) => {
       console.log('Candidate was invited...');
