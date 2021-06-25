@@ -9,6 +9,8 @@ import { projectService } from './services/project-edit.service';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
+import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
+import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
 
 const routes: Routes = [
   {
@@ -40,8 +42,13 @@ const routes: Routes = [
     component: AdminPortalComponent,
   },
   {
+    path: 'invite-candidate',
+    component: InviteCandidateComponent,
+  },
+  {
     path: '',
-    component: LoginComponent,
+    // component: CandidateCardComponent,
+    component:LoginComponent
   }
 
 ];

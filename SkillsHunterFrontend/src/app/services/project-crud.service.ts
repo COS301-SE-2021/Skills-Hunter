@@ -43,12 +43,11 @@ export class ProjectCRUDService {
     );
   }
 
-  // inviteCandidate(formData): Observable<Project[]> {
-
-  //   return this.httpclient.post<Project[]>(
-  //     'http://localhost:5000/api/Project/inviteCandidate', 
-  //   );
-  // }
+  inviteCandidate(formData): Observable<Project[]> {
+    return this.httpclient.post<Project[]>(
+      'http://localhost:5000/api/Project/inviteCandidate', formData 
+    );
+  }
 
   apply(formData):Observable <any>{
     return this.httpclient.post(
