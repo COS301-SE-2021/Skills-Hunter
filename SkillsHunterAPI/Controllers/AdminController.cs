@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SkillsHunterAPI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [ApiController]
     public class AdminController: ControllerBase
     {

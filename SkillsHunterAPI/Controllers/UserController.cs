@@ -59,6 +59,7 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/Authenticate")]
         public IActionResult Authenticate([FromBody]AuthenticateRequest request)
         {
+
             var user = _userService.Authenticate(request.Email, request.Password);
 
             if (user == null)
@@ -70,7 +71,8 @@ namespace SkillsHunterAPI.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.UserId.ToString())
+                    new Claim(ClaimTypes.Name, user.UserId.ToString()),
+                    new Claim(ClaimTypes.Role, user.UserType.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -84,6 +86,7 @@ namespace SkillsHunterAPI.Controllers
                 Id = user.UserId,
                 Name = user.Name,
                 Surname = user.Surname,
+                Role = user.UserType.ToString(),
                 Token = tokenString
             });
         }
