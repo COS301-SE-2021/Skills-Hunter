@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -105,8 +106,12 @@ namespace SkillsHunterAPI.Controllers
 
 
             //This gets identity of the user logged-in
-            var LoggedInOwner = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6");
+            var LoggedInUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+
+
+            var LoggedInOwner = new Guid(LoggedInUserId);
+            
 
 
             foreach (Project project in projects)
