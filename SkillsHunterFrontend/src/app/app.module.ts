@@ -23,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
+import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add
     ProjectCardComponent,
     AdminPortalComponent,
     AdminAddSkillComponent,
+    InviteCandidateComponent,
   ],
   imports: [
     BrowserModule,
