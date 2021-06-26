@@ -109,8 +109,24 @@ namespace SkillsHunterAPI.Controllers
 
 
 
+            foreach (Project project in projects)
+            {
+                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
 
-            [HttpPost]
+                if (retrievedProject != null && retrievedProject.Owner == LoggedInOwner)
+                {
+                    projectResponses.Add(retrievedProject);
+                }
+
+            }
+
+            return projectResponses;
+        }
+
+
+
+
+        [HttpPost]
         [Route("api/[controller]/createProject")]
         public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] ProjectRequest projectRequest)
         {
