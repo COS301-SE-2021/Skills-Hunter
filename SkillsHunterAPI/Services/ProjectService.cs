@@ -54,6 +54,11 @@ namespace SkillsHunterAPI.Services
             return await _context.Projects.ToListAsync();
         }
 
+        public async Task<IEnumerable<Project>> GetProjectsByOwnerId()
+        {
+            return await _context.Projects.ToListAsync();
+        }
+
         public async Task UpdateProject(Guid projectId, Project project)
         {
             //_context.Entry(project).State = EntityState.Modified;

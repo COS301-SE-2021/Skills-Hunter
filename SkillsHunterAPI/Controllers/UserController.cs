@@ -4,9 +4,15 @@ using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 
 namespace SkillsHunterAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     public class UserController: ControllerBase
     {
@@ -17,57 +23,75 @@ namespace SkillsHunterAPI.Controllers
             _userService = userService;
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         [Route("api/[controller]/register")]
-
-        public async Task<RegisterResponse> Register([FromBody]RegisterRequest request)
+        public IActionResult Register([FromBody]RegisterRequest request)
         {
-            User newUser = new User();
-
-            newUser.Name = request.Name;
-            newUser.Surname = request.Surname;
-            newUser.Phone = request.Phone;
-            newUser.Password = request.Password;
-            newUser.Email = request.Email;
-            newUser.UserType = request.Role;
-            newUser = await _userService.AddUser(newUser);
-
-            RegisterResponse response = new RegisterResponse();
-
-            if (newUser != null)
+            // map model to entity
+            User user = new User()
             {
-                response.Successful = true;
-            }
-            else
+                Name = request.Name,
+                Surname = request.Surname,
+                Phone = request.Phone,
+                Email = request.Email,
+                UserType = request.Role,
+                StartDate = request.StartDate,
+                OpenForWork = request.OpenForWork,
+            };
+
+            try
             {
-                response.Successful = false;
+                // create user
+                _userService.Create(user, request.Password);
+                return Ok();
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception
+                return BadRequest(new 
+                    { 
+                        message = error.Message 
+                    });
             }
 
-            return response;
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
-        [Route("api/[controller]/login")]
-        public async Task<LogInResponse> LogIn([FromBody]LogInRequest request)
+        [Route("api/[controller]/Authenticate")]
+        public IActionResult Authenticate([FromBody]AuthenticateRequest request)
         {
-            User loginUser = await _userService.LogIn(request.Email, request.Password);
 
-            LogInResponse response = new LogInResponse();
+            var user = _userService.Authenticate(request.Email, request.Password);
 
-            if (loginUser == null)
+            if (user == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("Skills hunter validation string");
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
-                response.Validated = false;
-            }
-            else
-            {
-                response.UserName = loginUser.Name;
-                response.UserId = loginUser.UserId;
-                response.Validated = true;
-            }
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.UserId.ToString()),
+                    new Claim(ClaimTypes.Role, user.UserType.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
 
-            return response;
+            // return basic user info and authentication token
+            return Ok(new AuthenticateResponse()
+            {
+                Id = user.UserId,
+                Name = user.Name,
+                Surname = user.Surname,
+                Role = user.UserType,
+                Token = tokenString
+            });
         }
 
         [HttpGet]
@@ -106,7 +130,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 GetUserRequest getUserRequest = new GetUserRequest();
                 getUserRequest.UserId = user.UserId;
-                GetUserResponse tempUser = await GetUser(getUserRequest);
+                GetUserResponse tempUser =  GetUser(getUserRequest);
 
                 response.Add(tempUser);
             }
@@ -116,9 +140,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getUser/{id}")]
-        public async Task<GetUserResponse> GetUser([FromRoute]GetUserRequest getUserRequest)
+        public GetUserResponse GetUser([FromRoute]GetUserRequest getUserRequest)
         {
-            User user = await _userService.GetUser(getUserRequest.UserId);
+            User user = _userService.GetUser(getUserRequest.UserId);
 
             GetUserResponse response = new GetUserResponse();
 

@@ -14,6 +14,7 @@ namespace SkillsHunterAPI.Services
         //Project
         Task<IEnumerable<Project>> GetProjects();
         Task<Project> GetProject(Guid id);
+        Task<IEnumerable<Project>> GetProjectsByOwnerId();
         Task<Project> CreateProject(Project project);
         Task UpdateProject(Guid id, Project project);
         Task DeleteProject(Guid id);

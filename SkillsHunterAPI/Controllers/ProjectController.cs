@@ -9,9 +9,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace SkillsHunterAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     public class ProjectController : ControllerBase
     {
@@ -89,6 +92,44 @@ namespace SkillsHunterAPI.Controllers
 
             return projectResponse;
         }
+
+
+
+
+        [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/getProjectsByOwnerId")]
+        public async Task<IEnumerable<ProjectResponse>> GetProjectsByOwnerId()
+        {
+            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
+
+            List<Project> projects = (List<Project>)await _projectService.GetProjects();
+
+
+            //This gets identity of the user logged-in
+            var LoggedInUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+
+            var LoggedInOwner = new Guid(LoggedInUserId);
+            
+
+
+            foreach (Project project in projects)
+            {
+                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
+
+                if (retrievedProject != null && retrievedProject.Owner == LoggedInOwner)
+                {
+                    projectResponses.Add(retrievedProject);
+                }
+
+            }
+
+            return projectResponses;
+        }
+
+
+
 
         [HttpPost]
         [Route("api/[controller]/createProject")]
