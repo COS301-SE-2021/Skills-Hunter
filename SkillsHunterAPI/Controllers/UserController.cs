@@ -49,7 +49,10 @@ namespace SkillsHunterAPI.Controllers
             catch (Exception error)
             {
                 // return error message if there was an exception
-                return BadRequest(new { message = error.Message });
+                return BadRequest(new 
+                    { 
+                        message = error.Message 
+                    });
             }
 
         }
@@ -81,12 +84,12 @@ namespace SkillsHunterAPI.Controllers
             var tokenString = tokenHandler.WriteToken(token);
 
             // return basic user info and authentication token
-            return Ok(new
+            return Ok(new AuthenticateResponse()
             {
                 Id = user.UserId,
                 Name = user.Name,
                 Surname = user.Surname,
-                Role = user.UserType.ToString(),
+                Role = user.UserType,
                 Token = tokenString
             });
         }
