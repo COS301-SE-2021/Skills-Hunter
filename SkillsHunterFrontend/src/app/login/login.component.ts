@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginRegisterService } from '../services/login-register.service';
@@ -34,38 +35,34 @@ export class LoginComponent implements OnInit {
     formData.Email = this.LoginForm.get('email').value;
     formData.Password = this.LoginForm.get('password').value;
 
-    /*this.loginService.login(formData)
+    this.loginService.login(formData)
     .subscribe(
       data=>{
-        console.log('Response post', data);
-        if(data.Validated)
+        
+        if(data.status==200)
         {
           this._match=true;
+          localStorage.setItem('role', data.body.role);
+          localStorage.setItem('token',data.body.token);
+          localStorage.setItem('name',data.body.name);
+          localStorage.setItem('surname',data.body.surname);
           this._router.navigate([`home`]);
         }
         else
         {
           this._match=false;
         }
+      },
+      err =>{
+       
+        if(err.status>=400 && err.status<500){
+          this._match=false;
+        }
+       else
+       {
+         console.log('HTTP Error1', err);//server error
+       }
       }
-    );*/
-
-    if (true) {
-
-
-      localStorage.setItem('role', 'ProjectOwner');
-      localStorage.setItem('userID', '5670EB33-F5ED-48A1-824F-CDD334279B63');
-
-    //  localStorage.setItem('role', 'Admin');
-    //   localStorage.setItem('userID', '61811B1B-3B31-420F-82FE-CE91DBAFC289');
-
-     /* localStorage.setItem('role', 'Candidate');
-      localStorage.setItem('userID', '5670EB33-F5ED-48A1-824F-CDD334279B63');*/
-
-      this._match = true;
-      this._router.navigate([`home`]);
-    } else {
-      this._match = false;
-    }
+    );
   }
 }
