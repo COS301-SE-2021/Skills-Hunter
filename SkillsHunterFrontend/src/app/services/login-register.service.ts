@@ -13,16 +13,17 @@ export class LoginRegisterService {
   //send request to back end to validate user login details
   login(formData: Login): Observable<any> {
     return this.httpclient.post(
-      'http://localhost:5000/api/Project/createProject',
-      formData
+      'http://localhost:5000/api/User/Authenticate',
+      formData,{observe:'response'}
     );
   }
 
   //send request to back end to register new user
   register(formData: Register): Observable<any> {
+    
     return this.httpclient.post(
-      'http://localhost:5000/api/Project/createProject',
-      formData
+      'http://localhost:5000/api/User/register',
+      formData,{observe:'response'}
     );
   }
 }
