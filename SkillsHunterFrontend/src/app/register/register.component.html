@@ -65,6 +65,24 @@
     <br />
 
     <mat-form-field class="field">
+      <mat-label>Phone number</mat-label>
+      <input formControlName="phone" matInput required />
+      <!-- mat-error is for validation -->
+      <mat-error
+        *ngIf="
+          registationForm.controls['phone'].hasError('pattern') &&
+          !registationForm.controls['phone'].hasError('required')
+        "
+      >
+        please enter a valid phone number
+      </mat-error>
+      <mat-error *ngIf="registationForm.controls['phone'].hasError('required')">
+        phone number is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field class="field">
       <mat-label>password</mat-label>
       <input
         formControlName="password"
@@ -92,7 +110,22 @@
         }}</mat-icon>
       </button>
     </mat-form-field>
+    <br />
 
+    <mat-form-field class="field">
+      <mat-label>I want to:</mat-label>
+      <mat-select formControlName="indicateRole">
+        <mat-option style="color: black" *ngFor="let o of role" [value]="o">{{
+          o
+        }}</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="registationForm.controls['indicateRole'].hasError('required')"
+      >
+        This field is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
     <div class="form-group">
       <button
         id="register"
@@ -101,13 +134,14 @@
           registationForm.controls['name'].invalid ||
           registationForm.controls['surname'].invalid ||
           registationForm.controls['email'].invalid ||
-          registationForm.controls['password'].invalid
+          registationForm.controls['password'].invalid ||
+          registationForm.controls['indicateRole'].invalid
         "
         type="submit"
       >
         Register</button
       ><br /><br />
-      <p *ngIf="!_match" class="alert alert-danger">Something went wrong</p>
+      <p *ngIf="!_match" class="alert alert-danger">Something went wrong. Email address or phone number already exists</p>
       <a id="registerlink" [routerLink]="['/login']">Log in instead </a>
     </div>
   </form>
