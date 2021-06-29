@@ -30,7 +30,10 @@ namespace SkillsHunterAPI.Services
                 throw new Exception("Password is required");
 
             if (_context.Users.Any(x => x.Email == user.Email))
-                throw new Exception("Email \"" + user.Email + "\" is already taken");
+                throw new Exception("Email address '" + user.Email + "' is already taken");
+
+            if (_context.Users.Any(x => x.Phone == user.Phone))
+                throw new Exception("Phone number '" + user.Phone + "' is already taken");
 
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);

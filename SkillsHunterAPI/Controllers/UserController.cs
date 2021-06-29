@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Models.User;
@@ -21,6 +22,22 @@ namespace SkillsHunterAPI.Controllers
         public UserController(IUserService userService)
         {
             _userService = userService;
+        }
+
+        private Guid GetCurrentUserId(){
+            Guid result = new Guid();
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                IEnumerable<Claim> claims = identity.Claims; 
+                var id = claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault();
+                result =  Guid.Parse(id.Value);
+            }else
+            {
+                throw new Exception("Could not retrieve current user id");
+            }
+
+            return result;         
         }
 
         [AllowAnonymous]
@@ -66,7 +83,7 @@ namespace SkillsHunterAPI.Controllers
             var user = _userService.Authenticate(request.Email, request.Password);
 
             if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+                return BadRequest(new { message = "Email or password is incorrect" });
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("Skills hunter validation string");
