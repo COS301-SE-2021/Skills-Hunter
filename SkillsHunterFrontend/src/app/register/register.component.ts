@@ -46,7 +46,8 @@ export class RegisterComponent implements OnInit {
     formData.email = this.registationForm.get('email').value;
     formData.password = this.registationForm.get('password').value;
     formData.phone=`${this.registationForm.get('phone').value}`;
-    if(this.registationForm.get('password').value=='create a project and recruit candidates')
+
+    if(this.registationForm.get('indicateRole').value=='create a project and recruit candidates')
     {
       formData.role = 1;
     }
@@ -54,7 +55,7 @@ export class RegisterComponent implements OnInit {
     {
       formData.role = 0;
     }
-    console.log("phone: "+formData.phone);
+    console.log("phone: "+formData.role);
  
     this.registerService.register(formData)
     .subscribe(
