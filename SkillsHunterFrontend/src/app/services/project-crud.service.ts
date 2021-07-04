@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Project } from '../classes/Project';
 
 @Injectable({
@@ -38,8 +38,9 @@ export class ProjectCRUDService {
 
   //external api to read project is called here
   getProjects(): Observable<Project[]> {
+    let headers=new HttpHeaders().set('Authorization',localStorage.getItem('token'));
     return this.httpclient.get<Project[]>(
-      'http://localhost:5000/api/Project/getProjects'
+      'http://localhost:5000/api/Project/getProjects',{headers}
     );
   }
 
