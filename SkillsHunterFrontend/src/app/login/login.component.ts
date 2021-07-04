@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         {
           this._match=true;
           localStorage.setItem('role', data.body.role);
-          localStorage.setItem('token',data.body.token);
+          localStorage.setItem('token','Bearer '+data.body.token);
           localStorage.setItem('name',data.body.name);
           localStorage.setItem('surname',data.body.surname);
           this._router.navigate([`home`]);
