@@ -25,7 +25,7 @@ export class ProjectCardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(localStorage.getItem('role')=='Candidate'){
+    if(localStorage.getItem('role')=='0'){//Candidate
 
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
@@ -33,7 +33,7 @@ export class ProjectCardComponent implements OnInit {
       document.documentElement.style.setProperty('--visCancel', 'none');
       document.getElementById("createbtn").style.visibility = "hidden";
     }
-    else if(localStorage.getItem('role')=='Admin'){
+    else if(localStorage.getItem('role')=='3'){//admin
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visAppl', 'none');
@@ -41,7 +41,7 @@ export class ProjectCardComponent implements OnInit {
       document.getElementById("createbtn").style.visibility = "hidden";
 
     }
-    else{
+    else{//project owner
       document.documentElement.style.setProperty('--visAppl', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
     }
