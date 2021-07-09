@@ -15,22 +15,23 @@ namespace SkillsHunterAPI.Services
 
         private string Hash(string Password){
             // generate a 128-bit salt using a secure PRNG
-            byte[] salt = new byte[128 / 8];
+            // byte[] salt = new byte[128 / 8];
             
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(salt);
-            }
+            // using (var rng = RandomNumberGenerator.Create())
+            // {
+            //     rng.GetBytes(salt);
+            // }
     
-            // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
-            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: Password,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA1,
-                iterationCount: 10000,
-                numBytesRequested: 256 / 8));
+            // // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
+            // string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+            //     password: Password,
+            //     salt: salt,
+            //     prf: KeyDerivationPrf.HMACSHA1,
+            //     iterationCount: 10000,
+            //     numBytesRequested: 256 / 8));
 
-            return hashed;
+            // return hashed;
+            return Password;
         }
 
         public UserService(ApplicationDbContext context)
@@ -38,7 +39,7 @@ namespace SkillsHunterAPI.Services
             _context = context;
         }
 
-        public User AddUser(User request)
+        public async Task<User> AddUser(User request)
         {
             request.UserId = new Guid();
 
@@ -46,6 +47,7 @@ namespace SkillsHunterAPI.Services
             request.Password = Hash(request.Password);
             
             _context.Users.Add(request);
+            await _context.SaveChangesAsync();
 
             return request;
         }
@@ -53,7 +55,7 @@ namespace SkillsHunterAPI.Services
         public async Task<User> LogIn(string email, string pass)
         {
             var allUsers = await _context.Users.ToListAsync();
-            User result = new User();
+            User result = null;
             
             foreach (var user in allUsers)
             {
@@ -61,7 +63,8 @@ namespace SkillsHunterAPI.Services
                 if(user.Email == email && user.Password == Hash(pass)){
                     result = user;
                     break;
-                }    
+                }
+                
             }
             return result;
         }
