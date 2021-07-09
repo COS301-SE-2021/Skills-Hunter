@@ -24,6 +24,7 @@ namespace SkillsHunterAPI.Controllers
             _userService = userService;
         }
 
+
         private Guid GetCurrentUserId(){
             Guid result = new Guid();
             var identity = HttpContext.User.Identity as ClaimsIdentity;
@@ -111,6 +112,7 @@ namespace SkillsHunterAPI.Controllers
             });
         }
 
+
         [HttpGet]
         [Route("api/[controller]/logOut")]
         public Task<LogOutResponse> LogOut()
@@ -145,9 +147,7 @@ namespace SkillsHunterAPI.Controllers
 
             foreach (User user in usersFromDb)
             {
-                GetUserRequest getUserRequest = new GetUserRequest();
-                getUserRequest.UserId = user.UserId;
-                GetUserResponse tempUser =  GetUser(getUserRequest);
+                GetUserResponse tempUser = await GetUser(user.UserId.ToString());
 
                 response.Add(tempUser);
             }
@@ -157,9 +157,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getUser/{id}")]
-        public GetUserResponse GetUser([FromRoute]GetUserRequest getUserRequest)
+        public async Task<GetUserResponse> GetUser(string id)
         {
-            User user = _userService.GetUser(getUserRequest.UserId);
+            User user = await _userService.GetUser(new Guid(id));
 
             GetUserResponse response = new GetUserResponse();
 

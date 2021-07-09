@@ -110,11 +110,10 @@ namespace SkillsHunterAPI.Services
 
 
             Application applicationFromDB = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
-
             User userFromDB = _context.Users.Where(ss => ss.UserId == userId).FirstOrDefault();
             Project projectFromDB = _context.Projects.Where(ss => ss.ProjectId == ProjectId).FirstOrDefault();
-;
             if (applicationFromDB != null || userFromDB == null || projectFromDB == null)
+
             {
                 return false;
             }

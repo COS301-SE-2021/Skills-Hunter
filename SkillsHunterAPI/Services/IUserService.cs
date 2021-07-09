@@ -19,8 +19,10 @@ namespace SkillsHunterAPI.Services
         
         Task<IEnumerable<User>> GetAllUsers();
         
-        User GetUser(Guid request);
 
+        Task<User> GetUser(Guid request);
+
+        // Crud operations on the User Skill Model
         Task AddUserSkill(UserSkill request);
         
         Task UpdateUserSkill(Guid userSkillId, UserSkill request);
@@ -28,6 +30,7 @@ namespace SkillsHunterAPI.Services
         Task DeleteUserSkill(Guid id);
         
         Task<UserSkill> GetUserSkill(Guid id);
+
 
         Task AddWorkExperience(WorkExperience request);
         

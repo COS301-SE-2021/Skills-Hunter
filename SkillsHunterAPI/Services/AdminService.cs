@@ -41,10 +41,6 @@ namespace SkillsHunterAPI.Services
             return result;
         }
 
-        /*public async Task<Project> RemoveProject(Guid id){
-            return new Project();
-        }*/
-
         public async Task<Category> AddCategory(Category category){
             category.CategoryId = new Guid();
             

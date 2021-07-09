@@ -49,9 +49,42 @@ namespace SkillsHunterAPI.Controllers
             return projectResponses;
         }
 
+        [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/getProjectsByOwnerId")]
+        public async Task<IEnumerable<ProjectResponse>> GetProjectsByOwnerId()
+        {
+            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
+
+            List<Project> projects = (List<Project>)await _projectService.GetProjects();
+
+
+            //This gets identity of the user logged-in
+            var LoggedInUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+
+            var LoggedInOwner = new Guid(LoggedInUserId);
+            
+
+
+            foreach (Project project in projects)
+            {
+                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
+
+                if (retrievedProject != null && retrievedProject.Owner == LoggedInOwner)
+                {
+                    projectResponses.Add(retrievedProject);
+                }
+
+            }
+
+            return projectResponses;
+        }
+
+
         [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/getProject/{id}")]
-        public async Task<ProjectResponse> GetProject([FromRoute] string id)
+        public async Task<ProjectResponse> GetProject(string id)
         {
             Guid projectId = new Guid(id);
             Project project = await _projectService.GetProject(projectId);
@@ -91,41 +124,6 @@ namespace SkillsHunterAPI.Controllers
 
 
             return projectResponse;
-        }
-
-
-
-
-        [HttpGet]//This tells ASP.Net that the method will handle http get request
-        [Route("api/[controller]/getProjectsByOwnerId")]
-        public async Task<IEnumerable<ProjectResponse>> GetProjectsByOwnerId()
-        {
-            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
-
-            List<Project> projects = (List<Project>)await _projectService.GetProjects();
-
-
-            //This gets identity of the user logged-in
-            var LoggedInUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-
-
-            var LoggedInOwner = new Guid(LoggedInUserId);
-            
-
-
-            foreach (Project project in projects)
-            {
-                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
-
-                if (retrievedProject != null && retrievedProject.Owner == LoggedInOwner)
-                {
-                    projectResponses.Add(retrievedProject);
-                }
-
-            }
-
-            return projectResponses;
         }
 
 
@@ -276,6 +274,7 @@ namespace SkillsHunterAPI.Controllers
 
         //Project Skills
 
+
         [HttpPost]
         [Route("api/[controller]/addProjectSkill")]
         public async Task<ActionResult> AddProjectSkill([FromBody] ProjectSkill projectSkill)
@@ -285,7 +284,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("api/[controller]/deleteProjectSkill")]
+        [Route("api/[controller]/deleteProjectSkill/{id}")]
         public async Task<ActionResult> RemoveProjectSkill(string id)
         {
             //var projectSkill = await _projectService.GetProjectSkill(id);

@@ -161,9 +161,9 @@ namespace SkillsHunterAPI.Services
             return await _context.Users.ToListAsync();
         }
 
-        public User GetUser(Guid request)
+        public async Task<User> GetUser(Guid request)
         {
-            return _context.Users.Find(request);
+            return await _context.Users.FindAsync(request);
         }
         // Crud operations on the User Skill Model
         public async Task AddUserSkill(UserSkill request)

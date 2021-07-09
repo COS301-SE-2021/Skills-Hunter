@@ -46,9 +46,11 @@ namespace SkillsHunterAPI.Controllers
             return response; 
         }
 
+
         [HttpPost]
         [Route("api/[controller]/removeSkill")]
         public async Task<RemoveSkillResponse> RemoveSkill([FromBody]RemoveSkillRequest removeSkillRequest)
+
         {
             RemoveSkillResponse response = new RemoveSkillResponse();
             
@@ -57,6 +59,7 @@ namespace SkillsHunterAPI.Controllers
 
             return response;
         }
+
 
         /*[HttpPost]
         [Route("api/[controller]/removeProject")]
