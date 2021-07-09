@@ -177,7 +177,7 @@ namespace SkillsHunterAPI.Services
 
             UserSkill result = await _context.UserSkills.FindAsync(userSkillId);
 
-            result.SkillID = request.SkillID;
+            result.SkillId = request.SkillId;
             result.Weight = request.Weight;
             await _context.SaveChangesAsync();
         }
