@@ -25,7 +25,10 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
-        private Guid GetCurrentUserId(){
+
+        [HttpGet]
+        [Route("api/[controller]/GetCurrentUserId")]
+        public Guid GetCurrentUserId(){
             Guid result = new Guid();
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             if (identity != null)

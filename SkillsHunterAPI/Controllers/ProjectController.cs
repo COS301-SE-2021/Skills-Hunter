@@ -20,12 +20,32 @@ namespace SkillsHunterAPI.Controllers
     {
         private readonly IProjectService _projectService;
         private readonly ISkillService _skillService;
+        private UserController _userController;
 
-        public ProjectController(IProjectService projectService, ISkillService skillService)
+        public ProjectController(IProjectService projectService, ISkillService skillService, UserController userController)
         {
             _projectService = projectService;
             _skillService = skillService;
+            _userController = userController;
         }
+
+
+
+        //This initialize the user controller object to be accessible this side.
+        private void InitControllers()
+        {
+            // We can't set this at Ctor because we don't have our local copy yet
+            // Access to Url 
+            _userController.Url = Url;
+
+
+            //This gives Access to User
+            _userController.ControllerContext = ControllerContext;
+
+        }
+
+
+
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
         [Route("api/[controller]/getProjects")]
@@ -49,37 +69,7 @@ namespace SkillsHunterAPI.Controllers
             return projectResponses;
         }
 
-        [HttpGet]//This tells ASP.Net that the method will handle http get request
-        [Route("api/[controller]/getProjectsByOwnerId")]
-        public async Task<IEnumerable<ProjectResponse>> GetProjectsByOwnerId()
-        {
-            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
 
-            List<Project> projects = (List<Project>)await _projectService.GetProjects();
-
-
-            //This gets identity of the user logged-in
-            var LoggedInUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-
-
-            var LoggedInOwner = new Guid(LoggedInUserId);
-            
-
-
-            foreach (Project project in projects)
-            {
-                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
-
-                if (retrievedProject != null && retrievedProject.Owner == LoggedInOwner)
-                {
-                    projectResponses.Add(retrievedProject);
-                }
-
-            }
-
-            return projectResponses;
-        }
 
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
@@ -127,6 +117,43 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
+
+
+
+
+        [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/getProjectsByOwnerId")]
+        public async Task<IEnumerable<ProjectResponse>> GetProjectsByOwnerId()
+        {
+            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
+
+            List<Project> projects = (List<Project>)await _projectService.GetProjects();
+
+
+        
+            //This initialize the user controller object to be accessible this side.
+            InitControllers();
+
+
+            //This gets identity of the user currently authenticated.
+            var LoggedInOwner = _userController.GetCurrentUserId();
+
+
+
+
+            foreach (Project project in projects)
+            {
+                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
+
+                if (retrievedProject != null && retrievedProject.Owner == LoggedInOwner)
+                {
+                    projectResponses.Add(retrievedProject);
+                }
+
+            }
+
+            return projectResponses;
+        }
 
 
         [HttpPost]

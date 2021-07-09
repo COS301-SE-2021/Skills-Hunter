@@ -21,6 +21,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using SkillsHunterAPI.Controllers;
 
 namespace SkillsHunterAPI
 {
@@ -43,6 +44,8 @@ namespace SkillsHunterAPI
             services.AddScoped<ISkillService, SkillService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<UserController, UserController>();
+
 
 
             services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
