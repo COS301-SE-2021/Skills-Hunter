@@ -1,12 +1,19 @@
 using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 
 namespace SkillsHunterAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     public class UserController: ControllerBase
     {
@@ -18,55 +25,96 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
+
+        [HttpGet]
+        [Route("api/[controller]/GetCurrentUserId")]
+        public Guid GetCurrentUserId(){
+            Guid result = new Guid();
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                IEnumerable<Claim> claims = identity.Claims; 
+                var id = claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault();
+                result =  Guid.Parse(id.Value);
+            }else
+            {
+                throw new Exception("Could not retrieve current user id");
+            }
+
+            return result;         
+        }
+
+        [AllowAnonymous]
         [HttpPost]
         [Route("api/[controller]/register")]
-
-        public async Task<RegisterResponse> Register(RegisterRequest request)
+        public IActionResult Register([FromBody]RegisterRequest request)
         {
-            User newUser = new User();
-            newUser.Name = request.Name;
-            newUser.Surname = request.Surname;
-            newUser.Phone = request.Phone;
-            newUser.Password = request.Password;
-            newUser.UserType = request.Role;
-            newUser = await _userService.AddUser(newUser);
-
-            RegisterResponse response = new RegisterResponse();
-
-            if (newUser != null)
+            // map model to entity
+            User user = new User()
             {
-                response.Successful = true;
-            }
-            else
+                Name = request.Name,
+                Surname = request.Surname,
+                Phone = request.Phone,
+                Email = request.Email,
+                UserType = request.Role,
+                StartDate = request.StartDate,
+                OpenForWork = request.OpenForWork,
+            };
+
+            try
             {
-                response.Successful = false;
+                // create user
+                _userService.Create(user, request.Password);
+                return Ok();
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception
+                return BadRequest(new 
+                    { 
+                        message = error.Message 
+                    });
             }
 
-            return response;
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
-        [Route("api/[controller]/login")]
-        public async Task<LogInResponse> LogIn(LogInRequest request)
+        [Route("api/[controller]/Authenticate")]
+        public IActionResult Authenticate([FromBody]AuthenticateRequest request)
         {
-            User loginUser = await _userService.LogIn(request.Email, request.Password);
 
-            LogInResponse response = new LogInResponse();
+            var user = _userService.Authenticate(request.Email, request.Password);
 
-            if (loginUser == null)
+            if (user == null)
+                return BadRequest(new { message = "Email or password is incorrect" });
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("Skills hunter validation string");
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
-                response.Validated = false;
-            }
-            else
-            {
-                response.UserName = loginUser.Name;
-                response.UserId = response.UserId;
-                response.Validated = true;
-            }
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.UserId.ToString()),
+                    new Claim(ClaimTypes.Role, user.UserType.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
 
-            return response;
+            // return basic user info and authentication token
+            return Ok(new AuthenticateResponse()
+            {
+                Id = user.UserId,
+                Name = user.Name,
+                Surname = user.Surname,
+                Role = user.UserType,
+                Token = tokenString
+            });
         }
+
 
         [HttpGet]
         [Route("api/[controller]/logOut")]
@@ -78,7 +126,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/update")]
-        public Task<UpdateResponse> UpdateUser(UpdateRequest request)
+        public Task<UpdateResponse> UpdateUser([FromBody]UpdateRequest request)
         {
             //var response = await _userService.UpdateUser(request);
             return null;
@@ -86,7 +134,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/delete")]
-        public async Task<DeleteResponse> DeleteUser(DeleteRequest request)
+        public async Task<DeleteResponse> DeleteUser([FromBody]DeleteRequest request)
         {
             var response = await _userService.DeleteUser(request);
             return response;

@@ -4,6 +4,7 @@ using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
 using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Project.Response;
+using SkillsHunterAPI.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,11 @@ namespace SkillsHunterAPI.Services
         }
 
         public async Task<IEnumerable<Project>> GetProjects()
+        {
+            return await _context.Projects.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Project>> GetProjectsByOwnerId()
         {
             return await _context.Projects.ToListAsync();
         }
@@ -99,16 +105,76 @@ namespace SkillsHunterAPI.Services
             return await _context.ProjectSkills.Where(ss => ss.ProjectId == ProjectId && ss.SkillId == SkillId).FirstAsync();
         }
 
-        public async Task<bool> ApplyForProject(Guid userId,Guid ProjectId){
+        public bool ApplyForProject(Guid userId,Guid ProjectId){
             bool applicationSuccess = false;
 
-            return applicationSuccess;
+
+            Application applicationFromDB = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
+            User userFromDB = _context.Users.Where(ss => ss.UserId == userId).FirstOrDefault();
+            Project projectFromDB = _context.Projects.Where(ss => ss.ProjectId == ProjectId).FirstOrDefault();
+            if (applicationFromDB != null || userFromDB == null || projectFromDB == null)
+
+            {
+                return false;
+            }
+
+            Application newApplication = new Application();
+            newApplication.ApplicationId = new Guid();
+            newApplication.ProjectId = ProjectId;
+            newApplication.ApplicantId = userId;
+
+            _context.Applications.Add(newApplication);
+            _context.SaveChangesAsync();
+
+            //Application application = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
+
+            /*if (application != null)
+            {
+                return true;
+            }*/
+
+            return true ;
         }
 
-        public async Task<bool> InviteCandidate(Guid userId,Guid ProjectId){
+        public  bool InviteCandidate(Guid userId, Guid ProjectId,Guid inviteeId, String message)
+        {
             bool invitationSuccess = false;
 
-            return invitationSuccess;
+
+            Invitation existingInvitations = _context.Invitations.Where(ss => ss.InviteeId == inviteeId && ss.ProjectId == ProjectId).FirstOrDefault();
+            User ownerFromDB = _context.Users.Where(ss => ss.UserId == userId).FirstOrDefault();
+            User inviteeFromDB = _context.Users.Where(ss => ss.UserId == inviteeId).FirstOrDefault();
+            Project projectFromDB = _context.Projects.Where(ss => ss.ProjectId == ProjectId).FirstOrDefault();
+
+
+            if (existingInvitations != null || ownerFromDB == null || inviteeFromDB == null || projectFromDB == null || projectFromDB.Owner != userId)
+            {
+                return false;
+            }
+
+
+            Invitation newInvitation = new Invitation();
+
+            newInvitation.InviterId = userId;
+            newInvitation.InviteeId = inviteeId;
+            newInvitation.ProjectId = ProjectId;
+            newInvitation.Message = message;
+            newInvitation.InviteDate = DateTime.Now;
+            newInvitation.InvitationId = new Guid();
+
+            _context.Add(newInvitation);
+            _context.SaveChangesAsync();
+
+
+            //Invitation invitation = _context.Invitations.Where(ss => ss.InviteeId == inviteeId && ss.ProjectId == ProjectId).FirstOrDefault();
+
+            /*if (invitation != null)
+            {
+                return true;
+            }*/
+
+
+            return true;
         }
     }
 }

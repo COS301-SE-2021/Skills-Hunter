@@ -9,20 +9,43 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace SkillsHunterAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     public class ProjectController : ControllerBase
     {
         private readonly IProjectService _projectService;
         private readonly ISkillService _skillService;
+        private UserController _userController;
 
-        public ProjectController(IProjectService projectService, ISkillService skillService)
+        public ProjectController(IProjectService projectService, ISkillService skillService, UserController userController)
         {
             _projectService = projectService;
             _skillService = skillService;
+            _userController = userController;
         }
+
+
+
+        //This initialize the user controller object to be accessible this side.
+        private void InitControllers()
+        {
+            // We can't set this at Ctor because we don't have our local copy yet
+            // Access to Url 
+            _userController.Url = Url;
+
+
+            //This gives Access to User
+            _userController.ControllerContext = ControllerContext;
+
+        }
+
+
+
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
         [Route("api/[controller]/getProjects")]
@@ -45,6 +68,9 @@ namespace SkillsHunterAPI.Controllers
 
             return projectResponses;
         }
+
+
+
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/getProject/{id}")]
@@ -89,6 +115,46 @@ namespace SkillsHunterAPI.Controllers
 
             return projectResponse;
         }
+
+
+
+
+
+
+        [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/getProjectsByOwnerId")]
+        public async Task<IEnumerable<ProjectResponse>> GetProjectsByOwnerId()
+        {
+            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
+
+            List<Project> projects = (List<Project>)await _projectService.GetProjects();
+
+
+        
+            //This initialize the user controller object to be accessible this side.
+            InitControllers();
+
+
+            //This gets identity of the user currently authenticated.
+            var LoggedInOwner = _userController.GetCurrentUserId();
+
+
+
+
+            foreach (Project project in projects)
+            {
+                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
+
+                if (retrievedProject != null && retrievedProject.Owner == LoggedInOwner)
+                {
+                    projectResponses.Add(retrievedProject);
+                }
+
+            }
+
+            return projectResponses;
+        }
+
 
         [HttpPost]
         [Route("api/[controller]/createProject")]
@@ -136,7 +202,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpPut]
-        [Route("api/[controller]/updateProject/")]
+        [Route("api/[controller]/updateProject")]
         public async Task<ActionResult> UpdateProject([FromBody] ProjectRequest projectRequest)
         {
 
@@ -203,11 +269,11 @@ namespace SkillsHunterAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
-        [Route("api/[controller]/deleteProject/{id}")]
-        public async Task<ActionResult> DeleteProject(String id)
+        [HttpPost]
+        [Route("api/[controller]/deleteProject")]
+        public async Task<ActionResult> DeleteProject([FromBody]DeleteProjectRequest deleteProjectRequest)
         {
-            Guid projectId = new Guid(id);
+            Guid projectId = deleteProjectRequest.ProjectId;
             var projectToDelete = await _projectService.GetProject(projectId);
             List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(projectId);
 
@@ -234,6 +300,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
         //Project Skills
+
 
         [HttpPost]
         [Route("api/[controller]/addProjectSkill")]
@@ -262,14 +329,44 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/applyForProject")]
-        public async Task<ApplyForProjectResponse> ApplyForProject([FromBody] ApplyForProjectRequest request){
-            return new ApplyForProjectResponse();
+        public async Task<ApplyForProjectResponse> ApplyForProject([FromBody] ApplyForProjectRequest request)
+        {
+            ApplyForProjectResponse applyForProjectResponse = new ApplyForProjectResponse();
+
+             var reqStatus = _projectService.ApplyForProject(request.UserId, request.ProjectId);
+
+            if (reqStatus)
+            {
+                applyForProjectResponse.Success = true;
+            }
+            else
+            {
+                applyForProjectResponse.Success = false;
+            }
+            return applyForProjectResponse;
         }
 
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/inviteCandidate")]
-        public async Task<InviteCandidateResponse> InviteCandidate([FromBody] InviteCandidateRequest request){
-            return new InviteCandidateResponse();
+        public InviteCandidateResponse InviteCandidate([FromBody] InviteCandidateRequest request)
+        {
+            //This create an Invite candidate response object
+            InviteCandidateResponse inviteCandidateResponse = new InviteCandidateResponse();
+
+
+            var InviteStatus = _projectService.InviteCandidate(request.UserId, request.ProjectId, request.InviteeId, request.Message);
+
+            if (InviteStatus)
+            {
+                inviteCandidateResponse.Success = true;
+            }
+            else
+            {
+                inviteCandidateResponse.Success = false;
+            }
+
+
+            return inviteCandidateResponse;
         }
     }
 
