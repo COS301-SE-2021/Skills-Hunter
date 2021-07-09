@@ -49,5 +49,9 @@ namespace SkillsHunterAPI.Services
 
             return category;
         }
+
+        public async Task<IEnumerable<Collection>> getCollections(){
+            return await _context.Collections.ToListAsync();
+        }
     }
 }

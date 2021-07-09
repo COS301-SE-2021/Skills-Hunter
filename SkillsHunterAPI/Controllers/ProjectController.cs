@@ -4,6 +4,7 @@ using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
 using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Project.Response;
+using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Services;
 using System;
 using System.Collections.Generic;
@@ -368,6 +369,145 @@ namespace SkillsHunterAPI.Controllers
 
             return inviteCandidateResponse;
         }
-    }
 
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/createCollection")]
+        public IActionResult CreateCollection(CreateCollectionRequest request){
+            try
+            {
+                // Create Collection code here
+
+
+                return Ok(new CreateCollectionResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }
+
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/getCollection")]
+        public IActionResult GetCollection(GetCollectionRequest request){
+            try
+            {
+                // get Collection code here
+
+
+                return Ok(new GetCollectionResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }
+        
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/updateCollection")]
+        public IActionResult UpdateCollection(UpdateCollectionRequest request){
+            try
+            {
+                // update Collection code here
+
+
+                return Ok(new UpdateCollectionResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }
+
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/removeCollection")]
+        public IActionResult RemoveCollection(RemoveCollectionRequest request){
+            try
+            {
+                // remove Collection code here
+
+
+                return Ok(new RemoveCollectionResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }
+
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/addSkillToCollection")]
+        public IActionResult AddSkillToCollection(AddSkillToCollectionRequest request){
+            try
+            {
+                // Add skill to collection code here
+
+
+                return Ok(new AddSkillToCollectionResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }
+
+       
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/addSkillToCollection")]
+        public IActionResult GetCollectionsByProject(GetCollectionsByProjectRequest request){
+            try
+            {
+                // Get collections by Project code here
+
+
+                return Ok(new GetCollectionsByProjectResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }    
+    
+    }
 }

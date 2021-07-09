@@ -77,5 +77,28 @@ namespace SkillsHunterAPI.Controllers
                 return skills;
         }
 
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/getCollections")]
+        public IActionResult GetCollections(GetCollectionsRequest request){
+            try
+            {
+                // Get collections code here
+
+
+                return Ok(new GetCollectionsResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }
+
     }
 }
