@@ -11,18 +11,14 @@ namespace SkillsHunterAPI.Services
         
         User Authenticate(string email, string pass);
         
-        //Task<LogOutResponse> LogOut(LogOutRequest request);
-        
         Task<UpdateResponse> UpdateUser(UpdateRequest request);
         
         Task<DeleteResponse> DeleteUser(DeleteRequest request);
         
-        Task<IEnumerable<User>> GetAllUsers();
-        
+        Task<IEnumerable<User>> GetAllUsers();        
 
         Task<User> GetUser(Guid request);
 
-        // Crud operations on the User Skill Model
         Task AddUserSkill(UserSkill request);
         
         Task UpdateUserSkill(Guid userSkillId, UserSkill request);
@@ -31,7 +27,6 @@ namespace SkillsHunterAPI.Services
         
         Task<UserSkill> GetUserSkill(Guid id);
 
-
         Task AddWorkExperience(WorkExperience request);
         
         Task UpdateWorkExperience(Guid workExperienceID, WorkExperience request);
@@ -39,5 +34,15 @@ namespace SkillsHunterAPI.Services
         Task DeleteWorkExperience(Guid id);
         
         Task<WorkExperience> GetWorkExperience(Guid id);
+
+        Task<Image> CreateImage(Image request);
+
+        Task<Image> GetImage(Guid ImageId);
+
+        Task<Image> UpdateImage(Guid request);
+
+        Task RemoveImage(Guid request);
+
+        Task<Image> GetImageByUser(Guid UserId);
     }
 }

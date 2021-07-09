@@ -28,5 +28,42 @@ namespace SkillsHunterAPI.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Collection> CreateCollection(Collection request){
+            Collection result = null;
+
+
+            return result;
+        }
+
+        public async Task<Collection> GetCollection(Guid CollectionId){
+            Collection result = null;
+
+
+            return result;
+        }
+        
+        public async Task<Collection> UpdateCollection(Collection request){
+            Collection result = null;
+
+
+            return result;
+        }
+
+        public async Task RemoveCollection(Guid CollectionId){
+            
+        }
+
+        public async Task<CollectionMap> AddSkillToCollection(Guid SkillId,Guid CollectionId){
+            CollectionMap result = null;
+
+            return result;
+        }
+
+        public async Task<List<Collection>> GetCollectionsByProject(Guid ProjectId){
+            List<Collection> result = new List<Collection>();
+        
+            return result;
+        }
     }
 }

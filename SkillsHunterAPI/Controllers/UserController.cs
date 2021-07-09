@@ -180,5 +180,120 @@ namespace SkillsHunterAPI.Controllers
 
             return response;
         }
+
+        [HttpPost]
+        [Route("api/[controller]/createImage")]
+        public IActionResult CreateImage(CreateImageRequest request){
+            try
+            {
+                // Create Image code here
+
+
+                return Ok(new CreateImageResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/getImage")]
+        public IActionResult GetImage(GetImageRequest request){
+            try
+            {
+                // Get Image code here
+
+
+                return Ok(new GetImageResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/updateImage")]
+        public IActionResult UpdateImage(UpdateImageRequest request){
+            try
+            {
+                // Update image code here
+
+
+                return Ok(new UpdateImageResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/removeImage")]
+        public IActionResult RemoveImage(RemoveImageRequest request){
+            try
+            {
+                // Remove image code here
+
+
+                return Ok(new RemoveImageResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/getImageByUser")]
+        public IActionResult GetImageByUser(GetImageByUserRequest request){
+            try
+            {
+                // Get Image By User code here
+
+
+                return Ok(new GetImageByUserResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
+        }        
     }
 }

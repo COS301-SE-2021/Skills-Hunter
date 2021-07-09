@@ -177,7 +177,7 @@ namespace SkillsHunterAPI.Services
 
             UserSkill result = await _context.UserSkills.FindAsync(userSkillId);
 
-            result.SkillID = request.SkillID;
+            result.SkillId = request.SkillId;
             result.Weight = request.Weight;
             await _context.SaveChangesAsync();
         }
@@ -229,6 +229,36 @@ namespace SkillsHunterAPI.Services
         
         public async Task<WorkExperience> GetWorkExperience(Guid id){
             return await _context.WorkExperiences.FindAsync(id);
+        }
+
+        public async Task<Image> CreateImage(Image request){
+            Image result = null;
+
+
+            return result;    
+        }
+
+        public async Task<Image> GetImage(Guid ImageId){
+            Image result = null;
+
+            return result;
+        }
+
+        public async Task<Image> UpdateImage(Guid request){
+            Image result = null;
+
+            return result;
+        }
+
+        public async Task RemoveImage(Guid request){
+
+
+        }
+
+        public async Task<Image> GetImageByUser(Guid UserId){
+            Image result = null;
+
+            return result;
         }
     }
 }
