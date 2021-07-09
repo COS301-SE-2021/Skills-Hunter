@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using SkillsHunterAPI.Models.User;
@@ -6,6 +8,7 @@ using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Collections.Generic;
 using SkillsHunterAPI.Data;
+using System.Linq;
 
 namespace SkillsHunterAPI.Services
 {
@@ -13,63 +16,135 @@ namespace SkillsHunterAPI.Services
     {
         private readonly ApplicationDbContext _context;
 
-        private string Hash(string Password){
-            // generate a 128-bit salt using a secure PRNG
-            byte[] salt = new byte[128 / 8];
-            
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(salt);
-            }
-    
-            // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
-            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: Password,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA1,
-                iterationCount: 10000,
-                numBytesRequested: 256 / 8));
-
-            return hashed;
-        }
-
         public UserService(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public User AddUser(User request)
+        public User Create(User user,string password)
         {
-            request.UserId = new Guid();
+            if(!IsValidEmail(user.Email))
+                throw new Exception("Email is invalid");
+                
+            if (string.IsNullOrWhiteSpace(password))
+                throw new Exception("Password is required");
 
-        
-            request.Password = Hash(request.Password);
-            
-            _context.Users.Add(request);
+            if (_context.Users.Any(x => x.Email == user.Email))
+                throw new Exception("Email address '" + user.Email + "' is already taken");
 
-            return request;
+            if (_context.Users.Any(x => x.Phone == user.Phone))
+                throw new Exception("Phone number '" + user.Phone + "' is already taken");
+
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            return user;
         }
 
-        public async Task<User> LogIn(string email, string pass)
+        private static bool IsValidEmail(string email)
         {
-            var allUsers = await _context.Users.ToListAsync();
-            User result = new User();
-            
-            foreach (var user in allUsers)
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
             {
+                // Normalize the domain
+                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
+                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
 
-                if(user.Email == email && user.Password == Hash(pass)){
-                    result = user;
-                    break;
-                }    
+                // Examines the domain part of the email and normalizes it.
+                string DomainMapper(Match match)
+                {
+                    // Use IdnMapping class to convert Unicode domain names.
+                    var idn = new IdnMapping();
+
+                    // Pull out and process domain name (throws ArgumentException on invalid)
+                    string domainName = idn.GetAscii(match.Groups[2].Value);
+
+                    return match.Groups[1].Value + domainName;
+                }
             }
-            return result;
+            catch (RegexMatchTimeoutException e)
+            {
+                return false;
+            }
+            catch (ArgumentException e)
+            {
+                return false;
+            }
+
+            try
+            {
+                return Regex.IsMatch(email,
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
+        } 
+
+        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            if (password == null) throw new ArgumentNullException("password");
+            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
+
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
         }
 
-        public async Task<LogOutResponse> LogOut(LogOutRequest request)
+        private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+        {
+            if (password == null) throw new ArgumentNullException("password");
+            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
+            if (storedHash.Length != 64) throw new ArgumentException("Invalid length of password hash (64 bytes expected).", "passwordHash");
+            if (storedSalt.Length != 128) throw new ArgumentException("Invalid length of password salt (128 bytes expected).", "passwordHash");
+
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(storedSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                for (int i = 0; i < computedHash.Length; i++)
+                {
+                    if (computedHash[i] != storedHash[i]) return false;
+                }
+            }
+
+            return true;
+        }
+
+        public User Authenticate(string email, string password)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+                return null;
+
+            var user = _context.Users.SingleOrDefault(x => x.Email == email);
+
+            // check if username exists
+            if (user == null)
+                return null;
+
+            // check if password is correct
+            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                return null;
+
+            // authentication successful
+            return user;
+        }
+
+        /*public async Task<LogOutResponse> LogOut(LogOutRequest request)
         {
             return new LogOutResponse();
-        }
+        }*/
 
         public async Task<UpdateResponse> UpdateUser(UpdateRequest request)
         {
