@@ -2,7 +2,7 @@ using System;
 
 namespace SkillsHunterAPI.Models.User
 {
-    //This class will be used to contain all the User data that is sent through with a Project creation or update request
+    ////This model response class contains the attributes returned after processing a user's request to update a user
     public class UpdateResponse
     {
         public bool Success{get;set;}

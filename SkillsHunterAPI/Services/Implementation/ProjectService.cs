@@ -2,6 +2,7 @@
 using SkillsHunterAPI.Data;
 using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
+using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Project.Response;
 using SkillsHunterAPI.Models.User;
@@ -105,7 +106,8 @@ namespace SkillsHunterAPI.Services
             return await _context.ProjectSkills.Where(ss => ss.ProjectId == ProjectId && ss.SkillId == SkillId).FirstAsync();
         }
 
-        public bool ApplyForProject(Guid userId,Guid ProjectId){
+        public bool ApplyForProject(Guid userId,Guid ProjectId)
+        {
             bool applicationSuccess = false;
 
 
@@ -175,6 +177,48 @@ namespace SkillsHunterAPI.Services
 
 
             return true;
+        }
+
+        public async Task<Collection> CreateCollection(Collection request)
+        {
+            Collection result = null;
+
+
+            return result;
+        }
+
+        public async Task<Collection> GetCollection(Guid collectionId)
+        {
+            Collection result = null;
+
+
+            return result;
+        }
+        
+        public async Task<Collection> UpdateCollection(Collection request)
+        {
+            Collection result = null;
+
+
+            return result;
+        }
+
+        public async Task RemoveCollection(Guid collectionId)
+        {            
+        }
+
+        public async Task<CollectionMap> AddSkillToCollection(Guid skillId,Guid collectionId)
+        {
+            CollectionMap result = null;
+
+            return result;
+        }
+
+        public async Task<List<Collection>> GetCollectionsByProject(Guid projectId)
+        {
+            List<Collection> result = new List<Collection>();
+        
+            return result;
         }
     }
 }

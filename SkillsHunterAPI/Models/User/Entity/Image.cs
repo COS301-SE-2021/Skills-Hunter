@@ -1,8 +1,8 @@
 using System;
-using System.Collections.Generic;
 
 namespace SkillsHunterAPI.Models.User
 {
+    //This model entity class contains attributes describing an Image stored in the system
     public class Image
     {
         public Guid ImageId { get; set; }

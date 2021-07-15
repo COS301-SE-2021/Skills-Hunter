@@ -4,7 +4,7 @@ using SkillsHunterAPI.Models.User;
 namespace SkillsHunterAPI.Models.Project.Request
 {
 
-    //This class will be used to contain all the Project data that is sent through with a Project creation or update request
+    //This model request class contains attributes that describe a project request
     public class ProjectRequest
     {
         public String ProjectId { get; set; }

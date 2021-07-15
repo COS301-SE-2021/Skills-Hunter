@@ -1,6 +1,8 @@
 ﻿using System;
+
 namespace SkillsHunterAPI.Models.Skill
 {
+    //This model entity class contains attributes that describe a Category to which skills will belong
     public class Category
     {
         public Guid CategoryId { get; set; }

@@ -2,6 +2,7 @@
 
 namespace SkillsHunterAPI.Models.User
 {
+    //This model entity class contains attributes linking a user to a skill
     public class UserSkill
     {
         public Guid UserSkillId { get; set; }

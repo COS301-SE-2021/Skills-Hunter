@@ -3,7 +3,7 @@ using SkillsHunterAPI.Models.User;
 
 namespace SkillsHunterAPI.Models.User
 {
-    //This class will be used to contain all the User data that is sent through with a Project creation or update request
+    //This model request class contains all the attributes required to update a user in the system
     public class UpdateRequest
     {
         public string FirstName { get; set; }

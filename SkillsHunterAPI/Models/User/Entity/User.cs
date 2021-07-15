@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace SkillsHunterAPI.Models.User
 {
 
+    //This enum type represents the type that a user can be
     public enum UserType
     {
         Candidate = 0,
@@ -12,6 +13,7 @@ namespace SkillsHunterAPI.Models.User
         Admin = 3
     }
 
+    //This model entity class attributes related to the user of the system
     public class User
     {
         public Guid UserId {get; set; }

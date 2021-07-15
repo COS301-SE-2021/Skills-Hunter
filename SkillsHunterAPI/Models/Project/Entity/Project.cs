@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace SkillsHunterAPI.Models.Project
 {
+    //This model entity class contains attributes describing a project in the system
     public class Project
     {
         public Guid ProjectId { get; set; }

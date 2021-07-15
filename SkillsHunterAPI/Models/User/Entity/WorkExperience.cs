@@ -1,6 +1,8 @@
 ﻿using System;
+
 namespace SkillsHunterAPI.Models.User
 {
+    //This model entity class contains attributes describing a user's work experience
     public class WorkExperience
     {
         public Guid WorkExperienceId {get; set; }

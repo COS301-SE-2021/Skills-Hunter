@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SkillsHunterAPI.Models.User
 {
-    //This class will be used to contain all the User data that is sent through with a Project creation or update request
+    //This model request class contains attributes required to authenticate a user of the system
     public class AuthenticateRequest
     {
         [EmailAddress]

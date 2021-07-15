@@ -3,7 +3,7 @@ using SkillsHunterAPI.Models.User;
 
 namespace SkillsHunterAPI.Models.User
 {
-    //This class will be used to contain all the User data that is sent through with a Project creation or update request
+    //This model request class contains the attribute required to Log a user out of the system
     public class LogOutRequest
     {
 

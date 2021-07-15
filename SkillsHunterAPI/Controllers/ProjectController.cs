@@ -73,7 +73,7 @@ namespace SkillsHunterAPI.Controllers
 
 
 
-        [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
+        [HttpGet]
         [Route("api/[controller]/getProject/{id}")]
         public async Task<ProjectResponse> GetProject(string id)
         {
@@ -116,10 +116,6 @@ namespace SkillsHunterAPI.Controllers
 
             return projectResponse;
         }
-
-
-
-
 
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
@@ -270,6 +266,7 @@ namespace SkillsHunterAPI.Controllers
             return NoContent();
         }
 
+
         [HttpPost]
         [Route("api/[controller]/deleteProject")]
         public async Task<ActionResult> DeleteProject([FromBody]DeleteProjectRequest deleteProjectRequest)
@@ -300,8 +297,6 @@ namespace SkillsHunterAPI.Controllers
             return NoContent();
         }
 
-        //Project Skills
-
 
         [HttpPost]
         [Route("api/[controller]/addProjectSkill")]
@@ -310,6 +305,7 @@ namespace SkillsHunterAPI.Controllers
             await _projectService.AddProjectSkill(projectSkill);
             return NoContent();
         }
+
 
         [HttpDelete]
         [Route("api/[controller]/deleteProjectSkill/{id}")]
@@ -328,7 +324,8 @@ namespace SkillsHunterAPI.Controllers
             return NoContent();
         }
 
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+
+        [HttpPost]
         [Route("api/[controller]/applyForProject")]
         public async Task<ApplyForProjectResponse> ApplyForProject([FromBody] ApplyForProjectRequest request)
         {
@@ -347,7 +344,8 @@ namespace SkillsHunterAPI.Controllers
             return applyForProjectResponse;
         }
 
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+
+        [HttpPost]
         [Route("api/[controller]/inviteCandidate")]
         public InviteCandidateResponse InviteCandidate([FromBody] InviteCandidateRequest request)
         {
@@ -370,9 +368,11 @@ namespace SkillsHunterAPI.Controllers
             return inviteCandidateResponse;
         }
 
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+
+        [HttpPost]
         [Route("api/[controller]/createCollection")]
         public IActionResult CreateCollection(CreateCollectionRequest request){
+            //This method handles the request to create a collection in the database
             try
             {
                 // Create Collection code here
@@ -393,9 +393,11 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+
+        [HttpPost]
         [Route("api/[controller]/getCollection")]
         public IActionResult GetCollection(GetCollectionRequest request){
+            //This method handles the request to retrieve a skill collection
             try
             {
                 // get Collection code here
@@ -415,10 +417,12 @@ namespace SkillsHunterAPI.Controllers
                        });
             }
         }
-        
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+
+
+        [HttpPost]
         [Route("api/[controller]/updateCollection")]
         public IActionResult UpdateCollection(UpdateCollectionRequest request){
+            //This method handles a request to update a Skill Collection
             try
             {
                 // update Collection code here
@@ -439,9 +443,11 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+
+        [HttpPost]
         [Route("api/[controller]/removeCollection")]
         public IActionResult RemoveCollection(RemoveCollectionRequest request){
+            //This method handles the request to remove a collection from the database
             try
             {
                 // remove Collection code here
@@ -462,9 +468,11 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+
+        [HttpPost]
         [Route("api/[controller]/addSkillToCollection")]
         public IActionResult AddSkillToCollection(AddSkillToCollectionRequest request){
+            //This method handles the request to add a Skill to a Skill Collection
             try
             {
                 // Add skill to collection code here
@@ -486,9 +494,10 @@ namespace SkillsHunterAPI.Controllers
         }
 
        
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [HttpPost]
         [Route("api/[controller]/addSkillToCollection")]
         public IActionResult GetCollectionsByProject(GetCollectionsByProjectRequest request){
+            //This method handles a request to retrieve Skill Collections by Project Id
             try
             {
                 // Get collections by Project code here

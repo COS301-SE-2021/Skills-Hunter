@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SkillsHunterAPI.Models.Project.Response
 {
-    //This class will contain all the data that will be sent when a project is requested
+    //This model response class contains attributes returned if a project is requested
     public class ProjectResponse
     {
         public Guid ProjectId { get; set; }
@@ -15,15 +15,5 @@ namespace SkillsHunterAPI.Models.Project.Response
         public bool OpenForApplication { get; set; }
         public DateTime DateCreated { get; set; }
         public List<SkillRR> ProjectSkills { get; set; }
-
-        //public static implicit operator ProjectResponse(Project v)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public static explicit operator ProjectResponse(ActionResult<ProjectResponse> v)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

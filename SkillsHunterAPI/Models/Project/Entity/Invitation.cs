@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace SkillsHunterAPI.Models.Project
 {
+    //This Model entity class contains data about the invitation of a candidate to a project by a Project owner
     public class Invitation
     {
         public Guid InvitationId { get; set; }

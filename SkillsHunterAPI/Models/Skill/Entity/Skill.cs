@@ -3,6 +3,7 @@
 namespace SkillsHunterAPI.Models.Skill
 {
 
+    //This enum type describes the status of a skill that has been added to the system
     public enum SkillStatus
     {
         Accepted = 0,
@@ -10,6 +11,7 @@ namespace SkillsHunterAPI.Models.Skill
         Declined = 2,
     }
 
+    //This model entity class contains attributes describing a skill
     public class Skill
     {
         public Guid SkillId { get; set; }
