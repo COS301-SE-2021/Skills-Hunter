@@ -5,9 +5,11 @@ using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Project;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SkillsHunterAPI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [ApiController]
     public class AdminController: ControllerBase
     {
@@ -44,22 +46,58 @@ namespace SkillsHunterAPI.Controllers
             return response; 
         }
 
-        [HttpDelete]
-        [Route("api/[controller]/removeSkill/{id}")]
-        public async Task<RemoveSkillResponse> RemoveSkill(Guid id)
+
+        [HttpPost]
+        [Route("api/[controller]/removeSkill")]
+        public async Task<RemoveSkillResponse> RemoveSkill([FromBody]RemoveSkillRequest removeSkillRequest)
+
         {
             RemoveSkillResponse response = new RemoveSkillResponse();
             
             response.Success = true;
-            response.Removed = await _adminService.RemoveSkill(id);
+            response.Removed = await _adminService.RemoveSkill(removeSkillRequest.SkillId);
 
             return response;
         }
 
-        [HttpDelete]
-        [Route("api/[controller]/removeProject/{id}")]
-        public async Task<RemoveProjectResponse> RemoveProject(Guid id){
+
+        /*[HttpPost]
+        [Route("api/[controller]/removeProject")]
+        public async Task<RemoveProjectResponse> RemoveProject([FromBody]Guid id){
             return new RemoveProjectResponse();
+        }*/
+
+        [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/getSkills")]
+        public async Task<GetSkillsResponse> GetSkills()
+        {
+
+                GetSkillsResponse skills = new GetSkillsResponse();
+                skills.skills = (await _adminService.GetSkills()).ToArray();
+                return skills;
+        }
+
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [Route("api/[controller]/getCollections")]
+        public IActionResult GetCollections(GetCollectionsRequest request){
+            try
+            {
+                // Get collections code here
+
+
+                return Ok(new GetCollectionsResponse(){
+
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
         }
 
     }
