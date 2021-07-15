@@ -24,7 +24,7 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/addSkill")]
         public async Task<AddSkillResponse> AddSkill([FromBody] AddSkillRequest request)
         {
-            Skill skill = new Skill(request.Name,request.CategoryId);
+            Skill skill = new Skill(request.Name);
             
             AddSkillResponse response = new AddSkillResponse(); 
             response.Success = true;
