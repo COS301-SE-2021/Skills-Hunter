@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{5765300E-4CBE-48DB-9AA9-419E37AD67D9}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Skill/Entity/SkillCategoryMap.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Project/Request/CreateProjectRequest.cs">
     <Files>
       <File FileName="Controllers/ProjectController.cs" Line="1" Column="1" />
       <File FileName="Controllers/AdminController.cs" />
@@ -14,10 +14,19 @@
       <File FileName="Models/Skill/Entity/CollectionMap.cs" Line="10" Column="42" />
       <File FileName="Models/Skill/Entity/Category.cs" Line="1" Column="1" />
       <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" Line="25" Column="58" />
-      <File FileName="Models/Skill/Entity/Skill.cs" Line="1" Column="1" />
-      <File FileName="Models/Skill/Entity/SkillRR.cs" Line="1" Column="1" />
-      <File FileName="Models/Skill/Request/AddSkillRequest.cs" Line="1" Column="1" />
-      <File FileName="Models/Skill/Entity/SkillCategoryMap.cs" Line="6" Column="13" />
+      <File FileName="Models/Skill/Entity/Skill.cs" Line="26" Column="26" />
+      <File FileName="Models/Skill/Entity/SkillRR.cs" Line="18" Column="10" />
+      <File FileName="Models/Skill/Request/AddSkillRequest.cs" Line="9" Column="45" />
+      <File FileName="Models/Skill/Entity/SkillCategoryMap.cs" Line="7" Column="43" />
+      <File FileName="Models/Skill/Request/AddCategoryRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/Request/CreateCollectionRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Response/ProjectResponse.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Request/ApplyForProjectRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Entity/Project.cs" Line="12" Column="1" />
+      <File FileName="Models/Project/Entity/ProjectSkill.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Request/CreateProjectRequest.cs" Line="17" Column="36" />
+      <File FileName="Models/Skill/Request/addSkillToCollectionRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/Request/AddSkillCollectionRequest.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -26,10 +35,13 @@
             <Node name="SkillsHunterAPI" expanded="True">
               <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="Skill" expanded="True">
-                  <Node name="Entity" expanded="True">
-                    <Node name="SkillCategoryMap.cs" selected="True" />
+                <Node name="Project" expanded="True">
+                  <Node name="Entity" expanded="True" />
+                  <Node name="Request" expanded="True">
+                    <Node name="CreateProjectRequest.cs" selected="True" />
                   </Node>
+                </Node>
+                <Node name="Skill" expanded="True">
                   <Node name="Request" expanded="True" />
                 </Node>
               </Node>
