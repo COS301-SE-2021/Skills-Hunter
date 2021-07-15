@@ -61,7 +61,7 @@ namespace SkillsHunterAPI.Data
             modelBuilder.Entity<Invitation>().HasKey("InvitationId");
 
             modelBuilder.Entity<SkillCollection>().ToTable("SkillCollection");
-            modelBuilder.Entity<SkillCollection>().HasKey("SKillCollectionId");
+            modelBuilder.Entity<SkillCollection>().HasKey("SkillCollectionId");
 
             modelBuilder.Entity<SkillCollectionMap>().ToTable("SkillCollectionMap");
             modelBuilder.Entity<SkillCollectionMap>().HasKey("SkillCollectionMapId");
