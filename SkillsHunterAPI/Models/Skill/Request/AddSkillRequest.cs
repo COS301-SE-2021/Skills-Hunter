@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Models.Skill
 {
@@ -7,6 +8,6 @@ namespace SkillsHunterAPI.Models.Skill
     public class AddSkillRequest
     {
         public String Name { get; set; }
-        public List<Guid> Categories { get; set; }
+        public List<GetCategoryByIdRequest> Categories { get; set; }
     }
 }

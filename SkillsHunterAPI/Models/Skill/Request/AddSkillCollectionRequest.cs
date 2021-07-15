@@ -7,6 +7,6 @@ namespace SkillsHunterAPI.Models.Skill.Request
     {
         public string Name { get; set; }
 
-        public List<Guid> Skills { get; set; }
+        public List<GetSkillByIdRequest> Skills { get; set; }
     }
 }

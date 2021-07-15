@@ -163,7 +163,7 @@ namespace SkillsHunterAPI.Controllers
             newProject.Description = projectRequest.Description;
             newProject.Location = projectRequest.Location;
             newProject.OpenForApplication = projectRequest.OpenForApplication;
-            newProject.Owner = projectRequest.Owner;
+            //newProject.Owner = projectRequest.Owner;
             newProject.Name = projectRequest.Name;
             newProject.DateCreated = DateTime.Now;
 
@@ -495,7 +495,7 @@ namespace SkillsHunterAPI.Controllers
 
        
         [HttpPost]
-        [Route("api/[controller]/addSkillToCollection")]
+        [Route("api/[controller]/getCollectionByProject")]
         public IActionResult GetCollectionsByProject(GetCollectionsByProjectRequest request){
             //This method handles a request to retrieve Skill Collections by Project Id
             try
