@@ -27,8 +27,8 @@ namespace SkillsHunterAPI.Data
         public DbSet<WorkExperience> WorkExperiences { get; set; }
         public DbSet<Application> Applications { get; set; }
         public DbSet<Image> Images { get; set; }
-        public DbSet<Collection> Collections { get; set; }
-        public DbSet<CollectionMap> CollectionMap { get; set; }
+        public DbSet<SkillCollection> SKillCollections { get; set; }
+        public DbSet<SkillCollectionMap> SKillCollectionMap { get; set; }
         public DbSet<Invitation> Invitations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -60,11 +60,11 @@ namespace SkillsHunterAPI.Data
             modelBuilder.Entity<Invitation>().ToTable("Invitation");
             modelBuilder.Entity<Invitation>().HasKey("InvitationId");
 
-            modelBuilder.Entity<Collection>().ToTable("Collection");
-            modelBuilder.Entity<Collection>().HasKey("CollectionId");
+            modelBuilder.Entity<SkillCollection>().ToTable("SkillCollection");
+            modelBuilder.Entity<SkillCollection>().HasKey("SKillCollectionId");
 
-            modelBuilder.Entity<CollectionMap>().ToTable("CollectionMap");
-            modelBuilder.Entity<CollectionMap>().HasKey("CollectionMapId");
+            modelBuilder.Entity<SkillCollectionMap>().ToTable("SKillCollectionMap");
+            modelBuilder.Entity<SkillCollectionMap>().HasKey("SkillCollectionMapId");
         
             modelBuilder.Entity<Image>().ToTable("Image");
             modelBuilder.Entity<Image>().HasKey("ImageId");        
