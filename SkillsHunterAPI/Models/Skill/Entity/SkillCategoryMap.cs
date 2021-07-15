@@ -3,8 +3,7 @@ namespace SkillsHunterAPI.Models.Skill.Entity
 {
     public class SkillCategoryMap
     {
-        public SkillCategoryMap()
-        {
-        }
-    }
+        public Guid SkillId { get; set; }
+        public Guid CategoryId { get; set; }
+     }
 }

@@ -155,7 +155,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/createProject")]
-        public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] ProjectRequest projectRequest)
+        public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] CreateProjectRequest projectRequest)
         {
             ProjectResponse projectResponse = new ProjectResponse();
 
@@ -180,14 +180,14 @@ namespace SkillsHunterAPI.Controllers
 
             List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(newProject.ProjectId);
 
-            foreach (SkillRR projectSkill in projectRequest.ProjectSkills)
+            /*foreach (SkillRR projectSkill in projectRequest.ProjectSkills)
             {
                 ProjectSkill newProjectSkill = new ProjectSkill();
                 newProjectSkill.ProjectId = newProject.ProjectId;
                 newProjectSkill.SkillId = projectSkill.SkillId;
                 //ProjectSkill RefprojectSkill = await _projectService.GetProjectSkillBySkillId(projectSkill.SkillId, newProject.ProjectId);
                 await _projectService.AddProjectSkill(newProjectSkill);
-            }
+            }*/
 
 
             //projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
