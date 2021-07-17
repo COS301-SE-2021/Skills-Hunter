@@ -6,8 +6,8 @@ namespace SkillsHunterAPI.Models.Skill
     //This enum type describes the status of a skill that has been added to the system
     public enum SkillStatus
     {
-        Accepted = 0,
-        Pending = 1,
+        Pending = 0,
+        Accepted = 1,
         Declined = 2,
     }
 
