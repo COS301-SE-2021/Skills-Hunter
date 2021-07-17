@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using SkillsHunterAPI.Models.Skill.Entity;
 
 namespace SkillsHunterAPI.Data
 {
@@ -30,6 +31,7 @@ namespace SkillsHunterAPI.Data
         public DbSet<SkillCollection> SkillCollections { get; set; }
         public DbSet<SkillCollectionMap> SkillCollectionMap { get; set; }
         public DbSet<Invitation> Invitations { get; set; }
+        public DbSet<SkillCategory> SkillCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -67,7 +69,10 @@ namespace SkillsHunterAPI.Data
             modelBuilder.Entity<SkillCollectionMap>().HasKey("SkillCollectionMapId");
         
             modelBuilder.Entity<Image>().ToTable("Image");
-            modelBuilder.Entity<Image>().HasKey("ImageId");        
+            modelBuilder.Entity<Image>().HasKey("ImageId");
+
+            modelBuilder.Entity<SkillCategory>().ToTable("SkillCategory");
+            modelBuilder.Entity<SkillCategory>().HasKey("SkillCategoryId");
         }
 
     }
