@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -177,6 +178,39 @@ namespace SkillsHunterAPI.Controllers
                 projectSkill.SF = newProject.ProjectId;
                 await _projectService.AddProjectSkill(projectSkill);
             }*/
+
+
+            //Adding skills from the list of existing skills
+            foreach (GetSkillByIdRequest skill in projectRequest.ExistingSkills)
+            {
+                ProjectSkill projectSkill = new ProjectSkill();
+                projectSkill.ProjectId = newProject.ProjectId;
+                projectSkill.SkillId = skill.SkillId;
+                await _projectService.AddProjectSkill(projectSkill);
+            }
+
+            //Adding new skills
+            foreach (AddSkillRequest skillToAdd in projectRequest.NewSkills)
+            {
+                Skill newSkill = await _skillService.AddSkill(skillToAdd);
+
+                //Checking if the new skill was created before linking it with the project
+                if (newSkill != null)
+                {
+                    ProjectSkill projectSkill = new ProjectSkill();
+                    projectSkill.ProjectId = newProject.ProjectId;
+                    projectSkill.SkillId = newSkill.SkillId;
+                    await _projectService.AddProjectSkill(projectSkill);
+                }
+
+            }
+
+            //Adding skills from collections
+
+            foreach (AddSkillCollectionRequest collection in projectRequest.SkillCollections)
+            {
+
+            }
 
             List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(newProject.ProjectId);
 
