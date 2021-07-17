@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -155,7 +156,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/createProject")]
-        public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] ProjectRequest projectRequest)
+        public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] CreateProjectRequest projectRequest)
         {
             ProjectResponse projectResponse = new ProjectResponse();
 
@@ -163,7 +164,7 @@ namespace SkillsHunterAPI.Controllers
             newProject.Description = projectRequest.Description;
             newProject.Location = projectRequest.Location;
             newProject.OpenForApplication = projectRequest.OpenForApplication;
-            newProject.Owner = projectRequest.Owner;
+            //newProject.Owner = projectRequest.Owner;
             newProject.Name = projectRequest.Name;
             newProject.DateCreated = DateTime.Now;
 
@@ -178,16 +179,49 @@ namespace SkillsHunterAPI.Controllers
                 await _projectService.AddProjectSkill(projectSkill);
             }*/
 
+
+            //Adding skills from the list of existing skills
+            foreach (GetSkillByIdRequest skill in projectRequest.ExistingSkills)
+            {
+                ProjectSkill projectSkill = new ProjectSkill();
+                projectSkill.ProjectId = newProject.ProjectId;
+                projectSkill.SkillId = skill.SkillId;
+                await _projectService.AddProjectSkill(projectSkill);
+            }
+
+            //Adding new skills
+            foreach (AddSkillRequest skillToAdd in projectRequest.NewSkills)
+            {
+                Skill newSkill = await _skillService.AddSkill(skillToAdd);
+
+                //Checking if the new skill was created before linking it with the project
+                if (newSkill != null)
+                {
+                    ProjectSkill projectSkill = new ProjectSkill();
+                    projectSkill.ProjectId = newProject.ProjectId;
+                    projectSkill.SkillId = newSkill.SkillId;
+                    await _projectService.AddProjectSkill(projectSkill);
+                }
+
+            }
+
+            //Adding skills from collections
+
+            foreach (AddSkillCollectionRequest collection in projectRequest.SkillCollections)
+            {
+
+            }
+
             List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(newProject.ProjectId);
 
-            foreach (SkillRR projectSkill in projectRequest.ProjectSkills)
+            /*foreach (SkillRR projectSkill in projectRequest.ProjectSkills)
             {
                 ProjectSkill newProjectSkill = new ProjectSkill();
                 newProjectSkill.ProjectId = newProject.ProjectId;
                 newProjectSkill.SkillId = projectSkill.SkillId;
                 //ProjectSkill RefprojectSkill = await _projectService.GetProjectSkillBySkillId(projectSkill.SkillId, newProject.ProjectId);
                 await _projectService.AddProjectSkill(newProjectSkill);
-            }
+            }*/
 
 
             //projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
@@ -495,7 +529,7 @@ namespace SkillsHunterAPI.Controllers
 
        
         [HttpPost]
-        [Route("api/[controller]/addSkillToCollection")]
+        [Route("api/[controller]/getCollectionByProject")]
         public IActionResult GetCollectionsByProject(GetCollectionsByProjectRequest request){
             //This method handles a request to retrieve Skill Collections by Project Id
             try

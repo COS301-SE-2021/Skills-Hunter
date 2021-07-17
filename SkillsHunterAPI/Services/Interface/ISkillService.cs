@@ -13,7 +13,7 @@ namespace SkillsHunterAPI.Services
 
         Task<Skill> GetSkill(Guid id);
         
-        Task AddSkill(String name);
+        Task<Skill> AddSkill(AddSkillRequest addSkillRequest);
         
         Task RemoveSkill(Guid SkillId);
     

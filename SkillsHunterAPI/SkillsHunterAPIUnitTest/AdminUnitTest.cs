@@ -52,13 +52,13 @@ namespace SkillsHunterAPIUnitTest.Tests
             var skill1 = new Skill
             {
                 Name = "C++",
-                CategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
+                //CategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
             };
 
             var AddSkillRequest = new AddSkillRequest
             {
                 Name = "C++",
-                CategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
+                //CategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
             };
 
 
