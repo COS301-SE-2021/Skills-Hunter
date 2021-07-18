@@ -179,25 +179,25 @@ namespace SkillsHunterAPI.Services
             return true;
         }
 
-        public async Task<Collection> CreateCollection(Collection request)
+        public async Task<SkillCollection> CreateCollection(SkillCollection request)
         {
-            Collection result = null;
+            SkillCollection result = null;
 
 
             return result;
         }
 
-        public async Task<Collection> GetCollection(Guid collectionId)
+        public async Task<SkillCollection> GetCollection(Guid collectionId)
         {
-            Collection result = null;
+            SkillCollection result = null;
 
 
             return result;
         }
         
-        public async Task<Collection> UpdateCollection(Collection request)
+        public async Task<SkillCollection> UpdateCollection(SkillCollection request)
         {
-            Collection result = null;
+            SkillCollection result = null;
 
 
             return result;
@@ -207,16 +207,16 @@ namespace SkillsHunterAPI.Services
         {            
         }
 
-        public async Task<CollectionMap> AddSkillToCollection(Guid skillId,Guid collectionId)
+        public async Task<SkillCollectionMap> AddSkillToCollection(Guid skillId,Guid collectionId)
         {
-            CollectionMap result = null;
+            SkillCollectionMap result = null;
 
             return result;
         }
 
-        public async Task<List<Collection>> GetCollectionsByProject(Guid projectId)
+        public async Task<List<SkillCollection>> GetCollectionsByProject(Guid projectId)
         {
-            List<Collection> result = new List<Collection>();
+            List<SkillCollection> result = new List<SkillCollection>();
         
             return result;
         }
