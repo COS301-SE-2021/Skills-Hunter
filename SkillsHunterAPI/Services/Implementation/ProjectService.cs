@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Services
 {
@@ -179,12 +180,39 @@ namespace SkillsHunterAPI.Services
             return true;
         }
 
-        public async Task<SkillCollection> CreateCollection(SkillCollection request)
+        public async Task<SkillCollection> CreateCollection(AddSkillCollectionRequest request, Guid projectId)
         {
-            SkillCollection result = null;
+            //Creating the new SkillCollection object
+            SkillCollection skillCollection = new SkillCollection();
+            skillCollection.SkillCollectionId = new Guid();
+            skillCollection.Name = request.Name;
+            skillCollection.Description = request.Description;
+            skillCollection.ProjectId = projectId;
 
+            //Saving the SkillCollection object on the database
+            _context.SkillCollections.Add(skillCollection);
+            await _context.SaveChangesAsync();
 
-            return result;
+            //Linking the skills with the skillCollection
+            foreach (GetSkillByIdRequest skillToAdd in request.Skills)
+            {
+                SkillCollectionMap skillCollectionMap = new SkillCollectionMap();
+                skillCollectionMap.SkillCollectionMapId = new Guid();
+                skillCollectionMap.SkillCollectionId = skillCollection.SkillCollectionId;
+                skillCollectionMap.SkillId = skillToAdd.SkillId;
+
+                _context.SkillCollectionMap.Add(skillCollectionMap);
+                await _context.SaveChangesAsync();
+
+                //Adding the skills to projecSkills
+                ProjectSkill projectSkill = new ProjectSkill();
+                projectSkill.SkillId = skillToAdd.SkillId;
+                projectSkill.ProjectId = projectId;
+
+                _ = AddProjectSkill(projectSkill);
+            }
+
+            return skillCollection;
         }
 
         public async Task<SkillCollection> GetCollection(Guid collectionId)
