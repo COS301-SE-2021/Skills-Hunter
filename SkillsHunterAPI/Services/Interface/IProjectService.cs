@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Services
 {
@@ -39,7 +40,7 @@ namespace SkillsHunterAPI.Services
         
         bool InviteCandidate(Guid userId,Guid projectId, Guid inviteeId, String message);
         
-        Task<SkillCollection> CreateCollection(SkillCollection request);
+        Task<SkillCollection> CreateCollection(AddSkillCollectionRequest request, Guid projectId);
 
         Task<SkillCollection> GetCollection(Guid CollectionId);
         
