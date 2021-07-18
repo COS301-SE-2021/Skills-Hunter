@@ -171,14 +171,6 @@ namespace SkillsHunterAPI.Controllers
             //Adding the project to the database;
             newProject = await _projectService.CreateProject(newProject);
 
-            //Adding the project skills to the database;
-
-            /*foreach (ProjectSkill projectSkill in projectRequest.ProjectSkills)
-            {
-                projectSkill.SF = newProject.ProjectId;
-                await _projectService.AddProjectSkill(projectSkill);
-            }*/
-
 
             //Adding skills from the list of existing skills
             foreach (GetSkillByIdRequest skill in projectRequest.ExistingSkills)
@@ -206,22 +198,12 @@ namespace SkillsHunterAPI.Controllers
             }
 
             //Adding skills from collections
-
             foreach (AddSkillCollectionRequest collection in projectRequest.SkillCollections)
             {
-
+                _ = _projectService.CreateCollection(collection, newProject.ProjectId);
             }
 
             List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(newProject.ProjectId);
-
-            /*foreach (SkillRR projectSkill in projectRequest.ProjectSkills)
-            {
-                ProjectSkill newProjectSkill = new ProjectSkill();
-                newProjectSkill.ProjectId = newProject.ProjectId;
-                newProjectSkill.SkillId = projectSkill.SkillId;
-                //ProjectSkill RefprojectSkill = await _projectService.GetProjectSkillBySkillId(projectSkill.SkillId, newProject.ProjectId);
-                await _projectService.AddProjectSkill(newProjectSkill);
-            }*/
 
 
             //projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
