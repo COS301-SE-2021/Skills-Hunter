@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using SkillsHunterAPI.Models.Skill.Entity;
 
 namespace SkillsHunterAPI.Data
 {
@@ -27,9 +28,10 @@ namespace SkillsHunterAPI.Data
         public DbSet<WorkExperience> WorkExperiences { get; set; }
         public DbSet<Application> Applications { get; set; }
         public DbSet<Image> Images { get; set; }
-        public DbSet<Collection> Collections { get; set; }
-        public DbSet<CollectionMap> CollectionMap { get; set; }
+        public DbSet<SkillCollection> SkillCollections { get; set; }
+        public DbSet<SkillCollectionMap> SkillCollectionMap { get; set; }
         public DbSet<Invitation> Invitations { get; set; }
+        public DbSet<SkillCategory> SkillCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,14 +62,17 @@ namespace SkillsHunterAPI.Data
             modelBuilder.Entity<Invitation>().ToTable("Invitation");
             modelBuilder.Entity<Invitation>().HasKey("InvitationId");
 
-            modelBuilder.Entity<Collection>().ToTable("Collection");
-            modelBuilder.Entity<Collection>().HasKey("CollectionId");
+            modelBuilder.Entity<SkillCollection>().ToTable("SkillCollection");
+            modelBuilder.Entity<SkillCollection>().HasKey("SkillCollectionId");
 
-            modelBuilder.Entity<CollectionMap>().ToTable("CollectionMap");
-            modelBuilder.Entity<CollectionMap>().HasKey("CollectionMapId");
+            modelBuilder.Entity<SkillCollectionMap>().ToTable("SkillCollectionMap");
+            modelBuilder.Entity<SkillCollectionMap>().HasKey("SkillCollectionMapId");
         
             modelBuilder.Entity<Image>().ToTable("Image");
-            modelBuilder.Entity<Image>().HasKey("ImageId");        
+            modelBuilder.Entity<Image>().HasKey("ImageId");
+
+            modelBuilder.Entity<SkillCategory>().ToTable("SkillCategory");
+            modelBuilder.Entity<SkillCategory>().HasKey("SkillCategoryId");
         }
 
     }
