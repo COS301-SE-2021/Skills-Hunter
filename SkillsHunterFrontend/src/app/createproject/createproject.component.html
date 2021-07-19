@@ -1,0 +1,62 @@
+<div class="wrapper">
+  <h1>Please Enter The Project Details Below:</h1>
+  <form [formGroup]="projectInfo" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Project Name</mat-label>
+      <input formControlName="projectName" matInput />
+      <!-- mat-error is for validation -->
+      <mat-error
+        *ngIf="projectInfo.controls['projectName'].hasError('required')"
+      >
+        The project name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input formControlName="description" matInput />
+      <mat-error
+        *ngIf="projectInfo.controls['description'].hasError('required')"
+      >
+        The description of the project is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>Skills Required</mat-label>
+      <mat-select formControlName="skill" multiple>
+        <mat-option
+          style="color: black"
+          *ngFor="let skill of skills"
+          [value]="skill"
+          >{{ skill }}</mat-option
+        >
+      </mat-select> </mat-form-field
+    ><br />
+
+    <mat-form-field>
+      <mat-label>Is the Project Open For Applications?</mat-label>
+      <mat-select formControlName="openForApplication">
+        <mat-option style="color: black" *ngFor="let o of open" [value]="o">{{
+          o
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+
+    <button
+      id="submit"
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="projectInfo.invalid"
+      value="submit"
+    >
+      Submit</button
+    >&nbsp;
+    <button id="cancel" class="btn btn-danger" (click)="cancel()">
+      Cancel
+    </button>
+  </form>
+</div>
