@@ -27,5 +27,11 @@ namespace SkillsHunterAPI.Models.Skill
             Name = _name;
             CategoryId = _categoryId;
         }
+
+        public Skill(String _name,Guid _categoryId,SkillStatus _status){
+            Name = _name;
+            CategoryId = _categoryId;
+            Status = _status;
+        }
     }
 }

@@ -495,7 +495,7 @@ namespace SkillsHunterAPI.Controllers
 
        
         [HttpPost]
-        [Route("api/[controller]/addSkillToCollection")]
+        [Route("api/[controller]/getCollectionsByProject")]
         public IActionResult GetCollectionsByProject(GetCollectionsByProjectRequest request){
             //This method handles a request to retrieve Skill Collections by Project Id
             try
