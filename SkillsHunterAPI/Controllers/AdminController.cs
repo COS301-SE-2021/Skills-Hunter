@@ -121,6 +121,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+
         [Route("api/[controller]/getSkillCollections")]
         public async Task<IActionResult> GetSkillCollections(){
             try
@@ -129,6 +130,7 @@ namespace SkillsHunterAPI.Controllers
                 List<SkillCollection> result = (List<SkillCollection>)await _adminService.GetSkillCollections();
                 
                 return Ok(new GetSkillCollectionsResponse(){
+
                     collections = result.ToArray()
                 });
             }

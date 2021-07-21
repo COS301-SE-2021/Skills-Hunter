@@ -1,5 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Models.Skill
 {
