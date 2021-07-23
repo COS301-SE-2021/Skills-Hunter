@@ -39,12 +39,12 @@ export class UpdateProjectComponent implements OnInit {
   open: string[] = ['Yes', 'No'];
 
   ngOnInit(): void {
-    this.projectInfo.controls['projectName'].setValue(this.getProjectInfo.name);
+    this.projectInfo.controls['projectName'].setValue(this.getProjectInfo.Name);
     this.projectInfo.controls['description'].setValue(
-      this.getProjectInfo.description
+      this.getProjectInfo.Description
     );
     this.projectInfo.controls['skill'].setValue(
-      this.getProjectInfo.skill.slice()
+      this.getProjectInfo.Skill.slice()
     );
     this.projectInfo.controls['openForApplication'].setValue('Yes');
   }
@@ -59,28 +59,28 @@ export class UpdateProjectComponent implements OnInit {
   //when submit is clicked this function is called to send info to service
   onSubmit() {
     var formData = new Project();
-    formData.projectId = this.getProjectInfo.projectId;
-    formData.name = <string>(
+    formData.ProjectId = this.getProjectInfo.ProjectId;
+    formData.Name = <string>(
       (<any>this.projectInfo.controls['projectName'].value)
     );
-    formData.description = <string>(
+    formData.Description = <string>(
       (<any>this.projectInfo.controls['description'].value)
     );
-    formData.skill = <string[]>(<any>this.projectInfo.controls['skill'].value);
+    formData.Skill = <string[]>(<any>this.projectInfo.controls['skill'].value);
     if (
       <string>(<any>this.projectInfo.controls['openForApplication'].value) ==
       'yes'
     ) {
-      formData.openForApplication = true;
+      formData.OpenForApplication = true;
     } else {
-      formData.openForApplication = true;
+      formData.OpenForApplication = true;
     }
 
     //set new info on the card(replace old info with new after submit is clicked)
-    this.getProjectInfo.name = formData.name;
-    this.getProjectInfo.description = formData.description;
-    this.getProjectInfo.skill = formData.skill;
-    this.getProjectInfo.openForApplication = formData.openForApplication;
+    this.getProjectInfo.Name = formData.Name;
+    this.getProjectInfo.Description = formData.Description;
+    this.getProjectInfo.Skill = formData.Skill;
+    this.getProjectInfo.OpenForApplication = formData.OpenForApplication;
 
     //the service is called below
     this.projectCrud

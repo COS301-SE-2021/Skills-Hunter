@@ -1,19 +1,12 @@
 using System;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
 
 namespace SkillsHunterAPI.Controllers
 {
-    [Authorize]
     [ApiController]
     public class UserController: ControllerBase
     {
@@ -25,96 +18,56 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
-
-        [HttpGet]
-        [Route("api/[controller]/GetCurrentUserId")]
-        public Guid GetCurrentUserId(){
-            Guid result = new Guid();
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            if (identity != null)
-            {
-                IEnumerable<Claim> claims = identity.Claims; 
-                var id = claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault();
-                result =  Guid.Parse(id.Value);
-            }else
-            {
-                throw new Exception("Could not retrieve current user id");
-            }
-
-            return result;         
-        }
-
-        [AllowAnonymous]
         [HttpPost]
         [Route("api/[controller]/register")]
-        public IActionResult Register([FromBody]RegisterRequest request)
+
+        public async Task<RegisterResponse> Register(RegisterRequest request)
         {
-            // map model to entity
-            User user = new User()
-            {
-                Name = request.Name,
-                Surname = request.Surname,
-                Phone = request.Phone,
-                Email = request.Email,
-                UserType = request.Role,
-                StartDate = request.StartDate,
-                OpenForWork = request.OpenForWork,
-            };
+            User newUser = new User();
+            newUser.Name = request.Name;
+            newUser.Surname = request.Surname;
+            newUser.Phone = request.Phone;
+            newUser.Password = request.Password;
+            newUser.UserType = request.Role;
+            //newUser.StartDate = request.St
+            newUser = _userService.AddUser(newUser);
 
-            try
+            RegisterResponse response = new RegisterResponse();
+
+            if (newUser != null)
             {
-                // create user
-                _userService.Create(user, request.Password);
-                return Ok();
+                response.Successful = true;
             }
-            catch (Exception error)
+            else
             {
-                // return error message if there was an exception
-                return BadRequest(new 
-                    { 
-                        message = error.Message 
-                    });
+                response.Successful = false;
             }
 
+            return response;
         }
 
-        [AllowAnonymous]
+
         [HttpPost]
-        [Route("api/[controller]/Authenticate")]
-        public IActionResult Authenticate([FromBody]AuthenticateRequest request)
+        [Route("api/[controller]/login")]
+        public async Task<LogInResponse> LogIn(LogInRequest request)
         {
+            User loginUser = await _userService.LogIn(request.Email, request.Password);
 
-            var user = _userService.Authenticate(request.Email, request.Password);
+            LogInResponse response = new LogInResponse();
 
-            if (user == null)
-                return BadRequest(new { message = "Email or password is incorrect" });
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("Skills hunter validation string");
-            var tokenDescriptor = new SecurityTokenDescriptor
+            if (loginUser == null)
             {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.UserId.ToString()),
-                    new Claim(ClaimTypes.Role, user.UserType.ToString())
-                }),
-                Expires = DateTime.UtcNow.AddDays(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var tokenString = tokenHandler.WriteToken(token);
-
-            // return basic user info and authentication token
-            return Ok(new AuthenticateResponse()
+                response.Validated = false;
+            }
+            else
             {
-                Id = user.UserId,
-                Name = user.Name,
-                Surname = user.Surname,
-                Role = user.UserType,
-                Token = tokenString
-            });
+                response.UserName = loginUser.Name;
+                response.UserId = response.UserId;
+                response.Validated = true;
+            }
+
+            return response;
         }
-
 
         [HttpGet]
         [Route("api/[controller]/logOut")]
@@ -126,7 +79,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/update")]
-        public Task<UpdateResponse> UpdateUser([FromBody]UpdateRequest request)
+        public Task<UpdateResponse> UpdateUser(UpdateRequest request)
         {
             //var response = await _userService.UpdateUser(request);
             return null;
@@ -134,7 +87,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/delete")]
-        public async Task<DeleteResponse> DeleteUser([FromBody]DeleteRequest request)
+        public async Task<DeleteResponse> DeleteUser(DeleteRequest request)
         {
             var response = await _userService.DeleteUser(request);
             return response;
@@ -180,120 +133,5 @@ namespace SkillsHunterAPI.Controllers
 
             return response;
         }
-
-        [HttpPost]
-        [Route("api/[controller]/createImage")]
-        public IActionResult CreateImage(CreateImageRequest request){
-            try
-            {
-                // Create Image code here
-
-
-                return Ok(new CreateImageResponse(){
-
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
-            }
-        }
-
-        [HttpPost]
-        [Route("api/[controller]/getImage")]
-        public IActionResult GetImage(GetImageRequest request){
-            try
-            {
-                // Get Image code here
-
-
-                return Ok(new GetImageResponse(){
-
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
-            }
-        }
-
-        [HttpPost]
-        [Route("api/[controller]/updateImage")]
-        public IActionResult UpdateImage(UpdateImageRequest request){
-            try
-            {
-                // Update image code here
-
-
-                return Ok(new UpdateImageResponse(){
-
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
-            }
-        }
-
-        [HttpPost]
-        [Route("api/[controller]/removeImage")]
-        public IActionResult RemoveImage(RemoveImageRequest request){
-            try
-            {
-                // Remove image code here
-
-
-                return Ok(new RemoveImageResponse(){
-
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
-            }
-        }
-
-        [HttpPost]
-        [Route("api/[controller]/getImageByUser")]
-        public IActionResult GetImageByUser(GetImageByUserRequest request){
-            try
-            {
-                // Get Image By User code here
-
-
-                return Ok(new GetImageByUserResponse(){
-
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
-            }
-        }        
     }
 }

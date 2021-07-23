@@ -17,7 +17,6 @@ import {
 } from '@angular/material/dialog';
 import { AdminAddSkillComponent } from './admin-add-skill/admin-add-skill.component';
 import { Router } from '@angular/router';
-import { AdminDashboardService } from '../services/admin-dashboard.service';
 
 @Component({
   selector: 'app-admin-portal',
@@ -35,26 +34,16 @@ import { AdminDashboardService } from '../services/admin-dashboard.service';
   ],
 })
 export class AdminPortalComponent implements OnInit {
-  constructor(private _router: Router, private dialog: MatDialog,private adminSkillOperations: AdminDashboardService) {}
+  constructor(private _router: Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
-  columnsToDisplay = ['Name'];
+  columnsToDisplay = ['SkillName'];
   dataSource = Skills;
   expandedElement: Skill | null;
   dataSourceTB = new MatTableDataSource(Skills);
 
   @ViewChild(MatTable) table: MatTable<Skill>;
-
-  // getSkills(){
-  //   this.adminSkillOperations.adminGetSkills().subscribe((data) => {
-  //     console.log('Getting all Skills\n', data);
-      
-      // this.dataSource = data;
-
-      // dataSourceTB = new MatTableDataSource(data);
-  //   });
-  // }
 
   addSkill() {
     const configDialog = new MatDialogConfig();
@@ -68,21 +57,15 @@ export class AdminPortalComponent implements OnInit {
     this.table.renderRows();
   }
 
-  removeSkill(skill: Skill) {
-    // let Skill_ID =  skill.SkillId;
-    // for (var index = 0; index < Skills.length; index++) {
-    //   if (
-    //     Skills[index].SkillId.toString().toLowerCase() ===
-    //     Skill_ID.toString().toLowerCase()
-    //   )
-    //     Skills.splice(index, 1);
-    //   } 
-    Skills.shift();   
-    // the service is called below
-    this.adminSkillOperations.adminRemoveSkill(skill).subscribe((data) => {
-      console.log('Removing a Skill\n', data);
-    });
-    
+  removeSkill(Skill_ID: string) {
+    for (var index = 0; index < Skills.length; index++) {
+      if (
+        Skills[index].SkillId.toString().toLowerCase() ===
+        Skill_ID.toString().toLowerCase()
+      )
+        Skills.splice(index, 1);
+    }
+
     // refresh the list of skills:
     this.dataSourceTB = new MatTableDataSource(Skills);
     this.table.renderRows();

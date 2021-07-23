@@ -25,21 +25,12 @@ export class ProjectCardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(localStorage.getItem('role')=='Candidate'){
+    if(localStorage.getItem('role')=='candidate'){
 
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visDelete', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
-      document.getElementById("createbtn").style.visibility = "hidden";
-    }
-    else if(localStorage.getItem('role')=='Admin'){
-      document.documentElement.style.setProperty('--visFind', 'none');
-      document.documentElement.style.setProperty('--visUpdate', 'none');
-      document.documentElement.style.setProperty('--visAppl', 'none');
-      document.documentElement.style.setProperty('--visCancel', 'none');
-      document.getElementById("createbtn").style.visibility = "hidden";
-
     }
     else{
       document.documentElement.style.setProperty('--visAppl', 'none');
@@ -67,30 +58,28 @@ export class ProjectCardComponent implements OnInit {
   }
 
   delete(_project: Project) {
-    if (confirm(`Are you sure to delete ${_project.name}`)) {
-      /*for (let [i, proj] of Projects.entries()) {
+    if (confirm(`Are you sure to delete ${_project.Name}`)) {
+      for (let [i, proj] of Projects.entries()) {
         if (proj.ProjectId == _project.ProjectId) {
           Projects.splice(i, 1);
         }
-      }*/
+      }
 
       //the service is called below
-      console.log("here"+_project.projectId);
-        this.projectCrud
-         .deleteProject(_project.projectId) //change so it calls update
-         .subscribe((data) => {
-           console.log('Response post', data);
-         });
-         window.location.reload();
+      // this.projectCrud
+      //   .createProject(_project) //change so it calls update
+      //   .subscribe((data) => {
+      //     console.log('Response post', data);
+      //   });
     }
   }
 
   apply(_project: Project){
 
-    console.log(_project.projectId);
+    console.log(_project.ProjectId);
     var formData = new Apply();
     formData.UserId=localStorage.getItem('userID');
-    formData.ProjectId="3fa85f64-5717-4562-b3fc-2c963f66afa4"//_project.ProjectId;
+    formData.ProjectId=_project.ProjectId;
 
 
      //the service is called below;

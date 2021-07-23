@@ -18,12 +18,7 @@
   </mat-form-field>
 </div>
 
-<!-- <app-project-card
-  *ngFor="let project of _projects | searchAndFilterCandidate: filterQuery"
-  [card_project]="project"
-></app-project-card> -->
-
 <app-project-card
-  *ngFor="let project of _projects"
+  *ngFor="let project of _projects | searchAndFilterCandidate: filterQuery"
   [card_project]="project"
 ></app-project-card>

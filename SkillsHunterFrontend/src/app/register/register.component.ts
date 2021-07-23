@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
 
   hide = true; // for hiding password in UI
   _match = true;
-  role: string[] = ['create a project and recruit candidates','participate in Projects'];
+
   registationForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -33,59 +33,38 @@ export class RegisterComponent implements OnInit {
     ]),
     role: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required,Validators.pattern('[- +()0-9]+')]),
     password: new FormControl('', [Validators.required]),
-    indicateRole: new FormControl('', [Validators.required])
   });
 
   onSubmit() {
     var formData = new Register();
 
-    formData.name = this.registationForm.get('name').value;
-    formData.surname = this.registationForm.get('surname').value;
-    formData.email = this.registationForm.get('email').value;
-    formData.password = this.registationForm.get('password').value;
-    formData.phone=`${this.registationForm.get('phone').value}`;
-    if(this.registationForm.get('password').value=='create a project and recruit candidates')
-    {
-      formData.role = 1;
-    }
-    else
-    {
-      formData.role = 0;
-    }
-    console.log("phone: "+formData.phone);
- 
-    this.registerService.register(formData)
+    formData.Name = this.registationForm.get('name').value;
+    formData.Surname = this.registationForm.get('surname').value;
+    formData.Email = this.registationForm.get('email').value;
+    formData.Password = this.registationForm.get('password').value;
+    formData.Role = 'projectOwner';
+
+    /*this.registerService.login(formData)
     .subscribe(
       data=>{
 
-        if(data.status==200)
+        if(data.Successful)
         {
           this._match=true;
-          alert("registration successful");
           this._router.navigate([`login`]);
         }
         else
         {
-          console.log(data.body.message);
           this._match=false;
         }
-      },
-      err =>{
-       
-        if(err.status>=400 && err.status<500){
-          console.log("err:"+err.Response);
-          console.log(err.message);
-          this._match=false;
-        }
-       else
-       {
-        alert("registration failed. Unable to connect to server");
-         console.log('HTTP Error1', err);//server error
-       }
       }
-    );
-   
+    );*/
+    if (true) {
+      this._match = true;
+      this._router.navigate([`login`]);
+    } else {
+      this._match = false;
+    }
   }
 }

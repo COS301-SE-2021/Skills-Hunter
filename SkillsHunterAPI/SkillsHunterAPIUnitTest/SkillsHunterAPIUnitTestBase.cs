@@ -11,15 +11,13 @@ namespace SkillsHunterAPIUnitTest.Tests
         public IProjectService projectService;
         public ISkillService skillService;
         public ProjectController projectController;
-        public UserController userController;
 
         public SkillsHunterAPIUnitTestBase()
         {
 
             projectService = A.Fake<IProjectService>();
             skillService = A.Fake<ISkillService>();
-            userController = A.Fake<UserController>();
-            projectController = new ProjectController(projectService, skillService, userController);
+            projectController = new ProjectController(projectService, skillService);
         }
     }
 }

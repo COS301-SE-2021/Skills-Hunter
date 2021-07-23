@@ -32,39 +32,36 @@ export class CreateprojectComponent implements OnInit {
 
   //when submit is clicked this function is called to send info to service
   onSubmit() {
-
-    this.cancel();
-    
     var formData = new Project();
 
     if (
       <string>(<any>this.projectInfo.controls['openForApplication'].value) ==
       'Yes'
     ) {
-      formData.openForApplication = true;
+      formData.OpenForApplication = true;
     } else {
-      formData.openForApplication = true;
+      formData.OpenForApplication = true;
     }
 
     // Generate random number for Project ID:
     let max = 1000;
     let min = Projects.length;
 
-    formData.projectId = (
+    formData.ProjectId = (
       Math.floor(Math.random() * (max - min + 1)) + min
     ).toString();
 
-    formData.name = <string>(
+    formData.Name = <string>(
       (<any>this.projectInfo.controls['projectName'].value)
     );
-    formData.description = <string>(
+    formData.Description = <string>(
       (<any>this.projectInfo.controls['description'].value)
     );
 
-    formData.owner = 'Mxo Developers';
-    formData.location = 'Hatfield';
+    formData.Owner = 'Mxo Developers';
+    formData.Location = 'Hatfield';
 
-    formData.skill = (<string>(<any>this.projectInfo.controls['skill'].value))
+    formData.Skill = (<string>(<any>this.projectInfo.controls['skill'].value))
       .toString()
       .split(',');
 
@@ -75,8 +72,6 @@ export class CreateprojectComponent implements OnInit {
       // console.log('Response post', data);
       console.log('Creating A Project...');
     });
-
-    
   }
 
   //close dialog popup

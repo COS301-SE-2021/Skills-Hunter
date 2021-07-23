@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Skills } from 'src/app/mock-data/mock-skills';
-import { AdminDashboardService } from 'src/app/services/admin-dashboard.service';
 
 @Component({
   selector: 'app-admin-add-skill',
@@ -11,7 +10,7 @@ import { AdminDashboardService } from 'src/app/services/admin-dashboard.service'
   styleUrls: ['./admin-add-skill.component.scss'],
 })
 export class AdminAddSkillComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<AdminAddSkillComponent>, private adminSkillOperations: AdminDashboardService) {}
+  constructor(public dialogRef: MatDialogRef<AdminAddSkillComponent>) {}
 
   ngOnInit(): void {}
 
@@ -22,22 +21,15 @@ export class AdminAddSkillComponent implements OnInit {
   onSubmit() {
     var skillData = new Skill();
 
-    // skillData.SkillId = Skills.length.toString();
+    skillData.SkillId = Skills.length;
 
-    skillData.Name = <string>(
+    skillData.SkillName = <string>(
       (<any>this.skillForm.controls['skillName'].value)
     );
 
-    skillData.CategoryId = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
+    skillData.SkillWeight = 0;
 
     Skills.push(skillData);
-
-        // the service is called below
-        this.adminSkillOperations.adminAddSkill(skillData).subscribe((data) => {
-          console.log('Creating a Skill\n', data);
-        });
-
-    this.cancel();
   }
 
   //close dialog popup

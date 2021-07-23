@@ -1,4 +1,3 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginRegisterService } from '../services/login-register.service';
@@ -35,34 +34,29 @@ export class LoginComponent implements OnInit {
     formData.Email = this.LoginForm.get('email').value;
     formData.Password = this.LoginForm.get('password').value;
 
-    this.loginService.login(formData)
+    /*this.loginService.login(formData)
     .subscribe(
       data=>{
-        
-        if(data.status==200)
+        console.log('Response post', data);
+        if(data.Validated)
         {
           this._match=true;
-          localStorage.setItem('role', data.body.role);
-          localStorage.setItem('token',data.body.token);
-          localStorage.setItem('name',data.body.name);
-          localStorage.setItem('surname',data.body.surname);
           this._router.navigate([`home`]);
         }
         else
         {
           this._match=false;
         }
-      },
-      err =>{
-       
-        if(err.status>=400 && err.status<500){
-          this._match=false;
-        }
-       else
-       {
-         console.log('HTTP Error1', err);//server error
-       }
       }
-    );
+    );*/
+
+    if (true) {
+      localStorage.setItem('role', 'candidate');
+      localStorage.setItem('userID', '#dkdkfj23');
+      this._match = true;
+      this._router.navigate([`home`]);
+    } else {
+      this._match = false;
+    }
   }
 }

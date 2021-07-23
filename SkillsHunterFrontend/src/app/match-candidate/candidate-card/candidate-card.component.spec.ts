@@ -1,36 +1,25 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { UpdateProjectComponent } from 'src/app/update-project/update-project.component';
-// import { CandidateCardComponent } from './candidate-card.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// describe('UpdateProjectComponent', () => {
-//   let component: UpdateProjectComponent;
-//   let fixture: ComponentFixture<UpdateProjectComponent>;
+import { CandidateCardComponent } from './candidate-card.component';
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [ UpdateProjectComponent ]
+describe('CandidateCardComponent', () => {
+  let component: CandidateCardComponent;
+  let fixture: ComponentFixture<CandidateCardComponent>;
 
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ CandidateCardComponent ]
+    })
+    .compileComponents();
+  });
 
-// describe('CandidateCardComponent', () => {
-//   let component: CandidateCardComponent;
-//   let fixture: ComponentFixture<CandidateCardComponent>;
+  beforeEach(() => {
+    fixture = TestBed.createComponent(CandidateCardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [ CandidateCardComponent ]
-//     })
-//     .compileComponents();
-//   });
-
-//   beforeEach(() => {
-
-//     fixture = TestBed.createComponent(CandidateCardComponent);
-//     fixture = TestBed.createComponent(UpdateProjectComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -7,7 +7,6 @@ import { projectService } from '../services/project-edit.service';
 import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
 import { MaterialModule } from '../material/material.module';
-import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +16,7 @@ import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 export class HomeComponent implements OnInit {
   title: string = 'Projects';
   filterQuery: string = '';
-  _projects: Project[] ;//= Projects;
+  _projects: Project[] = Projects;
 
   constructor(
     private _router: Router,
@@ -34,13 +33,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     //read data of projects
-    this.projectCrud.getProjects()
+    /*this.projectCrud.getProjects()
     .subscribe(
       data=>{
         this._projects=data;
         console.log('Response post', data);
       }
-    );
+    );*/
   }
 
   create() {
