@@ -13,6 +13,7 @@
 
 <div class="skillActions">
   <button
+  (click)="onSubmit()"
     id="skillAdd"
     class="btn btn-primary"
     type="submit"
@@ -22,7 +23,6 @@
     Add Skill</button
   >&nbsp;
   <button
-    id="cancel"
     class="btn btn-danger"
     id="skillCancel"
     (click)="cancel()"
