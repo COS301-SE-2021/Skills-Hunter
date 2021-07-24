@@ -1,23 +1,38 @@
 ﻿<Properties StartupConfiguration="{5765300E-4CBE-48DB-9AA9-419E37AD67D9}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Skill/Request/AddSkillCollectionRequest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Project/Entity/ProjectSkill.cs">
     <Files>
-      <File FileName="Controllers/ProjectController.cs" Line="206" Column="49" />
-      <File FileName="Models/Skill/Entity/Skill.cs" Line="11" Column="22" />
-      <File FileName="Models/Skill/Request/AddSkillRequest.cs" Line="11" Column="43" />
-      <File FileName="Services/Implementation/SkillService.cs" Line="47" Column="26" />
-      <File FileName="Models/Skill/Request/GetCategoryByIdRequest.cs" Line="7" Column="38" />
-      <File FileName="Services/Interface/ISkillService.cs" Line="16" Column="19" />
-      <File FileName="Services/Implementation/AdminService.cs" Line="21" Column="10" />
-      <File FileName="Services/Interface/IAdminService.cs" Line="1" Column="1" />
-      <File FileName="Models/Skill/Request/CreateCollectionRequest.cs" Line="1" Column="1" />
-      <File FileName="Models/Skill/Entity/SkillCategoryMap.cs" Line="4" Column="31" />
-      <File FileName="Data/ApplicationDbContext.cs" Line="75" Column="73" />
-      <File FileName="Controllers/AdminController.cs" Line="33" Column="30" />
-      <File FileName="Services/Interface/IProjectService.cs" Line="1" Column="1" />
-      <File FileName="Services/Implementation/ProjectService.cs" Line="1" Column="1" />
-      <File FileName="Models/Project/Request/CreateProjectRequest.cs" Line="18" Column="46" />
-      <File FileName="Models/Skill/Request/AddSkillCollectionRequest.cs" Line="1" Column="1" />
+      <File FileName="Controllers/ProjectController.cs" Line="185" Column="13" />
+      <File FileName="Models/Skill/Entity/Skill.cs" />
+      <File FileName="Models/Skill/Request/AddSkillRequest.cs" Line="10" Column="9" />
+      <File FileName="Services/Implementation/SkillService.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/Request/GetCategoryByIdRequest.cs" />
+      <File FileName="Services/Interface/ISkillService.cs" />
+      <File FileName="Services/Implementation/AdminService.cs" />
+      <File FileName="Services/Interface/IAdminService.cs" />
+      <File FileName="Models/Skill/Request/CreateCollectionRequest.cs" Line="3" Column="49" />
+      <File FileName="Data/ApplicationDbContext.cs" />
+      <File FileName="Controllers/AdminController.cs" />
+      <File FileName="Services/Interface/IProjectService.cs" />
+      <File FileName="Services/Implementation/ProjectService.cs" Line="218" Column="76" />
+      <File FileName="Models/Project/Request/CreateProjectRequest.cs" Line="10" Column="41" />
+      <File FileName="Models/Skill/Request/AddSkillCollectionRequest.cs" Line="11" Column="44" />
+      <File FileName="Models/Skill/Entity/SkillCollection.cs" />
+      <File FileName="Models/Skill/Entity/SkillCollectionMap.cs" />
+      <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" />
+      <File FileName="instructions.txt" />
+      <File FileName="Models/User/Entity/User.cs" />
+      <File FileName="Startup.cs" />
+      <File FileName="appsettings.json" />
+      <File FileName="Models/Skill/Request/GetCollectionRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/Request/GetCollectionsRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/Request/addSkillToCollectionRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Skill/Request/GetSkillByIdRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Request/AddExistingSkill.cs" Line="8" Column="39" />
+      <File FileName="Models/Project/Request/AddNewSkill.cs" Line="13" Column="34" />
+      <File FileName="Services/Implementation/UserService.cs" Line="72" Column="47" />
+      <File FileName="Models/Project/Request/ApplyForProjectRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Entity/ProjectSkill.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -29,16 +44,15 @@
               <Node name="Models" expanded="True">
                 <Node name="Project" expanded="True">
                   <Node name="Entity" expanded="True" />
-                  <Node name="Request" expanded="True" />
+                  <Node name="Request" expanded="True">
+                    <Node name="AddExistingSkillRequest.cs" selected="True" />
+                  </Node>
                 </Node>
                 <Node name="Skill" expanded="True">
                   <Node name="Entity" expanded="True" />
-                  <Node name="Request" expanded="True">
-                    <Node name="AddSkillCollectionRequest.cs" selected="True" />
-                  </Node>
+                  <Node name="Request" expanded="True" />
                 </Node>
               </Node>
-              <Node name="Properties" expanded="True" />
               <Node name="Services" expanded="True">
                 <Node name="Implementation" expanded="True" />
                 <Node name="Interface" expanded="True" />
