@@ -194,7 +194,7 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
 
             //Linking the skills with the skillCollection
-            foreach (GetSkillByIdRequest skillToAdd in request.Skills)
+            foreach (AddExistingSkillRequest skillToAdd in request.Skills)
             {
                 SkillCollectionMap skillCollectionMap = new SkillCollectionMap();
                 skillCollectionMap.SkillCollectionMapId = new Guid();

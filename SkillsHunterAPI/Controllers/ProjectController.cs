@@ -173,7 +173,7 @@ namespace SkillsHunterAPI.Controllers
 
 
             //Adding skills from the list of existing skills
-            foreach (GetSkillByIdRequest skill in projectRequest.ExistingSkills)
+            foreach (AddExistingSkillRequest skill in projectRequest.ExistingSkills)
             {
                 ProjectSkill projectSkill = new ProjectSkill();
                 projectSkill.ProjectId = newProject.ProjectId;
@@ -182,8 +182,11 @@ namespace SkillsHunterAPI.Controllers
             }
 
             //Adding new skills
-            foreach (AddSkillRequest skillToAdd in projectRequest.NewSkills)
+            foreach (AddNewSkillRequest skill in projectRequest.NewSkills)
             {
+                AddSkillRequest skillToAdd = new AddSkillRequest();
+                skillToAdd.Categories = skill.Categories;
+                skillToAdd.Name = skill.Name;
                 Skill newSkill = await _skillService.AddSkill(skillToAdd);
 
                 //Checking if the new skill was created before linking it with the project
