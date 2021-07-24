@@ -178,6 +178,7 @@ namespace SkillsHunterAPI.Controllers
                 ProjectSkill projectSkill = new ProjectSkill();
                 projectSkill.ProjectId = newProject.ProjectId;
                 projectSkill.SkillId = skill.SkillId;
+                projectSkill.Weight = skill.Weight;
                 await _projectService.AddProjectSkill(projectSkill);
             }
 
@@ -195,6 +196,7 @@ namespace SkillsHunterAPI.Controllers
                     ProjectSkill projectSkill = new ProjectSkill();
                     projectSkill.ProjectId = newProject.ProjectId;
                     projectSkill.SkillId = newSkill.SkillId;
+                    projectSkill.Weight = skill.Weight;
                     await _projectService.AddProjectSkill(projectSkill);
                 }
 
@@ -203,7 +205,7 @@ namespace SkillsHunterAPI.Controllers
             //Adding skills from collections
             foreach (AddSkillCollectionRequest collection in projectRequest.SkillCollections)
             {
-                _ = _projectService.CreateCollection(collection, newProject.ProjectId);
+                await _projectService.CreateCollection(collection, newProject.ProjectId);
             }
 
             List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(newProject.ProjectId);

@@ -188,6 +188,7 @@ namespace SkillsHunterAPI.Services
             skillCollection.Name = request.Name;
             skillCollection.Description = request.Description;
             skillCollection.ProjectId = projectId;
+            skillCollection.Weight = request.Weight;
 
             //Saving the SkillCollection object on the database
             _context.SkillCollections.Add(skillCollection);
@@ -208,8 +209,9 @@ namespace SkillsHunterAPI.Services
                 ProjectSkill projectSkill = new ProjectSkill();
                 projectSkill.SkillId = skillToAdd.SkillId;
                 projectSkill.ProjectId = projectId;
+                projectSkill.Weight = request.Weight;
 
-                _ = AddProjectSkill(projectSkill);
+                await AddProjectSkill(projectSkill);
             }
 
             return skillCollection;

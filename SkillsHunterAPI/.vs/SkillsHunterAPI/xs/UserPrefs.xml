@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{5765300E-4CBE-48DB-9AA9-419E37AD67D9}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ProjectController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Project/Entity/ProjectSkill.cs">
     <Files>
-      <File FileName="Controllers/ProjectController.cs" Line="180" Column="54" />
+      <File FileName="Controllers/ProjectController.cs" Line="185" Column="13" />
       <File FileName="Models/Skill/Entity/Skill.cs" />
       <File FileName="Models/Skill/Request/AddSkillRequest.cs" Line="10" Column="9" />
       <File FileName="Services/Implementation/SkillService.cs" Line="1" Column="1" />
@@ -14,7 +14,7 @@
       <File FileName="Data/ApplicationDbContext.cs" />
       <File FileName="Controllers/AdminController.cs" />
       <File FileName="Services/Interface/IProjectService.cs" />
-      <File FileName="Services/Implementation/ProjectService.cs" Line="38" Column="1" />
+      <File FileName="Services/Implementation/ProjectService.cs" Line="218" Column="76" />
       <File FileName="Models/Project/Request/CreateProjectRequest.cs" Line="10" Column="41" />
       <File FileName="Models/Skill/Request/AddSkillCollectionRequest.cs" Line="11" Column="44" />
       <File FileName="Models/Skill/Entity/SkillCollection.cs" />
@@ -32,20 +32,21 @@
       <File FileName="Models/Project/Request/AddNewSkill.cs" Line="13" Column="34" />
       <File FileName="Services/Implementation/UserService.cs" Line="72" Column="47" />
       <File FileName="Models/Project/Request/ApplyForProjectRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Entity/ProjectSkill.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPI" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="ProjectController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True">
                 <Node name="Project" expanded="True">
                   <Node name="Entity" expanded="True" />
-                  <Node name="Request" expanded="True" />
+                  <Node name="Request" expanded="True">
+                    <Node name="AddExistingSkillRequest.cs" selected="True" />
+                  </Node>
                 </Node>
                 <Node name="Skill" expanded="True">
                   <Node name="Entity" expanded="True" />
