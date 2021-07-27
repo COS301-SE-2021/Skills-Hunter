@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-add-skill-collection',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddSkillCollectionComponent implements OnInit {
 
-  constructor() { }
+  category: FormGroup;
+
+  constructor(fb: FormBuilder) {
+    this.category = fb.group({
+      FrontEnd: false,
+      BackEnd: false,
+      Mobile: false,
+      Desktop: false
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+  panelOpenState = false;
+
+  addSKill(){
+
+  }
+  
+  cancel(){
+
   }
 
 }

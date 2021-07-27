@@ -10,6 +10,7 @@ import { UpdateProjectComponent } from './update-project/update-project.componen
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
+import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
 
 const routes: Routes = [
   {
@@ -41,9 +42,16 @@ const routes: Routes = [
     component: AdminAddSkillComponent,
   },
   {
-    path: '',
-    // component: HomeComponent,
+    path: 'add-skill-category',
     component: AddSkillCategoryComponent,
+  },
+  {
+    path: 'add-skill-collection',
+    component: AddSkillCollectionComponent,
+  },
+  {
+    path: '',
+    component: AddSkillCollectionComponent,
   },
 
 ];
