@@ -5,7 +5,6 @@ import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions } from '@angula
 @Component({
   selector: 'app-add-skill-category',
   templateUrl: './add-skill-category.component.html',
-  // providers : [{provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions}],
   styleUrls: ['./add-skill-category.component.scss']
 })
 export class AddSkillCategoryComponent implements OnInit {
