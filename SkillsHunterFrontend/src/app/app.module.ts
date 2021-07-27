@@ -25,6 +25,7 @@ import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
 import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions } from '@angular/material/checkbox';
+import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions } from '@angula
     AdminPortalComponent,
     AdminAddSkillComponent,
     AddSkillCategoryComponent,
+    AddSkillCollectionComponent,
   ],
   imports: [
     BrowserModule,
