@@ -6,38 +6,10 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-
-      <mat-card class="project-card">
-        <mat-card-header>
-          <div mat-card-avatar class="project-menu-header-image"></div>
-          <mat-card-title>Front-End Development</mat-card-title>
-          <!-- <mat-card-subtitle></mat-card-subtitle> -->
-        </mat-card-header>
-      
-        <!-- <mat-card-content> -->
-              <!-- <mat-card class="project-card-skills">
-                <mat-card-title>Skills</mat-card-title>
-                <mat-chip-list aria-label="Project Required Skills">
-                  <mat-chip color="primary" selected> Angular </mat-chip>
-                  <mat-chip color="primary" selected> React </mat-chip>
-                  <mat-chip color="primary" selected> Vue </mat-chip>
-                </mat-chip-list>
-        </mat-card> -->
-        <!-- </mat-card-content> -->
-      
-        <mat-card-actions>
-          <button
-            class="card-project-find"
-            mat-raised-button
-            color="accent"
-            [routerLink]="['/match-candidate']"
-          >
-            Add
-          </button>
-      
-        </mat-card-actions>
-      </mat-card>
-      
+      <app-collection-card
+  *ngFor="let collection of _collections"
+  [card_collection]="collection"
+></app-collection-card>
 
       <!-- <p class="options">Front-End Development </p>
       <p class="options">Back-End Development </p>

@@ -1,1 +1,32 @@
-<p>collection-card works!</p>
+<mat-card class="project-card">
+    <mat-card-header>
+      <!-- <div mat-card-avatar class="project-menu-header-image"></div> -->
+      <mat-card-title>{{ card_collection.collectionName}}</mat-card-title>
+      <!-- <mat-card-subtitle></mat-card-subtitle> -->
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <p>{{ card_collection.skills}}</p>
+
+          <!-- <mat-card class="project-card-skills">
+            <mat-card-title>Skills</mat-card-title>
+            <mat-chip-list aria-label="Project Required Skills">
+              <mat-chip color="primary" selected> Angular </mat-chip>
+              <mat-chip color="primary" selected> React </mat-chip>
+              <mat-chip color="primary" selected> Vue </mat-chip>
+            </mat-chip-list>
+    </mat-card> -->
+    </mat-card-content>
+  
+    <mat-card-actions>
+      <button
+        class="card-project-find"
+        mat-raised-button
+        color="accent"
+      >
+        Add
+      </button>
+  
+    </mat-card-actions>
+  </mat-card>
