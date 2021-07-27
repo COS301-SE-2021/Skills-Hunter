@@ -9,6 +9,7 @@ import { projectService } from './services/project-edit.service';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
+import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
 
 const routes: Routes = [
   {
@@ -41,8 +42,10 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: HomeComponent,
+    // component: HomeComponent,
+    component: AddSkillCategoryComponent,
   },
+
 ];
 
 @NgModule({
