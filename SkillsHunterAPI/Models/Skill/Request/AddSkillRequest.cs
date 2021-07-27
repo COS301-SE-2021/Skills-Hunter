@@ -12,5 +12,7 @@ namespace SkillsHunterAPI.Models.Skill
         public String Name { get; set; }
         [Required(ErrorMessage = "Category Id is required")]
         public Guid CategoryId { get; set; }
+
+        public List<GetCategoryByIdRequest> Categories { get; set; }
     }
 }
