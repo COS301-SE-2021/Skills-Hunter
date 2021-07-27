@@ -26,6 +26,7 @@ import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
 import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions } from '@angular/material/checkbox';
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
+import { CollectionCardComponent } from './createproject/add-skill-collection/collection-card/collection-card.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     AdminAddSkillComponent,
     AddSkillCategoryComponent,
     AddSkillCollectionComponent,
+    CollectionCardComponent,
   ],
   imports: [
     BrowserModule,
