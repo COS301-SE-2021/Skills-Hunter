@@ -78,15 +78,33 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/addCategory")]
-        public async Task<AddCategoryResponse> AddCategory([FromBody] AddCategoryRequest request)
+        public IActionResult AddCategory([FromBody] AddCategoryRequest request)
         {
-            Category category = new Category(request.Name,request.Description);
+
+            try
+            {
+                // Add category code here
+                Category category = new Category();
+
+                category.Name = request.Name;
             
-            AddCategoryResponse response = new AddCategoryResponse(); 
-            response.Success = true;
-            response.Added = await _adminService.AddCategory(category);
-            
-            return response; 
+                category.Description = request.Description;
+
+                Category result = _adminService.AddCategory(category);
+
+                return Ok(new AddCategoryResponse(){
+                    Added = result
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
         }
 
 
