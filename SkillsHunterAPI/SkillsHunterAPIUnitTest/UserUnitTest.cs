@@ -1,7 +1,9 @@
 using System;
 using FakeItEasy;
+using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Controllers;
 using SkillsHunterAPI.Models.Skill;
+using SkillsHunterAPI.Models.User;
 using SkillsHunterAPI.Services;
 using Xunit;
 
@@ -18,7 +20,29 @@ namespace SkillsHunterAPIUnitTest.Tests
         [Fact]
         public void TestRegister()
         {
+            //Arrange
 
+            RegisterRequest registerRequest = new RegisterRequest();
+            registerRequest.Name = "James";
+            registerRequest.Surname = "Smith";
+            registerRequest.Phone = "0792352726";
+            registerRequest.Role = 0;
+            registerRequest.Email = "JS@gmail.com";
+            registerRequest.OpenForWork = true;
+            registerRequest.Password = "James2431";
+
+            IActionResult ExpectedResult;
+
+            //Act
+
+            // Act
+            //A.CallTo(() => userController.Register(registerRequest)).Returns(());
+            var actionResult = userController.Register(registerRequest);
+
+
+            // Assert
+            //Assert.IsAssignableFrom<IActionResult>(actionResult);
+            //Assert.Equal(testId, (actionResult.Value as Project).ProjectId);
         }
 
         [Fact]
