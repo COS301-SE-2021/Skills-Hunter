@@ -10,10 +10,16 @@ namespace SkillsHunterAPI.Services
 {
     public interface IAdminService
     {
-        Task<Skill> AddSkill(Skill skill);
+        Skill AddSkill(Skill skill);
+        Task<Skill> GetSkill(Guid id);
         Task<List<Skill>> GetSkills();
-        Task<Category> AddCategory(Category category);
         Task<Skill> RemoveSkill(Guid id);
-        Task<IEnumerable<SkillCollection>> getCollections();
+        Task<Skill> UpdateSkill(Guid id,Skill skill);
+        Task<IEnumerable<SkillCollection>> GetSkillCollections();
+        Task<Category> AddCategory(Category category);
+        Task<Category> GetCategory(Guid id);
+        Task<IEnumerable<Category>> GetCategories();
+        Task<Category> UpdateCategory(Guid id,Category category);
+        Task<Category> RemoveCategory(Guid id);
     }
 }

@@ -23,26 +23,26 @@ namespace SkillsHunterAPI.Services
         {
             //Adding the new skill
             Skill skill = new Skill();
-            skill.SkillId = new Guid();
-            skill.Name = addSkillRequest.Name;
-            skill.Status = SkillStatus.Pending;
-            _context.Skills.Add(skill);
+            // skill.SkillId = new Guid();
+            // skill.Name = addSkillRequest.Name;
+            // skill.Status = SkillStatus.Pending;
+            // _context.Skills.Add(skill);
 
-            await _context.SaveChangesAsync();
+            // await _context.SaveChangesAsync();
 
-            //Linking the skills with the categories
-            foreach (GetCategoryByIdRequest category in addSkillRequest.Categories)
-            {
-                SkillCategory skillCategory = new SkillCategory();
-                skillCategory.SkillCategoryId = new Guid();
-                skillCategory.SkillId = skill.SkillId;
+            // //Linking the skills with the categories
+            // foreach (GetCategoryByIdRequest category in addSkillRequest.Categories)
+            // {
+            //     SkillCategory skillCategory = new SkillCategory();
+            //     skillCategory.SkillCategoryId = new Guid();
+            //     skillCategory.SkillId = skill.SkillId;
 
-                //TODO: Check if the category exists before using the id
-                skillCategory.CategoryId = category.CategoryId;
+            //     //TODO: Check if the category exists before using the id
+            //     skillCategory.CategoryId = category.CategoryId;
 
-                _context.SkillCategories.Add(skillCategory);
-                await _context.SaveChangesAsync();
-            }
+            //     _context.SkillCategories.Add(skillCategory);
+            //     await _context.SaveChangesAsync();
+            // }
 
             return skill;
         }
