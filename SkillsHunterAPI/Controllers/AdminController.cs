@@ -127,7 +127,7 @@ namespace SkillsHunterAPI.Controllers
             try
             {
                 // Get collections code here
-                List<SkillCollection> result = (List<SkillCollection>)await _adminService.GetSkillCollections();
+                List<ProjectSkillCollection> result = (List<ProjectSkillCollection>)await _adminService.GetSkillCollections();
                 
                 return Ok(new GetSkillCollectionsResponse(){
 
