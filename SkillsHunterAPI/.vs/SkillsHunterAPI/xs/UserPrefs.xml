@@ -52,7 +52,9 @@
                 <Node name="Implementation" expanded="True" />
                 <Node name="Interface" expanded="True" />
               </Node>
-              <Node name="SkillsHunterAPIUnitTest" expanded="True" />
+              <Node name="SkillsHunterAPIUnitTest" expanded="True">
+                <Node name="UserUnitTest.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
