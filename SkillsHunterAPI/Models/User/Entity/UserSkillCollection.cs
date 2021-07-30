@@ -9,6 +9,8 @@ namespace SkillsHunterAPI.Models.User.Entity
         public int Weight { get; set; }
         public Guid UserId { get; set; }
 
-        public UserSkillCollection(){}
+        public UserSkillCollection()
+        {
+        }
     }
 }
