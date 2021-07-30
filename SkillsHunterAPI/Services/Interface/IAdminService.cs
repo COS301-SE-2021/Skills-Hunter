@@ -15,7 +15,7 @@ namespace SkillsHunterAPI.Services
         Task<List<Skill>> GetSkills();
         Task<Skill> RemoveSkill(Guid id);
         Task<Skill> UpdateSkill(Guid id,Skill skill);
-        Task<IEnumerable<SkillCollection>> GetSkillCollections();
+        Task<IEnumerable<ProjectSkillCollection>> GetSkillCollections();
         Task<Category> AddCategory(Category category);
         Task<Category> GetCategory(Guid id);
         Task<IEnumerable<Category>> GetCategories();
