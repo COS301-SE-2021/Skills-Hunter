@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using SkillsHunterAPI.Models.Skill.Entity;
+using SkillsHunterAPI.Models.User.Entity;
 
 namespace SkillsHunterAPI.Data
 {
@@ -29,9 +30,11 @@ namespace SkillsHunterAPI.Data
         public DbSet<Application> Applications { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<SkillCollection> SkillCollections { get; set; }
-        public DbSet<SkillCollectionMap> SkillCollectionMap { get; set; }
+        public DbSet<SkillCollectionMap> SkillCollectionMaps { get; set; }
         public DbSet<Invitation> Invitations { get; set; }
         public DbSet<SkillCategory> SkillCategories { get; set; }
+        public DbSet<UserSkillCollection> UserSkillCollections { get; set; }
+        public DbSet<UserSkillCollectionMap> UserSkillCollectionMaps { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -73,6 +76,12 @@ namespace SkillsHunterAPI.Data
 
             modelBuilder.Entity<SkillCategory>().ToTable("SkillCategory");
             modelBuilder.Entity<SkillCategory>().HasKey("SkillCategoryId");
+
+            modelBuilder.Entity<UserSkillCollection>().ToTable("UserSkillCollection");
+            modelBuilder.Entity<UserSkillCollection>().HasKey("UserSkillCollectionId");
+
+            modelBuilder.Entity<UserSkillCollectionMap>().ToTable("UserSkillCollectionMap");
+            modelBuilder.Entity<UserSkillCollectionMap>().HasKey("UserSkillCollectionMapId");
         }
 
     }

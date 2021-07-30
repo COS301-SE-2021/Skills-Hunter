@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{5765300E-4CBE-48DB-9AA9-419E37AD67D9}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/User/Entity/UserSkillCollection.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Data/ApplicationDbContext.cs">
     <Files>
       <File FileName="Controllers/UserController.cs" Line="115" Column="16" />
       <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" />
@@ -8,11 +8,12 @@
       <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTestBase.cs" />
       <File FileName="SkillsHunterAPIUnitTest/UserUnitTest.cs" />
       <File FileName="Models/User/Entity/User.cs" />
-      <File FileName="Models/User/Entity/UserSkillCollection.cs" Line="10" Column="25" />
-      <File FileName="Models/User/Entity/UserSkillCollectionMap.cs" Line="1" Column="1" />
+      <File FileName="Models/User/Entity/UserSkillCollection.cs" Line="14" Column="9" />
+      <File FileName="Models/User/Entity/UserSkillCollectionMap.cs" Line="12" Column="10" />
       <File FileName="Models/Skill/Entity/SkillCategory.cs" Line="8" Column="45" />
       <File FileName="Models/Skill/Entity/SkillCollection.cs" Line="8" Column="9" />
       <File FileName="Models/Skill/Entity/SkillCollectionMap.cs" Line="8" Column="9" />
+      <File FileName="Data/ApplicationDbContext.cs" Line="35" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,7 +21,9 @@
           <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPI" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="ApplicationDbContext.cs" selected="True" />
+              </Node>
               <Node name="Models" expanded="True">
                 <Node name="Project" expanded="True">
                   <Node name="Entity" expanded="True" />
@@ -31,9 +34,7 @@
                   <Node name="Request" expanded="True" />
                 </Node>
                 <Node name="User" expanded="True">
-                  <Node name="Entity" expanded="True">
-                    <Node name="UserSkillCollection.cs" selected="True" />
-                  </Node>
+                  <Node name="Entity" expanded="True" />
                 </Node>
               </Node>
               <Node name="Services" expanded="True">
