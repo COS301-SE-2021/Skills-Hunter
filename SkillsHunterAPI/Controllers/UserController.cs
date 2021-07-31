@@ -304,12 +304,12 @@ namespace SkillsHunterAPI.Controllers
             return Ok();
         }
 
-        [HttpGet]
-        [Route("api/[controller]/addNewUserSkill")]
+        /*[HttpGet]
+        [Route("api/[controller]/addNewSkill")]
         public IActionResult AddNewSkill(AddNewSkillRequest request)
         {
             return Ok();
-        }
+        }*/
 
         [HttpGet]
         [Route("api/[controller]/addUserSkillCollection")]
