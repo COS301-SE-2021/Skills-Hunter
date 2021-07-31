@@ -2,6 +2,7 @@
 using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using SkillsHunterAPI.Models.User.Request;
 
 namespace SkillsHunterAPI.Services
 {
@@ -44,5 +45,11 @@ namespace SkillsHunterAPI.Services
         Task RemoveImage(Guid request);
 
         Task<Image> GetImageByUser(Guid UserId);
+
+        Task AddUserSkill(AddUserSkillRequest request);
+
+        Task AddNewSkill(AddNewSkillRequest request);
+
+        Task AddUserSkillCollection(AddUserSkillCollectionRequest request);
     }
 }
