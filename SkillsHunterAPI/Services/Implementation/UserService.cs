@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Collections.Generic;
 using SkillsHunterAPI.Data;
 using System.Linq;
-using SkillsHunterAPI.Models.User.Request;
+using SkillsHunterAPI.Models.Project.Request;
 
 namespace SkillsHunterAPI.Services
 {
@@ -262,7 +262,7 @@ namespace SkillsHunterAPI.Services
             return result;
         }
 
-        public Task AddUserSkill(AddUserSkillRequest request)
+        public Task AddUserSkill(AddExistingSkillRequest request)
         {
             return null;
         }
@@ -272,7 +272,7 @@ namespace SkillsHunterAPI.Services
             return null;
         }
 
-        public Task AddUserSkillCollection(AddUserSkillCollectionRequest request)
+        public Task AddUserSkillCollection(AddSkillCollectionRequest request)
         {
             return null;
         }

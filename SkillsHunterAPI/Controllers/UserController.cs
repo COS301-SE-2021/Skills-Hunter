@@ -10,7 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-using SkillsHunterAPI.Models.User.Request;
+using SkillsHunterAPI.Models.Project.Request;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -299,13 +299,20 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/addUserSkill")]
-        public IActionResult AddUserSkill(AddUserSkillRequest request)
+        public IActionResult AddUserSkill(AddExistingSkillRequest request)
+        {
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/addNewSkill")]
+        public IActionResult AddNewSkill(AddNewSkillRequest request)
         {
             return Ok();
         }
 
         /*[HttpGet]
-        [Route("api/[controller]/addNewSkill")]
+        [Route("api/[controller]/AddProjectSkill")]
         public IActionResult AddNewSkill(AddNewSkillRequest request)
         {
             return Ok();
@@ -313,7 +320,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/addUserSkillCollection")]
-        public IActionResult AddUserSkillCollection(AddUserSkillCollectionRequest request)
+        public IActionResult AddUserSkillCollection(AddSkillCollectionRequest request)
         {
             return Ok();
         }
