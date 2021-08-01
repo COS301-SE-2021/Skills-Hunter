@@ -11,6 +11,8 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using SkillsHunterAPI.Models.Project.Request;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -182,26 +184,36 @@ namespace SkillsHunterAPI.Controllers
             return response;
         }
 
-        [HttpPost]
-        [Route("api/[controller]/createImage")]
-        public IActionResult CreateImage(CreateImageRequest request){
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("api/[controller]/uploadProfileImage")]
+        public IActionResult UploadProfileImage(){
             try
             {
-                // Create Image code here
-
-
-                return Ok(new CreateImageResponse(){
-
-                });
+                // Upload Image Profile code here
+                var file = Request.Form.Files[0];
+                var folderName = Path.Combine("Resources", "Images");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                if (file.Length > 0)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+                    return Ok(new { dbPath });
+                }
+                else
+                {
+                    return BadRequest();
+                }              
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                 return StatusCode(500, $"Internal server error: {error}");
             }
         }
 

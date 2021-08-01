@@ -52,14 +52,14 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/addSkill")]
-        public IActionResult AddSkill([FromBody] AddSkillRequest request)
+        public async Task<IActionResult> AddSkill([FromBody] AddSkillRequest request)
         {   
             try
             {
                 // Add skill code here
                 Skill skill = new Skill(request.Name,request.CategoryId,SkillStatus.Accepted);
         
-                Skill result = _adminService.AddSkill(skill);
+                Skill result = await _adminService.AddSkill(skill);
 
                 return Ok(new AddSkillResponse(){
                     Added = result

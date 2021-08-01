@@ -33,12 +33,12 @@ namespace SkillsHunterAPI.Services
             return await _context.Skills.ToListAsync();
         }
 
-        public Skill AddSkill(Skill skill)
+        public async Task<Skill> AddSkill(Skill skill)
         {
             skill.SkillId = new Guid();
             
             _context.Skills.Add(skill);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return skill;
         }
