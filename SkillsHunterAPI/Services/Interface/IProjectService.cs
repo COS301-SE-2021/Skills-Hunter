@@ -40,16 +40,16 @@ namespace SkillsHunterAPI.Services
         
         bool InviteCandidate(Guid userId,Guid projectId, Guid inviteeId, String message);
         
-        Task<SkillCollection> CreateCollection(AddSkillCollectionRequest request, Guid projectId);
+        Task<ProjectSkillCollection> CreateCollection(AddSkillCollectionRequest request, Guid projectId);
 
-        Task<SkillCollection> GetCollection(Guid CollectionId);
+        Task<ProjectSkillCollection> GetCollection(Guid CollectionId);
         
-        Task<SkillCollection> UpdateCollection(SkillCollection request);
+        Task<ProjectSkillCollection> UpdateCollection(ProjectSkillCollection request);
 
         Task RemoveCollection(Guid CollectionId);
         
-        Task<SkillCollectionMap> AddSkillToCollection(Guid SkillId,Guid CollectionId);
+        Task<ProjectSkillCollectionMap> AddSkillToCollection(Guid SkillId,Guid CollectionId);
     
-        Task<List<SkillCollection>> GetCollectionsByProject(Guid ProjectId);
+        Task<List<ProjectSkillCollection>> GetCollectionsByProject(Guid ProjectId);
     }
 }

@@ -69,9 +69,9 @@ namespace SkillsHunterAPI.Services
             return category;
         }
 
-        public async Task<IEnumerable<SkillCollection>> GetSkillCollections()
+        public async Task<IEnumerable<ProjectSkillCollection>> GetSkillCollections()
         {
-            return await _context.SkillCollections.ToListAsync();
+            return await _context.ProjectSkillCollections.ToListAsync();
         }
 
         public async Task<Skill> UpdateSkill(Guid id,Skill skill)
