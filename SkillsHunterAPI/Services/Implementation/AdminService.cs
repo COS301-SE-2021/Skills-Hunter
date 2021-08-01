@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using SkillsHunterAPI.Models.Skill;
@@ -55,12 +56,15 @@ namespace SkillsHunterAPI.Services
             return result;
         }
 
-        public async Task<Category> AddCategory(Category category)
+        public Category AddCategory(Category category)
         {
             category.CategoryId = new Guid();
-            
+
+            if (_context.Categories.Any(x => x.Name == category.Name))
+                throw new Exception("Category with name '" + category.Name + "' already exists");
+
             _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return category;
         }
