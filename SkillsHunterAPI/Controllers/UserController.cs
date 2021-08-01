@@ -10,6 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using SkillsHunterAPI.Models.Project.Request;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -204,7 +205,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getImage")]
         public IActionResult GetImage(GetImageRequest request){
             try
@@ -250,7 +251,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/removeImage")]
         public IActionResult RemoveImage(RemoveImageRequest request){
             try
@@ -273,7 +274,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getImageByUser")]
         public IActionResult GetImageByUser(GetImageByUserRequest request){
             try
@@ -294,6 +295,34 @@ namespace SkillsHunterAPI.Controllers
                             message = error.Message 
                        });
             }
-        }        
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/addUserSkill")]
+        public IActionResult AddUserSkill(AddExistingSkillRequest request)
+        {
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/addNewSkill")]
+        public IActionResult AddNewSkill(AddNewSkillRequest request)
+        {
+            return Ok();
+        }
+
+        /*[HttpGet]
+        [Route("api/[controller]/AddProjectSkill")]
+        public IActionResult AddNewSkill(AddNewSkillRequest request)
+        {
+            return Ok();
+        }*/
+
+        [HttpGet]
+        [Route("api/[controller]/addUserSkillCollection")]
+        public IActionResult AddUserSkillCollection(AddSkillCollectionRequest request)
+        {
+            return Ok();
+        }
     }
 }
