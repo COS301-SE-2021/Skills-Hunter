@@ -28,7 +28,7 @@ namespace SkillsHunterAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/[controller]/GetCurrentUserId")]
+        [Route("api/[controller]/getCurrentUserId")]
         public Guid GetCurrentUserId(){
             Guid result = new Guid();
             var identity = HttpContext.User.Identity as ClaimsIdentity;
@@ -81,7 +81,7 @@ namespace SkillsHunterAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("api/[controller]/Authenticate")]
+        [Route("api/[controller]/authenticate")]
         public IActionResult Authenticate([FromBody]AuthenticateRequest request)
         {
 
