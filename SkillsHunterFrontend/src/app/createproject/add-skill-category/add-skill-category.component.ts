@@ -9,6 +9,9 @@ import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions } from '@angula
 })
 export class AddSkillCategoryComponent implements OnInit {
 
+
+  category : string;
+
   // category: FormGroup;
 
   // constructor(fb: FormBuilder) {

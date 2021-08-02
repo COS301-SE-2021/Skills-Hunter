@@ -22,7 +22,7 @@
         thumbLabel
         tickInterval="1"
         step="1"
-        min="0"
+        min="1"
         max="10"
         aria-label="units">
         </mat-slider>
@@ -36,8 +36,22 @@
 
     <mat-step label="Provide the Skill Category" completed=true> 
         <div>
+
+            <br>
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+
+                <mat-select [(value)]="category" multiple>
+                     <mat-option value="frontend">FrontEnd Development</mat-option>
+                    <mat-option value="backend">BackEnd Development</mat-option>
+                    <mat-option value="mobile">Mobile Development</mat-option>
+                    <mat-option value="desktop">Desktop Development</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <br>
             <button mat-button matStepperBack>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperNext>Apply</button>
         </div>
     </mat-step>
   
