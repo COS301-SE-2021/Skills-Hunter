@@ -256,14 +256,14 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/removeImage")]
-        public IActionResult RemoveImage(RemoveImageRequest request){
+        public async Task<IActionResult> RemoveImage(RemoveImageRequest request){
             try
             {
-                // Remove image code here
-
+                // Get Image code here
+                var response = await _userService.RemoveImage(new Guid(request.ImageId));
 
                 return Ok(new RemoveImageResponse(){
-
+                    result = response
                 });
             }
             catch (Exception error)

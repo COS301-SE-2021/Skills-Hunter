@@ -258,11 +258,13 @@ namespace SkillsHunterAPI.Services
         }
 
 
-        public async Task RemoveImage(Guid ImageId){
+        public async Task<Image> RemoveImage(Guid ImageId){
             var result = await _context.Images.FindAsync(ImageId);
 
             _context.Images.Remove(result);
-            await _context.SaveChangesAsync();            
+            await _context.SaveChangesAsync();
+
+            return result;            
         }
 
         public async Task<Image> GetImageByUser(Guid UserId){

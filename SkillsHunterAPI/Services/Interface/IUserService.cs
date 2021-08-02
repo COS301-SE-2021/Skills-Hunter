@@ -40,7 +40,7 @@ namespace SkillsHunterAPI.Services
 
         Task<Image> GetImage(Guid ImageId);
 
-        Task RemoveImage(Guid request);
+        Task<Image> RemoveImage(Guid request);
 
         Task<Image> GetImageByUser(Guid UserId);
 
