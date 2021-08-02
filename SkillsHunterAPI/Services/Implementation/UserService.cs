@@ -234,10 +234,16 @@ namespace SkillsHunterAPI.Services
 
         public async Task<Image> uploadProfileImage(Image request){
             request.ImageId = Guid.NewGuid();
-
             Image result = request;
+            Image existingImage = _context.Images.SingleOrDefault(img => img.UserId == request.UserId);
 
-            _context.Images.Add(request);
+            if(existingImage == null)
+                _context.Images.Add(request);
+            else{
+                existingImage.Path = request.Path;
+                result = existingImage;
+            }
+            
             await _context.SaveChangesAsync();
 
             return result;    
