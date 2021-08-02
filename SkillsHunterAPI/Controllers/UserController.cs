@@ -16,7 +16,7 @@ using System.Net.Http.Headers;
 
 namespace SkillsHunterAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class UserController: ControllerBase
     {
@@ -186,23 +186,39 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost, DisableRequestSizeLimit]
         [Route("api/[controller]/uploadProfileImage")]
-        public IActionResult UploadProfileImage(){
+        public async Task<IActionResult> UploadProfileImage(){
             try
             {
                 // Upload Image Profile code here
-                var file = Request.Form.Files[0];
+                var formCollection = await Request.ReadFormAsync();
+                
+                if(formCollection.Files.Count == 0)
+                    return BadRequest();
+
+                var file = formCollection.Files.First();
                 var folderName = Path.Combine("Resources", "Images");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                
                 if (file.Length > 0)
                 {
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(pathToSave, fileName);
                     var dbPath = Path.Combine(folderName, fileName);
+                    
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
-                    return Ok(new { dbPath });
+
+                    Image profileImage = new Image()
+                    {
+                        UserId = GetCurrentUserId(),
+                        Path = dbPath
+                    };
+
+                    var response = await _userService.uploadProfileImage(profileImage);
+
+                    return Ok(response);
                 }
                 else
                 {

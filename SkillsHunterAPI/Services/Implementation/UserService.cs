@@ -232,9 +232,13 @@ namespace SkillsHunterAPI.Services
             return await _context.WorkExperiences.FindAsync(id);
         }
 
-        public async Task<Image> CreateImage(Image request){
-            Image result = null;
+        public async Task<Image> uploadProfileImage(Image request){
+            request.ImageId = Guid.NewGuid();
 
+            Image result = request;
+
+            _context.Images.Add(request);
+            await _context.SaveChangesAsync();
 
             return result;    
         }

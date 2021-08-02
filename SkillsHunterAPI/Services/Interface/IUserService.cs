@@ -36,7 +36,7 @@ namespace SkillsHunterAPI.Services
         
         Task<WorkExperience> GetWorkExperience(Guid id);
 
-        Task<Image> CreateImage(Image request);
+        Task<Image> uploadProfileImage(Image request);
 
         Task<Image> GetImage(Guid ImageId);
 
