@@ -1,5 +1,76 @@
 <mat-accordion>
-    <mat-expansion-panel opened>
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Add A Collection of Skills
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+    <mat-vertical-stepper linear>
+      <mat-step label="Provide the Collection Name" completed=true> 
+          <div>
+  
+              <mat-form-field appearance="outline">
+                  <mat-label>Collection Name</mat-label>
+                  <input matInput placeholder="Front-End Development" required>
+                  <mat-icon matSuffix>text_fields</mat-icon>
+              </mat-form-field>
+  
+              <br>
+              <button mat-button matStepperNext>Next</button>
+          </div>
+      </mat-step>
+  
+      <mat-step label="Provide the Collection Weight" completed=true> 
+          <div class="stepping"> 
+                      <br>
+          <mat-slider
+          thumbLabel
+          tickInterval="1"
+          step="1"
+          min="1"
+          max="10"
+          aria-label="units">
+          </mat-slider>
+  
+          <br>
+  
+              <button mat-button matStepperBack>Back</button>
+              <button mat-button matStepperNext>Next</button>
+          </div>
+      </mat-step>
+  
+      <mat-step label="Select skills to add to Collection" completed=true> 
+          <div>
+  
+              <br>
+              <mat-form-field>
+                  <mat-label>Skills</mat-label>
+  
+                  <mat-select [(value)]="category" multiple>
+                       <mat-option value="frontend">C++</mat-option>
+                      <mat-option value="backend">Java</mat-option>
+                      <mat-option value="mobile">PHP</mat-option>
+                      <mat-option value="desktop">Angular</mat-option>
+                  </mat-select>
+              </mat-form-field>
+              
+              <br>
+              <button mat-button matStepperBack>Back</button>
+              <button mat-button matStepperNext>Apply</button>
+          </div>
+      </mat-step>
+    
+  </mat-vertical-stepper>      
+
+    </mat-expansion-panel>
+
+
+
+
+    <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title class="as-title">
           Show Existing Collection Of Skills
@@ -11,64 +82,8 @@
   [card_collection]="collection"
 ></app-collection-card>
 
-      <!-- <p class="options">Front-End Development </p>
-      <p class="options">Back-End Development </p>
-      <p class="options">Mobile App Development</p>
-      <p class="options">Desktop App Development</p> -->
     </mat-expansion-panel>
 
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Add A Collection of Skills
-        </mat-panel-title>
-      </mat-expansion-panel-header>
 
-      <mat-form-field appearance="outline">
-    <mat-label>Collection Name</mat-label>
-    <input matInput placeholder="Back-End Dev" required>
-    <mat-icon matSuffix>text_fields</mat-icon>
-    </mat-form-field>
-
-
-<section class="example-section" [formGroup]="category">
-    <!-- <h4>Select Category:</h4> -->
-    <!-- <p><mat-checkbox formControlName="FrontEnd" ngDefaultControl>Front End Development</mat-checkbox></p>
-    <p><mat-checkbox formControlName="BackEnd" ngDefaultControl>Back End Development</mat-checkbox></p>
-    <p><mat-checkbox formControlName="Mobile" ngDefaultControl>Mobile Development</mat-checkbox></p>
-    <p><mat-checkbox formControlName="Desktop" ngDefaultControl>Desktop Development</mat-checkbox></p> -->
-
-    <mat-form-field>
-      <mat-label>Select skills to add</mat-label>
-      <mat-select formControlName="FrontEnd" multiple>
-        <mat-option>
-            React     
-        </mat-option>
-        <mat-option>
-          Java     
-      </mat-option>
-      <mat-option>
-        Pascal     
-    </mat-option>
-    <mat-option>
-        C++    
-    </mat-option>
-    <mat-option>
-      Angular     
-  </mat-option>
-      </mat-select> 
     
-    </mat-form-field>
-    <br />
-
-
-  </section>
-
-      <mat-action-row>
-        <button mat-button color="warm" (click)="cancel()">Cancel</button>
-        <button mat-button color="primary" (click)="addSKill()">Submit</button>
-      </mat-action-row>
-      
-    </mat-expansion-panel>
   </mat-accordion>

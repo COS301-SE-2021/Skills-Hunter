@@ -12,16 +12,9 @@ export class AddSkillCollectionComponent implements OnInit {
 
   _collections: Collection[] = Collections;
 
-  category: FormGroup;
+  category : string;
 
-  constructor(fb: FormBuilder) {
-    this.category = fb.group({
-      FrontEnd: false,
-      BackEnd: false,
-      Mobile: false,
-      Desktop: false
-    });
-  }
+  constructor() {}
 
   ngOnInit(): void {
   }
