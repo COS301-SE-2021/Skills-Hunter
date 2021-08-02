@@ -51,9 +51,9 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: AddSkillCollectionComponent,
+    component: AddSkillCategoryComponent,
   },
-
+  
 ];
 
 @NgModule({

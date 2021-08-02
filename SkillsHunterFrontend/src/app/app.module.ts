@@ -46,6 +46,7 @@ import { CollectionCardComponent } from './createproject/add-skill-collection/co
     AddSkillCategoryComponent,
     AddSkillCollectionComponent,
     CollectionCardComponent,
+
   ],
   imports: [
     BrowserModule,

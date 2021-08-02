@@ -9,16 +9,22 @@ import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions } from '@angula
 })
 export class AddSkillCategoryComponent implements OnInit {
 
-  category: FormGroup;
+  // category: FormGroup;
 
-  constructor(fb: FormBuilder) {
-    this.category = fb.group({
-      FrontEnd: false,
-      BackEnd: false,
-      Mobile: false,
-      Desktop: false
-    });
+  // constructor(fb: FormBuilder) {
+  //   this.category = fb.group({
+  //     FrontEnd: false,
+  //     BackEnd: false,
+  //     Mobile: false,
+  //     Desktop: false
+  //   });
+  // }
+
+  formatLabel(value: number) {
+    return value;
   }
+
+  constructor() {}
 
   ngOnInit(): void {
   }

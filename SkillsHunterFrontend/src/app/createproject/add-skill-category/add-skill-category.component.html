@@ -1,65 +1,44 @@
-<mat-accordion>
-    <mat-expansion-panel opened>
-      <mat-expansion-panel-header>
-        <mat-panel-title class="as-title">
-          Show Existing Skills
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>C++</p>
-      <p>Angular</p>
-      <p>Python</p>
-      <p>Java</p>
-      <p>React</p>
-      <p>Pascal</p>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Add an Individual skill
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <mat-form-field appearance="outline">
-    <mat-label>Skill Name</mat-label>
-    <input matInput placeholder="Java" required>
-    <mat-icon matSuffix>text_fields</mat-icon>
-    </mat-form-field>
 
 
-<section class="example-section" [formGroup]="category">
-    <!-- <h4>Select Category:</h4> -->
-    <!-- <p><mat-checkbox formControlName="FrontEnd" ngDefaultControl>Front End Development</mat-checkbox></p>
-    <p><mat-checkbox formControlName="BackEnd" ngDefaultControl>Back End Development</mat-checkbox></p>
-    <p><mat-checkbox formControlName="Mobile" ngDefaultControl>Mobile Development</mat-checkbox></p>
-    <p><mat-checkbox formControlName="Desktop" ngDefaultControl>Desktop Development</mat-checkbox></p> -->
+<mat-vertical-stepper linear>
+    <mat-step label="Provide the Skill Name" completed=true> 
+        <div>
 
-    <mat-form-field>
-      <mat-label>Select Category</mat-label>
-      <mat-select formControlName="FrontEnd" multiple>
-        <mat-option>
-            FrontEnd     
-        </mat-option>
-        <mat-option>
-          BackEnd     
-      </mat-option>
-      <mat-option>
-        Mobile     
-    </mat-option>
-    <mat-option>
-      Desktop     
-  </mat-option>
-      </mat-select> </mat-form-field
-    ><br />
+            <mat-form-field appearance="outline">
+                <mat-label>Skill Name</mat-label>
+                <input matInput placeholder="C++" required>
+                <mat-icon matSuffix>text_fields</mat-icon>
+            </mat-form-field>
 
+            <br>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
 
-  </section>
+    <mat-step label="Provide the Skill Weight" completed=true> 
+        <div class="stepping"> 
+                    <br>
+        <mat-slider
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="0"
+        max="10"
+        aria-label="units">
+        </mat-slider>
 
-      <mat-action-row>
-        <button mat-button color="warm" (click)="cancel()">Cancel</button>
-        <button mat-button color="primary" (click)="addSKill()">Submit</button>
-      </mat-action-row>
-      
-    </mat-expansion-panel>
-  </mat-accordion>
+        <br>
+
+            <button mat-button matStepperBack>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+
+    <mat-step label="Provide the Skill Category" completed=true> 
+        <div>
+            <button mat-button matStepperBack>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+  
+</mat-vertical-stepper>
