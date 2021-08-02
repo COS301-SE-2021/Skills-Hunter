@@ -212,7 +212,8 @@ namespace SkillsHunterAPI.Controllers
 
                     Image profileImage = new Image()
                     {
-                        UserId = GetCurrentUserId(),
+                        //UserId = GetCurrentUserId(),
+                        UserId = Guid.NewGuid(),
                         Path = dbPath
                     };
 
