@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
@@ -235,11 +236,14 @@ namespace SkillsHunterAPI.Services
         public async Task<Image> uploadProfileImage(Image request){
             request.ImageId = Guid.NewGuid();
             Image result = request;
-            Image existingImage = _context.Images.SingleOrDefault(img => img.UserId == request.UserId);
-
+            Image existingImage = await _context.Images.SingleOrDefaultAsync(img => img.UserId == request.UserId);
+            
             if(existingImage == null)
                 _context.Images.Add(request);
             else{
+                var oldFile = Path.Combine(Directory.GetCurrentDirectory(), existingImage.Path);
+                File.Delete(oldFile);
+                
                 existingImage.Path = request.Path;
                 result = existingImage;
             }
@@ -262,7 +266,7 @@ namespace SkillsHunterAPI.Services
         }
 
         public async Task<Image> GetImageByUser(Guid UserId){
-            return _context.Images.SingleOrDefault(img => img.UserId == UserId);
+            return await _context.Images.SingleOrDefaultAsync(img => img.UserId == UserId);
         }
 
         public Task AddUserSkill(AddExistingSkillRequest request)

@@ -236,47 +236,21 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getImage")]
-        public IActionResult GetImage(GetImageRequest request){
+        public async Task<IActionResult> GetImage(GetImageRequest request){
             try
             {
                 // Get Image code here
-
+                Image response = await _userService.GetImage(new Guid(request.ImageId));
 
                 return Ok(new GetImageResponse(){
-
+                    result = response
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
-            }
-        }
-
-        [HttpPost]
-        [Route("api/[controller]/updateImage")]
-        public IActionResult UpdateImage(UpdateImageRequest request){
-            try
-            {
-                // Update image code here
-
-
-                return Ok(new UpdateImageResponse(){
-
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return StatusCode(500, $"Internal server error: {error}");
             }
         }
 
@@ -296,10 +270,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return StatusCode(500, $"Internal server error: {error}");
             }
         }
 
@@ -319,10 +290,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return StatusCode(500, $"Internal server error: {error}");
             }
         }
 
