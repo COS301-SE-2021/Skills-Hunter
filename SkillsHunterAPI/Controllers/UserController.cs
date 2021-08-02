@@ -275,15 +275,15 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/getImageByUser")]
-        public IActionResult GetImageByUser(GetImageByUserRequest request){
+        [Route("api/[controller]/getImageByUserId")]
+        public async Task<IActionResult> GetImageByUser(GetImageByUserRequest request){
             try
             {
-                // Get Image By User code here
-
+                // Get Image code here
+                var response = await _userService.GetImageByUser(new Guid(request.UserId));
 
                 return Ok(new GetImageByUserResponse(){
-
+                    result = response
                 });
             }
             catch (Exception error)
@@ -294,6 +294,25 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/[controller]/getImageByUser")]
+        public async Task<IActionResult> GetImageByUser(){
+            try
+            {
+                // Get Image code here
+                var response = await _userService.GetImageByUser(GetCurrentUserId());
+
+                return Ok(new RemoveImageResponse(){
+                    result = response
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return StatusCode(500, $"Internal server error: {error}");
+            }
+        }
         [HttpGet]
         [Route("api/[controller]/addUserSkill")]
         public IActionResult AddUserSkill(AddExistingSkillRequest request)
