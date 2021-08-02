@@ -16,7 +16,7 @@ using System.Net.Http.Headers;
 
 namespace SkillsHunterAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     public class UserController: ControllerBase
     {
@@ -212,8 +212,8 @@ namespace SkillsHunterAPI.Controllers
 
                     Image profileImage = new Image()
                     {
-                        //UserId = GetCurrentUserId(),
-                        UserId = Guid.NewGuid(),
+                        UserId = GetCurrentUserId(),
+                        //UserId = Guid.NewGuid(),
                         Path = dbPath
                     };
 
