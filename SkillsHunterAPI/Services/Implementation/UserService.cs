@@ -250,26 +250,19 @@ namespace SkillsHunterAPI.Services
         }
 
         public async Task<Image> GetImage(Guid ImageId){
-            Image result = null;
-
-            return result;
+            return await _context.Images.FindAsync(ImageId);
         }
 
-        public async Task<Image> UpdateImage(Guid request){
-            Image result = null;
 
-            return result;
-        }
+        public async Task RemoveImage(Guid ImageId){
+            var result = await _context.Images.FindAsync(ImageId);
 
-        public async Task RemoveImage(Guid request){
-
-
+            _context.Images.Remove(result);
+            await _context.SaveChangesAsync();            
         }
 
         public async Task<Image> GetImageByUser(Guid UserId){
-            Image result = null;
-
-            return result;
+            return _context.Images.SingleOrDefault(img => img.UserId == UserId);
         }
 
         public Task AddUserSkill(AddExistingSkillRequest request)
