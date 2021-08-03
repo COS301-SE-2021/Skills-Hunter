@@ -57,7 +57,7 @@ import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add
     ReactiveFormsModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],

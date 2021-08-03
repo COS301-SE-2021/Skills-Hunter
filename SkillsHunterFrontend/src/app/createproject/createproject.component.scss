@@ -1,20 +1,7 @@
-.wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #e6ffff;
-  min-height: 100%;
-  padding: 20px;
+.mat-stepper-horizontal {
+  margin-top: 8px;
 }
 
-.wrapper form {
-  width: 100%;
-  text-align: center;
-}
-.h {
-  margin-bottom: 5%;
-}
 .mat-form-field {
-  width: 60%;
+  margin-top: 16px;
 }
