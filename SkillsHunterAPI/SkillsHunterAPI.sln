@@ -1,9 +1,11 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.810.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsHunterAPI", "SkillsHunterAPI.csproj", "{5765300E-4CBE-48DB-9AA9-419E37AD67D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.Tests", "Admin.Tests\Admin.Tests.csproj", "{F89B2E47-03B9-4128-AC17-229C195C3B89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5765300E-4CBE-48DB-9AA9-419E37AD67D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5765300E-4CBE-48DB-9AA9-419E37AD67D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5765300E-4CBE-48DB-9AA9-419E37AD67D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F89B2E47-03B9-4128-AC17-229C195C3B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F89B2E47-03B9-4128-AC17-229C195C3B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F89B2E47-03B9-4128-AC17-229C195C3B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F89B2E47-03B9-4128-AC17-229C195C3B89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -23,4 +29,3 @@ Global
 		SolutionGuid = {A1E05436-C2C5-4338-981D-794423EEC9D2}
 	EndGlobalSection
 EndGlobal
-
