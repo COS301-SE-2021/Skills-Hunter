@@ -52,14 +52,14 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/addSkill")]
-        public IActionResult AddSkill([FromBody] AddSkillRequest request)
+        public async Task<IActionResult> AddSkill([FromBody] AddSkillRequest request)
         {   
             try
             {
                 // Add skill code here
                 Skill skill = new Skill(request.Name,request.CategoryId,SkillStatus.Accepted);
         
-                Skill result = _adminService.AddSkill(skill);
+                Skill result = await _adminService.AddSkill(skill);
 
                 return Ok(new AddSkillResponse(){
                     Added = result
@@ -78,7 +78,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/addCategory")]
-        public IActionResult AddCategory([FromBody] AddCategoryRequest request)
+        public async Task<IActionResult> AddCategory([FromBody] AddCategoryRequest request)
         {
 
             try
@@ -90,7 +90,7 @@ namespace SkillsHunterAPI.Controllers
             
                 category.Description = request.Description;
 
-                Category result = _adminService.AddCategory(category);
+                Category result = await _adminService.AddCategory(category);
 
                 return Ok(new AddCategoryResponse(){
                     Added = result

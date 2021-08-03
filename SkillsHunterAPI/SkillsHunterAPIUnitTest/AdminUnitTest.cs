@@ -1,95 +1,178 @@
-﻿// using System;
-// using FakeItEasy;
-// using SkillsHunterAPI.Controllers;
-// using SkillsHunterAPI.Models.Skill;
-// using SkillsHunterAPI.Services;
-// using Xunit;
+﻿using System;
+using Moq;
+using SkillsHunterAPI.Controllers;
+using SkillsHunterAPI.Models.Skill;
+using SkillsHunterAPI.Services;
+using Xunit;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
-// namespace SkillsHunterAPIUnitTest.Tests
-// {
-//     public class AdminUnitTest
-//     {
-//         IAdminService _adminService;
-//         AdminController _controller;
+namespace SkillsHunterAPIUnitTest.Tests
+{
+    public class AdminUnitTest
+    {
 
-//         public AdminUnitTest()
-//         {
-//             _adminService = A.Fake<IAdminService>();
-//             _controller = A.Fake<AdminController>();
-//         }
+        private readonly Mock<IAdminService> mockService = new Mock<IAdminService>();
+        private readonly AdminController testController;
 
-//         [Fact]
-//         public void testAddCategory()
-//         {
-//             var cat1 = new Category
-//             {
-//                 Name = "Web dev",
-//                 //CategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
-//             };
+        public AdminUnitTest()
+        {
+            testController = new AdminController(mockService.Object);
+        }
 
-//             var addCategoryRequest = new AddCategoryRequest
-//             {
-//                 Name = "Web dev",
-//                 //CategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
-//             };
+        [Fact]
+        public async Task testAddCategory()
+        {
+            // Arrange
 
+            AddCategoryRequest request = new AddCategoryRequest()
+            {
+                Name = "Web styling",
+                Description = "Designing and styling web pages"
+            };
 
-//             // Act
-//             A.CallTo(() => _adminService.AddCategory(cat1)).Returns(cat1); // _projectService.CreateProject(p.Returns(proj1);
-//             var createdResponse = _controller.AddCategory(addCategoryRequest);
-//             var item = createdResponse.Result as AddCategoryResponse;
+            Category serviceRequest  = new Category()
+            {
+                Name = "Web styling",
+                Description = "Designing and styling web pages"
+            };
 
-//             // Assert
-//             Assert.IsType<AddCategoryResponse>(item);
-//             Assert.True(item.Success);
-//         }
+            AddCategoryResponse response = new AddCategoryResponse()
+            {
+                Added = serviceRequest
+            };
 
+            mockService.Setup(serv => serv.AddCategory(serviceRequest)).ReturnsAsync(serviceRequest);
 
+            // Act
+            
+            var result = await testController.AddCategory(request);
 
-//         [Fact]
-//         public void testAddSkill()
-//         {
-//             // var skill1 = new Skill
-//             // {
-//             //     Name = "C++",
-//             //     CategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
-//             // };
+            // Assert
 
-//             // var AddSkillRequest = new AddSkillRequest
-//             // {
-//             //     Name = "C++",
-//             //     CategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
-//             // };
-
-
-//             // // Act
-//             // A.CallTo(() => _adminService.AddSkill(skill1)).Returns(skill1); // _projectService.CreateProject(p.Returns(proj1);
-//             // var createdResponse = _controller.AddSkill(AddSkillRequest);
-//             // var item = createdResponse.Result as AddSkillResponse;
-
-//             // // Assert
-//             // Assert.IsType<AddSkillResponse>(item);
-//         }
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsType<AddCategoryResponse>(okResult.Value);
+            Assert.Equal(request.Name, returnValue.Added.Name);
+            Assert.Equal(request.Description,returnValue.Added.Description);
+        
+        }
 
 
 
-//         [Fact]
-//         public void testRemoveSkill()
-//         {
-//             var removeSkillRequest = new RemoveSkillRequest
-//             {
-//                 SkillId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
-//             };
+        [Fact]
+        public async Task testAddSkill()
+        {
+            // Arrange
+            Guid CatId = Guid.NewGuid();
 
-//             // Act
-//             A.CallTo(() => _adminService.RemoveSkill(removeSkillRequest.SkillId)); // _projectService.CreateProject(p.Returns(proj1);
-//             var createdResponse = _controller.RemoveSkill(removeSkillRequest);
-//             var item = createdResponse.Result as RemoveSkillResponse;
+            AddSkillRequest request = new AddSkillRequest()
+            {
+                Name = "Java Web Development",
+                CategoryId = CatId
+            };
 
-//             // Assert
-//             Assert.IsType<RemoveSkillResponse>(item);
-//             Assert.True(item.Success);
-//         }
+            Skill serviceRequest  = new Skill()
+            {
+                Name = "Java Web Development",
+                CategoryId = CatId
+            };
 
-//     }
-// }
+            AddSkillResponse response = new AddSkillResponse()
+            {
+                Added = serviceRequest
+            };
+
+            mockService.Setup(serv => serv.AddSkill(serviceRequest)).ReturnsAsync(serviceRequest);
+
+            // Act
+            
+            var result = await testController.AddSkill(request);
+
+            // Assert
+
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsType<AddSkillResponse>(okResult.Value);
+            Assert.Equal(request.Name, returnValue.Added.Name);
+            Assert.Equal(request.CategoryId, returnValue.Added.CategoryId);
+        }
+
+
+        [Fact]
+        public async Task testRemoveCategory()
+        {
+            // Arrange
+            Guid CatId = Guid.NewGuid();
+
+            RemoveCategoryRequest request = new RemoveCategoryRequest()
+            {
+                Id = CatId.ToString()
+            };
+
+            Category serviceResponse  = new Category()
+            {
+                CategoryId = CatId,
+                Name = "Web styling",
+                Description = "Designing and styling web pages"
+            };
+
+            RemoveCategoryResponse response = new RemoveCategoryResponse()
+            {
+                Id = CatId,
+                Name = "Web styling",
+                Description = "Designing and styling web pages"
+            };
+
+            mockService.Setup(serv => serv.RemoveCategory(CatId)).ReturnsAsync(serviceResponse);
+
+            // Act
+            
+            var result = await testController.RemoveCategory(request);
+
+            // Assert
+
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsType<RemoveCategoryResponse>(okResult.Value);
+            Assert.Equal(request.Id.ToString(),returnValue.Id.ToString());          
+        }
+
+        [Fact]
+        public async Task testRemoveSkill()
+        {
+            // Arrange
+            Guid SkId = Guid.NewGuid();
+            Guid CatId = Guid.NewGuid();
+
+            RemoveSkillRequest request = new RemoveSkillRequest()
+            {
+                SkillId = SkId
+            };
+
+            Skill serviceResponse  = new Skill()
+            {
+                SkillId = SkId,
+                Name = "Java Web Development",
+                CategoryId = CatId,
+                Status = SkillStatus.Accepted
+            };
+
+            RemoveSkillResponse response = new RemoveSkillResponse()
+            {
+                Success = true,
+                Removed = serviceResponse
+            };
+
+            mockService.Setup(serv => serv.RemoveSkill(CatId)).ReturnsAsync(serviceResponse);
+
+            // Act
+            
+            var result = await testController.RemoveSkill(request);
+
+            // Assert
+
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsType<RemoveSkillResponse>(okResult.Value);
+            Assert.Equal(request.SkillId.ToString(),returnValue.Removed.SkillId.ToString());
+        }
+
+    }
+}

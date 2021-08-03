@@ -11,6 +11,8 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using SkillsHunterAPI.Models.Project.Request;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -182,121 +184,135 @@ namespace SkillsHunterAPI.Controllers
             return response;
         }
 
-        [HttpPost]
-        [Route("api/[controller]/createImage")]
-        public IActionResult CreateImage(CreateImageRequest request){
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("api/[controller]/uploadProfileImage")]
+        public async Task<IActionResult> UploadProfileImage(){
             try
             {
-                // Create Image code here
+                // Upload Image Profile code here
+                var formCollection = await Request.ReadFormAsync();
+                
+                if(formCollection.Files.Count == 0)
+                    return BadRequest();
 
+                var file = formCollection.Files.First();
+                var folderName = Path.Combine("Resources", "Images");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                
+                if (file.Length > 0)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName);
+                    
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
 
-                return Ok(new CreateImageResponse(){
+                    Image profileImage = new Image()
+                    {
+                        UserId = GetCurrentUserId(),
+                        //UserId = Guid.NewGuid(),
+                        Path = dbPath
+                    };
 
-                });
+                    var response = await _userService.uploadProfileImage(profileImage);
+
+                    return Ok(response);
+                }
+                else
+                {
+                    return BadRequest();
+                }              
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                 return StatusCode(500, $"Internal server error: {error}");
             }
         }
 
         [HttpGet]
         [Route("api/[controller]/getImage")]
-        public IActionResult GetImage(GetImageRequest request){
+        public async Task<IActionResult> GetImage(GetImageRequest request){
             try
             {
                 // Get Image code here
-
+                Image response = await _userService.GetImage(new Guid(request.ImageId));
 
                 return Ok(new GetImageResponse(){
-
+                    result = response
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
-            }
-        }
-
-        [HttpPost]
-        [Route("api/[controller]/updateImage")]
-        public IActionResult UpdateImage(UpdateImageRequest request){
-            try
-            {
-                // Update image code here
-
-
-                return Ok(new UpdateImageResponse(){
-
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return StatusCode(500, $"Internal server error: {error}");
             }
         }
 
         [HttpGet]
         [Route("api/[controller]/removeImage")]
-        public IActionResult RemoveImage(RemoveImageRequest request){
+        public async Task<IActionResult> RemoveImage(RemoveImageRequest request){
             try
             {
-                // Remove image code here
-
+                // Get Image code here
+                var response = await _userService.RemoveImage(new Guid(request.ImageId));
 
                 return Ok(new RemoveImageResponse(){
-
+                    result = response
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return StatusCode(500, $"Internal server error: {error}");
+            }
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/getImageByUserId")]
+        public async Task<IActionResult> GetImageByUser(GetImageByUserRequest request){
+            try
+            {
+                // Get Image code here
+                var response = await _userService.GetImageByUser(new Guid(request.UserId));
+
+                return Ok(new GetImageByUserResponse(){
+                    result = response
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return StatusCode(500, $"Internal server error: {error}");
             }
         }
 
         [HttpGet]
         [Route("api/[controller]/getImageByUser")]
-        public IActionResult GetImageByUser(GetImageByUserRequest request){
+        public async Task<IActionResult> GetImageByUser(){
             try
             {
-                // Get Image By User code here
+                // Get Image code here
+                var response = await _userService.GetImageByUser(GetCurrentUserId());
 
-
-                return Ok(new GetImageByUserResponse(){
-
+                return Ok(new RemoveImageResponse(){
+                    result = response
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return StatusCode(500, $"Internal server error: {error}");
             }
         }
-
         [HttpGet]
         [Route("api/[controller]/addUserSkill")]
         public IActionResult AddUserSkill(AddExistingSkillRequest request)

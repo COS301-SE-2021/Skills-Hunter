@@ -33,12 +33,12 @@ namespace SkillsHunterAPI.Services
             return await _context.Skills.ToListAsync();
         }
 
-        public Skill AddSkill(Skill skill)
+        public async Task<Skill> AddSkill(Skill skill)
         {
             skill.SkillId = new Guid();
             
             _context.Skills.Add(skill);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return skill;
         }
@@ -56,7 +56,7 @@ namespace SkillsHunterAPI.Services
             return result;
         }
 
-        public Category AddCategory(Category category)
+        public async Task<Category> AddCategory(Category category)
         {
             category.CategoryId = new Guid();
 
@@ -64,7 +64,7 @@ namespace SkillsHunterAPI.Services
                 throw new Exception("Category with name '" + category.Name + "' already exists");
 
             _context.Categories.Add(category);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return category;
         }
