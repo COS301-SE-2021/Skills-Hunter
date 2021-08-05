@@ -36,7 +36,18 @@ namespace SkillsHunterAPI.Services
         public async Task<Skill> AddSkill(Skill skill)
         {
             skill.SkillId = new Guid();
+
+            if(string.IsNullOrEmpty(skill.Name))
+                throw new Exception("Name is required.");
+                
+            if(_context.Skills.Any(x => x.Name == skill.Name))
+                throw new Exception("Skill with name '" + skill.Name + "' already exists");
             
+            var checkCategory = await _context.Categories.FindAsync(skill.CategoryId);
+
+            if(checkCategory == null)
+                throw new Exception("Category does not exist.");
+
             _context.Skills.Add(skill);
             await _context.SaveChangesAsync();
 
@@ -47,12 +58,12 @@ namespace SkillsHunterAPI.Services
         {
             var result = await _context.Skills.FindAsync(id);
 
-            if(result != null)
-            {
-                _context.Skills.Remove(result);
-            }
+            if(result == null)
+                throw new Exception("Skill with id '" + id.ToString() + "' does not exist");
             
+            _context.Skills.Remove(result);
             await _context.SaveChangesAsync();
+            
             return result;
         }
 
@@ -60,6 +71,9 @@ namespace SkillsHunterAPI.Services
         {
             category.CategoryId = new Guid();
 
+            if(string.IsNullOrEmpty(category.Name))
+                throw new Exception("Name is required.");
+                
             if (_context.Categories.Any(x => x.Name == category.Name))
                 throw new Exception("Category with name '" + category.Name + "' already exists");
 
@@ -85,7 +99,14 @@ namespace SkillsHunterAPI.Services
                 result.Name = skill.Name;
 
             if(skill.CategoryId != null)
-                result.CategoryId = skill.CategoryId;
+            {
+                if(_context.Skills.Any(x => x.CategoryId == skill.CategoryId))
+                    result.CategoryId = skill.CategoryId;
+                else
+                {
+                    throw new Exception("Category with id '" + skill.CategoryId + "' does not exist");
+                }
+            }
 
             result.Status = skill.Status;
 

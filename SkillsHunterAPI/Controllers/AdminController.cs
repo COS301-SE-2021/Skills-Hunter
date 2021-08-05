@@ -43,10 +43,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return NotFound(error.Message);
             }
         }
 
@@ -69,10 +66,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return BadRequest(error.Message);
             }
         }
 
@@ -100,25 +94,33 @@ namespace SkillsHunterAPI.Controllers
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return BadRequest(error.Message);
             }
         }
 
 
         [HttpPost]
         [Route("api/[controller]/removeSkill")]
-        public async Task<RemoveSkillResponse> RemoveSkill([FromBody]RemoveSkillRequest removeSkillRequest)
-
+        public async Task<IActionResult> RemoveSkill([FromBody]RemoveSkillRequest request)
         {
-            RemoveSkillResponse response = new RemoveSkillResponse();
-            
-            response.Success = true;
-            response.Removed = await _adminService.RemoveSkill(removeSkillRequest.SkillId);
+            try
+            {
+                // Remove category code here
 
-            return response;
+                Guid id = new Guid(request.SkillId);
+                Skill result = await _adminService.RemoveSkill(id);
+
+                return Ok(new RemoveSkillResponse(){
+                    Success = true,
+                    Removed = result
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return NotFound(error.Message);
+            }
         }
 
 
@@ -130,12 +132,23 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
         [Route("api/[controller]/getSkills")]
-        public async Task<GetSkillsResponse> GetSkills()
+        public async Task<IActionResult> GetSkills()
         {
+            try
+            {
+                // Get categories code here
+                List<Skill> result = (List<Skill>)await _adminService.GetSkills();
 
-                GetSkillsResponse skills = new GetSkillsResponse();
-                skills.skills = (await _adminService.GetSkills()).ToArray();
-                return skills;
+                return Ok(new GetSkillsResponse(){
+                    skills = result.ToArray()
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return StatusCode(500, $"Internal server error: {error}");
+            }
         }
 
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
@@ -156,10 +169,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return BadRequest(error.Message);
             }
         }
 
@@ -192,10 +202,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return NotFound(error.Message);
             }
         }
 
@@ -220,10 +227,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return NotFound(error.Message);
             }
         }
 
@@ -244,10 +248,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return StatusCode(500, $"Internal server error: {error}");
             }
         }
 
@@ -277,10 +278,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return NotFound(error.Message);
             }
         }
 
@@ -305,10 +303,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 // return error message if there was an exception code here
                 
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+                return NotFound(error.Message);
             }
         }
     }
