@@ -20,12 +20,12 @@
       <File FileName="Models/Skill/Response/GetSkillCollectionsResponse.cs" />
       <File FileName="Services/Interface/IAdminService.cs" Line="1" Column="1" />
       <File FileName="Services/Implementation/ProjectService.cs" Line="1" Column="1" />
-      <File FileName="Services/Interface/IProjectService.cs" />
+      <File FileName="Services/Interface/IProjectService.cs" Line="1" Column="1" />
       <File FileName="Controllers/AdminController.cs" Line="68" Column="9" />
       <File FileName="Models/User/Response/AuthenticateResponse.cs" />
       <File FileName="Models/User/Response/RegisterResponse.cs" />
       <File FileName="SkillsHunterAPIUnitTest/AdminUnitTest.cs" />
-      <File FileName="Services/Implementation/UserService.cs" Line="293" Column="58" />
+      <File FileName="Services/Implementation/UserService.cs" Line="311" Column="47" />
       <File FileName="Models/Project/Request/AddNewSkillRequest.cs" Line="1" Column="1" />
       <File FileName="Models/Project/Request/CreateCollectionRequest.cs" />
       <File FileName="Models/Project/Request/AddSkillCollectionRequest.cs" />
@@ -33,7 +33,8 @@
       <File FileName="Models/User/Request/DeleteRequest.cs" />
       <File FileName="Models/Project/Request/AddExistingSkillRequest.cs" />
       <File FileName="SkillsHunterUserUnitTest/UnitTest1.cs" Line="12" Column="10" />
-      <File FileName="Services/Implementation/SkillService.cs" Line="1" Column="1" />
+      <File FileName="Services/Implementation/SkillService.cs" Line="34" Column="47" />
+      <File FileName="Services/Interface/ISkillService.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
