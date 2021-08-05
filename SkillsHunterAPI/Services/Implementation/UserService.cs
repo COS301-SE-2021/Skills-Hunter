@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using SkillsHunterAPI.Data;
 using System.Linq;
 using SkillsHunterAPI.Models.Project.Request;
+using SkillsHunterAPI.Models.Skill;
+using SkillsHunterAPI.Models.Skill.Request;
+using SkillsHunterAPI.Models.Skill.Entity;
 
 namespace SkillsHunterAPI.Services
 {
@@ -276,9 +279,36 @@ namespace SkillsHunterAPI.Services
             return null;
         }
 
-        public Task AddNewSkill(AddNewSkillRequest request)
+        public async Task AddNewSkill(AddNewSkillRequest request, Guid user)
         {
-            return null;
+
+            //Creating the new skill
+            Skill newSkill = new Skill();
+            newSkill.SkillId = new Guid();
+            newSkill.Name = request.Name;
+            newSkill.Status = SkillStatus.Pending;
+
+            _context.Skills.Add(newSkill);
+
+            await _context.SaveChangesAsync();
+
+            //Linking the skill with the categories
+
+            foreach(GetCategoryByIdRequest category in request.Categories)
+            {
+                SkillCategory skillCategory = new SkillCategory();
+                skillCategory.SkillCategoryId = new Guid();
+                skillCategory.CategoryId = category.CategoryId;
+                skillCategory.SkillId = newSkill.SkillId;
+                _context.SkillCategories.Add(skillCategory);
+                await _context.SaveChangesAsync();
+            }
+
+            //Adding the skill to the user skills
+            UserSkill userSkill = new UserSkill();
+            userSkill.UserSkillId = new Guid();
+            userSkill.UserId = user;
+            userSkill.Weight = request.Weight;
         }
 
         public Task AddUserSkillCollection(AddSkillCollectionRequest request)
