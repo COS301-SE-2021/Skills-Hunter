@@ -324,6 +324,10 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/addNewSkill")]
         public IActionResult AddNewSkill(AddNewSkillRequest request)
         {
+
+            Guid user = GetCurrentUserId();
+            _userService.AddNewSkill(request, user);
+
             return Ok();
         }
 
