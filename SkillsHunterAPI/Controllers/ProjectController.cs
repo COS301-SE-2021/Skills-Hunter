@@ -188,7 +188,7 @@ namespace SkillsHunterAPI.Controllers
                 AddSkillRequest skillToAdd = new AddSkillRequest();
                 skillToAdd.Categories = skill.Categories;
                 skillToAdd.Name = skill.Name;
-                Skill newSkill = await _skillService.AddSkill(skillToAdd);
+                Skill newSkill = await _projectService.AddNewSkill(skillToAdd);
 
                 //Checking if the new skill was created before linking it with the project
                 if (newSkill != null)
