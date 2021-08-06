@@ -29,8 +29,6 @@ namespace SkillsHunterUserUnitTest
 
             IActionResult ExpectedResult;
 
-            //Act
-
             // Act
             //A.CallTo(() => userController.Register(registerRequest)).Returns(());
             var actionResult = userController.Register(registerRequest);
