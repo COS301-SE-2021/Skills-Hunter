@@ -109,14 +109,14 @@ namespace SkillsHunterAPI.Controllers
             var tokenString = tokenHandler.WriteToken(token);
 
             // return basic user info and authentication token
-            return Ok(new AuthenticateResponse()
-            {
-                Id = user.UserId,
-                Name = user.Name,
-                Surname = user.Surname,
-                Role = user.UserType,
-                Token = tokenString
-            });
+
+            AuthenticateResponse response = new AuthenticateResponse();
+            response.UserId = user.UserId;
+            response.Name = user.Name;
+            response.Role = user.UserType;
+            response.Token = tokenString;
+
+            return Ok(response);
         }
 
 

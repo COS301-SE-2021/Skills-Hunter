@@ -1,60 +1,73 @@
 ﻿<Properties StartupConfiguration="{5765300E-4CBE-48DB-9AA9-419E37AD67D9}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ProjectController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Admin.Tests/AdminTest.cs">
     <Files>
-      <File FileName="Controllers/UserController.cs" Line="329" Column="51" />
+      <File FileName="Controllers/UserController.cs" Line="109" Column="62" />
       <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" />
       <File FileName="Models/Skill/Request/AddSkillRequest.cs" />
       <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTestBase.cs" />
-      <File FileName="SkillsHunterAPIUnitTest/UserUnitTest.cs" />
       <File FileName="Models/User/Entity/User.cs" />
       <File FileName="Models/User/Entity/UserSkillCollection.cs" />
       <File FileName="Models/User/Entity/UserSkillCollectionMap.cs" />
       <File FileName="Models/Skill/Entity/SkillCategory.cs" />
       <File FileName="Data/ApplicationDbContext.cs" />
-      <File FileName="Controllers/ProjectController.cs" Line="191" Column="62" />
+      <File FileName="Controllers/ProjectController.cs" Line="185" Column="32" />
       <File FileName="Models/Project/Entity/Project.cs" />
       <File FileName="Models/Project/Entity/ProjectSkill.cs" />
       <File FileName="Models/Skill/Response/GetCollectionsResponse.cs" />
-      <File FileName="Services/Implementation/AdminService.cs" />
+      <File FileName="Services/Implementation/AdminService.cs" Line="1" Column="1" />
       <File FileName="Models/Skill/Response/GetSkillCollectionsResponse.cs" />
       <File FileName="Services/Interface/IAdminService.cs" />
       <File FileName="Services/Implementation/ProjectService.cs" />
-      <File FileName="Services/Interface/IProjectService.cs" />
+      <File FileName="Services/Interface/IProjectService.cs" Line="54" Column="1" />
       <File FileName="Controllers/AdminController.cs" />
-      <File FileName="Models/User/Response/AuthenticateResponse.cs" />
+      <File FileName="Models/User/Response/AuthenticateResponse.cs" Line="9" Column="25" />
       <File FileName="Models/User/Response/RegisterResponse.cs" />
-      <File FileName="SkillsHunterAPIUnitTest/AdminUnitTest.cs" />
-      <File FileName="Services/Implementation/UserService.cs" />
+      <File FileName="SkillsHunterAPIUnitTest/AdminUnitTest.cs" Line="1" Column="1" />
+      <File FileName="Services/Implementation/UserService.cs" Line="307" Column="29" />
       <File FileName="Models/Project/Request/AddNewSkillRequest.cs" />
       <File FileName="Models/Project/Request/CreateCollectionRequest.cs" />
       <File FileName="Models/Project/Request/AddSkillCollectionRequest.cs" />
-      <File FileName="Services/Interface/IUserService.cs" />
+      <File FileName="Services/Interface/IUserService.cs" Line="50" Column="59" />
       <File FileName="Models/User/Request/DeleteRequest.cs" />
       <File FileName="Models/Project/Request/AddExistingSkillRequest.cs" />
-      <File FileName="Services/Implementation/SkillService.cs" />
+      <File FileName="Services/Implementation/SkillService.cs" Line="22" Column="9" />
       <File FileName="Services/Interface/ISkillService.cs" />
+      <File FileName="Models/Project/Request/ProjectRequest.cs" Line="1" Column="1" />
+      <File FileName="SkillsHunterUserUnitTest/UserUnitTest.cs" Line="59" Column="1" />
+      <File FileName="Admin.Tests/AdminTest.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SkillsHunterAPI" expanded="True">
+            <Node name="Admin.Tests" expanded="True">
+              <Node name="AdminTest.cs" selected="True" />
+            </Node>
             <Node name="SkillsHunterAPI" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="ProjectController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True">
                 <Node name="Project" expanded="True">
                   <Node name="Request" expanded="True" />
+                </Node>
+                <Node name="User" expanded="True">
+                  <Node name="Response" expanded="True" />
                 </Node>
               </Node>
               <Node name="Services" expanded="True">
                 <Node name="Implementation" expanded="True" />
                 <Node name="Interface" expanded="True" />
               </Node>
+              <Node name="SkillsHunterAPIUnitTest" expanded="True" />
+              <Node name="SkillsHunterUserUnitTest" expanded="True" />
             </Node>
             <Node name="SkillsHunterUserUnitTest" expanded="True" />
           </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="SkillsHunterAPI" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
