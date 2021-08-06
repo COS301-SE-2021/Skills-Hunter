@@ -13,6 +13,7 @@ using System.Security.Claims;
 using SkillsHunterAPI.Models.Project.Request;
 using System.IO;
 using System.Net.Http.Headers;
+using SkillsHunterAPI.Models.Skill;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -322,21 +323,27 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/addNewSkill")]
-        public IActionResult AddNewSkill(AddNewSkillRequest request)
+        public async Task<IActionResult> AddNewSkillAsync(AddNewSkillRequest request)
         {
 
             Guid user = GetCurrentUserId();
-            _userService.AddNewSkill(request, user);
+           Skill skill = await _userService.AddNewSkill(request);
 
-            return Ok();
+
+            //Checking if the skill is added and linking it with the user
+            if (skill != null)
+            {
+                AddExistingSkillRequest skillToLink = new AddExistingSkillRequest();
+                skillToLink.SkillId = skill.SkillId;
+                skillToLink.Weight = request.Weight;
+
+                return AddUserSkill(skillToLink);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
-
-        /*[HttpGet]
-        [Route("api/[controller]/AddProjectSkill")]
-        public IActionResult AddNewSkill(AddNewSkillRequest request)
-        {
-            return Ok();
-        }*/
 
         [HttpGet]
         [Route("api/[controller]/addUserSkillCollection")]

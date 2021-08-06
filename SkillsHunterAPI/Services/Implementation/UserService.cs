@@ -279,7 +279,7 @@ namespace SkillsHunterAPI.Services
             return null;
         }
 
-        public async Task AddNewSkill(AddNewSkillRequest request, Guid user)
+        public async Task<Skill> AddNewSkill(AddNewSkillRequest request)
         {
 
             //Creating the new skill
@@ -304,11 +304,7 @@ namespace SkillsHunterAPI.Services
                 await _context.SaveChangesAsync();
             }
 
-            //Adding the skill to the user skills
-            UserSkill userSkill = new UserSkill();
-            userSkill.UserSkillId = new Guid();
-            userSkill.UserId = user;
-            userSkill.Weight = request.Weight;
+            return newSkill;
         }
 
         public Task AddUserSkillCollection(AddSkillCollectionRequest request)
