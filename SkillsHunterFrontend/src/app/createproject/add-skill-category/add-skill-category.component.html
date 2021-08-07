@@ -1,31 +1,42 @@
 
 
 <mat-vertical-stepper linear>
-    <mat-step label="Provide the Skill Name" completed=true> 
-        <div>
+    <mat-step  [stepControl] = "skillFormGroup"> 
+        
+        <ng-template matStepLabel>Provide the Skill Name</ng-template>
 
+        <form [formGroup]="skillFormGroup">
             <mat-form-field appearance="outline">
                 <mat-label>Skill Name</mat-label>
-                <input matInput placeholder="C++" required>
+                <input matInput placeholder="C++" formControlName="skillName" [(ngModel)]="skillName" required>
                 <mat-icon matSuffix>text_fields</mat-icon>
             </mat-form-field>
 
             <br>
             <button mat-button matStepperNext>Next</button>
-        </div>
+        </form>
+
     </mat-step>
 
-    <mat-step label="Provide the Skill Weight" completed=true> 
+    <mat-step label="Provide the Skill Weight"> 
         <div class="stepping"> 
                     <br>
-        <mat-slider
-        thumbLabel
-        tickInterval="1"
-        step="1"
-        min="1"
-        max="10"
-        aria-label="units">
-        </mat-slider>
+
+        <div>
+            <mat-slider
+            thumbLabel
+            tickInterval="1"
+            step="1"
+            min="1"
+            max="10"
+            [(ngModel)]="skillWeight"
+            aria-label="units">
+            </mat-slider>
+        </div>
+        <div>
+            Selected Weight: {{skillWeight}}
+        </div>
+
 
         <br>
 
@@ -34,18 +45,16 @@
         </div>
     </mat-step>
 
-    <mat-step label="Provide the Skill Category" completed=true> 
+    <mat-step label="Provide the Skill Category"> 
         <div>
 
             <br>
             <mat-form-field>
-                <mat-label>Category</mat-label>
-
-                <mat-select [(value)]="category" multiple>
-                     <mat-option value="frontend">FrontEnd Development</mat-option>
-                    <mat-option value="backend">BackEnd Development</mat-option>
-                    <mat-option value="mobile">Mobile Development</mat-option>
-                    <mat-option value="desktop">Desktop Development</mat-option>
+                <mat-label>Collection</mat-label>
+                <mat-select multiple required [(ngModel)]="skillCollection">
+                    <mat-option *ngFor="let item of collectionArray">
+                        {{item}}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
             
