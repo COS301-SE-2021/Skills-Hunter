@@ -52,7 +52,7 @@ namespace SkillsHunterAPI.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("api/[controller]/register")]
-        public IActionResult Register([FromBody]RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody]RegisterRequest request)
         {
             // map model to entity
             User user = new User()

@@ -15,7 +15,7 @@ namespace SkillsHunterUserUnitTest
         private UserController userController;
 
         [Fact]
-        public void TestRegister()
+        public async Task TestRegisterAsync()
         {
             //Arrange
             RegisterRequest registerRequest = new RegisterRequest();
@@ -28,21 +28,14 @@ namespace SkillsHunterUserUnitTest
             registerRequest.Password = "James2431";
 
             // Act
-            IActionResult res;
-            A.CallTo(() => userController.Register(registerRequest));
-            var actionResult = userController.Register(registerRequest);
-
+            var actionResult = await userController.Register(registerRequest);
 
             // Assert
-            var result = actionResult.ExecuteResultAsync(new ActionContext());
-            Assert.IsAssignableFrom<IActionResult>(actionResult);
-            //Assert.True(result.Equals(obj: OkObjectResult));
-            //Assert.IsAssignableFrom<IActionResult>(actionResult);
-            //Assert.Equal(testId, (actionResult.Value as Project).ProjectId);
+            Assert.IsType<OkObjectResult>(actionResult);
         }
 
         [Fact]
-        public void TestAuthenticate()
+        public async Task TestAuthenticateAsync()
         {
             //Arrange
             RegisterRequest registerRequest = new RegisterRequest();
@@ -60,14 +53,20 @@ namespace SkillsHunterUserUnitTest
             authenticateRequest.Email = registerRequest.Email;
             authenticateRequest.Password = registerRequest.Password;
 
-            AuthenticateResponse authenticateResponse = new AuthenticateResponse();
+            /*AuthenticateResponse authenticateResponse = new AuthenticateResponse();
             authenticateResponse.Name = registerRequest.Name;
             authenticateResponse.Role = registerRequest.Role;
-            authenticateResponse.Surname = registerRequest.Surname;
-
-            //A.CallTo(() => userController.Authenticate(authenticateRequest)).Returns(authenticateResponse);
+            authenticateResponse.Surname = registerRequest.Surname;*/
 
             //Act
+            var result = await userController.Authenticate(authenticateRequest);
+
+            //Assert
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsType<AuthenticateResponse>(okResult.Value);
+            Assert.Equal(registerRequest.Name, returnValue.Name);
+            Assert.Equal(registerRequest.Surname, returnValue.Surname);
+            Assert.Equal(registerRequest.Role, returnValue.Role);
 
         }
 
