@@ -1,6 +1,8 @@
+import { Collection } from 'src/app/classes/Collection';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions } from '@angular/material/checkbox';
+import { Skill } from 'src/app/classes/Skill';
 
 @Component({
   selector: 'app-add-skill-category',
@@ -9,33 +11,34 @@ import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions } from '@angula
 })
 export class AddSkillCategoryComponent implements OnInit {
 
+  skillName : string;
+  skillWeight : number = 1;
+  skillCollection : string[];
 
-  category : string;
+  collectionArray = ["Front-End", "Back-End", "Mobile App", "Desktop App"];
 
-  // category: FormGroup;
-
-  // constructor(fb: FormBuilder) {
-  //   this.category = fb.group({
-  //     FrontEnd: false,
-  //     BackEnd: false,
-  //     Mobile: false,
-  //     Desktop: false
-  //   });
-  // }
+  skillFormGroup : FormGroup;
 
   formatLabel(value: number) {
     return value;
   }
 
-  constructor() {}
+  constructor(private formBuilder : FormBuilder) {}
 
   ngOnInit(): void {
+    this.skillFormGroup = this.formBuilder.group(
+      {
+        skillName : ['', Validators.required],
+        // categoryWeight : ['', Validators.required],
+        // categorySkills : ['', Validators.required]
+      }
+    );
   }
 
-  panelOpenState = false;
-
-  addSKill(){
-
+  captureSkill(){
+    console.log(this.skillName+"\n");
+    console.log(this.skillWeight+"\n");
+    console.log(this.skillCollection+"\n");
   }
   
   cancel(){

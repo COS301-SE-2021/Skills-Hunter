@@ -1,7 +1,9 @@
 import { Collection } from './../../classes/Collection';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Collections } from 'src/app/mock-data/mock-collections';
+import { Skill } from 'src/app/classes/Skill';
+import { Skills } from 'src/app/mock-data/mock-skills';
 
 @Component({
   selector: 'app-add-skill-collection',
@@ -12,21 +14,43 @@ export class AddSkillCollectionComponent implements OnInit {
 
   _collections: Collection[] = Collections;
 
-  category : string;
+  collectionName : string;
+  collectionWeight : number = 1;
+  skillCollection : string[];
 
-  constructor() {}
+  // let skillArray = Skill[] = Skills;
+  skillArray = ["C++", "Java", "Python", "Flutter"];
+  
+
+  collectionFormGroup : FormGroup;
+
+  formatLabel(value: number) {
+    return value;
+  }
+
+  constructor(private formBuilder : FormBuilder) {}
 
   ngOnInit(): void {
+    this.collectionFormGroup = this.formBuilder.group(
+      {
+        collectionName : ['', Validators.required],
+        // collectionWeight : ['', Validators.required],
+        // collectionSkills : ['', Validators.required]
+      }
+    );
   }
 
-  panelOpenState = false;
+  captureCollection(){
+    console.log(this.collectionName+"\n");
+    console.log(this.collectionWeight+"\n");
+    console.log(this.skillCollection+"\n");
 
-  addSKill(){
+    // let col = {
+    //   collectionId: "random-id",
+    //   collectionName: this.collectionName,
+    //   skills: this.skillCollection
+    // };
 
+    // this._collections.push(col);    
   }
-  
-  cancel(){
-
-  }
-
 }

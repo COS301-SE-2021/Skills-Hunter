@@ -1,6 +1,6 @@
 
 
-<mat-vertical-stepper linear>
+<mat-horizontal-stepper linear>
     <mat-step  [stepControl] = "skillFormGroup"> 
         
         <ng-template matStepLabel>Provide the Skill Name</ng-template>
@@ -18,7 +18,7 @@
 
     </mat-step>
 
-    <mat-step label="Provide the Skill Weight"> 
+    <mat-step label="Select the Skill Weight"> 
         <div class="stepping"> 
                     <br>
 
@@ -45,7 +45,7 @@
         </div>
     </mat-step>
 
-    <mat-step label="Provide the Skill Category"> 
+    <mat-step label="Select the Skill Collection"> 
         <div>
 
             <br>
@@ -60,8 +60,21 @@
             
             <br>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Apply</button>
+            <button mat-button matStepperNext (click)="captureSkill()">Apply</button>
         </div>
     </mat-step>
-  
-</mat-vertical-stepper>
+
+    <!-- <p>
+        {{skillName}}
+    </p>
+    
+    <p>
+        {{skillWeight}}
+    </p>
+    
+    <p>
+        {{skillCollection}}
+    </p> -->
+    
+</mat-horizontal-stepper>
+

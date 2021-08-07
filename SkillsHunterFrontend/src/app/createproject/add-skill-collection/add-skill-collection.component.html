@@ -1,78 +1,83 @@
 <mat-accordion>
 
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
+    <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
           Add A Collection of Skills
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-    <mat-vertical-stepper linear>
-      <mat-step label="Provide the Collection Name" completed=true> 
-          <div>
-  
-              <mat-form-field appearance="outline">
-                  <mat-label>Collection Name</mat-label>
-                  <input matInput placeholder="Front-End Development" required>
-                  <mat-icon matSuffix>text_fields</mat-icon>
-              </mat-form-field>
-  
-              <br>
-              <button mat-button matStepperNext>Next</button>
-          </div>
-      </mat-step>
-  
-      <mat-step label="Provide the Collection Weight" completed=true> 
-          <div class="stepping"> 
-                      <br>
-          <mat-slider
-          thumbLabel
-          tickInterval="1"
-          step="1"
-          min="1"
-          max="10"
-          aria-label="units">
-          </mat-slider>
-  
-          <br>
-  
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-          </div>
-      </mat-step>
-  
-      <mat-step label="Select skills to add to Collection" completed=true> 
-          <div>
-  
-              <br>
-              <mat-form-field>
-                  <mat-label>Skills</mat-label>
-  
-                  <mat-select [(value)]="category" multiple>
-                       <mat-option value="frontend">C++</mat-option>
-                      <mat-option value="backend">Java</mat-option>
-                      <mat-option value="mobile">PHP</mat-option>
-                      <mat-option value="desktop">Angular</mat-option>
-                  </mat-select>
-              </mat-form-field>
-              
-              <br>
 
-              
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Apply</button>
-          </div>
-      </mat-step>
+
+      <mat-horizontal-stepper linear>
+        <mat-step  [stepControl] = "collectionFormGroup"> 
+            
+            <ng-template matStepLabel>Provide the Collection Name</ng-template>
     
-  </mat-vertical-stepper>      
+            <form [formGroup]="collectionFormGroup">
+                <mat-form-field appearance="outline">
+                    <mat-label>Collection Name</mat-label>
+                    <input matInput placeholder="iOS Development" formControlName="collectionName" [(ngModel)]="collectionName" required>
+                    <mat-icon matSuffix>text_fields</mat-icon>
+                </mat-form-field>
+    
+                <br>
+                <button mat-button matStepperNext>Next</button>
+            </form>
+    
+        </mat-step>
+    
+        <mat-step label="Select the Collection Weight"> 
+            <div class="stepping"> 
+                        <br>
+    
+            <div>
+                <mat-slider
+                thumbLabel
+                tickInterval="1"
+                step="1"
+                min="1"
+                max="10"
+                [(ngModel)]="collectionWeight"
+                aria-label="units">
+                </mat-slider>
+            </div>
+            <div>
+                Selected Weight: {{collectionWeight}}
+            </div>
+    
+    
+            <br>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
+    
+        <mat-step label="Skills to add to Collection"> 
+            <div>
+    
+                <br>
+                <mat-form-field>
+                    <mat-label>Skills</mat-label>
+                    <mat-select multiple required [(ngModel)]="skillCollection">
+                        <mat-option *ngFor="let item of skillArray">
+                            {{item}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                <br>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext (click)="captureCollection()">Apply</button>
+            </div>
+        </mat-step>
+        
+    </mat-horizontal-stepper>
+      
 
     </mat-expansion-panel>
 
-
-
-
-    <mat-expansion-panel>
+    <mat-expansion-panel expanded>
       <mat-expansion-panel-header>
         <mat-panel-title class="as-title">
           Show Existing Collection Of Skills
