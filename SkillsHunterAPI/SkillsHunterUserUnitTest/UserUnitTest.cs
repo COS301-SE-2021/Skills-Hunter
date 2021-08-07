@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using FakeItEasy;
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Controllers;
@@ -17,7 +18,6 @@ namespace SkillsHunterUserUnitTest
         public void TestRegister()
         {
             //Arrange
-
             RegisterRequest registerRequest = new RegisterRequest();
             registerRequest.Name = "James";
             registerRequest.Surname = "Smith";
@@ -27,14 +27,16 @@ namespace SkillsHunterUserUnitTest
             registerRequest.OpenForWork = true;
             registerRequest.Password = "James2431";
 
-            IActionResult ExpectedResult;
-
             // Act
-            //A.CallTo(() => userController.Register(registerRequest)).Returns(());
+            IActionResult res;
+            A.CallTo(() => userController.Register(registerRequest));
             var actionResult = userController.Register(registerRequest);
 
 
             // Assert
+            var result = actionResult.ExecuteResultAsync(new ActionContext());
+            Assert.IsAssignableFrom<IActionResult>(actionResult);
+            //Assert.True(result.Equals(obj: OkObjectResult));
             //Assert.IsAssignableFrom<IActionResult>(actionResult);
             //Assert.Equal(testId, (actionResult.Value as Project).ProjectId);
         }
@@ -42,13 +44,23 @@ namespace SkillsHunterUserUnitTest
         [Fact]
         public void TestAuthenticate()
         {
-
+            
         }
 
         [Fact]
         public void TestGetCurrentUserId()
         {
+            //Arrange
+            RegisterRequest registerRequest = new RegisterRequest();
+            registerRequest.Name = "James";
+            registerRequest.Surname = "Smith";
+            registerRequest.Phone = "0792352726";
+            registerRequest.Role = 0;
+            registerRequest.Email = "JS@gmail.com";
+            registerRequest.OpenForWork = true;
+            registerRequest.Password = "James2431";
 
+            var registerResult = userController.Register(registerRequest);
         }
 
         [Fact]
