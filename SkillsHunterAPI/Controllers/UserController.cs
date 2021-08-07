@@ -14,6 +14,7 @@ using SkillsHunterAPI.Models.Project.Request;
 using System.IO;
 using System.Net.Http.Headers;
 using SkillsHunterAPI.Models.Skill;
+using Microsoft.AspNetCore.Http;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -84,8 +85,9 @@ namespace SkillsHunterAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
+
         [Route("api/[controller]/authenticate")]
-        public IActionResult Authenticate([FromBody]AuthenticateRequest request)
+        public async Task<IActionResult> Authenticate([FromBody] AuthenticateRequest request)
         {
 
             var user = _userService.Authenticate(request.Email, request.Password);
