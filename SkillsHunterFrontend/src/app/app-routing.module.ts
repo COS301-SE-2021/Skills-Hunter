@@ -10,6 +10,7 @@ import { UpdateProjectComponent } from './update-project/update-project.componen
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 import { CreateprojectComponent } from './createproject/createproject.component';
+import { AddSkillsComponent } from './add-skills/add-skills.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'createproject',
     component: CreateprojectComponent,
+  },
+  {
+    path: 'individualskill',
+    component: AddSkillsComponent,
   },
   {
     path: '',
