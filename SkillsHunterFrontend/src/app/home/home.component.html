@@ -1,24 +1,31 @@
-<div class="homeOptions">
-  <button mat-raised-button id="createbtn" (click)="create()">
-    Create Project
-  </button>
 
-  <mat-form-field class="example-form-field" id="searchProjectsinput">
-    <mat-label>Search Projects:</mat-label>
-    <input matInput type="text" [(ngModel)]="filterQuery" />
-    <button
-      *ngIf="filterQuery"
-      matSuffix
-      mat-icon-button
-      aria-label="Clear"
-      (click)="filterQuery = ''"
-    >
-      <mat-icon>close</mat-icon>
+<div>
+  <div class="homeOptions">
+
+    <mat-form-field class="example-form-field" id="searchProjectsinput">
+      <mat-label>Search Projects:</mat-label>
+      <input matInput type="text" [(ngModel)]="filterQuery" />
+      <button
+        *ngIf="filterQuery"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="filterQuery = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div id="creatediv">
+    <button mat-raised-button id="createbtn" (click)="create()">
+      Create Project
     </button>
-  </mat-form-field>
+  </div>
+  <div id="projectCard">
+    <app-project-card
+    *ngFor="let project of _projects | searchAndFilterCandidate: filterQuery"
+    [card_project]="project"
+  ></app-project-card>
+  </div>
 </div>
 
-<app-project-card
-  *ngFor="let project of _projects | searchAndFilterCandidate: filterQuery"
-  [card_project]="project"
-></app-project-card>

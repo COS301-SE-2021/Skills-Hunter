@@ -43,10 +43,12 @@ export class HomeComponent implements OnInit {
   }
 
   create() {
+    this._router.navigate([`createproject`]);
+    /*
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '40%';
     configDialog.height = '80%';
-    this.dialog.open(CreateprojectComponent, configDialog);
+    this.dialog.open(CreateprojectComponent, configDialog);*/
   }
 }
