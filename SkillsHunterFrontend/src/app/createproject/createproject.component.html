@@ -1,38 +1,71 @@
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-</button>
-<mat-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-    <form [formGroup]="secondFormGroup">
-      <mat-form-field appearance="fill">
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-               required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-stepper>
+
+
+<mat-card class="create-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Create Project</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+   <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+      {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+    </button>-->
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup" class="stepform">
+          <ng-template matStepLabel>Step 1</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Project Name</mat-label>
+            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+          </mat-form-field>
+          <!--<mat-form-field appearance="fill">
+            <mat-label>Project Description</mat-label>
+            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+          </mat-form-field>-->
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Project Description</mat-label>
+            <textarea matInput placeholder="..." required></textarea>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious class="back">Cancel</button>
+            <button mat-button matStepperNext class="next">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup" label="Step 2">
+        
+        <form [formGroup]="secondFormGroup">
+          <button mat-raised-button id="createbtn" (click)="individualSkill()">
+            Add Individual Skill
+          </button>
+          <!--put the list in a drop down-->
+          <mat-selection-list #shoes [multiple]="false">
+            <mat-list-option *ngFor="let skill of selectedSkills" [value]="skill" >
+              {{skill}}
+            </mat-list-option>
+          </mat-selection-list>
+
+          <button mat-raised-button id="createbtn" (click)="skillCollection()">
+            Add Skill collection
+          </button>
+          <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <mat-slide-toggle>Project open for application</mat-slide-toggle>
+          <div>
+            <button mat-button matStepperPrevious class="back">Back</button>
+            <button mat-button matStepperNext  class="next">Submit</button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+
+  </mat-card-content>
+ <!-- <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>-->
+</mat-card>
