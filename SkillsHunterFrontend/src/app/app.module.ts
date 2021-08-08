@@ -23,6 +23,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
+import { AddSkillsComponent } from './add-skills/add-skills.component';
+import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add
     ProjectCardComponent,
     AdminPortalComponent,
     AdminAddSkillComponent,
+    AddSkillsComponent,
+    AddSkillsCollectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,6 @@ import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MaterialModule,
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
