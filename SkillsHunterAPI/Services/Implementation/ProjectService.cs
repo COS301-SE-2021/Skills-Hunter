@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Services
 {
@@ -179,25 +180,54 @@ namespace SkillsHunterAPI.Services
             return true;
         }
 
-        public async Task<SkillCollection> CreateCollection(SkillCollection request)
+        public async Task<ProjectSkillCollection> CreateCollection(AddSkillCollectionRequest request, Guid projectId)
         {
-            SkillCollection result = null;
+            //Creating the new SkillCollection object
+            ProjectSkillCollection skillCollection = new ProjectSkillCollection();
+            skillCollection.ProjectSkillCollectionId = new Guid();
+            skillCollection.Name = request.Name;
+            skillCollection.Description = request.Description;
+            skillCollection.ProjectId = projectId;
+            skillCollection.Weight = request.Weight;
 
+            //Saving the SkillCollection object on the database
+            _context.ProjectSkillCollections.Add(skillCollection);
+            await _context.SaveChangesAsync();
 
-            return result;
+            //Linking the skills with the skillCollection
+            foreach (AddExistingSkillRequest skillToAdd in request.Skills)
+            {
+                ProjectSkillCollectionMap skillCollectionMap = new ProjectSkillCollectionMap();
+                skillCollectionMap.ProjectSkillCollectionMapId = new Guid();
+                skillCollectionMap.ProjectSkillCollectionId = skillCollection.ProjectSkillCollectionId;
+                skillCollectionMap.SkillId = skillToAdd.SkillId;
+
+                _context.ProjectSkillCollectionMaps.Add(skillCollectionMap);
+                await _context.SaveChangesAsync();
+
+                //Adding the skills to projecSkills
+                ProjectSkill projectSkill = new ProjectSkill();
+                projectSkill.SkillId = skillToAdd.SkillId;
+                projectSkill.ProjectId = projectId;
+                projectSkill.Weight = request.Weight;
+
+                await AddProjectSkill(projectSkill);
+            }
+
+            return skillCollection;
         }
 
-        public async Task<SkillCollection> GetCollection(Guid collectionId)
+        public async Task<ProjectSkillCollection> GetCollection(Guid collectionId)
         {
-            SkillCollection result = null;
+            ProjectSkillCollection result = null;
 
 
             return result;
         }
         
-        public async Task<SkillCollection> UpdateCollection(SkillCollection request)
+        public async Task<ProjectSkillCollection> UpdateCollection(ProjectSkillCollection request)
         {
-            SkillCollection result = null;
+            ProjectSkillCollection result = null;
 
 
             return result;
@@ -207,16 +237,16 @@ namespace SkillsHunterAPI.Services
         {            
         }
 
-        public async Task<SkillCollectionMap> AddSkillToCollection(Guid skillId,Guid collectionId)
+        public async Task<ProjectSkillCollectionMap> AddSkillToCollection(Guid skillId,Guid collectionId)
         {
-            SkillCollectionMap result = null;
+            ProjectSkillCollectionMap result = null;
 
             return result;
         }
 
-        public async Task<List<SkillCollection>> GetCollectionsByProject(Guid projectId)
+        public async Task<List<ProjectSkillCollection>> GetCollectionsByProject(Guid projectId)
         {
-            List<SkillCollection> result = new List<SkillCollection>();
+            List<ProjectSkillCollection> result = new List<ProjectSkillCollection>();
         
             return result;
         }

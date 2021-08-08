@@ -52,14 +52,14 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/addSkill")]
-        public IActionResult AddSkill([FromBody] AddSkillRequest request)
+        public async Task<IActionResult> AddSkill([FromBody] AddSkillRequest request)
         {   
             try
             {
                 // Add skill code here
                 Skill skill = new Skill(request.Name,request.CategoryId,SkillStatus.Accepted);
         
-                Skill result = _adminService.AddSkill(skill);
+                Skill result = await _adminService.AddSkill(skill);
 
                 return Ok(new AddSkillResponse(){
                     Added = result
@@ -78,15 +78,33 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/addCategory")]
-        public async Task<AddCategoryResponse> AddCategory([FromBody] AddCategoryRequest request)
+        public async Task<IActionResult> AddCategory([FromBody] AddCategoryRequest request)
         {
-            Category category = new Category(request.Name,request.Description);
+
+            try
+            {
+                // Add category code here
+                Category category = new Category();
+
+                category.Name = request.Name;
             
-            AddCategoryResponse response = new AddCategoryResponse(); 
-            response.Success = true;
-            response.Added = await _adminService.AddCategory(category);
-            
-            return response; 
+                category.Description = request.Description;
+
+                Category result = await _adminService.AddCategory(category);
+
+                return Ok(new AddCategoryResponse(){
+                    Added = result
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return BadRequest(new 
+                       { 
+                            message = error.Message 
+                       });
+            }
         }
 
 
@@ -127,7 +145,7 @@ namespace SkillsHunterAPI.Controllers
             try
             {
                 // Get collections code here
-                List<SkillCollection> result = (List<SkillCollection>)await _adminService.GetSkillCollections();
+                List<ProjectSkillCollection> result = (List<ProjectSkillCollection>)await _adminService.GetSkillCollections();
                 
                 return Ok(new GetSkillCollectionsResponse(){
 

@@ -13,8 +13,8 @@ namespace SkillsHunterAPI.Models.Project.Request
         public string Location { get; set; }
         public bool OpenForApplication { get; set; }
         //public DateTime DateCreated { get; set; }
-        public List<GetSkillByIdRequest> ExistingSkills { get; set; }
-        public List<AddSkillRequest> NewSkills { get; set; }
+        public List<AddExistingSkillRequest> ExistingSkills { get; set; }
+        public List<AddNewSkillRequest> NewSkills { get; set; }
         public List<AddSkillCollectionRequest> SkillCollections { get; set; }
 
         public CreateProjectRequest()

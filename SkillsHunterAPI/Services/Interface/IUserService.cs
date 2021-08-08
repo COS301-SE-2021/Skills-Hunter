@@ -2,6 +2,7 @@
 using SkillsHunterAPI.Models.User;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using SkillsHunterAPI.Models.Project.Request;
 
 namespace SkillsHunterAPI.Services
 {
@@ -35,14 +36,18 @@ namespace SkillsHunterAPI.Services
         
         Task<WorkExperience> GetWorkExperience(Guid id);
 
-        Task<Image> CreateImage(Image request);
+        Task<Image> uploadProfileImage(Image request);
 
         Task<Image> GetImage(Guid ImageId);
 
-        Task<Image> UpdateImage(Guid request);
-
-        Task RemoveImage(Guid request);
+        Task<Image> RemoveImage(Guid request);
 
         Task<Image> GetImageByUser(Guid UserId);
+
+        Task AddUserSkill(AddExistingSkillRequest request);
+
+        Task AddNewSkill(AddNewSkillRequest request);
+
+        Task AddUserSkillCollection(AddSkillCollectionRequest request);
     }
 }

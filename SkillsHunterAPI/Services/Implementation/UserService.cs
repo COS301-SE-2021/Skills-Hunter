@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Collections.Generic;
 using SkillsHunterAPI.Data;
 using System.Linq;
+using SkillsHunterAPI.Models.Project.Request;
 
 namespace SkillsHunterAPI.Services
 {
@@ -231,34 +233,58 @@ namespace SkillsHunterAPI.Services
             return await _context.WorkExperiences.FindAsync(id);
         }
 
-        public async Task<Image> CreateImage(Image request){
-            Image result = null;
-
+        public async Task<Image> uploadProfileImage(Image request){
+            request.ImageId = Guid.NewGuid();
+            Image result = request;
+            Image existingImage = await _context.Images.SingleOrDefaultAsync(img => img.UserId == request.UserId);
+            
+            if(existingImage == null)
+                _context.Images.Add(request);
+            else{
+                var oldFile = Path.Combine(Directory.GetCurrentDirectory(), existingImage.Path);
+                File.Delete(oldFile);
+                
+                existingImage.Path = request.Path;
+                result = existingImage;
+            }
+            
+            await _context.SaveChangesAsync();
 
             return result;    
         }
 
         public async Task<Image> GetImage(Guid ImageId){
-            Image result = null;
-
-            return result;
+            return await _context.Images.FindAsync(ImageId);
         }
 
-        public async Task<Image> UpdateImage(Guid request){
-            Image result = null;
 
-            return result;
-        }
+        public async Task<Image> RemoveImage(Guid ImageId){
+            var result = await _context.Images.FindAsync(ImageId);
 
-        public async Task RemoveImage(Guid request){
+            _context.Images.Remove(result);
+            await _context.SaveChangesAsync();
 
-
+            return result;            
         }
 
         public async Task<Image> GetImageByUser(Guid UserId){
-            Image result = null;
-
-            return result;
+            return await _context.Images.SingleOrDefaultAsync(img => img.UserId == UserId);
         }
+
+        public Task AddUserSkill(AddExistingSkillRequest request)
+        {
+            return null;
+        }
+
+        public Task AddNewSkill(AddNewSkillRequest request)
+        {
+            return null;
+        }
+
+        public Task AddUserSkillCollection(AddSkillCollectionRequest request)
+        {
+            return null;
+        }
+
     }
 }
