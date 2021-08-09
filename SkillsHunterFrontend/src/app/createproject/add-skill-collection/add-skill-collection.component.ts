@@ -16,11 +16,12 @@ export class AddSkillCollectionComponent implements OnInit {
 
   collectionName : string;
   collectionWeight : number = 1;
+  // skillCollection : Skill[];
+
   skillCollection : string[];
 
-  // let skillArray = Skill[] = Skills;
-  skillArray = ["C++", "Java", "Python", "Flutter"];
-  
+
+  skillArray = Skills;
 
   collectionFormGroup : FormGroup;
 
@@ -43,14 +44,18 @@ export class AddSkillCollectionComponent implements OnInit {
   captureCollection(){
     console.log(this.collectionName+"\n");
     console.log(this.collectionWeight+"\n");
-    console.log(this.skillCollection+"\n");
+    // this.skillCollection.forEach(element => {
+    //   console.log(element.SkillName+"\n");
+    // });
 
-    // let col = {
-    //   collectionId: "random-id",
-    //   collectionName: this.collectionName,
-    //   skills: this.skillCollection
-    // };
+    
+    var col = new Collection();
+  
+    col.collectionId = "random-id"+this.skillCollection.length,
+    col.collectionName = this.collectionName;
+    col.skills = this.skillCollection.toString();
 
+    Collections.push(col);
     // this._collections.push(col);    
   }
 }
