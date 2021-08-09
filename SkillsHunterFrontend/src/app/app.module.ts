@@ -27,6 +27,8 @@ import { AddSkillCategoryComponent } from './createproject/add-skill-category/ad
 import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions } from '@angular/material/checkbox';
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
 import { CollectionCardComponent } from './createproject/add-skill-collection/collection-card/collection-card.component';
+import { AddSkillsComponent } from './add-skills/add-skills.component';
+import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { CollectionCardComponent } from './createproject/add-skill-collection/co
     AddSkillCollectionComponent,
     CollectionCardComponent,
 
+    AddSkillsComponent,
+    AddSkillsCollectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,13 +63,12 @@ import { CollectionCardComponent } from './createproject/add-skill-collection/co
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MaterialModule,
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],

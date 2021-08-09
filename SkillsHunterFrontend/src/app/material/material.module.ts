@@ -22,7 +22,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatStepperModule} from '@angular/material/stepper'; 
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [],
@@ -46,7 +47,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatGridListModule,
     MatTableModule,
     MatInputModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatDividerModule,
@@ -68,7 +70,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatGridListModule,
     MatTableModule,
     MatInputModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSlideToggleModule
   ],
 })
 export class MaterialModule {}
