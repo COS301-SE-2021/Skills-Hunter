@@ -11,6 +11,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
 import { Skills } from '../mock-data/mock-skills';
+import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-collection.component';
 
 @Component({
   selector: 'app-createproject',
@@ -67,7 +68,8 @@ export class CreateprojectComponent implements OnInit {
     configDialog.backdropClass = 'backGround';
     configDialog.width = '40%';
     configDialog.height = '80%';
-    const dialogRef = this.dialog.open(AddSkillsCollectionComponent, configDialog);
+    // const dialogRef = this.dialog.open(AddSkillsCollectionComponent, configDialog);
+    const dialogRef = this.dialog.open(AddSkillCollectionComponent, configDialog);
    
   }
   
