@@ -52,8 +52,8 @@
             <mat-form-field>
                 <mat-label>Collection</mat-label>
                 <mat-select multiple required [(ngModel)]="skillCollection">
-                    <mat-option *ngFor="let item of collectionArray">
-                        {{item}}
+                    <mat-option *ngFor="let item of collectionArray" [value]="item.collectionName">
+                        {{item.collectionName}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -63,18 +63,6 @@
             <button mat-button matStepperNext (click)="captureSkill()">Apply</button>
         </div>
     </mat-step>
-
-    <!-- <p>
-        {{skillName}}
-    </p>
-    
-    <p>
-        {{skillWeight}}
-    </p>
-    
-    <p>
-        {{skillCollection}}
-    </p> -->
     
 </mat-vertical-stepper>
 

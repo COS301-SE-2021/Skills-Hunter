@@ -49,14 +49,14 @@ const routes: Routes = [
     path: 'add-skill-collection',
     component: AddSkillCollectionComponent,
   },
-  // {
-  //   path: '',
-  //   component: AddSkillCategoryComponent,
-  // },
   {
     path: '',
-    component: AddSkillCollectionComponent,
+    component: AddSkillCategoryComponent,
   },
+  // {
+  //   path: '',
+  //   component: AddSkillCollectionComponent,
+  // },
   
 ];
 

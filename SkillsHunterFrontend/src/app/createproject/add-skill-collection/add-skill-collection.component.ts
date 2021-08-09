@@ -20,7 +20,6 @@ export class AddSkillCollectionComponent implements OnInit {
 
   skillCollection : string[];
 
-
   skillArray = Skills;
 
   collectionFormGroup : FormGroup;
