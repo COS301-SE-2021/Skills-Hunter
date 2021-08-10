@@ -323,8 +323,6 @@ namespace SkillsHunterAPI.Controllers
             userSkill.SkillId = request.SkillId;
             userSkill.Weight = request.Weight;
 
-
-
             return (IActionResult)_userService.AddUserSkill(userSkill);
 
         }
