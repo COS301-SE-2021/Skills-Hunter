@@ -1,3 +1,4 @@
+import { Skills } from './../mock-data/mock-skills';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -8,16 +9,25 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AddSkillsComponent implements OnInit {
 
- skills: string[];
   constructor(public dialogRef: MatDialogRef<AddSkillsComponent>) { }
 
+  skills: string[];
+  // Skills.forEach(function(skillItem){
+  //   this.skills.push(skillItem.SkillName);
+  // });
+
+
   ngOnInit(): void {
-    this.skills = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+    // this.skills = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+    // this.skills = Skills;
+    for(var x=0; x<Skills.length; x++){
+      this.skills.push(Skills[x].SkillName);
+    }
   }
 
   selected(skill){
     console.log(skill);
-    console.log("slill selected");
+    console.log("skill selected");
     this.dialogRef.close({data:skill});
   }
 }

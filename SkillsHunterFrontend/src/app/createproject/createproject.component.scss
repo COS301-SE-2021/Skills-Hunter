@@ -28,11 +28,19 @@
 }
 
 .create-card {
-  max-width: 500px;
+  width: 50%;
+  height: 450px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5%;
-  background-color: #00b3b3;
+  margin-top: 10%;
+  color: purple;
+  box-shadow: 1px 10px 10px #888888;
+  background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
+
+}
+
+.fillIN{
+  background-color: red;
 }
 
 .create-header-image {

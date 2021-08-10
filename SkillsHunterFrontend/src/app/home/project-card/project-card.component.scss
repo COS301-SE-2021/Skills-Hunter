@@ -12,9 +12,10 @@
 .project-card {
   color: #003333;
   width: 600px;
-  background-color: #e6ffff;
   margin: 20px;
   display: inline-block;
+  box-shadow: 1px 10px 10px #888888;
+  background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
 }
 
 .buttonActions {

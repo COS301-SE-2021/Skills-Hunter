@@ -37,7 +37,6 @@ export class CreateprojectComponent implements OnInit {
     });
   }
 
-  
  
   individualSkill() {
     //this._router.navigate([`createproject`]);
