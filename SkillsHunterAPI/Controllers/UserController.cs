@@ -319,8 +319,12 @@ namespace SkillsHunterAPI.Controllers
         {
             Guid LoggedInUser = GetCurrentUserId();
 
+            AddExistingSkillRequest userSkill = new AddExistingSkillRequest();
+            userSkill.SkillId = request.SkillId;
+            userSkill.Weight = request.Weight;
 
-         
+
+
 
         }
 
