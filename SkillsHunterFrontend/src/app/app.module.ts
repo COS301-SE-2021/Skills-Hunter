@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
@@ -25,6 +25,21 @@ import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MatCardModule } from '@angular/material/card';
+import { AdminBoardComponent } from './admin-board/admin-board.component';
+import { BoardContentComponent } from './board-content/board-content.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ProjectControlComponent } from './project-control/project-control.component';
+import { UserControlComponent } from './user-control/user-control.component';
+import { SkillControlComponent } from './skill-control/skill-control.component';
+import { CategoryControlComponent } from './category-control/category-control.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { SkillCollectionControlComponent } from './skill-collection-control/skill-collection-control.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -43,6 +58,15 @@ import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills
     AdminAddSkillComponent,
     AddSkillsComponent,
     AddSkillsCollectionComponent,
+    SidebarComponent,
+    AdminBoardComponent,
+    BoardContentComponent,
+    ProjectControlComponent,
+    UserControlComponent,
+    SkillControlComponent,
+    CategoryControlComponent,
+    StatisticsComponent,
+    SkillCollectionControlComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +84,16 @@ import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills
     ReactiveFormsModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatProgressBarModule,
+    MatSlideToggleModule,
+    MatSidenavModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

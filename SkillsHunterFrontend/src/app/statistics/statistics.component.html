@@ -1,0 +1,106 @@
+<h1>Statistics</h1>
+
+<mat-card id = "card">
+    <h2>Users</h2>
+
+    <mat-card class = "statIO">
+        <form>
+            
+            <mat-form-field appearance="fill">
+                <mat-label>select user type</mat-label>
+                
+                <mat-select>
+                  <mat-option *ngFor="let cat of UserTypes" [value]="cat.value">
+                    {{cat.text}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+
+        <mat-progress-bar mode="determinate" value="67" id = "userbar"></mat-progress-bar>
+        
+        <div class = "Numbers">
+          <span class = "Percentage">72%</span>
+          <span class = "Actual">893 / 1241</span>
+        </div>
+    
+      </mat-card>
+
+    <h2>Projects</h2>
+
+    <mat-card class = "statIO">
+      <form>
+        <mat-slide-toggle ngModel name="OpenForWork">Open</mat-slide-toggle>
+      </form>
+
+      <mat-progress-bar mode="determinate" value="39" id = "userbar"></mat-progress-bar>
+        
+      <div class = "Numbers">
+        <span class = "Percentage">39%</span>
+        <span class = "Actual">1643 / 4215</span>
+      </div>
+
+    </mat-card>
+
+    <h2>Skills</h2>
+
+    <mat-card class = "statIO">
+
+      <form>
+            
+        <mat-form-field appearance="fill">
+            <mat-label>select category</mat-label>
+            
+            <mat-select>
+              <mat-option *ngFor="let cat of Categories" [value]="cat.value">
+                {{cat.text}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style = "float:right">
+          <mat-label>select status</mat-label>
+          
+          <mat-select>
+            <mat-option *ngFor="let cat of Status" [value]="cat.value">
+              {{cat.text}}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
+      
+      </form>
+
+      <mat-progress-bar mode="determinate" value="39" id = "userbar" ></mat-progress-bar>
+        
+      <div class = "Numbers">
+        <span class = "Percentage">67%</span>
+        <span class = "Actual">1643 / 4215</span>
+      </div>
+
+    </mat-card>
+
+
+    <h2>Applications</h2>
+    <mat-card class = "statIO">
+    
+    <form>
+      <mat-form-field appearance="fill">
+      <mat-label>select status</mat-label>
+
+      <mat-select>
+        <mat-option *ngFor="let cat of Status" [value]="cat.value">
+          {{cat.text}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+  </form>
+
+  <mat-progress-bar mode="determinate" value="39" id = "userbar" ></mat-progress-bar>
+    
+  <div class = "Numbers">
+    <span class = "Percentage">67%</span>
+    <span class = "Actual">1643 / 4215</span>
+  </div>        
+    </mat-card>
+</mat-card>
