@@ -317,7 +317,9 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/addUserSkill")]
         public IActionResult AddUserSkill(AddExistingSkillRequest request)
         {
-            return Ok();
+            _userService.AddUserSkill(request);
+            return NoContent();
+
         }
 
         [HttpGet]
