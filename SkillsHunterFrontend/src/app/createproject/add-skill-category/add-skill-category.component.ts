@@ -52,9 +52,10 @@ export class AddSkillCategoryComponent implements OnInit {
     ski.SkillWeight = this.skillWeight;
 
     Skills.push(ski);
-  }
-  
-  cancel(){
 
   }
+  
+  // cancel(){
+  //   this.dialogRef.close();
+  // }
 }

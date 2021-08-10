@@ -24,7 +24,7 @@ export class CreateprojectComponent implements OnInit {
   secondFormGroup: FormGroup;
   selectedSkills=[];//this array will show existing skills that are selected by user
   constructor(private _formBuilder: FormBuilder, private _router: Router,private dialog: MatDialog) {
-   
+
     
   }
 
