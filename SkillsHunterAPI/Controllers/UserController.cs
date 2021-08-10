@@ -325,6 +325,7 @@ namespace SkillsHunterAPI.Controllers
 
 
 
+            return (IActionResult)_userService.AddUserSkill(userSkill);
 
         }
 
