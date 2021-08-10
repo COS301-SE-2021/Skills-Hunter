@@ -271,9 +271,12 @@ namespace SkillsHunterAPI.Services
             return await _context.Images.SingleOrDefaultAsync(img => img.UserId == UserId);
         }
 
-        public Task AddUserSkill(AddExistingSkillRequest request)
+        public  Task AddUserSkill(AddExistingSkillRequest request)
         {
-            return null;
+
+            //_context.UserSkills.Add(request);
+            //await _context.SaveChangesAsync();
+            return  null;
         }
 
         public Task AddNewSkill(AddNewSkillRequest request)
