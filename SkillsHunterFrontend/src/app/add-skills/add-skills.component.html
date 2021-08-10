@@ -1,4 +1,8 @@
-<p>add-skills works!</p>
+<div>
+  <button mat-button (click)="addNewSkill()">Create New Skill</button>  
+</div>
+
+<div>
 <form class="example-form">
     <div class="search-container">
         <form action="/action_page.php">
@@ -8,7 +12,8 @@
       </div>
       <mat-selection-list #shoes [multiple]="false">
         <mat-list-option *ngFor="let skill of skills" [value]="skill"  (click)="selected(skill)">
-          {{skill}}
+          {{skill.SkillName}}
         </mat-list-option>
       </mat-selection-list>
 </form>
+</div>
