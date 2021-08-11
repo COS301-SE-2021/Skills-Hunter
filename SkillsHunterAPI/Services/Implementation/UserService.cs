@@ -291,7 +291,7 @@ namespace SkillsHunterAPI.Services
             return null;
         }
 
-        public Task AddUserSkillCollection(AddSkillCollectionRequest request)
+        public Task AddUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser)
         {
             return null;
         }
