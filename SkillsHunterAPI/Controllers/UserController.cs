@@ -344,6 +344,9 @@ namespace SkillsHunterAPI.Controllers
         {
             Guid LoggedInUser = GetCurrentUserId();
 
+            //Create the skill collection from request
+
+
             return (IActionResult)_userService.AddUserSkillCollection(request, LoggedInUser);
 
 
