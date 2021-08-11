@@ -25,6 +25,7 @@ import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
+import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills
     AdminAddSkillComponent,
     AddSkillsComponent,
     AddSkillsCollectionComponent,
+    InviteCandidateComponent,
   ],
   imports: [
     BrowserModule,

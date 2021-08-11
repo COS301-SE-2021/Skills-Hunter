@@ -1,5 +1,5 @@
 export class Skill {
-  SkillId: number;
-  SkillName: string;
-  SkillWeight: number;
+  SkillId: string;
+  Name: string;
+  CategoryId: string;
 }

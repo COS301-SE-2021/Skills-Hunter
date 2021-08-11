@@ -1,6 +1,7 @@
+import { InviteCandidateComponent } from './invite-candidate/invite-candidate.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { Candidate } from 'src/app/classes/Candidate';
-import { MaterialModule } from 'src/app/material/material.module';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-candidate-card',
@@ -10,7 +11,17 @@ import { MaterialModule } from 'src/app/material/material.module';
 export class CandidateCardComponent implements OnInit {
   @Input() card_candidate: Candidate;
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  inviteCandidate(){
+    const configDialog = new MatDialogConfig();
+    configDialog.backdropClass = 'backGround';
+    configDialog.width = '35%';
+    configDialog.height = '30%';
+    this.dialog.open(InviteCandidateComponent, configDialog);
+  }
+
+
 }

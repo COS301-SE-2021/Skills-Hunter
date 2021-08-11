@@ -9,8 +9,8 @@
 <mat-card class="project-card">
   <mat-card-header>
     <div mat-card-avatar class="project-menu-header-image"></div>
-    <mat-card-title>{{ card_project.Name }}</mat-card-title>
-    <mat-card-subtitle>{{ card_project.Owner }}</mat-card-subtitle>
+    <mat-card-title>{{ card_project.name }}</mat-card-title>
+    <mat-card-subtitle>{{ card_project.owner }}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
@@ -25,14 +25,14 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <p>
-          {{ card_project.Description }}
+          {{ card_project.description }}
         </p>
 
         <mat-card class="project-card-skills">
           <mat-card-title>Skills</mat-card-title>
           <mat-chip-list aria-label="Project Required Skills">
             <mat-chip color="primary" selected>{{
-              card_project.Skill
+              card_project.skill
             }}</mat-chip>
           </mat-chip-list>
         </mat-card>

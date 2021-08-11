@@ -7,11 +7,11 @@ namespace SkillsHunterAPI.Services
 {
     public interface IUserService
     {
-        User AddUser(User request);
+        User Create(User request,string password);
         
-        Task<User> LogIn(string email, string pass);
+        User Authenticate(string email, string pass);
         
-        Task<LogOutResponse> LogOut(LogOutRequest request);
+        //Task<LogOutResponse> LogOut(LogOutRequest request);
         
         Task<UpdateResponse> UpdateUser(UpdateRequest request);
         
@@ -30,7 +30,6 @@ namespace SkillsHunterAPI.Services
         
         Task<UserSkill> GetUserSkill(Guid id);
 
-        // Crud operations on the Work Experience Model
 
         Task AddWorkExperience(WorkExperience request);
         
