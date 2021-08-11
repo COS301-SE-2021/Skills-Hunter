@@ -319,12 +319,8 @@ namespace SkillsHunterAPI.Controllers
         {
             Guid LoggedInUser = GetCurrentUserId();
 
-            AddExistingSkillRequest userSkill = new AddExistingSkillRequest();
-            userSkill.SkillId = request.SkillId;
-            userSkill.Weight = request.Weight;
 
-
-            return (IActionResult)_userService.AddUserSkill(userSkill, LoggedInUser);
+            return (IActionResult)_userService.AddUserSkill(request, LoggedInUser);
 
         }
 
@@ -346,7 +342,11 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/addUserSkillCollection")]
         public IActionResult AddUserSkillCollection(AddSkillCollectionRequest request)
         {
-            return Ok();
+            Guid LoggedInUser = GetCurrentUserId();
+
+            return (IActionResult)_userService.AddUserSkillCollection(request, LoggedInUser);
+
+
         }
     }
 }

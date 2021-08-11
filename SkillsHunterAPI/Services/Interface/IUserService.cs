@@ -48,6 +48,6 @@ namespace SkillsHunterAPI.Services
 
         Task AddNewSkill(AddNewSkillRequest request);
 
-        Task AddUserSkillCollection(AddSkillCollectionRequest request);
+        Task AddUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser);
     }
 }
