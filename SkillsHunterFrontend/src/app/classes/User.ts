@@ -1,8 +1,11 @@
 export class User {
-    id: number;
+    id: string;
     name: string;
-    job: string;
-    description: string;
-    skills: string;
+    surname: string;
+    email: string;
+    phone: string;
+    startdate: string;
+    openforwork: boolean;
+    usertype: number;
   }
   

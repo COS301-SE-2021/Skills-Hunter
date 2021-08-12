@@ -40,6 +40,9 @@ import { SkillCollectionControlComponent } from './skill-collection-control/skil
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { UserAdvancedSearchComponent } from './user-control/user-advanced-search/user-advanced-search.component';
+import { UserCardComponent } from './user-control/user-card/user-card.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     SkillControlComponent,
     CategoryControlComponent,
     StatisticsComponent,
-    SkillCollectionControlComponent
+    SkillCollectionControlComponent,
+    UserAdvancedSearchComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +95,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatProgressBarModule,
     MatSlideToggleModule,
     MatSidenavModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],
