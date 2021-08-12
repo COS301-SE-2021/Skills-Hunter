@@ -1,0 +1,45 @@
+#cards{
+
+  margin-top: 5%;
+ // margin-left: 0%;
+}
+
+#div1{
+  background-color: rgb(204, 0, 255);
+  width:80px;
+}
+
+#div2{
+  background-color: rgb(255, 0, 0);
+}
+.details-card {
+    width: 100%;
+    background-color: blueviolet;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+.field{
+width:100%;
+font-size: 20px;
+}
+
+#details {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aqua;
+    }
+
+.picture-card {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  background-color: aqua;
+    }
+      
