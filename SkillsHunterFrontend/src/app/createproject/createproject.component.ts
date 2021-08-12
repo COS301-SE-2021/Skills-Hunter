@@ -71,5 +71,20 @@ export class CreateprojectComponent implements OnInit {
     const dialogRef = this.dialog.open(AddSkillCollectionComponent, configDialog);
    
   }
+
+  createTheProject(){
+
+    var proj = new Project();
+   
+      proj.ProjectId = Projects.length.toString();
+      proj.Name = 'Skills Hunter';
+      proj.Description ='';
+      proj.Owner = 'XYC Devs';
+      proj.Location = 'Hatfield';
+      proj.Skill = ['Angular', 'DotNet Core'];
+      proj.OpenForApplication = false;
+ 
+    console.log("Created Project!");
+  }
   
 }
