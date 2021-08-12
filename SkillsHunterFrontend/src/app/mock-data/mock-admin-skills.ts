@@ -1,54 +1,54 @@
 import { Skill } from '../classes/Admin-Skill'; 
 
-export const adminskillsdata:Skill[] = [
+export const adminSkillsData:Skill[] = [
     {
-        SkillId : "0",
-        Name : "Angular",
-        CategoryId : "0"
+        skillid : "0",
+        name : "Angular",
+        categoryid : "0"
     },
     {
-        SkillId : "1",
-        Name : "Angular",
-        CategoryId : "0"
+        skillid : "1",
+        name : "Bootstrap",
+        categoryid : "0"
     },
     {
-        SkillId : "2",
-        Name : "Angular",
-        CategoryId : "0"
+        skillid : "2",
+        name : "ReactJs",
+        categoryid : "0"
     },
     {
-        SkillId : "3",
-        Name : "Angular",
-        CategoryId : "0"
+        skillid : "3",
+        name : "Unreal Engine 5",
+        categoryid : "1"
     },
     {
-        SkillId : "4",
-        Name : "Angular",
-        CategoryId : "0"
+        skillid : "4",
+        name : "OpenGL",
+        categoryid : "1"
     },
     {
-        SkillId : "5",
-        Name : "Angular",
-        CategoryId : "0"
+        skillid : "5",
+        name : "Unity",
+        categoryid : "1"
     },
     {
-        SkillId : "6",
-        Name : "Angular",
-        CategoryId : "0"
+        skillid : "6",
+        name : "WebGl",
+        categoryid : "1"
     },
     {
-        SkillId : "7",
-        Name : "Angular",
-        CategoryId : "0"
+        skillid : "7",
+        name : "Asp .Net Core",
+        categoryid : "2"
     },
     {
-        SkillId : "8",
-        Name : "Angular",
-        CategoryId : "0"
+        skillid : "8",
+        name : "Spring Boot",
+        categoryid : "2"
     },
     {
-        SkillId : "9",
-        Name : "Angular",
-        CategoryId : "0"
+        skillid : "9",
+        name : "ExpressJs",
+        categoryid : "2"
     },
 ];
