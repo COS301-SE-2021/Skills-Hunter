@@ -11,6 +11,7 @@ import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 import { CreateprojectComponent } from './createproject/createproject.component';
 import { AddSkillsComponent } from './add-skills/add-skills.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -46,8 +47,12 @@ const routes: Routes = [
     component: CreateprojectComponent,
   },
   {
-    path: 'individualskill',
+    path: 'individualskill', 
     component: AddSkillsComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
   {
     path: '',
