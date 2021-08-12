@@ -42,7 +42,6 @@ export class UserControlComponent implements OnInit {
           newList.push(this.data[count]);
       }
 
-      console.log(newList);
       this.data = newList;
       this.ngOnInit();
     });

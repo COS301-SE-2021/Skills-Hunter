@@ -43,6 +43,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { UserAdvancedSearchComponent } from './user-control/user-advanced-search/user-advanced-search.component';
 import { UserCardComponent } from './user-control/user-card/user-card.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { SkillCardComponent } from './skill-control/skill-card/skill-card.component';
+import { AdminProjectCardComponent } from './project-control/admin-project-card/admin-project-card.component';
+import { ProjectAdvancedSearchComponent } from './project-control/project-advanced-search/project-advanced-search.component';
+import { CategoryCardComponent } from './category-control/category-card/category-card.component';
+import { NewCategoryComponent } from './category-control/new-category/new-category.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +76,12 @@ import {MatDialogModule} from '@angular/material/dialog';
     StatisticsComponent,
     SkillCollectionControlComponent,
     UserAdvancedSearchComponent,
-    UserCardComponent
+    UserCardComponent,
+    SkillCardComponent,
+    AdminProjectCardComponent,
+    ProjectAdvancedSearchComponent,
+    CategoryCardComponent,
+    NewCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +106,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSlideToggleModule,
     MatSidenavModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],

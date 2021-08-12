@@ -1,6 +1,6 @@
 import { Category } from '../classes/Category';
 
-export const mockCategoryData:Category[] = [
+export var mockCategoryData:Category[] = [
     {
         categoryid : "0",
         name: "Web Development",
