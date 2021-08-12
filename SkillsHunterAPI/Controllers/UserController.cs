@@ -325,7 +325,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/addNewSkill")]
-        public async Task<IActionResult> AddNewSkillAsync(AddNewSkillRequest request)
+        public async Task<IActionResult> AddNewSkill(AddNewSkillRequest request)
         {
 
             Guid user = GetCurrentUserId();

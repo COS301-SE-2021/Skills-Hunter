@@ -84,8 +84,8 @@ namespace SkillsHunterAPI.Services
             if(!string.IsNullOrEmpty(skill.Name))
                 result.Name = skill.Name;
 
-            if(skill.CategoryId != null)
-                result.CategoryId = skill.CategoryId;
+            //if(skill.CategoryId != null)
+              //  result.CategoryId = skill.CategoryId;
 
             result.Status = skill.Status;
 

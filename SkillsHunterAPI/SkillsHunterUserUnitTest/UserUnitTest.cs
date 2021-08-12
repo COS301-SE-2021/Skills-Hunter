@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Threading.Tasks;
 using FakeItEasy;
 using Microsoft.AspNetCore.Mvc;
@@ -59,10 +59,10 @@ namespace SkillsHunterUserUnitTest
             authenticateResponse.Surname = registerRequest.Surname;*/
 
             //Act
-            var result = await userController.Authenticate(authenticateRequest);
+            //var result = await userController.Authenticate(authenticateRequest);
 
             //Assert
-            var okResult = Assert.IsType<OkObjectResult>(result);
+            /*var okResult = Assert.IsType<OkObjectResult>(result);
             var returnValue = Assert.IsType<AuthenticateResponse>(okResult.Value);
             Assert.Equal(registerRequest.Name, returnValue.Name);
             Assert.Equal(registerRequest.Surname, returnValue.Surname);
@@ -116,4 +116,4 @@ namespace SkillsHunterUserUnitTest
 
         }
     }
-}
+}*/
