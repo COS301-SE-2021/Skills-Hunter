@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserControlComponent } from '../user-control/user-control.component';
-import { mockUserData } from '../mock-data/mock-users';
-import { User } from '../classes/User';
 
 interface Combo{
   value: string;
@@ -34,13 +32,9 @@ export class StatisticsComponent implements OnInit {
     {value: '2', text: 'Declined'}
   ]
 
-  userData: User[];
-
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
-    this.userData = mockUserData;
- 
   }
 
 }
