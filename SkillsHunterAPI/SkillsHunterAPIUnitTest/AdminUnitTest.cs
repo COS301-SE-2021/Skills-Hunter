@@ -74,7 +74,7 @@ namespace SkillsHunterAPIUnitTest.Tests
             Skill serviceRequest  = new Skill()
             {
                 Name = "Java Web Development",
-                CategoryId = CatId
+                //CategoryId = CatId
             };
 
             AddSkillResponse response = new AddSkillResponse()
@@ -93,7 +93,7 @@ namespace SkillsHunterAPIUnitTest.Tests
             var okResult = Assert.IsType<OkObjectResult>(result);
             var returnValue = Assert.IsType<AddSkillResponse>(okResult.Value);
             Assert.Equal(request.Name, returnValue.Added.Name);
-            Assert.Equal(request.CategoryId, returnValue.Added.CategoryId);
+            //Assert.Equal(request.CategoryId, returnValue.Added.CategoryId);
         }
 
 
@@ -151,7 +151,7 @@ namespace SkillsHunterAPIUnitTest.Tests
             {
                 SkillId = SkId,
                 Name = "Java Web Development",
-                CategoryId = CatId,
+                //CategoryId = CatId,
                 Status = SkillStatus.Accepted
             };
 

@@ -51,5 +51,7 @@ namespace SkillsHunterAPI.Services
         Task<ProjectSkillCollectionMap> AddSkillToCollection(Guid SkillId,Guid CollectionId);
     
         Task<List<ProjectSkillCollection>> GetCollectionsByProject(Guid ProjectId);
+
+        Task<Skill> AddNewSkill(AddSkillRequest addSkillRequest);
     }
 }

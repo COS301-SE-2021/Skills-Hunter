@@ -35,7 +35,7 @@ namespace SkillsHunterAPI.Controllers
                 return Ok(new GetSkillResponse(){
                     Id = result.SkillId,
                     Name = result.Name,
-                    CategoryId = result.CategoryId,
+                    //CategoryId = result.CategoryId,
                     Status = result.Status
                 });
             }
@@ -175,7 +175,7 @@ namespace SkillsHunterAPI.Controllers
 
                 skill.Name = request.Name;
             
-                skill.CategoryId = new Guid(request.CategoryId);
+                //skill.CategoryId = new Guid(request.CategoryId);
 
                 skill.Status = request.Status;
 
@@ -184,7 +184,7 @@ namespace SkillsHunterAPI.Controllers
                 return Ok(new UpdateSkillResponse(){
                     Id = result.SkillId,
                     Name = result.Name,
-                    CategoryId = result.CategoryId,
+                    //CategoryId = result.CategoryId,
                     Status = result.Status
                 });
             }
