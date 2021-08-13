@@ -27,10 +27,12 @@ export class ProjectCRUDService {
   }
 
   //external api to delete project is called here
-  deleteProject(formData: Project): Observable<any> {
+  deleteProject(id): Observable<any> {
+    let obj={
+      "projectId":id
+    }
     return this.httpclient.post(
-      'http://localhost:5000/api/Project/createProject',
-      formData
+      'http://localhost:5000/api/Project/deleteProject/',obj
     );
   }
 
@@ -41,10 +43,17 @@ export class ProjectCRUDService {
     );
   }
 
+  inviteCandidate(formData): Observable<Project[]> {
+    return this.httpclient.post<Project[]>(
+      'http://localhost:5000/api/Project/inviteCandidate', formData 
+    );
+  }
+
   apply(formData):Observable <any>{
     return this.httpclient.post(
-      'http://localhost:5000/api/Project/createProject',
+      'http://localhost:5000/api/Project/applyForProject',
       formData
     );
   }
+
 }
