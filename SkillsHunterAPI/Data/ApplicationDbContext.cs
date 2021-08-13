@@ -34,7 +34,7 @@ namespace SkillsHunterAPI.Data
             modelBuilder.Entity<Project>().ToTable("Project");
             modelBuilder.Entity<Project>().HasKey("ProjectId");
 
-            modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<User>().ToTable("Account");
             modelBuilder.Entity<User>().HasKey("UserId");
 
             modelBuilder.Entity<Category>().ToTable("Category");
