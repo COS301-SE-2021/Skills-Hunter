@@ -274,9 +274,19 @@ namespace SkillsHunterAPI.Services
             return await _context.Images.SingleOrDefaultAsync(img => img.UserId == UserId);
         }
 
-        public Task AddUserSkill(AddExistingSkillRequest request)
+        public async Task<UserSkill> AddUserSkill(AddExistingSkillRequest request, Guid currentUser)
         {
-            return null;
+
+
+
+            UserSkill userSkillRequest = new UserSkill();
+            userSkillRequest.SkillId = request.SkillId;
+            userSkillRequest.Weight = request.Weight;
+            userSkillRequest.SkillId = currentUser;
+            _context.UserSkills.Add(userSkillRequest);
+            await _context.SaveChangesAsync();
+            return userSkillRequest;
+       
         }
 
         public async Task<Skill> AddNewSkill(AddNewSkillRequest request)
@@ -307,7 +317,7 @@ namespace SkillsHunterAPI.Services
             return newSkill;
         }
 
-        public Task AddUserSkillCollection(AddSkillCollectionRequest request)
+        public Task AddUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser)
         {
             return null;
         }
