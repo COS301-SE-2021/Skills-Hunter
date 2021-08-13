@@ -23,4 +23,7 @@
   <ItemGroup>
     <None Remove="FakeItEasy" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SkillsHunterAPI.csproj" />
+  </ItemGroup>
 </Project>
