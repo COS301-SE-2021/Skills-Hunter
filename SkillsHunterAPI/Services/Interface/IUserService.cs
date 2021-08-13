@@ -45,7 +45,7 @@ namespace SkillsHunterAPI.Services
 
         Task<Image> GetImageByUser(Guid UserId);
 
-        Task AddUserSkill(AddExistingSkillRequest request, Guid currentUser);
+        Task<UserSkill> AddUserSkill(AddExistingSkillRequest request, Guid currentUser);
 
         Task<Skill> AddNewSkill(AddNewSkillRequest request);
 

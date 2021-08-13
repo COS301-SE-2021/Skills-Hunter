@@ -1,21 +1,22 @@
 using System;
 using Xunit;
-using Moq;
+//using Moq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SkillsHunterAPI.Controllers;
 using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Models.Skill;
+using FakeItEasy;
 
-namespace Admin.Tests
+namespace SkillsHunterAdminUnitTest
 {
-    public class AdminTest
+    public class AdminUnitTest
     {
         
-        private readonly Mock<IAdminService> mockService = new Mock<IAdminService>();
+        private readonly IAdminService mockService = A.Fake<IAdminService>();
         private AdminController testController;
         
-        public AdminTest(){
+        public AdminUnitTest(){
 
         }
 
@@ -44,8 +45,8 @@ namespace Admin.Tests
 
             //Act
 
-            mockService.Setup(serv => serv.AddCategory(It.IsAny<Category>())).ReturnsAsync(ServiceRequest);
-            testController = new AdminController(mockService.Object);
+            //mockService.Setup(serv => serv.AddCategory(It.IsAny<Category>())).ReturnsAsync(ServiceRequest);
+            //testController = new AdminController(mockService.Object);
 
             var result = await testController.AddCategory(RequestObject);
             //Assert
