@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Threading.Tasks;
 using FakeItEasy;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +11,7 @@ namespace SkillsHunterUserUnitTest
 {
     public class UserUnitTest
     {
-        private IUserService userService = A.Fake<IUserService>();
+        private readonly IUserService userService = A.Fake<IUserService>();
         private UserController userController;
 
         [Fact]
@@ -53,16 +53,16 @@ namespace SkillsHunterUserUnitTest
             authenticateRequest.Email = registerRequest.Email;
             authenticateRequest.Password = registerRequest.Password;
 
-            /*AuthenticateResponse authenticateResponse = new AuthenticateResponse();
+            AuthenticateResponse authenticateResponse = new AuthenticateResponse();
             authenticateResponse.Name = registerRequest.Name;
             authenticateResponse.Role = registerRequest.Role;
-            authenticateResponse.Surname = registerRequest.Surname;*/
+            authenticateResponse.Surname = registerRequest.Surname;
 
             //Act
-            //var result = await userController.Authenticate(authenticateRequest);
+            var result = await userController.Authenticate(authenticateRequest);
 
             //Assert
-            /*var okResult = Assert.IsType<OkObjectResult>(result);
+            var okResult = Assert.IsType<OkObjectResult>(result);
             var returnValue = Assert.IsType<AuthenticateResponse>(okResult.Value);
             Assert.Equal(registerRequest.Name, returnValue.Name);
             Assert.Equal(registerRequest.Surname, returnValue.Surname);
@@ -116,4 +116,4 @@ namespace SkillsHunterUserUnitTest
 
         }
     }
-}*/
+}
