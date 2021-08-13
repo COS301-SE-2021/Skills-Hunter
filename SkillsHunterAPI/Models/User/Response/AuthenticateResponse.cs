@@ -9,6 +9,9 @@ namespace SkillsHunterAPI.Models.User
         public Guid UserId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public Boolean OpenForWork { get; set; }
         public UserType Role { get; set; }
         public string Token { get; set; }
     }

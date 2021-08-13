@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.810.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsHunterAPI", "SkillsHunterAPI.csproj", "{5765300E-4CBE-48DB-9AA9-419E37AD67D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.Tests", "Admin.Tests\Admin.Tests.csproj", "{F89B2E47-03B9-4128-AC17-229C195C3B89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsHunterAPIAdminUnitTest", "Admin.Tests\SkillsHunterAPIAdminUnitTest.csproj", "{F89B2E47-03B9-4128-AC17-229C195C3B89}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsHunterUserUnitTest", "SkillsHunterUserUnitTest\SkillsHunterUserUnitTest.csproj", "{E68F167D-5275-4915-A14D-FFD6F0374337}"
 EndProject
