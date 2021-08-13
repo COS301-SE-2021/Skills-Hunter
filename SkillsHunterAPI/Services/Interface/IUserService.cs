@@ -45,10 +45,10 @@ namespace SkillsHunterAPI.Services
 
         Task<Image> GetImageByUser(Guid UserId);
 
-        Task AddUserSkill(AddExistingSkillRequest request);
+        Task AddUserSkill(AddExistingSkillRequest request, Guid currentUser);
 
         Task<Skill> AddNewSkill(AddNewSkillRequest request);
 
-        Task AddUserSkillCollection(AddSkillCollectionRequest request);
+        Task AddUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser);
     }
 }
