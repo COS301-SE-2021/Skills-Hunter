@@ -13,6 +13,8 @@ using System.Security.Claims;
 using SkillsHunterAPI.Models.Project.Request;
 using System.IO;
 using System.Net.Http.Headers;
+using SkillsHunterAPI.Models.Skill;
+using Microsoft.AspNetCore.Http;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -50,7 +52,7 @@ namespace SkillsHunterAPI.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("api/[controller]/register")]
-        public IActionResult Register([FromBody]RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody]RegisterRequest request)
         {
             // map model to entity
             User user = new User()
@@ -83,8 +85,9 @@ namespace SkillsHunterAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
+
         [Route("api/[controller]/authenticate")]
-        public IActionResult Authenticate([FromBody]AuthenticateRequest request)
+        public async Task<IActionResult> Authenticate([FromBody] AuthenticateRequest request)
         {
 
             var user = _userService.Authenticate(request.Email, request.Password);
@@ -108,14 +111,14 @@ namespace SkillsHunterAPI.Controllers
             var tokenString = tokenHandler.WriteToken(token);
 
             // return basic user info and authentication token
-            return Ok(new AuthenticateResponse()
-            {
-                Id = user.UserId,
-                Name = user.Name,
-                Surname = user.Surname,
-                Role = user.UserType,
-                Token = tokenString
-            });
+
+            AuthenticateResponse response = new AuthenticateResponse();
+            response.UserId = user.UserId;
+            response.Name = user.Name;
+            response.Role = user.UserType;
+            response.Token = tokenString;
+
+            return Ok(response);
         }
 
 
@@ -322,17 +325,27 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/addNewSkill")]
-        public IActionResult AddNewSkill(AddNewSkillRequest request)
+        public async Task<IActionResult> AddNewSkill(AddNewSkillRequest request)
         {
-            return Ok();
-        }
 
-        /*[HttpGet]
-        [Route("api/[controller]/AddProjectSkill")]
-        public IActionResult AddNewSkill(AddNewSkillRequest request)
-        {
-            return Ok();
-        }*/
+            Guid user = GetCurrentUserId();
+           Skill skill = await _userService.AddNewSkill(request);
+
+
+            //Checking if the skill is added and linking it with the user
+            if (skill != null)
+            {
+                AddExistingSkillRequest skillToLink = new AddExistingSkillRequest();
+                skillToLink.SkillId = skill.SkillId;
+                skillToLink.Weight = request.Weight;
+
+                return AddUserSkill(skillToLink);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
 
         [HttpGet]
         [Route("api/[controller]/addUserSkillCollection")]

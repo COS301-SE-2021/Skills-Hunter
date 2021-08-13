@@ -16,7 +16,7 @@ namespace SkillsHunterAPI.Models.Skill
     {
         public Guid SkillId { get; set; }
         public String Name { get; set; }
-        public Guid CategoryId { get; set; }
+        //public Guid CategoryId { get; set; }
 
         public SkillStatus Status { get; set; }
         
@@ -30,7 +30,7 @@ namespace SkillsHunterAPI.Models.Skill
 
         public Skill(String _name,Guid _categoryId,SkillStatus _status){
             Name = _name;
-            CategoryId = _categoryId;
+            //CategoryId = _categoryId;
             Status = _status;
         }
     }
