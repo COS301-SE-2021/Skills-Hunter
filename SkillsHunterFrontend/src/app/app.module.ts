@@ -24,11 +24,15 @@ import { MatInputModule } from '@angular/material/input';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
-import { MAT_CHECKBOX_DEFAULT_OPTIONS, MatCheckboxDefaultOptions } from '@angular/material/checkbox';
+import {
+  MAT_CHECKBOX_DEFAULT_OPTIONS,
+  MatCheckboxDefaultOptions,
+} from '@angular/material/checkbox';
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
 import { CollectionCardComponent } from './createproject/add-skill-collection/collection-card/collection-card.component';
 import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -68,7 +72,8 @@ import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills
     ReactiveFormsModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
