@@ -7,16 +7,16 @@
   </mat-card-header>
   <mat-card-content>
     <mat-horizontal-stepper [linear]="isLinear" #stepper>
-      <mat-step [stepControl]="firstFormGroup">
+      <mat-step [stepControl]="projectBasicInfo">
         <div class="fillIn">
-          <form [formGroup]="firstFormGroup" class="stepform">
+          <form [formGroup]="projectBasicInfo" class="stepform">
             <ng-template matStepLabel>Step 1</ng-template>
             <mat-form-field appearance="outline">
               <mat-label>Project Name</mat-label>
               <input
                 matInput
                 placeholder="Project X"
-                formControlName="firstCtrl"
+                formControlName="basicInfo"
                 required
               />
             </mat-form-field>
@@ -32,12 +32,11 @@
           </form>
         </div>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroup" label="Step 2">
-        <form [formGroup]="secondFormGroup">
-          <button mat-raised-button id="createbtn" (click)="individualSkill()">
+      <mat-step [stepControl]="projectSkillsAndCollections" label="Step 2">
+        <form [formGroup]="projectSkillsAndCollections">
+          <!-- <button mat-raised-button id="createbtn" (click)="individualSkill()">
             Add Individual Skill
           </button>
-          <!--put the list in a drop down-->
           <mat-selection-list #shoes [multiple]="false">
             <mat-list-option
               *ngFor="let skill of selectedSkills"
@@ -49,7 +48,8 @@
 
           <button mat-raised-button id="createbtn" (click)="skillCollection()">
             Add Skill collection
-          </button>
+          </button> -->
+
           <br />
           <mat-slide-toggle>Project open for application</mat-slide-toggle>
           <br />
