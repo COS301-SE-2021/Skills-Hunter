@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-project-advanced-search',
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project-advanced-search.component.scss']
 })
 export class ProjectAdvancedSearchComponent implements OnInit {
-  Open:string;
-  constructor() { }
+  
+  constructor(@Inject(MAT_DIALOG_DATA) public data: string) { }
 
   ngOnInit(): void {
   }

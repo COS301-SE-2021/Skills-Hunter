@@ -1,18 +1,20 @@
-<div mat-dialog-content class = "advanced">
-    <label id="example-radio-group-label">Open For Application</label><br>
-    <mat-radio-group
-      aria-labelledby="example-radio-group-label"
-      class="example-radio-group"
-      [(ngModel)]="Open">
-      <mat-radio-button class="example-radio-button"  [value]="true">
-        Yes
-      </mat-radio-button><br>
-      <mat-radio-button class="example-radio-button"  [value]="false"><br>
-        No
-      </mat-radio-button>
-    </mat-radio-group>
-    
-    <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close] = "Open" cdkFocusInitial>Ok</button>
+<mat-card id = "card">
+  <div class = "advanced">
+      <h2><b>Open For Application</b></h2>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group" [(ngModel)]="data"
+        >
+        <mat-radio-button class="example-radio-button"  [value]="true" >
+          Yes
+        </mat-radio-button><br>
+        <mat-radio-button class="example-radio-button"  [value]="false" ><br>
+          No
+        </mat-radio-button>
+      </mat-radio-group>
+      
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close] = "data" cdkFocusInitial >Ok</button>
+      </div>
     </div>
-    </div>
+  </mat-card>

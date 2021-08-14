@@ -1,8 +1,8 @@
 <mat-card class="user-card">
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
+        <div mat-card-avatar class="example-header-image" (click) = "displayImage()"></div>
       <mat-card-title>{{user.name}} {{user.surname}}</mat-card-title>
-      <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+      <mat-card-subtitle><a href = "mailto:user.email" style = "text-decoration:none;">{{user.email}}</a></mat-card-subtitle>
     </mat-card-header>
     
     <mat-card-content>

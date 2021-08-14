@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAdvancedSearchComponent } from './user-advanced-search/user-advanced-search.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 import { User } from '../classes/User';
 import { mockUserData } from '../mock-data/mock-Users';
 import { DateAdapter } from '@angular/material/core';
+import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-user-control',
@@ -12,6 +13,7 @@ import { DateAdapter } from '@angular/material/core';
 })
 export class UserControlComponent implements OnInit {
   data: User[] = [];
+  searchTerm: string = "";
   
   constructor(public dialog: MatDialog) { }
 
@@ -19,7 +21,12 @@ export class UserControlComponent implements OnInit {
   }
 
   advancedSearch(): void {
-    const dialogRef = this.dialog.open(UserAdvancedSearchComponent);
+    const configDialog = new MatDialogConfig();
+    configDialog.backdropClass = 'backGround';
+    configDialog.width = '30%';
+    configDialog.height = '50%';
+
+    const dialogRef = this.dialog.open(UserAdvancedSearchComponent,configDialog);
 
     dialogRef.afterClosed().subscribe(result => {
       this.data = mockUserData;
@@ -64,6 +71,27 @@ export class UserControlComponent implements OnInit {
     }
 
     this.ngOnInit();
+  }
+
+  Search(): void{
+
+    if(this.searchTerm != ""){
+      let tempData:User[] = mockUserData;
+      let result: User = null;
+      
+      for(let count  = 0; count < tempData.length; count++){
+        if(tempData[count].name == this.searchTerm){
+          result = tempData[count];
+          break;
+        }
+      }
+
+      if(result != null){
+        this.data = [];
+        this.data.push(result);
+        this.ngOnInit();
+      }
+    }
   }
 
 }

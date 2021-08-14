@@ -48,6 +48,8 @@ import { AdminProjectCardComponent } from './project-control/admin-project-card/
 import { ProjectAdvancedSearchComponent } from './project-control/project-advanced-search/project-advanced-search.component';
 import { CategoryCardComponent } from './category-control/category-card/category-card.component';
 import { NewCategoryComponent } from './category-control/new-category/new-category.component';
+import { StatsBarComponent } from './statistics/stats-bar/stats-bar.component';
+import { ImageDisplayComponent } from './user-control/image-display/image-display.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { NewCategoryComponent } from './category-control/new-category/new-catego
     AdminProjectCardComponent,
     ProjectAdvancedSearchComponent,
     CategoryCardComponent,
-    NewCategoryComponent
+    NewCategoryComponent,
+    StatsBarComponent,
+    ImageDisplayComponent
   ],
   imports: [
     BrowserModule,

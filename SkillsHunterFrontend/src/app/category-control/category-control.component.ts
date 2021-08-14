@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../classes/Category';
 import { mockCategoryData } from '../mock-data/mock-category';
-import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewCategoryComponent } from './new-category/new-category.component';
 
 @Component({
@@ -40,7 +40,7 @@ export class CategoryControlComponent implements OnInit {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '40%';
-    configDialog.height = '80%'; 
+    configDialog.height = '80%';
 
     const dialogRef = this.dialog.open(NewCategoryComponent,configDialog);
 

@@ -11,41 +11,31 @@
     <h2>Users</h2>
 
     <mat-card class = "statIO">
-        <form>
+        <form (ngSubmit) = "onUserfilter()">
             
             <mat-form-field appearance="outline">
                 <mat-label>select user type</mat-label>
                 
                 <mat-select>
-                  <mat-option *ngFor="let cat of UserTypes" [value]="cat.value">
+                  <mat-option *ngFor="let cat of UserTypes" [value]="cat.value" [(ngModel)] = "inputUserType">
                     {{cat.text}}
                   </mat-option>
                 </mat-select>
             </mat-form-field>
         </form>
 
-        <mat-progress-bar mode="determinate" value="67" id = "userbar"></mat-progress-bar>
-        
-        <div class = "Numbers">
-          <span class = "Percentage">72%</span>
-          <span class = "Actual">893 / 1241</span>
-        </div>
+        <app-stats-bar [barValue] = "userValues.barValue" [maximum] = "userValues.maximum" [numerator] = "userValues.numerator"></app-stats-bar>
     
       </mat-card>
 
     <h2>Projects</h2>
 
     <mat-card class = "statIO">
-      <form>
-        <mat-slide-toggle ngModel name="OpenForWork">Open</mat-slide-toggle>
+      <form (ngSubmit) = "onProjectfilter()">
+        <mat-slide-toggle ngModel name="OpenForWork" [(ngModel)] = "inputProjectOpen">Open</mat-slide-toggle>
       </form>
 
-      <mat-progress-bar mode="determinate" value="39" id = "userbar"></mat-progress-bar>
-        
-      <div class = "Numbers">
-        <span class = "Percentage">39%</span>
-        <span class = "Actual">1643 / 4215</span>
-      </div>
+      <app-stats-bar [barValue] = "projectValues.barValue" [maximum] = "projectValues.maximum" [numerator] = "projectValues.numerator"></app-stats-bar>
 
     </mat-card>
 
@@ -53,13 +43,13 @@
 
     <mat-card class = "statIO">
 
-      <form>
+      <form (ngSubmit) = "onSkillfilter()">
             
         <mat-form-field appearance="outline">
             <mat-label>select category</mat-label>
             
-            <mat-select>
-              <mat-option *ngFor="let cat of Categories" [value]="cat.value">
+            <mat-select [(ngModel)] = "inputSkillCategory">
+              <mat-option *ngFor="let cat of UserTypes" [value]="cat.value">
                 {{cat.text}}
               </mat-option>
             </mat-select>
@@ -68,7 +58,7 @@
         <mat-form-field appearance="outline" style = "float:right">
           <mat-label>select status</mat-label>
           
-          <mat-select>
+          <mat-select [(ngModel)] = "inputSkillStatus">
             <mat-option *ngFor="let cat of Status" [value]="cat.value">
               {{cat.text}}
             </mat-option>
@@ -77,12 +67,7 @@
       
       </form>
 
-      <mat-progress-bar mode="determinate" value="39" id = "userbar" ></mat-progress-bar>
-        
-      <div class = "Numbers">
-        <span class = "Percentage">67%</span>
-        <span class = "Actual">1643 / 4215</span>
-      </div>
+      <app-stats-bar [barValue] = "skillValues.barValue" [maximum] = "skillValues.maximum" [numerator] = "skillValues.numerator"></app-stats-bar>
 
     </mat-card>
 
@@ -103,12 +88,7 @@
   
   </form>
 
-  <mat-progress-bar mode="determinate" value="39" id = "userbar" ></mat-progress-bar>
-    
-  <div class = "Numbers">
-    <span class = "Percentage">67%</span>
-    <span class = "Actual">1643 / 4215</span>
-  </div>        
+  <app-stats-bar [barValue] = "applicationValues.barValue" [maximum] = "applicationValues.maximum" [numerator] = "applicationValues.numerator"></app-stats-bar>      
     </mat-card>
 </mat-card>
 </div>

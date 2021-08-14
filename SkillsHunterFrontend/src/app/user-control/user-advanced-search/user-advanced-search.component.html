@@ -1,15 +1,17 @@
-<div mat-dialog-content>
-<label id="example-radio-group-label">Select user group</label>
-<mat-radio-group
-  aria-labelledby="example-radio-group-label"
-  class="example-radio-group"
-  [(ngModel)]="SelectedUserType">
-  <mat-radio-button class="example-radio-button" *ngFor="let type of Usertype" [value]="type">
-    {{type}}
-  </mat-radio-button>
-</mat-radio-group>
+<mat-card id = "card">
+  <div>
+    <h2><b>Select user group</b></h2>
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+      [(ngModel)]="SelectedUserType">
+      <mat-radio-button class="example-radio-button" *ngFor="let type of Usertype" [value]="type">
+        {{type}}
+      </mat-radio-button>
+    </mat-radio-group>
 
-<div mat-dialog-actions>
-  <button mat-button [mat-dialog-close] = "SelectedUserType" cdkFocusInitial>Ok</button>
-</div>
-</div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close] = "SelectedUserType" cdkFocusInitial>Ok</button>
+    </div>
+  </div>
+</mat-card>
