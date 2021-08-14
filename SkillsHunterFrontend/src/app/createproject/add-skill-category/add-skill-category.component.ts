@@ -1,3 +1,4 @@
+import { Category } from './../../classes/Category';
 import { Collection } from 'src/app/classes/Collection';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -6,9 +7,9 @@ import {
   MatCheckboxDefaultOptions,
 } from '@angular/material/checkbox';
 import { Skill } from 'src/app/classes/Skill';
-import { Collections } from 'src/app/mock-data/mock-collections';
 import { Skills } from 'src/app/mock-data/mock-skills';
 import { MatDialogRef } from '@angular/material/dialog';
+import { CategoryList } from 'src/app/mock-data/mock-categories';
 
 @Component({
   selector: 'app-add-skill-category',
@@ -18,11 +19,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class AddSkillCategoryComponent implements OnInit {
   skillName: string;
   skillWeight: number = 1;
-  skillCollection: string[];
+  skillCategory: Category[];
 
-  // collectionArray = ["Front-End", "Back-End", "Mobile App", "Desktop App"];
-
-  collectionArray = Collections;
+  categoryArray = CategoryList;
 
   skillFormGroup: FormGroup;
 
@@ -44,24 +43,17 @@ export class AddSkillCategoryComponent implements OnInit {
   }
 
   captureSkill() {
-    console.log(this.skillName + '\n');
-    console.log(this.skillWeight + '\n');
-    console.log(this.skillCollection + '\n');
-
     var skill = new Skill();
 
-    // ski.SkillId = "random-id"+this.skillCollection.length;
     skill.SkillId = (Skills.length + 1).toString();
     skill.SkillName = this.skillName;
     skill.SkillWeight = this.skillWeight;
+    skill.SkillCategory = this.skillCategory;
 
-    console.log('Skill is = ' + JSON.stringify(skill));
-
-    // Skills.push(ski);
     this.dialogRef.close({ data: skill });
   }
 
-  // cancel(){
-  //   this.dialogRef.close();
-  // }
+  cancel() {
+    this.dialogRef.close();
+  }
 }

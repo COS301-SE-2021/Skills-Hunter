@@ -33,14 +33,14 @@ export class CreateprojectComponent implements OnInit {
 
   dropdownListForSkills = [];
   selectedItemsForSkills = [];
+  selectedObjectsSkills = [];
 
   // for keeping track of selected Skill and Collection objects.
-
-  selectedObjectsSkills = [];
-  selectedObjectsCollections = [];
+  // CategoryList
 
   dropdownListForCollections = [];
   selectedItemsForCollections = [];
+  selectedObjectsCollections = [];
 
   dropdownSettings: IDropdownSettings;
 
