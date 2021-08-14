@@ -246,11 +246,9 @@ namespace SkillsHunterAPI.Services
         {            
         }
 
-        public async Task<ProjectSkillCollectionMap> AddSkillToCollection(Guid skillId,Guid collectionId)
+        public async Task AddSkillToCollection(Guid skillId,Guid collectionId)
         {
-            ProjectSkillCollectionMap result = null;
-
-            return result;
+            
         }
 
         public async Task<List<ProjectSkillCollection>> GetCollectionsByProject(Guid projectId)
