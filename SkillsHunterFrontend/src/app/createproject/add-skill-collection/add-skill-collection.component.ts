@@ -48,7 +48,7 @@ export class AddSkillCollectionComponent implements OnInit {
 
     (col.CollectionId = 'random-id' + this.skillCollection.length),
       (col.CollectionName = this.collectionName);
-    col.Skills = this.skillCollection.toString();
+    // col.Skills = this.skillCollection.toString();
 
     Collections.push(col);
     // this._collections.push(col);
