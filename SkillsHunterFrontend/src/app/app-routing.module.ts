@@ -13,6 +13,8 @@ import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
+import { AddSkillComponent } from './profile/add-skill/add-skill.component';
+import { SliderComponent } from './profile/slider/slider.component';
 
 const routes: Routes = [
   {
@@ -58,6 +60,14 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'profileaddskill',
+    component: AddSkillComponent,
+  },
+  {
+    path: 'sliderpopup',
+    component: SliderComponent,
   },
   {
     path: '',
