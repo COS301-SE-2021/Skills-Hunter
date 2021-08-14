@@ -15,7 +15,7 @@ namespace SkillsHunterUserUnitTest
         private UserController userController;
 
         [Fact]
-        public async Task TestRegisterAsync()
+        public async Task TestRegister()
         {
             //Arrange
             RegisterRequest registerRequest = new RegisterRequest();
@@ -35,7 +35,7 @@ namespace SkillsHunterUserUnitTest
         }
 
         [Fact]
-        public async Task TestAuthenticateAsync()
+        public async Task TestAuthenticate()
         {
             //Arrange
             RegisterRequest registerRequest = new RegisterRequest();
@@ -71,7 +71,7 @@ namespace SkillsHunterUserUnitTest
         }
 
         [Fact]
-        public void TestGetCurrentUserId()
+        public async Task TestGetCurrentUserId()
         {
             //Arrange
             RegisterRequest registerRequest = new RegisterRequest();
@@ -83,7 +83,23 @@ namespace SkillsHunterUserUnitTest
             registerRequest.OpenForWork = true;
             registerRequest.Password = "James2431";
 
+
             var registerResult = userController.Register(registerRequest);
+
+            AuthenticateRequest authenticateRequest = new AuthenticateRequest();
+            authenticateRequest.Email = registerRequest.Email;
+            authenticateRequest.Password = registerRequest.Password;
+
+            var LoginResult = await userController.Authenticate(authenticateRequest);
+            OkObjectResult LoginOkResult = (OkObjectResult)LoginResult;
+            AuthenticateResponse authenticateResponse = (AuthenticateResponse)LoginOkResult.Value;
+
+            //Act
+
+            Guid userId = userController.GetCurrentUserId();
+
+            Assert.Equal(userId, authenticateResponse.UserId);
+
         }
 
         [Fact]

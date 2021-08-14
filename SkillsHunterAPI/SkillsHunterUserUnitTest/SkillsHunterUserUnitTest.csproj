@@ -18,10 +18,12 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="FakeItEasy" Version="7.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="FakeItEasy" />
+    <None Remove="Microsoft.AspNetCore" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SkillsHunterAPI.csproj" />
