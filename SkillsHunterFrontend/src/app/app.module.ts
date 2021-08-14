@@ -15,7 +15,6 @@ import { MatchCandidateComponent } from './match-candidate/match-candidate.compo
 import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
 import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidate.pipe';
 import { HttpClientModule } from '@angular/common/http';
-import { ProjectCRUDService } from './services/project-crud.service';
 import { RegisterComponent } from './register/register.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { ProjectCardComponent } from './home/project-card/project-card.component';
@@ -24,14 +23,9 @@ import { MatInputModule } from '@angular/material/input';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
-import {
-  MAT_CHECKBOX_DEFAULT_OPTIONS,
-  MatCheckboxDefaultOptions,
-} from '@angular/material/checkbox';
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
 import { CollectionCardComponent } from './createproject/add-skill-collection/collection-card/collection-card.component';
 import { AddSkillsComponent } from './add-skills/add-skills.component';
-import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
@@ -52,9 +46,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     AddSkillCategoryComponent,
     AddSkillCollectionComponent,
     CollectionCardComponent,
-
     AddSkillsComponent,
-    AddSkillsCollectionComponent,
   ],
   imports: [
     BrowserModule,

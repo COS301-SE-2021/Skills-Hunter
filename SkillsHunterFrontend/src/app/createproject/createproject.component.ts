@@ -11,7 +11,6 @@ import {
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddSkillsComponent } from './../add-skills/add-skills.component';
-import { AddSkillsCollectionComponent } from './../add-skills-collection/add-skills-collection.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { Project } from '../classes/Project';
@@ -19,6 +18,7 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 import { Skills } from '../mock-data/mock-skills';
 import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-collection.component';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { AddSkillCategoryComponent } from './add-skill-category/add-skill-category.component';
 
 @Component({
   selector: 'app-createproject',
@@ -95,7 +95,7 @@ export class CreateprojectComponent implements OnInit {
     configDialog.backdropClass = 'backGround';
     configDialog.width = '40%';
     configDialog.height = '80%';
-    const dialogRef = this.dialog.open(AddSkillsComponent, configDialog);
+    const dialogRef = this.dialog.open(AddSkillCategoryComponent, configDialog);
 
     dialogRef.afterClosed().subscribe((skill) => {
       if (skill != undefined) {
