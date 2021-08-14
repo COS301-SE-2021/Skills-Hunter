@@ -1,8 +1,8 @@
-.mat-stepper-horizontal {
-  margin-top: 8px;
-  margin-left: auto;
-  margin-right: auto;
-}
+// .mat-stepper-horizontal {
+//   margin-top: 8px;
+//   margin-left: auto;
+//   margin-right: auto;
+// }
 
 .stepform {
   margin-top: 16px;
@@ -10,43 +10,36 @@
   margin-right: auto;
 }
 
-.mat-form-field{
+.mat-form-field {
   width: 80%;
   margin-left: 10%;
   margin-right: auto;
 }
 
-.next{
+.next {
   margin-right: 5%;
   float: right;
- 
 }
 
-.back{
+.back {
   margin-left: 5%;
-  
 }
 
 .create-card {
   // width: 50%;
   // height: 450px;
   width: 100%;
-  height: 100%;
-  
+  height: 800px;
+
   // margin-left: auto;
   // margin-right: auto;
   // margin-top: 10%;
   color: purple;
   box-shadow: 1px 10px 10px #888888;
-  background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
-
-}
-
-.fillIN{
-  background-color: red;
+  // background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
 }
 
 .create-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
 }

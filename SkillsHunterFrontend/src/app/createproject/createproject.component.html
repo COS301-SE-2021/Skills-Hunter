@@ -33,8 +33,20 @@
         </div>
       </mat-step>
       <mat-step [stepControl]="projectSkillsAndCollections" label="Step 2">
-        <form [formGroup]="projectSkillsAndCollections">
-          <!-- <button mat-raised-button id="createbtn" (click)="individualSkill()">
+        <!-- <form [formGroup]="projectSkillsAndCollections"> -->
+
+        <!-- <div>
+          <ng-multiselect-dropdown
+            [placeholder]="'Search A Skill'"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+            [(ngModel)]="selectedItems"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+        </div> -->
+        <!-- <button mat-raised-button id="createbtn" (click)="individualSkill()">
             Add Individual Skill
           </button>
           <mat-selection-list #shoes [multiple]="false">
@@ -50,6 +62,17 @@
             Add Skill collection
           </button> -->
 
+        <ng-multiselect-dropdown
+          [placeholder]="'Search A Skill'"
+          [settings]="dropdownSettings"
+          [data]="dropdownList"
+          [(ngModel)]="selectedItems"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+        >
+        </ng-multiselect-dropdown>
+
+        <!-- <div>
           <br />
           <mat-slide-toggle>Project open for application</mat-slide-toggle>
           <br />
@@ -64,7 +87,8 @@
               Submit
             </button>
           </div>
-        </form>
+        </div> -->
+        <!-- </form> -->
       </mat-step>
     </mat-horizontal-stepper>
   </mat-card-content>
