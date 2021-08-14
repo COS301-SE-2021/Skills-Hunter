@@ -8,6 +8,7 @@ import {
 import { Skill } from 'src/app/classes/Skill';
 import { Collections } from 'src/app/mock-data/mock-collections';
 import { Skills } from 'src/app/mock-data/mock-skills';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-skill-category',
@@ -29,7 +30,10 @@ export class AddSkillCategoryComponent implements OnInit {
     return value;
   }
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<AddSkillCategoryComponent>
+  ) {}
 
   ngOnInit(): void {
     this.skillFormGroup = this.formBuilder.group({
@@ -44,14 +48,17 @@ export class AddSkillCategoryComponent implements OnInit {
     console.log(this.skillWeight + '\n');
     console.log(this.skillCollection + '\n');
 
-    var ski = new Skill();
+    var skill = new Skill();
 
     // ski.SkillId = "random-id"+this.skillCollection.length;
-    ski.SkillId = this.skillCollection.length.toString();
-    ski.SkillName = this.skillName;
-    ski.SkillWeight = this.skillWeight;
+    skill.SkillId = (Skills.length + 1).toString();
+    skill.SkillName = this.skillName;
+    skill.SkillWeight = this.skillWeight;
 
-    Skills.push(ski);
+    console.log('Skill is = ' + JSON.stringify(skill));
+
+    // Skills.push(ski);
+    this.dialogRef.close({ data: skill });
   }
 
   // cancel(){

@@ -34,6 +34,11 @@ export class CreateprojectComponent implements OnInit {
   dropdownListForSkills = [];
   selectedItemsForSkills = [];
 
+  // for keeping track of selected Skill and Collection objects.
+
+  selectedObjectsSkills = [];
+  selectedObjectsCollections = [];
+
   dropdownListForCollections = [];
   selectedItemsForCollections = [];
 
@@ -86,10 +91,6 @@ export class CreateprojectComponent implements OnInit {
     console.log(items);
   }
 
-  addtoArray(arr: any[], item: any) {
-    arr.push();
-  }
-
   addSkill() {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
@@ -99,17 +100,29 @@ export class CreateprojectComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((skill) => {
       if (skill != undefined) {
-        Skills.push(skill);
+        console.log('Received skill as = ');
 
-        this.dropdownListForSkills.push({
-          item_id: skill.SkillId,
-          item_text: skill.SkillName,
-        });
+        var obj = new Skill();
+        obj.SkillId = skill.data.SkillId;
+        obj.SkillName = skill.data.SkillName;
+        obj.SkillWeight = skill.data.SkillWeight;
 
-        this.selectedItemsForSkills.push({
-          item_id: skill.SkillId,
-          item_text: skill.SkillName,
-        });
+        Skills.push(obj);
+
+        this.selectedObjectsSkills.push(obj);
+
+        this.dropdownListForSkills = [];
+
+        console.log(this.dropdownListForSkills);
+
+        var sel = {
+          item_id: obj.SkillId,
+          item_text: obj.SkillName,
+        };
+
+        this.onItemSelect(sel);
+
+        this.ngOnInit();
       } else console.log('Returned Empty');
     });
   }

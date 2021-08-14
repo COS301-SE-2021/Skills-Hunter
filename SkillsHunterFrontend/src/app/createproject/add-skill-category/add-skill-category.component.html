@@ -53,9 +53,9 @@
         <mat-select multiple required [(ngModel)]="skillCollection">
           <mat-option
             *ngFor="let item of collectionArray"
-            [value]="item.collectionName"
+            [value]="item.CollectionName"
           >
-            {{ item.collectionName }}
+            {{ item.CollectionName }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -66,3 +66,4 @@
     </div>
   </mat-step>
 </mat-vertical-stepper>
+s
