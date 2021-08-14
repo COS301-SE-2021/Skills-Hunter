@@ -8,53 +8,49 @@ import { Skills } from 'src/app/mock-data/mock-skills';
 @Component({
   selector: 'app-add-skill-collection',
   templateUrl: './add-skill-collection.component.html',
-  styleUrls: ['./add-skill-collection.component.scss']
+  styleUrls: ['./add-skill-collection.component.scss'],
 })
 export class AddSkillCollectionComponent implements OnInit {
-
   _collections: Collection[] = Collections;
 
-  collectionName : string;
-  collectionWeight : number = 1;
+  collectionName: string;
+  collectionWeight: number = 1;
   // skillCollection : Skill[];
 
-  skillCollection : string[];
+  skillCollection: string[];
 
   skillArray = Skills;
 
-  collectionFormGroup : FormGroup;
+  collectionFormGroup: FormGroup;
 
   formatLabel(value: number) {
     return value;
   }
 
-  constructor(private formBuilder : FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.collectionFormGroup = this.formBuilder.group(
-      {
-        collectionName : ['', Validators.required],
-        // collectionWeight : ['', Validators.required],
-        // collectionSkills : ['', Validators.required]
-      }
-    );
+    this.collectionFormGroup = this.formBuilder.group({
+      collectionName: ['', Validators.required],
+      // collectionWeight : ['', Validators.required],
+      // collectionSkills : ['', Validators.required]
+    });
   }
 
-  captureCollection(){
-    console.log(this.collectionName+"\n");
-    console.log(this.collectionWeight+"\n");
+  captureCollection() {
+    console.log(this.collectionName + '\n');
+    console.log(this.collectionWeight + '\n');
     // this.skillCollection.forEach(element => {
     //   console.log(element.SkillName+"\n");
     // });
 
-    
     var col = new Collection();
-  
-    col.collectionId = "random-id"+this.skillCollection.length,
-    col.collectionName = this.collectionName;
-    col.skills = this.skillCollection.toString();
+
+    (col.CollectionId = 'random-id' + this.skillCollection.length),
+      (col.CollectionName = this.collectionName);
+    col.Skills = this.skillCollection.toString();
 
     Collections.push(col);
-    // this._collections.push(col);    
+    // this._collections.push(col);
   }
 }

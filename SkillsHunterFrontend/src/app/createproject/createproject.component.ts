@@ -1,3 +1,4 @@
+import { Collections } from './../mock-data/mock-collections';
 import { Skill } from 'src/app/classes/Skill';
 import { Projects } from './../mock-data/mock-projects';
 import { Component, OnInit } from '@angular/core';
@@ -30,8 +31,12 @@ export class CreateprojectComponent implements OnInit {
   projectBasicInfo: FormGroup;
   projectSkillsAndCollections: FormGroup;
 
-  dropdownList = [];
-  selectedItems = [];
+  dropdownListForSkills = [];
+  selectedItemsForSkills = [];
+
+  dropdownListForCollections = [];
+  selectedItemsForCollections = [];
+
   dropdownSettings: IDropdownSettings;
 
   constructor(
@@ -42,26 +47,25 @@ export class CreateprojectComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectBasicInfo = this._formBuilder.group({
-      // basicInfo: ['', Validators.required],
-      basicInfo: [''],
+      basicInfo: ['', Validators.required],
     });
     this.projectSkillsAndCollections = this._formBuilder.group({
-      // skillsAndCollections: ['', Validators.required],
-      skillsAndCollections: [''],
+      skillsAndCollections: ['', Validators.required],
     });
 
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' },
-    ];
+    for (var x = 0; x < Skills.length; x++) {
+      this.dropdownListForSkills.push({
+        item_id: Skills[x].SkillId,
+        item_text: Skills[x].SkillName,
+      });
+    }
 
-    // this.selectedItems = [
-    //   { item_id: 3, item_text: 'Pune' },
-    //   { item_id: 4, item_text: 'Navsari' },
-    // ];
+    for (var x = 0; x < Collections.length; x++) {
+      this.dropdownListForCollections.push({
+        item_id: Collections[x].CollectionId,
+        item_text: Collections[x].CollectionName,
+      });
+    }
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -82,25 +86,35 @@ export class CreateprojectComponent implements OnInit {
     console.log(items);
   }
 
-  individualSkill() {
-    //   //this._router.navigate([`createproject`]);
-    //   const configDialog = new MatDialogConfig();
-    //   configDialog.backdropClass = 'backGround';
-    //   configDialog.width = '40%';
-    //   configDialog.height = '80%';
-    //   const dialogRef = this.dialog.open(AddSkillsComponent, configDialog);
-    //   // console.log("back");
-    //   dialogRef.afterClosed().subscribe((skill) => {
-    //     //console.log("returned: "+skill.data);
-    //     if (skill != undefined) {
-    //       this.selectedSkills.push(skill.data);
-    //     } else {
-    //       console.log('returned empty:');
-    //     } //dialog closed
-    //   });
+  addtoArray(arr: any[], item: any) {
+    arr.push();
   }
 
-  skillCollection() {
+  addSkill() {
+    const configDialog = new MatDialogConfig();
+    configDialog.backdropClass = 'backGround';
+    configDialog.width = '40%';
+    configDialog.height = '80%';
+    const dialogRef = this.dialog.open(AddSkillsComponent, configDialog);
+
+    dialogRef.afterClosed().subscribe((skill) => {
+      if (skill != undefined) {
+        Skills.push(skill);
+
+        this.dropdownListForSkills.push({
+          item_id: skill.SkillId,
+          item_text: skill.SkillName,
+        });
+
+        this.selectedItemsForSkills.push({
+          item_id: skill.SkillId,
+          item_text: skill.SkillName,
+        });
+      } else console.log('Returned Empty');
+    });
+  }
+
+  addCollection() {
     //   //this._router.navigate([`createproject`]);
     //   console.log('in');
     //   const configDialog = new MatDialogConfig();

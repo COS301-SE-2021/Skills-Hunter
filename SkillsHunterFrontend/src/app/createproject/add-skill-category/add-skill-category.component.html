@@ -1,68 +1,68 @@
-
-
 <mat-vertical-stepper linear>
-    <mat-step  [stepControl] = "skillFormGroup"> 
-        
-        <ng-template matStepLabel>Provide the Skill Name</ng-template>
+  <mat-step [stepControl]="skillFormGroup">
+    <ng-template matStepLabel>Provide the Skill Name</ng-template>
 
-        <form [formGroup]="skillFormGroup">
-            <mat-form-field appearance="outline">
-                <mat-label>Skill Name</mat-label>
-                <input matInput placeholder="C++" formControlName="skillName" [(ngModel)]="skillName" required>
-                <mat-icon matSuffix>text_fields</mat-icon>
-            </mat-form-field>
+    <form [formGroup]="skillFormGroup">
+      <mat-form-field appearance="outline">
+        <mat-label>Skill Name</mat-label>
+        <input
+          matInput
+          placeholder="C++"
+          formControlName="skillName"
+          [(ngModel)]="skillName"
+          required
+        />
+        <mat-icon matSuffix>text_fields</mat-icon>
+      </mat-form-field>
 
-            <br>
-            <button mat-button matStepperNext>Next</button>
-        </form>
+      <br />
+      <button mat-button matStepperNext>Next</button>
+    </form>
+  </mat-step>
 
-    </mat-step>
+  <mat-step label="Select the Skill Weight">
+    <div class="stepping">
+      <br />
 
-    <mat-step label="Select the Skill Weight"> 
-        <div class="stepping"> 
-                    <br>
+      <div>
+        <mat-slider
+          thumbLabel
+          tickInterval="1"
+          step="1"
+          min="1"
+          max="10"
+          [(ngModel)]="skillWeight"
+          aria-label="units"
+        >
+        </mat-slider>
+      </div>
+      <div>Selected Weight: {{ skillWeight }}</div>
 
-        <div>
-            <mat-slider
-            thumbLabel
-            tickInterval="1"
-            step="1"
-            min="1"
-            max="10"
-            [(ngModel)]="skillWeight"
-            aria-label="units">
-            </mat-slider>
-        </div>
-        <div>
-            Selected Weight: {{skillWeight}}
-        </div>
+      <br />
 
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
 
-        <br>
+  <mat-step label="Select the Skill Collection">
+    <div>
+      <br />
+      <mat-form-field>
+        <mat-label>Collection</mat-label>
+        <mat-select multiple required [(ngModel)]="skillCollection">
+          <mat-option
+            *ngFor="let item of collectionArray"
+            [value]="item.collectionName"
+          >
+            {{ item.collectionName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-        </div>
-    </mat-step>
-
-    <mat-step label="Select the Skill Collection"> 
-        <div>
-
-            <br>
-            <mat-form-field>
-                <mat-label>Collection</mat-label>
-                <mat-select multiple required [(ngModel)]="skillCollection">
-                    <mat-option *ngFor="let item of collectionArray" [value]="item.collectionName">
-                        {{item.collectionName}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            
-            <br>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext (click)="captureSkill()">Apply</button>
-        </div>
-    </mat-step>
-    
+      <br />
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext (click)="captureSkill()">Apply</button>
+    </div>
+  </mat-step>
 </mat-vertical-stepper>
-

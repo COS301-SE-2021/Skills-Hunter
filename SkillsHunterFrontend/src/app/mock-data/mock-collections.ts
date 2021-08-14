@@ -2,24 +2,33 @@ import { Collection } from "../classes/Collection";
 
 export const Collections: Collection[] = [
     {
-        collectionId: "1",
-        collectionName: "FrontEnd",
-        skills: "Angular, Vue",
+        CollectionId: "1",
+        CollectionName: "FrontEnd",
+        Skills: [  {
+            SkillId: 1,
+            SkillName: 'C++',
+            SkillWeight: 0,
+          },
+          {
+            SkillId: 2,
+            SkillName: 'JavaScript',
+            SkillWeight: 0,
+          }]
     },
     {
-        collectionId: "2",
-        collectionName: "BackEnd",
-        skills: "PHP, .NetCore",
+        CollectionId: "2",
+        CollectionName: "BackEnd",
+        Skills: "PHP, .NetCore",
     },
     {
-        collectionId: "3",
-        collectionName: "Mobile",
-        skills: "Java, Flutter",
+        CollectionId: "3",
+        CollectionName: "Mobile",
+        s  skills: "Java, Flutter",
     },
     {
-        collectionId: "4",
-        collectionName: "Desktop",
-        skills: ".NetCore, Delphi-Pascal",
+        CollectionId: "4",
+        CollectionName: "Desktop",
+        Skills: ".NetCore, Delphi-Pascal",
     },
     
 ];

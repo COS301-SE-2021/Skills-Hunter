@@ -25,6 +25,15 @@
   margin-left: 5%;
 }
 
+.adding-title {
+  float: left;
+}
+
+.adding {
+  float: right;
+  // display: inline;
+}
+
 .create-card {
   // width: 50%;
   // height: 450px;
@@ -36,7 +45,7 @@
   // margin-top: 10%;
   color: purple;
   box-shadow: 1px 10px 10px #888888;
-  // background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
+  background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
 }
 
 .create-header-image {

@@ -1,6 +1,5 @@
 export class Collection {
-    collectionId: string;
-    collectionName: string;
-    skills: string;
+  CollectionId: string;
+  CollectionName: string;
+  Skills: Skill[];
 }
-  
