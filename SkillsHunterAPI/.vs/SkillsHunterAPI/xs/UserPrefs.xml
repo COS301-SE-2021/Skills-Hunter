@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{5765300E-4CBE-48DB-9AA9-419E37AD67D9}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Services/Implementation/ProjectService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SkillsHunterUserUnitTest/UserUnitTest.cs">
     <Files>
       <File FileName="Controllers/UserController.cs" Line="194" Column="48" />
       <File FileName="Controllers/AdminController.cs" />
@@ -12,9 +12,8 @@
       <File FileName="Models/Project/Request/AddExistingSkillRequest.cs" />
       <File FileName="Services/Implementation/UserService.cs" Line="1" Column="1" />
       <File FileName="Models/User/Entity/UserSkillCollection.cs" Line="1" Column="1" />
-      <File FileName="Services/Implementation/ProjectService.cs" Line="206" Column="1" />
+      <File FileName="Services/Implementation/ProjectService.cs" Line="227" Column="43" />
       <File FileName="Services/Interface/IProjectService.cs" />
-      <File FileName="SkillsHunterUserUnitTest/obj/Debug/net5.0/SkillsHunterUserUnitTest.AssemblyInfo.cs" />
       <File FileName="SkillsHunterAPIUnitTest/AdminUnitTest.cs" />
       <File FileName="Services/Implementation/AdminService.cs" />
       <File FileName="instructions.txt" />
@@ -28,6 +27,8 @@
       <File FileName="Models/User/Entity/WorkExperience.cs" Line="9" Column="9" />
       <File FileName="Data/ApplicationDbContext.cs" Line="73" Column="81" />
       <File FileName="Models/Skill/Entity/SkillCollectionMap.cs" Line="1" Column="1" />
+      <File FileName="SkillsHunterUserUnitTest/UserUnitTest.cs" Line="101" Column="25" />
+      <File FileName="SkillsHunterAPIAdminUnitTest/AdminUnitTest.cs" Line="3" Column="13" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -48,12 +49,26 @@
                 </Node>
               </Node>
               <Node name="Services" expanded="True">
-                <Node name="Implementation" expanded="True">
-                  <Node name="ProjectService.cs" selected="True" />
+                <Node name="Implementation" expanded="True" />
+              </Node>
+              <Node name="SkillsHunterUserUnitTest" expanded="True">
+                <Node name="obj" expanded="True">
+                  <Node name="Debug" expanded="True">
+                    <Node name="net5.0" expanded="True" />
+                  </Node>
                 </Node>
               </Node>
             </Node>
+            <Node name="SkillsHunterAPIAdminUnitTest" expanded="True" />
+            <Node name="SkillsHunterUserUnitTest" expanded="True">
+              <Node name="UserUnitTest.cs" selected="True" />
+            </Node>
           </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="SkillsHunterAPI" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
