@@ -5,16 +5,16 @@
         </div>
         <div class = "col-sm-8">
 <h1>Skill Control</h1>
-
+ 
 <mat-card id = "card">
 
-    <form class="form-inline">
+    <form class="form-inline" (ngSubmit) = "Search()">
         <input class="form-control" type="text" placeholder="Search Skill" aria-label="Search"
-        mdbInput id = "user-searchbar">
+        mdbInput id = "user-searchbar"  name = "searchTerm" [(ngModel)]  = "searchTerm">
     </form>
     
     <div id = "btnUserGroup">
-        <button mat-raised-button id = "btnAdvanced">Advanced Search</button>
+        <button mat-raised-button id = "btnAdvanced" (click) = "advancedSearch()">Advanced Search</button>
         <button mat-raised-button id = "btnViewAll" (click)="viewAll()">View All</button>
         <button mat-raised-button color="primary" id = "btnAdd">New</button>
     </div>

@@ -50,6 +50,9 @@ import { CategoryCardComponent } from './category-control/category-card/category
 import { NewCategoryComponent } from './category-control/new-category/new-category.component';
 import { StatsBarComponent } from './statistics/stats-bar/stats-bar.component';
 import { ImageDisplayComponent } from './user-control/image-display/image-display.component';
+import { SkillAdvancedSearchComponent } from './skill-control/skill-advanced-search/skill-advanced-search.component';
+import { EditSkillComponent } from './skill-control/edit-skill/edit-skill.component';
+import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +88,10 @@ import { ImageDisplayComponent } from './user-control/image-display/image-displa
     CategoryCardComponent,
     NewCategoryComponent,
     StatsBarComponent,
-    ImageDisplayComponent
+    ImageDisplayComponent,
+    SkillAdvancedSearchComponent,
+    EditSkillComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,

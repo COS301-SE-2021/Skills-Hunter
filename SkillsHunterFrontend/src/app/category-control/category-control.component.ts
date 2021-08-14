@@ -12,6 +12,7 @@ import { NewCategoryComponent } from './new-category/new-category.component';
 export class CategoryControlComponent implements OnInit {
 
   data: Category[] = [];
+  searchTerm:string = "";
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -39,8 +40,8 @@ export class CategoryControlComponent implements OnInit {
   add(): void{
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
-    configDialog.width = '40%';
-    configDialog.height = '80%';
+    configDialog.width = '30%';
+    configDialog.height = '40%';
 
     const dialogRef = this.dialog.open(NewCategoryComponent,configDialog);
 
@@ -48,5 +49,28 @@ export class CategoryControlComponent implements OnInit {
       this.data = mockCategoryData;
       this.ngOnInit();
     });    
+  }
+
+  Search(): void{
+    if(this.searchTerm != ""){
+      let tempData:Category[] = mockCategoryData;
+      let result: Category = null;
+      
+      for(let count  = 0; count < tempData.length; count++){
+        if(tempData[count].name == this.searchTerm){
+          result = tempData[count];
+          break;
+        }
+      }
+
+      if(result != null){
+        this.data = [];
+        this.data.push(result);
+        this.ngOnInit();
+      }else{
+        this.data = [];
+        this.ngOnInit();
+      }
+    }
   }
 }

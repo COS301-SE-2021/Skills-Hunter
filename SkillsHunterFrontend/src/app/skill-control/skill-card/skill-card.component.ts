@@ -2,6 +2,9 @@ import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { Skill} from '../../classes/Admin-Skill'
 import { mockCategoryData } from '../../mock-data/mock-category';
 import { Category } from '../../classes/Category';
+import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
+import { EditSkillComponent } from '../edit-skill/edit-skill.component'; 
+
 @Component({
   selector: 'app-skill-card',
   templateUrl: './skill-card.component.html',
@@ -10,7 +13,7 @@ import { Category } from '../../classes/Category';
 export class SkillCardComponent implements OnInit {
   @Input() skill:Skill;
   @Output() onDeleteUser: EventEmitter<Skill> = new EventEmitter();
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -32,5 +35,19 @@ export class SkillCardComponent implements OnInit {
 
   onDelete(skill): void{
     this.onDeleteUser.emit(skill);
+  }
+
+  onEdit(): void{
+    const configDialog = new MatDialogConfig();
+    configDialog.backdropClass = 'backGround';
+    configDialog.width = '40%';
+    configDialog.height = '70%';
+    configDialog.data = this.skill;
+
+    const dialogRef = this.dialog.open(EditSkillComponent,configDialog);
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 }

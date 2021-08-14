@@ -90,6 +90,9 @@ export class UserControlComponent implements OnInit {
         this.data = [];
         this.data.push(result);
         this.ngOnInit();
+      }else{
+        this.data = [];
+        this.ngOnInit();
       }
     }
   }

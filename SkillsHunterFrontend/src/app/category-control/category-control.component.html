@@ -9,9 +9,9 @@
 
 <mat-card id = "card">
 
-    <form class="form-inline">
+    <form class="form-inline" (ngSubmit) = "Search()">
         <input class="form-control" type="text" placeholder="Search Category" aria-label="Search"
-        mdbInput id = "user-searchbar">
+        mdbInput id = "user-searchbar" name = "searchTerm" [(ngModel)]  = "searchTerm">
     </form>
     
     <div id = "btnUserGroup">
