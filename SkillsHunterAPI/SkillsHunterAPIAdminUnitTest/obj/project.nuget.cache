@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T6aK+/IfkWdOuZksTSPViTohenDsqTNOztdDhVXUpebqQNFtl7JdYv0Fvqqy2Pukp4N6pVnsc28l9TjNM248iQ==",
+  "dgSpecHash": "SaqRoLMd9mQW58Ge4UHOf74BbPsvwo7EK25hO2GIvPiF+1M7927IFI5cTbFwv9IMiSOsy16bbpkGfuUPoh+1rg==",
   "success": true,
-  "projectFilePath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/Admin.Tests/SkillsHunterAPIAdminUnitTest.csproj",
+  "projectFilePath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPIAdminUnitTest/SkillsHunterAPIAdminUnitTest.csproj",
   "expectedPackageFiles": [
     "/Users/mxolisi/.nuget/packages/castle.core/4.4.0/castle.core.4.4.0.nupkg.sha512",
     "/Users/mxolisi/.nuget/packages/coverlet.collector/3.1.0/coverlet.collector.3.1.0.nupkg.sha512",

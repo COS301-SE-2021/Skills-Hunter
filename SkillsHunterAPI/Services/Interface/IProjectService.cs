@@ -48,7 +48,7 @@ namespace SkillsHunterAPI.Services
 
         Task RemoveCollection(Guid CollectionId);
         
-        Task<ProjectSkillCollectionMap> AddSkillToCollection(Guid SkillId,Guid CollectionId);
+        Task AddSkillToCollection(Guid SkillId,Guid CollectionId);
     
         Task<List<ProjectSkillCollection>> GetCollectionsByProject(Guid ProjectId);
 
