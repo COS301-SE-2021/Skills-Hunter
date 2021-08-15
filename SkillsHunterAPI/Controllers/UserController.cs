@@ -10,6 +10,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using SkillsHunterAPI.Models.Project.Request;
+using System.IO;
+using System.Net.Http.Headers;
+using SkillsHunterAPI.Models.Skill;
+using Microsoft.AspNetCore.Http;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -27,7 +32,7 @@ namespace SkillsHunterAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/[controller]/GetCurrentUserId")]
+        [Route("api/[controller]/getCurrentUserId")]
         public Guid GetCurrentUserId(){
             Guid result = new Guid();
             var identity = HttpContext.User.Identity as ClaimsIdentity;
@@ -47,7 +52,7 @@ namespace SkillsHunterAPI.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("api/[controller]/register")]
-        public IActionResult Register([FromBody]RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody]RegisterRequest request)
         {
             // map model to entity
             User user = new User()
@@ -80,8 +85,9 @@ namespace SkillsHunterAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("api/[controller]/Authenticate")]
-        public IActionResult Authenticate([FromBody]AuthenticateRequest request)
+
+        [Route("api/[controller]/authenticate")]
+        public async Task<IActionResult> Authenticate([FromBody] AuthenticateRequest request)
         {
 
             var user = _userService.Authenticate(request.Email, request.Password);
@@ -105,14 +111,17 @@ namespace SkillsHunterAPI.Controllers
             var tokenString = tokenHandler.WriteToken(token);
 
             // return basic user info and authentication token
-            return Ok(new AuthenticateResponse()
-            {
-                Id = user.UserId,
-                Name = user.Name,
-                Surname = user.Surname,
-                Role = user.UserType,
-                Token = tokenString
-            });
+
+            AuthenticateResponse response = new AuthenticateResponse();
+            response.UserId = user.UserId;
+            response.Name = user.Name;
+            response.Email = user.Email;
+            response.Phone = user.Phone;
+            response.OpenForWork = user.OpenForWork;
+            response.Role = user.UserType;
+            response.Token = tokenString;
+
+            return Ok(response);
         }
 
 
@@ -179,6 +188,184 @@ namespace SkillsHunterAPI.Controllers
             response.UserId = user.UserId;
 
             return response;
+        }
+
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("api/[controller]/uploadProfileImage")]
+        public async Task<IActionResult> UploadProfileImage(){
+            try
+            {
+                // Upload Image Profile code here
+                var formCollection = await Request.ReadFormAsync();
+                
+                if(formCollection.Files.Count == 0)
+                    return BadRequest();
+
+                var file = formCollection.Files.First();
+                var folderName = Path.Combine("Resources", "Images");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                
+                if (file.Length > 0)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName);
+                    
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+
+                    Image profileImage = new Image()
+                    {
+                        UserId = GetCurrentUserId(),
+                        //UserId = Guid.NewGuid(),
+                        Path = dbPath
+                    };
+
+                    var response = await _userService.uploadProfileImage(profileImage);
+
+                    return Ok(response);
+                }
+                else
+                {
+                    return BadRequest();
+                }              
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                 return StatusCode(500, $"Internal server error: {error}");
+            }
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/getImage")]
+        public async Task<IActionResult> GetImage(GetImageRequest request){
+            try
+            {
+                // Get Image code here
+                Image response = await _userService.GetImage(new Guid(request.ImageId));
+
+                return Ok(new GetImageResponse(){
+                    result = response
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return StatusCode(500, $"Internal server error: {error}");
+            }
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/removeImage")]
+        public async Task<IActionResult> RemoveImage(RemoveImageRequest request){
+            try
+            {
+                // Get Image code here
+                var response = await _userService.RemoveImage(new Guid(request.ImageId));
+
+                return Ok(new RemoveImageResponse(){
+                    result = response
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return StatusCode(500, $"Internal server error: {error}");
+            }
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/getImageByUserId")]
+        public async Task<IActionResult> GetImageByUser(GetImageByUserRequest request){
+            try
+            {
+                // Get Image code here
+                var response = await _userService.GetImageByUser(new Guid(request.UserId));
+
+                return Ok(new GetImageByUserResponse(){
+                    result = response
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return StatusCode(500, $"Internal server error: {error}");
+            }
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/getImageByUser")]
+        public async Task<IActionResult> GetImageByUser(){
+            try
+            {
+                // Get Image code here
+                var response = await _userService.GetImageByUser(GetCurrentUserId());
+
+                return Ok(new RemoveImageResponse(){
+                    result = response
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+                
+                return StatusCode(500, $"Internal server error: {error}");
+            }
+        }
+        [HttpGet]
+        [Route("api/[controller]/addUserSkill")]
+        public IActionResult AddUserSkill(AddExistingSkillRequest request)
+        {
+            Guid LoggedInUser = GetCurrentUserId();
+
+
+            return (IActionResult)_userService.AddUserSkill(request, LoggedInUser);
+
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/addNewSkill")]
+        public async Task<IActionResult> AddNewSkill(AddNewSkillRequest request)
+        {
+
+            Guid user = GetCurrentUserId();
+           Skill skill = await _userService.AddNewSkill(request);
+
+
+            //Checking if the skill is added and linking it with the user
+            if (skill != null)
+            {
+                AddExistingSkillRequest skillToLink = new AddExistingSkillRequest();
+                skillToLink.SkillId = skill.SkillId;
+                skillToLink.Weight = request.Weight;
+
+                return AddUserSkill(skillToLink);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/addUserSkillCollection")]
+        public IActionResult AddUserSkillCollection(AddSkillCollectionRequest request)
+        {
+            Guid LoggedInUser = GetCurrentUserId();
+
+            //Create the skill collection from request
+
+
+            return (IActionResult)_userService.AddUserSkillCollection(request, LoggedInUser);
+
+
         }
     }
 }
