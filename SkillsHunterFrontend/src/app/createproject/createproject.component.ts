@@ -34,6 +34,7 @@ export class CreateprojectComponent implements OnInit {
 
   dropdownListForSkills = [];
   selectedItemsForSkills = [];
+  // var selectedObjectsSkills = Skill[];
   selectedObjectsSkills = [];
 
   // for keeping track of selected Skill and Collection objects.
@@ -41,6 +42,8 @@ export class CreateprojectComponent implements OnInit {
 
   dropdownListForCollections = [];
   selectedItemsForCollections = [];
+
+  // var selectedObjectsCollections = Collection[];
   selectedObjectsCollections = [];
 
   dropdownSettings: IDropdownSettings;
@@ -110,6 +113,9 @@ export class CreateprojectComponent implements OnInit {
 
         Skills.push(obj);
 
+        console.log('LOGGING THE OBJECT');
+        console.log(obj);
+
         this.selectedObjectsSkills.push(obj);
 
         this.dropdownListForSkills = [];
@@ -168,18 +174,20 @@ export class CreateprojectComponent implements OnInit {
   }
 
   createTheProject() {
-    // var proj = new Project();
-    // proj.ProjectId = Projects.length.toString();
-    // proj.Name = 'Skills Hunter';
-    // proj.Description = '';
-    // proj.Owner = 'XYC Devs';
-    // proj.Location = 'Hatfield';
+    var proj = new Project();
+    proj.ProjectId = Projects.length.toString();
+    proj.Name = 'Skills Hunter';
+    proj.Description = 'Describe the project';
+    proj.Owner = 'XYC Devs';
+    proj.Location = 'Hatfield';
 
-    console.log(this.selectedItemsForSkills);
-
+    console.log('CONSOLING');
+    // if (this.selectedObjectsSkills) {
+    console.log(this.selectedObjectsSkills);
+    // }
     // var arrSkillsAndCollections: string[];
 
-    // for(var x=0; x<this.selectedItemsForSkills; x++){
+    // for (var x = 0; x < this.selectedObjectsSkills.length; x++) {
     //   arrSkillsAndCollections.push(this.selectedItemsForSkills[x]);
     // }
 
