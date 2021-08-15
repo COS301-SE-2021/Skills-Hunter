@@ -4,15 +4,15 @@
     <Files>
       <File FileName="Controllers/UserController.cs" Line="73" Column="29" />
       <File FileName="Controllers/AdminController.cs" />
-      <File FileName="Controllers/ProjectController.cs" Line="208" Column="52" />
-      <File FileName="Models/Project/Entity/ProjectSkill.cs" Line="1" Column="1" />
-      <File FileName="Models/Project/Entity/ProjectSkillCollection.cs" Line="10" Column="22" />
+      <File FileName="Controllers/ProjectController.cs" />
+      <File FileName="Models/Project/Entity/ProjectSkill.cs" />
+      <File FileName="Models/Project/Entity/ProjectSkillCollection.cs" />
       <File FileName="Models/Skill/Entity/Skill.cs" />
       <File FileName="Models/User/Entity/UserSkill.cs" />
       <File FileName="Models/Project/Request/AddExistingSkillRequest.cs" />
-      <File FileName="Services/Implementation/UserService.cs" Line="1" Column="1" />
-      <File FileName="Models/User/Entity/UserSkillCollection.cs" Line="1" Column="1" />
-      <File FileName="Services/Implementation/ProjectService.cs" Line="227" Column="43" />
+      <File FileName="Services/Implementation/UserService.cs" />
+      <File FileName="Models/User/Entity/UserSkillCollection.cs" />
+      <File FileName="Services/Implementation/ProjectService.cs" />
       <File FileName="Services/Interface/IProjectService.cs" />
       <File FileName="SkillsHunterAPIUnitTest/AdminUnitTest.cs" />
       <File FileName="Services/Implementation/AdminService.cs" />
@@ -23,10 +23,10 @@
       <File FileName="Models/User/Response/AuthenticateResponse.cs" />
       <File FileName="Startup.cs" />
       <File FileName="SkillsHunterAPIAdminUnitTest/SkillsHunterAPIAdminUnitTest.csproj" />
-      <File FileName="Models/User/Entity/WorkExperience.cs" Line="9" Column="9" />
-      <File FileName="Data/ApplicationDbContext.cs" Line="73" Column="81" />
-      <File FileName="Models/Skill/Entity/SkillCollectionMap.cs" Line="1" Column="1" />
-      <File FileName="SkillsHunterUserUnitTest/UserUnitTest.cs" Line="14" Column="48" />
+      <File FileName="Models/User/Entity/WorkExperience.cs" />
+      <File FileName="Data/ApplicationDbContext.cs" />
+      <File FileName="Models/Skill/Entity/SkillCollectionMap.cs" />
+      <File FileName="SkillsHunterUserUnitTest/UserUnitTest.cs" />
       <File FileName="SkillsHunterAPIAdminUnitTest/AdminUnitTest.cs" Line="62" Column="27" />
     </Files>
     <Pads>
@@ -38,9 +38,7 @@
               <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True">
                 <Node name="Project" expanded="True">
-                  <Node name="Entity" expanded="True">
-                    <Node name="ProjectSkillCollectionMap.cs" selected="True" />
-                  </Node>
+                  <Node name="Entity" expanded="True" />
                 </Node>
                 <Node name="Skill" expanded="True">
                   <Node name="Entity" expanded="True" />
@@ -52,29 +50,12 @@
               <Node name="Services" expanded="True">
                 <Node name="Implementation" expanded="True" />
               </Node>
-              <Node name="SkillsHunterAPIAdminUnitTest" expanded="True" />
               <Node name="SkillsHunterUserUnitTest" expanded="True" />
             </Node>
-            <Node name="SkillsHunterAPIAdminUnitTest" expanded="True" />
-            <Node name="SkillsHunterUserUnitTest" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPIAdminUnitTest" expanded="True">
-              <Node name="SkillsHunterAdminUnitTest" expanded="True">
-                <Node name="AdminUnitTest" expanded="True">
-                  <Node name="AddCategoryTest" selected="True" />
-                </Node>
-              </Node>
+              <Node name="AdminUnitTest.cs" selected="True" />
             </Node>
-            <Node name="SkillsHunterUserUnitTest" expanded="True">
-              <Node name="SkillsHunterUserUnitTest" expanded="True">
-                <Node name="UserUnitTest" expanded="True" />
-              </Node>
-            </Node>
+            <Node name="SkillsHunterUserUnitTest" expanded="True" />
           </Node>
         </State>
       </Pad>
