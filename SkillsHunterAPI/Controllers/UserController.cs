@@ -135,10 +135,16 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/update")]
-        public Task<UpdateUserResponse> UpdateUser([FromBody]UpdateUserRequest request)
+        public async Task<UpdateUserResponse> UpdateUser([FromBody]UpdateUserRequest request)
         {
-            //var response = await _userService.UpdateUser(request);
-            return null;
+            Guid LoggedInUser = GetCurrentUserId();
+            await _userService.UpdateUser(request,LoggedInUser);
+
+            UpdateUserResponse response = new UpdateUserResponse();
+            response.Success = true;
+
+            return response;
+           
         }
 
         [HttpGet]
