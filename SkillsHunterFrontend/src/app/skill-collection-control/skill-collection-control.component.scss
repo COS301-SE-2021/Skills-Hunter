@@ -1,5 +1,5 @@
 #user-searchbar{
-    width: 95%;
+    width: 100%;
 }
 
 #btnUserGroup{
@@ -29,4 +29,9 @@ h1,#card{
 #btnAdd{
     margin-left: 20px;
     background-color : cyan;
+}
+
+.collection-info{
+    margin-top: 15px;
+    display: block;
 }

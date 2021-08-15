@@ -53,6 +53,8 @@ import { ImageDisplayComponent } from './user-control/image-display/image-displa
 import { SkillAdvancedSearchComponent } from './skill-control/skill-advanced-search/skill-advanced-search.component';
 import { EditSkillComponent } from './skill-control/edit-skill/edit-skill.component';
 import { StatsComponent } from './stats/stats.component';
+import { SkillCollectionCardComponent } from './skill-collection-control/skill-collection-card/skill-collection-card.component';
+import { SkillCollectionAdvancedSearchComponent } from './skill-collection-control/skill-collection-advanced-search/skill-collection-advanced-search.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +93,9 @@ import { StatsComponent } from './stats/stats.component';
     ImageDisplayComponent,
     SkillAdvancedSearchComponent,
     EditSkillComponent,
-    StatsComponent
+    StatsComponent,
+    SkillCollectionCardComponent,
+    SkillCollectionAdvancedSearchComponent
   ],
   imports: [
     BrowserModule,
