@@ -11,7 +11,7 @@ namespace SkillsHunterAPI.Controllers
 {
     [Authorize(Roles = "Admin")]
     [ApiController]
-    public class AdminController: ControllerBase
+    public class AdminController : ControllerBase
     {
         private readonly IAdminService _adminService;
 
@@ -32,47 +32,43 @@ namespace SkillsHunterAPI.Controllers
 
                 Skill result = await _adminService.GetSkill(id);
 
-                return Ok(new GetSkillResponse(){
+                return Ok(new GetSkillResponse()
+                {
                     Id = result.SkillId,
                     Name = result.Name,
-                    //CategoryId = result.CategoryId,
+                    CategoryId = result.CategoryId,
                     Status = result.Status
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return NotFound(error.Message);
             }
         }
 
         [HttpPost]
         [Route("api/[controller]/addSkill")]
         public async Task<IActionResult> AddSkill([FromBody] AddSkillRequest request)
-        {   
+        {
             try
             {
                 // Add skill code here
-                Skill skill = new Skill(request.Name,request.CategoryId,SkillStatus.Accepted);
-        
+                Skill skill = new Skill(request.Name, request.CategoryId, SkillStatus.Accepted);
+
                 Skill result = await _adminService.AddSkill(skill);
 
-                return Ok(new AddSkillResponse(){
+                return Ok(new AddSkillResponse()
+                {
                     Added = result
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return BadRequest(error.Message);
             }
         }
 
@@ -87,38 +83,48 @@ namespace SkillsHunterAPI.Controllers
                 Category category = new Category();
 
                 category.Name = request.Name;
-            
+
                 category.Description = request.Description;
 
                 Category result = await _adminService.AddCategory(category);
 
-                return Ok(new AddCategoryResponse(){
+                return Ok(new AddCategoryResponse()
+                {
                     Added = result
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return BadRequest(error.Message);
             }
         }
 
 
         [HttpPost]
         [Route("api/[controller]/removeSkill")]
-        public async Task<RemoveSkillResponse> RemoveSkill([FromBody]RemoveSkillRequest removeSkillRequest)
-
+        public async Task<IActionResult> RemoveSkill([FromBody] RemoveSkillRequest request)
         {
-            RemoveSkillResponse response = new RemoveSkillResponse();
-            
-            response.Success = true;
-            response.Removed = await _adminService.RemoveSkill(removeSkillRequest.SkillId);
+            try
+            {
+                // Remove category code here
 
-            return response;
+                Guid id = new Guid(request.SkillId);
+                Skill result = await _adminService.RemoveSkill(id);
+
+                return Ok(new RemoveSkillResponse()
+                {
+                    Success = true,
+                    Removed = result
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+
+                return NotFound(error.Message);
+            }
         }
 
 
@@ -130,24 +136,38 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request
         [Route("api/[controller]/getSkills")]
-        public async Task<GetSkillsResponse> GetSkills()
+        public async Task<IActionResult> GetSkills()
         {
+            try
+            {
+                // Get categories code here
+                List<Skill> result = (List<Skill>)await _adminService.GetSkills();
 
-                GetSkillsResponse skills = new GetSkillsResponse();
-                skills.skills = (await _adminService.GetSkills()).ToArray();
-                return skills;
+                return Ok(new GetSkillsResponse()
+                {
+                    skills = result.ToArray()
+                });
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+
+                return StatusCode(500, $"Internal server error: {error}");
+            }
         }
 
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
 
         [Route("api/[controller]/getSkillCollections")]
-        public async Task<IActionResult> GetSkillCollections(){
+        public async Task<IActionResult> GetSkillCollections()
+        {
             try
             {
                 // Get collections code here
                 List<ProjectSkillCollection> result = (List<ProjectSkillCollection>)await _adminService.GetSkillCollections();
-                
-                return Ok(new GetSkillCollectionsResponse(){
+
+                return Ok(new GetSkillCollectionsResponse()
+                {
 
                     collections = result.ToArray()
                 });
@@ -155,18 +175,16 @@ namespace SkillsHunterAPI.Controllers
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return BadRequest(error.Message);
             }
         }
 
 
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/updateSkill")]
-        public async Task<IActionResult> UpdateSkill([FromBody] UpdateSkillRequest request){
+        public async Task<IActionResult> UpdateSkill([FromBody] UpdateSkillRequest request)
+        {
             try
             {
                 // Update skill code here
@@ -174,28 +192,26 @@ namespace SkillsHunterAPI.Controllers
                 Skill skill = new Skill();
 
                 skill.Name = request.Name;
-            
-                //skill.CategoryId = new Guid(request.CategoryId);
+
+                skill.CategoryId = new Guid(request.CategoryId);
 
                 skill.Status = request.Status;
 
-                Skill result = await _adminService.UpdateSkill(id,skill);
+                Skill result = await _adminService.UpdateSkill(id, skill);
 
-                return Ok(new UpdateSkillResponse(){
+                return Ok(new UpdateSkillResponse()
+                {
                     Id = result.SkillId,
                     Name = result.Name,
-                    //CategoryId = result.CategoryId,
+                    CategoryId = result.CategoryId,
                     Status = result.Status
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return NotFound(error.Message);
             }
         }
 
@@ -209,8 +225,9 @@ namespace SkillsHunterAPI.Controllers
                 Guid id = new Guid(request.Id);
 
                 Category result = await _adminService.GetCategory(id);
-                
-                return Ok(new GetCategoryResponse(){
+
+                return Ok(new GetCategoryResponse()
+                {
                     Id = result.CategoryId,
                     Name = result.Name,
                     Description = result.Description
@@ -219,11 +236,8 @@ namespace SkillsHunterAPI.Controllers
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return NotFound(error.Message);
             }
         }
 
@@ -236,18 +250,16 @@ namespace SkillsHunterAPI.Controllers
                 // Get categories code here
                 List<Category> result = (List<Category>)await _adminService.GetCategories();
 
-                return Ok(new GetCategoriesResponse(){
+                return Ok(new GetCategoriesResponse()
+                {
                     category = result.ToArray()
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return StatusCode(500, $"Internal server error: {error}");
             }
         }
 
@@ -262,12 +274,13 @@ namespace SkillsHunterAPI.Controllers
                 Category category = new Category();
 
                 category.Name = request.Name;
-            
+
                 category.Description = request.Description;
 
-                Category result = await _adminService.UpdateCategory(id,category);
+                Category result = await _adminService.UpdateCategory(id, category);
 
-                return Ok(new UpdateCategoryResponse(){
+                return Ok(new UpdateCategoryResponse()
+                {
                     Id = result.CategoryId,
                     Name = result.Name,
                     Description = result.Description
@@ -276,11 +289,8 @@ namespace SkillsHunterAPI.Controllers
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return NotFound(error.Message);
             }
         }
 
@@ -295,7 +305,8 @@ namespace SkillsHunterAPI.Controllers
                 Guid id = new Guid(request.Id);
                 Category result = await _adminService.RemoveCategory(id);
 
-                return Ok(new RemoveCategoryResponse(){
+                return Ok(new RemoveCategoryResponse()
+                {
                     Id = result.CategoryId,
                     Name = result.Name,
                     Description = result.Description
@@ -304,11 +315,8 @@ namespace SkillsHunterAPI.Controllers
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return NotFound(error.Message);
             }
         }
     }
