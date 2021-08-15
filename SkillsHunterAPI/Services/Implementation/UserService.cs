@@ -334,9 +334,17 @@ namespace SkillsHunterAPI.Services
             return newSkill;
         }
 
-        public Task AddUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser)
+        public Task CreateUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser)
         {
-            return null;
+            User user = _context.Users.Where(u => u.UserId == currentUser).FirstOrDefault();
+
+            if (user != null)
+            {
+
+
+            }
+
+            
         }
 
     }
