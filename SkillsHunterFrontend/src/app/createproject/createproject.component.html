@@ -13,7 +13,12 @@
       fxLayoutAlign=" stretch"
       #stepper
     >
-      <mat-step [stepControl]="projectBasicInfo" fxFlex="100" fxLayout="column">
+      <mat-step
+        [stepControl]="projectBasicInfo"
+        fxFlex="100"
+        fxLayout="column"
+        required
+      >
         <mat-card class="stepper-card">
           <mat-card-content>
             <form [formGroup]="projectBasicInfo" class="stepform">
@@ -124,19 +129,7 @@
         >
           Create Project
         </button>
-        <!-- </div> -->
-        <!-- </div> -->
-        <!-- </mat-card-content>
-        </mat-card> -->
-        <!-- </div>
-        </div> -->
       </mat-step>
     </mat-horizontal-stepper>
   </mat-card-content>
-
-  <!-- <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="createTheProject()">
-      Create Project
-    </button>
-  </mat-card-actions> -->
 </mat-card>

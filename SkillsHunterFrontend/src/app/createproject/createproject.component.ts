@@ -174,12 +174,12 @@ export class CreateprojectComponent implements OnInit {
   }
 
   createTheProject() {
-    var proj = new Project();
-    proj.ProjectId = Projects.length.toString();
-    proj.Name = 'Skills Hunter';
-    proj.Description = 'Describe the project';
-    proj.Owner = 'XYC Devs';
-    proj.Location = 'Hatfield';
+    // var proj = new Project();
+    // proj.ProjectId = Projects.length.toString();
+    // proj.Name = 'Skills Hunter';
+    // proj.Description = 'Describe the project';
+    // proj.Owner = 'XYC Devs';
+    // proj.Location = 'Hatfield';
 
     console.log('CONSOLING');
     // if (this.selectedObjectsSkills) {
@@ -197,5 +197,9 @@ export class CreateprojectComponent implements OnInit {
 
     // Projects.push(proj);
     console.log('Created Project!');
+  }
+
+  cancel() {
+    this._router.navigate([`home`]);
   }
 }
