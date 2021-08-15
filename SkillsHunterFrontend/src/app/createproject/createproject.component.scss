@@ -34,15 +34,41 @@
   // display: inline;
 }
 
-.create-card {
-  // width: 50%;
-  // height: 450px;
-  width: 100%;
-  height: 800px;
+.stepper {
+  background-color: blue;
+  height: 600px;
+  min-width: none;
+}
 
-  // margin-left: auto;
-  // margin-right: auto;
-  // margin-top: 10%;
+.fillIn {
+  // background-color: red;
+  min-width: 400px;
+}
+
+::ng-deep mat-horizontal-stepper,
+mat-horizontal-stepper {
+  // border: dashed 1px blue;
+  padding: 1em;
+  height: 600px;
+}
+
+::ng-deep mat-horizontal-stepper,
+mat-horizontal-stepper {
+  background-color: red;
+  height: 600px;
+}
+
+::ng-deep #cdk-step-content-0-1 {
+  background-color: blue;
+  height: 400px;
+}
+
+.create-card {
+  width: 70%;
+  height: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
   color: purple;
   box-shadow: 1px 10px 10px #888888;
   background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
