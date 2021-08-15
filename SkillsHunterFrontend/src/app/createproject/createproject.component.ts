@@ -56,10 +56,12 @@ export class CreateprojectComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectBasicInfo = this._formBuilder.group({
-      basicInfo: ['', Validators.required],
+      projectName: ['', Validators.required],
+      projectDescription: ['', Validators.required],
     });
     this.projectSkillsAndCollections = this._formBuilder.group({
-      skillsAndCollections: ['', Validators.required],
+      projectSkills: ['', Validators.required],
+      projectCollections: ['', Validators.required],
     });
 
     for (var x = 0; x < Skills.length; x++) {
@@ -87,8 +89,14 @@ export class CreateprojectComponent implements OnInit {
     };
   }
 
+  // checkIfSkillOrCollection(arr: any[]){
+  //   for(var x=0; x<arr.length; x++){
+  //     if(arr[x].)
+  //   }
+  // }
+
   onItemSelect(item: any) {
-    console.log(item);
+    this.dropdownSettings.console.log(item);
   }
 
   onSelectAll(items: any) {

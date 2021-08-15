@@ -28,21 +28,28 @@
                 <input
                   matInput
                   placeholder="Project X"
-                  formControlName="basicInfo"
+                  formControlName="projectName"
                   required
                 />
               </mat-form-field>
 
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Project Description</mat-label>
-                <textarea matInput placeholder="..." required></textarea>
+                <textarea
+                  matInput
+                  placeholder="..."
+                  formControlName="projectDescription"
+                  required
+                ></textarea>
               </mat-form-field>
+
               <div>
                 <button
                   mat-raised-button
                   color="warn"
                   matStepperPrevious
                   class="back"
+                  (click)="cancel()"
                 >
                   Cancel
                 </button>
@@ -65,59 +72,64 @@
         fxFlex="100"
         fxLayout="column"
       >
-        <h1 class="adding-title">Skills</h1>
-        <button
-          mat-icon-button
-          color="primary"
-          (click)="addSkill()"
-          class="adding"
-        >
-          <mat-icon>add_circle</mat-icon>
-        </button>
-        <br />
-        <br />
-        <ng-multiselect-dropdown
-          [placeholder]="'Search A Skill'"
-          [settings]="dropdownSettings"
-          [data]="dropdownListForSkills"
-          [(ngModel)]="selectedItemsForSkills"
-          (onSelect)="onItemSelect($event)"
-          (onSelectAll)="onSelectAll($event)"
-          allowRemoteDataSearch
-        >
-        </ng-multiselect-dropdown>
+        <mat-card class="stepper-card">
+          <mat-card-content>
+            <h1 class="adding-title">Skills</h1>
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="addSkill()"
+              class="adding"
+            >
+              <mat-icon>add_circle</mat-icon>
+            </button>
+            <br />
+            <br />
+            <ng-multiselect-dropdown
+              [placeholder]="'Search A Skill'"
+              [settings]="dropdownSettings"
+              [data]="dropdownListForSkills"
+              [(ngModel)]="selectedItemsForSkills"
+              (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)"
+              allowRemoteDataSearch
+            >
+            </ng-multiselect-dropdown>
 
-        <br />
+            <br />
 
-        <button
-          mat-icon-button
-          color="primary"
-          (click)="addCollection()"
-          class="adding"
-        >
-          <mat-icon>add_circle</mat-icon>
-        </button>
-        <h1 class="adding-title">Collections</h1>
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="addCollection()"
+              class="adding"
+            >
+              <mat-icon>add_circle</mat-icon>
+            </button>
+            <h1 class="adding-title">Collections</h1>
 
-        <br />
-        <br />
+            <br />
+            <br />
 
-        <ng-multiselect-dropdown
-          [placeholder]="'Search A Collection'"
-          [settings]="dropdownSettings"
-          [data]="dropdownListForCollections"
-          [(ngModel)]="selectedItemsForCollections"
-          (onSelect)="onItemSelect($event)"
-          (onSelectAll)="onSelectAll($event)"
-        >
-        </ng-multiselect-dropdown>
-        <!-- </div> -->
+            <ng-multiselect-dropdown
+              [placeholder]="'Search A Collection'"
+              [settings]="dropdownSettings"
+              [data]="dropdownListForCollections"
+              [(ngModel)]="selectedItemsForCollections"
+              (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)"
+            >
+            </ng-multiselect-dropdown>
+            <br />
+            <br />
 
-        <!-- <div> -->
-        <br />
-        <mat-slide-toggle>Project open for application</mat-slide-toggle>
-        <br />
-        <button mat-raised-button color="warn" matStepperPrevious class="back">
+            <mat-slide-toggle color="primary"
+              >Project is Open for Application</mat-slide-toggle
+            >
+            <br />
+          </mat-card-content>
+        </mat-card>
+        <button mat-stroked-button color="warn" matStepperPrevious class="back">
           Back
         </button>
         <button
