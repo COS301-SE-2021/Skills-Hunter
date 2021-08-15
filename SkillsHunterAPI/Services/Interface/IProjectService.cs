@@ -40,7 +40,7 @@ namespace SkillsHunterAPI.Services
         
         bool InviteCandidate(Guid userId,Guid projectId, Guid inviteeId, String message);
         
-        Task<ProjectSkillCollection> CreateCollection(AddSkillCollectionRequest request, Guid projectId);
+        Task<ProjectSkillCollection> CreateCollection(CreateSkillCollectionRequest request, Guid projectId);
 
         Task<ProjectSkillCollection> GetCollection(Guid CollectionId);
         

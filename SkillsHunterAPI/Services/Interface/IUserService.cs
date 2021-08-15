@@ -49,6 +49,6 @@ namespace SkillsHunterAPI.Services
 
         Task<Skill> AddNewSkill(AddNewSkillRequest request);
 
-        Task AddUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser);
+        Task CreateUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser);
     }
 }
