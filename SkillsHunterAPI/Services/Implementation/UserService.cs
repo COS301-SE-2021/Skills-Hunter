@@ -160,8 +160,12 @@ namespace SkillsHunterAPI.Services
                 user.Name = request.Name;
                 user.Surname = request.Surname;
                 user.Email = request.Email;
+                user.Phone = request.PhoneNumber;
+                user.OpenForWork = request.OpenForWork;
 
-            
+                await _context.SaveChangesAsync();
+
+
             }
 
 
