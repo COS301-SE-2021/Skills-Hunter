@@ -4,6 +4,7 @@ using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
 using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Project.Response;
+using SkillsHunterAPI.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,11 @@ namespace SkillsHunterAPI.Services
         }
 
         public async Task<IEnumerable<Project>> GetProjects()
+        {
+            return await _context.Projects.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Project>> GetProjectsByOwnerId()
         {
             return await _context.Projects.ToListAsync();
         }
@@ -104,8 +110,10 @@ namespace SkillsHunterAPI.Services
 
 
             Application applicationFromDB = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
+            User userFromDB = _context.Users.Where(ss => ss.UserId == userId).FirstOrDefault();
+            Project projectFromDB = _context.Projects.Where(ss => ss.ProjectId == ProjectId).FirstOrDefault();
+            if (applicationFromDB != null || userFromDB == null || projectFromDB == null)
 
-            if (applicationFromDB != null)
             {
                 return false;
             }
@@ -134,9 +142,12 @@ namespace SkillsHunterAPI.Services
 
 
             Invitation existingInvitations = _context.Invitations.Where(ss => ss.InviteeId == inviteeId && ss.ProjectId == ProjectId).FirstOrDefault();
+            User ownerFromDB = _context.Users.Where(ss => ss.UserId == userId).FirstOrDefault();
+            User inviteeFromDB = _context.Users.Where(ss => ss.UserId == inviteeId).FirstOrDefault();
+            Project projectFromDB = _context.Projects.Where(ss => ss.ProjectId == ProjectId).FirstOrDefault();
 
-            
-            if(existingInvitations != null)
+
+            if (existingInvitations != null || ownerFromDB == null || inviteeFromDB == null || projectFromDB == null || projectFromDB.Owner != userId)
             {
                 return false;
             }

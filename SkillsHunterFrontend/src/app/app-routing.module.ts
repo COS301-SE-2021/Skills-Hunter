@@ -7,7 +7,6 @@ import { RegisterComponent } from './register/register.component';
 import { ProjectCRUDService } from './services/project-crud.service';
 import { projectService } from './services/project-edit.service';
 import { UpdateProjectComponent } from './update-project/update-project.component';
-import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 import { CreateprojectComponent } from './createproject/createproject.component';
 import { AddSkillsComponent } from './add-skills/add-skills.component';
@@ -18,6 +17,9 @@ import { CategoryControlComponent } from './category-control/category-control.co
 import { StatisticsComponent } from './statistics/statistics.component';
 import { SkillCollectionControlComponent } from './skill-collection-control/skill-collection-control.component';
 import { AdminBoardComponent } from './admin-board/admin-board.component';
+import { AdminPortalComponent } from './admin-portal/admin-portal.component';
+import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
+
 
 const routes: Routes = [
   {
@@ -41,12 +43,16 @@ const routes: Routes = [
     component: UpdateProjectComponent,
   },
   {
+    path: 'admin-add-skill',
+    component: AdminAddSkillComponent,
+  },
+  {
     path: 'admin-portal',
     component: AdminPortalComponent,
   },
   {
-    path: 'admin-add-skill',
-    component: AdminAddSkillComponent,
+    path: 'invite-candidate',
+    component: InviteCandidateComponent,
   },
   {
     path: 'createproject',
@@ -58,7 +64,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: HomeComponent,
+    component:LoginComponent,
   },
   {
     path: 'dashboard', 

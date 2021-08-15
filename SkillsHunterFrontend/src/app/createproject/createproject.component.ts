@@ -58,6 +58,8 @@ export class CreateprojectComponent implements OnInit {
         console.log("returned empty:");
       }//dialog closed
     });
+
+    
   }
 
   skillCollection() {

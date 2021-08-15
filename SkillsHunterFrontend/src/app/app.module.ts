@@ -55,6 +55,8 @@ import { EditSkillComponent } from './skill-control/edit-skill/edit-skill.compon
 import { StatsComponent } from './stats/stats.component';
 import { SkillCollectionCardComponent } from './skill-collection-control/skill-collection-card/skill-collection-card.component';
 import { SkillCollectionAdvancedSearchComponent } from './skill-collection-control/skill-collection-advanced-search/skill-collection-advanced-search.component';
+import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
+
 
 @NgModule({
   declarations: [
@@ -95,7 +97,8 @@ import { SkillCollectionAdvancedSearchComponent } from './skill-collection-contr
     EditSkillComponent,
     StatsComponent,
     SkillCollectionCardComponent,
-    SkillCollectionAdvancedSearchComponent
+    SkillCollectionAdvancedSearchComponent,
+    InviteCandidateComponent,
   ],
   imports: [
     BrowserModule,
