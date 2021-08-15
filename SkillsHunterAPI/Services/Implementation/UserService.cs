@@ -14,6 +14,7 @@ using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Skill.Entity;
+using SkillsHunterAPI.Models.User.Entity;
 
 namespace SkillsHunterAPI.Services
 {
@@ -334,12 +335,20 @@ namespace SkillsHunterAPI.Services
             return newSkill;
         }
 
-        public Task CreateUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser)
+        public async Task CreateUserSkillCollection(CreateSkillCollectionRequest request, Guid currentUser)
         {
             User user = _context.Users.Where(u => u.UserId == currentUser).FirstOrDefault();
 
             if (user != null)
             {
+                SkillCollection skillCollection = new SkillCollection();
+
+                skillCollection.SkillCollectionId = new Guid();
+                skillCollection.Name = request.Name;
+                skillCollection.Description = request.Description;
+
+                _context.SkillCollections.Add(skillCollection);
+                await _context.SaveChangesAsync();
 
 
             }
