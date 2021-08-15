@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{5765300E-4CBE-48DB-9AA9-419E37AD67D9}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AdminController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Project/Request/CreateProjectRequest.cs">
     <Files>
-      <File FileName="Controllers/UserController.cs" Line="366" Column="84" />
+      <File FileName="Controllers/UserController.cs" Line="174" Column="23" />
       <File FileName="SkillsHunterAPIUnitTest/ProjectUnitTest.cs" />
       <File FileName="Models/Skill/Request/AddSkillRequest.cs" />
       <File FileName="SkillsHunterAPIUnitTest/SkillsHunterAPIUnitTestBase.cs" />
@@ -10,7 +10,7 @@
       <File FileName="Models/User/Entity/UserSkillCollection.cs" />
       <File FileName="Models/Skill/Entity/SkillCategory.cs" />
       <File FileName="Data/ApplicationDbContext.cs" />
-      <File FileName="Controllers/ProjectController.cs" />
+      <File FileName="Controllers/ProjectController.cs" Line="224" Column="66" />
       <File FileName="Models/Project/Entity/Project.cs" />
       <File FileName="Models/Project/Entity/ProjectSkill.cs" />
       <File FileName="Models/Skill/Response/GetCollectionsResponse.cs" />
@@ -19,11 +19,11 @@
       <File FileName="Services/Interface/IAdminService.cs" />
       <File FileName="Services/Implementation/ProjectService.cs" />
       <File FileName="Services/Interface/IProjectService.cs" />
-      <File FileName="Controllers/AdminController.cs" Line="112" Column="36" />
+      <File FileName="Controllers/AdminController.cs" Line="210" Column="76" />
       <File FileName="Models/User/Response/AuthenticateResponse.cs" />
       <File FileName="Models/User/Response/RegisterResponse.cs" />
       <File FileName="SkillsHunterAPIUnitTest/AdminUnitTest.cs" />
-      <File FileName="Services/Implementation/UserService.cs" />
+      <File FileName="Services/Implementation/UserService.cs" Line="165" Column="30" />
       <File FileName="Models/Project/Request/AddNewSkillRequest.cs" />
       <File FileName="Models/Project/Request/CreateCollectionRequest.cs" />
       <File FileName="Services/Interface/IUserService.cs" />
@@ -31,26 +31,22 @@
       <File FileName="Models/Project/Request/AddExistingSkillRequest.cs" />
       <File FileName="SkillsHunterAPIAdminUnitTest/AdminUnitTest.cs" />
       <File FileName="Models/Skill/Request/RemoveSkillRequest.cs" Line="6" Column="18" />
+      <File FileName="Models/User/Entity/Image.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Request/UpdateProjectRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Request/CreateProjectRequest.cs" Line="18" Column="81" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPI" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="AdminController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="Skill" expanded="True">
-                  <Node name="Request" expanded="True" />
+                <Node name="Project" expanded="True">
+                  <Node name="Request" expanded="True">
+                    <Node name="CreateProjectRequest.cs" selected="True" />
+                  </Node>
                 </Node>
-                <Node name="User" expanded="True">
-                  <Node name="Request" expanded="True" />
-                </Node>
-              </Node>
-              <Node name="Services" expanded="True">
-                <Node name="Implementation" expanded="True" />
-                <Node name="Interface" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -59,6 +55,10 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>SkillsHunterAPIAdminUnitTest/SkillsHunterAPIAdminUnitTest.csproj</String>
+    <String>SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj</String>
+  </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
