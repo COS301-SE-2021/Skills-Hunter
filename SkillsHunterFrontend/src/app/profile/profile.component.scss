@@ -30,10 +30,11 @@ font-size: 20px;
 }
 
 #details {
-    width: 90%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
     background-color: aqua;
+    display: inline-block;
     }
 
 .picture-card {
@@ -41,5 +42,19 @@ font-size: 20px;
   margin-right: auto;
   width: 80%;
   background-color: aqua;
+  
     }
-      
+#picture{
+  width:10%;
+  display: inline-block;
+}
+
+#contentCards{
+  margin-top: 3%;
+  background-color: chartreuse; 
+ text-align: center;
+}
+
+a{
+  cursor: pointer;
+}
