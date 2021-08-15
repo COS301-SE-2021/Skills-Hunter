@@ -43,7 +43,7 @@ export class ProjectControlComponent implements OnInit {
 
         for(let count = 0; count < this.data.length; count++){
           
-          if(this.data[count].OpenForApplication == value)
+          if(this.data[count].openForApplication == value)
             newList.push(this.data[count]);
         }
 
@@ -58,7 +58,7 @@ export class ProjectControlComponent implements OnInit {
       let result: Project = null;
       
       for(let count  = 0; count < tempData.length; count++){
-        if(tempData[count].Name == this.searchTerm){
+        if(tempData[count].name == this.searchTerm){
           result = tempData[count];
           break;
         }
