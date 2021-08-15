@@ -14,6 +14,7 @@ using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Skill.Entity;
+using SkillsHunterAPI.Models.User.Entity;
 
 namespace SkillsHunterAPI.Services
 {
@@ -334,9 +335,50 @@ namespace SkillsHunterAPI.Services
             return newSkill;
         }
 
-        public Task AddUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser)
+        public async Task CreateUserSkillCollection(CreateSkillCollectionRequest request, Guid currentUser)
         {
-            return null;
+            User user = _context.Users.Where(u => u.UserId == currentUser).FirstOrDefault();
+
+            if (user != null)
+            {
+                SkillCollection skillCollection = new SkillCollection();
+
+                skillCollection.SkillCollectionId = new Guid();
+                skillCollection.Name = request.Name;
+                skillCollection.Description = request.Description;
+
+                _context.SkillCollections.Add(skillCollection);
+                await _context.SaveChangesAsync();
+
+
+                foreach(AddExistingSkillRequest skill in request.Skills)
+                {
+                    SkillCollectionMap skillCollectionMap = new SkillCollectionMap();
+                    
+                    skillCollectionMap.SkillCollectionMapId = new Guid();
+                    skillCollectionMap.SkillCollectionId = skillCollection.SkillCollectionId;
+                    skillCollectionMap.SkillId = skill.SkillId;
+
+                    _context.SkillCollectionMaps.Add(skillCollectionMap);
+                    await _context.SaveChangesAsync();
+
+                }
+
+
+                UserSkillCollection userSkillCollection = new UserSkillCollection();
+
+                userSkillCollection.UserSkillCollectionId = new Guid();
+
+                userSkillCollection.SkillCollectionId = skillCollection.SkillCollectionId;
+                userSkillCollection.UserId = currentUser;
+                userSkillCollection.Weight = request.Weight;
+
+                _context.UserSkillCollections.Add(userSkillCollection);
+                await _context.SaveChangesAsync();
+
+            }
+
+            
         }
 
     }
