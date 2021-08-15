@@ -168,17 +168,26 @@ export class CreateprojectComponent implements OnInit {
   }
 
   createTheProject() {
-    var proj = new Project();
-    proj.ProjectId = Projects.length.toString();
-    proj.Name = 'Skills Hunter';
-    proj.Description = '';
-    proj.Owner = 'XYC Devs';
-    proj.Location = 'Hatfield';
-    proj.Skill = this.selectedObjectsSkills;
-    proj.Collections = this.selectedObjectsCollections;
-    proj.OpenForApplication = false;
+    // var proj = new Project();
+    // proj.ProjectId = Projects.length.toString();
+    // proj.Name = 'Skills Hunter';
+    // proj.Description = '';
+    // proj.Owner = 'XYC Devs';
+    // proj.Location = 'Hatfield';
 
-    Projects.push(proj);
+    console.log(this.selectedItemsForSkills);
+
+    // var arrSkillsAndCollections: string[];
+
+    // for(var x=0; x<this.selectedItemsForSkills; x++){
+    //   arrSkillsAndCollections.push(this.selectedItemsForSkills[x]);
+    // }
+
+    // proj.Skill = this.selectedObjectsSkills.toString();
+    // proj.Collections = this.selectedObjectsCollections;
+    // proj.OpenForApplication = false;
+
+    // Projects.push(proj);
     console.log('Created Project!');
   }
 }

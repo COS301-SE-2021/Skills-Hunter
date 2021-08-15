@@ -6,7 +6,7 @@
     </div>
   </mat-card-header>
   <mat-card-content>
-    <!-- <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
       <mat-step [stepControl]="projectBasicInfo">
         <div class="fillIn">
           <form [formGroup]="projectBasicInfo" class="stepform">
@@ -32,112 +32,80 @@
           </form>
         </div>
       </mat-step>
-      <mat-step [stepControl]="projectSkillsAndCollections" label="Step 2"> -->
-    <!-- <form [formGroup]="projectSkillsAndCollections"> -->
+      <mat-step [stepControl]="projectSkillsAndCollections" label="Step 2">
+        <br />
 
-    <!-- <div>
-          <ng-multiselect-dropdown
-            [placeholder]="'Search A Skill'"
-            [settings]="dropdownSettings"
-            [data]="dropdownList"
-            [(ngModel)]="selectedItems"
-            (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)"
-          >
-          </ng-multiselect-dropdown>
-        </div> -->
-    <!-- <button mat-raised-button id="createbtn" (click)="individualSkill()">
-            Add Individual Skill
-          </button>
-          <mat-selection-list #shoes [multiple]="false">
-            <mat-list-option
-              *ngFor="let skill of selectedSkills"
-              [value]="skill"
-            >
-              {{ skill }}
-            </mat-list-option>
-          </mat-selection-list>
+        <h1 class="adding-title">Skills</h1>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="addSkill()"
+          class="adding"
+        >
+          <mat-icon>add_circle</mat-icon>
+        </button>
+        <br />
+        <br />
+        <ng-multiselect-dropdown
+          [placeholder]="'Search A Skill'"
+          [settings]="dropdownSettings"
+          [data]="dropdownListForSkills"
+          [(ngModel)]="selectedItemsForSkills"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          allowRemoteDataSearch
+        >
+        </ng-multiselect-dropdown>
 
-          <button mat-raised-button id="createbtn" (click)="skillCollection()">
-            Add Skill collection
-          </button> -->
+        <br />
 
-    <br />
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="addCollection()"
+          class="adding"
+        >
+          <mat-icon>add_circle</mat-icon>
+        </button>
+        <h1 class="adding-title">Collections</h1>
 
-    <!-- <div class="adding">
-      <button
-        mat-raised-button
-        id="createbtn"
-        (click)="individualSkill()"
-      ></button>
-      <mat-icon matSuffix>add_circle</mat-icon>
-    </div> -->
+        <br />
+        <br />
 
-    <h1 class="adding-title">Skills</h1>
-    <button mat-icon-button color="primary" (click)="addSkill()" class="adding">
-      <mat-icon>add_circle</mat-icon>
-    </button>
-    <br />
-    <br />
-    <ng-multiselect-dropdown
-      [placeholder]="'Search A Skill'"
-      [settings]="dropdownSettings"
-      [data]="dropdownListForSkills"
-      [(ngModel)]="selectedItemsForSkills"
-      (onSelect)="onItemSelect($event)"
-      (onSelectAll)="onSelectAll($event)"
-      allowRemoteDataSearch
-    >
-    </ng-multiselect-dropdown>
+        <ng-multiselect-dropdown
+          [placeholder]="'Search A Collection'"
+          [settings]="dropdownSettings"
+          [data]="dropdownListForCollections"
+          [(ngModel)]="selectedItemsForCollections"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+        >
+        </ng-multiselect-dropdown>
 
-    <br />
-
-    <button
-      mat-icon-button
-      color="primary"
-      (click)="addCollection()"
-      class="adding"
-    >
-      <mat-icon>add_circle</mat-icon>
-    </button>
-    <h1 class="adding-title">Collections</h1>
-
-    <br />
-    <br />
-
-    <ng-multiselect-dropdown
-      [placeholder]="'Search A Collection'"
-      [settings]="dropdownSettings"
-      [data]="dropdownListForCollections"
-      [(ngModel)]="selectedItemsForCollections"
-      (onSelect)="onItemSelect($event)"
-      (onSelectAll)="onSelectAll($event)"
-    >
-    </ng-multiselect-dropdown>
-
-    <!-- <div>
+        <div>
           <br />
           <mat-slide-toggle>Project open for application</mat-slide-toggle>
           <br />
           <div>
             <button mat-button matStepperPrevious class="back">Back</button>
             <button
-              mat-button
+              mat-raised-button
+              color="primary"
               matStepperNext
               class="next"
               (click)="createTheProject()"
             >
-              Submit
+              Create Project
             </button>
           </div>
-        </div> -->
-    <!-- </form> -->
-    <!-- </mat-step>
-    </mat-horizontal-stepper> -->
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
   </mat-card-content>
 
   <!-- <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>-->
+    <button mat-raised-button color="primary" (click)="createTheProject()">
+      Create Project
+    </button>
+  </mat-card-actions> -->
 </mat-card>

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Collections } from 'src/app/mock-data/mock-collections';
 import { Skill } from 'src/app/classes/Skill';
 import { Skills } from 'src/app/mock-data/mock-skills';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-skill-collection',
@@ -15,7 +16,7 @@ export class AddSkillCollectionComponent implements OnInit {
 
   collectionName: string;
   collectionWeight: number = 1;
-  skillCollection: Skill[];
+  collectionSkills: Skill[];
 
   skillArray = Skills;
 
@@ -41,17 +42,18 @@ export class AddSkillCollectionComponent implements OnInit {
   captureCollection() {
     console.log(this.collectionName + '\n');
     console.log(this.collectionWeight + '\n');
-    // this.skillCollection.forEach(element => {
-    //   console.log(element.SkillName+"\n");
-    // });
+    console.log(this.collectionSkills);
 
-    var col = new Collection();
+    var collection = new Collection();
 
-    (col.CollectionId = 'random-id' + this.skillCollection.length),
-      (col.CollectionName = this.collectionName);
-    // col.Skills = this.skillCollection.toString();
+    collection.CollectionId = (Collections.length + 1).toString();
+    collection.CollectionName = this.collectionName;
+    collection.Skills = this.collectionSkills;
 
-    Collections.push(col);
-    // this.collectionArray.push(col);
+    this.dialogRef.close({ data: collection });
+  }
+
+  cancel() {
+    this.dialogRef.close();
   }
 }
