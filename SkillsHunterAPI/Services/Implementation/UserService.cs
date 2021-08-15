@@ -365,6 +365,16 @@ namespace SkillsHunterAPI.Services
                 }
 
 
+                UserSkillCollection userSkillCollection = new UserSkillCollection();
+
+                userSkillCollection.UserSkillCollectionId = new Guid();
+
+                userSkillCollection.SkillCollectionId = skillCollection.SkillCollectionId;
+                userSkillCollection.UserId = currentUser;
+                userSkillCollection.Weight = request.Weight;
+
+                _context.UserSkillCollections.Add(userSkillCollection);
+                await _context.SaveChangesAsync();
 
             }
 
