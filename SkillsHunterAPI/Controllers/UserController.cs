@@ -15,6 +15,7 @@ using System.IO;
 using System.Net.Http.Headers;
 using SkillsHunterAPI.Models.Skill;
 using Microsoft.AspNetCore.Http;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -135,10 +136,16 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/update")]
-        public Task<UpdateResponse> UpdateUser([FromBody]UpdateRequest request)
+        public async Task<UpdateUserResponse> UpdateUser([FromBody]UpdateUserRequest request)
         {
-            //var response = await _userService.UpdateUser(request);
-            return null;
+            Guid LoggedInUser = GetCurrentUserId();
+            await _userService.UpdateUser(request,LoggedInUser);
+
+            UpdateUserResponse response = new UpdateUserResponse();
+            response.Success = true;
+
+            return response;
+           
         }
 
         [HttpGet]
@@ -355,15 +362,15 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/addUserSkillCollection")]
-        public IActionResult AddUserSkillCollection(AddSkillCollectionRequest request)
+        [Route("api/[controller]/CreateUserSkillCollection")]
+        public IActionResult CreateUserSkillCollection(CreateSkillCollectionRequest request)
         {
             Guid LoggedInUser = GetCurrentUserId();
 
             //Create the skill collection from request
 
 
-            return (IActionResult)_userService.AddUserSkillCollection(request, LoggedInUser);
+            return (IActionResult)_userService.CreateUserSkillCollection(request, LoggedInUser);
 
 
         }

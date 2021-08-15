@@ -36,7 +36,6 @@ namespace SkillsHunterAPI.Controllers
                 {
                     Id = result.SkillId,
                     Name = result.Name,
-                    CategoryId = result.CategoryId,
                     Status = result.Status
                 });
             }
@@ -110,8 +109,8 @@ namespace SkillsHunterAPI.Controllers
             {
                 // Remove category code here
 
-                Guid id = new Guid(request.SkillId);
-                Skill result = await _adminService.RemoveSkill(id);
+                //Guid id = new Guid(request.SkillId);
+                Skill result = await _adminService.RemoveSkill(request.SkillId);
 
                 return Ok(new RemoveSkillResponse()
                 {
@@ -193,7 +192,7 @@ namespace SkillsHunterAPI.Controllers
 
                 skill.Name = request.Name;
 
-                skill.CategoryId = new Guid(request.CategoryId);
+                //skill.CategoryId = new Guid(request.CategoryId);
 
                 skill.Status = request.Status;
 
@@ -203,7 +202,6 @@ namespace SkillsHunterAPI.Controllers
                 {
                     Id = result.SkillId,
                     Name = result.Name,
-                    CategoryId = result.CategoryId,
                     Status = result.Status
                 });
             }

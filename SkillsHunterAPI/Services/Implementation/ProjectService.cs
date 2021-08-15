@@ -181,7 +181,7 @@ namespace SkillsHunterAPI.Services
             return true;
         }
 
-        public async Task<ProjectSkillCollection> CreateCollection(AddSkillCollectionRequest request, Guid projectId)
+        public async Task<ProjectSkillCollection> CreateCollection(CreateSkillCollectionRequest request, Guid projectId)
         {
             //Creating the new SkillCollection object
             SkillCollection skillCollection = new SkillCollection();

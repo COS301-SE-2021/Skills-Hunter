@@ -15,7 +15,7 @@ namespace SkillsHunterAPI.Models.Project.Request
         //public DateTime DateCreated { get; set; }
         public List<AddExistingSkillRequest> ExistingSkills { get; set; }
         public List<AddNewSkillRequest> NewSkills { get; set; }
-        public List<AddSkillCollectionRequest> SkillCollections { get; set; }
+        public List<CreateSkillCollectionRequest> SkillCollections { get; set; }
 
         public CreateProjectRequest()
         {
