@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Skill;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Services
 {
@@ -49,6 +50,6 @@ namespace SkillsHunterAPI.Services
 
         Task<Skill> AddNewSkill(AddNewSkillRequest request);
 
-        Task CreateUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser);
+        Task CreateUserSkillCollection(CreateSkillCollectionRequest request, Guid currentUser);
     }
 }

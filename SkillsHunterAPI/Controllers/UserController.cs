@@ -15,6 +15,7 @@ using System.IO;
 using System.Net.Http.Headers;
 using SkillsHunterAPI.Models.Skill;
 using Microsoft.AspNetCore.Http;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -362,7 +363,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/CreateUserSkillCollection")]
-        public IActionResult CreateUserSkillCollection(AddSkillCollectionRequest request)
+        public IActionResult CreateUserSkillCollection(CreateSkillCollectionRequest request)
         {
             Guid LoggedInUser = GetCurrentUserId();
 
