@@ -11,13 +11,11 @@ import { Skills } from 'src/app/mock-data/mock-skills';
   styleUrls: ['./add-skill-collection.component.scss'],
 })
 export class AddSkillCollectionComponent implements OnInit {
-  _collections: Collection[] = Collections;
+  collectionArray: Collection[] = Collections;
 
   collectionName: string;
   collectionWeight: number = 1;
-  // skillCollection : Skill[];
-
-  skillCollection: string[];
+  skillCollection: Skill[];
 
   skillArray = Skills;
 
@@ -27,7 +25,10 @@ export class AddSkillCollectionComponent implements OnInit {
     return value;
   }
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<AddSkillCollectionComponent>
+  ) {}
 
   ngOnInit(): void {
     this.collectionFormGroup = this.formBuilder.group({
@@ -51,6 +52,6 @@ export class AddSkillCollectionComponent implements OnInit {
     // col.Skills = this.skillCollection.toString();
 
     Collections.push(col);
-    // this._collections.push(col);
+    // this.collectionArray.push(col);
   }
 }

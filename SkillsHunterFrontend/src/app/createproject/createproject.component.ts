@@ -1,3 +1,4 @@
+import { Collection } from './../classes/Collection';
 import { Collections } from './../mock-data/mock-collections';
 import { Skill } from 'src/app/classes/Skill';
 import { Projects } from './../mock-data/mock-projects';
@@ -94,8 +95,8 @@ export class CreateprojectComponent implements OnInit {
   addSkill() {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
-    configDialog.width = '40%';
-    configDialog.height = '80%';
+    configDialog.width = '60%';
+    configDialog.height = '450px';
     const dialogRef = this.dialog.open(AddSkillCategoryComponent, configDialog);
 
     dialogRef.afterClosed().subscribe((skill) => {
@@ -128,17 +129,42 @@ export class CreateprojectComponent implements OnInit {
   }
 
   addCollection() {
-    //   //this._router.navigate([`createproject`]);
-    //   console.log('in');
-    //   const configDialog = new MatDialogConfig();
-    //   configDialog.backdropClass = 'backGround';
-    //   configDialog.width = '40%';
-    //   configDialog.height = '80%';
-    //   // const dialogRef = this.dialog.open(AddSkillsCollectionComponent, configDialog);
-    //   const dialogRef = this.dialog.open(
-    //     AddSkillCollectionComponent,
-    //     configDialog
-    //   );
+    const configDialog = new MatDialogConfig();
+    configDialog.backdropClass = 'backGround';
+    configDialog.width = '60%';
+    configDialog.height = '450px';
+    const dialogRef = this.dialog.open(
+      AddSkillCollectionComponent,
+      configDialog
+    );
+
+    dialogRef.afterClosed().subscribe((collection) => {
+      if (collection != undefined) {
+        console.log('Received skill as = ');
+
+        var obj = new Collection();
+        obj.CollectionId = collection.data.CollectionId;
+        obj.CollectionName = collection.data.CollectionName;
+        obj.Skills = collection.data.Skills;
+
+        Collections.push(obj);
+
+        this.selectedObjectsCollections.push(obj);
+
+        this.dropdownListForCollections = [];
+
+        console.log(this.dropdownListForCollections);
+
+        var sel = {
+          item_id: obj.CollectionId,
+          item_text: obj.CollectionName,
+        };
+
+        this.onItemSelect(sel);
+
+        this.ngOnInit();
+      } else console.log('Returned Empty');
+    });
   }
 
   createTheProject() {
