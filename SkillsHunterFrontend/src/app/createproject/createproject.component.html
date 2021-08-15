@@ -6,35 +6,60 @@
     </div>
   </mat-card-header>
   <mat-card-content>
-    <mat-horizontal-stepper [linear]="isLinear" #stepper>
-      <mat-step [stepControl]="projectBasicInfo">
-        <div class="fillIn">
-          <form [formGroup]="projectBasicInfo" class="stepform">
-            <ng-template matStepLabel>Step 1</ng-template>
-            <mat-form-field appearance="outline">
-              <mat-label>Project Name</mat-label>
-              <input
-                matInput
-                placeholder="Project X"
-                formControlName="basicInfo"
-                required
-              />
-            </mat-form-field>
+    <mat-horizontal-stepper
+      [linear]="isLinear"
+      fxLayout="column"
+      fxFlex="100"
+      fxLayoutAlign=" stretch"
+      #stepper
+    >
+      <mat-step [stepControl]="projectBasicInfo" fxFlex="100" fxLayout="column">
+        <!-- <div style="border: 2px solid green" fxFlex="100">
+          <div fxFlex="100" fxFill style="border: 2px solid red"> -->
+        <mat-card class="stepper-card">
+          <mat-card-content>
+            <!-- <div class="fillIn"> -->
+            <form [formGroup]="projectBasicInfo" class="stepform">
+              <ng-template matStepLabel>Step 1</ng-template>
+              <mat-form-field appearance="outline">
+                <mat-label>Project Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Project X"
+                  formControlName="basicInfo"
+                  required
+                />
+              </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Project Description</mat-label>
-              <textarea matInput placeholder="..." required></textarea>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious class="back">Cancel</button>
-              <button mat-button matStepperNext class="next">Next</button>
-            </div>
-          </form>
-        </div>
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Project Description</mat-label>
+                <textarea matInput placeholder="..." required></textarea>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious class="back">
+                  Cancel
+                </button>
+                <button mat-button matStepperNext class="next">Next</button>
+              </div>
+            </form>
+            <!-- </div> -->
+          </mat-card-content>
+        </mat-card>
+        <!-- </div>
+        </div> -->
       </mat-step>
-      <mat-step [stepControl]="projectSkillsAndCollections" label="Step 2">
-        <br />
-
+      <mat-step
+        [stepControl]="projectSkillsAndCollections"
+        label="Step 2"
+        fxFlex="100"
+        fxLayout="column"
+      >
+        <!-- <div style="border: 2px solid green" fxFlex="100">
+          <div fxFlex="100" fxFill style="border: 2px solid red"> -->
+        <!-- <br /> -->
+        <!-- <mat-card class="stepper-card">
+          <mat-card-content> -->
+        <!-- <div class="fillIn"> -->
         <h1 class="adding-title">Skills</h1>
         <button
           mat-icon-button
@@ -81,24 +106,28 @@
           (onSelectAll)="onSelectAll($event)"
         >
         </ng-multiselect-dropdown>
+        <!-- </div> -->
 
-        <div>
-          <br />
-          <mat-slide-toggle>Project open for application</mat-slide-toggle>
-          <br />
-          <div>
-            <button mat-button matStepperPrevious class="back">Back</button>
-            <button
-              mat-raised-button
-              color="primary"
-              matStepperNext
-              class="next"
-              (click)="createTheProject()"
-            >
-              Create Project
-            </button>
-          </div>
-        </div>
+        <!-- <div> -->
+        <br />
+        <!-- <mat-slide-toggle>Project open for application</mat-slide-toggle>
+        <br />
+        <button mat-button matStepperPrevious class="back">Back</button>
+        <button
+          mat-raised-button
+          color="primary"
+          matStepperNext
+          class="next"
+          (click)="createTheProject()"
+        >
+          Create Project
+        </button> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- </mat-card-content>
+        </mat-card> -->
+        <!-- </div>
+        </div> -->
       </mat-step>
     </mat-horizontal-stepper>
   </mat-card-content>
