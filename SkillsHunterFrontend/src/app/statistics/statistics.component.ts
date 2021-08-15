@@ -69,7 +69,7 @@ export class StatisticsComponent implements OnInit {
     for(let count = 0; count < data.length; count++){
         if(data[count].usertype == value)
             match++;
-    }
+    } 
 
     match = Math.ceil( match / data.length);
 
@@ -84,7 +84,7 @@ export class StatisticsComponent implements OnInit {
     let match: number = 0;
 
     for(let count = 0; count < data.length; count++){
-        if(data[count].OpenForApplication == value)
+        if(data[count].openForApplication == value)
             match++;
     }
 

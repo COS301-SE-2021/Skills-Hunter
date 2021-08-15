@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserAdvancedSearchComponent } from './user-advanced-search/user-advanced-search.component';
 import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 import { User } from '../classes/User';
-import { mockUserData } from '../mock-data/mock-Users';
 import { DateAdapter } from '@angular/material/core';
 import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
+import { mockUserData } from '../statistics/mock-stats';
 
 @Component({
   selector: 'app-user-control',
