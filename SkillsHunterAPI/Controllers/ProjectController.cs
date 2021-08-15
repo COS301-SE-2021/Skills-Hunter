@@ -221,11 +221,11 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPut]
         [Route("api/[controller]/updateProject")]
-        public async Task<ActionResult> UpdateProject([FromBody] ProjectRequest projectRequest)
+        public async Task<ActionResult> UpdateProject([FromBody] UpdateProjectRequest projectRequest)
         {
 
 
-            Guid projectId = new Guid(projectRequest.ProjectId);
+            /*Guid projectId = new Guid(projectRequest.ProjectId);
             Project project = await _projectService.GetProject(projectId);
 
             if (project == null )
@@ -249,7 +249,7 @@ namespace SkillsHunterAPI.Controllers
             await _projectService.UpdateProject(PID, ProjectToUpdate);
 
 
-            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);
+            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);*/
 
 
             /*Guid _projectID = new Guid(projectRequest.ProjectId);
