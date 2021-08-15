@@ -20,8 +20,8 @@ export class SkillCollectionCardComponent implements OnInit {
     let result:string = "";
 
     for(let count = 0; count < Projects.length && result == ""; count++){
-      if(this.collection.ProjectId == Projects[count].ProjectId){
-        result = Projects[count].Name;
+      if(this.collection.ProjectId == Projects[count].projectId){
+        result = Projects[count].name;
       }
     }
 
