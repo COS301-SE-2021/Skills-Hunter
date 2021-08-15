@@ -351,6 +351,21 @@ namespace SkillsHunterAPI.Services
                 await _context.SaveChangesAsync();
 
 
+                foreach(AddExistingSkillRequest skill in request.Skills)
+                {
+                    SkillCollectionMap skillCollectionMap = new SkillCollectionMap();
+                    
+                    skillCollectionMap.SkillCollectionMapId = new Guid();
+                    skillCollectionMap.SkillCollectionId = skillCollection.SkillCollectionId;
+                    skillCollectionMap.SkillId = skill.SkillId;
+
+                    _context.SkillCollectionMaps.Add(skillCollectionMap);
+                    await _context.SaveChangesAsync();
+
+                }
+
+
+
             }
 
             
