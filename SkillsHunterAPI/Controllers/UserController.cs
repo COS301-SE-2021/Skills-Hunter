@@ -135,7 +135,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/update")]
-        public Task<UpdateResponse> UpdateUser([FromBody]UpdateUserRequest request)
+        public Task<UpdateUserResponse> UpdateUser([FromBody]UpdateUserRequest request)
         {
             //var response = await _userService.UpdateUser(request);
             return null;
