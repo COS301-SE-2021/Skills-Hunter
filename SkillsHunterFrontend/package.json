@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~10.2.0",
     "@angular/platform-browser-dynamic": "~10.2.0",
     "@angular/router": "~10.2.0",
+    "angularjs-dropdown-multiselect": "^2.0.0-beta.10",
     "bootstrap": "^5.0.1",
     "ng-multiselect-dropdown": "^0.3.4",
     "ngx-mat-msautocomplete": "^1.0.0",
@@ -29,7 +30,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1002.0",
+    "@angular-devkit/build-angular": "^12.2.1",
     "@angular/cli": "~10.2.0",
     "@angular/compiler-cli": "~10.2.0",
     "@types/jasmine": "~3.5.0",
@@ -38,7 +39,7 @@
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~5.0.0",
+    "karma": "^6.3.4",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",

@@ -96,7 +96,7 @@ export class CreateprojectComponent implements OnInit {
   // }
 
   onItemSelect(item: any) {
-    this.dropdownSettings.console.log(item);
+    console.log(item);
   }
 
   onSelectAll(items: any) {

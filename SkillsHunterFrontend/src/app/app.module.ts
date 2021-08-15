@@ -27,7 +27,7 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
 import { CollectionCardComponent } from './createproject/add-skill-collection/collection-card/collection-card.component';
 import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { NgxMatMSAutocompleteModule } from 'ngx-mat-msautocomplete';
+// import { NgxMatMSAutocompleteModule } from 'ngx-mat-msautocomplete';
 
 @NgModule({
   declarations: [
@@ -67,7 +67,7 @@ import { NgxMatMSAutocompleteModule } from 'ngx-mat-msautocomplete';
     MatFormFieldModule,
     MatInputModule,
     NgMultiSelectDropDownModule.forRoot(),
-    NgxMatMSAutocompleteModule,
+    // NgxMatMSAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
