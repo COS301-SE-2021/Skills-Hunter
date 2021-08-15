@@ -150,9 +150,9 @@ namespace SkillsHunterAPI.Services
             return new LogOutResponse();
         }*/
 
-        public async Task<UpdateResponse> UpdateUser(UpdateRequest request)
+        public async Task<UpdateUserResponse> UpdateUser(UpdateRequest request)
         {
-            return new UpdateResponse();
+            return new UpdateUserResponse();
         }
 
         public async Task<DeleteResponse> DeleteUser(DeleteRequest request)
