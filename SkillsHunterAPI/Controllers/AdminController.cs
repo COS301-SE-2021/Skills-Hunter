@@ -6,6 +6,7 @@ using SkillsHunterAPI.Models.Project;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using SkillsHunterAPI.Models.Skill.Response;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -316,6 +317,13 @@ namespace SkillsHunterAPI.Controllers
 
                 return NotFound(error.Message);
             }
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/getAllSkillCollections")]
+        public async Task<IEnumerable<GetAllSkillCollections>> GetAllSkillCollections()
+        {
+            return null;
         }
     }
 }
