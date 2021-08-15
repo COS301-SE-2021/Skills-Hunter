@@ -13,7 +13,7 @@ namespace SkillsHunterAPI.Services
         
         User Authenticate(string email, string pass);
         
-        Task<UpdateResponse> UpdateUser(UpdateRequest request);
+        Task UpdateUser(UpdateUserRequest request, Guid UserId);
         
         Task<DeleteResponse> DeleteUser(DeleteRequest request);
         
