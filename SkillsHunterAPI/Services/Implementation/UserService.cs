@@ -25,6 +25,7 @@ namespace SkillsHunterAPI.Services
             _context = context;
         }
 
+
         public User Create(User user,string password)
         {
             if(!IsValidEmail(user.Email))
@@ -150,11 +151,23 @@ namespace SkillsHunterAPI.Services
             return new LogOutResponse();
         }*/
 
-        public async Task<UpdateUserResponse> UpdateUser(UpdateRequest request)
+        public async Task UpdateUser(UpdateUserRequest request, Guid UserId)
         {
-            return new UpdateUserResponse();
-        }
+            User user = _context.Users.Where(u => u.UserId== UserId).FirstOrDefault();
 
+            if (user != null)
+            {
+                user.Name = request.Name;
+                user.Surname = request.Surname;
+                user.Email = request.Email;
+
+            
+            }
+
+
+
+        }
+       
         public async Task<DeleteResponse> DeleteUser(DeleteRequest request)
         {
             return new DeleteResponse();

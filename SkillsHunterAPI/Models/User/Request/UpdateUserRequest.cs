@@ -6,8 +6,10 @@ namespace SkillsHunterAPI.Models.User
     //This model request class contains all the attributes required to update a user in the system
     public class UpdateUserRequest
     {
-        public string FirstName { get; set; }
-        public string LastName {get;set; }
+
+        public Guid UserId { get; set; }
+        public string Name { get; set; }
+        public string Surname {get;set; }
         public string Email {get; set; }
         public string PhoneNumber {get; set; }
         public DateTime StartDate {get; set; }
