@@ -148,7 +148,7 @@ namespace SkillsHunterAPI.Controllers
            
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/[controller]/delete")]
         public async Task<DeleteResponse> DeleteUser([FromBody]DeleteRequest request)
         {
@@ -267,7 +267,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/[controller]/removeImage")]
         public async Task<IActionResult> RemoveImage(RemoveImageRequest request){
             try
@@ -326,7 +326,7 @@ namespace SkillsHunterAPI.Controllers
                 return StatusCode(500, $"Internal server error: {error}");
             }
         }
-        [HttpGet]
+        [HttpPost]
         [Route("api/[controller]/addUserSkill")]
         public IActionResult AddUserSkill(AddExistingSkillRequest request)
         {
@@ -337,7 +337,7 @@ namespace SkillsHunterAPI.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/[controller]/addNewSkill")]
         public async Task<IActionResult> AddNewSkill(AddNewSkillRequest request)
         {
@@ -361,7 +361,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/[controller]/CreateUserSkillCollection")]
         public IActionResult CreateUserSkillCollection(CreateSkillCollectionRequest request)
         {
@@ -382,7 +382,7 @@ namespace SkillsHunterAPI.Controllers
         {
             Guid LoggedInUser = GetCurrentUserId();
 
-            return await _userService.GetUserSkillsByUserId(LoggedInUser);
+            return (UserSkill)await _userService.GetUserSkillsByUserId(LoggedInUser);
 
 
 
