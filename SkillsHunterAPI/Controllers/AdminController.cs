@@ -49,6 +49,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/[controller]/addSkill")]
         public async Task<IActionResult> AddSkill([FromBody] AddSkillRequest request)
@@ -77,6 +78,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/[controller]/addCategory")]
         public async Task<IActionResult> AddCategory([FromBody] AddCategoryRequest request)
@@ -107,6 +109,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/[controller]/removeSkill")]
         public async Task<IActionResult> RemoveSkill([FromBody] RemoveSkillRequest request)
@@ -161,6 +164,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/updateSkill")]
         public async Task<IActionResult> UpdateSkill([FromBody] UpdateSkillRequest request)
@@ -242,6 +246,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/updateCategory")]
         public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryRequest request)
@@ -273,6 +278,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/removeCategory")]
         public async Task<IActionResult> RemoveCategory(RemoveCategoryRequest request)
