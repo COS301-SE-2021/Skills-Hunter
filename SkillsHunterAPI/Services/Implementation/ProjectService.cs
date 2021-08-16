@@ -47,14 +47,14 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Project> GetProject(Guid id)
+        public Project GetProject(Guid id)
         {
-            return await _context.Projects.FindAsync(id);
+            return _context.Projects.Find(id);
         }
 
-        public async Task<IEnumerable<Project>> GetProjects()
+        public IEnumerable<Project> GetProjects()
         {
-            return await _context.Projects.ToListAsync();
+            return _context.Projects.ToList();
         }
 
         public async Task<IEnumerable<Project>> GetProjectsByOwnerId()
@@ -93,14 +93,14 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ProjectSkill> GetProjectSkill(Guid id)
+        public ProjectSkill GetProjectSkill(Guid id)
         {
-            return await _context.ProjectSkills.FindAsync(id);
+            return _context.ProjectSkills.Find(id);
         }
 
-        public async Task<IEnumerable<ProjectSkill>> GetProjectSkills(Guid projectId)
+        public IEnumerable<ProjectSkill> GetProjectSkills(Guid projectId)
         {
-            return await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToListAsync();
+            return _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToList();
         }
 
 
