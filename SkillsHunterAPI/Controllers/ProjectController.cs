@@ -537,7 +537,15 @@ namespace SkillsHunterAPI.Controllers
                             message = error.Message 
                        });
             }
-        }    
-    
+        }
+
+
+        [HttpGet]
+        [Route("api/[controller]/GetProjectSkillsByProjectId/{id}")]
+        public async Task<IEnumerable<ProjectSkill>> GetProjectSkillsByProjectId(Guid projectId)
+        {
+            return await _projectService.GetProjectSkillsByProjectId(projectId);
+        }
+
     }
 }
