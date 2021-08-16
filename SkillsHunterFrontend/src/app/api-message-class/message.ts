@@ -7,9 +7,9 @@ export interface skillModel{
 }
 
 export interface categoryModel{
-    CategoryId: string;
-    Name: string;
-    Description: string;    
+    categoryId: string;
+    name: string;
+    description: string;    
 }
 
 //request classes

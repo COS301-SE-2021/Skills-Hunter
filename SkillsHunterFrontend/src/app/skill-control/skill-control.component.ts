@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { adminSkillsData } from '../mock-data/mock-admin-skills';
-import { Skill } from '../classes/Admin-Skill';
 import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 import { SkillAdvancedSearchComponent } from './skill-advanced-search/skill-advanced-search.component';
-import { Category } from '../classes/Category';
 import {AdminService } from '../services/admin.service';
 import { skillModel } from '../api-message-class/message';
 
@@ -33,11 +30,11 @@ export class SkillControlComponent implements OnInit {
     });
   }
 
-  deleteUser(skill): void{
+  deleteUser(skill: skillModel): void{
     this.adminService.removeSkill(skill.skillId).subscribe(apiValue => {
       
       for(var count = 0; count < this.data.length;count++){
-        if(this.data[count].skillId == skill.skillid){
+        if(this.data[count].skillId == skill.skillId){
           for(var step = count; step < this.data.length - 1; step++){
             this.data[step] = this.data[step + 1];
           }
@@ -91,7 +88,7 @@ export class SkillControlComponent implements OnInit {
 
       this.adminService.getSkills().subscribe(apiValue => {
         this.data = apiValue.skills;
-        
+
         for(let count = 0; count < this.data.length; count++){
           if(this.data[count].status == result.status || result.status == -1){
             if(this.data[count].categoryId == result.categoryId ||  result.categoryId == "#"){
