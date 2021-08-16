@@ -81,11 +81,11 @@ namespace SkillsHunterAPIUnitTest.Tests
                 Added = serviceRequest
             };
 
-            mockService.Setup(serv => serv.AddSkill(serviceRequest)).ReturnsAsync(serviceRequest);
+            mockService.Setup(serv => serv.CreateSkill(serviceRequest)).ReturnsAsync(serviceRequest);
 
             // Act
             
-            var result = await testController.AddSkill(request);
+            var result = await testController.CreateSkill(request);
 
             // Assert
 

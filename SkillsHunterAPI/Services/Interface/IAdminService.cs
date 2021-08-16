@@ -12,7 +12,7 @@ namespace SkillsHunterAPI.Services
 {
     public interface IAdminService
     {
-        Task<Skill> AddSkill(Skill skill);
+        Task<Skill> CreateSkill(Skill skill);
         Task<Skill> GetSkill(Guid id);
         Task<List<Skill>> GetSkills();
         Task<Skill> RemoveSkill(Guid id);

@@ -50,8 +50,8 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpPost]
-        [Route("api/[controller]/addSkill")]
-        public async Task<IActionResult> AddSkill([FromBody] AddSkillRequest request)
+        [Route("api/[controller]/createSkill")]
+        public async Task<IActionResult> CreateSkill([FromBody] AddSkillRequest request)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace SkillsHunterAPI.Controllers
                 skill.Name = request.Name;
                 skill.Status = SkillStatus.Accepted;
 
-                Skill result = await _adminService.AddSkill(skill);
+                Skill result = await _adminService.CreateSkill(skill);
 
                 //Link skill with Categories
                 await _adminService.AddCategoriesToSkill(skill.SkillId, request.Categories);
