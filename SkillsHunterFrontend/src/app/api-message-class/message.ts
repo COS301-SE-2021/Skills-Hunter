@@ -12,6 +12,10 @@ export interface categoryModel{
     description: string;    
 }
 
+export interface UserModel{
+    
+}
+
 //request classes
 export interface removeSkillRequest{
     skillId: string;

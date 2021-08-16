@@ -15,7 +15,7 @@ export class AdminService {
     set('content-type','application/json').
     set('authorization','Bearer ' + localStorage.getItem('token'));
 
-   }
+  } 
   
   getSkills(): Observable<getSkillsResponse> {
     return this.http.get<getSkillsResponse>(this.apiUrl + "Admin/getSkills",{headers : this.header});
