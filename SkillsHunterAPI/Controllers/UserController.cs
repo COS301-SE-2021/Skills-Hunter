@@ -374,5 +374,20 @@ namespace SkillsHunterAPI.Controllers
 
 
         }
+
+
+        [HttpGet]
+        [Route("api/[controller]/GetUserSkillsByUserId")]
+        public async Task<UserSkill> GetUserSkillsByUserId()
+        {
+            Guid LoggedInUser = GetCurrentUserId();
+
+            return await _userService.GetUserSkillsByUserId(LoggedInUser);
+
+
+
+
+        }
+
     }
 }
