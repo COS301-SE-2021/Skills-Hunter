@@ -63,8 +63,9 @@ namespace SkillsHunterAPI.Services
                 skillCategory.CategoryId = category.CategoryId;
 
                 _context.SkillCategories.Add(skillCategory);
-                await _context.SaveChangesAsync();
             }
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Skill> RemoveSkill(Guid id)
