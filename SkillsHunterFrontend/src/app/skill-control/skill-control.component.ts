@@ -25,13 +25,6 @@ export class SkillControlComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loadSkills(): void{
-    
-    this.adminService.getSkills().subscribe(apiValue => {
-      this.data = apiValue.skills;
-    });
-
-  }
 
   viewAll(): void{
     this.adminService.getSkills().subscribe(apiValue => {
@@ -41,17 +34,20 @@ export class SkillControlComponent implements OnInit {
   }
 
   deleteUser(skill): void{
-    for(var count = 0; count < this.data.length;count++){
-      if(this.data[count].skillId == skill.skillid){
-        for(var step = count; step < this.data.length - 1; step++){
-          this.data[step] = this.data[step + 1];
+    this.adminService.removeSkill(skill.skillId).subscribe(apiValue => {
+      
+      for(var count = 0; count < this.data.length;count++){
+        if(this.data[count].skillId == skill.skillid){
+          for(var step = count; step < this.data.length - 1; step++){
+            this.data[step] = this.data[step + 1];
+          }
+          this.data.pop();
+          break;
         }
-        this.data.pop();
-        break;
       }
-    }
 
-    this.ngOnInit();
+      this.ngOnInit();
+    });  
   }
 
   Search(): void{
@@ -92,18 +88,21 @@ export class SkillControlComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       let tempData:skillModel[] = [];
-      this.loadSkills();
-      
-      for(let count = 0; count < this.data.length; count++){
-        if(this.data[count].status == result.status || result.status == -1){
-          if(this.data[count].categoryId == result.categoryId ||  result.categoryId == "#"){
-            tempData.push(this.data[count]);
+
+      this.adminService.getSkills().subscribe(apiValue => {
+        this.data = apiValue.skills;
+        
+        for(let count = 0; count < this.data.length; count++){
+          if(this.data[count].status == result.status || result.status == -1){
+            if(this.data[count].categoryId == result.categoryId ||  result.categoryId == "#"){
+              tempData.push(this.data[count]);
+            }
           }
         }
-      }
-
-      this.data = tempData;
-      this.ngOnInit();
+  
+        this.data = tempData;
+        this.ngOnInit();
+      });
     });
   }
 }
