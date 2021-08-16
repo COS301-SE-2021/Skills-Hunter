@@ -6,6 +6,8 @@ using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Project;
 using System.Collections.Generic;
 using SkillsHunterAPI.Data;
+using SkillsHunterAPI.Models.Skill.Response;
+using SkillsHunterAPI.Models.Skill.Entity;
 
 namespace SkillsHunterAPI.Services
 {
@@ -138,6 +140,39 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
             
             return result;
+        }
+
+        public async Task<GetSkillCollectionResponse> getSkillCollectionById(Guid id)
+        {
+            SkillCollection skillCollection = _context.SkillCollections.Where(sk => sk.SkillCollectionId == id).FirstOrDefault();
+
+            if (skillCollection != null)
+            {
+                GetSkillCollectionResponse response = new GetSkillCollectionResponse();
+                response.SkillCollectionId = skillCollection.SkillCollectionId;
+                response.Name = skillCollection.Name;
+                response.Description = skillCollection.Description;
+
+                //Adding the skills of the SkillCollection
+                List<SkillCollectionMap> skillCollectionMaps = _context.SkillCollectionMaps.Where(skm => skm.SkillCollectionId == skillCollection.SkillCollectionId).ToList();
+
+                foreach (SkillCollectionMap skillCollectionMap in skillCollectionMaps)
+                {
+                    Skill skill = _context.Skills.Where(s => s.SkillId == skillCollectionMap.SkillId).FirstOrDefault();
+
+                    if (skill != null)
+                    {
+                        GetSkillResponse getSkill = new GetSkillResponse();
+                        getSkill.Id = skill.SkillId;
+                        getSkill.Name = skill.Name;
+                        response.Skills.Add(getSkill);
+                    }
+                }
+
+                return response;
+            }
+
+            return null;
         }
     }
 }
