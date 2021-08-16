@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "SkillsHunterFrontend"
+  "defaultProject": "SkillsHunterFrontend",
+  "cli": {
+    "analytics": false
+  }
 }
