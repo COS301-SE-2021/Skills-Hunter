@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using SkillsHunterAPI.Data;
 using SkillsHunterAPI.Models.Skill.Response;
 using SkillsHunterAPI.Models.Skill.Entity;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Services
 {
@@ -35,7 +36,7 @@ namespace SkillsHunterAPI.Services
             return await _context.Skills.ToListAsync();
         }
 
-        public async Task<Skill> AddSkill(Skill skill)
+        public async Task<Skill> CreateSkill(Skill skill)
         {
             skill.SkillId = new Guid();
             
@@ -43,6 +44,28 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
 
             return skill;
+        }
+
+        public async Task AddCategoriesToSkill(Guid skillId, List<GetCategoryByIdRequest> categories)
+        {
+            Skill skill = _context.Skills.Where(s => s.SkillId == skillId).FirstOrDefault();
+
+            if (skill == null)
+            {
+                return;
+            }
+
+            foreach (GetCategoryByIdRequest category in categories)
+            {
+                SkillCategory skillCategory = new SkillCategory();
+                skillCategory.SkillCategoryId = new Guid();
+                skillCategory.SkillId = skill.SkillId;
+                skillCategory.CategoryId = category.CategoryId;
+
+                _context.SkillCategories.Add(skillCategory);
+            }
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Skill> RemoveSkill(Guid id)

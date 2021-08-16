@@ -68,7 +68,6 @@ namespace SkillsHunterAPIUnitTest.Tests
             AddSkillRequest request = new AddSkillRequest()
             {
                 Name = "Java Web Development",
-                CategoryId = CatId
             };
 
             Skill serviceRequest  = new Skill()
@@ -82,11 +81,11 @@ namespace SkillsHunterAPIUnitTest.Tests
                 Added = serviceRequest
             };
 
-            mockService.Setup(serv => serv.AddSkill(serviceRequest)).ReturnsAsync(serviceRequest);
+            mockService.Setup(serv => serv.CreateSkill(serviceRequest)).ReturnsAsync(serviceRequest);
 
             // Act
             
-            var result = await testController.AddSkill(request);
+            var result = await testController.CreateSkill(request);
 
             // Assert
 

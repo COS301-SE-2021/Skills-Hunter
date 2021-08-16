@@ -193,6 +193,7 @@ namespace SkillsHunterAPI.Controllers
             response.Phone = user.Phone;
             response.Surname = user.Surname;
             response.UserId = user.UserId;
+            response.UserType = user.UserType;
 
             return response;
         }
