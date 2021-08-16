@@ -12,7 +12,8 @@ export class AdminService {
 
   constructor(private http: HttpClient) {
     this.header = new HttpHeaders().
-    set('content-type','application/json');
+    set('content-type','application/json').
+    set('authorization','Bearer ' + localStorage.getItem('token'));
 
    }
   
