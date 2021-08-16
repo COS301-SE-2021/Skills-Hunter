@@ -35,7 +35,9 @@ namespace SkillsHunterAPI.Services
         Task<ProjectSkill> GetProjectSkillBySkillId(Guid SkillId, Guid ProjectId);
         
         Task<IEnumerable<ProjectSkill>> GetProjectSkills(Guid projectId);
-        
+
+        Task<IEnumerable<ProjectSkill>> GetProjectSkillsByProjectId(Guid projectId);
+
         bool ApplyForProject(Guid userId,Guid projectId);
         
         bool InviteCandidate(Guid userId,Guid projectId, Guid inviteeId, String message);
