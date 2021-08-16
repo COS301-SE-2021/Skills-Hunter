@@ -56,9 +56,13 @@ namespace SkillsHunterAPI.Controllers
             try
             {
                 // Add skill code here
-                Skill skill = new Skill(request.Name, request.CategoryId, SkillStatus.Accepted);
+                Skill skill = new Skill();
+                skill.Name = request.Name;
+                skill.Status = SkillStatus.Accepted;
 
                 Skill result = await _adminService.AddSkill(skill);
+
+                //Link skill with Categories
 
                 return Ok(new AddSkillResponse()
                 {
