@@ -23,7 +23,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getSkill")]
         public async Task<IActionResult> GetSkill([FromBody] GetSkillRequest request)
         {
@@ -190,7 +190,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/getCategory")]
         public async Task<IActionResult> GetCategory([FromBody] GetCategoryRequest request)
         {
@@ -216,7 +216,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/getCategories")]
         public async Task<IActionResult> GetCategories()
         {
@@ -295,7 +295,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getAllSkillCollections")]
         public async Task<IActionResult> GetAllSkillCollections()
         {
