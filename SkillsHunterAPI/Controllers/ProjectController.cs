@@ -203,7 +203,7 @@ namespace SkillsHunterAPI.Controllers
             }
 
             //Adding skills from collections
-            foreach (AddSkillCollectionRequest collection in projectRequest.SkillCollections)
+            foreach (CreateSkillCollectionRequest collection in projectRequest.SkillCollections)
             {
                 await _projectService.CreateCollection(collection, newProject.ProjectId);
             }
