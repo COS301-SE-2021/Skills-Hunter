@@ -5,7 +5,7 @@ import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 import { SkillAdvancedSearchComponent } from './skill-advanced-search/skill-advanced-search.component';
 import { Category } from '../classes/Category';
 import {AdminService } from '../services/admin.service';
-import { skillModel } from '../api-response-class/response';
+import { skillModel } from '../api-message-class/message';
 
 export interface advancedOptions{
   categoryId: string;

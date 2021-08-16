@@ -1,16 +1,34 @@
 import { Injectable } from '@angular/core';
-import { skillModel, getSkills} from '../api-response-class/response';
+import { getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse } from '../api-message-class/message';
 import { Observable, of } from 'rxjs';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
   private apiUrl = 'http://localhost:5000/api/';
-  constructor(private http: HttpClient) { }
-  //http://localhost:5000/api/Admin/getSkills
-  getSkills(): Observable<getSkills> {
-    return this.http.get<getSkills>(this.apiUrl + "Admin/getSkills",{responseType : 'json'});
+  private header = null;
+
+  constructor(private http: HttpClient) {
+    this.header = new HttpHeaders().
+    set('content-type','application/json');
+
+   }
+  
+  getSkills(): Observable<getSkillsResponse> {
+    return this.http.get<getSkillsResponse>(this.apiUrl + "Admin/getSkills",{headers : this.header});
+  }
+
+  removeSkill(id: string): Observable<removeSkillResponse> {
+    let request: removeSkillRequest = {
+      skillId : id
+    };
+
+    return this.http.post<removeSkillResponse>(this.apiUrl + "Admin/removeSkill",request,{headers : this.header});
+  }
+
+  getCategories(): Observable<getCategoriesResponse>{
+    return this.http.get<getCategoriesResponse>(this.apiUrl + "Admin/getCategories",{headers : this.header}))
   }
 }
