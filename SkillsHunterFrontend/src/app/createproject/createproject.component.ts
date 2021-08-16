@@ -96,6 +96,7 @@ export class CreateprojectComponent implements OnInit {
   // }
 
   onItemSelect(item: any) {
+    // this.selectedObjectsCollections.push(item);
     console.log(item);
   }
 
