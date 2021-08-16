@@ -64,6 +64,7 @@ namespace SkillsHunterAPI.Controllers
                 Skill result = await _adminService.AddSkill(skill);
 
                 //Link skill with Categories
+                await _adminService.AddCategoriesToSkill(skill.SkillId, request.Categories);
 
                 return Ok(new AddSkillResponse()
                 {
