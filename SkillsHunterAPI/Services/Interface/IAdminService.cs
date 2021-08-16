@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Project;
+using SkillsHunterAPI.Models.Skill.Response;
 
 namespace SkillsHunterAPI.Services
 {
@@ -21,5 +22,6 @@ namespace SkillsHunterAPI.Services
         Task<IEnumerable<Category>> GetCategories();
         Task<Category> UpdateCategory(Guid id,Category category);
         Task<Category> RemoveCategory(Guid id);
+        Task<GetSkillCollectionResponse> getSkillCollectionById(Guid id);
     }
 }
