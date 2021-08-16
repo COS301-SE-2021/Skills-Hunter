@@ -30,6 +30,8 @@ namespace SkillsHunterAPI.Services
         
         Task<UserSkill> GetUserSkill(Guid id);
 
+        Task<UserSkill> GetUserSkillsByUserId(Guid id);
+
         Task AddWorkExperience(WorkExperience request);
         
         Task UpdateWorkExperience(Guid workExperienceID, WorkExperience request);
