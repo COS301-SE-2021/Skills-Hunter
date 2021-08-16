@@ -322,9 +322,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/getAllSkillCollections")]
-        public async Task<IEnumerable<GetAllSkillCollections>> GetAllSkillCollections()
+        public async Task<IEnumerable<GetSkillCollectionResponse>> GetAllSkillCollections()
         {
-            return null;
+            return await _adminService.getAllSkillCollections();
         }
     }
 }
