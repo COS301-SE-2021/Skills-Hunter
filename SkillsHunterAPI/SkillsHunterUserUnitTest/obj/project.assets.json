@@ -10895,19 +10895,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SbonisoMasilela\\.nuget\\packages\\": {}
+    "C:\\Users\\PC1\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\SkillsHunterUserUnitTest.csproj",
+      "projectUniqueName": "C:\\Users\\PC1\\Documents\\GitHub\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\SkillsHunterUserUnitTest.csproj",
       "projectName": "SkillsHunterUserUnitTest",
-      "projectPath": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\SkillsHunterUserUnitTest.csproj",
-      "packagesPath": "C:\\Users\\SbonisoMasilela\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\obj\\",
+      "projectPath": "C:\\Users\\PC1\\Documents\\GitHub\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\SkillsHunterUserUnitTest.csproj",
+      "packagesPath": "C:\\Users\\PC1\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\PC1\\Documents\\GitHub\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\SbonisoMasilela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\PC1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10915,14 +10915,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://packagesource": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj": {
-              "projectPath": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj"
+            "C:\\Users\\PC1\\Documents\\GitHub\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj": {
+              "projectPath": "C:\\Users\\PC1\\Documents\\GitHub\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj"
             }
           }
         }
@@ -10981,7 +10982,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

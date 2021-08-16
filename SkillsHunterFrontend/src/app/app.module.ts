@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
@@ -26,10 +26,41 @@ import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add
 import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MatCardModule } from '@angular/material/card';
+import { AdminBoardComponent } from './admin-board/admin-board.component';
+import { BoardContentComponent } from './board-content/board-content.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ProjectControlComponent } from './project-control/project-control.component';
+import { UserControlComponent } from './user-control/user-control.component';
+import { SkillControlComponent } from './skill-control/skill-control.component';
+import { CategoryControlComponent } from './category-control/category-control.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { SkillCollectionControlComponent } from './skill-collection-control/skill-collection-control.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { UserAdvancedSearchComponent } from './user-control/user-advanced-search/user-advanced-search.component';
+import { UserCardComponent } from './user-control/user-card/user-card.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { SkillCardComponent } from './skill-control/skill-card/skill-card.component';
+import { AdminProjectCardComponent } from './project-control/admin-project-card/admin-project-card.component';
+import { ProjectAdvancedSearchComponent } from './project-control/project-advanced-search/project-advanced-search.component';
+import { CategoryCardComponent } from './category-control/category-card/category-card.component';
+import { NewCategoryComponent } from './category-control/new-category/new-category.component';
+import { StatsBarComponent } from './statistics/stats-bar/stats-bar.component';
+import { ImageDisplayComponent } from './user-control/image-display/image-display.component';
+import { SkillAdvancedSearchComponent } from './skill-control/skill-advanced-search/skill-advanced-search.component';
+import { EditSkillComponent } from './skill-control/edit-skill/edit-skill.component';
+import { StatsComponent } from './stats/stats.component';
+import { SkillCollectionCardComponent } from './skill-collection-control/skill-collection-card/skill-collection-card.component';
+import { SkillCollectionAdvancedSearchComponent } from './skill-collection-control/skill-collection-advanced-search/skill-collection-advanced-search.component';
 import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
 import { AddSkillComponent } from './profile/add-skill/add-skill.component';
 import { SliderComponent } from './profile/slider/slider.component';
 import { ProfileImgComponent } from './profile/profile-img/profile-img.component';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +80,29 @@ import { ProfileImgComponent } from './profile/profile-img/profile-img.component
     AddSkillsComponent,
     AddSkillsCollectionComponent,
     ProfileComponent,
+    SidebarComponent,
+    AdminBoardComponent,
+    BoardContentComponent,
+    ProjectControlComponent,
+    UserControlComponent,
+    SkillControlComponent,
+    CategoryControlComponent,
+    StatisticsComponent,
+    SkillCollectionControlComponent,
+    UserAdvancedSearchComponent,
+    UserCardComponent,
+    SkillCardComponent,
+    AdminProjectCardComponent,
+    ProjectAdvancedSearchComponent,
+    CategoryCardComponent,
+    NewCategoryComponent,
+    StatsBarComponent,
+    ImageDisplayComponent,
+    SkillAdvancedSearchComponent,
+    EditSkillComponent,
+    StatsComponent,
+    SkillCollectionCardComponent,
+    SkillCollectionAdvancedSearchComponent,
     InviteCandidateComponent,
     AddSkillComponent,
     SliderComponent,
@@ -68,9 +122,18 @@ import { ProfileImgComponent } from './profile/profile-img/profile-img.component
     BrowserAnimationsModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatProgressBarModule,
+    MatSlideToggleModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatDialogModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

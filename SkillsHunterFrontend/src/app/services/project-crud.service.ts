@@ -56,4 +56,10 @@ export class ProjectCRUDService {
     );
   }
 
+  getskills(){
+    return this.httpclient.get<any>(
+      'http://localhost:5000/api/Admin/getSkills'
+    );
+  }
+
 }
