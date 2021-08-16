@@ -148,7 +148,7 @@ namespace SkillsHunterAPI.Controllers
            
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/[controller]/delete")]
         public async Task<DeleteResponse> DeleteUser([FromBody]DeleteRequest request)
         {
@@ -166,19 +166,19 @@ namespace SkillsHunterAPI.Controllers
 
             foreach (User user in usersFromDb)
             {
-                GetUserResponse tempUser = await GetUser(user.UserId.ToString());
+                GetUserResponse tempUser = await GetUser(user.UserId);
 
                 response.Add(tempUser);
             }
 
-            return null;
+            return response;
         }
 
         [HttpGet]
         [Route("api/[controller]/getUser/{id}")]
-        public async Task<GetUserResponse> GetUser(string id)
+        public async Task<GetUserResponse> GetUser(Guid id)
         {
-            User user = await _userService.GetUser(new Guid(id));
+            User user = await _userService.GetUser(id);
 
             GetUserResponse response = new GetUserResponse();
 
@@ -193,6 +193,7 @@ namespace SkillsHunterAPI.Controllers
             response.Phone = user.Phone;
             response.Surname = user.Surname;
             response.UserId = user.UserId;
+            response.UserType = user.UserType;
 
             return response;
         }
@@ -267,7 +268,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/[controller]/removeImage")]
         public async Task<IActionResult> RemoveImage(RemoveImageRequest request){
             try
@@ -326,7 +327,7 @@ namespace SkillsHunterAPI.Controllers
                 return StatusCode(500, $"Internal server error: {error}");
             }
         }
-        [HttpGet]
+        [HttpPost]
         [Route("api/[controller]/addUserSkill")]
         public IActionResult AddUserSkill(AddExistingSkillRequest request)
         {
@@ -337,7 +338,7 @@ namespace SkillsHunterAPI.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/[controller]/addNewSkill")]
         public async Task<IActionResult> AddNewSkill(AddNewSkillRequest request)
         {
@@ -361,7 +362,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/[controller]/CreateUserSkillCollection")]
         public IActionResult CreateUserSkillCollection(CreateSkillCollectionRequest request)
         {
@@ -374,5 +375,20 @@ namespace SkillsHunterAPI.Controllers
 
 
         }
+
+
+        [HttpGet]
+        [Route("api/[controller]/GetUserSkillsByUserId")]
+        public async Task<UserSkill> GetUserSkillsByUserId()
+        {
+            Guid LoggedInUser = GetCurrentUserId();
+
+            return (UserSkill)await _userService.GetUserSkillsByUserId(LoggedInUser);
+
+
+
+
+        }
+
     }
 }

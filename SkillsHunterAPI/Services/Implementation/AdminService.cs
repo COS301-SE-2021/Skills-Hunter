@@ -6,6 +6,9 @@ using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Project;
 using System.Collections.Generic;
 using SkillsHunterAPI.Data;
+using SkillsHunterAPI.Models.Skill.Response;
+using SkillsHunterAPI.Models.Skill.Entity;
+using SkillsHunterAPI.Models.Skill.Request;
 
 namespace SkillsHunterAPI.Services
 {
@@ -33,7 +36,7 @@ namespace SkillsHunterAPI.Services
             return await _context.Skills.ToListAsync();
         }
 
-        public async Task<Skill> AddSkill(Skill skill)
+        public async Task<Skill> CreateSkill(Skill skill)
         {
             skill.SkillId = new Guid();
             
@@ -41,6 +44,28 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
 
             return skill;
+        }
+
+        public async Task AddCategoriesToSkill(Guid skillId, List<GetCategoryByIdRequest> categories)
+        {
+            Skill skill = _context.Skills.Where(s => s.SkillId == skillId).FirstOrDefault();
+
+            if (skill == null)
+            {
+                return;
+            }
+
+            foreach (GetCategoryByIdRequest category in categories)
+            {
+                SkillCategory skillCategory = new SkillCategory();
+                skillCategory.SkillCategoryId = new Guid();
+                skillCategory.SkillId = skill.SkillId;
+                skillCategory.CategoryId = category.CategoryId;
+
+                _context.SkillCategories.Add(skillCategory);
+            }
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Skill> RemoveSkill(Guid id)
@@ -138,6 +163,58 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
             
             return result;
+        }
+
+        public async Task<GetSkillCollectionResponse> getSkillCollectionById(Guid id)
+        {
+            SkillCollection skillCollection = _context.SkillCollections.Where(sk => sk.SkillCollectionId == id).FirstOrDefault();
+
+            if (skillCollection != null)
+            {
+                GetSkillCollectionResponse response = new GetSkillCollectionResponse();
+                response.SkillCollectionId = skillCollection.SkillCollectionId;
+                response.Name = skillCollection.Name;
+                response.Description = skillCollection.Description;
+
+                //Adding the skills of the SkillCollection
+                List<SkillCollectionMap> skillCollectionMaps = _context.SkillCollectionMaps.Where(skm => skm.SkillCollectionId == skillCollection.SkillCollectionId).ToList();
+
+                foreach (SkillCollectionMap skillCollectionMap in skillCollectionMaps)
+                {
+                    Skill skill = _context.Skills.Where(s => s.SkillId == skillCollectionMap.SkillId).FirstOrDefault();
+
+                    if (skill != null)
+                    {
+                        GetSkillResponse getSkill = new GetSkillResponse();
+                        getSkill.Id = skill.SkillId;
+                        getSkill.Name = skill.Name;
+                        response.Skills.Add(getSkill);
+                    }
+                }
+
+                return response;
+            }
+
+            return null;
+        }
+
+        public async Task<IEnumerable<GetSkillCollectionResponse>> getAllSkillCollections()
+        {
+            List<GetSkillCollectionResponse> response = new List<GetSkillCollectionResponse>();
+
+            List<SkillCollection> skillCollections = _context.SkillCollections.ToList();
+
+            foreach (SkillCollection skillCollection in skillCollections)
+            {
+                GetSkillCollectionResponse getSkillCollection = await getSkillCollectionById(skillCollection.SkillCollectionId);
+
+                if (getSkillCollection != null)
+                {
+                    response.Add(getSkillCollection);
+                }
+            }
+
+            return response;
         }
     }
 }

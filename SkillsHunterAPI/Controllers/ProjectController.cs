@@ -221,11 +221,11 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPut]
         [Route("api/[controller]/updateProject")]
-        public async Task<ActionResult> UpdateProject([FromBody] ProjectRequest projectRequest)
+        public async Task<ActionResult> UpdateProject([FromBody] UpdateProjectRequest projectRequest)
         {
 
 
-            Guid projectId = new Guid(projectRequest.ProjectId);
+            /*Guid projectId = new Guid(projectRequest.ProjectId);
             Project project = await _projectService.GetProject(projectId);
 
             if (project == null )
@@ -249,7 +249,7 @@ namespace SkillsHunterAPI.Controllers
             await _projectService.UpdateProject(PID, ProjectToUpdate);
 
 
-            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);
+            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);*/
 
 
             /*Guid _projectID = new Guid(projectRequest.ProjectId);
@@ -328,7 +328,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpPost]
         [Route("api/[controller]/deleteProjectSkill/{id}")]
         public async Task<ActionResult> RemoveProjectSkill(string id)
         {
@@ -415,7 +415,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getCollection")]
         public IActionResult GetCollection(GetCollectionRequest request){
             //This method handles the request to retrieve a skill collection
@@ -515,7 +515,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
        
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getCollectionsByProject")]
         public IActionResult GetCollectionsByProject(GetCollectionsByProjectRequest request){
             //This method handles a request to retrieve Skill Collections by Project Id
@@ -537,7 +537,15 @@ namespace SkillsHunterAPI.Controllers
                             message = error.Message 
                        });
             }
-        }    
-    
+        }
+
+
+        [HttpGet]
+        [Route("api/[controller]/GetProjectSkillsByProjectId/{id}")]
+        public async Task<IEnumerable<ProjectSkill>> GetProjectSkillsByProjectId(Guid projectId)
+        {
+            return await _projectService.GetProjectSkillsByProjectId(projectId);
+        }
+
     }
 }

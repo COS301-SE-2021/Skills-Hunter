@@ -381,5 +381,11 @@ namespace SkillsHunterAPI.Services
             
         }
 
+
+        public async Task<IEnumerable<UserSkill>> GetUserSkillsByUserId(Guid id)
+        {
+            return (IEnumerable<UserSkill>)_context.UserSkills.Where(u => u.UserId == id).ToListAsync(); 
+        }
+
     }
 }
