@@ -28,6 +28,7 @@ import { CollectionCardComponent } from './createproject/add-skill-collection/co
 import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 // import { NgxMatMSAutocompleteModule } from 'ngx-mat-msautocomplete';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     MatInputModule,
     NgMultiSelectDropDownModule.forRoot(),
     // NgxMatMSAutocompleteModule,
+    AngularMultiSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

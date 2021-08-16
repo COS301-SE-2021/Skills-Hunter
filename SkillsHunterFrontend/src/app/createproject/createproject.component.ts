@@ -210,4 +210,22 @@ export class CreateprojectComponent implements OnInit {
   cancel() {
     this._router.navigate([`home`]);
   }
+
+  // data = {
+  //   placeHolder: 'Locations',
+  //   enableSelectClear: true,
+  //   enableSearch: true,
+  // };
+  // options = [
+  //   { name: 'ind', value: 'India' },
+  //   { name: 'nep', value: 'Nepal', checked: true },
+  //   { name: 'bon', value: 'Bondhar' },
+  //   { name: 'Kat', value: 'Kathmandu', checked: true },
+  //   { name: 'ner', value: 'Nerli' },
+  //   { name: 'bom', value: 'Bombay' },
+  // ];
+  // changeSelection(options) {
+  //   // process your custom logic here
+  //   console.log(options);
+  // }
 }
