@@ -328,7 +328,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpPost]
         [Route("api/[controller]/deleteProjectSkill/{id}")]
         public async Task<ActionResult> RemoveProjectSkill(string id)
         {
@@ -415,7 +415,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getCollection")]
         public IActionResult GetCollection(GetCollectionRequest request){
             //This method handles the request to retrieve a skill collection
@@ -515,7 +515,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
        
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getCollectionsByProject")]
         public IActionResult GetCollectionsByProject(GetCollectionsByProjectRequest request){
             //This method handles a request to retrieve Skill Collections by Project Id
