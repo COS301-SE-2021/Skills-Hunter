@@ -17,6 +17,15 @@ export interface removeSkillRequest{
     skillId: string;
 }
 
+export interface removeCategoryRequest{
+    Id: string;
+}
+
+export interface addCategoryRequest{
+    name: string;
+    description: string;
+}
+
 //response classes
 
 export interface getSkillsResponse{
@@ -37,4 +46,8 @@ export interface removeCategoryResponse
     Id: string;
     Name: string;
     Description: string;      
+}
+
+export interface addCategoryResponse{
+    added: categoryModel
 }
