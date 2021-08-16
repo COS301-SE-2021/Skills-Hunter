@@ -17,7 +17,11 @@ export class ProfileComponent implements OnInit {
 
   constructor(private imgService: ProfileInfoService,private dialog: MatDialog) { }
 
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
   ngOnInit(): void {
+    
     localStorage.setItem('name','Emmanuel');
     localStorage.setItem('surname','Khoza');
     localStorage.setItem('email','emma@mail.com');
@@ -102,7 +106,31 @@ export class ProfileComponent implements OnInit {
       if(returnedData !=undefined)
       {
         console.log("profile: "+returnedData.data.selectedSkill);
-        console.log("rate: "+returnedData.data.datarateValue);
+        console.log("rate: "+returnedData.data.rateValue);
+        this.noElements++;
+        /*this.ELEMENT_DATA.push(
+          {
+            No:this.noElements,
+            name: returnedData.data.selectedSkill,
+            rating: returnedData.data.rateValue
+            });*/
+        console.log("element"+JSON.stringify(this.ELEMENT_DATA[0]));
+        var arr=[];
+        for(let i=0;i<this.ELEMENT_DATA.length;i++)
+        {
+              arr.push(this.ELEMENT_DATA[i]);
+            }
+
+          arr.push({
+                No:this.noElements,
+                name: returnedData.data.selectedSkill,
+                rating: returnedData.data.rateValue
+                });
+
+        this.ELEMENT_DATA=arr;
+        //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
+        this.dataSource =this.ELEMENT_DATA;
+
       //return the skill and the value to profile then send request to backend
       }
       else{ 
@@ -110,4 +138,13 @@ export class ProfileComponent implements OnInit {
       }//dialog closed
     });
   }
+
+  noElements=1;
+  ELEMENT_DATA= [
+    {No: 1, name: 'Hydrogen', rating: 1.0079}
+  ];
+  displayedColumns: string[] = ['No', 'name', 'rating','actions'];
+  dataSource = this.ELEMENT_DATA;
+
+ 
 }
