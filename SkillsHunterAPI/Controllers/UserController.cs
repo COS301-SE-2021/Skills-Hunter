@@ -382,7 +382,7 @@ namespace SkillsHunterAPI.Controllers
         {
             Guid LoggedInUser = GetCurrentUserId();
 
-            return await _userService.GetUserSkillsByUserId(LoggedInUser);
+            return (UserSkill)await _userService.GetUserSkillsByUserId(LoggedInUser);
 
 
 
