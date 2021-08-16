@@ -49,7 +49,6 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/[controller]/addSkill")]
         public async Task<IActionResult> AddSkill([FromBody] AddSkillRequest request)
