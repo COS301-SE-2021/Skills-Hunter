@@ -34,16 +34,10 @@ export class CreateprojectComponent implements OnInit {
 
   dropdownListForSkills = [];
   selectedItemsForSkills = [];
-  // var selectedObjectsSkills = Skill[];
   selectedObjectsSkills = [];
-
-  // for keeping track of selected Skill and Collection objects.
-  // CategoryList
 
   dropdownListForCollections = [];
   selectedItemsForCollections = [];
-
-  // var selectedObjectsCollections = Collection[];
   selectedObjectsCollections = [];
 
   dropdownSettings: IDropdownSettings;
@@ -89,15 +83,53 @@ export class CreateprojectComponent implements OnInit {
     };
   }
 
-  // checkIfSkillOrCollection(arr: any[]){
-  //   for(var x=0; x<arr.length; x++){
-  //     if(arr[x].)
-  //   }
-  // }
+  searchForOccurance(id: string, name: string) {
+    // start with skills:
+    for (var x = 0; x < Skills.length; x++) {
+      if (Skills[x].SkillId === id && Skills[x].SkillName === name) {
+        return [0, x];
+      }
+    }
+
+    // check collections:
+    for (var x = 0; x < Collections.length; x++) {
+      if (
+        Collections[x].CollectionId === id &&
+        Collections[x].CollectionName === name
+      ) {
+        return [1, x];
+      }
+    }
+
+    return [-1, -1];
+  }
 
   onItemSelect(item: any) {
-    // this.selectedObjectsCollections.push(item);
-    console.log(item);
+    var occurance = this.searchForOccurance(item.item_id, item.item_text);
+
+    // SKILL = 0,x
+    // COLLECTION = 1,x
+    // NEITHER = -1,-1
+
+    if (occurance[0] == 0) {
+      // process skill:
+      var obj = new Skill();
+      obj.SkillId = Skills[occurance[1]].SkillId;
+      obj.SkillName = Skills[occurance[1]].SkillName;
+      obj.SkillWeight = 11;
+
+      this.selectedObjectsSkills.push(obj);
+    } else if (occurance[0] == 1) {
+      // process collection:
+      var col = new Collection();
+      col.CollectionId = Collections[occurance[1]].CollectionId;
+      col.CollectionName = Collections[occurance[1]].CollectionName;
+      col.Skills = Collections[occurance[1]].Skills;
+
+      this.selectedObjectsCollections.push(col);
+    } else {
+      console.log('Skill/Collection not found.');
+    }
   }
 
   onSelectAll(items: any) {
@@ -107,7 +139,7 @@ export class CreateprojectComponent implements OnInit {
   addSkill() {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
-    configDialog.width = '60%';
+    configDialog.width = '45%';
     configDialog.height = '450px';
     const dialogRef = this.dialog.open(AddSkillCategoryComponent, configDialog);
 
@@ -121,9 +153,6 @@ export class CreateprojectComponent implements OnInit {
         obj.SkillWeight = skill.data.SkillWeight;
 
         Skills.push(obj);
-
-        console.log('LOGGING THE OBJECT');
-        console.log(obj);
 
         this.selectedObjectsSkills.push(obj);
 
@@ -183,16 +212,15 @@ export class CreateprojectComponent implements OnInit {
   }
 
   createTheProject() {
-    // var proj = new Project();
-    // proj.ProjectId = Projects.length.toString();
-    // proj.Name = 'Skills Hunter';
-    // proj.Description = 'Describe the project';
-    // proj.Owner = 'XYC Devs';
-    // proj.Location = 'Hatfield';
+    var proj = new Project();
+    proj.ProjectId = Projects.length.toString();
+    proj.Name = 'Skills Hunter';
+    proj.Description = 'Describe the project';
+    proj.Owner = 'XYC Devs';
+    proj.Location = 'Hatfield';
 
-    console.log('CONSOLING');
-    // if (this.selectedObjectsSkills) {
     console.log(this.selectedObjectsSkills);
+    console.log(this.selectedObjectsCollections);
     // }
     // var arrSkillsAndCollections: string[];
 
