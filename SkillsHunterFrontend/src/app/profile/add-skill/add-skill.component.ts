@@ -69,7 +69,7 @@ export class AddSkillComponent implements OnInit {
     .subscribe(
       data=>{
         
-        if(data.status==200)
+        if(data)//status==200)
         {
           console.log("200");
         }
