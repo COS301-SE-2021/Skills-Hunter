@@ -10,7 +10,8 @@ using SkillsHunterAPI.Models.Skill.Response;
 
 namespace SkillsHunterAPI.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
+    [Authorize]
     [ApiController]
     public class AdminController : ControllerBase
     {
