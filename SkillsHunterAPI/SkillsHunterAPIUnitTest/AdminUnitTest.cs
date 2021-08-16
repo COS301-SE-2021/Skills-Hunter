@@ -68,7 +68,6 @@ namespace SkillsHunterAPIUnitTest.Tests
             AddSkillRequest request = new AddSkillRequest()
             {
                 Name = "Java Web Development",
-                CategoryId = CatId
             };
 
             Skill serviceRequest  = new Skill()
