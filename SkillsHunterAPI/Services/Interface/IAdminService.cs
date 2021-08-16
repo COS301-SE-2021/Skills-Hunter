@@ -23,5 +23,6 @@ namespace SkillsHunterAPI.Services
         Task<Category> UpdateCategory(Guid id,Category category);
         Task<Category> RemoveCategory(Guid id);
         Task<GetSkillCollectionResponse> getSkillCollectionById(Guid id);
+        Task<IEnumerable<GetSkillCollectionResponse>> getAllSkillCollections();
     }
 }
