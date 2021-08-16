@@ -47,14 +47,14 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
         }
 
-        public Project GetProject(Guid id)
+        public async Task<Project> GetProject(Guid id)
         {
-            return _context.Projects.Find(id);
+            return await _context.Projects.FindAsync(id);
         }
 
-        public IEnumerable<Project> GetProjects()
+        public async Task<IEnumerable<Project>> GetProjects()
         {
-            return _context.Projects.ToList();
+            return await _context.Projects.ToListAsync();
         }
 
         public async Task<IEnumerable<Project>> GetProjectsByOwnerId()
@@ -93,14 +93,14 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
         }
 
-        public ProjectSkill GetProjectSkill(Guid id)
+        public async Task<ProjectSkill> GetProjectSkill(Guid id)
         {
-            return _context.ProjectSkills.Find(id);
+            return await _context.ProjectSkills.FindAsync(id);
         }
 
-        public IEnumerable<ProjectSkill> GetProjectSkills(Guid projectId)
+        public async Task<IEnumerable<ProjectSkill>> GetProjectSkills(Guid projectId)
         {
-            return _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToList();
+            return await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToListAsync();
         }
 
 
@@ -115,7 +115,7 @@ namespace SkillsHunterAPI.Services
             return await _context.ProjectSkills.Where(ss => ss.ProjectId == ProjectId && ss.SkillId == SkillId).FirstAsync();
         }
 
-        public bool ApplyForProject(Guid userId,Guid ProjectId)
+        public bool ApplyForProject(Guid userId, Guid ProjectId)
         {
             bool applicationSuccess = false;
 
@@ -144,10 +144,10 @@ namespace SkillsHunterAPI.Services
                 return true;
             }*/
 
-            return true ;
+            return true;
         }
 
-        public  bool InviteCandidate(Guid userId, Guid ProjectId,Guid inviteeId, String message)
+        public bool InviteCandidate(Guid userId, Guid ProjectId, Guid inviteeId, String message)
         {
             bool invitationSuccess = false;
 
@@ -240,7 +240,7 @@ namespace SkillsHunterAPI.Services
 
             return result;
         }
-        
+
         public async Task<ProjectSkillCollection> UpdateCollection(ProjectSkillCollection request)
         {
             ProjectSkillCollection result = null;
@@ -250,18 +250,18 @@ namespace SkillsHunterAPI.Services
         }
 
         public async Task RemoveCollection(Guid collectionId)
-        {            
+        {
         }
 
-        public async Task AddSkillToCollection(Guid skillId,Guid collectionId)
+        public async Task AddSkillToCollection(Guid skillId, Guid collectionId)
         {
-            
+
         }
 
         public async Task<List<ProjectSkillCollection>> GetCollectionsByProject(Guid projectId)
         {
             List<ProjectSkillCollection> result = new List<ProjectSkillCollection>();
-        
+
             return result;
         }
 
