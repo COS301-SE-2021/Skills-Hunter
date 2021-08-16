@@ -27,6 +27,9 @@ import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
 import { ProfileComponent } from './profile/profile.component';
 import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
+import { AddSkillComponent } from './profile/add-skill/add-skill.component';
+import { SliderComponent } from './profile/slider/slider.component';
+import { ProfileImgComponent } from './profile/profile-img/profile-img.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { InviteCandidateComponent } from './match-candidate/candidate-card/invit
     AddSkillsCollectionComponent,
     ProfileComponent,
     InviteCandidateComponent,
+    AddSkillComponent,
+    SliderComponent,
+    ProfileImgComponent
   ],
   imports: [
     BrowserModule,
