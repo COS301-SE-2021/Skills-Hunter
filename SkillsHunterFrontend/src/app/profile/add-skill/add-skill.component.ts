@@ -51,6 +51,10 @@ export class AddSkillComponent implements OnInit {
       if(value.data !=-1)
       {
        console.log("in add skill: "+value.data);
+        this.dialogRef.close({data:{
+                              rateValue:value.data,
+                              selectedSkill:skill
+                            }});
       //return the skill and the value to profile then send request to backend
       }
       else{ 
