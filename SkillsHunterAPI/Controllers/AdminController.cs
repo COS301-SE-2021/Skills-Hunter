@@ -10,7 +10,8 @@ using SkillsHunterAPI.Models.Skill.Response;
 
 namespace SkillsHunterAPI.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
+    [Authorize]
     [ApiController]
     public class AdminController : ControllerBase
     {
@@ -157,31 +158,6 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
-
-        [Route("api/[controller]/getSkillCollections")]
-        public async Task<IActionResult> GetSkillCollections()
-        {
-            try
-            {
-                // Get collections code here
-                List<ProjectSkillCollection> result = (List<ProjectSkillCollection>)await _adminService.GetSkillCollections();
-
-                return Ok(new GetSkillCollectionsResponse()
-                {
-
-                    collections = result.ToArray()
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-
-                return BadRequest(error.Message);
-            }
-        }
-
-
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/updateSkill")]
         public async Task<IActionResult> UpdateSkill([FromBody] UpdateSkillRequest request)
         {
@@ -321,9 +297,21 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/getAllSkillCollections")]
-        public async Task<IEnumerable<GetAllSkillCollections>> GetAllSkillCollections()
+        public async Task<IActionResult> GetAllSkillCollections()
         {
-            return null;
+            try
+            {
+                // Get collections code here
+                List<GetSkillCollectionResponse> result = (List<GetSkillCollectionResponse>)await _adminService.getAllSkillCollections();
+
+                return Ok(result);
+            }
+            catch (Exception error)
+            {
+                // return error message if there was an exception code here
+
+                return BadRequest(error.Message);
+            }
         }
     }
 }
