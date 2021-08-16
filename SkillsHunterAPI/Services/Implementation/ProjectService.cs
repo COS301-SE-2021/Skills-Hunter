@@ -49,7 +49,7 @@ namespace SkillsHunterAPI.Services
 
         public Project GetProject(Guid id)
         {
-            return _context.Projects.Find(id);
+            return _context.Projects.Where(project => project.ProjectId == id).FirstOrDefault();
         }
 
         public IEnumerable<Project> GetProjects()
@@ -95,7 +95,7 @@ namespace SkillsHunterAPI.Services
 
         public ProjectSkill GetProjectSkill(Guid id)
         {
-            return _context.ProjectSkills.Find(id);
+            return _context.ProjectSkills.Where(ps=> ps.ProjectSkillId == id).FirstOrDefault();
         }
 
         public IEnumerable<ProjectSkill> GetProjectSkills(Guid projectId)
