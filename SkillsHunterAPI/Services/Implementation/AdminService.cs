@@ -174,5 +174,24 @@ namespace SkillsHunterAPI.Services
 
             return null;
         }
+
+        public async Task<IEnumerable<GetSkillCollectionResponse>> getAllSkillCollections()
+        {
+            List<GetSkillCollectionResponse> response = new List<GetSkillCollectionResponse>();
+
+            List<SkillCollection> skillCollections = _context.SkillCollections.ToList();
+
+            foreach (SkillCollection skillCollection in skillCollections)
+            {
+                GetSkillCollectionResponse getSkillCollection = await getSkillCollectionById(skillCollection.SkillCollectionId);
+
+                if (getSkillCollection != null)
+                {
+                    response.Add(getSkillCollection);
+                }
+            }
+
+            return response;
+        }
     }
 }
