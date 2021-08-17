@@ -5,7 +5,9 @@ SkillsHunterAPI/obj/
 SkillsHunterAPI/bin/
 SkillsHunterAPI/SkillsHunterAPIUnitTest/obj/
 SkillsHunterAPI/SkillsHunterAPIUnitTest/bin/
+SkillsHunterAPI/SkillsHunterAPIUserUnitTest/obj/
+SkillsHunterAPI/SkillsHunterAPIUserUnitTest/bin/
+SkillsHunterAPI/SkillsHunterAPIAdminUnitTest/obj/
+SkillsHunterAPI/SkillsHunterAPIAdminUnitTest/bin/
 
-SkillsHunterAPI/.vs/SkillsHunterAPI/v16/.suo
-SkillsHunterAPI/.vs/SkillsHunterAPI/DesignTimeBuild/.dtbcache.v2
-SkillsHunterAPI/appsettings.json
+
