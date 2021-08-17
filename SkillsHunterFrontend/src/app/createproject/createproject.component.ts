@@ -27,7 +27,7 @@ import { AddSkillCategoryComponent } from './add-skill-category/add-skill-catego
   styleUrls: ['./createproject.component.scss'],
 })
 export class CreateprojectComponent implements OnInit {
-  isLinear = false;
+  isLinear = true;
 
   projectBasicInfo: FormGroup;
   projectSkillsAndCollections: FormGroup;
@@ -241,6 +241,7 @@ export class CreateprojectComponent implements OnInit {
 
     Projects.push(proj);
     console.log('Created Project!');
+    console.log(proj);
     this.cancel();
   }
 

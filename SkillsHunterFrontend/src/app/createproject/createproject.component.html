@@ -43,33 +43,28 @@
                 ></textarea>
               </mat-form-field>
 
-              <!-- <mat-multiselect
-                [data]="data"
-                [options]="options"
-                (changeSelection)="changeSelection($event)"
+              <button
+                mat-raised-button
+                color="warn"
+                matStepperPrevious
+                class="back"
+                (click)="cancel()"
               >
-              </mat-multiselect> -->
-
-              <div>
-                <button
-                  mat-raised-button
-                  color="warn"
-                  matStepperPrevious
-                  class="back"
-                  (click)="cancel()"
-                >
-                  Cancel
-                </button>
-                <button
-                  mat-raised-button
-                  color="primary"
-                  matStepperNext
-                  class="next"
-                >
-                  Next
-                </button>
-              </div>
+                Cancel
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                matStepperNext
+                class="next"
+              >
+                Next
+              </button>
             </form>
+
+            <!-- <div> -->
+
+            <!-- </div> -->
           </mat-card-content>
         </mat-card>
       </mat-step>
