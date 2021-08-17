@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SkillsHunterAPI.Models.Project.Response;
 
-namespace SkillsHunterAPI.Models.Project.Request
+namespace SkillsHunterAPI.Models.Project.Response
 {
     public class GetProjectSkillCollectionResponse
     {
