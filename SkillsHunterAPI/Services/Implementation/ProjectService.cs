@@ -17,7 +17,6 @@ namespace SkillsHunterAPI.Services
 {
     public class ProjectService : IProjectService
     {
-
         private readonly ApplicationDbContext _context;
 
         /// <summary>
@@ -107,7 +106,6 @@ namespace SkillsHunterAPI.Services
         {
             return await _context.ProjectSkills.Where(ss => ss.ProjectId == ProjectId && ss.SkillId == SkillId).FirstAsync();
         }
-
         public async Task<IEnumerable<GetProjectSkillCollectionResponse>> GetProjectSkillCollectionsByProjectId(Guid projectId)
         {
 
@@ -150,6 +148,7 @@ namespace SkillsHunterAPI.Services
 
             return response;
         }
+
         public bool ApplyForProject(Guid userId,Guid ProjectId)
         {
             bool applicationSuccess = false;
@@ -179,10 +178,10 @@ namespace SkillsHunterAPI.Services
                 return true;
             }*/
 
-            return true ;
+            return true;
         }
 
-        public  bool InviteCandidate(Guid userId, Guid ProjectId,Guid inviteeId, String message)
+        public bool InviteCandidate(Guid userId, Guid ProjectId, Guid inviteeId, String message)
         {
             bool invitationSuccess = false;
 
@@ -275,7 +274,7 @@ namespace SkillsHunterAPI.Services
 
             return result;
         }
-        
+
         public async Task<ProjectSkillCollection> UpdateCollection(ProjectSkillCollection request)
         {
             ProjectSkillCollection result = null;
@@ -285,18 +284,18 @@ namespace SkillsHunterAPI.Services
         }
 
         public async Task RemoveCollection(Guid collectionId)
-        {            
+        {
         }
 
-        public async Task AddSkillToCollection(Guid skillId,Guid collectionId)
+        public async Task AddSkillToCollection(Guid skillId, Guid collectionId)
         {
-            
+
         }
 
         public async Task<List<ProjectSkillCollection>> GetCollectionsByProject(Guid projectId)
         {
             List<ProjectSkillCollection> result = new List<ProjectSkillCollection>();
-        
+
             return result;
         }
 

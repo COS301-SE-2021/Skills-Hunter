@@ -11,7 +11,7 @@
 
 .project-card {
   color: #003333;
-  width: 550px;
+  width: 600px;
   background-color: #e6ffff;
   margin: 20px;
   display: inline-block;
@@ -23,35 +23,35 @@
 
 :root {
   --visFind: flex;
-  --visDelete:flex;
-  --visUpdate:flex;
-  --visAppl:flex;
-  --visCancel:flex;
+  --visDelete: flex;
+  --visUpdate: flex;
+  --visAppl: flex;
+  --visCancel: flex;
 }
 .card-project-find {
   float: left;
-  width: 140px;
+  width: 170px;
   display: var(--visFind);
 }
 
 .card-project-delete {
   float: none;
-  left: 4.5%;
-  width: 140px;
+  left: 5%;
+  width: 170px;
   display: var(--visDelete);
 }
 
 .card-project-update {
   float: right;
-  width: 140px;
+  width: 170px;
   display: var(--visUpdate);
 }
 
-.card-project-apply{
+.card-project-apply {
   display: var(--visAppl);
 }
 
-.card-project-cancelappl{
+.card-project-cancelappl {
   display: var(--visCancel);
 }
 
@@ -63,7 +63,3 @@
   background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
 }
-
-
-
-

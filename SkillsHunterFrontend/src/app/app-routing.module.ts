@@ -8,9 +8,18 @@ import { ProjectCRUDService } from './services/project-crud.service';
 import { projectService } from './services/project-edit.service';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
+import { CreateprojectComponent } from './createproject/createproject.component';
+import { AddSkillsComponent } from './add-skills/add-skills.component';
+import { UserControlComponent } from './user-control/user-control.component';
+import { ProjectControlComponent } from './project-control/project-control.component';
+import { SkillControlComponent } from './skill-control/skill-control.component';
+import { CategoryControlComponent } from './category-control/category-control.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { SkillCollectionControlComponent } from './skill-collection-control/skill-collection-control.component';
+import { AdminBoardComponent } from './admin-board/admin-board.component';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
-import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
+
 
 const routes: Routes = [
   {
@@ -46,11 +55,45 @@ const routes: Routes = [
     component: InviteCandidateComponent,
   },
   {
+    path: 'createproject',
+    component: CreateprojectComponent,
+  },
+  {
+    path: 'individualskill',
+    component: AddSkillsComponent,
+  },
+  {
     path: '',
-    // component: CandidateCardComponent,
-    component:LoginComponent
+    component:LoginComponent,
+  },
+  {
+    path: 'dashboard', 
+    component: AdminBoardComponent
+  },
+  {
+    path: 'user-control', 
+    component: UserControlComponent
+  },
+  {
+    path: 'project-control', 
+    component: ProjectControlComponent
+  },
+  {
+    path: 'skill-control', 
+    component: SkillControlComponent
+  },
+  {
+    path: 'category-control', 
+    component: CategoryControlComponent
+  },
+  {
+    path: 'statistics', 
+    component: StatisticsComponent
+  },
+  {
+    path: 'skill-collection-control', 
+    component: SkillCollectionControlComponent
   }
-
 ];
 
 @NgModule({
