@@ -97,9 +97,22 @@ namespace SkillsHunterAPI.Services
             return await _context.ProjectSkills.FindAsync(id);
         }
 
-        public async Task<IEnumerable<ProjectSkill>> GetProjectSkillsByProjectId(Guid projectId)
+        public async Task<IEnumerable<GetProjectSkillResponse>> GetProjectSkillsByProjectId(Guid projectId)
         {
-            return await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToListAsync();
+            List<GetProjectSkillResponse> response = new List<GetProjectSkillResponse>();
+            List<ProjectSkill> projectSkills = await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToListAsync();
+
+            foreach(ProjectSkill projectSkill in projectSkills)
+            {
+                GetProjectSkillResponse projectSkillToAdd = await GetProjectSkill(projectSkill.ProjectSkillId, projectId);
+
+                if(projectSkillToAdd != null)
+                {
+                    response.Add(projectSkillToAdd);
+                }
+            }
+
+            return response;
         }
 
         public async Task<GetProjectSkillResponse> GetProjectSkill(Guid projectSkillId, Guid projectId)
