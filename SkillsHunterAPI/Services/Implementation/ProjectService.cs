@@ -103,12 +103,19 @@ namespace SkillsHunterAPI.Services
             return await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToListAsync();
         }
 
+
+        public async Task<IEnumerable<ProjectSkill>> GetProjectSkillsByProjectId(Guid projectId)
+        {
+            return await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToListAsync();
+        }
+
+
         public async Task<ProjectSkill> GetProjectSkillBySkillId(Guid SkillId, Guid ProjectId)
         {
             return await _context.ProjectSkills.Where(ss => ss.ProjectId == ProjectId && ss.SkillId == SkillId).FirstAsync();
         }
 
-        public bool ApplyForProject(Guid userId,Guid ProjectId)
+        public bool ApplyForProject(Guid userId, Guid ProjectId)
         {
             bool applicationSuccess = false;
 
@@ -137,10 +144,10 @@ namespace SkillsHunterAPI.Services
                 return true;
             }*/
 
-            return true ;
+            return true;
         }
 
-        public  bool InviteCandidate(Guid userId, Guid ProjectId,Guid inviteeId, String message)
+        public bool InviteCandidate(Guid userId, Guid ProjectId, Guid inviteeId, String message)
         {
             bool invitationSuccess = false;
 
@@ -233,7 +240,7 @@ namespace SkillsHunterAPI.Services
 
             return result;
         }
-        
+
         public async Task<ProjectSkillCollection> UpdateCollection(ProjectSkillCollection request)
         {
             ProjectSkillCollection result = null;
@@ -243,18 +250,18 @@ namespace SkillsHunterAPI.Services
         }
 
         public async Task RemoveCollection(Guid collectionId)
-        {            
+        {
         }
 
-        public async Task AddSkillToCollection(Guid skillId,Guid collectionId)
+        public async Task AddSkillToCollection(Guid skillId, Guid collectionId)
         {
-            
+
         }
 
         public async Task<List<ProjectSkillCollection>> GetCollectionsByProject(Guid projectId)
         {
             List<ProjectSkillCollection> result = new List<ProjectSkillCollection>();
-        
+
             return result;
         }
 

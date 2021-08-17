@@ -23,7 +23,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getSkill")]
         public async Task<IActionResult> GetSkill([FromBody] GetSkillRequest request)
         {
@@ -50,15 +50,20 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpPost]
-        [Route("api/[controller]/addSkill")]
-        public async Task<IActionResult> AddSkill([FromBody] AddSkillRequest request)
+        [Route("api/[controller]/createSkill")]
+        public async Task<IActionResult> CreateSkill([FromBody] AddSkillRequest request)
         {
             try
             {
                 // Add skill code here
-                Skill skill = new Skill(request.Name, request.CategoryId, SkillStatus.Accepted);
+                Skill skill = new Skill();
+                skill.Name = request.Name;
+                skill.Status = SkillStatus.Accepted;
 
-                Skill result = await _adminService.AddSkill(skill);
+                Skill result = await _adminService.CreateSkill(skill);
+
+                //Link skill with Categories
+                await _adminService.AddCategoriesToSkill(skill.SkillId, request.Categories);
 
                 return Ok(new AddSkillResponse()
                 {
@@ -73,6 +78,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/[controller]/addCategory")]
         public async Task<IActionResult> AddCategory([FromBody] AddCategoryRequest request)
@@ -103,6 +109,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/[controller]/removeSkill")]
         public async Task<IActionResult> RemoveSkill([FromBody] RemoveSkillRequest request)
@@ -157,6 +164,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/updateSkill")]
         public async Task<IActionResult> UpdateSkill([FromBody] UpdateSkillRequest request)
@@ -190,7 +198,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/getCategory")]
         public async Task<IActionResult> GetCategory([FromBody] GetCategoryRequest request)
         {
@@ -216,7 +224,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/getCategories")]
         public async Task<IActionResult> GetCategories()
         {
@@ -238,6 +246,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/updateCategory")]
         public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryRequest request)
@@ -269,6 +278,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/removeCategory")]
         public async Task<IActionResult> RemoveCategory(RemoveCategoryRequest request)
@@ -295,7 +305,7 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getAllSkillCollections")]
         public async Task<IActionResult> GetAllSkillCollections()
         {

@@ -65,7 +65,7 @@ namespace SkillsHunterAPI.Controllers
                 {
                     projectResponses.Add(retrievedProject);
                 }
-                
+
             }
 
             return projectResponses;
@@ -84,7 +84,8 @@ namespace SkillsHunterAPI.Controllers
             ProjectResponse projectResponse = new ProjectResponse();
             projectResponse.ProjectSkills = new List<SkillRR>();
 
-            if (project == null) {
+            if (project == null)
+            {
                 return null;
             }
 
@@ -102,17 +103,17 @@ namespace SkillsHunterAPI.Controllers
                 SkillRR skill = new SkillRR();
 
 
-                    skill.SkillId = projectSkill.SkillId;
+                skill.SkillId = projectSkill.SkillId;
                 //Skill refSkill = await _skillService.GetSkill(projectSkill.SkillId);  //To be used when the skill service is implemented
                 skill.SkillName = "SkillOne";
-               
+
                 projectResponse.ProjectSkills.Add(skill);
             }
 
-           /* foreach (ProjectSkill projectSkill in projectSkills)
-            {
-                projectResponse.ProjectSkills.Add(projectSkill);
-            }*/
+            /* foreach (ProjectSkill projectSkill in projectSkills)
+             {
+                 projectResponse.ProjectSkills.Add(projectSkill);
+             }*/
 
 
             return projectResponse;
@@ -128,7 +129,7 @@ namespace SkillsHunterAPI.Controllers
             List<Project> projects = (List<Project>)await _projectService.GetProjects();
 
 
-        
+
             //This initialize the user controller object to be accessible this side.
             InitControllers();
 
@@ -290,7 +291,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/deleteProject")]
-        public async Task<ActionResult> DeleteProject([FromBody]DeleteProjectRequest deleteProjectRequest)
+        public async Task<ActionResult> DeleteProject([FromBody] DeleteProjectRequest deleteProjectRequest)
         {
             Guid projectId = deleteProjectRequest.ProjectId;
             var projectToDelete = await _projectService.GetProject(projectId);
@@ -311,7 +312,7 @@ namespace SkillsHunterAPI.Controllers
 
 
             /*This calls the service to delete project skill from the db*/
-            foreach(ProjectSkill projectSkill in projectSkills)
+            foreach (ProjectSkill projectSkill in projectSkills)
             {
                 await _projectService.RemoveProjectSkill(projectSkill.ProjectSkillId);
             }
@@ -328,7 +329,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpPost]
         [Route("api/[controller]/deleteProjectSkill/{id}")]
         public async Task<ActionResult> RemoveProjectSkill(string id)
         {
@@ -352,7 +353,7 @@ namespace SkillsHunterAPI.Controllers
         {
             ApplyForProjectResponse applyForProjectResponse = new ApplyForProjectResponse();
 
-             var reqStatus = _projectService.ApplyForProject(request.UserId, request.ProjectId);
+            var reqStatus = _projectService.ApplyForProject(request.UserId, request.ProjectId);
 
             if (reqStatus)
             {
@@ -392,152 +393,172 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/createCollection")]
-        public IActionResult CreateCollection(CreateCollectionRequest request){
+        public IActionResult CreateCollection(CreateCollectionRequest request)
+        {
             //This method handles the request to create a collection in the database
             try
             {
                 // Create Collection code here
 
 
-                return Ok(new CreateCollectionResponse(){
+                return Ok(new CreateCollectionResponse()
+                {
 
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return BadRequest(new
+                {
+                    message = error.Message
+                });
             }
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getCollection")]
-        public IActionResult GetCollection(GetCollectionRequest request){
+        public IActionResult GetCollection(GetCollectionRequest request)
+        {
             //This method handles the request to retrieve a skill collection
             try
             {
                 // get Collection code here
 
 
-                return Ok(new GetCollectionResponse(){
+                return Ok(new GetCollectionResponse()
+                {
 
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return BadRequest(new
+                {
+                    message = error.Message
+                });
             }
         }
 
 
         [HttpPost]
         [Route("api/[controller]/updateCollection")]
-        public IActionResult UpdateCollection(UpdateCollectionRequest request){
+        public IActionResult UpdateCollection(UpdateCollectionRequest request)
+        {
             //This method handles a request to update a Skill Collection
             try
             {
                 // update Collection code here
 
 
-                return Ok(new UpdateCollectionResponse(){
+                return Ok(new UpdateCollectionResponse()
+                {
 
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return BadRequest(new
+                {
+                    message = error.Message
+                });
             }
         }
 
 
         [HttpPost]
         [Route("api/[controller]/removeCollection")]
-        public IActionResult RemoveCollection(RemoveCollectionRequest request){
+        public IActionResult RemoveCollection(RemoveCollectionRequest request)
+        {
             //This method handles the request to remove a collection from the database
             try
             {
                 // remove Collection code here
 
 
-                return Ok(new RemoveCollectionResponse(){
+                return Ok(new RemoveCollectionResponse()
+                {
 
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return BadRequest(new
+                {
+                    message = error.Message
+                });
             }
         }
 
 
         [HttpPost]
         [Route("api/[controller]/addSkillToCollection")]
-        public IActionResult AddSkillToCollection(AddSkillToCollectionRequest request){
+        public IActionResult AddSkillToCollection(AddSkillToCollectionRequest request)
+        {
             //This method handles the request to add a Skill to a Skill Collection
             try
             {
                 // Add skill to collection code here
 
 
-                return Ok(new AddSkillToCollectionResponse(){
+                return Ok(new AddSkillToCollectionResponse()
+                {
 
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return BadRequest(new
+                {
+                    message = error.Message
+                });
             }
         }
 
-       
-        [HttpPost]
+
+        [HttpGet]
         [Route("api/[controller]/getCollectionsByProject")]
-        public IActionResult GetCollectionsByProject(GetCollectionsByProjectRequest request){
+        public IActionResult GetCollectionsByProject(GetCollectionsByProjectRequest request)
+        {
             //This method handles a request to retrieve Skill Collections by Project Id
             try
             {
                 // Get collections by Project code here
 
 
-                return Ok(new GetCollectionsByProjectResponse(){
+                return Ok(new GetCollectionsByProjectResponse()
+                {
 
                 });
             }
             catch (Exception error)
             {
                 // return error message if there was an exception code here
-                
-                return BadRequest(new 
-                       { 
-                            message = error.Message 
-                       });
+
+                return BadRequest(new
+                {
+                    message = error.Message
+                });
             }
-        }    
-    
+        }
+
+
+        [HttpGet]
+        [Route("api/[controller]/GetProjectSkillsByProjectId/{id}")]
+        public async Task<IEnumerable<ProjectSkill>> GetProjectSkillsByProjectId(Guid projectId)
+        {
+            return await _projectService.GetProjectSkillsByProjectId(projectId);
+        }
+
     }
 }
