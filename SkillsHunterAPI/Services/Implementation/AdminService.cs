@@ -176,7 +176,14 @@ namespace SkillsHunterAPI.Services
 
         public async Task AddSkillToSkillCollection(Guid skillCollectionId, Guid skillId)
         {
-            
+            SkillCollectionMap skillCollectionMap = new SkillCollectionMap();
+
+            skillCollectionMap.SkillCollectionMapId = new Guid();
+            skillCollectionMap.SkillCollectionId = skillCollectionId;
+            skillCollectionMap.SkillId = skillId;
+
+            await _context.SkillCollectionMaps.AddAsync(skillCollectionMap);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<GetSkillCollectionResponse> getSkillCollectionById(Guid id)
