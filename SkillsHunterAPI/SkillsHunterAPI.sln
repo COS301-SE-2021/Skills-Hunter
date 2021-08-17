@@ -1,16 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.31321.278
+VisualStudioVersion = 16.0.810.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AE24B91E-A253-4B59-BF0E-A30EEF0BDBC6}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsHunterAPI", "SkillsHunterAPI.csproj", "{5765300E-4CBE-48DB-9AA9-419E37AD67D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsHunterAPI", "SkillsHunterAPI.csproj", "{68CE87AB-DD58-46B9-8816-45626CED79C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsHunterUserUnitTest", "SkillsHunterUserUnitTest\SkillsHunterUserUnitTest.csproj", "{D23CDDE6-D356-4EEE-B416-5ED5D58E69D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsHunterAPIUnitTest", "SkillsHunterAPIUnitTest\SkillsHunterAPIUnitTest.csproj", "{5AB764E1-45CD-4DAA-87EB-680D5DCCF447}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsHunterAPIAdminUnitTest", "SkillsHunterAPIAdminUnitTest\SkillsHunterAPIAdminUnitTest.csproj", "{30EA03A5-711A-40FB-937E-11B526530983}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,19 +15,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{68CE87AB-DD58-46B9-8816-45626CED79C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68CE87AB-DD58-46B9-8816-45626CED79C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68CE87AB-DD58-46B9-8816-45626CED79C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68CE87AB-DD58-46B9-8816-45626CED79C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AB764E1-45CD-4DAA-87EB-680D5DCCF447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AB764E1-45CD-4DAA-87EB-680D5DCCF447}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AB764E1-45CD-4DAA-87EB-680D5DCCF447}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AB764E1-45CD-4DAA-87EB-680D5DCCF447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5765300E-4CBE-48DB-9AA9-419E37AD67D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5765300E-4CBE-48DB-9AA9-419E37AD67D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5765300E-4CBE-48DB-9AA9-419E37AD67D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5765300E-4CBE-48DB-9AA9-419E37AD67D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D23CDDE6-D356-4EEE-B416-5ED5D58E69D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23CDDE6-D356-4EEE-B416-5ED5D58E69D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23CDDE6-D356-4EEE-B416-5ED5D58E69D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23CDDE6-D356-4EEE-B416-5ED5D58E69D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30EA03A5-711A-40FB-937E-11B526530983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30EA03A5-711A-40FB-937E-11B526530983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30EA03A5-711A-40FB-937E-11B526530983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30EA03A5-711A-40FB-937E-11B526530983}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AC273D63-B840-4524-831D-E2721B9333AF}
+		SolutionGuid = {A1E05436-C2C5-4338-981D-794423EEC9D2}
 	EndGlobalSection
 EndGlobal

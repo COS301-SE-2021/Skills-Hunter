@@ -17,7 +17,8 @@ namespace SkillsHunterAPIUnitTest.Tests
 
             projectService = A.Fake<IProjectService>();
             skillService = A.Fake<ISkillService>();
-            projectController = new ProjectController(projectService, skillService);
+            userController = A.Fake<UserController>();
+            projectController = new ProjectController(projectService, skillService, userController);
         }
     }
 }
