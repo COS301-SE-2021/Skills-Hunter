@@ -17,7 +17,6 @@ namespace SkillsHunterAPI.Services
 {
     public class ProjectService : IProjectService
     {
-
         private readonly ApplicationDbContext _context;
 
         /// <summary>
@@ -98,24 +97,86 @@ namespace SkillsHunterAPI.Services
             return await _context.ProjectSkills.FindAsync(id);
         }
 
-        public async Task<IEnumerable<ProjectSkill>> GetProjectSkills(Guid projectId)
+        public async Task<IEnumerable<GetProjectSkillResponse>> GetProjectSkillsByProjectId(Guid projectId)
         {
-            return await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToListAsync();
+            List<GetProjectSkillResponse> response = new List<GetProjectSkillResponse>();
+            List<ProjectSkill> projectSkills = await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToListAsync();
+
+            foreach(ProjectSkill projectSkill in projectSkills)
+            {
+                GetProjectSkillResponse projectSkillToAdd = await GetProjectSkill(projectSkill.ProjectSkillId, projectId);
+
+                if(projectSkillToAdd != null)
+                {
+                    response.Add(projectSkillToAdd);
+                }
+            }
+
+            return response;
         }
 
-
-        public async Task<IEnumerable<ProjectSkill>> GetProjectSkillsByProjectId(Guid projectId)
+        public async Task<GetProjectSkillResponse> GetProjectSkill(Guid projectSkillId, Guid projectId)
         {
-            return await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToListAsync();
+            GetProjectSkillResponse response = new GetProjectSkillResponse();
+            ProjectSkill projectSkill = await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId && ss.SkillId == projectSkillId).FirstAsync();
+
+            if(projectSkill != null)
+            {
+                Skill skill = await _context.Skills.Where(ss => ss.SkillId == projectSkill.SkillId).FirstOrDefaultAsync();
+                response.ProjectSkillId = projectSkill.ProjectSkillId;
+                response.SkillId = skill.SkillId;
+                response.Name = skill.Name;
+                response.Weight = projectSkill.Weight;
+
+                return response;
+            }
+
+            return null;
+        }
+        public async Task<IEnumerable<GetProjectSkillCollectionResponse>> GetProjectSkillCollectionsByProjectId(Guid projectId)
+        {
+
+            List<GetProjectSkillCollectionResponse> response = new List<GetProjectSkillCollectionResponse>();
+            //Retrieving the project skills
+            List<ProjectSkillCollection> projectSkillCollections = await _context.ProjectSkillCollections.Where(psc => psc.ProjectId == projectId).ToListAsync();
+
+            //Retrieving the skills mappings
+            foreach(ProjectSkillCollection projectSkillCollection in projectSkillCollections)
+            {
+                List<SkillCollectionMap> skillCollectionMaps = await _context.SkillCollectionMaps.Where(scm => scm.SkillCollectionId == projectSkillCollection.SkillCollectionId).ToListAsync();
+
+                SkillCollection skillCollection = await _context.SkillCollections.Where(sc => sc.SkillCollectionId == projectSkillCollection.SkillCollectionId).FirstOrDefaultAsync();
+
+                GetProjectSkillCollectionResponse skillCollectionToAdd = new GetProjectSkillCollectionResponse();
+                skillCollectionToAdd.ProjectSkillCollectionId = projectSkillCollection.ProjectSkillCollectionId;
+                skillCollectionToAdd.Name = skillCollection.Name;
+                skillCollectionToAdd.Weight = projectSkillCollection.Weight;
+                skillCollectionToAdd.Description = skillCollection.Description;
+
+                //Retrieving the skills from the maps
+                foreach (SkillCollectionMap skillCollectionMap in skillCollectionMaps)
+                {
+                    Skill skill = await _context.Skills.Where(s => s.SkillId == skillCollectionMap.SkillId).FirstOrDefaultAsync();
+
+                    if(skill != null)
+                    {
+                        //Adding the skill to the response object
+                        GetProjectSkillResponse skillToAdd = new GetProjectSkillResponse();
+                        skillToAdd.SkillId = skill.SkillId;
+                        skillToAdd.Name = skill.Name;
+                        skillToAdd.Weight = projectSkillCollection.Weight;
+
+                        skillCollectionToAdd.Skills.Add(skillToAdd);
+                    }
+                }
+
+                response.Add(skillCollectionToAdd);
+            }
+
+            return response;
         }
 
-
-        public async Task<ProjectSkill> GetProjectSkillBySkillId(Guid SkillId, Guid ProjectId)
-        {
-            return await _context.ProjectSkills.Where(ss => ss.ProjectId == ProjectId && ss.SkillId == SkillId).FirstAsync();
-        }
-
-        public bool ApplyForProject(Guid userId, Guid ProjectId)
+        public bool ApplyForProject(Guid userId,Guid ProjectId)
         {
             bool applicationSuccess = false;
 
