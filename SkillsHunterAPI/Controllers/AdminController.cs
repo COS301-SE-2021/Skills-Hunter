@@ -312,6 +312,18 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/createSkillCollection")]
         public async Task<IActionResult> CreateSkillCollection([FromBody] CreateSkillCollectionRequest request)
         {
+            SkillCollection skillCollection = new SkillCollection();
+            skillCollection.Name = request.Name;
+            skillCollection.Description = request.Description;
+
+            skillCollection = await _adminService.CreateSkillCollection(skillCollection);
+
+            //Linking the Skills with the skillCollection
+            foreach(AddExistingSkillRequest skill in request.Skills)
+            {
+                await _adminService.AddSkillToSkillCollection(skillCollection.SkillCollectionId, skill.SkillId);
+            }
+
             return Ok();
         }
 

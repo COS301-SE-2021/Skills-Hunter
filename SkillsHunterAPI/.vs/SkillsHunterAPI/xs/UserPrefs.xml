@@ -1,24 +1,25 @@
 ﻿<Properties StartupConfiguration="{5765300E-4CBE-48DB-9AA9-419E37AD67D9}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Services/Implementation/ProjectService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AdminController.cs">
     <Files>
-      <File FileName="Controllers/AdminController.cs" Line="316" Column="10" />
-      <File FileName="Services/Implementation/AdminService.cs" Line="177" Column="22" />
+      <File FileName="Controllers/AdminController.cs" Line="315" Column="13" />
+      <File FileName="Services/Implementation/AdminService.cs" Line="186" Column="47" />
       <File FileName="Services/Interface/IAdminService.cs" Line="29" Column="78" />
       <File FileName="Models/Skill/Request/CreateSkillCollectionRequest.cs" Line="12" Column="44" />
       <File FileName="Services/Implementation/ProjectService.cs" Line="1" Column="1" />
+      <File FileName="Controllers/ProjectController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPI" expanded="True">
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="AdminController.cs" selected="True" />
+              </Node>
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True">
-                <Node name="Implementation" expanded="True">
-                  <Node name="ProjectService.cs" selected="True" />
-                </Node>
+                <Node name="Implementation" expanded="True" />
                 <Node name="Interface" expanded="True" />
               </Node>
             </Node>
