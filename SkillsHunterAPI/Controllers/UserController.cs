@@ -16,6 +16,7 @@ using System.Net.Http.Headers;
 using SkillsHunterAPI.Models.Skill;
 using Microsoft.AspNetCore.Http;
 using SkillsHunterAPI.Models.Skill.Request;
+using SkillsHunterAPI.Models.User.Request;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -379,15 +380,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/GetUserSkillsByUserId")]
-        public async Task<UserSkill> GetUserSkillsByUserId()
+        public async Task<IEnumerable<UserSkill>> GetUserSkillsByUserId(GetUserSkillsRequest request)
         {
-            Guid LoggedInUser = GetCurrentUserId();
-
-            return (UserSkill)await _userService.GetUserSkillsByUserId(LoggedInUser);
-
-
-
-
+            return await _userService.GetUserSkillsByUserId(request.UserId);
         }
 
     }
