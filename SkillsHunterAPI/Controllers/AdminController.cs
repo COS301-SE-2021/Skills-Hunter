@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using SkillsHunterAPI.Models.Skill.Response;
+using SkillsHunterAPI.Models.Skill.Request;
+using SkillsHunterAPI.Models.Skill.Entity;
+using SkillsHunterAPI.Models.Project.Request;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -303,6 +306,13 @@ namespace SkillsHunterAPI.Controllers
 
                 return NotFound(error.Message);
             }
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/createSkillCollection")]
+        public async Task<IActionResult> CreateSkillCollection([FromBody] CreateSkillCollectionRequest request)
+        {
+            return Ok();
         }
 
         [HttpGet]
