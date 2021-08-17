@@ -542,7 +542,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/GetProjectSkillsByProjectId/{id}")]
-        public async Task<IEnumerable<ProjectSkill>> GetProjectSkillsByProjectId(Guid projectId)
+        public async Task<IEnumerable<GetProjectSkillResponse>> GetProjectSkillsByProjectId(Guid projectId)
         {
             return await _projectService.GetProjectSkillsByProjectId(projectId);
         }
