@@ -40,6 +40,8 @@ export class CreateprojectComponent implements OnInit {
   selectedItemsForCollections = [];
   selectedObjectsCollections = [];
 
+  selectedItems = [];
+
   dropdownSettings: IDropdownSettings;
 
   constructor(
@@ -145,8 +147,6 @@ export class CreateprojectComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((skill) => {
       if (skill != undefined) {
-        console.log('Received skill as = ');
-
         var obj = new Skill();
         obj.SkillId = skill.data.SkillId;
         obj.SkillName = skill.data.SkillName;
@@ -154,18 +154,16 @@ export class CreateprojectComponent implements OnInit {
 
         Skills.push(obj);
 
-        this.selectedObjectsSkills.push(obj);
+        // this.selectedObjectsSkills.push(obj);
 
         this.dropdownListForSkills = [];
-
-        console.log(this.dropdownListForSkills);
 
         var sel = {
           item_id: obj.SkillId,
           item_text: obj.SkillName,
         };
 
-        this.onItemSelect(sel);
+        // this.onItemSelect(sel);
 
         this.ngOnInit();
       } else console.log('Returned Empty');
@@ -184,8 +182,6 @@ export class CreateprojectComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((collection) => {
       if (collection != undefined) {
-        console.log('Received skill as = ');
-
         var obj = new Collection();
         obj.CollectionId = collection.data.CollectionId;
         obj.CollectionName = collection.data.CollectionName;
@@ -193,18 +189,16 @@ export class CreateprojectComponent implements OnInit {
 
         Collections.push(obj);
 
-        this.selectedObjectsCollections.push(obj);
+        // this.selectedObjectsCollections.push(obj);
 
         this.dropdownListForCollections = [];
-
-        console.log(this.dropdownListForCollections);
 
         var sel = {
           item_id: obj.CollectionId,
           item_text: obj.CollectionName,
         };
 
-        this.onItemSelect(sel);
+        // this.onItemSelect(sel);
 
         this.ngOnInit();
       } else console.log('Returned Empty');
@@ -213,48 +207,44 @@ export class CreateprojectComponent implements OnInit {
 
   createTheProject() {
     var proj = new Project();
-    proj.ProjectId = Projects.length.toString();
-    proj.Name = 'Skills Hunter';
-    proj.Description = 'Describe the project';
-    proj.Owner = 'XYC Devs';
+    proj.ProjectId = (Projects.length + 1).toString();
+    proj.Name = this.projectBasicInfo.value.projectName;
+    proj.Description = this.projectBasicInfo.value.projectDescription;
+    proj.Owner = 'New Developers';
     proj.Location = 'Hatfield';
+
+    console.log('Creating Project!\n');
+
+    // proj.Skill.push('Hi');
+
+    // proj.Skill.push('SKILLS!');
+    // if (this.selectedObjectsSkills != undefined) {
+    //   if (this.selectedObjectsSkills.length > 0) {
+    //     proj.Skill.push(JSON.stringify(this.selectedObjectsSkills));
+    //   }
+    // }
+
+    // for (var x = 0; x < this.selectedObjectsCollections.length; x++) {
+    //   if (this.selectedObjectsCollections != undefined) {
+    //     if (this.selectedObjectsCollections[x].Skills != undefined) {
+    //       proj.Skill.push(
+    //         JSON.stringify(this.selectedObjectsCollections[x].Skills)
+    //       );
+    //     }
+    //   }
+    // }
 
     console.log(this.selectedObjectsSkills);
     console.log(this.selectedObjectsCollections);
-    // }
-    // var arrSkillsAndCollections: string[];
 
-    // for (var x = 0; x < this.selectedObjectsSkills.length; x++) {
-    //   arrSkillsAndCollections.push(this.selectedItemsForSkills[x]);
-    // }
+    proj.OpenForApplication = false;
 
-    // proj.Skill = this.selectedObjectsSkills.toString();
-    // proj.Collections = this.selectedObjectsCollections;
-    // proj.OpenForApplication = false;
-
-    // Projects.push(proj);
+    Projects.push(proj);
     console.log('Created Project!');
+    this.cancel();
   }
 
   cancel() {
     this._router.navigate([`home`]);
   }
-
-  // data = {
-  //   placeHolder: 'Locations',
-  //   enableSelectClear: true,
-  //   enableSearch: true,
-  // };
-  // options = [
-  //   { name: 'ind', value: 'India' },
-  //   { name: 'nep', value: 'Nepal', checked: true },
-  //   { name: 'bon', value: 'Bondhar' },
-  //   { name: 'Kat', value: 'Kathmandu', checked: true },
-  //   { name: 'ner', value: 'Nerli' },
-  //   { name: 'bom', value: 'Bombay' },
-  // ];
-  // changeSelection(options) {
-  //   // process your custom logic here
-  //   console.log(options);
-  // }
 }

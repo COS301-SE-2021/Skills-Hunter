@@ -40,10 +40,6 @@ export class AddSkillCollectionComponent implements OnInit {
   }
 
   captureCollection() {
-    console.log(this.collectionName + '\n');
-    console.log(this.collectionWeight + '\n');
-    console.log(this.collectionSkills);
-
     var collection = new Collection();
 
     collection.CollectionId = (Collections.length + 1).toString();
