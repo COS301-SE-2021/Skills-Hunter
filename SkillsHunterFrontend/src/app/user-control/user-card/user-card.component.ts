@@ -3,6 +3,7 @@ import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 import { User } from '../../classes/User';
 import { ImageDisplayComponent } from '../image-display/image-display.component';
 import { ShowSkillsComponent } from '../show-skills/show-skills.component';
+import { getUserResponse } from 'src/app/api-message-class/message';
 
 export interface DialogData{
   url: string;
@@ -14,9 +15,9 @@ export interface DialogData{
   styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent implements OnInit {
-  @Input() user: User;
+  @Input() user: getUserResponse;
   userTypes:String[] = ["Candidate","Project Owner","Organisation","Admin"];
-  @Output() onDeleteUser: EventEmitter<User> = new EventEmitter();
+  @Output() onDeleteUser: EventEmitter<getUserResponse> = new EventEmitter();
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -41,7 +42,7 @@ export class UserCardComponent implements OnInit {
     configDialog.backdropClass = 'backGround';
     configDialog.width = '35%';
     configDialog.height = '70%';
-    configDialog.data = this.user.id;
+    configDialog.data = this.user.userId;
 
     const dialogRef = this.dialog.open(ShowSkillsComponent,configDialog);    
   }

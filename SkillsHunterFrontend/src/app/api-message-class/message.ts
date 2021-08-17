@@ -12,8 +12,15 @@ export interface categoryModel{
     description: string;    
 }
 
-export interface UserModel{
-    
+export interface userSkillModel{
+    UserSkillId: string;
+    UserId: string;
+    SkillId: string;
+    Weight: number;    
+}
+
+export interface userSkill{
+
 }
 
 //request classes
@@ -57,13 +64,31 @@ export interface addCategoryResponse{
 }
 
 export interface getUserResponse{
-    UserId: string;
+    userId: string;
+    name: string;
+    surname: string;
+    email: string;
+    password: string;
+    phone: string;
+    startDate: string;
+    openForWork: boolean;
+    userType: number;
+}
+
+export interface SkillRR{
+
+}
+
+export interface getProjectsResponse{
+    ProjectId: string;
     Name: string;
-    Surname: string;
-    Email: string;
-    Password: string;
-    Phone: string;
-    StartDate: string;
-    OpenForWork: boolean;
-    UserType: number;
+    Description: string; 
+    Owner: string;
+    Location: string;
+    OpenForApplication: boolean; 
+    DateCreated: string;
+    ProjectSkills: {
+        SkillId: string;
+        SkillName: string;
+    }[]
 }

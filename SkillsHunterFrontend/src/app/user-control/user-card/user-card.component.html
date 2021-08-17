@@ -7,9 +7,9 @@
     
     <mat-card-content>
         <div class = "user-name"><b>Contacts</b></div><div class = "user-value">{{user.phone}}</div>
-        <div class = "user-name"><b>Start Date</b></div><div class = "user-value">{{user.startdate}}</div>
-        <div class = "user-name"><b>Open</b></div><div class = "user-value">{{user.openforwork ? "Yes" : "No"}}</div>
-        <div class = "user-name"><b>User Type</b></div><div class = "user-value">{{userTypes[user.usertype]}}</div>
+        <div class = "user-name"><b>Start Date</b></div><div class = "user-value">{{user.startDate}}</div>
+        <div class = "user-name"><b>Open</b></div><div class = "user-value">{{user.openForWork ? "Yes" : "No"}}</div>
+        <div class = "user-name"><b>User Type</b></div><div class = "user-value">{{userTypes[user.userType]}}</div>
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button id = "btnSkills" (click) = "showSkills()">Delete</button>

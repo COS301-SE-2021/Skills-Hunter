@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest } from '../api-message-class/message';
+import { getProjectsResponse, userSkillModel, getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest } from '../api-message-class/message';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders, } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,14 @@ export class AdminService {
     set('content-type','application/json').
     set('authorization','Bearer ' + localStorage.getItem('token'));
 
+  }
+
+  getProjects(): Observable<getProjectsResponse[]> {
+    return this.http.get<getProjectsResponse[]>(this.apiUrl + "Project/getProjects",{headers : this.header});
+  }
+
+  getUserSkills(id:string): Observable<userSkillModel[]> {
+    return this.http.get<userSkillModel[]> (this.apiUrl + "User/GetUserSkillsByUserId",{headers : this.header});
   }
   
   getUsers(): Observable<getUserResponse[]> {
