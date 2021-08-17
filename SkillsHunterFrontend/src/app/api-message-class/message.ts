@@ -55,3 +55,15 @@ export interface removeCategoryResponse
 export interface addCategoryResponse{
     added: categoryModel
 }
+
+export interface getUserResponse{
+    UserId: string;
+    Name: string;
+    Surname: string;
+    Email: string;
+    Password: string;
+    Phone: string;
+    StartDate: string;
+    OpenForWork: boolean;
+    UserType: number;
+}
