@@ -165,6 +165,27 @@ namespace SkillsHunterAPI.Services
             return result;
         }
 
+        public async Task<SkillCollection> CreateSkillCollection(SkillCollection skillCollection)
+        {
+            skillCollection.SkillCollectionId = new Guid();
+
+            await _context.SkillCollections.AddAsync(skillCollection);
+
+            return skillCollection;
+        }
+
+        public async Task AddSkillToSkillCollection(Guid skillCollectionId, Guid skillId)
+        {
+            SkillCollectionMap skillCollectionMap = new SkillCollectionMap();
+
+            skillCollectionMap.SkillCollectionMapId = new Guid();
+            skillCollectionMap.SkillCollectionId = skillCollectionId;
+            skillCollectionMap.SkillId = skillId;
+
+            await _context.SkillCollectionMaps.AddAsync(skillCollectionMap);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<GetSkillCollectionResponse> getSkillCollectionById(Guid id)
         {
             SkillCollection skillCollection = _context.SkillCollections.Where(sk => sk.SkillCollectionId == id).FirstOrDefault();
