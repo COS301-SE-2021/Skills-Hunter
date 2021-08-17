@@ -108,6 +108,48 @@ namespace SkillsHunterAPI.Services
             return await _context.ProjectSkills.Where(ss => ss.ProjectId == ProjectId && ss.SkillId == SkillId).FirstAsync();
         }
 
+        public async Task<IEnumerable<GetProjectSkillCollectionResponse>> GetProjectSkillCollectionsByProjectId(Guid projectId)
+        {
+
+            List<GetProjectSkillCollectionResponse> response = new List<GetProjectSkillCollectionResponse>();
+            //Retrieving the project skills
+            List<ProjectSkillCollection> projectSkillCollections = await _context.ProjectSkillCollections.Where(psc => psc.ProjectId == projectId).ToListAsync();
+
+            //Retrieving the skills mappings
+            foreach(ProjectSkillCollection projectSkillCollection in projectSkillCollections)
+            {
+                List<SkillCollectionMap> skillCollectionMaps = await _context.SkillCollectionMaps.Where(scm => scm.SkillCollectionId == projectSkillCollection.SkillCollectionId).ToListAsync();
+
+                SkillCollection skillCollection = await _context.SkillCollections.Where(sc => sc.SkillCollectionId == projectSkillCollection.SkillCollectionId).FirstOrDefaultAsync();
+
+                GetProjectSkillCollectionResponse skillCollectionToAdd = new GetProjectSkillCollectionResponse();
+                skillCollectionToAdd.ProjectSkillCollectionId = projectSkillCollection.ProjectSkillCollectionId;
+                skillCollectionToAdd.Name = skillCollection.Name;
+                skillCollectionToAdd.Weight = projectSkillCollection.Weight;
+                skillCollectionToAdd.Description = skillCollection.Description;
+
+                //Retrieving the skills from the maps
+                foreach (SkillCollectionMap skillCollectionMap in skillCollectionMaps)
+                {
+                    Skill skill = await _context.Skills.Where(s => s.SkillId == skillCollectionMap.SkillId).FirstOrDefaultAsync();
+
+                    if(skill != null)
+                    {
+                        //Adding the skill to the response object
+                        GetProjectSkillResponse skillToAdd = new GetProjectSkillResponse();
+                        skillToAdd.SkillId = skill.SkillId;
+                        skillToAdd.Name = skill.Name;
+                        skillToAdd.Weight = projectSkillCollection.Weight;
+
+                        skillCollectionToAdd.Skills.Add(skillToAdd);
+                    }
+                }
+
+                response.Add(skillCollectionToAdd);
+            }
+
+            return response;
+        }
         public bool ApplyForProject(Guid userId,Guid ProjectId)
         {
             bool applicationSuccess = false;
