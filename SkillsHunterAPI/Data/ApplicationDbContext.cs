@@ -8,8 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using SkillsHunterAPI.Models.Skill.Entity;
-using SkillsHunterAPI.Models.User.Entity;
 
 namespace SkillsHunterAPI.Data
 {
@@ -28,20 +26,15 @@ namespace SkillsHunterAPI.Data
         public DbSet<UserSkill> UserSkills { get; set; }
         public DbSet<WorkExperience> WorkExperiences { get; set; }
         public DbSet<Application> Applications { get; set; }
-        public DbSet<Image> Images { get; set; }
-        public DbSet<SkillCollection> SkillCollections { get; set; }
-        public DbSet<SkillCollectionMap> SkillCollectionMaps { get; set; }
-        public DbSet<ProjectSkillCollection> ProjectSkillCollections { get; set; }
+
         public DbSet<Invitation> Invitations { get; set; }
-        public DbSet<SkillCategory> SkillCategories { get; set; }
-        public DbSet<UserSkillCollection> UserSkillCollections { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Project>().ToTable("Project");
             modelBuilder.Entity<Project>().HasKey("ProjectId");
 
-            modelBuilder.Entity<User>().ToTable("Account");
+            modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<User>().HasKey("UserId");
 
             modelBuilder.Entity<Category>().ToTable("Category");
@@ -64,25 +57,6 @@ namespace SkillsHunterAPI.Data
             
             modelBuilder.Entity<Invitation>().ToTable("Invitation");
             modelBuilder.Entity<Invitation>().HasKey("InvitationId");
-
-            modelBuilder.Entity<SkillCollection>().ToTable("SkillCollection");
-            modelBuilder.Entity<SkillCollection>().HasKey("SkillCollectionId");
-
-
-            modelBuilder.Entity<SkillCollectionMap>().ToTable("SkillCollectionMap");
-            modelBuilder.Entity<SkillCollectionMap>().HasKey("SkillCollectionMapId");
-
-            modelBuilder.Entity<ProjectSkillCollection>().ToTable("ProjectSkillCollection");
-            modelBuilder.Entity<ProjectSkillCollection>().HasKey("ProjectSkillCollectionId");
-        
-            modelBuilder.Entity<Image>().ToTable("Image");
-            modelBuilder.Entity<Image>().HasKey("ImageId");
-
-            modelBuilder.Entity<SkillCategory>().ToTable("SkillCategory");
-            modelBuilder.Entity<SkillCategory>().HasKey("SkillCategoryId");
-
-            modelBuilder.Entity<UserSkillCollection>().ToTable("UserSkillCollection");
-            modelBuilder.Entity<UserSkillCollection>().HasKey("UserSkillCollectionId");
 
         }
 
