@@ -22,7 +22,6 @@ export class UpdateProjectComponent implements OnInit {
     private projectData: projectService
   ) {}
 
-  //this function retrieves the data that was set by the component calling this dialog/pop up
   get getProjectInfo(): Project {
     return this.projectData.projectBeingedited;
   }
