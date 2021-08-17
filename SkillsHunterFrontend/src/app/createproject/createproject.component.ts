@@ -245,6 +245,49 @@ export class CreateprojectComponent implements OnInit {
     this.cancel();
   }
 
+  updateTheProject() {
+    var proj = new Project();
+    proj.ProjectId = (Projects.length + 1).toString();
+    proj.Name = this.projectBasicInfo.value.projectName;
+    proj.Description = this.projectBasicInfo.value.projectDescription;
+    proj.Owner = 'New Developers';
+    proj.Location = 'Hatfield';
+
+    console.log('Updating Project!\n');
+
+    // proj.Skill.push('Hi');
+
+    // proj.Skill.push('SKILLS!');
+    // if (this.selectedObjectsSkills != undefined) {
+    //   if (this.selectedObjectsSkills.length > 0) {
+    // proj.Skill.push(JSON.stringify(this.selectedObjectsSkills));
+    //   }
+    // }
+
+    console.log(this.selectedObjectsSkills);
+    console.log(this.selectedObjectsCollections);
+
+    // for (var x = 0; x < this.selectedObjectsCollections.length; x++) {
+    //   if (this.selectedObjectsCollections != undefined) {
+    //     if (this.selectedObjectsCollections[x].Skills != undefined) {
+    //       proj.Skill.push(
+    // JSON.stringify(this.selectedObjectsCollections[x].Skills);
+    //       );
+    //     }
+    //   }
+    // }
+
+    console.log(this.selectedObjectsSkills);
+    console.log(this.selectedObjectsCollections);
+
+    proj.OpenForApplication = false;
+
+    Projects.push(proj);
+    console.log('Created Updated!');
+    console.log(proj);
+    this.cancel();
+  }
+
   cancel() {
     this._router.navigate([`home`]);
   }
