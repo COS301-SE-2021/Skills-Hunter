@@ -4,6 +4,7 @@ import { mockCategoryData } from '../../mock-data/mock-category';
 import { Category } from '../../classes/Category';
 import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 import { EditSkillComponent } from '../edit-skill/edit-skill.component'; 
+import { skillModel } from 'src/app/api-message-class/message';
 
 @Component({
   selector: 'app-skill-card',
@@ -11,24 +12,24 @@ import { EditSkillComponent } from '../edit-skill/edit-skill.component';
   styleUrls: ['./skill-card.component.scss']
 })
 export class SkillCardComponent implements OnInit {
-  @Input() skill:Skill;
-  @Output() onDeleteUser: EventEmitter<Skill> = new EventEmitter();
+  @Input() skill:skillModel;
+  @Output() onDeleteUser: EventEmitter<skillModel> = new EventEmitter();
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   getCategory(id) : string{
-    console.log(id);
-    let result:string;
-    let categories:Category[] = mockCategoryData;
 
-    for(let count = 0; count < categories.length; count++){
-      if(id == categories[count].categoryid){
-        result = categories[count].name;
-        break;
-      }
-    }
+    let result:string = "";
+    //let categories:Category[] = mockCategoryData;
+
+    // for(let count = 0; count < categories.length; count++){
+    //   if(id == categories[count].categoryid){
+    //     result = categories[count].name;
+    //     break;
+    //   }
+    // }
 
     return result;
   }
