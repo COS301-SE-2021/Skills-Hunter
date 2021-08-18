@@ -4,6 +4,7 @@ import { ProfileInfoService } from '../services/profile-info.service';
 import { MatDialogRef,MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddSkillComponent } from './add-skill/add-skill.component';
 import { ProfileImgComponent } from './profile-img/profile-img.component';
+import { ProjectCRUDService } from './../services/project-crud.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,10 +16,17 @@ export class ProfileComponent implements OnInit {
   imageUrl: string = "/assets/images/profile.png";
   fileToUpload: File = null;
 
-  constructor(private imgService: ProfileInfoService,private dialog: MatDialog) { }
+  constructor(private service: ProjectCRUDService,private imgService: ProfileInfoService,private dialog: MatDialog) { }
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+
+   noElements=1;
+  ELEMENT_DATA= [
+    {No: 1, name: 'Hydrogen', rating: 1.0079}
+  ];
+  displayedColumns: string[] = ['No', 'name', 'rating','actions'];
+  dataSource = this.ELEMENT_DATA;
 
   ngOnInit(): void {
 
@@ -27,6 +35,21 @@ export class ProfileComponent implements OnInit {
     this.personalDetailsForm.controls['email'].setValue(localStorage.getItem('email'));
     this.personalDetailsForm.controls['phone'].setValue(localStorage.getItem('phone'));
     this.personalDetailsForm.controls['open'].setValue(localStorage.getItem('openForWork'));
+
+    
+    this.service.getIndividualsSkills()
+    .subscribe(
+      data=>{
+        
+        if(data)//status==200)
+        {
+          console.log(data);
+         
+        }
+        else{
+          //alert that couldnt fetch data
+        }
+      });
   }
 
   personalDetailsForm = new FormGroup({
@@ -137,12 +160,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  noElements=1;
-  ELEMENT_DATA= [
-    {No: 1, name: 'Hydrogen', rating: 1.0079}
-  ];
-  displayedColumns: string[] = ['No', 'name', 'rating','actions'];
-  dataSource = this.ELEMENT_DATA;
+ 
 
  
 }
