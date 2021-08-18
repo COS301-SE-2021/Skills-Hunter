@@ -21,17 +21,12 @@ export class ProfileComponent implements OnInit {
   secondFormGroup: FormGroup;
 
   ngOnInit(): void {
-    
-    localStorage.setItem('name','Emmanuel');
-    localStorage.setItem('surname','Khoza');
-    localStorage.setItem('email','emma@mail.com');
-    localStorage.setItem('phone','0630000000');
 
     this.personalDetailsForm.controls['name'].setValue(localStorage.getItem('name'));
     this.personalDetailsForm.controls['surname'].setValue(localStorage.getItem('surname'));
     this.personalDetailsForm.controls['email'].setValue(localStorage.getItem('email'));
     this.personalDetailsForm.controls['phone'].setValue(localStorage.getItem('phone'));
-
+    this.personalDetailsForm.controls['open'].setValue(localStorage.getItem('openForWork'));
   }
 
   personalDetailsForm = new FormGroup({
@@ -47,6 +42,7 @@ export class ProfileComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required,Validators.pattern('[- +()0-9]+')]),
     password: new FormControl('', [Validators.required]),
+    open: new FormControl('')
   });
 
 
@@ -95,6 +91,8 @@ export class ProfileComponent implements OnInit {
   }
 
   addskill(){
+    
+    console.log("val: "+document.getElementById("toggleB"));
     const configDialog = new MatDialogConfig();
     const dialogRef = this.dialog.open(AddSkillComponent,
       {   width: '40%',
