@@ -79,6 +79,13 @@ namespace SkillsHunterAPI.Services
 
         public async Task AddProjectSkill(ProjectSkill projectSkill)
         {
+            Skill skill = await _context.Skills.Where(s => s.SkillId == projectSkill.SkillId).FirstOrDefaultAsync();
+
+            if(skill == null)
+            {
+                return;
+            }
+
             projectSkill.ProjectSkillId = new Guid();
             _context.ProjectSkills.Add(projectSkill);
             await _context.SaveChangesAsync();
@@ -118,7 +125,7 @@ namespace SkillsHunterAPI.Services
         public async Task<GetProjectSkillResponse> GetProjectSkill(Guid projectSkillId, Guid projectId)
         {
             GetProjectSkillResponse response = new GetProjectSkillResponse();
-            ProjectSkill projectSkill = await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId && ss.SkillId == projectSkillId).FirstOrDefaultAsync();
+            ProjectSkill projectSkill = await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId && ss.ProjectSkillId == projectSkillId).FirstOrDefaultAsync();
 
             if(projectSkill != null)
             {
