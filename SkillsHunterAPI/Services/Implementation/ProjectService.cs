@@ -118,7 +118,7 @@ namespace SkillsHunterAPI.Services
         public async Task<GetProjectSkillResponse> GetProjectSkill(Guid projectSkillId, Guid projectId)
         {
             GetProjectSkillResponse response = new GetProjectSkillResponse();
-            ProjectSkill projectSkill = await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId && ss.SkillId == projectSkillId).FirstAsync();
+            ProjectSkill projectSkill = await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId && ss.SkillId == projectSkillId).FirstOrDefaultAsync();
 
             if(projectSkill != null)
             {
