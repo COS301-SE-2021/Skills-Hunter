@@ -383,7 +383,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getUserSkillsByUserId")]
-        public async Task<IEnumerable<UserSkill>> GetUserSkillsByUserId(GetUserSkillsRequest request)
+        public async Task<IEnumerable<UserSkill>> GetUserSkillsByUserId([FromBody] GetUserSkillsRequest request)
         {
             return await _userService.GetUserSkillsByUserId(request.UserId);
         }
