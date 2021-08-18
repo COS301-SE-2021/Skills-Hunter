@@ -13,15 +13,12 @@ export interface categoryModel{
 }
 
 export interface userSkillModel{
-    UserSkillId: string;
-    UserId: string;
-    SkillId: string;
-    Weight: number;    
+    userSkillId: string;
+    userId: string;
+    skillId: string;
+    weight: number;    
 }
 
-export interface userSkill{
-
-}
 
 //request classes
 export interface removeSkillRequest{
@@ -75,20 +72,33 @@ export interface getUserResponse{
     userType: number;
 }
 
-export interface SkillRR{
+export interface getProjectSkillResponse{
+    projectSkillId: string;
+    skillId: string;
+    name: string;
+    weight: string;
+}
 
+export interface getProjectSkillCollectionResponse{
+    projectSkillCollectionId: string;
+    name: string;
+    description: string;
+    weight: string;
+    skills: string; 
+}
+
+export interface getProjectSkillsResponse{
+    skills: getProjectSkillResponse[];
+    skillCollections: getProjectSkillCollectionResponse[];
 }
 
 export interface getProjectsResponse{
-    ProjectId: string;
-    Name: string;
-    Description: string; 
-    Owner: string;
-    Location: string;
-    OpenForApplication: boolean; 
-    DateCreated: string;
-    ProjectSkills: {
-        SkillId: string;
-        SkillName: string;
-    }[]
+    projectId: string;
+    name: string;
+    description: string; 
+    owner: string;
+    location: string;
+    openForApplication: boolean; 
+    dateCreated: string;
+    projectSkills: getProjectSkillsResponse;
 }

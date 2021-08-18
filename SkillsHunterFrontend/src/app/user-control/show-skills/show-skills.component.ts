@@ -1,6 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { Skill } from 'src/app/classes/Skill';
+import { userSkillModel } from '../../api-message-class/message';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-show-skills',
@@ -8,10 +9,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./show-skills.component.scss']
 })
 export class ShowSkillsComponent implements OnInit {
-  projectSkillsData:Skill[] = [];
+  projectSkillsData:userSkillModel[] = [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: string) {
-    
+  constructor(@Inject(MAT_DIALOG_DATA) public data: string,private adminService: AdminService) {
+    this.adminService.getUserSkills(data).subscribe( result => {
+      this.projectSkillsData = result;
+      this.ngOnInit();
+    });
   }
 
   ngOnInit(): void {
