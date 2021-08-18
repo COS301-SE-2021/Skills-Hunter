@@ -96,7 +96,7 @@
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                       </table>
-                <mat-slide-toggle id="toggleB">Are you available for work</mat-slide-toggle>
+                <mat-slide-toggle formControlName="open" id="toggleB">Are you available for work</mat-slide-toggle>
                 <br/>
                 <button
                     id="applyBtn"
