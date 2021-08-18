@@ -61,6 +61,7 @@ import { ShowSkillsComponent } from './user-control/show-skills/show-skills.comp
 import { AddSkillComponent } from './profile/add-skill/add-skill.component';
 import { SliderComponent } from './profile/slider/slider.component';
 import { ProfileImgComponent } from './profile/profile-img/profile-img.component';
+import { ShowProjectSkillComponent } from './project-control/show-project-skill/show-project-skill.component';
 
 
 @NgModule({
@@ -108,7 +109,8 @@ import { ProfileImgComponent } from './profile/profile-img/profile-img.component
     ShowSkillsComponent,
     AddSkillComponent,
     SliderComponent,
-    ProfileImgComponent
+    ProfileImgComponent,
+    ShowProjectSkillComponent
   ],
   imports: [
     BrowserModule,

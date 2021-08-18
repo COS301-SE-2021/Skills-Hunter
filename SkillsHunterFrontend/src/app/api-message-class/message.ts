@@ -2,7 +2,7 @@
 export interface skillModel{
     skillId: string;
     name: string;
-    categoryId: string;
+    categoryId: string; 
     status: number;   
 }
 
@@ -101,4 +101,16 @@ export interface getProjectsResponse{
     openForApplication: boolean; 
     dateCreated: string;
     projectSkills: getProjectSkillsResponse;
+}
+
+export interface getSkillCollectionResponse{
+    SkillCollectionId: string;
+    Name: string;
+    Description: string;
+    Weight: number;
+    Skills:{
+        id: string;
+        name: string;
+        status: number;
+    }[]
 }
