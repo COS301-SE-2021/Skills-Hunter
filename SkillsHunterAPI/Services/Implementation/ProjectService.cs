@@ -130,12 +130,15 @@ namespace SkillsHunterAPI.Services
             if(projectSkill != null)
             {
                 Skill skill = await _context.Skills.Where(ss => ss.SkillId == projectSkill.SkillId).FirstOrDefaultAsync();
-                response.ProjectSkillId = projectSkill.ProjectSkillId;
-                response.SkillId = skill.SkillId;
-                response.Name = skill.Name;
-                response.Weight = projectSkill.Weight;
+                if(skill != null)
+                {
+                    response.ProjectSkillId = projectSkill.ProjectSkillId;
+                    response.SkillId = skill.SkillId;
+                    response.Name = skill.Name;
+                    response.Weight = projectSkill.Weight;
 
-                return response;
+                    return response;
+                }
             }
 
             return null;
