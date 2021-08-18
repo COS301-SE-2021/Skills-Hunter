@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HttpClient,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Project } from '../classes/Project';
 
 @Injectable({
@@ -36,15 +40,63 @@ export class ProjectCRUDService {
 
   //external api to read project is called here
   getProjects(): Observable<Project[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+
     return this.httpclient.get<Project[]>(
-      'http://localhost:5000/api/Project/getProjects'
+      'http://localhost:5000/api/Project/getProjects',
+      httpOptions
     );
   }
 
-  apply(formData):Observable <any>{
+  //external api to read project is called here
+  getProjectsByProjectOwnerId(): Observable<Project[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+
+    return this.httpclient.get<Project[]>(
+      'http://localhost:5000/api/Project/getProjectsByOwnerId',
+      httpOptions
+    );
+  }
+
+  apply(formData): Observable<any> {
+    var auth = new Headers();
+    auth.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
     return this.httpclient.post(
       'http://localhost:5000/api/Project/createProject',
       formData
+    );
+  }
+
+  getskills() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    return this.httpclient.get(
+      'http://localhost:5000/api/Admin/getSkills',
+      httpOptions
+    );
+  }
+
+  getIndividualsSkills() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }),
+    };
+    return this.httpclient.get(
+      'http://localhost:5000/api​/User​/GetUserSkillsByUserId',
+      httpOptions
     );
   }
 }

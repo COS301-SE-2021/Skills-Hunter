@@ -1,0 +1,85 @@
+#cards{
+
+  margin-top: 5%;
+ // margin-left: 0%;
+}
+
+#div1{
+  background-color: rgb(204, 0, 255);
+  width:80px;
+}
+
+#div2{
+  background-color: rgb(255, 0, 0);
+}
+.details-card {
+    width: 80%;
+    background-color: rgba(0, 255, 255, 0.856);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+.field{
+width:100%;
+font-size: 20px;
+}
+
+#details {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
+    }
+#detailsExternal{
+  width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
+.picture-card {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  background-color: aqua;
+  
+    }
+#picture{
+  width:10%;
+  position: absolute;
+  top:15%;
+  display: inline-block;
+}
+
+#contentCards{
+  margin-top: 3%;
+ text-align: center;
+}
+
+a{
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  background-color:  rgba(0, 255, 255, 0.856);
+}
+#toggleB{
+  float: left;
+  margin-top: 2%;
+}
+#addskillBtn{
+  float: left;
+  margin-bottom: 1%;
+}
+#applyBtn{
+  float: right;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}

@@ -22,9 +22,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -50,7 +50,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatInputModule,
     MatStepperModule,
     MatSlideToggleModule,
-    MatSidenavModule,
+    MatTooltipModule,
   ],
   exports: [
     MatDividerModule,
@@ -74,7 +74,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatInputModule,
     MatStepperModule,
     MatSlideToggleModule,
-    MatSidenavModule,
+    MatTooltipModule,
   ],
 })
 export class MaterialModule {}

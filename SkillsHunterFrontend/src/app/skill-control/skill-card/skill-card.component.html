@@ -1,0 +1,9 @@
+<mat-card class="skill-card">
+    <div class = "skill-name"><b>Name</b></div><div class = "skill-value">{{skill.name}}</div>
+    <div class = "skill-name"><b>Category</b></div><div class = "skill-value">{{getCategory(skill.categoryId)}}</div>
+    <div class = "skill-name"><b>Status</b></div><div class = "skill-value">{{(skill.status == 0) ? 'Accepted' : ((skill.status == 1) ? 'Pending' : 'Declined')}}</div>
+
+    <!-- button mat-raised-button id = "btnDelete" (click) = "onEdit()">Edit</button> -->
+    <button mat-raised-button id = "btnDelete" (click) = "onDelete(skill)">Delete</button>
+
+  </mat-card>
