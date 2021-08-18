@@ -33,18 +33,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     //read data of projects
-    var functiontoCall;
-    if (localStorage.getItem('role') == '1') {
-      this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
-        this._projects = data;
+    /*this.projectCrud.getProjects()
+    .subscribe(
+      data=>{
+        this._projects=data;
         console.log('Response post', data);
-      });
-    } else {
-      this.projectCrud.getProjects().subscribe((data) => {
-        this._projects = data;
-        console.log('Response post', data);
-      });
-    }
+      }
+    );*/
   }
 
   create() {

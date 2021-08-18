@@ -13,10 +13,6 @@ import { AddSkillCategoryComponent } from './createproject/add-skill-category/ad
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
 import { CreateprojectComponent } from './createproject/createproject.component';
 import { AddSkillsComponent } from './add-skills/add-skills.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UserControlComponent } from './user-control/user-control.component';
-import { AddSkillComponent } from './profile/add-skill/add-skill.component';
-import { SliderComponent } from './profile/slider/slider.component';
 
 const routes: Routes = [
   {
@@ -68,18 +64,6 @@ const routes: Routes = [
   //   component: AddSkillCategoryComponent,
   // },
   {
-    path: 'profile',
-    component: ProfileComponent,
-  },
-  {
-    path: 'profileaddskill',
-    component: AddSkillComponent,
-  },
-  {
-    path: 'sliderpopup',
-    component: SliderComponent,
-  },
-  {
     path: '',
     component: HomeComponent,
   },
@@ -87,6 +71,7 @@ const routes: Routes = [
   //   path: '',
   //   component: AddSkillCollectionComponent,
   // },
+  
 ];
 
 @NgModule({
