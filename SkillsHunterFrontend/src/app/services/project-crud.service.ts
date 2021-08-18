@@ -79,15 +79,24 @@ export class ProjectCRUDService {
   }
 
   getskills(){
-    var auth=new Headers();
-    auth.append('Authorization','Bearer '+localStorage.getItem('token'));
+
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer '+localStorage.getItem('token')
       })
     };
     return this.httpclient.get(
-      'http://localhost:5000/api/Admin/getSkills',httpOptions);//.map(res=>res.json)
+      'http://localhost:5000/api/Admin/getSkills',httpOptions);
+  }
+
+  getIndividualsSkills(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '+localStorage.getItem('token')
+      })
+    };
+    return this.httpclient.get(
+      'http://localhost:5000/api​/User​/GetUserSkillsByUserId',httpOptions);
   }
 
 }
