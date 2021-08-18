@@ -82,7 +82,7 @@ namespace SkillsHunterAPI.Controllers
             Project project = await _projectService.GetProject(projectId);
 
             ProjectResponse projectResponse = new ProjectResponse();
-            projectResponse.ProjectSkills = new List<SkillRR>();
+            //projectResponse.ProjectSkills = new List<SkillRR>();
 
             if (project == null) {
                 return null;
@@ -95,7 +95,9 @@ namespace SkillsHunterAPI.Controllers
             projectResponse.DateCreated = project.DateCreated;
             projectResponse.OpenForApplication = project.OpenForApplication;
 
-            List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkillsByProjectId(projectId);
+            projectResponse.ProjectSkills = await GetProjectSkillsByProjectId(project.ProjectId);
+
+            /*List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkillsByProjectId(projectId);
 
             foreach (ProjectSkill projectSkill in projectSkills)
             {
@@ -107,12 +109,12 @@ namespace SkillsHunterAPI.Controllers
                 skill.SkillName = "SkillOne";
                
                 projectResponse.ProjectSkills.Add(skill);
-            }
-
-           /* foreach (ProjectSkill projectSkill in projectSkills)
-            {
-                projectResponse.ProjectSkills.Add(projectSkill);
             }*/
+
+            /* foreach (ProjectSkill projectSkill in projectSkills)
+             {
+                 projectResponse.ProjectSkills.Add(projectSkill);
+             }*/
 
 
             return projectResponse;
@@ -541,14 +543,14 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/GetProjectSkillsByProjectId/{id}")]
-        public async Task<ActionResult<GetProjectSkillsResponse>> GetProjectSkillsByProjectId(Guid projectId)
+        public async Task<GetProjectSkillsResponse> GetProjectSkillsByProjectId(Guid projectId)
         {
             GetProjectSkillsResponse response = new GetProjectSkillsResponse();
 
             response.Skills = (List<GetProjectSkillResponse>)await _projectService.GetProjectSkillsByProjectId(projectId);
             response.SkillCollections = (List<GetProjectSkillCollectionResponse>)await _projectService.GetProjectSkillCollectionsByProjectId(projectId);
 
-            return Ok(response);
+            return response;
         }
 
     }
