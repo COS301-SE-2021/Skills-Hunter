@@ -539,7 +539,6 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("api/[controller]/GetProjectSkillsByProjectId/{id}")]
         public async Task<ActionResult<GetProjectSkillsResponse>> GetProjectSkillsByProjectId(Guid projectId)
