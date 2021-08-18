@@ -1,38 +1,37 @@
 ﻿<Properties StartupConfiguration="{5765300E-4CBE-48DB-9AA9-419E37AD67D9}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Project/Response/GetProjectSkillsResponse.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ProjectController.cs">
     <Files>
       <File FileName="Controllers/AdminController.cs" Line="331" Column="1" />
-      <File FileName="Services/Implementation/AdminService.cs" Line="190" Column="10" />
-      <File FileName="Services/Interface/IAdminService.cs" Line="30" Column="1" />
-      <File FileName="Models/Skill/Request/CreateSkillCollectionRequest.cs" Line="15" Column="1" />
-      <File FileName="Services/Implementation/ProjectService.cs" Line="150" Column="10" />
-      <File FileName="Controllers/ProjectController.cs" Line="99" Column="117" />
-      <File FileName="Models/Skill/Response/GetSkillCollectionResponse.cs" Line="13" Column="33" />
-      <File FileName="Models/Skill/Response/GetSkillResponse.cs" Line="6" Column="18" />
-      <File FileName="Models/Skill/Entity/Skill.cs" Line="1" Column="1" />
-      <File FileName="Controllers/UserController.cs" Line="203" Column="55" />
-      <File FileName="Models/User/Request/GetRequest.cs" Line="1" Column="1" />
-      <File FileName="Models/User/Request/GetUserSkillsRequest.cs" Line="6" Column="39" />
-      <File FileName="Services/Interface/IProjectService.cs" Line="39" Column="13" />
-      <File FileName="Models/Project/Request/CreateCollectionRequest.cs" Line="1" Column="1" />
-      <File FileName="Models/Project/Request/GetProjectSkillCollectionResponse.cs" Line="9" Column="16" />
-      <File FileName="Models/Project/Request/AddExistingSkillRequest.cs" Line="9" Column="10" />
-      <File FileName="Models/Project/Response/GetProjectSkillResponse.cs" Line="8" Column="38" />
-      <File FileName="Models/Project/Response/GetProjectSkillsResponse.cs" Line="6" Column="19" />
+      <File FileName="Services/Implementation/AdminService.cs" />
+      <File FileName="Services/Interface/IAdminService.cs" />
+      <File FileName="Models/Skill/Request/CreateSkillCollectionRequest.cs" />
+      <File FileName="Services/Implementation/ProjectService.cs" />
+      <File FileName="Controllers/ProjectController.cs" Line="545" Column="62" />
+      <File FileName="Models/Skill/Response/GetSkillCollectionResponse.cs" />
+      <File FileName="Models/Skill/Response/GetSkillResponse.cs" />
+      <File FileName="Models/Skill/Entity/Skill.cs" />
+      <File FileName="Controllers/UserController.cs" />
+      <File FileName="Models/User/Request/GetRequest.cs" />
+      <File FileName="Models/User/Request/GetUserSkillsRequest.cs" />
+      <File FileName="Services/Interface/IProjectService.cs" />
+      <File FileName="Models/Project/Request/CreateCollectionRequest.cs" />
+      <File FileName="Models/Project/Request/AddExistingSkillRequest.cs" />
+      <File FileName="Models/Project/Response/GetProjectSkillResponse.cs" />
+      <File FileName="Models/Project/Response/GetProjectSkillsResponse.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SkillsHunterAPI" expanded="True">
             <Node name="SkillsHunterAPI" expanded="True">
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="ProjectController.cs" selected="True" />
+              </Node>
               <Node name="Models" expanded="True">
                 <Node name="Project" expanded="True">
                   <Node name="Request" expanded="True" />
-                  <Node name="Response" expanded="True">
-                    <Node name="GetProjectSkillsResponse.cs" selected="True" />
-                  </Node>
+                  <Node name="Response" expanded="True" />
                 </Node>
               </Node>
               <Node name="Services" expanded="True">
