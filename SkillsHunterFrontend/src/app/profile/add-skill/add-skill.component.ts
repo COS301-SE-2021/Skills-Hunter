@@ -1,3 +1,4 @@
+import { Skills } from 'src/app/mock-data/mock-skills';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef,MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SliderComponent } from './../slider/slider.component';
@@ -22,17 +23,35 @@ export class AddSkillComponent implements OnInit {
          "Name" : "test",
          "CategoryID" : "string"}];//This will hold the skills returned from backend
   skillsList=[];//this will list the skills in the UI
-
+  returned;
+  array2=[];
   constructor(private service: ProjectCRUDService,public dialogRef: MatDialogRef<AddSkillComponent>,private dialog: MatDialog) { }
 
   ngOnInit(): void {
     console.log("Array Length: "+this.array.length);
     console.log("Array index 0: "+this.array[0].Name);
+
+    this.service.getskills()
+    .subscribe(
+      data=>{
+        
+        if(data)//status==200)
+        {
+          console.log(data);
+          this.returned=data;
+          this.array2=this.returned.skills;
+          console.log(this.array2[0].name);
+          //
+          for(let i=0;i<this.array.length;i++){
+            this.skillsList.push(this.array2[i].name);
+          }
+        }
+        else{
+          //alert that couldnt fetch data
+        }
+      });
     
-    for(let i=0;i<this.array.length;i++){
-      this.skillsList.push(this.array[i].Name);
-    }
-    this.fetchskills();
+    
   }
 //have a way to distinguish whether and existing skill or new skill is added. one way
 //of doing this is allowing 2 tabs 1 for existing one for new skill and each has its own on click function
@@ -64,17 +83,7 @@ export class AddSkillComponent implements OnInit {
     });
   }
    // this.dialogRef.close({data:skill});
-   fetchskills(){
-    this.service.getskills()
-    .subscribe(
-      data=>{
-        
-        if(data)//status==200)
-        {
-          console.log("200");
-        }
-      });
-   }
+   
  }
 
  /*onSubmit() {
