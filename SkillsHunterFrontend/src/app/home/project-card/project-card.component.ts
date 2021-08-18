@@ -24,20 +24,15 @@ export class ProjectCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    if(localStorage.getItem('role')=='candidate'){
-
+    if (localStorage.getItem('role') == 'candidate') {
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visDelete', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
-    }
-    else{
+    } else {
       document.documentElement.style.setProperty('--visAppl', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
     }
-    
-
   }
 
   get getProjectInfo(): Project {
@@ -52,8 +47,12 @@ export class ProjectCardComponent implements OnInit {
     this.setProjectInfo = _project;
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
-    configDialog.width = '40%';
-    configDialog.height = '80%';
+    configDialog.width = '50%';
+    configDialog.height = '800px';
+    configDialog.data = {
+      selectedProject: _project,
+    };
+
     this.dialog.open(UpdateProjectComponent, configDialog);
   }
 
@@ -74,19 +73,17 @@ export class ProjectCardComponent implements OnInit {
     }
   }
 
-  apply(_project: Project){
-
+  apply(_project: Project) {
     console.log(_project.ProjectId);
     var formData = new Apply();
-    formData.UserId=localStorage.getItem('userID');
-    formData.ProjectId=_project.ProjectId;
+    formData.UserId = localStorage.getItem('userID');
+    formData.ProjectId = _project.ProjectId;
 
-
-     //the service is called below;
-       this.projectCrud
-         .apply(formData) //change so it calls update
-         .subscribe((data) => {
-           console.log('Response post', data);
-         });
+    //the service is called below;
+    this.projectCrud
+      .apply(formData) //change so it calls update
+      .subscribe((data) => {
+        console.log('Response post', data);
+      });
   }
 }

@@ -40,7 +40,11 @@ export class CreateprojectComponent implements OnInit {
   selectedItemsForCollections = [];
   selectedObjectsCollections = [];
 
-  selectedItems = [];
+  existingSkillsArray = [];
+  newSkillsArray = [];
+
+  existingCollectionsArray = [];
+  newCollectionsArray = [];
 
   dropdownSettings: IDropdownSettings;
 
@@ -120,7 +124,9 @@ export class CreateprojectComponent implements OnInit {
       obj.SkillName = Skills[occurance[1]].SkillName;
       obj.SkillWeight = 11;
 
-      this.selectedObjectsSkills.push(obj);
+      // this.selectedObjectsSkills.push(obj);
+
+      this.existingSkillsArray.push(obj);
     } else if (occurance[0] == 1) {
       // process collection:
       var col = new Collection();
@@ -128,7 +134,8 @@ export class CreateprojectComponent implements OnInit {
       col.CollectionName = Collections[occurance[1]].CollectionName;
       col.Skills = Collections[occurance[1]].Skills;
 
-      this.selectedObjectsCollections.push(col);
+      // this.selectedObjectsCollections.push(col);
+      this.existingCollectionsArray.push(col);
     } else {
       console.log('Skill/Collection not found.');
     }
@@ -155,6 +162,7 @@ export class CreateprojectComponent implements OnInit {
         Skills.push(obj);
 
         // this.selectedObjectsSkills.push(obj);
+        this.newSkillsArray.push(obj);
 
         this.dropdownListForSkills = [];
 
@@ -190,6 +198,7 @@ export class CreateprojectComponent implements OnInit {
         Collections.push(obj);
 
         // this.selectedObjectsCollections.push(obj);
+        this.newCollectionsArray.push(obj);
 
         this.dropdownListForCollections = [];
 
@@ -216,6 +225,11 @@ export class CreateprojectComponent implements OnInit {
     console.log('Creating Project!\n');
 
     // proj.Skill.push('Hi');
+
+    console.log(this.newCollectionsArray);
+    console.log(this.existingSkillsArray);
+    console.log(this.newCollectionsArray);
+    console.log(this.existingCollectionsArray);
 
     // proj.Skill.push('SKILLS!');
     // if (this.selectedObjectsSkills != undefined) {
