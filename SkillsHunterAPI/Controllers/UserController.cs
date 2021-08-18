@@ -367,7 +367,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpPost]
-        [Route("api/[controller]/CreateUserSkillCollection")]
+        [Route("api/[controller]/createUserSkillCollection")]
         public IActionResult CreateUserSkillCollection(CreateSkillCollectionRequest request)
         {
             Guid LoggedInUser = GetCurrentUserId();
@@ -382,8 +382,8 @@ namespace SkillsHunterAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/[controller]/GetUserSkillsByUserId")]
-        public async Task<IEnumerable<UserSkill>> GetUserSkillsByUserId(GetUserSkillsRequest request)
+        [Route("api/[controller]/getUserSkillsByUserId")]
+        public async Task<IEnumerable<UserSkill>> GetUserSkillsByUserId([FromBody] GetUserSkillsRequest request)
         {
             return await _userService.GetUserSkillsByUserId(request.UserId);
         }
