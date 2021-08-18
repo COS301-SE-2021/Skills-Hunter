@@ -49,6 +49,19 @@ export class ProjectCRUDService {
     );
   }
 
+  //external api to read project is called here
+  getProjectsByProjectOwnerId(): Observable<Project[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '+localStorage.getItem('token')
+      })
+    };
+
+    return this.httpclient.get<Project[]>(
+      'http://localhost:5000/api/Project/getProjectsByOwnerId',httpOptions
+    );
+  }
+
   inviteCandidate(formData): Observable<Project[]> {
     return this.httpclient.post<Project[]>(
       'http://localhost:5000/api/Project/inviteCandidate', formData 
