@@ -22,7 +22,7 @@ export class AdminService {
   }
 
   getUserSkills(id:string): Observable<userSkillModel[]> {
-    return this.http.get<userSkillModel[]> (this.apiUrl + "User/GetUserSkillsByUserId",{headers : this.header});
+    return this.http.get<userSkillModel[]> (this.apiUrl + "User/GetUserSkillsByUserId?UserId=" + id,{headers : this.header});
   }
   
   getUsers(): Observable<getUserResponse[]> {
