@@ -7,6 +7,6 @@ namespace SkillsHunterAPI.Models.Skill
     public class RemoveCategoryRequest
     {
         [Required(ErrorMessage = "Id is required")]
-        public string Id { get; set; }
+        public Guid CategoryId { get; set; }
     }
 }
