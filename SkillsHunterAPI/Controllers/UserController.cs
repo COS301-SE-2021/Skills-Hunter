@@ -117,6 +117,7 @@ namespace SkillsHunterAPI.Controllers
             AuthenticateResponse response = new AuthenticateResponse();
             response.UserId = user.UserId;
             response.Name = user.Name;
+            response.Surname = user.Surname;
             response.Email = user.Email;
             response.Phone = user.Phone;
             response.OpenForWork = user.OpenForWork;
