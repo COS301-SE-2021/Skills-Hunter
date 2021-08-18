@@ -26,14 +26,14 @@ export class ProjectCardComponent implements OnInit {
   ngOnInit(): void {
 
     if(localStorage.getItem('role')=='0'){
-console.log("in candate");
+      
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visDelete', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
       document.getElementById("createbtn").style.visibility = "hidden";
     }
-    else if(localStorage.getItem('role')=='3'){console.log("in admin");
+    else if(localStorage.getItem('role')=='3'){
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visAppl', 'none');
