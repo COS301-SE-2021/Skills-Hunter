@@ -6,6 +6,9 @@ import { User } from '../classes/User';
 
 import {MatSidenav} from '@angular/material/sidenav';
 
+
+import { mockUserData } from '../mock-data/mock-users';
+
 import { getUserResponse } from '../api-message-class/message';
 import { AdminService } from '../services/admin.service';
 
