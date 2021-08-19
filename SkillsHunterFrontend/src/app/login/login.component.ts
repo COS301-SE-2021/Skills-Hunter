@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('phone',data.body.phone);
           localStorage.setItem('openForWork',data.body.openForWork);
 
-          if(data.body.role=3){
+          if(data.body.role==3){
             this._router.navigate([`user-control`]);
           }
           else{
