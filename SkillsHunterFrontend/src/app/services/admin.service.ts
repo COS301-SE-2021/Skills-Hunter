@@ -18,7 +18,7 @@ export class AdminService {
   }
 
   getSkillCollections(): Observable<getSkillCollectionResponse[]>{
-    return this.http.get<getSkillCollectionResponse[]>(this.apiUrl + "api/Admin/getAllSkillCollections" , {headers : this.header});
+    return this.http.get<getSkillCollectionResponse[]>(this.apiUrl + "Admin/getAllSkillCollections" , {headers : this.header});
   }
 
   getProjects(): Observable<getProjectsResponse[]> {

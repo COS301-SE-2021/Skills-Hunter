@@ -24,6 +24,7 @@ export class ProjectControlComponent implements OnInit {
 
   viewAll(): void {
     this.adminService.getProjects().subscribe(result =>{
+      console.log(result)
       this.data = result;
       this.ngOnInit(); 
     })
