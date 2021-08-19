@@ -1,28 +1,32 @@
 ﻿<Properties StartupConfiguration="{5765300E-4CBE-48DB-9AA9-419E37AD67D9}|Default">
   <MonoDevelop.Ide.ItemProperties.SkillsHunterAPI PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SkillsHunterAPIUnitTest/AdminUnitTest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/User/Response/GetUserSkillResponse.cs">
     <Files>
       <File FileName="Controllers/AdminController.cs" Line="293" Column="88" />
       <File FileName="Services/Implementation/AdminService.cs" />
       <File FileName="Services/Interface/IAdminService.cs" />
       <File FileName="Models/Skill/Request/CreateSkillCollectionRequest.cs" />
-      <File FileName="Services/Implementation/ProjectService.cs" Line="140" Column="37" />
-      <File FileName="Controllers/ProjectController.cs" Line="184" Column="51" />
+      <File FileName="Services/Implementation/ProjectService.cs" />
+      <File FileName="Controllers/ProjectController.cs" />
       <File FileName="Models/Skill/Response/GetSkillCollectionResponse.cs" />
       <File FileName="Models/Skill/Response/GetSkillResponse.cs" />
-      <File FileName="Models/Skill/Entity/Skill.cs" Line="1" Column="1" />
-      <File FileName="Controllers/UserController.cs" Line="389" Column="10" />
-      <File FileName="Models/User/Request/GetRequest.cs" Line="11" Column="2" />
-      <File FileName="Models/User/Request/GetUserSkillsRequest.cs" Line="12" Column="1" />
+      <File FileName="Models/Skill/Entity/Skill.cs" />
+      <File FileName="Controllers/UserController.cs" Line="203" Column="41" />
+      <File FileName="Models/User/Request/GetUserSkillsRequest.cs" />
       <File FileName="Services/Interface/IProjectService.cs" />
-      <File FileName="Models/Project/Request/CreateCollectionRequest.cs" />
-      <File FileName="Models/Project/Request/AddExistingSkillRequest.cs" />
+      <File FileName="Models/Project/Request/CreateCollectionRequest.cs" Line="1" Column="1" />
+      <File FileName="Models/Project/Request/AddExistingSkillRequest.cs" Line="4" Column="18" />
       <File FileName="Models/Project/Response/GetProjectSkillResponse.cs" />
-      <File FileName="Models/Project/Response/GetProjectSkillsResponse.cs" Line="9" Column="44" />
-      <File FileName="Models/Project/Response/ProjectResponse.cs" Line="17" Column="16" />
-      <File FileName="Services/Implementation/UserService.cs" Line="1" Column="1" />
-      <File FileName="Models/Skill/Request/RemoveCategoryRequest.cs" Line="11" Column="6" />
-      <File FileName="SkillsHunterAPIUnitTest/AdminUnitTest.cs" Line="107" Column="38" />
+      <File FileName="Models/Project/Response/GetProjectSkillsResponse.cs" />
+      <File FileName="Models/Project/Response/ProjectResponse.cs" />
+      <File FileName="Services/Implementation/UserService.cs" Line="213" Column="51" />
+      <File FileName="Models/Skill/Request/RemoveCategoryRequest.cs" />
+      <File FileName="SkillsHunterAPIUnitTest/AdminUnitTest.cs" />
+      <File FileName="Models/Project/Request/CreateProjectRequest.cs" Line="16" Column="37" />
+      <File FileName="Models/User/Request/UpdateUserRequest.cs" Line="19" Column="70" />
+      <File FileName="Services/Interface/ISkillService.cs" Line="1" Column="1" />
+      <File FileName="Services/Interface/IUserService.cs" Line="27" Column="30" />
+      <File FileName="Models/User/Response/GetUserSkillResponse.cs" Line="6" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -31,14 +35,19 @@
             <Node name="SkillsHunterAPI" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="Skill" expanded="True">
-                  <Node name="Entity" expanded="True" />
-                  <Node name="Request" expanded="True" />
+                <Node name="Project" expanded="True" />
+                <Node name="Skill" expanded="True" />
+                <Node name="User" expanded="True">
+                  <Node name="Response" expanded="True">
+                    <Node name="GetUserSkillResponse.cs" selected="True" />
+                  </Node>
                 </Node>
               </Node>
-              <Node name="SkillsHunterAPIUnitTest" expanded="True">
-                <Node name="AdminUnitTest.cs" selected="True" />
+              <Node name="Services" expanded="True">
+                <Node name="Implementation" expanded="True" />
+                <Node name="Interface" expanded="True" />
               </Node>
+              <Node name="SkillsHunterAPIUnitTest" expanded="True" />
             </Node>
           </Node>
         </State>

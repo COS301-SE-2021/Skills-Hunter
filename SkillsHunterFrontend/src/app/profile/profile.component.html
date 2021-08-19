@@ -7,9 +7,9 @@
         </mat-card-header>
         <mat-card-content >
             <form [formGroup]="personalDetailsForm" class="content" id="details" (ngSubmit)="onSubmit()">
-                <mat-form-field  class="field">
+                <mat-form-field appearance="outline" class="field">
                     <mat-label>Name</mat-label>
-                    <input matInput placeholder="Name" formControlName="name" required>
+                    <input matInput  placeholder="Name" formControlName="name" required>
                 
                     <mat-error
                     *ngIf="personalDetailsForm.controls['name'].hasError('pattern') &&
@@ -21,7 +21,7 @@
                         name is <strong>required</strong>
                     </mat-error>
                 </mat-form-field><br/>
-                <mat-form-field  class="field">
+                <mat-form-field appearance="outline" class="field">
                     <mat-label>Surname</mat-label>
                     <input matInput placeholder="Surname" formControlName="surname" required>
                     
@@ -35,7 +35,7 @@
                         surname is <strong>required</strong>
                     </mat-error>
                 </mat-form-field><br/>
-                <mat-form-field  class="field">
+                <mat-form-field appearance="outline" class="field">
                     <mat-label>Email address</mat-label>
                     <input matInput placeholder="example@mail.com" formControlName="email" required>
                     
@@ -48,7 +48,7 @@
                     email address is <strong>required</strong>
                     </mat-error>
                 </mat-form-field><br/>
-                <mat-form-field class="field">
+                <mat-form-field appearance="outline" class="field">
                     <mat-label>Phone number</mat-label>
                     <input formControlName="phone" matInput required />
                     <!-- mat-error is for validation -->
@@ -60,9 +60,9 @@
                         phone number is <strong>required</strong>
                     </mat-error>
                     </mat-form-field> <br/>
-                    <button id="addskillBtn" (click)="addskill()">add skill</button>
+                    <button id="addskillBtn" (click)="addskill()" mat-button color="accent">add skill</button>
                     <br />
-                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+                    <table mat-table id="tablecont" [dataSource]="dataSource" class="mat-elevation-z0">
 
                         <!--- Note that these columns can be defined in any order.
                               The actual rendered columns are set as a property on the row definition" -->
