@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginRegisterService } from '../services/login-register.service';
 import { Router } from '@angular/router';
 import { Login } from '../classes/Login';
+import {MatSidenav} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,9 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    document.getElementById('tool').style.display = 'none';
+    
+    document.getElementById('tool').style.display = "none";
+    document.getElementById('side').style.display = "none";
   }
 
   hide = true; // for hiding password in UI
@@ -31,7 +34,8 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     var formData = new Login();
-
+    localStorage.setItem('role', '0');
+    this._router.navigate([`home`]);
     formData.Email = this.LoginForm.get('email').value;
     formData.Password = this.LoginForm.get('password').value;
 
@@ -49,7 +53,14 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('email',data.body.email);
           localStorage.setItem('phone',data.body.phone);
           localStorage.setItem('openForWork',data.body.openForWork);
-          this._router.navigate([`home`]);
+
+          if(data.body.role=3){
+            this._router.navigate([`user-control`]);
+          }
+          else{
+            this._router.navigate([`home`]);
+          }
+         
         }
         else
         {
