@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { UserAdvancedSearchComponent } from './user-advanced-search/user-advanced-search.component';
 import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 import { User } from '../classes/User';
 import { DateAdapter } from '@angular/material/core';
 import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
 import { mockUserData } from '../statistics/mock-stats';
+import {MatSidenav} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-user-control',
@@ -12,14 +13,18 @@ import { mockUserData } from '../statistics/mock-stats';
   styleUrls: ['./user-control.component.scss']
 })
 export class UserControlComponent implements OnInit {
+ 
   data: User[] = [];
   searchTerm: string = "";
   
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog ) { }
 
   ngOnInit(): void {
+    document.getElementById('tool').style.display = "block";
+    document.getElementById('side').style.display = "block";
+    document.getElementById('userlist').style.display = "none";
+   
   }
-
   advancedSearch(): void {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
