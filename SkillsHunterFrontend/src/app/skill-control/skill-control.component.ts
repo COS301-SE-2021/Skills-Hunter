@@ -47,6 +47,10 @@ export class SkillControlComponent implements OnInit {
     });  
   }
 
+  addSkill():void{ 
+
+  }
+
   Search(): void{
     if(this.searchTerm != ""){
       let tempData:skillModel[] = this.data;
