@@ -37,38 +37,38 @@ export class ProjectCRUDService {
   }
 
   //external api to read project is called here
-  getAllProjects(): Observable<Project[]> {
+  getAllProjects(): Observable<any[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer '+localStorage.getItem('token')
       })
     };
 
-    return this.httpclient.get<Project[]>(
+    return this.httpclient.get<any[]>(
       'http://localhost:5000/api/Project/getProjects',httpOptions
     );
   }
 
   //external api to read project is called here
-  getProjectsByProjectOwnerId(): Observable<Project[]> {
+  getProjectsByProjectOwnerId(): Observable<any[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer '+localStorage.getItem('token')
       })
     };
 
-    return this.httpclient.get<Project[]>(
+    return this.httpclient.get<any[]>(
       'http://localhost:5000/api/Project/getProjectsByOwnerId',httpOptions
     );
   }
 
-  inviteCandidate(formData): Observable<Project[]> {
-    return this.httpclient.post<Project[]>(
+  inviteCandidate(formData): Observable<any[]> {
+    return this.httpclient.post<any[]>(
       'http://localhost:5000/api/Project/inviteCandidate', formData 
     );
   }
 
-  apply(formData):Observable <any>{
+  applyForProject(formData : any ):Observable <any>{
     var auth=new Headers();
     auth.append('Authorization','Bearer '+localStorage.getItem('token'));
 
