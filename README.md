@@ -13,6 +13,9 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
 ## Architectural requirements
 <a href="https://drive.google.com/file/d/1naUG3VyWgjxio-1HNTj0MlShryxLx7pQ/view?usp=sharing">Current Architectural document on Google drive </a><br>
 
+## Architectural requirements
+<a href="https://drive.google.com/file/d/1m9ctgbJ1u7OGcgmS8Fd_Bs3gLtDsTwNM/view?usp=sharing">Architectural diagram V3 on Google drive </a><br>
+
 <a href="https://drive.google.com/file/d/1flkNQRhYlqgMYURzUFFEKd5kKJDB5QWt/view?usp=sharing">Skills hunter SRS Demo 1 Google Drive</a><br>
 
 ## Project Management Tool
