@@ -1,0 +1,88 @@
+<div class="portal-container">
+  <div class="demo-filter-container">
+    <mat-form-field>
+      <mat-label>Filter Skills</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Adding skills allows Project Owners and Candidates interact with the system."
+        #input
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="demo-button-container">
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="addSkill()"
+      class="add-skill-button"
+    >
+      Add Skill
+    </button>
+  </div>
+
+  <table
+    mat-table
+    [dataSource]="dataSourceTB"
+    multiTemplateDataRows
+    class="mat-elevation-z8"
+  >
+    <ng-container
+      matColumnDef="{{ column }}"
+      *ngFor="let column of columnsToDisplay"
+    >
+      <th mat-header-cell *matHeaderCellDef>Skill Name</th>
+      <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [attr.colspan]="columnsToDisplay.length"
+      >
+        <div
+          class="example-element-detail"
+          [@detailExpand]="
+            element == expandedElement ? 'expanded' : 'collapsed'
+          "
+        >
+          <div class="example-element-diagram">
+            <div class="example-element-name">{{ element.SkillName }}</div>
+            <div class="example-element-weight">{{ element.SkillWeight }}</div>
+          </div>
+          <div class="example-element-description">
+            <!-- {{ element.description }} -->
+            The description for {{ element.SkillName }} will be provided below.
+          </div>
+
+          <button
+            mat-raised-button
+            [disabled]="!dataSource.length"
+            (click)="removeSkill(element.SkillId)"
+            color="accent"
+            class="remove-skill-button"
+          >
+            Remove Skill
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: columnsToDisplay"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="example-detail-row"
+    ></tr>
+  </table>
+</div>

@@ -1,0 +1,88 @@
+<!-- id: number;
+  Name: string;
+  Description: string;
+  Owner: string;
+  Location: string;
+  Skill: string[];
+  OpenForApplication: boolean; -->
+
+<mat-card class="project-card">
+  <mat-card-header>
+    <div mat-card-avatar class="project-menu-header-image"></div>
+    <mat-card-title>{{ card_project.name }}</mat-card-title>
+    
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <b>View Project Details</b>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          {{ card_project.description }}
+        </p>
+
+        <mat-card class="project-card-skills">
+          <mat-card-title>Skills</mat-card-title>
+          <mat-chip-list aria-label="Project Required Skills">
+            <mat-chip color="primary" selected>{{
+              card_project.skill
+            }}</mat-chip>
+          </mat-chip-list>
+        </mat-card>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button
+      class="card-project-find"
+      mat-raised-button
+      color="accent"
+      [routerLink]="['/match-candidate']"
+    >
+      Match Candidates
+    </button>
+
+    <button
+      class="card-project-delete"
+      mat-raised-button
+      color="accent"
+      (click)="delete(card_project)"
+    >
+      Remove Project
+    </button>
+
+    <button
+      class="card-project-update"
+      mat-raised-button
+      color="accent"
+      (click)="update(card_project)"
+    >
+      Update Project
+    </button>
+
+    <button class="card-project-apply"
+    mat-raised-button
+    color="accent"
+    (click)="apply(card_project)"
+    >
+      Apply
+    </button>
+
+    <button class="card-project-cancelappl"
+    mat-raised-button
+    color="accent"
+    (click)="cancel()"
+    >
+      Cancel Application
+    </button>
+
+  </mat-card-actions>
+</mat-card>

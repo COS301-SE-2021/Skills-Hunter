@@ -1,0 +1,40 @@
+
+<!--<button mat-raised-button id="adminbtn" [routerLink]="['/admin-portal']">
+  Admin Dashboard
+</button>
+<button mat-raised-button id="adminbtn" [routerLink]="['/dashboard']">
+  Admin Dashboard
+</button>
+<button mat-raised-button id="adminbtn" [routerLink]="['/profile']">
+  Profile 
+</button>-->
+<div>
+  <div class="homeOptions">
+
+    <mat-form-field appearance="outline" class="example-form-field" id="searchProjectsinput">
+      <mat-label>Search Projects:</mat-label>
+      <input matInput type="text" [(ngModel)]="filterQuery" />
+      <button
+        *ngIf="filterQuery"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="filterQuery = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div id="creatediv">
+    <button mat-raised-button id="createbtn" (click)="create()">
+      Create Project
+    </button>
+  </div>
+  <div id="projectCard">
+    <app-project-card
+    *ngFor="let project of _projects | searchAndFilterCandidate: filterQuery"
+    [card_project]="project"
+  ></app-project-card>
+  </div>
+</div>
+
