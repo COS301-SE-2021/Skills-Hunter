@@ -34,8 +34,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     var formData = new Login();
-    localStorage.setItem('role', '0');
-    this._router.navigate([`home`]);
+    
     formData.Email = this.LoginForm.get('email').value;
     formData.Password = this.LoginForm.get('password').value;
 
