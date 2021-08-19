@@ -15,6 +15,7 @@ using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Skill.Entity;
 using SkillsHunterAPI.Models.User.Entity;
+using SkillsHunterAPI.Models.User.Response;
 
 namespace SkillsHunterAPI.Services
 {
@@ -400,9 +401,28 @@ namespace SkillsHunterAPI.Services
         }
 
 
-        public async Task<IEnumerable<UserSkill>> GetUserSkillsByUserId(Guid id)
+        public async Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId(Guid id)
         {
-            return (IEnumerable<UserSkill>)_context.UserSkills.Where(u => u.UserId == id).ToListAsync(); 
+            List<GetUserSkillResponse> response = new List<GetUserSkillResponse>();
+            List<UserSkill> userSkills = await _context.UserSkills.Where(u => u.UserId == id).ToListAsync();
+
+            foreach(UserSkill userSkill in userSkills)
+            {
+                //Checking if the skill exists
+                Skill skill = await _context.Skills.Where(s => s.SkillId == userSkill.SkillId).FirstOrDefaultAsync();
+
+                if(skill != null)
+                {
+                    GetUserSkillResponse skillResponse = new GetUserSkillResponse();
+                    skillResponse.skillId = skill.SkillId;
+                    skillResponse.Name = skill.Name;
+                    skillResponse.Weight = userSkill.Weight;
+
+                    response.Add(skillResponse);
+                }
+            }
+
+            return response;
         }
 
     }
