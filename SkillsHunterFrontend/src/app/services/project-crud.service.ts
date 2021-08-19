@@ -10,7 +10,7 @@ export class ProjectCRUDService {
   constructor(private httpclient: HttpClient) {}
 
   //external api to create project is called here
-  createProject(formData: Project): Observable<any> {
+  createProject(formData: any): Observable<any> {
     // console.log("Req: "+formData.name);
     return this.httpclient.post(
       'http://localhost:5000/api/Project/createProject',
