@@ -5,6 +5,7 @@ import { MatDialogRef,MatDialog, MatDialogConfig } from '@angular/material/dialo
 import { AddSkillComponent } from './add-skill/add-skill.component';
 import { ProfileImgComponent } from './profile-img/profile-img.component';
 import { ProjectCRUDService } from './../services/project-crud.service';
+import { JsonpClientBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -16,17 +17,19 @@ export class ProfileComponent implements OnInit {
   imageUrl: string = "/assets/images/profile.png";
   fileToUpload: File = null;
 
-  constructor(private service: ProjectCRUDService,private imgService: ProfileInfoService,private dialog: MatDialog) { }
+  constructor(private service: ProjectCRUDService,private profileService: ProfileInfoService,private dialog: MatDialog) { }
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-   noElements=1;
+   noElements=0;
   ELEMENT_DATA= [
-    {No: 1, name: 'Hydrogen', rating: 1.0079}
   ];
   displayedColumns: string[] = ['No', 'name', 'rating','actions'];
   dataSource = this.ELEMENT_DATA;
+
+  returned;
+  array2=[];
 
   ngOnInit(): void {
 
@@ -36,7 +39,7 @@ export class ProfileComponent implements OnInit {
     this.personalDetailsForm.controls['phone'].setValue(localStorage.getItem('phone'));
     this.personalDetailsForm.controls['open'].setValue(localStorage.getItem('openForWork'));
 
-    
+   
     this.service.getIndividualsSkills()
     .subscribe(
       data=>{
@@ -50,6 +53,22 @@ export class ProfileComponent implements OnInit {
           //alert that couldnt fetch data
         }
       });
+
+      this.service.getskills()
+      .subscribe(
+        data=>{
+          
+          if(data)//status==200)
+          {
+            console.log(data);
+            this.returned=data;
+            this.array2=this.returned.skills;
+
+          }
+          else{
+            //alert that couldnt fetch data
+          }
+        });
   }
 
   personalDetailsForm = new FormGroup({
@@ -67,29 +86,6 @@ export class ProfileComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
     open: new FormControl('')
   });
-
-
-  handleFileInput(file: FileList) {
-    this.fileToUpload = file.item(0);
-
-    //Show image preview
-    var reader = new FileReader();
-    reader.onload = (event:any) => {
-      this.imageUrl = event.target.result;
-    }
-    reader.readAsDataURL(this.fileToUpload);
-  }
-
-  upload(Image){
-
-   this.imgService.postImg(this.fileToUpload).subscribe(
-     data =>{
-       console.log('done');
-       Image.value = null;
-       this.imageUrl = "/assets/img/default-image.png";
-     }
-   );
-  }
 
   viewImg(){
  
@@ -128,13 +124,19 @@ export class ProfileComponent implements OnInit {
       {
         console.log("profile: "+returnedData.data.selectedSkill);
         console.log("rate: "+returnedData.data.rateValue);
-        this.noElements++;
-        /*this.ELEMENT_DATA.push(
+        //first check if skill is already in the list
+        var key=false;
+        for(let j=0;j<this.ELEMENT_DATA.length;j++){
+
+          if(this.ELEMENT_DATA[j].name=returnedData.data.selectedSkill)
           {
-            No:this.noElements,
-            name: returnedData.data.selectedSkill,
-            rating: returnedData.data.rateValue
-            });*/
+            key=true;
+          }
+        }
+        if(!key){
+
+        
+        this.noElements++;
         console.log("element"+JSON.stringify(this.ELEMENT_DATA[0]));
         var arr=[];
         for(let i=0;i<this.ELEMENT_DATA.length;i++)
@@ -151,16 +153,57 @@ export class ProfileComponent implements OnInit {
         this.ELEMENT_DATA=arr;
         //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
         this.dataSource =this.ELEMENT_DATA;
-
+      }
       //return the skill and the value to profile then send request to backend
       }
       else{ 
         console.log("returned empty:");
       }//dialog closed
     });
+   
   }
 
- 
+  onSubmit(){
+    console.log("in on submit");
+    var key=false;
+    var arrRequest=[];
+    for(let i=0;i<this.array2.length;i++){
 
+      key=false;
+
+      for(let j=0;j<this.ELEMENT_DATA.length && !key;j++){
+
+          if(this.array2[i].name==this.ELEMENT_DATA[j].name){
+            key=true
+            console.log("in if ");
+            arrRequest.push({
+              skillId:this.array2[i].skillId,
+              weight:this.ELEMENT_DATA[j].rating
+            });
+          }
+      }
+
+    }
+    var obj= {
+       name:this.personalDetailsForm.get('name').value,
+       surname: this.personalDetailsForm.get('surname').value,
+       email: this.personalDetailsForm.get('email').value,
+       phoneNumber: this.personalDetailsForm.get('phone').value,
+       startDate: "2021-08-17T21:16:36.745Z",
+       openForWork:this.personalDetailsForm.get('open').value,
+       existingSkills:arrRequest
+
+     };
+     console.log(JSON.stringify(obj));
+
+     
+     this.profileService.userDetailUpdate(obj)
+     .subscribe(
+       data=>{
+        
+         console.log('Response post', data);
+       }
+     );
+   }
  
 }
