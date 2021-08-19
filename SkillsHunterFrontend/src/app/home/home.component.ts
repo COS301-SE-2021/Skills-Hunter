@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
       );
     }else{
 
-      this.projectCrud.getProjects()
+      this.projectCrud.getAllProjects()
       .subscribe(
         data=>{
           this._projects=data;

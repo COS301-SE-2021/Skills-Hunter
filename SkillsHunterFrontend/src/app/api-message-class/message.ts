@@ -20,6 +20,12 @@ export interface userSkillModel{
 }
 
 
+export interface collectionSkillModel{
+    id: string;
+    name: string;
+    status: number;
+}
+
 //request classes
 export interface removeSkillRequest{
     skillId: string;
@@ -103,14 +109,11 @@ export interface getProjectsResponse{
     projectSkills: getProjectSkillsResponse;
 }
 
+
 export interface getSkillCollectionResponse{
     SkillCollectionId: string;
     Name: string;
     Description: string;
     Weight: number;
-    Skills:{
-        id: string;
-        name: string;
-        status: number;
-    }[]
+    Skills:collectionSkillModel[];
 }
