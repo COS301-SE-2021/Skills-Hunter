@@ -25,7 +25,7 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
 <a href="https://drive.google.com/file/d/1wvy2ZSOEjcuXYXNcipwyl-Oav1QG-bVY/view?usp=sharing"> User Manual </a><br>
 
 ## Technical Installation Manual
-<a href="#"> Technical Installation Manual </a><br>
+<a href="https://drive.google.com/file/d/1wvy2ZSOEjcuXYXNcipwyl-Oav1QG-bVY/view?usp=sharing"> Technical Installation Manual </a><br>
 
 ## Team Members
 
