@@ -44,6 +44,7 @@ mat-horizontal-stepper {
 }
 
 .stepper-card {
+  color: purple;
 }
 
 .create-card {
@@ -52,8 +53,9 @@ mat-horizontal-stepper {
   margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
+  color: purple;
   box-shadow: 2px 2px 10px #000000;
-  background-color: #e6ffff;
+  background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
 }
 
 .create-header-image {
