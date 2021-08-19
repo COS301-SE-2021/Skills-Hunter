@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { UserAdvancedSearchComponent } from './user-advanced-search/user-advanced-search.component';
 import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
-import { mockUserData } from '../mock-data/mock-users';
+
+import { User } from '../classes/User';
+
+import {MatSidenav} from '@angular/material/sidenav';
+
 import { getUserResponse } from '../api-message-class/message';
 import { AdminService } from '../services/admin.service';
+
 
 @Component({
   selector: 'app-user-control',
@@ -11,14 +16,19 @@ import { AdminService } from '../services/admin.service';
   styleUrls: ['./user-control.component.scss']
 })
 export class UserControlComponent implements OnInit {
+
   data: getUserResponse[] = [];
   searchTerm: string = "";
   
   constructor(public dialog: MatDialog,private adminService:AdminService) { }
 
-  ngOnInit(): void {
-  }
 
+  ngOnInit(): void {
+    document.getElementById('tool').style.display = "block";
+    document.getElementById('side').style.display = "block";
+    document.getElementById('userlist').style.display = "none";
+   
+  }
   advancedSearch(): void {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
