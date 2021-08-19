@@ -8,15 +8,11 @@
   <mat-card-content>
     <mat-horizontal-stepper
       [linear]="isLinear"
-      fxLayout="column"
-      fxFlex="100"
-      fxLayoutAlign=" stretch"
+      
       #stepper
     >
       <mat-step
         [stepControl]="projectBasicInfo"
-        fxFlex="100"
-        fxLayout="column"
         required
       >
         <mat-card class="stepper-card">
@@ -61,18 +57,12 @@
                 Next
               </button>
             </form>
-
-            <!-- <div> -->
-
-            <!-- </div> -->
           </mat-card-content>
         </mat-card>
       </mat-step>
       <mat-step
         [stepControl]="projectSkillsAndCollections"
         label="Step 2"
-        fxFlex="100"
-        fxLayout="column"
       >
         <mat-card class="stepper-card">
           <mat-card-content>
