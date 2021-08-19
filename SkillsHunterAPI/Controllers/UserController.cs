@@ -214,7 +214,7 @@ namespace SkillsHunterAPI.Controllers
             //Retrieving the userskills
             GetUserSkillsRequest skillsRequest = new GetUserSkillsRequest();
             skillsRequest.UserId = request.UserId;
-            response.UserSkills = (List<GetUserSkillResponse>)await GetUserSkillsByUserId(skillsRequest);
+            response.UserSkills = (List<GetUserSkillResponse>)await _userService.GetUserSkillsByUserId(user.UserId);
 
             return response;
         }
@@ -400,9 +400,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getUserSkillsByUserId")]
-        public async Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId([FromBody] GetUserSkillsRequest request)
+        public async Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId([FromQuery] Guid  userId)
         {
-            return (IEnumerable<GetUserSkillResponse>)await _userService.GetUserSkillsByUserId(request.UserId);
+            return await _userService.GetUserSkillsByUserId(userId);
         }
 
     }
