@@ -190,9 +190,14 @@ namespace SkillsHunterAPI.Services
         // Crud operations on the User Skill Model
         public async Task AddUserSkill(UserSkill request)
         {
-            request.UserSkillId = new Guid();
-            
-            _context.UserSkills.Add(request);
+            UserSkill userSkill = await _context.UserSkills.Where(us => us.SkillId == request.SkillId).FirstOrDefaultAsync();
+
+            if(userSkill == null)
+            {
+                request.UserSkillId = new Guid();
+
+                _context.UserSkills.Add(request);
+            }
         }
         
         public async Task UpdateUserSkill(Guid userSkillId, UserSkill request)

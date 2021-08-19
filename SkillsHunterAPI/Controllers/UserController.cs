@@ -31,8 +31,6 @@ namespace SkillsHunterAPI.Controllers
             _userService = userService;
         }
 
-
-
         [HttpGet]
         [Route("api/[controller]/getCurrentUserId")]
         public Guid GetCurrentUserId(){
