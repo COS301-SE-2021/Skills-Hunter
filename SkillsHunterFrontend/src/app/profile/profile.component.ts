@@ -39,7 +39,12 @@ export class ProfileComponent implements OnInit {
     this.personalDetailsForm.controls['phone'].setValue(localStorage.getItem('phone'));
     this.personalDetailsForm.controls['open'].setValue(localStorage.getItem('openForWork'));
 
-   
+    if(localStorage.getItem('role')=='1'){
+      document.getElementById('toggleB').style.display = "none";
+      document.getElementById('tablecont').style.display = "none";
+      document.getElementById('addskillBtn').style.display = "none";
+      
+    }
     this.service.getIndividualsSkills()
     .subscribe(
       data=>{
