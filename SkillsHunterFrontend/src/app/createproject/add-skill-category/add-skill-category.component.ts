@@ -1,5 +1,4 @@
 import { Category } from './../../classes/Category';
-import { Collection } from 'src/app/classes/Collection';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
@@ -9,7 +8,7 @@ import {
 import { Skill } from 'src/app/classes/Skill';
 import { Skills } from 'src/app/mock-data/mock-skills';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CategoryList } from 'src/app/mock-data/mock-categories';
+import { mockCategoryData } from 'src/app/mock-data/mock-category';
 
 @Component({
   selector: 'app-add-skill-category',
@@ -21,7 +20,7 @@ export class AddSkillCategoryComponent implements OnInit {
   skillWeight: number = 1;
   skillCategory: Category[];
 
-  categoryArray = CategoryList;
+  categoryArray = mockCategoryData;
 
   skillFormGroup: FormGroup;
 
@@ -37,18 +36,15 @@ export class AddSkillCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.skillFormGroup = this.formBuilder.group({
       skillName: ['', Validators.required],
-      // categoryWeight : ['', Validators.required],
-      // categorySkills : ['', Validators.required]
     });
   }
 
   captureSkill() {
-    var skill = new Skill();
-
-    skill.SkillId = (Skills.length + 1).toString();
-    skill.SkillName = this.skillName;
-    skill.SkillWeight = this.skillWeight;
-    skill.SkillCategory = this.skillCategory;
+    var skill = {
+      name : this.skillFormGroup.value.skillName, 
+      categories : this.skillCategory,
+      weight : this.skillWeight,
+    }
 
     this.dialogRef.close({ data: skill });
   }

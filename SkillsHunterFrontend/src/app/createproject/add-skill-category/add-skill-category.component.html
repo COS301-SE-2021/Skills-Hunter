@@ -54,7 +54,7 @@
           <mat-label>Category</mat-label>
           <mat-select multiple required [(ngModel)]="skillCategory">
             <mat-option *ngFor="let item of categoryArray" [value]="item">
-              {{ item.CategoryName }}
+              {{ item.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
