@@ -11,9 +11,6 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
 <a href="https://www.overleaf.com/read/zfmmmbtkknzf">Current SRS document on overleaf </a><br>
 
 ## Architectural requirements
-<a href="https://drive.google.com/file/d/1naUG3VyWgjxio-1HNTj0MlShryxLx7pQ/view?usp=sharing">Current Architectural document on Google drive </a><br>
-
-## Architectural requirements
 <a href="https://drive.google.com/file/d/1m9ctgbJ1u7OGcgmS8Fd_Bs3gLtDsTwNM/view?usp=sharing">Architectural diagram V3 on Google drive </a><br>
 
 <a href="https://drive.google.com/file/d/1flkNQRhYlqgMYURzUFFEKd5kKJDB5QWt/view?usp=sharing">Skills hunter SRS Demo 1 Google Drive</a><br>
@@ -28,7 +25,7 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
 <a href="https://drive.google.com/file/d/1wvy2ZSOEjcuXYXNcipwyl-Oav1QG-bVY/view?usp=sharing"> User Manual </a><br>
 
 ## Technical Installation Manual
-<a href="https://drive.google.com/file/d/1wvy2ZSOEjcuXYXNcipwyl-Oav1QG-bVY/view?usp=sharing"> Technical Installation Manual </a><br>
+<a href="https://drive.google.com/file/d/1MiIPWTFVQPhlfIVrtsIIEwqrqlIfxeAN/view?usp=sharing"> Technical Installation Manual </a><br>
 
 ## Team Members
 
