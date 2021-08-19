@@ -16,7 +16,7 @@ export class ProfileInfoService {
     formData.append('Image', img, img.name);
     console.log("form: "+formData);
     return this.httpclient.post(
-      'http://localhost:5000/api/uploadprofilepicture',
+      'http://localhost:5000/api​/User​/uploadProfileImage',
       formData,{observe:'response'}
     );
   }

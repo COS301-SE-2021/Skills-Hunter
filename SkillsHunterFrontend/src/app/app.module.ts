@@ -57,9 +57,11 @@ import { StatsComponent } from './stats/stats.component';
 import { SkillCollectionCardComponent } from './skill-collection-control/skill-collection-card/skill-collection-card.component';
 import { SkillCollectionAdvancedSearchComponent } from './skill-collection-control/skill-collection-advanced-search/skill-collection-advanced-search.component';
 import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
+import { ShowSkillsComponent } from './user-control/show-skills/show-skills.component';
 import { AddSkillComponent } from './profile/add-skill/add-skill.component';
 import { SliderComponent } from './profile/slider/slider.component';
 import { ProfileImgComponent } from './profile/profile-img/profile-img.component';
+import { ShowProjectSkillComponent } from './project-control/show-project-skill/show-project-skill.component';
 
 
 @NgModule({
@@ -104,9 +106,11 @@ import { ProfileImgComponent } from './profile/profile-img/profile-img.component
     SkillCollectionCardComponent,
     SkillCollectionAdvancedSearchComponent,
     InviteCandidateComponent,
+    ShowSkillsComponent,
     AddSkillComponent,
     SliderComponent,
-    ProfileImgComponent
+    ProfileImgComponent,
+    ShowProjectSkillComponent
   ],
   imports: [
     BrowserModule,
