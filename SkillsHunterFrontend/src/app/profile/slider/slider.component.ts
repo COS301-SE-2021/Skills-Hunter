@@ -24,7 +24,7 @@ export class SliderComponent implements OnInit {
   autoTicks = false;
   disabled = false;
   invert = false;
-  max = 100;
+  max = 10;
   min = 0;
   showTicks = false;
   step = 1;
