@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.User;
 
 namespace SkillsHunterAPI.Models.User
@@ -14,5 +16,6 @@ namespace SkillsHunterAPI.Models.User
         public string PhoneNumber {get; set; }
         public DateTime StartDate {get; set; }
         public Boolean OpenForWork {get; set; }
+        public List<AddExistingSkillRequest> UserSkills { get; set; }
     }
 }
