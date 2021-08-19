@@ -1,0 +1,21 @@
+<div>
+    <a id="cancel" (click)="cancel()">x</a><!--cancel icon should be here-->
+  <div  matTooltip="This is a rating of your experience with the skill" class="example-label-container" [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
+    <label id="example-name-label" class="example-name-label">Max Value</label>
+    <label class="example-value-label">{{value}}</label>
+  </div>
+  <mat-slider
+      class="example-margin"
+      [disabled]="disabled"
+      [invert]="invert"
+      [max]="max"
+      [min]="min"
+      [step]="step"
+      [thumbLabel]="thumbLabel"
+      [tickInterval]="getSliderTickInterval()"
+      [(ngModel)]="value"
+      [vertical]="vertical"
+      aria-labelledby="example-name-label">
+  </mat-slider>
+  <button (click)="confirm()"  class="btn btn-primary btn-lg" >confirm</button>
+</div>
