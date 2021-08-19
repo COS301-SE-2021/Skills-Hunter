@@ -29,6 +29,7 @@ namespace SkillsHunterAPI.Controllers
             _projectService = projectService;
             _skillService = skillService;
             _userController = userController;
+            //InitControllers();
         }
 
 
@@ -162,11 +163,12 @@ namespace SkillsHunterAPI.Controllers
         {
             ProjectResponse projectResponse = new ProjectResponse();
 
+            InitControllers();
             Project newProject = new Project();
             newProject.Description = projectRequest.Description;
             newProject.Location = projectRequest.Location;
             newProject.OpenForApplication = projectRequest.OpenForApplication;
-            //newProject.Owner = projectRequest.Owner;
+            newProject.Owner = _userController.GetCurrentUserId();
             newProject.Name = projectRequest.Name;
             newProject.DateCreated = DateTime.Now;
 
