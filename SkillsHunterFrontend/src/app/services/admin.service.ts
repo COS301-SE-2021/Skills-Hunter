@@ -25,12 +25,12 @@ export class AdminService {
     return this.http.get<getProjectsResponse[]>(this.apiUrl + "Project/getProjects",{headers : this.header});
   }
 
-  getUserSkills(id:string): Observable<userSkillModel[]> {
-    return this.http.get<userSkillModel[]> (this.apiUrl + "User/GetUserSkillsByUserId?UserId=" + id,{headers : this.header});
+  getUserSkills(id:string): Observable<any> {
+    return this.http.get(this.apiUrl + "User/GetUserSkillsByUserId?UserId=" + id,{headers : this.header,observe : "response"});
   }
   
-  getUsers(): Observable<getUserResponse[]> {
-    return this.http.get<getUserResponse[]>(this.apiUrl + "User/getAllUsers",{headers : this.header});
+  getUsers(): Observable<any> {
+    return this.http.get(this.apiUrl + "User/getAllUsers",{headers : this.header,observe:'response'});
   }
   
   getSkills(): Observable<getSkillsResponse> {
