@@ -141,6 +141,17 @@ namespace SkillsHunterAPI.Controllers
             Guid LoggedInUser = GetCurrentUserId();
             await _userService.UpdateUser(request,LoggedInUser);
 
+            //Updating user skills
+            foreach(AddExistingSkillRequest userSkill in request.UserSkills)
+            {
+                UserSkill UserSkillToUpdate = new UserSkill();
+                UserSkillToUpdate.SkillId = userSkill.SkillId;
+                UserSkillToUpdate.UserId = GetCurrentUserId();
+                UserSkillToUpdate.Weight = userSkill.Weight;
+
+                await _userService.UpdateUserSkill(UserSkillToUpdate);
+            }
+
             UpdateUserResponse response = new UpdateUserResponse();
             response.Success = true;
 
