@@ -37,8 +37,8 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
  </details>
  
  > <b> Mxolisi Mkanzi: </b> <br>
- * <a href=""> GitHub  Profile  Page</a><br>
- * <a href=""> LinkedIn  Account </a><br>
+ * <a href="https://github.com/MxolisiMkanzi"> GitHub  Profile  Page</a><br>
+ * <a href="linkedin.com/in/mxolisi-mkanzi-1a40bb168"> LinkedIn  Account </a><br>
  <details>
   <summary><b>Description</b></summary>
  </details>
