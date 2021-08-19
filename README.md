@@ -19,7 +19,7 @@ The idea is to implement a skills portal whereby skills or groups of skillsets c
 * <a href="https://github.com/COS301-SE-2021/Skills-Hunter/projects/1">Github</a>
 
 ## Coding standards
-<a href="#"> Coding standards </a><br>
+<a href="https://drive.google.com/file/d/18JKiC-WBPWogD6dD4r4NVKr6EtNtyt0-/view?usp=sharing"> Coding standards </a><br>
 
 ## User Manual
 <a href="https://drive.google.com/file/d/1wvy2ZSOEjcuXYXNcipwyl-Oav1QG-bVY/view?usp=sharing"> User Manual </a><br>
