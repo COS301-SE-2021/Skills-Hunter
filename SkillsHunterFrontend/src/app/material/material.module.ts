@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [],
@@ -50,7 +51,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatInputModule,
     MatStepperModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSidenavModule
   ],
   exports: [
     MatDividerModule,
@@ -74,7 +76,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatInputModule,
     MatStepperModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSidenavModule
   ],
 })
 export class MaterialModule {}
