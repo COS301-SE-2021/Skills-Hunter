@@ -149,6 +149,7 @@ namespace SkillsHunterAPI.Controllers
                 UserSkillToUpdate.SkillId = userSkill.SkillId;
                 UserSkillToUpdate.UserId = GetCurrentUserId();
                 UserSkillToUpdate.Weight = userSkill.Weight;
+                UserSkillToUpdate.UserId = LoggedInUser;
 
                 await _userService.UpdateUserSkill(UserSkillToUpdate);
             }
