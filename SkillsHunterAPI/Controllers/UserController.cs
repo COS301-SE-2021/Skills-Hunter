@@ -143,16 +143,20 @@ namespace SkillsHunterAPI.Controllers
             await _userService.UpdateUser(request,LoggedInUser);
 
             //Updating user skills
-            foreach(AddExistingSkillRequest userSkill in request.UserSkills)
+            if(request.UserSkills != null)
             {
-                UserSkill UserSkillToUpdate = new UserSkill();
-                UserSkillToUpdate.SkillId = userSkill.SkillId;
-                UserSkillToUpdate.UserId = GetCurrentUserId();
-                UserSkillToUpdate.Weight = userSkill.Weight;
-                UserSkillToUpdate.UserId = LoggedInUser;
+                foreach (AddExistingSkillRequest userSkill in request.UserSkills)
+                {
+                    UserSkill UserSkillToUpdate = new UserSkill();
+                    UserSkillToUpdate.SkillId = userSkill.SkillId;
+                    UserSkillToUpdate.UserId = GetCurrentUserId();
+                    UserSkillToUpdate.Weight = userSkill.Weight;
+                    UserSkillToUpdate.UserId = LoggedInUser;
 
-                await _userService.UpdateUserSkill(UserSkillToUpdate);
+                    await _userService.UpdateUserSkill(UserSkillToUpdate);
+                }
             }
+            
 
             UpdateUserResponse response = new UpdateUserResponse();
             response.Success = true;
