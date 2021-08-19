@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Skill.Request;
+using SkillsHunterAPI.Models.User.Response;
 
 namespace SkillsHunterAPI.Services
 {
@@ -24,13 +25,13 @@ namespace SkillsHunterAPI.Services
 
         Task AddUserSkill(UserSkill request);
         
-        Task UpdateUserSkill(Guid userSkillId, UserSkill request);
+        Task UpdateUserSkill(UserSkill request);
 
         Task DeleteUserSkill(Guid id);
         
         Task<UserSkill> GetUserSkill(Guid id);
 
-        Task<IEnumerable<UserSkill>> GetUserSkillsByUserId(Guid id);
+        Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId(Guid id);
 
         Task AddWorkExperience(WorkExperience request);
         

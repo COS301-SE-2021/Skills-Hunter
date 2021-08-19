@@ -36,6 +36,13 @@
 
       <mat-icon [routerLink]="['/home']" routerLinkActive="router-link-active">home</mat-icon>
     </button>
+    <button id="houseAdmin"
+      mat-icon-button
+      class="toolbar-icon favorite-icon"
+      aria-label="Example icon-button with heart icon">
+
+      <mat-icon [routerLink]="['/user-control']" routerLinkActive="router-link-active">home</mat-icon>
+    </button>
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container"
@@ -54,7 +61,9 @@
         </div>
         <div id="userlist">
           <!--<li><a routerLink = "/statistics"><b>Statistics</b></a></li>-->
+          <a mat-list-item routerLink = "/home"><b>Projects</b></a>
           <a mat-list-item routerLink = "/profile"><b>Profile</b></a>
+          
         </div>
       </mat-nav-list>
     </mat-sidenav>
