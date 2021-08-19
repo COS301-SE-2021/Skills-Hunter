@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using SkillsHunterAPI.Models.User.Response;
 
 namespace SkillsHunterAPI.Models.User
 {
@@ -14,5 +16,6 @@ namespace SkillsHunterAPI.Models.User
         public DateTime StartDate { get; set; }
         public Boolean OpenForWork { get; set; }
         public UserType UserType { get; set; }
+        public List<GetUserSkillResponse> UserSkills { get; set; }
     }
 }
