@@ -1,3 +1,4 @@
+import { SkillCollection } from 'src/app/classes/SkillCollection';
 import { Projects } from './../mock-data/mock-projects';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -16,6 +17,7 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 import { Skills } from '../mock-data/mock-skills';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Skill } from '../classes/Skill';
+import { mockSkillCollection } from '../mock-data/mock-collection';
 
 @Component({
   selector: 'app-createproject',
@@ -84,19 +86,19 @@ export class CreateprojectComponent implements OnInit {
       projectCollections: ['', Validators.required],
     });
 
-    // for (var x = 0; x < Skills.length; x++) {
-    //   this.dropdownListForSkills.push({
-    //     item_id: Skills[x].SkillId,
-    //     item_text: Skills[x].SkillName,
-    //   });
-    // }
+    for (var x = 0; x < Skills.length; x++) {
+      this.dropdownListForSkills.push({
+        item_id: Skills[x].SkillId,
+        item_text: Skills[x].Name,
+      });
+    }
 
-    // for (var x = 0; x < Collections.length; x++) {
-    //   this.dropdownListForCollections.push({
-    //     item_id: Collections[x].CollectionId,
-    //     item_text: Collections[x].CollectionName,
-    //   });
-    // }
+    for (var x = 0; x < SkillCollection.length; x++) {
+      this.dropdownListForCollections.push({
+        item_id: SkillCollection[x].ProjectSkillCollectionId,
+        item_text: SkillCollection[x].CollectionName,
+      });
+    }
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -111,21 +113,21 @@ export class CreateprojectComponent implements OnInit {
 
   searchForOccurance(id: string, name: string) {
     // start with skills:
-    // for (var x = 0; x < Skills.length; x++) {
-    //   if (Skills[x].SkillId === id && Skills[x].SkillName === name) {
-    //     return [0, x];
-    //   }
-    // }
+    for (var x = 0; x < Skills.length; x++) {
+      if (Skills[x].SkillId === id && Skills[x].Name === name) {
+        return [0, x];
+      }
+    }
 
     // check collections:
-    // for (var x = 0; x < Collections.length; x++) {
-    //   if (
-    //     Collections[x].CollectionId === id &&
-    //     Collections[x].CollectionName === name
-    //   ) {
-    //     return [1, x];
-    //   }
-    // }
+    for (var x = 0; x < SkillCollection.length; x++) {
+      if (
+        mockSkillCollection[x].ProjectSkillCollectionId === id &&
+        mockSkillCollection[x].Name === name
+      ) {
+        return [1, x];
+      }
+    }
 
     return [-1, -1];
   }
@@ -143,18 +145,23 @@ export class CreateprojectComponent implements OnInit {
       // obj.SkillId = Skills[occurance[1]].SkillId;
       // obj.SkillName = Skills[occurance[1]].SkillName;
       // obj.SkillWeight = this.skillWeight;
-
-      // this.selectedObjectsSkills.push(obj);
-
-      // this.existingSkillsArray.push(obj);
+      var obj = {
+        SkillId: Skills[occurance[1]].SkillId,
+        Name: Skills[occurance[1]].Name,
+        CategoryId: Skills[occurance[1]].CategoryId
+      }
+      this.existingSkillsArray.push(obj);
     } else if (occurance[0] == 1) {
       // process collection:
-      // var col = new Collection();
-      // col.CollectionId = Collections[occurance[1]].CollectionId;
-      // col.CollectionName = Collections[occurance[1]].CollectionName;
-      // col.Skills = Collections[occurance[1]].Skills;
 
-      // this.collectionOfSkills.push(col);
+      var col = {
+        ProjectSkillCollectionId: mockSkillCollection[occurance[1]].ProjectSkillCollectionId,
+        Name: mockSkillCollection[occurance[1]].Name,
+        Description: mockSkillCollection[occurance[1]].Description,
+        Weight: mockSkillCollection[occurance[1]].Weight,
+     }
+
+      this.collectionOfSkills.push(col);
     } else {
       console.log('Skill/Collection not Found.');
     }
