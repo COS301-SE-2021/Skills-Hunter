@@ -33,6 +33,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
+    document.getElementById('tool').style.display = "block";
+    document.getElementById('side').style.display = "block";
+    document.getElementById('adminlist').style.display = "none";
+     document.getElementById('houseAdmin').style.display = "none";
+     
     this.personalDetailsForm.controls['name'].setValue(localStorage.getItem('name'));
     this.personalDetailsForm.controls['surname'].setValue(localStorage.getItem('surname'));
     this.personalDetailsForm.controls['email'].setValue(localStorage.getItem('email'));
@@ -209,6 +214,11 @@ export class ProfileComponent implements OnInit {
          console.log('Response post', data);
        }
      );
+     localStorage.setItem('name',obj.name);
+     localStorage.setItem('surname',obj.surname);
+     localStorage.setItem('email',obj.email);
+     localStorage.setItem('phone',obj.phoneNumber);
+     localStorage.setItem('openForWork',obj.openForWork);
    }
  
 }

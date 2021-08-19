@@ -1,7 +1,7 @@
 <div>
     <a id="cancel" (click)="cancel()">x</a><!--cancel icon should be here-->
   <div  matTooltip="This is a rating of your experience with the skill" class="example-label-container" [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
-    <label id="example-name-label" class="example-name-label">Max Value</label>
+    <label id="example-name-label" class="example-name-label">Value: </label>
     <label class="example-value-label">{{value}}</label>
   </div>
   <mat-slider
