@@ -29,8 +29,8 @@ export class UserControlComponent implements OnInit {
   ngOnInit(): void {
     document.getElementById('tool').style.display = "block";
     document.getElementById('side').style.display = "block";
-    document.getElementById('userlist').style.display = "none";
-   
+    document.getElementById('userlist').style.display = "none"; 
+    document.getElementById('house').style.display = "none";
   }
   advancedSearch(): void {
     const configDialog = new MatDialogConfig();
