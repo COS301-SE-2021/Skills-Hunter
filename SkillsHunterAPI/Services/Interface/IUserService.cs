@@ -24,7 +24,7 @@ namespace SkillsHunterAPI.Services
 
         Task AddUserSkill(UserSkill request);
         
-        Task UpdateUserSkill(Guid userSkillId, UserSkill request);
+        Task UpdateUserSkill(UserSkill request);
 
         Task DeleteUserSkill(Guid id);
         
