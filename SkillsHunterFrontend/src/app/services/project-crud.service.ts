@@ -37,7 +37,7 @@ export class ProjectCRUDService {
   }
 
   //external api to read project is called here
-  getProjects(): Observable<Project[]> {
+  getAllProjects(): Observable<Project[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: 'Bearer '+localStorage.getItem('token')
@@ -98,5 +98,17 @@ export class ProjectCRUDService {
     return this.httpclient.get(
       'http://localhost:5000/api​/User​/GetUserSkillsByUserId',httpOptions);
   }
+
+  getProject(formData : any){
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '+localStorage.getItem('token')
+      })
+    };
+    return this.httpclient.get(
+      'http://localhost:5000/api​/Project/getProject',httpOptions);
+  }
+
 
 }
