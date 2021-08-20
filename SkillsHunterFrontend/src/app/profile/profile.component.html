@@ -63,26 +63,26 @@
                     <button id="addskillBtn" (click)="addskill()" mat-button color="accent">add skill</button>
                     <br />
                     <table mat-table id="tablecont" [dataSource]="dataSource" class="mat-elevation-z0">
-
+                        <caption>Table of skills</caption>
                         <!--- Note that these columns can be defined in any order.
                               The actual rendered columns are set as a property on the row definition" -->
                       
                         <!-- Position Column -->
                        <!----> <ng-container matColumnDef="No">
-                          <th mat-header-cell *matHeaderCellDef> No. </th>
+                          <th mat-header-cell *matHeaderCellDef id="number"> No. </th>
                           <td mat-cell *matCellDef="let element"> {{element.No}} </td>
                         </ng-container>
                       
                         <!-- Name Column -->
                         <ng-container matColumnDef="name">
-                          <th mat-header-cell *matHeaderCellDef> Name </th>
+                          <th mat-header-cell *matHeaderCellDef id="name"> Name </th>
                           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                         </ng-container>
                       
                         <!-- Weight Column -->
                         <ng-container matColumnDef="rating">
-                          <th mat-header-cell *matHeaderCellDef> rating </th>
-                          <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
+                          <th mat-header-cell *matHeaderCellDef id="rating"> rating </th>
+                          <td mat-cell *matCellDef="let element" id="element"> {{element.rating}} </td>
                         </ng-container>
                       
                         <ng-container matColumnDef="actions">
