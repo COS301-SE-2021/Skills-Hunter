@@ -290,8 +290,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 // Remove category code here
 
-                Guid id = new Guid(request.Id);
-                Category result = await _adminService.RemoveCategory(id);
+                Category result = await _adminService.RemoveCategory(request.CategoryId);
 
                 return Ok(new RemoveCategoryResponse()
                 {

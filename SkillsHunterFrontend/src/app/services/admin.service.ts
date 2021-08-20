@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getProjectsResponse, userSkillModel, getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest } from '../api-message-class/message';
+import { getSkillCollectionResponse,getProjectsResponse, userSkillModel, getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest } from '../api-message-class/message';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -17,16 +17,20 @@ export class AdminService {
 
   }
 
+  getSkillCollections(): Observable<getSkillCollectionResponse[]>{
+    return this.http.get<getSkillCollectionResponse[]>(this.apiUrl + "Admin/getAllSkillCollections" , {headers : this.header});
+  }
+
   getProjects(): Observable<getProjectsResponse[]> {
     return this.http.get<getProjectsResponse[]>(this.apiUrl + "Project/getProjects",{headers : this.header});
   }
 
-  getUserSkills(id:string): Observable<userSkillModel[]> {
-    return this.http.get<userSkillModel[]> (this.apiUrl + "User/GetUserSkillsByUserId",{headers : this.header});
+  getUserSkills(id:string): Observable<any> {
+    return this.http.get(this.apiUrl + "User/GetUserSkillsByUserId?UserId=" + id,{headers : this.header,observe : "response"});
   }
   
-  getUsers(): Observable<getUserResponse[]> {
-    return this.http.get<getUserResponse[]>(this.apiUrl + "User/getAllUsers",{headers : this.header});
+  getUsers(): Observable<any> {
+    return this.http.get(this.apiUrl + "User/getAllUsers",{headers : this.header,observe:'response'});
   }
   
   getSkills(): Observable<getSkillsResponse> {

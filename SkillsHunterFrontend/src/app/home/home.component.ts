@@ -33,14 +33,35 @@ export class HomeComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+
+    document.getElementById('tool').style.display = "block";
+    document.getElementById('side').style.display = "block";
+    document.getElementById('adminlist').style.display = "none";
+     document.getElementById('houseAdmin').style.display = "none";
+
     //read data of projects
-    this.projectCrud.getProjects()
-    .subscribe(
-      data=>{
-        this._projects=data;
-        console.log('Response post', data);
-      }
-    );
+    var functiontoCall;
+    if(localStorage.getItem('role')=='1'){
+
+      this.projectCrud.getProjectsByProjectOwnerId()
+      .subscribe(
+        data=>{
+          this._projects=data;
+          console.log('Response post', data);
+        }
+      );
+    }else{
+      document.getElementById('creatediv').style.display = "none";
+      this.projectCrud.getAllProjects()
+      .subscribe(
+        data=>{
+          this._projects=data;
+          console.log('Response post', data);
+        }
+      );
+    }
+
+   
   }
 
   create() {

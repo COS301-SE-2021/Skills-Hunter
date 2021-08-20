@@ -3,5 +3,5 @@ export class SkillCollection{
     Name: string;
     Description: string;
     Weight: number;
-    ProjectId: string;    
+    ProjectId?: string;    
 }
