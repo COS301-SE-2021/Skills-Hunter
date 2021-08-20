@@ -1,0 +1,14 @@
+<p>add-skills works!</p>
+<form class="example-form">
+    <div class="search-container">
+        <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search" id="input">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+      <mat-selection-list #shoes [multiple]="false">
+        <mat-list-option *ngFor="let skill of skills" [value]="skill"  (click)="selected(skill)">
+          {{skill}}
+        </mat-list-option>
+      </mat-selection-list>
+</form>

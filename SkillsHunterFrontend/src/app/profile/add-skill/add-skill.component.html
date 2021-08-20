@@ -1,0 +1,14 @@
+
+<form class="example-form">
+    <div class="search-container">
+        <form >
+          <input type="text" placeholder="Search.." name="search" id="input">
+          <button type="submit"><em class="fa fa-search"></em></button>
+        </form>
+      </div>
+      <mat-selection-list #shoes [multiple]="false">
+        <mat-list-option *ngFor="let skill of skillsList" [value]="skill"  (click)="selected(skill)">
+          {{skill}}
+        </mat-list-option>
+      </mat-selection-list>
+</form>

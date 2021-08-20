@@ -1,1 +1,140 @@
-<p>createproject works!</p>
+
+<mat-card class="create-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <div style="text-align: center">
+      <mat-card-title>New Project Creation</mat-card-title>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-horizontal-stepper
+      [linear]="isLinear"
+      
+      #stepper
+    >
+      <mat-step
+        [stepControl]="projectBasicInfo"
+        required
+      >
+        <mat-card class="stepper-card">
+          <mat-card-content>
+            <form [formGroup]="projectBasicInfo" class="stepform">
+              <ng-template matStepLabel>Step 1</ng-template>
+              <mat-form-field appearance="outline">
+                <mat-label>Project Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Project X"
+                  formControlName="projectName"
+                  required
+                />
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Project Description</mat-label>
+                <textarea
+                  matInput
+                  placeholder="..."
+                  formControlName="projectDescription"
+                  required
+                ></textarea>
+              </mat-form-field>
+
+              <button
+                mat-raised-button
+                color="warn"
+                matStepperPrevious
+                class="back"
+                (click)="cancel()"
+              >
+                Cancel
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                matStepperNext
+                class="next"
+              >
+                Next
+              </button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </mat-step>
+      <mat-step
+        [stepControl]="projectSkillsAndCollections"
+        label="Step 2"
+      >
+        <mat-card class="stepper-card">
+          <mat-card-content>
+            <h1 class="adding-title">Skills</h1>
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="addSkill()"
+              class="adding"
+            >
+              <mat-icon>add_circle</mat-icon>
+            </button>
+            <br />
+            <br />
+            <ng-multiselect-dropdown
+              [placeholder]="'Search A Skill'"
+              [settings]="dropdownSettings"
+              [data]="dropdownListForSkills"
+              [(ngModel)]="selectedItemsForSkills"
+              (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)"
+              allowRemoteDataSearch
+            >
+            </ng-multiselect-dropdown>
+
+            <br />
+
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="addCollection()"
+              class="adding"
+            >
+              <mat-icon>add_circle</mat-icon>
+            </button>
+            <h1 class="adding-title">Collections</h1>
+
+            <br />
+            <br />
+
+            <ng-multiselect-dropdown
+              [placeholder]="'Search A Collection'"
+              [settings]="dropdownSettings"
+              [data]="dropdownListForCollections"
+              [(ngModel)]="selectedItemsForCollections"
+              (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)"
+            >
+            </ng-multiselect-dropdown>
+            <br />
+            <br />
+
+            <mat-slide-toggle color="primary"
+              >Project is Open for Application</mat-slide-toggle
+            >
+            <br />
+          </mat-card-content>
+        </mat-card>
+        <button mat-stroked-button color="warn" matStepperPrevious class="back">
+          Back
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          matStepperNext
+          class="next"
+          (click)="createTheProject()"
+        >
+          Create Project
+        </button>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card-content>
+</mat-card>
