@@ -12,6 +12,7 @@ export class SliderComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<SliderComponent>) { }
 
   ngOnInit(): void {
+      // This is intentional
   }
   formatLabel(value: number) {
     if (value >= 1000) {
