@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { getSkillCollectionResponse,getProjectsResponse, userSkillModel, getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest } from '../api-message-class/message';
+import { getUserSkillResponse, getSkillCollectionResponse,getProjectsResponse, userSkillModel, getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest, updateSkillRequest, skillModel } from '../api-message-class/message';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,16 @@ export class AdminService {
     this.header = new HttpHeaders().
     set('content-type','application/json').
     set('authorization','Bearer ' + localStorage.getItem('token'));
+  }
 
+  updateSkill(skill:skillModel): Observable<any>{
+    let request:updateSkillRequest = {
+      id: skill.skillId,
+      name: skill.name,
+      categoryId: "",
+      status: skill.status
+    }
+    return this.http.post(this.apiUrl + "Admin/updateSkill",request,{headers : this.header});
   }
 
   getSkillCollections(): Observable<getSkillCollectionResponse[]>{
@@ -25,12 +34,12 @@ export class AdminService {
     return this.http.get<getProjectsResponse[]>(this.apiUrl + "Project/getProjects",{headers : this.header});
   }
 
-  getUserSkills(id:string): Observable<any> {
-    return this.http.get(this.apiUrl + "User/GetUserSkillsByUserId?UserId=" + id,{headers : this.header,observe : "response"});
+  getUserSkills(id:string): Observable<getUserSkillResponse[]> {
+    return this.http.get<getUserSkillResponse[]>(this.apiUrl + "User/GetUserSkillsByUserId?userId=" + id,{headers : this.header});
   }
   
-  getUsers(): Observable<any> {
-    return this.http.get(this.apiUrl + "User/getAllUsers",{headers : this.header,observe:'response'});
+  getUsers(): Observable<getUserResponse[]> {
+    return this.http.get<getUserResponse[]>(this.apiUrl + "User/getAllUsers",{headers : this.header});
   }
   
   getSkills(): Observable<getSkillsResponse> {

@@ -32,11 +32,13 @@ export class UserControlComponent implements OnInit {
     document.getElementById('userlist').style.display = "none"; 
     document.getElementById('house').style.display = "none";
   }
+
   advancedSearch(): void {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '30%';
     configDialog.height = '50%';
+    configDialog.data = -1;
 
     const dialogRef = this.dialog.open(UserAdvancedSearchComponent,configDialog);
 
@@ -44,23 +46,18 @@ export class UserControlComponent implements OnInit {
       this.adminService.getUsers().subscribe(response =>{
         this.data = response;
         let newList: getUserResponse[] = new Array();
-        let index: number;
-  
-        if(result == "Candidate")
-          index = 0;
-        else if(result == "Project Owner")
-          index = 1;
-        else if(result == "Organisation")
-          index = 2; 
-        else if(result == "Admin")
-          index = 3;
-  
-          console.log(index);
+        
+        if(result == -1){
+          return;
+        }
+
         for(let count = 0; count < this.data.length; count++){
-          console.log(index);
-          if(this.data[count].userType == index)
+          
+          if(this.data[count].userType == result)
             newList.push(this.data[count]);
         }
+
+        
   
         this.data = newList;
         this.ngOnInit();
@@ -68,21 +65,13 @@ export class UserControlComponent implements OnInit {
       error=>{
         this.data = mockUserData;
         let newList: getUserResponse[] = new Array();
-        let index: number;
   
-        if(result == "Candidate")
-          index = 0;
-        else if(result == "Project Owner")
-          index = 1;
-        else if(result == "Organisation")
-          index = 2; 
-        else if(result == "Admin")
-          index = 3;
+        if(result == -1)
+          return;
   
-          console.log(index);
+
         for(let count = 0; count < this.data.length; count++){
-          console.log(index);
-          if(this.data[count].userType == index)
+          if(this.data[count].userType == result)
             newList.push(this.data[count]);
         }
   
@@ -94,16 +83,12 @@ export class UserControlComponent implements OnInit {
 
   viewAll(): void{
     this.adminService.getUsers().subscribe(result =>{
-      if(result.status == 200){
-        this.data = result.body;
+        this.data = result;
         this.ngOnInit();
-      }
     },
     error=>{
-      if(error.status == 500){
         this.data = mockUserData;
         this.ngOnInit();
-      }
     });
     
   }

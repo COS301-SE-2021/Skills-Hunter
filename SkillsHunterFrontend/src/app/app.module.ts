@@ -64,7 +64,8 @@ import { ProfileImgComponent } from './profile/profile-img/profile-img.component
 import { ShowProjectSkillComponent } from './project-control/show-project-skill/show-project-skill.component';
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
-
+import { MatChipsModule } from '@angular/material/chips';
+import { ShowProjectCollectionComponent } from './project-control/show-project-collection/show-project-collection.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     ProfileImgComponent,
     ShowProjectSkillComponent,
     AddSkillCategoryComponent,
-    AddSkillCollectionComponent
+    AddSkillCollectionComponent,
+    ShowProjectCollectionComponent
   ],
   imports: [
     BrowserModule,
@@ -138,7 +140,7 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     MatSidenavModule,
     MatCardModule,
     MatDialogModule,
-
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -40,6 +40,13 @@ export interface addCategoryRequest{
     description: string;
 }
 
+export interface updateSkillRequest{
+    id: string,
+    name: string,
+    categoryId: string,
+    status: number
+}
+
 //response classes
 
 export interface getSkillsResponse{
@@ -89,8 +96,8 @@ export interface getProjectSkillCollectionResponse{
     projectSkillCollectionId: string;
     name: string;
     description: string;
-    weight: string;
-    skills: string; 
+    weight: number;
+    skills: getProjectSkillsResponse[]; 
 }
 
 export interface getProjectSkillsResponse{
@@ -116,4 +123,11 @@ export interface getSkillCollectionResponse{
     Description: string;
     Weight: number;
     Skills:collectionSkillModel[];
+}
+
+export interface getUserSkillResponse
+{
+    skillId: string;
+    name: string;
+    weight: string;
 }

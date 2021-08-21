@@ -4,6 +4,7 @@ import { User } from '../../classes/User';
 import { ImageDisplayComponent } from '../image-display/image-display.component';
 import { ShowSkillsComponent } from '../show-skills/show-skills.component';
 import { getUserResponse } from 'src/app/api-message-class/message';
+import { AdminService } from 'src/app/services/admin.service';
 
 export interface DialogData{
   url: string;
@@ -18,7 +19,8 @@ export class UserCardComponent implements OnInit {
   @Input() user: getUserResponse;
   userTypes:String[] = ["Candidate","Project Owner","Organisation","Admin"];
   @Output() onDeleteUser: EventEmitter<getUserResponse> = new EventEmitter();
-  constructor(public dialog: MatDialog) { }
+  
+  constructor(public dialog: MatDialog,private adminService:AdminService) { }
 
   ngOnInit(): void {
   }
@@ -38,13 +40,16 @@ export class UserCardComponent implements OnInit {
   }
 
   showSkills(): void{
-    const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '35%';
-    configDialog.height = '70%';
-    configDialog.data = this.user.userId;
-
-    const dialogRef = this.dialog.open(ShowSkillsComponent,configDialog);    
+    
+    this.adminService.getUserSkills(this.user.userId).subscribe(result =>{
+      const configDialog = new MatDialogConfig();
+      configDialog.backdropClass = 'backGround';
+      configDialog.width = '50%';
+      configDialog.height = '70%';
+      configDialog.data = result;
+  
+      const dialogRef = this.dialog.open(ShowSkillsComponent,configDialog);  
+    });   
   }
 
 }
