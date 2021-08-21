@@ -194,13 +194,20 @@ export class ProfileComponent implements OnInit {
       }
 
     }
+
+    var o=false;
+
+    if(this.personalDetailsForm.get('open').value=="true"){
+      o=true;
+    }
+
     var obj= {
        name:this.personalDetailsForm.get('name').value,
        surname: this.personalDetailsForm.get('surname').value,
        email: this.personalDetailsForm.get('email').value,
        phoneNumber: this.personalDetailsForm.get('phone').value,
        startDate: "2021-08-17T21:16:36.745Z",
-       openForWork:this.personalDetailsForm.get('open').value,
+       openForWork:o,
        existingSkills:arrRequest
 
      };
@@ -212,13 +219,19 @@ export class ProfileComponent implements OnInit {
        data=>{
         
          console.log('Response post', data);
+         localStorage.setItem('name',obj.name);
+         localStorage.setItem('surname',obj.surname);
+         localStorage.setItem('email',obj.email);
+         localStorage.setItem('phone',obj.phoneNumber);
+         if(o){
+          localStorage.setItem('openForWork','true');
+         }
+         else{
+          localStorage.setItem('openForWork','false');
+         }
        }
      );
-     localStorage.setItem('name',obj.name);
-     localStorage.setItem('surname',obj.surname);
-     localStorage.setItem('email',obj.email);
-     localStorage.setItem('phone',obj.phoneNumber);
-     localStorage.setItem('openForWork',obj.openForWork);
+    
    }
  
 }

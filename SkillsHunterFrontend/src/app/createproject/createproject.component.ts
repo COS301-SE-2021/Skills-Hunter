@@ -1,3 +1,4 @@
+
 import { SkillCollection } from 'src/app/classes/SkillCollection';
 import { Projects } from './../mock-data/mock-projects';
 import { Component, OnInit } from '@angular/core';
@@ -24,6 +25,7 @@ import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-co
 @Component({
   selector: 'app-createproject',
   templateUrl: './createproject.component.html',
+
   styleUrls: ['./createproject.component.scss'],
 })
 export class CreateprojectComponent implements OnInit {
