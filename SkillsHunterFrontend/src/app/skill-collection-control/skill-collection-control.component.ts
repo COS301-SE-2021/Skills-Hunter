@@ -26,6 +26,7 @@ export class SkillCollectionControlComponent implements OnInit {
 
   viewAll(): void {
     this.adminService.getSkillCollections().subscribe(result=>{
+      console.log(result);
       this.data = result;
       this.ngOnInit();
     })
