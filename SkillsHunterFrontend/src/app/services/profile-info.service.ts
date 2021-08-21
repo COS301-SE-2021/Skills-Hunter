@@ -21,7 +21,7 @@ export class ProfileInfoService {
     );
   }
 
-  userDetailUpdate(formData): Observable<any>{
+  userDetailUpdate(formData){
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -29,7 +29,7 @@ export class ProfileInfoService {
       })
     };
     return this.httpclient.post<any>(
-      'http://localhost:5000/api/User/update',formData,{headers: httpOptions.headers,observe:'response'});
+      'http://localhost:5000/api/User/update',formData, httpOptions);
   }
  
 }
