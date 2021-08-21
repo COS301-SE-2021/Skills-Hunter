@@ -3,7 +3,7 @@
     <mat-list>
         <mat-list-item *ngFor="let skill of projectSkillsData">
             <mat-icon mat-list-icon>skill</mat-icon>
-            <div mat-line>{{skill.name}}</div>
+            <div mat-line id = "{{skill.skillId}}"></div>
             <div mat-line> Weight: {{skill.weight}} </div>
           </mat-list-item>
     </mat-list>

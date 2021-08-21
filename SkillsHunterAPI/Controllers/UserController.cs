@@ -143,15 +143,20 @@ namespace SkillsHunterAPI.Controllers
             await _userService.UpdateUser(request,LoggedInUser);
 
             //Updating user skills
-            foreach(AddExistingSkillRequest userSkill in request.UserSkills)
+            if(request.UserSkills != null)
             {
-                UserSkill UserSkillToUpdate = new UserSkill();
-                UserSkillToUpdate.SkillId = userSkill.SkillId;
-                UserSkillToUpdate.UserId = GetCurrentUserId();
-                UserSkillToUpdate.Weight = userSkill.Weight;
+                foreach (AddExistingSkillRequest userSkill in request.UserSkills)
+                {
+                    UserSkill UserSkillToUpdate = new UserSkill();
+                    UserSkillToUpdate.SkillId = userSkill.SkillId;
+                    UserSkillToUpdate.UserId = GetCurrentUserId();
+                    UserSkillToUpdate.Weight = userSkill.Weight;
+                    UserSkillToUpdate.UserId = LoggedInUser;
 
-                await _userService.UpdateUserSkill(UserSkillToUpdate);
+                    await _userService.UpdateUserSkill(UserSkillToUpdate);
+                }
             }
+            
 
             UpdateUserResponse response = new UpdateUserResponse();
             response.Success = true;
@@ -214,7 +219,7 @@ namespace SkillsHunterAPI.Controllers
             //Retrieving the userskills
             GetUserSkillsRequest skillsRequest = new GetUserSkillsRequest();
             skillsRequest.UserId = request.UserId;
-            response.UserSkills = (List<GetUserSkillResponse>)await GetUserSkillsByUserId(skillsRequest);
+            response.UserSkills = (List<GetUserSkillResponse>)await _userService.GetUserSkillsByUserId(user.UserId);
 
             return response;
         }
@@ -400,9 +405,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getUserSkillsByUserId")]
-        public async Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId([FromBody] GetUserSkillsRequest request)
+        public async Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId([FromQuery] Guid  userId)
         {
-            return (IEnumerable<GetUserSkillResponse>)await _userService.GetUserSkillsByUserId(request.UserId);
+            return await _userService.GetUserSkillsByUserId(userId);
         }
 
     }

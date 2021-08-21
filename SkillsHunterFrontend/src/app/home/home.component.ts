@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Projects } from '../mock-data/mock-projects';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -9,9 +10,11 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 import { MaterialModule } from '../material/material.module';
 import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
@@ -38,6 +41,7 @@ export class HomeComponent implements OnInit {
     document.getElementById('side').style.display = "block";
     document.getElementById('adminlist').style.display = "none";
      document.getElementById('houseAdmin').style.display = "none";
+
     //read data of projects
     var functiontoCall;
     if(localStorage.getItem('role')=='1'){
@@ -50,8 +54,8 @@ export class HomeComponent implements OnInit {
         }
       );
     }else{
-
-      this.projectCrud.getProjects()
+      document.getElementById('creatediv').style.display = "none";
+      this.projectCrud.getAllProjects()
       .subscribe(
         data=>{
           this._projects=data;

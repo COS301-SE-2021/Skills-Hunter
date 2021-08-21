@@ -95,9 +95,15 @@ export class ProjectCardComponent implements OnInit {
 
      //the service is called below;
        this.projectCrud
-         .apply(formData) //change so it calls update
+         .applyForProject(formData) //change so it calls update
          .subscribe((data) => {
            console.log('Response post', data);
          });
+
+         this.cancel();
+  }
+
+  cancel(){
+    this.dialog.closeAll();
   }
 }
