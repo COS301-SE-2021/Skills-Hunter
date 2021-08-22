@@ -1,4 +1,3 @@
-
 <mat-card class="create-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
@@ -7,15 +6,8 @@
     </div>
   </mat-card-header>
   <mat-card-content>
-    <mat-horizontal-stepper
-      [linear]="isLinear"
-      
-      #stepper
-    >
-      <mat-step
-        [stepControl]="projectBasicInfo"
-        required
-      >
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="projectBasicInfo" required>
         <mat-card class="stepper-card">
           <mat-card-content>
             <form [formGroup]="projectBasicInfo" class="stepform">
@@ -40,7 +32,7 @@
                 ></textarea>
               </mat-form-field>
 
-              <button
+              <!-- <button
                 mat-raised-button
                 color="warn"
                 matStepperPrevious
@@ -48,7 +40,7 @@
                 (click)="cancel()"
               >
                 Cancel
-              </button>
+              </button> -->
               <button
                 mat-raised-button
                 color="primary"
@@ -61,24 +53,39 @@
           </mat-card-content>
         </mat-card>
       </mat-step>
-      <mat-step
-        [stepControl]="projectSkillsAndCollections"
-        label="Step 2"
-      >
+      <mat-step [stepControl]="projectSkillsAndCollections" label="Step 2">
         <mat-card class="stepper-card">
           <mat-card-content>
             <h1 class="adding-title">Skills</h1>
-            <button
+            <!-- <button
               mat-icon-button
               color="primary"
               (click)="addSkill()"
               class="adding"
             >
               <mat-icon>add_circle</mat-icon>
-            </button>
+            </button> -->
             <br />
             <br />
-            <ng-multiselect-dropdown
+
+            <mat-searchable-select
+              [formControl]="formControl"
+              (changed)="selectedItem = $event.nextValue"
+            >
+              <mat-searchable-select-label
+                >Lorem Words</mat-searchable-select-label
+              >
+              <mat-searchable-select-search-label
+                >Search</mat-searchable-select-search-label
+              >
+              <mat-searchable-select-list [options]="options">
+                <ng-template matSearchableSelectOption let-option="option">
+                  {{ option.Name }}
+                </ng-template>
+              </mat-searchable-select-list>
+            </mat-searchable-select>
+
+            <!-- <ng-multiselect-dropdown
               [placeholder]="'Search A Skill'"
               [settings]="dropdownSettings"
               [data]="dropdownListForSkills"
@@ -87,24 +94,24 @@
               (onSelectAll)="onSelectAll($event)"
               allowRemoteDataSearch
             >
-            </ng-multiselect-dropdown>
+            </ng-multiselect-dropdown> -->
 
             <br />
 
-            <button
+            <!-- <button
               mat-icon-button
               color="primary"
               (click)="addCollection()"
               class="adding"
             >
               <mat-icon>add_circle</mat-icon>
-            </button>
+            </button> -->
             <h1 class="adding-title">Collections</h1>
 
             <br />
             <br />
 
-            <ng-multiselect-dropdown
+            <!-- <ng-multiselect-dropdown
               [placeholder]="'Search A Collection'"
               [settings]="dropdownSettings"
               [data]="dropdownListForCollections"
@@ -112,7 +119,7 @@
               (onSelect)="onItemSelect($event)"
               (onSelectAll)="onSelectAll($event)"
             >
-            </ng-multiselect-dropdown>
+            </ng-multiselect-dropdown> -->
             <br />
             <br />
 
@@ -125,7 +132,7 @@
         <button mat-stroked-button color="warn" matStepperPrevious class="back">
           Back
         </button>
-        <button
+        <!-- <button
           mat-raised-button
           color="primary"
           matStepperNext
@@ -133,7 +140,7 @@
           (click)="createTheProject()"
         >
           Create Project
-        </button>
+        </button> -->
       </mat-step>
     </mat-horizontal-stepper>
   </mat-card-content>

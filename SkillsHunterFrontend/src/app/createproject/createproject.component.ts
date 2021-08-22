@@ -1,4 +1,3 @@
-
 import { SkillCollection } from 'src/app/classes/SkillCollection';
 import { Projects } from './../mock-data/mock-projects';
 import { Component, OnInit } from '@angular/core';
@@ -22,6 +21,12 @@ import { mockSkillCollection } from '../mock-data/mock-collection';
 import { AddSkillCategoryComponent } from './add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-collection.component';
 
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+
 @Component({
   selector: 'app-createproject',
   templateUrl: './createproject.component.html',
@@ -29,58 +34,16 @@ import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-co
   styleUrls: ['./createproject.component.scss'],
 })
 export class CreateprojectComponent implements OnInit {
-  isLinear = true;
+  isLinear = false;
+
+  selectedItem: string;
+  options = mockSkillCollection;
+  // formControl = new FormControl();
 
   projectBasicInfo: FormGroup;
   projectSkillsAndCollections: FormGroup;
 
-  dropdownListForSkills = [];
-  selectedItemsForSkills = [];
-  selectedObjectsSkills = [];
-
-  dropdownListForCollections = [];
-  selectedItemsForCollections = [];
-  collectionOfSkills = [];
-
-  existingSkillsArray = [];
-  newSkillsArray = [];
-
-  existingCollectionsArray = [];
-  newCollectionsArray = [];
-
-  collectionWeight = 0;
-  skillWeight = 0;
-
-  ProjectList = [];
-  SkillsList = [];
-  CollectionsList = [];
-
-  dropdownSettings: IDropdownSettings;
-
-  constructor(
-    private _formBuilder: FormBuilder,
-    private _router: Router,
-    private dialog: MatDialog,
-    private projectCrud: ProjectCRUDService
-  ) {}
-
   ngOnInit(): void {
-    // this.projectCrud.getAllProjects().subscribe((data) => {
-    //   this.ProjectList = data;
-    //   console.log('Response for GetProjects: ', data);
-    // });
-
-    // for(var x=0; this.ProjectList.length; x++){
-
-    // }
-    // this.projectCrud.get()
-    // .subscribe(
-    //   data=>{
-    //     this.ProjectList=data;
-    //     console.log('Response for GetProjects: ', data);
-    //   }
-    // );
-
     this.projectBasicInfo = this._formBuilder.group({
       projectName: ['', Validators.required],
       projectDescription: ['', Validators.required],
@@ -89,167 +52,201 @@ export class CreateprojectComponent implements OnInit {
       projectSkills: ['', Validators.required],
       projectCollections: ['', Validators.required],
     });
-
-    for (var x = 0; x < Skills.length; x++) {
-      this.dropdownListForSkills.push({
-        item_id: Skills[x].SkillId,
-        item_text: Skills[x].Name,
-      });
-    }
-
-    for (var x = 0; x < SkillCollection.length; x++) {
-      this.dropdownListForCollections.push({
-        item_id: SkillCollection[x].ProjectSkillCollectionId,
-        item_text: SkillCollection[x].CollectionName,
-      });
-    }
-
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 10,
-      allowSearchFilter: true,
-    };
   }
 
-  searchForOccurance(id: string, name: string) {
-    // start with skills:
-    for (var x = 0; x < Skills.length; x++) {
-      if (Skills[x].SkillId === id && Skills[x].Name === name) {
-        return [0, x];
-      }
-    }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _router: Router,
+    private dialog: MatDialog,
+    private projectCrud: ProjectCRUDService
+  ) {}
 
-    // check collections:
-    for (var x = 0; x < SkillCollection.length; x++) {
-      if (
-        mockSkillCollection[x].ProjectSkillCollectionId === id &&
-        mockSkillCollection[x].Name === name
-      ) {
-        return [1, x];
-      }
-    }
+  // this.projectCrud.getAllProjects().subscribe((data) => {
+  //   this.ProjectList = data;
+  //   console.log('Response for GetProjects: ', data);
+  // });
 
-    return [-1, -1];
-  }
+  // for(var x=0; this.ProjectList.length; x++){
 
-  onItemSelect(item: any) {
-    var occurance = this.searchForOccurance(item.item_id, item.item_text);
+  // }
+  // this.projectCrud.get()
+  // .subscribe(
+  //   data=>{
+  //     this.ProjectList=data;
+  //     console.log('Response for GetProjects: ', data);
+  //   }
+  // );
 
-    // SKILL = 0,x
-    // COLLECTION = 1,x
-    // NEITHER = -1,-1
+  // START HERE:
 
-    if (occurance[0] == 0) {
+  // this.projectBasicInfo = this._formBuilder.group({
+  //   projectName: ['', Validators.required],
+  //   projectDescription: ['', Validators.required],
+  // });
+  // this.projectSkillsAndCollections = this._formBuilder.group({
+  //   projectSkills: ['', Validators.required],
+  //   projectCollections: ['', Validators.required],
+  // });
 
-      var obj = {
-        SkillId: Skills[occurance[1]].SkillId,
-        Name: Skills[occurance[1]].Name,
-        CategoryId: Skills[occurance[1]].CategoryId
-      }
-      this.existingSkillsArray.push(obj);
-    } else if (occurance[0] == 1) {
-      // process collection:
+  //   for (var x = 0; x < Skills.length; x++) {
+  //     this.dropdownListForSkills.push({
+  //       item_id: Skills[x].SkillId,
+  //       item_text: Skills[x].Name,
+  //     });
+  //   }
 
-      var col = {
-        ProjectSkillCollectionId: mockSkillCollection[occurance[1]].ProjectSkillCollectionId,
-        Name: mockSkillCollection[occurance[1]].Name,
-        Description: mockSkillCollection[occurance[1]].Description,
-        Weight: mockSkillCollection[occurance[1]].Weight,
-     }
+  //   for (var x = 0; x < SkillCollection.length; x++) {
+  //     this.dropdownListForCollections.push({
+  //       item_id: SkillCollection[x].ProjectSkillCollectionId,
+  //       item_text: SkillCollection[x].CollectionName,
+  //     });
+  //   }
 
-      this.collectionOfSkills.push(col);
-    } else {
-      console.log('Skill/Collection not Found.');
-    }
-  }
+  //   this.dropdownSettings = {
+  //     singleSelection: false,
+  //     idField: 'item_id',
+  //     textField: 'item_text',
+  //     selectAllText: 'Select All',
+  //     unSelectAllText: 'UnSelect All',
+  //     itemsShowLimit: 10,
+  //     allowSearchFilter: true,
+  //   };
+  // }
 
-  onSelectAll(items: any) {
-    console.log(items);
-  }
+  // searchForOccurance(id: string, name: string) {
+  //   // start with skills:
+  //   for (var x = 0; x < Skills.length; x++) {
+  //     if (Skills[x].SkillId === id && Skills[x].Name === name) {
+  //       return [0, x];
+  //     }
+  //   }
 
-  addSkill() {
-    const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '45%';
-    configDialog.height = '450px';
-    const dialogRef = this.dialog.open(AddSkillCategoryComponent, configDialog);
+  //   // check collections:
+  //   for (var x = 0; x < SkillCollection.length; x++) {
+  //     if (
+  //       mockSkillCollection[x].ProjectSkillCollectionId === id &&
+  //       mockSkillCollection[x].Name === name
+  //     ) {
+  //       return [1, x];
+  //     }
+  //   }
 
-    dialogRef.afterClosed().subscribe((skill) => {
-      if (skill != undefined) {
-        var newSkill = {
-          name: skill.data.name,
-          categories: skill.data.categories,
-          weight: skill.data.weight,
-        };
+  //   return [-1, -1];
+  // }
 
-        this.newSkillsArray.push(newSkill);
+  // onItemSelect(item: any) {
+  //   var occurance = this.searchForOccurance(item.item_id, item.item_text);
 
-        console.log('Added the Skills.');
-        this.dropdownListForSkills = [];
+  //   // SKILL = 0,x
+  //   // COLLECTION = 1,x
+  //   // NEITHER = -1,-1
 
-        this.ngOnInit();
-      } else console.log('Returned Empty Skill');
-    });
-  }
+  //   if (occurance[0] == 0) {
 
-  addCollection() {
-    const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '60%';
-    configDialog.height = '450px';
-    const dialogRef = this.dialog.open(
-      AddSkillCollectionComponent,
-      configDialog
-    );
+  //     var obj = {
+  //       SkillId: Skills[occurance[1]].SkillId,
+  //       Name: Skills[occurance[1]].Name,
+  //       CategoryId: Skills[occurance[1]].CategoryId
+  //     }
+  //     this.existingSkillsArray.push(obj);
+  //   } else if (occurance[0] == 1) {
+  //     // process collection:
 
+  //     var col = {
+  //       ProjectSkillCollectionId: mockSkillCollection[occurance[1]].ProjectSkillCollectionId,
+  //       Name: mockSkillCollection[occurance[1]].Name,
+  //       Description: mockSkillCollection[occurance[1]].Description,
+  //       Weight: mockSkillCollection[occurance[1]].Weight,
+  //    }
 
-    dialogRef.afterClosed().subscribe((collection) => {
-      if (collection != undefined) {
-        var newCollection = {
-          name: collection.data.name,
-          description: collection.data.description,
-          weight: collection.data.weight,
-          skills: collection.data.skills,
-        };
+  //     this.collectionOfSkills.push(col);
+  //   } else {
+  //     console.log('Skill/Collection not Found.');
+  //   }
+  // }
 
-        this.collectionOfSkills.push(newCollection);
+  // onSelectAll(items: any) {
+  //   console.log(items);
+  // }
 
-        console.log('Added the Collection.');
-        this.dropdownListForCollections = [];
+  // addSkill() {
+  //   const configDialog = new MatDialogConfig();
+  //   configDialog.backdropClass = 'backGround';
+  //   configDialog.width = '45%';
+  //   configDialog.height = '450px';
+  //   const dialogRef = this.dialog.open(AddSkillCategoryComponent, configDialog);
 
-        this.ngOnInit();
-      } else console.log('Returned Empty Collection');
-    });
-  }
+  //   dialogRef.afterClosed().subscribe((skill) => {
+  //     if (skill != undefined) {
+  //       var newSkill = {
+  //         name: skill.data.name,
+  //         categories: skill.data.categories,
+  //         weight: skill.data.weight,
+  //       };
 
-  createTheProject() {
-    var proj = {
-      name: this.projectBasicInfo.value.projectName,
-      description: this.projectBasicInfo.value.projectDescription,
-      location: 'Hatfield',
-      openForApplication: false,
-      existingSkills: [this.existingSkillsArray],
-      newSkills: [this.existingSkillsArray],
-      skillCollections: [this.collectionOfSkills],
-    };
+  //       this.newSkillsArray.push(newSkill);
 
-    console.log('Creating Project...\n');
+  //       console.log('Added the Skills.');
+  //       this.dropdownListForSkills = [];
 
-    console.log(proj);
+  //       this.ngOnInit();
+  //     } else console.log('Returned Empty Skill');
+  //   });
+  // }
 
-    this.projectCrud.createProject(proj).subscribe((data) => {
-      console.log('Response for Create Project: ', data);
-    });
+  // addCollection() {
+  //   const configDialog = new MatDialogConfig();
+  //   configDialog.backdropClass = 'backGround';
+  //   configDialog.width = '60%';
+  //   configDialog.height = '450px';
+  //   const dialogRef = this.dialog.open(
+  //     AddSkillCollectionComponent,
+  //     configDialog
+  //   );
 
-    console.log('Created Project!');
-    this.cancel();
-  }
+  //   dialogRef.afterClosed().subscribe((collection) => {
+  //     if (collection != undefined) {
+  //       var newCollection = {
+  //         name: collection.data.name,
+  //         description: collection.data.description,
+  //         weight: collection.data.weight,
+  //         skills: collection.data.skills,
+  //       };
 
-  cancel() {
-    this._router.navigate([`home`]);
-  }
+  //       this.collectionOfSkills.push(newCollection);
+
+  //       console.log('Added the Collection.');
+  //       this.dropdownListForCollections = [];
+
+  //       this.ngOnInit();
+  //     } else console.log('Returned Empty Collection');
+  //   });
+  // }
+
+  // createTheProject() {
+  //   var proj = {
+  //     name: this.projectBasicInfo.value.projectName,
+  //     description: this.projectBasicInfo.value.projectDescription,
+  //     location: 'Hatfield',
+  //     openForApplication: false,
+  //     existingSkills: [this.existingSkillsArray],
+  //     newSkills: [this.existingSkillsArray],
+  //     skillCollections: [this.collectionOfSkills],
+  //   };
+
+  //   console.log('Creating Project...\n');
+
+  //   console.log(proj);
+
+  //   this.projectCrud.createProject(proj).subscribe((data) => {
+  //     console.log('Response for Create Project: ', data);
+  //   });
+
+  //   console.log('Created Project!');
+  //   this.cancel();
+  // }
+
+  // cancel() {
+  //   this._router.navigate([`home`]);
+  // }
 }
