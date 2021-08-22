@@ -129,8 +129,9 @@ export class CreateprojectComponent implements OnInit {
     dialogRef.afterClosed().subscribe((skill) => {
       if (skill != undefined) {
         console.log('New Skill To Be Added:');
-        this.selectedSkills.push(skill);
-        this.newSelectedSkills.push(skill);
+        this.selectedSkills.push(skill.data);
+        this.newSelectedSkills.push(skill.data);
+        Skills.push(skill.data);
         this.ngOnInit();
       } else console.log('Returned Empty Skill');
     });
@@ -149,7 +150,7 @@ export class CreateprojectComponent implements OnInit {
     dialogRef.afterClosed().subscribe((collection) => {
       if (collection != undefined) {
         console.log('New Collection To Be Added:');
-        this.selectedCollections.push(collection);
+        this.selectedCollections.push(collection.data);
         this.ngOnInit();
       } else console.log('Returned Empty Collection');
     });
@@ -157,15 +158,32 @@ export class CreateprojectComponent implements OnInit {
 
   createTheProject() {
     var selectedSkillsIDs = [];
+    var processedCollections = [];
 
-    for (var x = 0; x < this.selectedSkills.length; x++) {}
+    // Process the existing skills:
+    for (var x = 0; x < this.selectedSkills.length; x++) {
+      selectedSkillsIDs.push({
+        SkillId: this.selectedSkills[x].SkillId,
+        Weight: 0, // temporary value
+      });
+    }
 
+    // // Process the collections:
+    // for (var x = 0; x < this.selectedCollections.length; x++) {
+    //   processedCollections.push({
+    //     "Name" : this.selectedCollections[x].Name,
+    //     "Description" : this.selectedCollections[x].Description,
+    //     "Weight" : this.selectedCollections[x].Weight,
+    //   });
+    // }
+
+    /// Create the Project:
     var proj = {
       Name: this.projectBasicInfo.value.projectName,
       Description: this.projectBasicInfo.value.projectDescription,
       Location: 'Hatfield',
       OpenForApplication: false,
-      ExistingSkills: [this.selectedSkills],
+      ExistingSkills: [selectedSkillsIDs],
       NewSkills: [this.newSelectedSkills],
       SkillCollections: [this.selectedCollections],
     };

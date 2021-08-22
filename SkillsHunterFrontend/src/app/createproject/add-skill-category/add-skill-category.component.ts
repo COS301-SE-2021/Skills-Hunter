@@ -39,9 +39,16 @@ export class AddSkillCategoryComponent implements OnInit {
   }
 
   captureSkill() {
+    // process categories:
+    var categoriesID = [];
+    for (var x = 0; x < this.skillCategory.length; x++) {
+      categoriesID.push({ CategoryID: this.skillCategory[x].categoryid });
+    }
+
     var skill = {
+      SkillId: (Skills.length + 1).toString(), // WILL REQUIRE CHANGE AFTER BACKEND FUNCTION IS IMPLEMENTED:
       Name: this.skillFormGroup.value.skillName,
-      Categories: this.skillCategory,
+      Categories: categoriesID,
       Weight: this.skillWeight,
     };
 
