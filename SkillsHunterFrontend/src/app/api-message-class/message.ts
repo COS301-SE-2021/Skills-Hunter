@@ -1,3 +1,5 @@
+import { getMultipleValuesInSingleSelectionError } from "@angular/cdk/collections";
+
 //model classes
 export interface skillModel{
     skillId: string;
@@ -24,6 +26,12 @@ export interface collectionSkillModel{
     id: string;
     name: string;
     status: number;
+}
+
+export interface imageModel{
+    imageId: string;
+    UserId: string;
+    path: string;
 }
 
 //request classes
@@ -130,4 +138,9 @@ export interface getUserSkillResponse
     skillId: string;
     name: string;
     weight: string;
+}
+
+export interface getImageResponse
+{
+    result: imageModel;
 }
