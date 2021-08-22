@@ -16,7 +16,7 @@ export class AddSkillCollectionComponent implements OnInit {
 
   collectionName: string;
   collectionWeight: number = 1;
-  collectionSkills: Skill[];
+  collectionSkills: [];
 
   skillArray = Skills;
 
@@ -34,19 +34,17 @@ export class AddSkillCollectionComponent implements OnInit {
   ngOnInit(): void {
     this.collectionFormGroup = this.formBuilder.group({
       collectionName: ['', Validators.required],
-      collectionDescription: ['', Validators.required],
+      // collectionDescription: ['', Validators.required],
     });
-
   }
 
   captureCollection() {
-
     var collection = {
-      name : this.collectionFormGroup.value.collectionName, 
-      description : this.collectionFormGroup.value.collectionDescription,
-      weight : this.collectionWeight,
-      skills : this.collectionSkills
-    }
+      name: this.collectionFormGroup.value.collectionName,
+      description: this.collectionFormGroup.value.collectionDescription,
+      weight: this.collectionWeight,
+      skills: this.collectionSkills,
+    };
 
     this.dialogRef.close({ data: collection });
   }

@@ -46,7 +46,7 @@ export class AddSkillCategoryComponent implements OnInit {
     }
 
     var skill = {
-      SkillId: (Skills.length + 1).toString(), // WILL REQUIRE CHANGE AFTER BACKEND FUNCTION IS IMPLEMENTED:
+      // SkillId: (Skills.length + 1).toString(), // WILL REQUIRE CHANGE AFTER BACKEND FUNCTION IS IMPLEMENTED:
       Name: this.skillFormGroup.value.skillName,
       Categories: categoriesID,
       Weight: this.skillWeight,
