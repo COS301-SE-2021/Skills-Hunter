@@ -64,6 +64,7 @@ import { ProfileImgComponent } from './profile/profile-img/profile-img.component
 import { ShowProjectSkillComponent } from './project-control/show-project-skill/show-project-skill.component';
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 @NgModule({
   declarations: [
@@ -137,6 +138,7 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     MatSidenavModule,
     MatCardModule,
     MatDialogModule,
+    SelectDropDownModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

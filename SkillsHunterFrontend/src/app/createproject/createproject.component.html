@@ -68,22 +68,12 @@
             <br />
             <br />
 
-            <mat-searchable-select
-              [formControl]="formControl"
-              (changed)="selectedItem = $event.nextValue"
-            >
-              <mat-searchable-select-label
-                >Lorem Words</mat-searchable-select-label
-              >
-              <mat-searchable-select-search-label
-                >Search</mat-searchable-select-search-label
-              >
-              <mat-searchable-select-list [options]="options">
-                <ng-template matSearchableSelectOption let-option="option">
-                  {{ option.Name }}
-                </ng-template>
-              </mat-searchable-select-list>
-            </mat-searchable-select>
+            <ngx-select-dropdown
+              [config]="configSkills"
+              [options]="dropdownOptionsSkills"
+              [(ngModel)]="selectedSkills"
+              [multiple]="true"
+            ></ngx-select-dropdown>
 
             <!-- <ng-multiselect-dropdown
               [placeholder]="'Search A Skill'"
@@ -110,6 +100,13 @@
 
             <br />
             <br />
+
+            <ngx-select-dropdown
+              [config]="configCollections"
+              [options]="dropdownOptionsCollections"
+              [(ngModel)]="selectedCollections"
+              [multiple]="true"
+            ></ngx-select-dropdown>
 
             <!-- <ng-multiselect-dropdown
               [placeholder]="'Search A Collection'"
