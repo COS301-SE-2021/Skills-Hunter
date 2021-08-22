@@ -9,7 +9,6 @@ import { Skill } from 'src/app/classes/Skill';
 import { Skills } from 'src/app/mock-data/mock-skills';
 import { MatDialogRef } from '@angular/material/dialog';
 import { mockCategoryData } from 'src/app/mock-data/mock-category';
-
 @Component({
   selector: 'app-add-skill-category',
   templateUrl: './add-skill-category.component.html',
@@ -41,10 +40,10 @@ export class AddSkillCategoryComponent implements OnInit {
 
   captureSkill() {
     var skill = {
-      name : this.skillFormGroup.value.skillName, 
-      categories : this.skillCategory,
-      weight : this.skillWeight,
-    }
+      Name: this.skillFormGroup.value.skillName,
+      Categories: this.skillCategory,
+      Weight: this.skillWeight,
+    };
 
     this.dialogRef.close({ data: skill });
   }
