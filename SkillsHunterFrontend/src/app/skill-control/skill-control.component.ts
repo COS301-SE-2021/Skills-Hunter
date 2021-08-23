@@ -3,6 +3,7 @@ import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 import { SkillAdvancedSearchComponent } from './skill-advanced-search/skill-advanced-search.component';
 import {AdminService } from '../services/admin.service';
 import { skillModel } from '../api-message-class/message';
+import { NewSkillComponent } from './new-skill/new-skill.component';
 
 export interface advancedOptions{
   categoryId: string;
@@ -63,7 +64,7 @@ export class SkillControlComponent implements OnInit {
       this.adminService.getSkills().subscribe(apiValue => {
         tempData = apiValue.skills;
         for(let count  = 0; count < tempData.length; count++){
-          if(tempData[count].name == this.searchTerm){
+          if(tempData[count].name.toLowerCase() == this.searchTerm.toLowerCase()){
             result = tempData[count];
             break;
           }
@@ -80,6 +81,15 @@ export class SkillControlComponent implements OnInit {
       }); 
       
     }
+  }
+
+  newSKill(): void{
+    const configDialog = new MatDialogConfig();
+    configDialog.backdropClass = 'backGround';
+    configDialog.width = '40%';
+    configDialog.height = '70%';
+
+    const dialogRef = this.dialog.open(NewSkillComponent,configDialog);    
   }
 
   advancedSearch(): void {

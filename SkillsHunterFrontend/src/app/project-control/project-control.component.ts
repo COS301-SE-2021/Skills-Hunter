@@ -69,7 +69,7 @@ export class ProjectControlComponent implements OnInit {
         let result: getProjectsResponse = null;
         
         for(let count  = 0; count < tempData.length; count++){
-          if(tempData[count].name == this.searchTerm){
+          if(tempData[count].name.toLowerCase() == this.searchTerm.toLowerCase()){
             result = tempData[count];
             break;
           }

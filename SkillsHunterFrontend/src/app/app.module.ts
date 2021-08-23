@@ -66,6 +66,7 @@ import { AddSkillCategoryComponent } from './createproject/add-skill-category/ad
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { ShowProjectCollectionComponent } from './project-control/show-project-collection/show-project-collection.component';
+import { NewSkillComponent } from './skill-control/new-skill/new-skill.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { ShowProjectCollectionComponent } from './project-control/show-project-c
     ShowProjectSkillComponent,
     AddSkillCategoryComponent,
     AddSkillCollectionComponent,
-    ShowProjectCollectionComponent
+    ShowProjectCollectionComponent,
+    NewSkillComponent
   ],
   imports: [
     BrowserModule,

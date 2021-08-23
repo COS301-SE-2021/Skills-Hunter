@@ -116,7 +116,7 @@ export class UserControlComponent implements OnInit {
         let result: getUserResponse = null;
         
         for(let count  = 0; count < tempData.length; count++){
-          if(tempData[count].name == this.searchTerm){
+          if(tempData[count].name.toLowerCase() == this.searchTerm.toLowerCase()){
             result = tempData[count];
             break;
           }

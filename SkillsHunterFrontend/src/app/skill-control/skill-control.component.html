@@ -9,8 +9,8 @@
     
     <div id = "btnUserGroup">
         <button mat-raised-button id = "btnAdvanced" (click) = "advancedSearch()">Advanced Search</button>
-        <button mat-raised-button id = "btnViewAll" (click)="viewAll()">View All</button>
-        <button mat-raised-button color="primary" id = "btnAdd" >New</button>
+        <button mat-raised-button id = "btnViewAll" (click) = "viewAll()">View All</button>
+        <button mat-raised-button color="primary" id = "btnAdd" (click) = "newSKill()">New</button>
     </div>
 
     <app-skill-card *ngFor = "let skill of data" [skill] = "skill" class = "user-info" (onDeleteUser)="deleteUser(skill)"></app-skill-card>

@@ -1,6 +1,6 @@
 <mat-card class="user-card">
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image" (click) = "displayImage()"></div>
+        <div mat-card-avatar class="example-header-image" (click) = "displayImage()" [ngStyle]="{'background-image': 'url(' + imageUrl + ')','background-size':'cover'}"></div>
       <mat-card-title>{{user.name}} {{user.surname}}</mat-card-title>
       <mat-card-subtitle><a href = "mailto:user.email" style = "text-decoration:none;">{{user.email}}</a></mat-card-subtitle>
     </mat-card-header>
@@ -12,7 +12,7 @@
         <div class = "user-name"><b>User Type</b></div><div class = "user-value">{{userTypes[user.userType]}}</div>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button id = "btnSkills" (click) = "showSkills()">skills</button>
+        <button mat-raised-button id = "btnSkills">skills</button>
         <!--<button mat-raised-button id = "btnDelete" (click) = "onDelete(user)">Delete</button>-->
     </mat-card-actions>
   </mat-card>
