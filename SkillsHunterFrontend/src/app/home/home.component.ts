@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Projects } from '../mock-data/mock-projects';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -12,12 +13,13 @@ import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   title: string = 'Projects';
   filterQuery: string = '';
-  _projects: Project[] ;//= Projects;
+  _projects: Project[]; //= Projects;
 
   constructor(
     private _router: Router,
@@ -33,35 +35,25 @@ export class HomeComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-
-    document.getElementById('tool').style.display = "block";
-    document.getElementById('side').style.display = "block";
-    document.getElementById('adminlist').style.display = "none";
-     document.getElementById('houseAdmin').style.display = "none";
+    document.getElementById('tool').style.display = 'block';
+    document.getElementById('side').style.display = 'block';
+    document.getElementById('adminlist').style.display = 'none';
+    document.getElementById('houseAdmin').style.display = 'none';
 
     //read data of projects
     var functiontoCall;
-    if(localStorage.getItem('role')=='1'){
-
-      this.projectCrud.getProjectsByProjectOwnerId()
-      .subscribe(
-        data=>{
-          this._projects=data;
-          console.log('Response post', data);
-        }
-      );
-    }else{
-      document.getElementById('creatediv').style.display = "none";
-      this.projectCrud.getAllProjects()
-      .subscribe(
-        data=>{
-          this._projects=data;
-          console.log('Response post', data);
-        }
-      );
+    if (localStorage.getItem('role') == '1') {
+      this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
+        this._projects = data;
+        console.log('Response post', data);
+      });
+    } else {
+      // document.getElementById('creatediv').style.display = "none";
+      this.projectCrud.getAllProjects().subscribe((data) => {
+        this._projects = data;
+        console.log('Response post', data);
+      });
     }
-
-   
   }
 
   create() {

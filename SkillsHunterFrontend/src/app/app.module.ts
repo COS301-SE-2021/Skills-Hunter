@@ -13,7 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatchCandidateComponent } from './match-candidate/match-candidate.component';
 import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
-import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidate.pipe';
+// import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidate.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectCRUDService } from './services/project-crud.service';
 import { RegisterComponent } from './register/register.component';
@@ -43,7 +43,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { UserAdvancedSearchComponent } from './user-control/user-advanced-search/user-advanced-search.component';
 import { UserCardComponent } from './user-control/user-card/user-card.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { SkillCardComponent } from './skill-control/skill-card/skill-card.component';
 import { AdminProjectCardComponent } from './project-control/admin-project-card/admin-project-card.component';
 import { ProjectAdvancedSearchComponent } from './project-control/project-advanced-search/project-advanced-search.component';
@@ -64,7 +64,7 @@ import { ProfileImgComponent } from './profile/profile-img/profile-img.component
 import { ShowProjectSkillComponent } from './project-control/show-project-skill/show-project-skill.component';
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
-
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 @NgModule({
   declarations: [
@@ -76,7 +76,7 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     RegisterComponent,
     MatchCandidateComponent,
     CandidateCardComponent,
-    SearchAndFilterCandidatePipe,
+    // SearchAndFilterCandidatePipe,
     UpdateProjectComponent,
     ProjectCardComponent,
     AdminPortalComponent,
@@ -114,7 +114,7 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     ProfileImgComponent,
     ShowProjectSkillComponent,
     AddSkillCategoryComponent,
-    AddSkillCollectionComponent
+    AddSkillCollectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -138,10 +138,10 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     MatSidenavModule,
     MatCardModule,
     MatDialogModule,
-
+    SelectDropDownModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

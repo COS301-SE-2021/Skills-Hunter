@@ -13,10 +13,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AddSkillCollectionComponent implements OnInit {
   collectionArray: SkillCollection[] = mockSkillCollection;
-
-  collectionName: string;
   collectionWeight: number = 1;
-  collectionSkills: Skill[];
+  collectionSkills: [];
+
+  // collectionDescription = 'An undescribed collection of skills.';
 
   skillArray = Skills;
 
@@ -36,17 +36,15 @@ export class AddSkillCollectionComponent implements OnInit {
       collectionName: ['', Validators.required],
       collectionDescription: ['', Validators.required],
     });
-
   }
 
   captureCollection() {
-
     var collection = {
-      name : this.collectionFormGroup.value.collectionName, 
-      description : this.collectionFormGroup.value.collectionDescription,
-      weight : this.collectionWeight,
-      skills : this.collectionSkills
-    }
+      Name: this.collectionFormGroup.value.collectionName,
+      Description: this.collectionFormGroup.value.collectionDescription,
+      Weight: this.collectionWeight,
+      Skills: this.collectionSkills,
+    };
 
     this.dialogRef.close({ data: collection });
   }
