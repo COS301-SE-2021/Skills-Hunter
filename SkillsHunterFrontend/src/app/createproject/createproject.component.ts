@@ -35,6 +35,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 })
 export class CreateprojectComponent implements OnInit {
   isLinear = false;
+  projName: string;
+  projDescription: string;
 
   // existing skills:
   selectedSkills = [];
@@ -124,6 +126,12 @@ export class CreateprojectComponent implements OnInit {
   //       Weight: mockSkillCollection[occurance[1]].Weight,
   //    }
 
+  captureBasicDetails() {
+    this.projName = this.projectBasicInfo.get('projectName').value;
+    this.projDescription =
+      this.projectBasicInfo.get('projectDescription').value;
+  }
+
   addSkill() {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
@@ -133,7 +141,6 @@ export class CreateprojectComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((skill) => {
       if (skill != undefined) {
-        console.log('New Skill To Be Added:');
         console.log(skill.data);
         this.selectedSkills.push(skill.data);
         this.newSelectedSkills.push(skill.data);
@@ -146,7 +153,7 @@ export class CreateprojectComponent implements OnInit {
   addCollection() {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
-    configDialog.width = '60%';
+    configDialog.width = '45%';
     configDialog.height = '450px';
     const dialogRef = this.dialog.open(
       AddSkillCollectionComponent,
@@ -155,7 +162,6 @@ export class CreateprojectComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((collection) => {
       if (collection != undefined) {
-        console.log('New Collection To Be Added:');
         this.selectedCollections.push(collection.data);
         mockSkillCollection.push(collection.data);
         this.ngOnInit();
@@ -181,7 +187,6 @@ export class CreateprojectComponent implements OnInit {
         selectedSkillsIDs.push({
           SkillId: a[x].SkillId,
           Weight: 0,
-          // Weight: a[x].Weight,
         });
     }
     return selectedSkillsIDs;
@@ -205,7 +210,6 @@ export class CreateprojectComponent implements OnInit {
           extractCollectionSkillsId.push({
             SkillId: this.selectedCollections[x].Skills[q].SkillId,
             Weight: 0,
-            // Weight: a[x].Weight,
           });
         }
 
@@ -217,11 +221,10 @@ export class CreateprojectComponent implements OnInit {
       });
     }
 
-    // surname: this.personalDetailsForm.get('surname').value
     /// Create the Project:
     var proj = {
-      Name: this.projectBasicInfo.get('projectName').value,
-      Description: this.projectBasicInfo.get('projectDescription').value,
+      Name: this.projName,
+      Description: this.projDescription,
       Location: 'Hatfield',
       OpenForApplication: false,
       ExistingSkills: [selectedSkillsIDs],

@@ -15,7 +15,6 @@ import { mockCategoryData } from 'src/app/mock-data/mock-category';
   styleUrls: ['./add-skill-category.component.scss'],
 })
 export class AddSkillCategoryComponent implements OnInit {
-  skillName: string;
   skillWeight: number = 1;
   skillCategory: Category[];
 
@@ -46,7 +45,6 @@ export class AddSkillCategoryComponent implements OnInit {
     }
 
     var skill = {
-      // SkillId: (Skills.length + 1).toString(), // WILL REQUIRE CHANGE AFTER BACKEND FUNCTION IS IMPLEMENTED:
       Name: this.skillFormGroup.value.skillName,
       Categories: categoriesID,
       Weight: this.skillWeight,
