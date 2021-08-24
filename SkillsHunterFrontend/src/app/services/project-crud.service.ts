@@ -86,8 +86,8 @@ export class ProjectCRUDService {
     );
   }
 
-  getskills(): Observable<Skill[]> {
-    return this.httpclient.get<Skill[]>(
+  getskills(): Observable<Skill> {
+    return this.httpclient.get<Skill>(
       'http://localhost:5000/api/Admin/getSkills',
       this.httpOptions
     );
