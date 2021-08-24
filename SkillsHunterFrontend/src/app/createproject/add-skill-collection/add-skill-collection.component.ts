@@ -40,10 +40,10 @@ export class AddSkillCollectionComponent implements OnInit {
 
   captureCollection() {
     var collection = {
-      name: this.collectionFormGroup.value.collectionName,
-      description: this.collectionFormGroup.value.collectionDescription,
-      weight: this.collectionWeight,
-      skills: this.collectionSkills,
+      Name: this.collectionFormGroup.value.collectionName,
+      Description: this.collectionFormGroup.value.collectionDescription,
+      Weight: this.collectionWeight,
+      Skills: this.collectionSkills,
     };
 
     this.dialogRef.close({ data: collection });

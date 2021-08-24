@@ -129,6 +129,7 @@ export class CreateprojectComponent implements OnInit {
     dialogRef.afterClosed().subscribe((skill) => {
       if (skill != undefined) {
         console.log('New Skill To Be Added:');
+        console.log(skill.data);
         this.selectedSkills.push(skill.data);
         this.newSelectedSkills.push(skill.data);
         Skills.push(skill.data);
@@ -151,31 +152,65 @@ export class CreateprojectComponent implements OnInit {
       if (collection != undefined) {
         console.log('New Collection To Be Added:');
         this.selectedCollections.push(collection.data);
+        mockSkillCollection.push(collection.data);
         this.ngOnInit();
       } else console.log('Returned Empty Collection');
     });
   }
 
-  createTheProject() {
+  extractSkillId(a: any[], b: any[]) {
+    var dupp = false;
     var selectedSkillsIDs = [];
-    var processedCollections = [];
 
     // Process the existing skills:
-    for (var x = 0; x < this.selectedSkills.length; x++) {
-      selectedSkillsIDs.push({
-        SkillId: this.selectedSkills[x].SkillId,
-        Weight: 0, // temporary value
+    for (var x = 0; x < a.length; x++) {
+      dupp = false;
+      for (var y = 0; y < b.length; y++) {
+        if (a[x].SkillId == b[y].SkillId) {
+          dupp = true;
+          break;
+        }
+      }
+
+      if (!dupp)
+        selectedSkillsIDs.push({
+          SkillId: a[x].SkillId,
+          Weight: 0,
+          // Weight: a[x].Weight,
+        });
+    }
+    return selectedSkillsIDs;
+  }
+
+  createTheProject() {
+    var processedCollections = [];
+
+    var selectedSkillsIDs = this.extractSkillId(
+      this.selectedSkills,
+      this.newSelectedSkills
+    );
+
+    // Process the collections:
+    for (var x = 0; x < this.selectedCollections.length; x++) {
+      var extractCollectionSkillsId = [];
+
+      if (this.selectedCollections[x].Skills != undefined)
+        for (var q = 0; q < this.selectedCollections[x].Skills.length; q++) {
+          console.log(this.selectedCollections[x].Skills[q]);
+          extractCollectionSkillsId.push({
+            SkillId: this.selectedCollections[x].Skills[q].SkillId,
+            Weight: 0,
+            // Weight: a[x].Weight,
+          });
+        }
+
+      processedCollections.push({
+        Name: this.selectedCollections[x].Name,
+        Description: this.selectedCollections[x].Description,
+        Weight: this.selectedCollections[x].Weight,
+        Skills: extractCollectionSkillsId,
       });
     }
-
-    // // Process the collections:
-    // for (var x = 0; x < this.selectedCollections.length; x++) {
-    //   processedCollections.push({
-    //     "Name" : this.selectedCollections[x].Name,
-    //     "Description" : this.selectedCollections[x].Description,
-    //     "Weight" : this.selectedCollections[x].Weight,
-    //   });
-    // }
 
     /// Create the Project:
     var proj = {
@@ -185,7 +220,7 @@ export class CreateprojectComponent implements OnInit {
       OpenForApplication: false,
       ExistingSkills: [selectedSkillsIDs],
       NewSkills: [this.newSelectedSkills],
-      SkillCollections: [this.selectedCollections],
+      SkillCollections: [processedCollections],
     };
 
     console.log('Creating Project...\n');
@@ -195,7 +230,6 @@ export class CreateprojectComponent implements OnInit {
     //   console.log('Response for Create Project: ', data);
     // });
 
-    console.log('Created Project!');
     this.cancel();
   }
 
