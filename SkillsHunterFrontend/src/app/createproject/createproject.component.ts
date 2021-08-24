@@ -85,6 +85,16 @@ export class CreateprojectComponent implements OnInit {
       projectCollections: new FormControl('', [Validators.required]),
     });
 
+    this.projectCrud.getskills().subscribe((data) => {
+      console.log('Getting Skills from Database.');
+
+      var objSkills = data;
+
+      objSkills;
+
+      console.log(data);
+    });
+
     this.dropdownOptionsSkills = Skills;
     this.dropdownOptionsCollections = mockSkillCollection;
   }
@@ -130,38 +140,8 @@ export class CreateprojectComponent implements OnInit {
         this.selectedSkills.push(skill.data);
         this.newSelectedSkills.push(skill.data);
         Skills.push(skill.data);
-        // this.isCheckedOpenForApplications = false;
-        // this.toggleNewSkillsAdded = true;
-        // this.ngOnInit();
       } else console.log('Returned Empty Skill');
     });
-  }
-
-  changeDetectedSkills(allSelectedSkills: any) {
-    // detect changes in selecting new and old skills
-    var arrNew = [];
-    var arr: any[] = allSelectedSkills.value;
-
-    for (var x = 0; x < arr.length; x++) {
-      if (arr[x].SkillId == undefined) {
-        arrNew.push(arr[x]);
-      }
-    }
-
-    this.newSelectedSkills = arrNew;
-
-    // disable the open toggle if there are any new skills present:
-    if (this.newSelectedSkills.length > 0) {
-      this.isCheckedOpenForApplications = false;
-      this.toggleNewSkillsAdded = true;
-    } else {
-      this.toggleNewSkillsAdded = false;
-    }
-  }
-
-  changeDetectedCollections(a: any) {
-    this.selectedCollections = a;
-    console.log(a);
   }
 
   addCollection() {
@@ -183,6 +163,32 @@ export class CreateprojectComponent implements OnInit {
     });
   }
 
+  changeDetectedSkills(allSelectedSkills: any) {
+    // detect changes in selecting new and old skills
+    var arrNew = [];
+    var arr: any[] = allSelectedSkills.value;
+
+    for (var x = 0; x < arr.length; x++) {
+      if (arr[x].skillId == undefined) {
+        arrNew.push(arr[x]);
+      }
+    }
+
+    this.newSelectedSkills = arrNew;
+
+    // disable the open toggle if there are any new skills present:
+    if (this.newSelectedSkills.length > 0) {
+      this.isCheckedOpenForApplications = false;
+      this.toggleNewSkillsAdded = true;
+    } else {
+      this.toggleNewSkillsAdded = false;
+    }
+  }
+
+  changeDetectedCollections(a: any) {
+    this.selectedCollections = a.value;
+  }
+
   extractSkillId(a: any[], b: any[]) {
     var dupp = false;
     var selectedSkillsIDs = [];
@@ -191,7 +197,7 @@ export class CreateprojectComponent implements OnInit {
     for (var x = 0; x < a.length; x++) {
       dupp = false;
       for (var y = 0; y < b.length; y++) {
-        if (a[x].SkillId == b[y].SkillId) {
+        if (a[x].skillId == b[y].skillId) {
           dupp = true;
           break;
         }
@@ -199,7 +205,7 @@ export class CreateprojectComponent implements OnInit {
 
       if (!dupp)
         selectedSkillsIDs.push({
-          SkillId: a[x].SkillId,
+          skillId: a[x].skillId,
           Weight: 0,
         });
     }
@@ -221,7 +227,7 @@ export class CreateprojectComponent implements OnInit {
       if (this.selectedCollections[x].Skills != undefined)
         for (var q = 0; q < this.selectedCollections[x].Skills.length; q++) {
           extractCollectionSkillsId.push({
-            SkillId: this.selectedCollections[x].Skills[q].SkillId,
+            skillId: this.selectedCollections[x].Skills[q].skillId,
             Weight: 0,
           });
         }
@@ -234,7 +240,7 @@ export class CreateprojectComponent implements OnInit {
       });
     }
 
-    /// Create the Project:
+    // Create the Project:
     var proj = {
       Name: this.projName,
       Description: this.projDescription,
@@ -258,61 +264,4 @@ export class CreateprojectComponent implements OnInit {
   cancel() {
     this._router.navigate([`home`]);
   }
-
-  // newlyAddedSkillDetected(allSelectedSkills: any) {
-  //   var skillsRemainingInSelected = [];
-  //   var res = false;
-
-  //   for (var x = 0; x < allSelectedSkills.length; x++) {
-  //     for (var z = 0; z < this.newSelectedSkills.length; z++) {
-  //       if (allSelectedSkills[x].Name == this.newSelectedSkills[z].Name) {
-  //         skillsRemainingInSelected.push(this.newSelectedSkills[z]);
-  //         // this.newSelectedSkills.splice(z, 1);
-  //         res = true;
-  //       }
-  //     }
-  //   }
-
-  //   console.log('\nREMAINING SKILLS');
-  //   console.log(skillsRemainingInSelected);
-  //   // update remaining skills selected:
-  //   this.newSelectedSkills = skillsRemainingInSelected;
-
-  //   return res;
-  // }
-
-  // removeUnselectedNewSkills(a: any[]) {
-  //   console.log('\n=== X ====\n');
-  //   console.log(a);
-
-  //   var arrWithRemoved = [];
-
-  //   for (var x = 0; x < a.length; x++) {
-  //     for (var z = 0; z < this.newSelectedSkills.length; z++) {
-  //       if (a[x].Name == this.newSelectedSkills[z].Name) {
-  //         console.log('Removing ' + a[x]);
-  //         arrWithRemoved.push(a[x]);
-  //       }
-  //     }
-  //   }
-
-  //   this.newSelectedSkills = arrWithRemoved;
-  // }
-
-  // addReselectedNewSkills(a: any[]) {
-  //   console.log('\n=== X ====\n');
-
-  //   var arrWithAdded = [];
-
-  //   for (var x = 0; x < a.length; x++) {
-  //     for (var z = 0; z < this.dropdownOptionsSkills.length; z++) {
-  //       if (a[x].Name == this.dropdownOptionsSkills[z].Name) {
-  //         console.log('Adding ' + a[x]);
-  //         arrWithAdded.push(a[x]);
-  //       }
-  //     }
-  //   }
-
-  //   this.newSelectedSkills = arrWithAdded;
-  // }
 }
