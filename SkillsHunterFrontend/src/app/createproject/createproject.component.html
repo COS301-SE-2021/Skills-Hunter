@@ -80,6 +80,7 @@
             <br />
 
             <ngx-select-dropdown
+              (change)="changeDetectedSkills($event)"
               [config]="configSkills"
               [options]="dropdownOptionsSkills"
               [(ngModel)]="selectedSkills"
@@ -101,6 +102,7 @@
             <br />
 
             <ngx-select-dropdown
+              (change)="changeDetectedCollections($event)"
               [config]="configCollections"
               [options]="dropdownOptionsCollections"
               [(ngModel)]="selectedCollections"

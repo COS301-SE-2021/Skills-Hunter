@@ -15,17 +15,10 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
 import { Skills } from '../mock-data/mock-skills';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Skill } from '../classes/Skill';
 import { mockSkillCollection } from '../mock-data/mock-collection';
 import { AddSkillCategoryComponent } from './add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-collection.component';
-
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-createproject',
@@ -125,10 +118,6 @@ export class CreateprojectComponent implements OnInit {
     this.projLocation = this.projectBasicInfo.get('projectLocation').value;
   }
 
-  checkForNewSkills() {
-    console.log('\nWe have toggled!\n');
-  }
-
   addSkill() {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
@@ -141,11 +130,38 @@ export class CreateprojectComponent implements OnInit {
         this.selectedSkills.push(skill.data);
         this.newSelectedSkills.push(skill.data);
         Skills.push(skill.data);
-        this.isCheckedOpenForApplications = false;
-        this.toggleNewSkillsAdded = true;
-        this.ngOnInit();
+        // this.isCheckedOpenForApplications = false;
+        // this.toggleNewSkillsAdded = true;
+        // this.ngOnInit();
       } else console.log('Returned Empty Skill');
     });
+  }
+
+  changeDetectedSkills(allSelectedSkills: any) {
+    // detect changes in selecting new and old skills
+    var arrNew = [];
+    var arr: any[] = allSelectedSkills.value;
+
+    for (var x = 0; x < arr.length; x++) {
+      if (arr[x].SkillId == undefined) {
+        arrNew.push(arr[x]);
+      }
+    }
+
+    this.newSelectedSkills = arrNew;
+
+    // disable the open toggle if there are any new skills present:
+    if (this.newSelectedSkills.length > 0) {
+      this.isCheckedOpenForApplications = false;
+      this.toggleNewSkillsAdded = true;
+    } else {
+      this.toggleNewSkillsAdded = false;
+    }
+  }
+
+  changeDetectedCollections(a: any) {
+    this.selectedCollections = a;
+    console.log(a);
   }
 
   addCollection() {
@@ -162,7 +178,7 @@ export class CreateprojectComponent implements OnInit {
       if (collection != undefined) {
         this.selectedCollections.push(collection.data);
         mockSkillCollection.push(collection.data);
-        this.ngOnInit();
+        // this.ngOnInit();
       } else console.log('Returned Empty Collection');
     });
   }
@@ -242,4 +258,61 @@ export class CreateprojectComponent implements OnInit {
   cancel() {
     this._router.navigate([`home`]);
   }
+
+  // newlyAddedSkillDetected(allSelectedSkills: any) {
+  //   var skillsRemainingInSelected = [];
+  //   var res = false;
+
+  //   for (var x = 0; x < allSelectedSkills.length; x++) {
+  //     for (var z = 0; z < this.newSelectedSkills.length; z++) {
+  //       if (allSelectedSkills[x].Name == this.newSelectedSkills[z].Name) {
+  //         skillsRemainingInSelected.push(this.newSelectedSkills[z]);
+  //         // this.newSelectedSkills.splice(z, 1);
+  //         res = true;
+  //       }
+  //     }
+  //   }
+
+  //   console.log('\nREMAINING SKILLS');
+  //   console.log(skillsRemainingInSelected);
+  //   // update remaining skills selected:
+  //   this.newSelectedSkills = skillsRemainingInSelected;
+
+  //   return res;
+  // }
+
+  // removeUnselectedNewSkills(a: any[]) {
+  //   console.log('\n=== X ====\n');
+  //   console.log(a);
+
+  //   var arrWithRemoved = [];
+
+  //   for (var x = 0; x < a.length; x++) {
+  //     for (var z = 0; z < this.newSelectedSkills.length; z++) {
+  //       if (a[x].Name == this.newSelectedSkills[z].Name) {
+  //         console.log('Removing ' + a[x]);
+  //         arrWithRemoved.push(a[x]);
+  //       }
+  //     }
+  //   }
+
+  //   this.newSelectedSkills = arrWithRemoved;
+  // }
+
+  // addReselectedNewSkills(a: any[]) {
+  //   console.log('\n=== X ====\n');
+
+  //   var arrWithAdded = [];
+
+  //   for (var x = 0; x < a.length; x++) {
+  //     for (var z = 0; z < this.dropdownOptionsSkills.length; z++) {
+  //       if (a[x].Name == this.dropdownOptionsSkills[z].Name) {
+  //         console.log('Adding ' + a[x]);
+  //         arrWithAdded.push(a[x]);
+  //       }
+  //     }
+  //   }
+
+  //   this.newSelectedSkills = arrWithAdded;
+  // }
 }
