@@ -64,11 +64,9 @@ import { ProfileImgComponent } from './profile/profile-img/profile-img.component
 import { ShowProjectSkillComponent } from './project-control/show-project-skill/show-project-skill.component';
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
-
 import { MatChipsModule } from '@angular/material/chips';
 import { ShowProjectCollectionComponent } from './project-control/show-project-collection/show-project-collection.component';
 import { NewSkillComponent } from './skill-control/new-skill/new-skill.component';
-
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 
@@ -121,7 +119,6 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
     ShowProjectSkillComponent,
     AddSkillCategoryComponent,
     AddSkillCollectionComponent,
-
     ShowProjectCollectionComponent,
     NewSkillComponent
 
@@ -149,8 +146,7 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
     MatCardModule,
     MatDialogModule,
     MatChipsModule,
-    SelectDropDownModule,
-
+    SelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent],
