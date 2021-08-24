@@ -37,6 +37,9 @@ export class CreateprojectComponent implements OnInit {
   isLinear = false;
   projName: string;
   projDescription: string;
+  projLocation: string;
+  isCheckedOpenForApplications = true;
+  toggleNewSkillsAdded = false;
 
   // existing skills:
   selectedSkills = [];
@@ -82,6 +85,7 @@ export class CreateprojectComponent implements OnInit {
     this.projectBasicInfo = new FormGroup({
       projectName: new FormControl('', [Validators.required]),
       projectDescription: new FormControl('', [Validators.required]),
+      projectLocation: new FormControl('', [Validators.required]),
     });
     this.projectSkillsAndCollections = new FormGroup({
       projectSkills: new FormControl('', [Validators.required]),
@@ -118,13 +122,18 @@ export class CreateprojectComponent implements OnInit {
     this.projName = this.projectBasicInfo.get('projectName').value;
     this.projDescription =
       this.projectBasicInfo.get('projectDescription').value;
+    this.projLocation = this.projectBasicInfo.get('projectLocation').value;
+  }
+
+  checkForNewSkills() {
+    console.log('\nWe have toggled!\n');
   }
 
   addSkill() {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '45%';
-    configDialog.height = '450px';
+    configDialog.height = '550px';
     const dialogRef = this.dialog.open(AddSkillCategoryComponent, configDialog);
 
     dialogRef.afterClosed().subscribe((skill) => {
@@ -132,6 +141,8 @@ export class CreateprojectComponent implements OnInit {
         this.selectedSkills.push(skill.data);
         this.newSelectedSkills.push(skill.data);
         Skills.push(skill.data);
+        this.isCheckedOpenForApplications = false;
+        this.toggleNewSkillsAdded = true;
         this.ngOnInit();
       } else console.log('Returned Empty Skill');
     });
@@ -141,7 +152,7 @@ export class CreateprojectComponent implements OnInit {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '45%';
-    configDialog.height = '450px';
+    configDialog.height = '550px';
     const dialogRef = this.dialog.open(
       AddSkillCollectionComponent,
       configDialog
@@ -211,8 +222,8 @@ export class CreateprojectComponent implements OnInit {
     var proj = {
       Name: this.projName,
       Description: this.projDescription,
-      Location: 'Hatfield',
-      OpenForApplication: false,
+      Location: this.projLocation,
+      OpenForApplication: this.isCheckedOpenForApplications,
       ExistingSkills: [selectedSkillsIDs],
       NewSkills: [this.newSelectedSkills],
       SkillCollections: [processedCollections],
