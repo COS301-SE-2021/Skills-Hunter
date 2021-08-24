@@ -75,14 +75,19 @@ export class CreateprojectComponent implements OnInit {
     searchOnKey: 'Name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
   };
 
+  // surname: new FormControl('', [
+  //   Validators.required,
+  //   Validators.pattern('^[a-zA-Z ]*$'),
+  // ]),
+
   ngOnInit(): void {
-    this.projectBasicInfo = this._formBuilder.group({
-      projectName: ['', Validators.required],
-      projectDescription: ['', Validators.required],
+    this.projectBasicInfo = new FormGroup({
+      projectName: new FormControl('', [Validators.required]),
+      projectDescription: new FormControl('', [Validators.required]),
     });
-    this.projectSkillsAndCollections = this._formBuilder.group({
-      projectSkills: ['', Validators.required],
-      projectCollections: ['', Validators.required],
+    this.projectSkillsAndCollections = new FormGroup({
+      projectSkills: new FormControl('', [Validators.required]),
+      projectCollections: new FormControl('', [Validators.required]),
     });
 
     this.dropdownOptionsSkills = Skills;
@@ -90,7 +95,7 @@ export class CreateprojectComponent implements OnInit {
   }
 
   constructor(
-    private _formBuilder: FormBuilder,
+    // private _formBuilder: FormBuilder,
     private _router: Router,
     private dialog: MatDialog,
     private projectCrud: ProjectCRUDService
@@ -212,10 +217,11 @@ export class CreateprojectComponent implements OnInit {
       });
     }
 
+    // surname: this.personalDetailsForm.get('surname').value
     /// Create the Project:
     var proj = {
-      Name: this.projectBasicInfo.value.projectName,
-      Description: this.projectBasicInfo.value.projectDescription,
+      Name: this.projectBasicInfo.get('projectName').value,
+      Description: this.projectBasicInfo.get('projectDescription').value,
       Location: 'Hatfield',
       OpenForApplication: false,
       ExistingSkills: [selectedSkillsIDs],
