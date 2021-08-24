@@ -69,7 +69,6 @@ import { ShowProjectCollectionComponent } from './project-control/show-project-c
 import { NewSkillComponent } from './skill-control/new-skill/new-skill.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,7 +120,6 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
     AddSkillCollectionComponent,
     ShowProjectCollectionComponent,
     NewSkillComponent
-
   ],
   imports: [
     BrowserModule,
