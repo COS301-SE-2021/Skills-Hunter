@@ -13,10 +13,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AddSkillCollectionComponent implements OnInit {
   collectionArray: SkillCollection[] = mockSkillCollection;
-
-  collectionName: string;
   collectionWeight: number = 1;
   collectionSkills: [];
+
+  // collectionDescription = 'An undescribed collection of skills.';
 
   skillArray = Skills;
 
@@ -34,7 +34,7 @@ export class AddSkillCollectionComponent implements OnInit {
   ngOnInit(): void {
     this.collectionFormGroup = this.formBuilder.group({
       collectionName: ['', Validators.required],
-      // collectionDescription: ['', Validators.required],
+      collectionDescription: ['', Validators.required],
     });
   }
 

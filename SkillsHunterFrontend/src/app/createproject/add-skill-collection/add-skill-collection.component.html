@@ -13,6 +13,17 @@
         />
         <mat-icon matSuffix>text_fields</mat-icon>
       </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="outline">
+        <mat-label>Collection Description</mat-label>
+        <textarea
+          matInput
+          placeholder="..."
+          formControlName="collectionDescription"
+          required
+        ></textarea>
+      </mat-form-field>
 
       <br />
       <button mat-stroked-button color="primary" matStepperNext>Next</button>

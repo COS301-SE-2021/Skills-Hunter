@@ -45,6 +45,7 @@ export class CreateprojectComponent implements OnInit {
   // new skills
   newSelectedSkills = [];
 
+  // options for the dropdown for skills and collections:
   dropdownOptionsSkills = Skills;
   dropdownOptionsCollections = mockSkillCollection;
 
@@ -77,11 +78,6 @@ export class CreateprojectComponent implements OnInit {
     searchOnKey: 'Name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
   };
 
-  // surname: new FormControl('', [
-  //   Validators.required,
-  //   Validators.pattern('^[a-zA-Z ]*$'),
-  // ]),
-
   ngOnInit(): void {
     this.projectBasicInfo = new FormGroup({
       projectName: new FormControl('', [Validators.required]),
@@ -97,7 +93,6 @@ export class CreateprojectComponent implements OnInit {
   }
 
   constructor(
-    // private _formBuilder: FormBuilder,
     private _router: Router,
     private dialog: MatDialog,
     private projectCrud: ProjectCRUDService
@@ -119,13 +114,6 @@ export class CreateprojectComponent implements OnInit {
   //   }
   // );
 
-  //     var col = {
-  //       ProjectSkillCollectionId: mockSkillCollection[occurance[1]].ProjectSkillCollectionId,
-  //       Name: mockSkillCollection[occurance[1]].Name,
-  //       Description: mockSkillCollection[occurance[1]].Description,
-  //       Weight: mockSkillCollection[occurance[1]].Weight,
-  //    }
-
   captureBasicDetails() {
     this.projName = this.projectBasicInfo.get('projectName').value;
     this.projDescription =
@@ -141,7 +129,6 @@ export class CreateprojectComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((skill) => {
       if (skill != undefined) {
-        console.log(skill.data);
         this.selectedSkills.push(skill.data);
         this.newSelectedSkills.push(skill.data);
         Skills.push(skill.data);
@@ -206,7 +193,6 @@ export class CreateprojectComponent implements OnInit {
 
       if (this.selectedCollections[x].Skills != undefined)
         for (var q = 0; q < this.selectedCollections[x].Skills.length; q++) {
-          console.log(this.selectedCollections[x].Skills[q]);
           extractCollectionSkillsId.push({
             SkillId: this.selectedCollections[x].Skills[q].SkillId,
             Weight: 0,
