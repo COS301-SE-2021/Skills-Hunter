@@ -1,3 +1,4 @@
+import { Category } from './../classes/Category';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {
@@ -86,12 +87,26 @@ export class ProjectCRUDService {
     );
   }
 
-  getskills(): Observable<Skill> {
+  getSkills(): Observable<Skill> {
     return this.httpclient.get<Skill>(
       'http://localhost:5000/api/Admin/getSkills',
       this.httpOptions
     );
   }
+
+  getCategories(): Observable<Category> {
+    return this.httpclient.get<Category>(
+      'http://localhost:5000/api/Admin/getCategories',
+      this.httpOptions
+    );
+  }
+
+  // getCollections(): Observable<any> {
+  //   return this.httpclient.get<Category>(
+  //     'http://localhost:5000/api/Admin/getCategories',
+  //     this.httpOptions
+  //   );
+  // }
 
   getIndividualsSkills() {
     return this.httpclient.get(

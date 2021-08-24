@@ -9,6 +9,7 @@ import { Skill } from 'src/app/classes/Skill';
 import { Skills } from 'src/app/mock-data/mock-skills';
 import { MatDialogRef } from '@angular/material/dialog';
 import { mockCategoryData } from 'src/app/mock-data/mock-category';
+import { ProjectCRUDService } from 'src/app/services/project-crud.service';
 @Component({
   selector: 'app-add-skill-category',
   templateUrl: './add-skill-category.component.html',
@@ -18,7 +19,7 @@ export class AddSkillCategoryComponent implements OnInit {
   skillWeight: number = 1;
   skillCategory: Category[];
 
-  categoryArray = mockCategoryData;
+  categoryArray = [];
 
   skillFormGroup: FormGroup;
 
@@ -28,12 +29,18 @@ export class AddSkillCategoryComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<AddSkillCategoryComponent>
+    public dialogRef: MatDialogRef<AddSkillCategoryComponent>,
+    private projectCrud: ProjectCRUDService
   ) {}
 
   ngOnInit(): void {
     this.skillFormGroup = this.formBuilder.group({
       skillName: ['', Validators.required],
+    });
+
+    this.projectCrud.getCategories().subscribe((data) => {
+      // Capture the array of Skill objects:
+      this.categoryArray = data[Object.keys(data)[0]];
     });
   }
 

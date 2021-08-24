@@ -14,7 +14,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
-import { Skills } from '../mock-data/mock-skills';
 import { Skill } from '../classes/Skill';
 import { mockSkillCollection } from '../mock-data/mock-collection';
 import { AddSkillCategoryComponent } from './add-skill-category/add-skill-category.component';
@@ -42,8 +41,8 @@ export class CreateprojectComponent implements OnInit {
   newSelectedSkills = [];
 
   // options for the dropdown for skills and collections:
-  dropdownOptionsSkills = Skills;
-  dropdownOptionsCollections = mockSkillCollection;
+  dropdownOptionsSkills = [];
+  dropdownOptionsCollections = [];
 
   projectBasicInfo: FormGroup;
   projectSkillsAndCollections: FormGroup;
@@ -57,7 +56,7 @@ export class CreateprojectComponent implements OnInit {
     limitTo: 0, // number thats limits the no of options displayed in the UI (if zero, options will not be limited)
     moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
     noResultsFound: 'No results found!', // text to be displayed when no items are found while searching
-    searchPlaceholder: 'Search Skills', // label thats displayed in search input,
+    searchPlaceholder: 'Search SkillsArray', // label thats displayed in search input,
     searchOnKey: 'name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
   };
 
@@ -85,8 +84,9 @@ export class CreateprojectComponent implements OnInit {
       projectCollections: new FormControl('', [Validators.required]),
     });
 
-    this.projectCrud.getskills().subscribe((data) => {
+    this.projectCrud.getSkills().subscribe((data) => {
       // Capture the array of Skill objects:
+
       this.dropdownOptionsSkills = data[Object.keys(data)[0]];
     });
 
@@ -117,7 +117,7 @@ export class CreateprojectComponent implements OnInit {
       if (skill != undefined) {
         this.selectedSkills.push(skill.data);
         this.newSelectedSkills.push(skill.data);
-        Skills.push(skill.data);
+        this.dropdownOptionsSkills.push(skill.data);
       } else console.log('Returned Empty Skill');
     });
   }
@@ -202,10 +202,14 @@ export class CreateprojectComponent implements OnInit {
     for (var x = 0; x < this.selectedCollections.length; x++) {
       var extractCollectionSkillsId = [];
 
-      if (this.selectedCollections[x].Skills != undefined)
-        for (var q = 0; q < this.selectedCollections[x].Skills.length; q++) {
+      if (this.selectedCollections[x].SkillsArray != undefined)
+        for (
+          var q = 0;
+          q < this.selectedCollections[x].SkillsArray.length;
+          q++
+        ) {
           extractCollectionSkillsId.push({
-            skillId: this.selectedCollections[x].Skills[q].skillId,
+            skillId: this.selectedCollections[x].SkillsArray[q].skillId,
             Weight: 0,
           });
         }
@@ -214,7 +218,7 @@ export class CreateprojectComponent implements OnInit {
         Name: this.selectedCollections[x].Name,
         Description: this.selectedCollections[x].Description,
         Weight: this.selectedCollections[x].Weight,
-        Skills: extractCollectionSkillsId,
+        SkillsArray: extractCollectionSkillsId,
       });
     }
 
@@ -232,9 +236,9 @@ export class CreateprojectComponent implements OnInit {
     console.log('Creating Project...\n');
     console.log(proj);
 
-    // this.projectCrud.createProject(proj).subscribe((data) => {
-    //   console.log('Response for Create Project: ', data);
-    // });
+    this.projectCrud.createProject(proj).subscribe((data) => {
+      console.log('Response for Create Project: ', data);
+    });
 
     this.cancel();
   }
