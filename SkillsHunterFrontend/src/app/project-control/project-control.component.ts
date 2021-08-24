@@ -62,6 +62,12 @@ export class ProjectControlComponent implements OnInit {
     });
   }
 
+  match(term: string,name: string, owner: string): boolean{
+    
+    
+    return false;
+  }
+
   Search(): void{
     if(this.searchTerm != ""){
       this.adminService.getProjects().subscribe(response =>{

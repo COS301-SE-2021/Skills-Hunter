@@ -107,49 +107,49 @@ export class UserControlComponent implements OnInit {
     this.ngOnInit();
   }
 
+
+  match(term: string,name: string,surname: string): boolean{
+    let fullname: string = name + " " + surname;
+
+    term = term.trim();
+    
+    if(name.indexOf(term) != -1)
+      return true;
+
+    if(surname.indexOf(term) != -1)
+      return true;
+    
+    if(fullname.indexOf(term) != -1)
+      return true;
+
+    return false;
+  }
+
   Search(): void{
 
     if(this.searchTerm != ""){
 
       this.adminService.getUsers().subscribe(response =>{
-        let tempData:getUserResponse[] = response;
-        let result: getUserResponse = null;
+        this.data = [];
         
-        for(let count  = 0; count < tempData.length; count++){
-          if(tempData[count].name.toLowerCase() == this.searchTerm.toLowerCase()){
-            result = tempData[count];
-            break;
+        for(let count  = 0; count < response.length; count++){
+          if(this.match(this.searchTerm.toLowerCase(),response[count].name.toLowerCase(),response[count].surname.toLowerCase())){
+            this.data.push(response[count]);
           }
         }
   
-        if(result != null){
-          this.data = [];
-          this.data.push(result);
-          this.ngOnInit();
-        }else{
-          this.data = [];
-          this.ngOnInit();
-        }
+        this.ngOnInit();
       },
       error=>{
-        let tempData:getUserResponse[] = mockUserData;
-        let result: getUserResponse = null;
+        this.data = [];
         
-        for(let count  = 0; count < tempData.length; count++){
-          if(tempData[count].name == this.searchTerm){
-            result = tempData[count];
-            break;
+        for(let count  = 0; count < mockUserData.length; count++){
+          if(this.match(this.searchTerm.toLowerCase(),mockUserData[count].name.toLowerCase(),mockUserData[count].surname.toLowerCase())){
+            this.data.push(mockUserData[count]);
           }
         }
   
-        if(result != null){
-          this.data = [];
-          this.data.push(result);
-          this.ngOnInit();
-        }else{
-          this.data = [];
-          this.ngOnInit();
-        }      
+        this.ngOnInit();
       });     
     }
   }
