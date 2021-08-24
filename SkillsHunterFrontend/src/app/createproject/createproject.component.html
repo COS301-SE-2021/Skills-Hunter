@@ -32,6 +32,16 @@
                 ></textarea>
               </mat-form-field>
 
+              <mat-form-field appearance="outline">
+                <mat-label>Location</mat-label>
+                <input
+                  matInput
+                  placeholder="Hatfield"
+                  formControlName="projectLocation"
+                  required
+                />
+              </mat-form-field>
+
               <button
                 mat-raised-button
                 color="warn"
@@ -75,18 +85,6 @@
               [(ngModel)]="selectedSkills"
               [multiple]="true"
             ></ngx-select-dropdown>
-
-            <!-- <ng-multiselect-dropdown
-              [placeholder]="'Search A Skill'"
-              [settings]="dropdownSettings"
-              [data]="dropdownListForSkills"
-              [(ngModel)]="selectedItemsForSkills"
-              (onSelect)="onItemSelect($event)"
-              (onSelectAll)="onSelectAll($event)"
-              allowRemoteDataSearch
-            >
-            </ng-multiselect-dropdown> -->
-
             <br />
 
             <button
@@ -108,26 +106,19 @@
               [(ngModel)]="selectedCollections"
               [multiple]="true"
             ></ngx-select-dropdown>
-
-            <!-- <ng-multiselect-dropdown
-              [placeholder]="'Search A Collection'"
-              [settings]="dropdownSettings"
-              [data]="dropdownListForCollections"
-              [(ngModel)]="selectedItemsForCollections"
-              (onSelect)="onItemSelect($event)"
-              (onSelectAll)="onSelectAll($event)"
-            >
-            </ng-multiselect-dropdown> -->
             <br />
             <br />
 
-            <mat-slide-toggle color="primary"
+            <mat-slide-toggle
+              color="primary"
+              [(ngModel)]="isCheckedOpenForApplications"
+              [disabled]="toggleNewSkillsAdded"
               >Project is Open for Application</mat-slide-toggle
             >
             <br />
           </mat-card-content>
         </mat-card>
-        <button mat-stroked-button color="warn" matStepperPrevious class="back">
+        <button mat-raised-button color="warn" matStepperPrevious class="back">
           Back
         </button>
         <button
