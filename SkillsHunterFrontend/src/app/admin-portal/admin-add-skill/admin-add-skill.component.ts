@@ -11,7 +11,10 @@ import { AdminDashboardService } from 'src/app/services/admin-dashboard.service'
   styleUrls: ['./admin-add-skill.component.scss'],
 })
 export class AdminAddSkillComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<AdminAddSkillComponent>, private adminSkillOperations: AdminDashboardService) {}
+  constructor(
+    public dialogRef: MatDialogRef<AdminAddSkillComponent>,
+    private adminSkillOperations: AdminDashboardService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -24,18 +27,16 @@ export class AdminAddSkillComponent implements OnInit {
 
     // skillData.SkillId = Skills.length.toString();
 
-    skillData.Name = <string>(
-      (<any>this.skillForm.controls['skillName'].value)
-    );
+    skillData.Name = <string>(<any>this.skillForm.controls['skillName'].value);
 
-    skillData.CategoryId = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
+    // skillData.CategoryId = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
 
     Skills.push(skillData);
 
-        // the service is called below
-        this.adminSkillOperations.adminAddSkill(skillData).subscribe((data) => {
-          console.log('Creating a Skill\n', data);
-        });
+    // the service is called below
+    this.adminSkillOperations.adminAddSkill(skillData).subscribe((data) => {
+      console.log('Creating a Skill\n', data);
+    });
 
     this.cancel();
   }
