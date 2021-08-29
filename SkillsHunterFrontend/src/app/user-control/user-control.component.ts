@@ -36,8 +36,8 @@ export class UserControlComponent implements OnInit {
   advancedSearch(): void {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
-    configDialog.width = '30%';
-    configDialog.height = '50%';
+    configDialog.width = '40%';
+    configDialog.height = '60%';
     configDialog.data = -1;
 
     const dialogRef = this.dialog.open(UserAdvancedSearchComponent,configDialog);
