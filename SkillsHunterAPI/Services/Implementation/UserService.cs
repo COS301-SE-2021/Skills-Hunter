@@ -14,6 +14,8 @@ using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Skill.Entity;
+using SkillsHunterAPI.Models.User.Entity;
+using SkillsHunterAPI.Models.User.Response;
 
 namespace SkillsHunterAPI.Services
 {
@@ -24,6 +26,7 @@ namespace SkillsHunterAPI.Services
         {
             _context = context;
         }
+
 
         public User Create(User user,string password)
         {
@@ -150,11 +153,27 @@ namespace SkillsHunterAPI.Services
             return new LogOutResponse();
         }*/
 
-        public async Task<UpdateResponse> UpdateUser(UpdateRequest request)
+        public async Task UpdateUser(UpdateUserRequest request, Guid UserId)
         {
-            return new UpdateResponse();
-        }
+            User user = _context.Users.Where(u => u.UserId== UserId).FirstOrDefault();
 
+            if (user != null)
+            {
+                user.Name = request.Name;
+                user.Surname = request.Surname;
+                user.Email = request.Email;
+                user.Phone = request.PhoneNumber;
+                user.OpenForWork = request.OpenForWork;
+
+                await _context.SaveChangesAsync();
+
+
+            }
+
+
+
+        }
+       
         public async Task<DeleteResponse> DeleteUser(DeleteRequest request)
         {
             return new DeleteResponse();
@@ -172,19 +191,37 @@ namespace SkillsHunterAPI.Services
         // Crud operations on the User Skill Model
         public async Task AddUserSkill(UserSkill request)
         {
-            request.UserSkillId = new Guid();
-            
-            _context.UserSkills.Add(request);
+            UserSkill userSkill = await _context.UserSkills.Where(us => us.UserId == request.UserId && us.SkillId == request.SkillId).FirstOrDefaultAsync();
+
+            if(userSkill == null)
+            {
+                request.UserSkillId = new Guid();
+
+                _context.UserSkills.Add(request);
+               await  _context.SaveChangesAsync();
+            }
         }
         
-        public async Task UpdateUserSkill(Guid userSkillId, UserSkill request)
+        public async Task UpdateUserSkill(UserSkill request)
         {
 
-            UserSkill result = await _context.UserSkills.FindAsync(userSkillId);
+            UserSkill userSkillFromDb = await _context.UserSkills.Where(us => us.UserId == request.UserId && us.SkillId == request.SkillId).FirstOrDefaultAsync();
 
-            result.SkillId = request.SkillId;
-            result.Weight = request.Weight;
-            await _context.SaveChangesAsync();
+            //Update the user skill if it is not found
+            if(userSkillFromDb != null)
+            {
+                userSkillFromDb.Weight = request.Weight;
+                await _context.SaveChangesAsync();
+            }
+            else //Add a new one if it does not exist
+            {
+                UserSkill newUserSkill = new UserSkill();
+                newUserSkill.UserId = request.UserId;
+                newUserSkill.SkillId = request.SkillId;
+                newUserSkill.Weight = request.Weight;
+
+                await AddUserSkill(newUserSkill);
+            }
         }
 
         public async Task DeleteUserSkill(Guid id)
@@ -317,9 +354,75 @@ namespace SkillsHunterAPI.Services
             return newSkill;
         }
 
-        public Task AddUserSkillCollection(AddSkillCollectionRequest request, Guid currentUser)
+        public async Task CreateUserSkillCollection(CreateSkillCollectionRequest request, Guid currentUser)
         {
-            return null;
+            User user = _context.Users.Where(u => u.UserId == currentUser).FirstOrDefault();
+
+            if (user != null)
+            {
+                SkillCollection skillCollection = new SkillCollection();
+
+                skillCollection.SkillCollectionId = new Guid();
+                skillCollection.Name = request.Name;
+                skillCollection.Description = request.Description;
+
+                _context.SkillCollections.Add(skillCollection);
+                await _context.SaveChangesAsync();
+
+
+                foreach(AddExistingSkillRequest skill in request.Skills)
+                {
+                    SkillCollectionMap skillCollectionMap = new SkillCollectionMap();
+                    
+                    skillCollectionMap.SkillCollectionMapId = new Guid();
+                    skillCollectionMap.SkillCollectionId = skillCollection.SkillCollectionId;
+                    skillCollectionMap.SkillId = skill.SkillId;
+
+                    _context.SkillCollectionMaps.Add(skillCollectionMap);
+                    await _context.SaveChangesAsync();
+
+                }
+
+
+                UserSkillCollection userSkillCollection = new UserSkillCollection();
+
+                userSkillCollection.UserSkillCollectionId = new Guid();
+
+                userSkillCollection.SkillCollectionId = skillCollection.SkillCollectionId;
+                userSkillCollection.UserId = currentUser;
+                userSkillCollection.Weight = request.Weight;
+
+                _context.UserSkillCollections.Add(userSkillCollection);
+                await _context.SaveChangesAsync();
+
+            }
+
+            
+        }
+
+
+        public async Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId(Guid id)
+        {
+            List<GetUserSkillResponse> response = new List<GetUserSkillResponse>();
+            List<UserSkill> userSkills = await _context.UserSkills.Where(u => u.UserId == id).ToListAsync();
+
+            foreach(UserSkill userSkill in userSkills)
+            {
+                //Checking if the skill exists
+                Skill skill = await _context.Skills.Where(s => s.SkillId == userSkill.SkillId).FirstOrDefaultAsync();
+
+                if(skill != null)
+                {
+                    GetUserSkillResponse skillResponse = new GetUserSkillResponse();
+                    skillResponse.skillId = skill.SkillId;
+                    skillResponse.Name = skill.Name;
+                    skillResponse.Weight = userSkill.Weight;
+
+                    response.Add(skillResponse);
+                }
+            }
+
+            return response;
         }
 
     }

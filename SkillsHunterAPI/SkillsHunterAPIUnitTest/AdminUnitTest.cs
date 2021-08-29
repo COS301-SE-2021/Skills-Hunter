@@ -68,7 +68,6 @@ namespace SkillsHunterAPIUnitTest.Tests
             AddSkillRequest request = new AddSkillRequest()
             {
                 Name = "Java Web Development",
-                CategoryId = CatId
             };
 
             Skill serviceRequest  = new Skill()
@@ -82,11 +81,11 @@ namespace SkillsHunterAPIUnitTest.Tests
                 Added = serviceRequest
             };
 
-            mockService.Setup(serv => serv.AddSkill(serviceRequest)).ReturnsAsync(serviceRequest);
+            mockService.Setup(serv => serv.CreateSkill(serviceRequest)).ReturnsAsync(serviceRequest);
 
             // Act
             
-            var result = await testController.AddSkill(request);
+            var result = await testController.CreateSkill(request);
 
             // Assert
 
@@ -105,7 +104,7 @@ namespace SkillsHunterAPIUnitTest.Tests
 
             RemoveCategoryRequest request = new RemoveCategoryRequest()
             {
-                Id = CatId.ToString()
+                CategoryId = CatId
             };
 
             Category serviceResponse  = new Category()
@@ -132,7 +131,7 @@ namespace SkillsHunterAPIUnitTest.Tests
 
             var okResult = Assert.IsType<OkObjectResult>(result);
             var returnValue = Assert.IsType<RemoveCategoryResponse>(okResult.Value);
-            Assert.Equal(request.Id.ToString(),returnValue.Id.ToString());          
+            Assert.Equal(request.CategoryId,returnValue.Id);          
         }
 
         [Fact]

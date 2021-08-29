@@ -1,0 +1,17 @@
+
+<h1>Project Control</h1>
+
+<mat-card id = "card">
+
+    <form class="form-inline" (ngSubmit) = "Search()">
+        <input class="form-control" type="text" placeholder="Search Project" aria-label="Search"
+        mdbInput id = "user-searchbar" name = "searchTerm" [(ngModel)]  = "searchTerm">
+    </form>
+    
+    <div id = "btnUserGroup">
+        <button mat-raised-button id = "btnAdvanced" (click)="advancedSearch()">Advanced Search</button>
+        <button mat-raised-button id = "btnViewAll" (click)="viewAll()">View All</button>
+    </div>
+
+    <app-admin-project-card *ngFor = "let project of data" [project] = "project" class = "user-info"></app-admin-project-card>
+</mat-card>

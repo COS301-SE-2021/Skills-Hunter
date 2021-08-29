@@ -29,6 +29,7 @@ namespace SkillsHunterAPI.Controllers
             _projectService = projectService;
             _skillService = skillService;
             _userController = userController;
+            //InitControllers();
         }
 
 
@@ -82,7 +83,7 @@ namespace SkillsHunterAPI.Controllers
             Project project = await _projectService.GetProject(projectId);
 
             ProjectResponse projectResponse = new ProjectResponse();
-            projectResponse.ProjectSkills = new List<SkillRR>();
+            //projectResponse.ProjectSkills = new List<SkillRR>();
 
             if (project == null) {
                 return null;
@@ -95,7 +96,9 @@ namespace SkillsHunterAPI.Controllers
             projectResponse.DateCreated = project.DateCreated;
             projectResponse.OpenForApplication = project.OpenForApplication;
 
-            List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(projectId);
+            projectResponse.ProjectSkills = await GetProjectSkillsByProjectId(project.ProjectId);
+
+            /*List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkillsByProjectId(projectId);
 
             foreach (ProjectSkill projectSkill in projectSkills)
             {
@@ -107,12 +110,12 @@ namespace SkillsHunterAPI.Controllers
                 skill.SkillName = "SkillOne";
                
                 projectResponse.ProjectSkills.Add(skill);
-            }
-
-           /* foreach (ProjectSkill projectSkill in projectSkills)
-            {
-                projectResponse.ProjectSkills.Add(projectSkill);
             }*/
+
+            /* foreach (ProjectSkill projectSkill in projectSkills)
+             {
+                 projectResponse.ProjectSkills.Add(projectSkill);
+             }*/
 
 
             return projectResponse;
@@ -160,11 +163,12 @@ namespace SkillsHunterAPI.Controllers
         {
             ProjectResponse projectResponse = new ProjectResponse();
 
+            InitControllers();
             Project newProject = new Project();
             newProject.Description = projectRequest.Description;
             newProject.Location = projectRequest.Location;
             newProject.OpenForApplication = projectRequest.OpenForApplication;
-            //newProject.Owner = projectRequest.Owner;
+            newProject.Owner = _userController.GetCurrentUserId();
             newProject.Name = projectRequest.Name;
             newProject.DateCreated = DateTime.Now;
 
@@ -203,12 +207,12 @@ namespace SkillsHunterAPI.Controllers
             }
 
             //Adding skills from collections
-            foreach (AddSkillCollectionRequest collection in projectRequest.SkillCollections)
+            foreach (CreateSkillCollectionRequest collection in projectRequest.SkillCollections)
             {
                 await _projectService.CreateCollection(collection, newProject.ProjectId);
             }
 
-            List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(newProject.ProjectId);
+            List<GetProjectSkillResponse> projectSkills = (List<GetProjectSkillResponse>)await _projectService.GetProjectSkillsByProjectId(newProject.ProjectId);
 
 
             //projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
@@ -221,11 +225,11 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPut]
         [Route("api/[controller]/updateProject")]
-        public async Task<ActionResult> UpdateProject([FromBody] ProjectRequest projectRequest)
+        public async Task<ActionResult> UpdateProject([FromBody] UpdateProjectRequest projectRequest)
         {
 
 
-            Guid projectId = new Guid(projectRequest.ProjectId);
+            /*Guid projectId = new Guid(projectRequest.ProjectId);
             Project project = await _projectService.GetProject(projectId);
 
             if (project == null )
@@ -249,7 +253,7 @@ namespace SkillsHunterAPI.Controllers
             await _projectService.UpdateProject(PID, ProjectToUpdate);
 
 
-            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);
+            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);*/
 
 
             /*Guid _projectID = new Guid(projectRequest.ProjectId);
@@ -294,7 +298,7 @@ namespace SkillsHunterAPI.Controllers
         {
             Guid projectId = deleteProjectRequest.ProjectId;
             var projectToDelete = await _projectService.GetProject(projectId);
-            List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkills(projectId);
+            List<GetProjectSkillResponse> projectSkills = (List<GetProjectSkillResponse>)await _projectService.GetProjectSkillsByProjectId(projectId);
 
 
 
@@ -311,7 +315,7 @@ namespace SkillsHunterAPI.Controllers
 
 
             /*This calls the service to delete project skill from the db*/
-            foreach(ProjectSkill projectSkill in projectSkills)
+            foreach(GetProjectSkillResponse projectSkill in projectSkills)
             {
                 await _projectService.RemoveProjectSkill(projectSkill.ProjectSkillId);
             }
@@ -328,7 +332,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpPost]
         [Route("api/[controller]/deleteProjectSkill/{id}")]
         public async Task<ActionResult> RemoveProjectSkill(string id)
         {
@@ -415,7 +419,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getCollection")]
         public IActionResult GetCollection(GetCollectionRequest request){
             //This method handles the request to retrieve a skill collection
@@ -515,7 +519,7 @@ namespace SkillsHunterAPI.Controllers
         }
 
        
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/getCollectionsByProject")]
         public IActionResult GetCollectionsByProject(GetCollectionsByProjectRequest request){
             //This method handles a request to retrieve Skill Collections by Project Id
@@ -537,7 +541,19 @@ namespace SkillsHunterAPI.Controllers
                             message = error.Message 
                        });
             }
-        }    
-    
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/GetProjectSkillsByProjectId/{id}")]
+        public async Task<GetProjectSkillsResponse> GetProjectSkillsByProjectId(Guid projectId)
+        {
+            GetProjectSkillsResponse response = new GetProjectSkillsResponse();
+
+            response.Skills = (List<GetProjectSkillResponse>)await _projectService.GetProjectSkillsByProjectId(projectId);
+            response.SkillCollections = (List<GetProjectSkillCollectionResponse>)await _projectService.GetProjectSkillCollectionsByProjectId(projectId);
+
+            return response;
+        }
+
     }
 }

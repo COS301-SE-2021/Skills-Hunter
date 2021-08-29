@@ -5,14 +5,16 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class AdminDashboardService {
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  endPoint = 'http://localhost:5000/api/';
+  private apiUrl = 'http://localhost:5000/api/';
 
   httpHeader = {
     headers: new HttpHeaders({
@@ -20,17 +22,18 @@ export class AdminDashboardService {
     })
   }  
 
-adminGetSkills(): Observable<Skill[]> {
-  return this.httpclient.get<Skill[]>(this.endPoint+'Admin/getSkills');
-}
+  adminGetSkills(): Observable<Skill[]> {
+    return this.http.get<Skill[]>(this.apiUrl+'Admin/getSkills');
+  }
 
-adminAddSkill(formData: Skill): Observable<Skill> {
-  console.log(formData);
-  return this.httpclient.post<Skill>(this.endPoint+'Admin/addSkill', JSON.stringify(formData), this.httpHeader);
-}
+  adminAddSkill(formData: Skill): Observable<Skill> {
+    console.log(formData);
+    return this.http.post<Skill>(this.apiUrl+'Admin/addSkill', JSON.stringify(formData), this.httpHeader);
+  }
 
-adminRemoveSkill(formData: Skill): Observable<Skill> {
-  return this.httpclient.post<Skill>(this.endPoint+'Admin/removeSkill', formData.SkillId, this.httpHeader);
-}
+  adminRemoveSkill(formData: Skill): Observable<Skill> {
+    return this.http.post<Skill>(this.apiUrl+'Admin/removeSkill', formData.SkillId, this.httpHeader);
+  }
+
 
 }

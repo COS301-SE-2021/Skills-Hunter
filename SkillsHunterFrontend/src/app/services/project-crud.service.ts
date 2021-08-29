@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient,HttpHeaders } from '@angular/common/http';
 import { Project } from '../classes/Project';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class ProjectCRUDService {
   constructor(private httpclient: HttpClient) {}
 
   //external api to create project is called here
-  createProject(formData: Project): Observable<any> {
+  createProject(formData: any): Observable<any> {
     // console.log("Req: "+formData.name);
     return this.httpclient.post(
       'http://localhost:5000/api/Project/createProject',
@@ -37,23 +37,78 @@ export class ProjectCRUDService {
   }
 
   //external api to read project is called here
-  getProjects(): Observable<Project[]> {
-    return this.httpclient.get<Project[]>(
-      'http://localhost:5000/api/Project/getProjects'
+  getAllProjects(): Observable<any[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '+localStorage.getItem('token')
+      })
+    };
+
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/Project/getProjects',httpOptions
     );
   }
 
-  inviteCandidate(formData): Observable<Project[]> {
-    return this.httpclient.post<Project[]>(
+  //external api to read project is called here
+  getProjectsByProjectOwnerId(): Observable<any[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '+localStorage.getItem('token')
+      })
+    };
+
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/Project/getProjectsByOwnerId',httpOptions
+    );
+  }
+
+  inviteCandidate(formData): Observable<any[]> {
+    return this.httpclient.post<any[]>(
       'http://localhost:5000/api/Project/inviteCandidate', formData 
     );
   }
 
-  apply(formData):Observable <any>{
+  applyForProject(formData : any ):Observable <any>{
+    var auth=new Headers();
+    auth.append('Authorization','Bearer '+localStorage.getItem('token'));
+
     return this.httpclient.post(
       'http://localhost:5000/api/Project/applyForProject',
       formData
     );
   }
+
+  getskills(){
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '+localStorage.getItem('token')
+      })
+    };
+    return this.httpclient.get(
+      'http://localhost:5000/api/Admin/getSkills',httpOptions);
+  }
+
+  getIndividualsSkills(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '+localStorage.getItem('token')
+      })
+    };
+    return this.httpclient.get(
+      'http://localhost:5000/api​/User​/GetUserSkillsByUserId',httpOptions);
+  }
+
+  getProject(formData : any){
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '+localStorage.getItem('token')
+      })
+    };
+    return this.httpclient.get(
+      'http://localhost:5000/api​/Project/getProject',httpOptions);
+  }
+
 
 }
