@@ -200,16 +200,20 @@ namespace SkillsHunterAPI.Services
                 //Adding the skills of the SkillCollection
                 List<SkillCollectionMap> skillCollectionMaps = _context.SkillCollectionMaps.Where(skm => skm.SkillCollectionId == skillCollection.SkillCollectionId).ToList();
 
-                foreach (SkillCollectionMap skillCollectionMap in skillCollectionMaps)
+                if(skillCollectionMaps != null)
                 {
-                    Skill skill = _context.Skills.Where(s => s.SkillId == skillCollectionMap.SkillId).FirstOrDefault();
-
-                    if (skill != null)
+                    foreach (SkillCollectionMap skillCollectionMap in skillCollectionMaps)
                     {
-                        GetSkillResponse getSkill = new GetSkillResponse();
-                        getSkill.Id = skill.SkillId;
-                        getSkill.Name = skill.Name;
-                        response.Skills.Add(getSkill);
+                        Skill skill = _context.Skills.Where(s => s.SkillId == skillCollectionMap.SkillId).FirstOrDefault();
+
+                        if (skill != null)
+                        {
+                            GetSkillResponse getSkill = new GetSkillResponse();
+                            getSkill.Id = skill.SkillId;
+                            getSkill.Name = skill.Name;
+                            getSkill.Status = skill.Status;
+                            response.Skills.Add(getSkill);
+                        }
                     }
                 }
 
@@ -223,15 +227,18 @@ namespace SkillsHunterAPI.Services
         {
             List<GetSkillCollectionResponse> response = new List<GetSkillCollectionResponse>();
 
-            List<SkillCollection> skillCollections = _context.SkillCollections.ToList();
+            List<SkillCollection> skillCollections = await _context.SkillCollections.ToListAsync();
 
-            foreach (SkillCollection skillCollection in skillCollections)
+            if(skillCollections != null)
             {
-                GetSkillCollectionResponse getSkillCollection = await getSkillCollectionById(skillCollection.SkillCollectionId);
-
-                if (getSkillCollection != null)
+                foreach (SkillCollection skillCollection in skillCollections)
                 {
-                    response.Add(getSkillCollection);
+                    GetSkillCollectionResponse getSkillCollection = await getSkillCollectionById(skillCollection.SkillCollectionId);
+
+                    if (getSkillCollection != null)
+                    {
+                        response.Add(getSkillCollection);
+                    }
                 }
             }
 
