@@ -61,7 +61,7 @@ export class CreateprojectComponent implements OnInit {
   };
 
   configCollections = {
-    displayKey: 'Name', //if objects array passed which key to be displayed defaults to description
+    displayKey: 'name', //if objects array passed which key to be displayed defaults to description
     search: true, //true/false for the search functionlity defaults to false,
     height: '250px', //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
     placeholder: 'Select', // text to be displayed when no item is selected defaults to Select,
@@ -70,7 +70,7 @@ export class CreateprojectComponent implements OnInit {
     moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
     noResultsFound: 'No results found!', // text to be displayed when no items are found while searching
     searchPlaceholder: 'Search Collections', // label thats displayed in search input,
-    searchOnKey: 'Name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
+    searchOnKey: 'name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
   };
 
   ngOnInit(): void {
@@ -86,11 +86,12 @@ export class CreateprojectComponent implements OnInit {
 
     this.projectCrud.getSkills().subscribe((data) => {
       // Capture the array of Skill objects:
-
       this.dropdownOptionsSkills = data[Object.keys(data)[0]];
     });
 
-    this.dropdownOptionsCollections = mockSkillCollection;
+    this.projectCrud.getCollections().subscribe((data) => {
+      this.dropdownOptionsCollections = data;
+    });
   }
 
   constructor(

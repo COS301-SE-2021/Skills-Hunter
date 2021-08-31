@@ -101,12 +101,12 @@ export class ProjectCRUDService {
     );
   }
 
-  // getCollections(): Observable<any> {
-  //   return this.httpclient.get<Category>(
-  //     'http://localhost:5000/api/Admin/getCategories',
-  //     this.httpOptions
-  //   );
-  // }
+  getCollections(): Observable<any> {
+    return this.httpclient.get<any>(
+      'http://localhost:5000/api/Admin/getAllSkillCollections',
+      this.httpOptions
+    );
+  }
 
   getIndividualsSkills() {
     return this.httpclient.get(
