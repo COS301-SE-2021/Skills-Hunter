@@ -42,11 +42,12 @@ export class AddSkillCollectionComponent implements OnInit {
 
     this.projectCrud.getSkills().subscribe((data) => {
       // Capture the array of Skill objects:
+      console.log(data);
       this.skillArray = data[Object.keys(data)[0]];
     });
 
     this.projectCrud.getCollections().subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.collectionArray = data;
     });
   }
