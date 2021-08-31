@@ -185,7 +185,7 @@ export class CreateprojectComponent implements OnInit {
       if (!dupp)
         selectedSkillsIDs.push({
           skillId: a[x].skillId,
-          Weight: 0,
+          weight: 0,
         });
     }
     return selectedSkillsIDs;
@@ -206,8 +206,8 @@ export class CreateprojectComponent implements OnInit {
       if (this.selectedCollections[x].skills != undefined)
         for (var q = 0; q < this.selectedCollections[x].skills.length; q++) {
           extractCollectionSkillsId.push({
-            skillId: this.selectedCollections[x].skills[q].skillId,
-            Weight: 0,
+            skillId: this.selectedCollections[x].skills[q].id,
+            weight: 0,
           });
         }
 
@@ -221,21 +221,21 @@ export class CreateprojectComponent implements OnInit {
 
     // Create the Project:
     var proj = {
-      Name: this.projName,
-      Description: this.projDescription,
-      Location: this.projLocation,
-      OpenForApplication: this.isCheckedOpenForApplications,
-      ExistingSkills: [selectedSkillsIDs],
-      NewSkills: [this.newSelectedSkills],
-      SkillCollections: [processedCollections],
+      name: this.projName,
+      description: this.projDescription,
+      location: this.projLocation,
+      openForApplication: this.isCheckedOpenForApplications,
+      existingSkills: [selectedSkillsIDs],
+      newSkills: [this.newSelectedSkills],
+      skillCollections: [processedCollections],
     };
 
     console.log('Creating Project...\n');
     console.log(proj);
 
-    // this.projectCrud.createProject(proj).subscribe((data) => {
-    //   console.log('Response for Create Project: ', data);
-    // });
+    this.projectCrud.createProject(proj).subscribe((data) => {
+      console.log('Response for Create Project: ', data);
+    });
 
     this.cancel();
   }

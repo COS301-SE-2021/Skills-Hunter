@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Skill } from 'src/app/classes/Skill';
 import { Skills } from 'src/app/mock-data/mock-skills';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ProjectCRUDService } from 'src/app/services/project-crud.service';
 
 @Component({
   selector: 'app-add-skill-collection',
@@ -12,13 +13,14 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-skill-collection.component.scss'],
 })
 export class AddSkillCollectionComponent implements OnInit {
-  collectionArray: SkillCollection[] = mockSkillCollection;
+  // collectionArray: SkillCollection[] = mockSkillCollection;
+  collectionArray = [];
   collectionWeight: number = 1;
-  collectionSkills: [];
+  collectionSkills = [];
 
   // collectionDescription = 'An undescribed collection of skills.';
 
-  skillArray = Skills;
+  skillArray = [];
 
   collectionFormGroup: FormGroup;
 
@@ -28,7 +30,8 @@ export class AddSkillCollectionComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<AddSkillCollectionComponent>
+    public dialogRef: MatDialogRef<AddSkillCollectionComponent>,
+    private projectCrud: ProjectCRUDService
   ) {}
 
   ngOnInit(): void {
@@ -36,14 +39,24 @@ export class AddSkillCollectionComponent implements OnInit {
       collectionName: ['', Validators.required],
       collectionDescription: ['', Validators.required],
     });
+
+    this.projectCrud.getSkills().subscribe((data) => {
+      // Capture the array of Skill objects:
+      this.skillArray = data[Object.keys(data)[0]];
+    });
+
+    this.projectCrud.getCollections().subscribe((data) => {
+      console.log(data);
+      this.collectionArray = data;
+    });
   }
 
   captureCollection() {
     var collection = {
-      Name: this.collectionFormGroup.value.collectionName,
-      Description: this.collectionFormGroup.value.collectionDescription,
-      Weight: this.collectionWeight,
-      Skills: this.collectionSkills,
+      name: this.collectionFormGroup.value.collectionName,
+      description: this.collectionFormGroup.value.collectionDescription,
+      weight: this.collectionWeight,
+      skills: this.collectionSkills,
     };
 
     this.dialogRef.close({ data: collection });
