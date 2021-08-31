@@ -68,6 +68,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ShowProjectCollectionComponent } from './project-control/show-project-collection/show-project-collection.component';
 import { NewSkillComponent } from './skill-control/new-skill/new-skill.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
+
 
 @NgModule({
   declarations: [
@@ -119,7 +121,8 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
     AddSkillCategoryComponent,
     AddSkillCollectionComponent,
     ShowProjectCollectionComponent,
-    NewSkillComponent
+    NewSkillComponent,
+    NotificationMenuComponent,
   ],
   imports: [
     BrowserModule,

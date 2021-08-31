@@ -8,6 +8,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 })
 export class AppComponent implements OnDestroy {
     title = 'SkillsHunterFrontend';
+    showNotification: boolean; 
     mobileQuery: MediaQueryList;
   
     fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
@@ -32,5 +33,9 @@ export class AppComponent implements OnDestroy {
     }
   
     shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
+
+    openNotification(state: boolean) {
+      this.showNotification = state;
+    }
   }
   

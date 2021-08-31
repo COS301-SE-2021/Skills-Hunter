@@ -1,16 +1,23 @@
 
-<h1>Skill Collection</h1>
+
 
 <mat-card id = "card">
-
-    <form class="form-inline" (ngSubmit) = "Search()">
-        <input class="form-control" type="text" placeholder="Search Skill Collection" aria-label="Search"
-        mdbInput id = "user-searchbar" name = "searchTerm" [(ngModel)]  = "searchTerm">
+    <h1 style = "color:black">Skill Collection</h1>
+    <form class="form-inline user-searchbar" (ngSubmit) = "Search()">
+        <mat-form-field appearance="outline" style = "width: 100%">
+            <input
+              matInput
+              placeholder="Search User"
+              class = "user-searchbar"
+              [(ngModel)]  = "searchTerm"
+              name = "searchTerm"
+            />
+        </mat-form-field>
     </form>
     
     <div id = "btnUserGroup">
-        <button mat-raised-button id = "btnAdvanced" (click) = "advancedSearch()">Advanced Search</button>
-        <button mat-raised-button id = "btnViewAll" (click)="viewAll()">View All</button>
+        <button mat-raised-button color = "primary" id = "btnAdvanced" (click) = "advancedSearch()">Advanced Search</button>
+        <button mat-raised-button color = "primary" id = "btnViewAll" (click)="viewAll()">View All</button>
         <button mat-raised-button color="primary" id = "btnAdd">New</button>
     </div>
 
