@@ -37,13 +37,11 @@
 
       <mat-icon [routerLink]="['/home']" routerLinkActive="router-link-active">home</mat-icon>
     </button>
-    <button id="houseAdmin"
-      mat-icon-button
-      class="toolbar-icon favorite-icon"
-      aria-label="Example icon-button with heart icon">
 
-      <mat-icon [routerLink]="['/user-control']" routerLinkActive="router-link-active">home</mat-icon>
-    </button>
+  
+
+    
+
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container"
@@ -70,6 +68,8 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
+      <!--<app-notification-menu></app-notification-menu>-->
+
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

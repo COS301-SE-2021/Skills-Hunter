@@ -1,0 +1,17 @@
+<mat-card class = "new-skill-card">
+    <h1><b>Create Skill</b></h1>
+    <form class="form-inline" (ngSubmit) = "onSave()">
+        <input class="form-control" type = "text" placeholder="Name" aria-label="Search"
+        mdbInput id = "skillname" name = "name" [(ngModel)] = "name"><br><br>
+            
+        <mat-form-field appearance="fill">
+            <mat-label>Toppings</mat-label>
+            <mat-select [formControl]="category" multiple>
+              <mat-option *ngFor="let cat of categories" [value]="cat.categoryId">{{cat.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+        <button  [type] = "'submit'" id = "btnAdd" class = "btn" value = "Save" [mat-dialog-close] = "" >Save</button>
+    </form>
+ 
+</mat-card>

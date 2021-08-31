@@ -1,8 +1,10 @@
+import { getMultipleValuesInSingleSelectionError } from "@angular/cdk/collections";
+
 //model classes
 export interface skillModel{
     skillId: string;
     name: string;
-    categoryId: string; 
+    categoryId?: string; 
     status: number;   
 }
 
@@ -26,6 +28,12 @@ export interface collectionSkillModel{
     status: number;
 }
 
+export interface imageModel{
+    imageId: string;
+    UserId: string;
+    path: string;
+}
+
 //request classes
 export interface removeSkillRequest{
     skillId: string;
@@ -38,6 +46,22 @@ export interface removeCategoryRequest{
 export interface addCategoryRequest{
     name: string;
     description: string;
+}
+
+export interface updateSkillRequest{
+    id: string,
+    name: string,
+    categoryId: string,
+    status: number
+}
+
+export interface getCategoryByIdRequest{
+    CategoryId: string;
+}
+
+export interface createSkillRequest{
+    name: string;
+    categories: getCategoryByIdRequest[];
 }
 
 //response classes
@@ -89,8 +113,8 @@ export interface getProjectSkillCollectionResponse{
     projectSkillCollectionId: string;
     name: string;
     description: string;
-    weight: string;
-    skills: string; 
+    weight: number;
+    skills: getProjectSkillsResponse[]; 
 }
 
 export interface getProjectSkillsResponse{
@@ -116,4 +140,20 @@ export interface getSkillCollectionResponse{
     Description: string;
     Weight: number;
     Skills:collectionSkillModel[];
+}
+
+export interface getUserSkillResponse
+{
+    skillId: string;
+    name: string;
+    weight: string;
+}
+
+export interface getImageResponse
+{
+    result: imageModel;
+}
+
+export interface createSkillResponse{
+    added: skillModel;
 }

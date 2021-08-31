@@ -42,7 +42,7 @@ export class SkillCardComponent implements OnInit {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '40%';
-    configDialog.height = '70%';
+    configDialog.height = '60%';
     configDialog.data = this.skill;
 
     const dialogRef = this.dialog.open(EditSkillComponent,configDialog);

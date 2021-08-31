@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { getProjectsResponse } from 'src/app/api-message-class/message';
 import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 import { ShowProjectSkillComponent } from '../show-project-skill/show-project-skill.component';
+import { ShowProjectCollectionComponent } from '../show-project-collection/show-project-collection.component';
+
 @Component({
   selector: 'app-admin-project-card',
   templateUrl: './admin-project-card.component.html',
@@ -19,9 +21,13 @@ export class AdminProjectCardComponent implements OnInit {
     configDialog.backdropClass = 'backGround';
     configDialog.width = '35%';
     configDialog.height = '70%';
-    configDialog.data = this.project.projectSkills.skills;
+    configDialog.data = this.project.projectSkills.skillCollections;
 
-    const dialogRef = this.dialog.open(ShowProjectSkillComponent,configDialog);  
+    const dialogRef = this.dialog.open(ShowProjectCollectionComponent,configDialog);  
+  }
+
+  showCollection(): void{
+
   }
 
 }
