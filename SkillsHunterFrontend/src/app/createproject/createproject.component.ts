@@ -14,18 +14,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
-import { Skills } from '../mock-data/mock-skills';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Skill } from '../classes/Skill';
 import { mockSkillCollection } from '../mock-data/mock-collection';
 import { AddSkillCategoryComponent } from './add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-collection.component';
-
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-createproject',
@@ -49,14 +41,14 @@ export class CreateprojectComponent implements OnInit {
   newSelectedSkills = [];
 
   // options for the dropdown for skills and collections:
-  dropdownOptionsSkills = Skills;
-  dropdownOptionsCollections = mockSkillCollection;
+  dropdownOptionsSkills = [];
+  dropdownOptionsCollections = [];
 
   projectBasicInfo: FormGroup;
   projectSkillsAndCollections: FormGroup;
 
   configSkills = {
-    displayKey: 'Name', //if objects array passed which key to be displayed defaults to description
+    displayKey: 'name', //if objects array passed which key to be displayed defaults to description
     search: true, //true/false for the search functionlity defaults to false,
     height: '250px', //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
     placeholder: 'Select', // text to be displayed when no item is selected defaults to Select,
@@ -64,12 +56,12 @@ export class CreateprojectComponent implements OnInit {
     limitTo: 0, // number thats limits the no of options displayed in the UI (if zero, options will not be limited)
     moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
     noResultsFound: 'No results found!', // text to be displayed when no items are found while searching
-    searchPlaceholder: 'Search Skills', // label thats displayed in search input,
-    searchOnKey: 'Name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
+    searchPlaceholder: 'Search SkillsArray', // label thats displayed in search input,
+    searchOnKey: 'name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
   };
 
   configCollections = {
-    displayKey: 'Name', //if objects array passed which key to be displayed defaults to description
+    displayKey: 'name', //if objects array passed which key to be displayed defaults to description
     search: true, //true/false for the search functionlity defaults to false,
     height: '250px', //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
     placeholder: 'Select', // text to be displayed when no item is selected defaults to Select,
@@ -78,7 +70,7 @@ export class CreateprojectComponent implements OnInit {
     moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
     noResultsFound: 'No results found!', // text to be displayed when no items are found while searching
     searchPlaceholder: 'Search Collections', // label thats displayed in search input,
-    searchOnKey: 'Name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
+    searchOnKey: 'name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
   };
 
   ngOnInit(): void {
@@ -92,8 +84,14 @@ export class CreateprojectComponent implements OnInit {
       projectCollections: new FormControl('', [Validators.required]),
     });
 
-    this.dropdownOptionsSkills = Skills;
-    this.dropdownOptionsCollections = mockSkillCollection;
+    this.projectCrud.getSkills().subscribe((data) => {
+      // Capture the array of Skill objects:
+      this.dropdownOptionsSkills = data[Object.keys(data)[0]];
+    });
+
+    this.projectCrud.getCollections().subscribe((data) => {
+      this.dropdownOptionsCollections = data;
+    });
   }
 
   constructor(
@@ -102,31 +100,11 @@ export class CreateprojectComponent implements OnInit {
     private projectCrud: ProjectCRUDService
   ) {}
 
-  // this.projectCrud.getAllProjects().subscribe((data) => {
-  //   this.ProjectList = data;
-  //   console.log('Response for GetProjects: ', data);
-  // });
-
-  // for(var x=0; this.ProjectList.length; x++){
-
-  // }
-  // this.projectCrud.get()
-  // .subscribe(
-  //   data=>{
-  //     this.ProjectList=data;
-  //     console.log('Response for GetProjects: ', data);
-  //   }
-  // );
-
   captureBasicDetails() {
     this.projName = this.projectBasicInfo.get('projectName').value;
     this.projDescription =
       this.projectBasicInfo.get('projectDescription').value;
     this.projLocation = this.projectBasicInfo.get('projectLocation').value;
-  }
-
-  checkForNewSkills() {
-    console.log('\nWe have toggled!\n');
   }
 
   addSkill() {
@@ -140,10 +118,7 @@ export class CreateprojectComponent implements OnInit {
       if (skill != undefined) {
         this.selectedSkills.push(skill.data);
         this.newSelectedSkills.push(skill.data);
-        Skills.push(skill.data);
-        this.isCheckedOpenForApplications = false;
-        this.toggleNewSkillsAdded = true;
-        this.ngOnInit();
+        this.dropdownOptionsSkills.push(skill.data);
       } else console.log('Returned Empty Skill');
     });
   }
@@ -162,9 +137,35 @@ export class CreateprojectComponent implements OnInit {
       if (collection != undefined) {
         this.selectedCollections.push(collection.data);
         mockSkillCollection.push(collection.data);
-        this.ngOnInit();
+        // this.ngOnInit();
       } else console.log('Returned Empty Collection');
     });
+  }
+
+  changeDetectedSkills(allSelectedSkills: any) {
+    // detect changes in selecting new and old skills
+    var arrNew = [];
+    var arr: any[] = allSelectedSkills.value;
+
+    for (var x = 0; x < arr.length; x++) {
+      if (arr[x].skillId == undefined) {
+        arrNew.push(arr[x]);
+      }
+    }
+
+    this.newSelectedSkills = arrNew;
+
+    // disable the open toggle if there are any new skills present:
+    if (this.newSelectedSkills.length > 0) {
+      this.isCheckedOpenForApplications = false;
+      this.toggleNewSkillsAdded = true;
+    } else {
+      this.toggleNewSkillsAdded = false;
+    }
+  }
+
+  changeDetectedCollections(a: any) {
+    this.selectedCollections = a.value;
   }
 
   extractSkillId(a: any[], b: any[]) {
@@ -175,7 +176,7 @@ export class CreateprojectComponent implements OnInit {
     for (var x = 0; x < a.length; x++) {
       dupp = false;
       for (var y = 0; y < b.length; y++) {
-        if (a[x].SkillId == b[y].SkillId) {
+        if (a[x].skillId == b[y].skillId) {
           dupp = true;
           break;
         }
@@ -183,7 +184,7 @@ export class CreateprojectComponent implements OnInit {
 
       if (!dupp)
         selectedSkillsIDs.push({
-          SkillId: a[x].SkillId,
+          skillId: a[x].skillId,
           Weight: 0,
         });
     }
@@ -202,10 +203,14 @@ export class CreateprojectComponent implements OnInit {
     for (var x = 0; x < this.selectedCollections.length; x++) {
       var extractCollectionSkillsId = [];
 
-      if (this.selectedCollections[x].Skills != undefined)
-        for (var q = 0; q < this.selectedCollections[x].Skills.length; q++) {
+      if (this.selectedCollections[x].SkillsArray != undefined)
+        for (
+          var q = 0;
+          q < this.selectedCollections[x].SkillsArray.length;
+          q++
+        ) {
           extractCollectionSkillsId.push({
-            SkillId: this.selectedCollections[x].Skills[q].SkillId,
+            skillId: this.selectedCollections[x].SkillsArray[q].skillId,
             Weight: 0,
           });
         }
@@ -214,11 +219,11 @@ export class CreateprojectComponent implements OnInit {
         Name: this.selectedCollections[x].Name,
         Description: this.selectedCollections[x].Description,
         Weight: this.selectedCollections[x].Weight,
-        Skills: extractCollectionSkillsId,
+        SkillsArray: extractCollectionSkillsId,
       });
     }
 
-    /// Create the Project:
+    // Create the Project:
     var proj = {
       Name: this.projName,
       Description: this.projDescription,
@@ -232,9 +237,9 @@ export class CreateprojectComponent implements OnInit {
     console.log('Creating Project...\n');
     console.log(proj);
 
-    // this.projectCrud.createProject(proj).subscribe((data) => {
-    //   console.log('Response for Create Project: ', data);
-    // });
+    this.projectCrud.createProject(proj).subscribe((data) => {
+      console.log('Response for Create Project: ', data);
+    });
 
     this.cancel();
   }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/tshepang/Documents/GIT/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj": {}
+    "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj": {}
   },
   "projects": {
-    "/home/tshepang/Documents/GIT/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj": {
+    "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/tshepang/Documents/GIT/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj",
+        "projectUniqueName": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj",
         "projectName": "SkillsHunterAPI",
-        "projectPath": "/home/tshepang/Documents/GIT/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj",
-        "packagesPath": "/home/tshepang/.nuget/packages/",
-        "outputPath": "/home/tshepang/Documents/GIT/Skills-Hunter/SkillsHunterAPI/obj/",
+        "projectPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj",
+        "packagesPath": "/Users/mxolisi/.nuget/packages/",
+        "outputPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/tshepang/.nuget/NuGet/NuGet.Config"
+          "/Users/mxolisi/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -109,12 +109,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -123,21 +117,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.204/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/tshepang/Documents/GIT/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj": {
+    "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/tshepang/Documents/GIT/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj",
+        "projectUniqueName": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj",
         "projectName": "SkillsHunterUserUnitTest",
-        "projectPath": "/home/tshepang/Documents/GIT/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj",
-        "packagesPath": "/home/tshepang/.nuget/packages/",
-        "outputPath": "/home/tshepang/Documents/GIT/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/obj/",
+        "projectPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj",
+        "packagesPath": "/Users/mxolisi/.nuget/packages/",
+        "outputPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/tshepang/.nuget/NuGet/NuGet.Config"
+          "/Users/mxolisi/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -149,8 +143,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "/home/tshepang/Documents/GIT/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj": {
-                "projectPath": "/home/tshepang/Documents/GIT/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj"
+              "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj": {
+                "projectPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj"
               }
             }
           }
@@ -204,18 +198,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.204/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
         }
       }
     }
