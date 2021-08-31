@@ -56,7 +56,7 @@ export class CreateprojectComponent implements OnInit {
     limitTo: 0, // number thats limits the no of options displayed in the UI (if zero, options will not be limited)
     moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
     noResultsFound: 'No results found!', // text to be displayed when no items are found while searching
-    searchPlaceholder: 'Search SkillsArray', // label thats displayed in search input,
+    searchPlaceholder: 'Search skills', // label thats displayed in search input,
     searchOnKey: 'name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
   };
 
@@ -203,23 +203,19 @@ export class CreateprojectComponent implements OnInit {
     for (var x = 0; x < this.selectedCollections.length; x++) {
       var extractCollectionSkillsId = [];
 
-      if (this.selectedCollections[x].SkillsArray != undefined)
-        for (
-          var q = 0;
-          q < this.selectedCollections[x].SkillsArray.length;
-          q++
-        ) {
+      if (this.selectedCollections[x].skills != undefined)
+        for (var q = 0; q < this.selectedCollections[x].skills.length; q++) {
           extractCollectionSkillsId.push({
-            skillId: this.selectedCollections[x].SkillsArray[q].skillId,
+            skillId: this.selectedCollections[x].skills[q].skillId,
             Weight: 0,
           });
         }
 
       processedCollections.push({
-        Name: this.selectedCollections[x].Name,
-        Description: this.selectedCollections[x].Description,
-        Weight: this.selectedCollections[x].Weight,
-        SkillsArray: extractCollectionSkillsId,
+        name: this.selectedCollections[x].name,
+        description: this.selectedCollections[x].description,
+        weight: this.selectedCollections[x].weight,
+        skills: extractCollectionSkillsId,
       });
     }
 
@@ -237,9 +233,9 @@ export class CreateprojectComponent implements OnInit {
     console.log('Creating Project...\n');
     console.log(proj);
 
-    this.projectCrud.createProject(proj).subscribe((data) => {
-      console.log('Response for Create Project: ', data);
-    });
+    // this.projectCrud.createProject(proj).subscribe((data) => {
+    //   console.log('Response for Create Project: ', data);
+    // });
 
     this.cancel();
   }
