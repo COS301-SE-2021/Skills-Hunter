@@ -73,7 +73,7 @@ export class ProfileComponent implements OnInit {
       }
     });
 
-    this.service.getskills().subscribe((data) => {
+    this.service.getSkills().subscribe((data) => {
       if (data) {
         //status==200)
         console.log(data);

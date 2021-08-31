@@ -3,8 +3,9 @@ import { getUserSkillResponse, getSkillCollectionResponse,getProjectsResponse, u
 import { Observable, ObservableLike, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminService {
   private apiUrl = 'http://localhost:5000/';
@@ -64,14 +65,14 @@ export class AdminService {
   getUsers(): Observable<getUserResponse[]> {
     return this.http.get<getUserResponse[]>(this.apiUrl + "api/User/getAllUsers",{headers : this.header});
   }
-  
+
   getSkills(): Observable<getSkillsResponse> {
     return this.http.get<getSkillsResponse>(this.apiUrl + "api/Admin/getSkills",{headers : this.header});
   }
 
   removeSkill(id: string): Observable<removeSkillResponse> {
     let request: removeSkillRequest = {
-      skillId : id
+      skillId: id,
     };
 
     return this.http.post<removeSkillResponse>(this.apiUrl + "api/Admin/removeSkill",request,{headers : this.header});
@@ -80,21 +81,26 @@ export class AdminService {
   getCategories(): Observable<getCategoriesResponse>{
     return this.http.get<getCategoriesResponse>(this.apiUrl + "api/Admin/getCategories",{headers : this.header});
   }
- 
-  removeCategory(id: string): Observable<removeCategoryResponse>{
+
+  removeCategory(id: string): Observable<removeCategoryResponse> {
     let request: removeCategoryRequest = {
-      Id: id
+      Id: id,
     };
 
     return this.http.post<removeCategoryResponse>(this.apiUrl + "api/Admin/removeCategory",request,{headers : this.header});
+
   }
 
-  addCategory(name:string,description: string):Observable<addCategoryResponse>{
+  addCategory(
+    name: string,
+    description: string
+  ): Observable<addCategoryResponse> {
     let request: addCategoryRequest = {
-      name : name,
-      description: description
-    }
+      name: name,
+      description: description,
+    };
 
     return this.http.post<addCategoryResponse>(this.apiUrl + "api/Admin/addCategory",request,{headers : this.header});
+
   }
 }
