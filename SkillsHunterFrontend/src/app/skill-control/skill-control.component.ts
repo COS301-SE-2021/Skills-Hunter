@@ -4,6 +4,8 @@ import { SkillAdvancedSearchComponent } from './skill-advanced-search/skill-adva
 import {AdminService } from '../services/admin.service';
 import { skillModel } from '../api-message-class/message';
 import { NewSkillComponent } from './new-skill/new-skill.component';
+import {DomSanitizer} from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 
 export interface advancedOptions{
   categoryId: string;
@@ -18,7 +20,11 @@ export interface advancedOptions{
 export class SkillControlComponent implements OnInit {
   data:skillModel[] = [];
   searchTerm:string = "";
-  constructor(public dialog: MatDialog,private adminService: AdminService) { }
+  constructor(public dialog: MatDialog,private adminService: AdminService,iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
+    iconRegistry.addSvgIcon('advanced', sanitizer.bypassSecurityTrustResourceUrl('../../assets/images/filter_2.svg'));
+    iconRegistry.addSvgIcon('all', sanitizer.bypassSecurityTrustResourceUrl('../../assets/images/all.svg'));
+    iconRegistry.addSvgIcon('add', sanitizer.bypassSecurityTrustResourceUrl('../../assets/images/add.svg'));
+  }
 
   ngOnInit(): void {
     document.getElementById('tool').style.display = "block";

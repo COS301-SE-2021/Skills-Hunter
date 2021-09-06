@@ -15,9 +15,19 @@
     </form>
     
     <div id = "btnUserGroup">
-        <button color = "primary" mat-raised-button id = "btnAdvanced" (click) = "advancedSearch()">Advanced Search</button>
-        <button color = "primary" mat-raised-button id = "btnViewAll" (click) = "viewAll()">View All</button>
-        <button color = "primary" mat-raised-button color="primary" id = "btnAdd" (click) = "newSKill()">New</button>
+        <button mat-raised-button id = "btnAdvanced" (click) = "advancedSearch()">
+          <mat-icon svgIcon="advanced" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+          filter
+        </button>
+
+        <button mat-raised-button id = "btnViewAll" (click) = "viewAll()">
+          <mat-icon svgIcon="all" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+          view all
+        </button>
+
+        <div id = "btnAdd" (click) = "newSKill()">
+          <mat-icon aria-hidden="false" aria-label="Example thumbs up SVG icon">add_circle</mat-icon>
+        </div>
     </div>
 
     <div class="content">

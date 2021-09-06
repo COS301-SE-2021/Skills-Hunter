@@ -6,6 +6,7 @@ import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
 import { EditSkillComponent } from '../edit-skill/edit-skill.component'; 
 import { skillModel } from 'src/app/api-message-class/message';
 
+
 @Component({
   selector: 'app-skill-card',
   templateUrl: './skill-card.component.html',
@@ -14,7 +15,9 @@ import { skillModel } from 'src/app/api-message-class/message';
 export class SkillCardComponent implements OnInit {
   @Input() skill:skillModel;
   @Output() onDeleteUser: EventEmitter<skillModel> = new EventEmitter();
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) { 
+    
+  }
 
   ngOnInit(): void {
   }

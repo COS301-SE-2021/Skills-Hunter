@@ -70,6 +70,7 @@ import { NewSkillComponent } from './skill-control/new-skill/new-skill.component
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -148,7 +149,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatDialogModule,
     MatChipsModule,
     SelectDropDownModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent],
