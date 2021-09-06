@@ -17,7 +17,7 @@ import { ProjectCRUDService } from 'src/app/services/project-crud.service';
 })
 export class AddSkillCategoryComponent implements OnInit {
   skillWeight: number = 1;
-  skillCategory: Category[];
+  skillCategory = [];
 
   categoryArray = [];
 
@@ -40,6 +40,7 @@ export class AddSkillCategoryComponent implements OnInit {
 
     this.projectCrud.getCategories().subscribe((data) => {
       // Capture the array of Skill objects:
+      console.log(data);
       this.categoryArray = data[Object.keys(data)[0]];
     });
   }
@@ -48,13 +49,13 @@ export class AddSkillCategoryComponent implements OnInit {
     // process categories:
     var categoriesID = [];
     for (var x = 0; x < this.skillCategory.length; x++) {
-      categoriesID.push({ CategoryID: this.skillCategory[x].categoryid });
+      categoriesID.push({ categoryID: this.skillCategory[x].categoryId });
     }
 
     var skill = {
-      Name: this.skillFormGroup.value.skillName,
-      Categories: categoriesID,
-      Weight: this.skillWeight,
+      name: this.skillFormGroup.value.skillName,
+      categories: categoriesID,
+      weight: this.skillWeight,
     };
 
     this.dialogRef.close({ data: skill });
