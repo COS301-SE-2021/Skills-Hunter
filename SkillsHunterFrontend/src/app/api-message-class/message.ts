@@ -4,7 +4,6 @@ import { getMultipleValuesInSingleSelectionError } from "@angular/cdk/collection
 export interface skillModel{
     skillId: string;
     name: string;
-    categoryId?: string; 
     status: number;   
 }
 

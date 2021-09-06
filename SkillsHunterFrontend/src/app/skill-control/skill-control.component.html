@@ -1,8 +1,8 @@
 
  
 <mat-card id = "card">
-    <h1 style = "color:black">Skill</h1>
-    <form class="form-inline user-searchbar" (ngSubmit) = "Search()">
+    <h1 style = "color:black"><b>Skill</b></h1>
+    <form class="form-inline user-searchbar" (ngSubmit) = "Search()" (keyup.enter)="Search()">
         <mat-form-field appearance="outline" style = "width: 100%">
             <input
               matInput
@@ -20,5 +20,14 @@
         <button color = "primary" mat-raised-button color="primary" id = "btnAdd" (click) = "newSKill()">New</button>
     </div>
 
-    <app-skill-card *ngFor = "let skill of data" [skill] = "skill" class = "user-info" (onDeleteUser)="deleteUser(skill)"></app-skill-card>
+    <div class="content">
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+          <div fxFlex="25%" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33.33%" *ngFor = "let skill of data">
+            <app-skill-card class="mat-elevation-z4"  [skill] = "skill" (onDeleteUser)="deleteUser(user)">
+
+            </app-skill-card >
+          </div>
+        </div>
+    </div>
+
 </mat-card>

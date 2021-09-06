@@ -69,7 +69,7 @@ import { ShowProjectCollectionComponent } from './project-control/show-project-c
 import { NewSkillComponent } from './skill-control/new-skill/new-skill.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -147,7 +147,8 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
     MatCardModule,
     MatDialogModule,
     MatChipsModule,
-    SelectDropDownModule
+    SelectDropDownModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent],

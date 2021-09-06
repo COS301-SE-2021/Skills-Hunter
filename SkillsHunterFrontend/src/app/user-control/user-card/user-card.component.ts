@@ -60,6 +60,9 @@ export class UserCardComponent implements OnInit {
     this.adminService.getImage(this.user.userId).subscribe(result=>{
       this.imageUrl = this.adminService.getApiUrl() + result.result.path;
       console.log(this.imageUrl);
+    },
+    (error)=>{
+      this.imageUrl = "../../assets/images/hou-china-6.jpg";
     });
   }
 

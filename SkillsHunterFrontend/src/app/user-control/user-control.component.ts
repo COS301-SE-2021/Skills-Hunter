@@ -154,4 +154,8 @@ export class UserControlComponent implements OnInit {
     }
   }
 
+  check(): void{
+    alert('enter');
+  }
+
 }

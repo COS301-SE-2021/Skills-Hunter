@@ -1,6 +1,7 @@
 .user-searchbar{
     width: 100%;
     color: black;
+    font-size: 1.0em;
 }
 
 #btnUserGroup{
@@ -11,15 +12,21 @@
 #btnAdvanced{
     width: 25%;
     margin-top: 20px;
+    font-size: 0.9em;
 }
 
 #btnViewAll{
     width: 25%;
     margin-left: 20px;
+    font-size: 0.9em;
 }
 
 h1,#card{
     margin: 15px;
+}
+
+h1{
+    font-family: "Lucida Console", "Courier New", monospace;
 }
 
 #card{
@@ -33,6 +40,13 @@ h1,#card{
 }
 
 .user-info{
-    margin-top: 15px;
     display: block;
+}
+
+.content{
+    padding-top: 15px;
+}
+
+.content > app-user-card  {
+    width: 200px;
 }

@@ -30,6 +30,7 @@ export class SkillControlComponent implements OnInit {
 
   viewAll(): void{
     this.adminService.getSkills().subscribe(apiValue => {
+      console.log(apiValue);
       this.data = apiValue.skills;
       this.ngOnInit();
     });
@@ -109,9 +110,7 @@ export class SkillControlComponent implements OnInit {
 
         for(let count = 0; count < this.data.length; count++){
           if(this.data[count].status == result.status || result.status == -1){
-            if(this.data[count].categoryId == result.categoryId ||  result.categoryId == "#"){
-              tempData.push(this.data[count]);
-            }
+            tempData.push(this.data[count]);
           }
         }
   
