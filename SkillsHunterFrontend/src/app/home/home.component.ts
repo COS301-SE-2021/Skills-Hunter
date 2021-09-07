@@ -42,18 +42,20 @@ export class HomeComponent implements OnInit {
 
     //read data of projects
     var functiontoCall;
-    if (localStorage.getItem('role') == '1') {
-      this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
-        this._projects = data;
-        // console.log('Response post', data);
-      });
-    } else {
-      // document.getElementById('creatediv').style.display = "none";
-      this.projectCrud.getAllProjects().subscribe((data) => {
-        this._projects = data;
-        // console.log('Response post', data);
-      });
-    }
+    // if (localStorage.getItem('role') == '1') {
+    //   this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
+    //     this._projects = data;
+    //     // console.log('Response post', data);
+    //   });
+    // } else {
+    // document.getElementById('creatediv').style.display = "none";
+    this.projectCrud.getAllProjects().subscribe((data) => {
+      console.log('\n\nWE HAVE LOGGED IN');
+      console.log(data);
+      this._projects = data;
+      // console.log('Response post', data);
+    });
+    // }
   }
 
   create() {
