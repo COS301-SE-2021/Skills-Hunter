@@ -225,9 +225,9 @@ export class CreateprojectComponent implements OnInit {
       description: this.projDescription,
       location: this.projLocation,
       openForApplication: this.isCheckedOpenForApplications,
-      existingSkills: [selectedSkillsIDs],
-      newSkills: [this.newSelectedSkills],
-      skillCollections: [processedCollections],
+      existingSkills: selectedSkillsIDs,
+      newSkills: this.newSelectedSkills,
+      skillCollections: processedCollections,
     };
 
     console.log('Creating Project...\n');
