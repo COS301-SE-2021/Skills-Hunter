@@ -19,7 +19,7 @@ import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 export class HomeComponent implements OnInit {
   title: string = 'Projects';
   filterQuery: string = '';
-  _projects: Project[]; //= Projects;
+  _projects = []; //= Projects;
 
   constructor(
     private _router: Router,
@@ -38,22 +38,28 @@ export class HomeComponent implements OnInit {
     document.getElementById('tool').style.display = 'block';
     document.getElementById('side').style.display = 'block';
     document.getElementById('adminlist').style.display = 'none';
-    document.getElementById('houseAdmin').style.display = 'none';
+    // document.getElementById('houseAdmin').style.display = 'none';
+
+    // console.log('\n\nFIRED UP ON INIT\n\n');
 
     //read data of projects
     var functiontoCall;
     if (localStorage.getItem('role') == '1') {
+      console.log('\n\n RECRUITER, HERE! \n\n');
+
       this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
         this._projects = data;
-        // console.log('Response post', data);
+        console.log('Response post', data);
       });
     } else {
+      console.log('\n\n OTHERWISE, HERE! \n\n');
+
       document.getElementById('creatediv').style.display = 'none';
       this.projectCrud.getAllProjects().subscribe((data) => {
         console.log('\n\nWE HAVE LOGGED IN');
         console.log(data);
         this._projects = data;
-        // console.log('Response post', data);
+        console.log('Response post', data);
       });
     }
   }
