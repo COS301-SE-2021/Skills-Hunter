@@ -71,6 +71,7 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -150,7 +151,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatChipsModule,
     SelectDropDownModule,
     FlexLayoutModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

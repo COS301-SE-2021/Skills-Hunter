@@ -17,9 +17,17 @@
     </form>
     
     <div id = "btnUserGroup">
-        <button mat-raised-button color="primary" id = "btnAdvanced" (click)="advancedSearch()">Advanced Search</button>
-        <button mat-raised-button color="primary" id = "btnViewAll" (click)="viewAll()">View All</button>
-    </div>
+        <button mat-raised-button id = "btnAdvanced" (click) = "advancedSearch()">
+          <mat-icon svgIcon="advanced" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+          filter
+        </button>
+
+        <button mat-raised-button id = "btnViewAll" (click) = "viewAll()">
+          <mat-icon svgIcon="all" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+          view all
+        </button>    
+    
+      </div>
 
     <!--<app-user-card fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor = "let user of data" [user] = "user" class = "user-info"  (onDeleteUser)="deleteUser(user)"></app-user-card>-->
     

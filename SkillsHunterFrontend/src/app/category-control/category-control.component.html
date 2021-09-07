@@ -1,7 +1,7 @@
 
 
 <mat-card id = "card">
-    <h1 style = "color:black">Category</h1>
+    <h1 style = "color:black"><b>Category</b></h1>
     <form class="form-inline user-searchbar" (ngSubmit) = "Search()">
         <mat-form-field appearance="outline" style = "width: 100%">
             <input
@@ -15,9 +15,24 @@
     </form>
     
     <div id = "btnUserGroup">
-        <button mat-raised-button color = "primary" id = "btnViewAll" (click)="viewAll()">View All</button>
-        <button mat-raised-button color = "primary" id = "btnAdd" (click)="add()">New</button>
+        <button mat-raised-button id = "btnViewAll" (click) = "viewAll()">
+            <mat-icon svgIcon="all" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+            view all
+        </button>
+  
+        <div id = "btnAdd" (click) = "add()">
+            <mat-icon aria-hidden="false" aria-label="Example thumbs up SVG icon">add_circle</mat-icon>
+         </div>
     </div>
 
-    <app-category-card *ngFor = "let category of data" [category] = "category" class = "user-info" (onDeleteCategory)="deleteCategory(category)"></app-category-card>
+    <div class="content">
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+          <div fxFlex="25%" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33.33%" *ngFor = "let category of data">
+            <app-category-card class="mat-elevation-z4"  [category] = "category" (onDeleteUser)="deleteCategory(category)">
+
+            </app-category-card >
+          </div>
+        </div>
+    </div>
+
 </mat-card>

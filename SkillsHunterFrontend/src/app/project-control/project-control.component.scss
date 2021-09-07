@@ -1,4 +1,4 @@
-#user-searchbar{
+.user-searchbar{
     width: 100%;
     color: black;
 }
@@ -9,19 +9,25 @@
 }
 
 #btnAdvanced{
-    width: 25%;
-    margin-top: 20px;
+    width: 17%;
+    font-size: 1.4vw;
+    background-color: #818a84;
 }
 
 #btnViewAll{
-    width: 25%;
+    width: 17%;
     margin-left: 20px;
+    font-size: 1.4vw;
+    background-color: #818a84;
 }
 
 h1,#card{
     margin: 15px;
 }
 
+h1{
+    font-family: "Lucida Console", "Courier New", monospace;
+}
 
 #card{
     margin-left: auto;
@@ -37,4 +43,12 @@ h1,#card{
 .user-info{
     margin-top: 15px;
     display: block;
+}
+
+.content{
+    padding-top: 15px;
+}
+
+.content > app-admin-project-card  {
+    width: 200px;
 }

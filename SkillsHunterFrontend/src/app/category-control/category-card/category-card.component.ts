@@ -17,4 +17,7 @@ export class CategoryCardComponent implements OnInit {
     this.onDeleteCategory.emit(category);
   }
 
+  onEdit():void{
+    
+  }
 }

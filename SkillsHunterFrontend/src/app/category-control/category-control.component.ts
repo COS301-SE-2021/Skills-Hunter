@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../classes/Category';
-import { mockCategoryData } from '../mock-data/mock-category';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewCategoryComponent } from './new-category/new-category.component';
-import { categoryModel, skillModel } from '../api-message-class/message';
+import { categoryModel } from '../api-message-class/message';
 import {AdminService } from '../services/admin.service';
+import {DomSanitizer} from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-category-control',
@@ -15,7 +16,9 @@ export class CategoryControlComponent implements OnInit {
 
   data: categoryModel[] = [];
   searchTerm:string = "";
-  constructor(public dialog: MatDialog,private adminService: AdminService) { }
+  constructor(public dialog: MatDialog,private adminService: AdminService,iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,private _snackBar: MatSnackBar) { 
+    iconRegistry.addSvgIcon('all', sanitizer.bypassSecurityTrustResourceUrl('../../assets/images/all.svg'));
+  }
 
   ngOnInit(): void {
     document.getElementById('tool').style.display = "block";
@@ -28,6 +31,10 @@ export class CategoryControlComponent implements OnInit {
     this.adminService.getCategories().subscribe(apiValue => {
       this.data = apiValue.category;
       this.ngOnInit();
+    },error=>{
+      this._snackBar.open("An error occurred on the server while processing request","",{
+        duration: 2000
+      });
     });
   }
 
@@ -44,6 +51,10 @@ export class CategoryControlComponent implements OnInit {
       }
   
       this.ngOnInit();
+    },error=>{
+      this._snackBar.open("An error occurred on the server while processing request","",{
+        duration: 2000
+      });
     });
   }
 
@@ -89,6 +100,10 @@ export class CategoryControlComponent implements OnInit {
           this.data = [];
           this.ngOnInit();
         }
+      },error=>{
+        this._snackBar.open("An error occurred on the server while processing request","",{
+          duration: 2000
+        });
       });
     }
   }

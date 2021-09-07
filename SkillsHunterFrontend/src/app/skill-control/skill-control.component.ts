@@ -6,6 +6,7 @@ import { skillModel } from '../api-message-class/message';
 import { NewSkillComponent } from './new-skill/new-skill.component';
 import {DomSanitizer} from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 export interface advancedOptions{
   categoryId: string;
@@ -20,7 +21,7 @@ export interface advancedOptions{
 export class SkillControlComponent implements OnInit {
   data:skillModel[] = [];
   searchTerm:string = "";
-  constructor(public dialog: MatDialog,private adminService: AdminService,iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
+  constructor(public dialog: MatDialog,private adminService: AdminService,iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,private _snackBar: MatSnackBar) { 
     iconRegistry.addSvgIcon('advanced', sanitizer.bypassSecurityTrustResourceUrl('../../assets/images/filter_2.svg'));
     iconRegistry.addSvgIcon('all', sanitizer.bypassSecurityTrustResourceUrl('../../assets/images/all.svg'));
     iconRegistry.addSvgIcon('add', sanitizer.bypassSecurityTrustResourceUrl('../../assets/images/add.svg'));
@@ -39,6 +40,10 @@ export class SkillControlComponent implements OnInit {
       console.log(apiValue);
       this.data = apiValue.skills;
       this.ngOnInit();
+    },error=>{
+      this._snackBar.open("An error occurred on the server while processing request","",{
+        duration: 2000
+      });
     });
   }
 
@@ -63,38 +68,42 @@ export class SkillControlComponent implements OnInit {
 
   }
 
-  Search(): void{
-    if(this.searchTerm != ""){
-      let tempData:skillModel[] = this.data;
-      let result: skillModel = null;
+  match(term: string,name: string): boolean{
+    
+    if(name.indexOf(term) != -1)
+      return true;
 
-      this.adminService.getSkills().subscribe(apiValue => {
-        tempData = apiValue.skills;
-        for(let count  = 0; count < tempData.length; count++){
-          if(tempData[count].name.toLowerCase() == this.searchTerm.toLowerCase()){
-            result = tempData[count];
-            break;
+    return false;
+  }
+
+  Search(): void{
+
+    if(this.searchTerm != ""){
+
+      this.adminService.getSkills().subscribe(response =>{
+        this.data = [];
+        
+        for(let count  = 0; count < response.skills.length; count++){
+          if(this.match(this.searchTerm.toLowerCase(),response.skills[count].name.toLowerCase())){
+            this.data.push(response.skills[count]);
           }
         }
   
-        if(result != null){
-          this.data = [];
-          this.data.push(result);
-          this.ngOnInit();
-        }else{
-          this.data = [];
-          this.ngOnInit();
-        }       
-      }); 
-      
+        this.ngOnInit();
+      },
+      error=>{
+        this._snackBar.open("An error occurred on the server while processing request","",{
+          duration: 2000
+        });
+      });     
     }
   }
 
   newSKill(): void{
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
-    configDialog.width = '40%';
-    configDialog.height = '70%';
+    configDialog.width = '30%';
+    configDialog.height = '50%';
 
     const dialogRef = this.dialog.open(NewSkillComponent,configDialog);    
   }
@@ -122,6 +131,10 @@ export class SkillControlComponent implements OnInit {
   
         this.data = tempData;
         this.ngOnInit();
+      },error=>{
+        this._snackBar.open("An error occurred on the server while processing request","",{
+          duration: 2000
+        });
       });
     });
   }

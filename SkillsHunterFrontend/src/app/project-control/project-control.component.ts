@@ -3,6 +3,9 @@ import { getProjectsResponse } from '../api-message-class/message';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProjectAdvancedSearchComponent } from './project-advanced-search/project-advanced-search.component'
 import { AdminService } from '../services/admin.service';
+import {DomSanitizer} from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-project-control',
@@ -13,7 +16,10 @@ export class ProjectControlComponent implements OnInit {
   data:getProjectsResponse[] = [];
   searchTerm:string = "";
 
-  constructor(public dialog: MatDialog,private adminService: AdminService) { }
+  constructor(public dialog: MatDialog,private adminService: AdminService,iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,private _snackBar: MatSnackBar) { 
+    iconRegistry.addSvgIcon('advanced', sanitizer.bypassSecurityTrustResourceUrl('../../assets/images/filter_2.svg'));
+    iconRegistry.addSvgIcon('all', sanitizer.bypassSecurityTrustResourceUrl('../../assets/images/all.svg'));
+  }
 
   ngOnInit(): void {
     document.getElementById('tool').style.display = "block";
@@ -27,7 +33,11 @@ export class ProjectControlComponent implements OnInit {
       console.log(result)
       this.data = result;
       this.ngOnInit(); 
-    })
+    },error=>{
+      this._snackBar.open("An error occurred on the server while processing request","",{
+        duration: 2000
+      });
+    });
        
   }
 
@@ -58,6 +68,10 @@ export class ProjectControlComponent implements OnInit {
 
         this.data = newList;
         this.ngOnInit();
+      },error=>{
+        this._snackBar.open("An error occurred on the server while processing request","",{
+          duration: 2000
+        });
       })
     });
   }
@@ -90,6 +104,10 @@ export class ProjectControlComponent implements OnInit {
           this.ngOnInit();
         }
    
+      },error=>{
+        this._snackBar.open("An error occurred on the server while processing request","",{
+          duration: 2000
+        });
       })
     }   
   }

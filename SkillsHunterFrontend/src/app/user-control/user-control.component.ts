@@ -1,17 +1,12 @@
 import { Component, OnInit} from '@angular/core';
 import { UserAdvancedSearchComponent } from './user-advanced-search/user-advanced-search.component';
 import { MatDialog , MatDialogConfig } from '@angular/material/dialog';
-
-import { User } from '../classes/User';
-
-import {MatSidenav} from '@angular/material/sidenav';
-
-
 import { mockUserData } from '../mock-data/mock-users';
-
 import { getUserResponse } from '../api-message-class/message';
 import { AdminService } from '../services/admin.service';
-
+import {DomSanitizer} from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-control',
@@ -23,7 +18,10 @@ export class UserControlComponent implements OnInit {
   data: getUserResponse[] = [];
   searchTerm: string = "";
   
-  constructor(public dialog: MatDialog,private adminService:AdminService) { }
+  constructor(public dialog: MatDialog,private adminService:AdminService,iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,private _snackBar: MatSnackBar) { 
+    iconRegistry.addSvgIcon('advanced', sanitizer.bypassSecurityTrustResourceUrl('../../assets/images/filter_2.svg'));
+    iconRegistry.addSvgIcon('all', sanitizer.bypassSecurityTrustResourceUrl('../../assets/images/all.svg'));
+  }
 
 
   ngOnInit(): void {
@@ -63,20 +61,9 @@ export class UserControlComponent implements OnInit {
         this.ngOnInit();
       },
       error=>{
-        this.data = mockUserData;
-        let newList: getUserResponse[] = new Array();
-  
-        if(result == -1)
-          return;
-  
-
-        for(let count = 0; count < this.data.length; count++){
-          if(this.data[count].userType == result)
-            newList.push(this.data[count]);
-        }
-  
-        this.data = newList;
-        this.ngOnInit();        
+        this._snackBar.open("An error occurred on the server while processing request","",{
+          duration: 2000
+        });        
       });
     });
   }
@@ -87,8 +74,9 @@ export class UserControlComponent implements OnInit {
         this.ngOnInit();
     },
     error=>{
-        this.data = mockUserData;
-        this.ngOnInit();
+      this._snackBar.open("An error occurred on the server while processing request","",{
+        duration: 2000
+      });
     });
     
   }
@@ -141,15 +129,9 @@ export class UserControlComponent implements OnInit {
         this.ngOnInit();
       },
       error=>{
-        this.data = [];
-        
-        for(let count  = 0; count < mockUserData.length; count++){
-          if(this.match(this.searchTerm.toLowerCase(),mockUserData[count].name.toLowerCase(),mockUserData[count].surname.toLowerCase())){
-            this.data.push(mockUserData[count]);
-          }
-        }
-  
-        this.ngOnInit();
+        this._snackBar.open("An error occurred on the server while processing request","",{
+          duration: 2000
+        });
       });     
     }
   }

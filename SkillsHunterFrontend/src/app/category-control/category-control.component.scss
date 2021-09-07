@@ -1,23 +1,20 @@
-#user-searchbar{
-    width: 95%;
+.user-searchbar{
+    width: 100%;
     color: black;
 }
 
 #btnUserGroup{
-    width: 95%;
+    width: 100%;
     margin-top: 20px;
 }
 
-#btnAdvanced{
-    margin-top: 20px;
-}
-
-#btnViewAll{
-    margin-left: 20px;
-}
 
 h1,#card{
     margin: 15px;
+}
+
+h1{
+    font-family: "Lucida Console", "Courier New", monospace;
 }
 
 #card{
@@ -30,11 +27,29 @@ h1,#card{
     background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
 }
 
-#btnAdd{
+#btnViewAll{
+    width: 17%;
     margin-left: 20px;
+    font-size: 1.4vw;
+    background-color: #818a84;
 }
+
+#btnAdd{
+    float: right;
+    height: 100%;
+    margin-top:4px;
+}
+
 
 .user-info{
     margin-top: 15px;
     display: block;
+}
+
+.content{
+    padding-top: 15px;
+}
+
+.content > app-category-card  {
+    width: 200px;
 }

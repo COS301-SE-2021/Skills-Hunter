@@ -1,6 +1,15 @@
 <mat-card class="category-card">
     <div class = "category-name"><b>Name</b></div><div class = "category-value">{{category.name}}</div>
     <div class = "category-name"><b>Description</b></div><div class = "category-value">{{category.description}}</div>
-    <button mat-raised-button color = "primary" id = "btnDelete" (click) = "onDelete(category)">Delete</button>
+    
+    <div class = "btnaction">
+        <button mat-mini-fab  (click) = "onDelete(category)" class = "btndelete">
+            <mat-icon>delete</mat-icon>
+        </button>
+    
+        <button mat-mini-fab  (click) = "onEdit()" class = "btnedit">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
 </mat-card>
 
