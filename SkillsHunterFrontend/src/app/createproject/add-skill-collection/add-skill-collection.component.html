@@ -63,7 +63,7 @@
         <mat-label>Skills</mat-label>
         <mat-select multiple required [(ngModel)]="collectionSkills">
           <mat-option *ngFor="let item of skillArray" [value]="item">
-            {{ item.Name }}
+            {{ item.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
