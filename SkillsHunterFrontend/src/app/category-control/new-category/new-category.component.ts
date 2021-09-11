@@ -1,42 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { Category } from '../../classes/Category';
-import { mockCategoryData } from 'src/app/mock-data/mock-category';
-import {MatDialogRef} from '@angular/material/dialog';
+import { Component, OnInit,Inject } from '@angular/core';
+import {MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { categoryModel } from 'src/app/api-message-class/message';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-new-category',
   templateUrl: './new-category.component.html',
   styleUrls: ['./new-category.component.scss']
 })
-export class NewCategoryComponent implements OnInit {
-  name: string;
-  description: string;
-  
+export class NewCategoryComponent implements OnInit {  
   constructor(
-    public dialogRef: MatDialogRef<NewCategoryComponent>) { }
+    public dialogRef: MatDialogRef<NewCategoryComponent>,@Inject(MAT_DIALOG_DATA) public data: categoryModel,private adminSerice:AdminService) { }
 
   ngOnInit(): void {
   }
 
   onSave(): void {
-    if(!this.name){
+    if(!this.data.name){
       alert("Please enter name!");
       return;
     }
 
-    if(!this.description){
+    if(!this.data.description){
       alert("Please enter description!");
       return;
     }
 
-    let cat: Category = {
-      categoryid : '9',
-      name : this.name,
-      description : this.description
-    }
-
-    mockCategoryData.push(cat);
-    
-    this.dialogRef.close();
+    this.adminSerice.addCategory(this.data.name,this.data.description).subscribe(result =>{
+      this.data = result.added;
+    });
   }
 }

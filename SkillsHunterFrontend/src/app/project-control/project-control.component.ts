@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Project } from '../classes/Project';
-import { Projects } from '../mock-data/mock-projects';
+import { getProjectsResponse } from '../api-message-class/message';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProjectAdvancedSearchComponent } from './project-advanced-search/project-advanced-search.component'
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-project-control',
@@ -10,17 +10,25 @@ import { ProjectAdvancedSearchComponent } from './project-advanced-search/projec
   styleUrls: ['./project-control.component.scss']
 })
 export class ProjectControlComponent implements OnInit {
-  data:Project[] = [];
+  data:getProjectsResponse[] = [];
   searchTerm:string = "";
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,private adminService: AdminService) { }
 
   ngOnInit(): void {
+    document.getElementById('tool').style.display = "block";
+    document.getElementById('side').style.display = "block";
+    document.getElementById('userlist').style.display = "none"; 
+    document.getElementById('house').style.display = "none";
   }
 
   viewAll(): void {
-    this.data = Projects;
-    this.ngOnInit();    
+    this.adminService.getProjects().subscribe(result =>{
+      console.log(result)
+      this.data = result;
+      this.ngOnInit(); 
+    })
+       
   }
 
   advancedSearch(): void{
@@ -31,9 +39,10 @@ export class ProjectControlComponent implements OnInit {
     configDialog.data = '#';
     const dialogRef = this.dialog.open(ProjectAdvancedSearchComponent,configDialog);
 
-    dialogRef.afterClosed().subscribe(result => {        
-        this.data = Projects;
-        let newList: Project[] = new Array();
+    dialogRef.afterClosed().subscribe(result => {       
+      this.adminService.getProjects().subscribe(response =>{
+        this.data = response;
+        let newList: getProjectsResponse[] = new Array();
         let value:boolean;
         if(result == undefined){
           return;
@@ -49,29 +58,33 @@ export class ProjectControlComponent implements OnInit {
 
         this.data = newList;
         this.ngOnInit();
+      })
     });
   }
 
   Search(): void{
     if(this.searchTerm != ""){
-      let tempData:Project[] = Projects;
-      let result: Project = null;
-      
-      for(let count  = 0; count < tempData.length; count++){
-        if(tempData[count].name == this.searchTerm){
-          result = tempData[count];
-          break;
+      this.adminService.getProjects().subscribe(response =>{
+        let tempData:getProjectsResponse[] = response;
+        let result: getProjectsResponse = null;
+        
+        for(let count  = 0; count < tempData.length; count++){
+          if(tempData[count].name == this.searchTerm){
+            result = tempData[count];
+            break;
+          }
         }
-      }
-
-      if(result != null){
-        this.data = [];
-        this.data.push(result);
-        this.ngOnInit();
-      }else{
-        this.data = [];
-        this.ngOnInit();
-      }
+  
+        if(result != null){
+          this.data = [];
+          this.data.push(result);
+          this.ngOnInit();
+        }else{
+          this.data = [];
+          this.ngOnInit();
+        }
+   
+      })
     }   
   }
 }

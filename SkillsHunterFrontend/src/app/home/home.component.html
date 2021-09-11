@@ -1,12 +1,18 @@
 
-<button mat-raised-button id="adminbtn" [routerLink]="['/admin-portal']">
+
+<!--<button mat-raised-button id="adminbtn" [routerLink]="['/admin-portal']">
   Admin Dashboard
 </button>
-
+<button mat-raised-button id="adminbtn" [routerLink]="['/dashboard']">
+  Admin Dashboard
+</button>
+<button mat-raised-button id="adminbtn" [routerLink]="['/profile']">
+  Profile 
+</button>-->
 <div>
   <div class="homeOptions">
 
-    <mat-form-field class="example-form-field" id="searchProjectsinput">
+    <mat-form-field appearance="outline" class="example-form-field" id="searchProjectsinput">
       <mat-label>Search Projects:</mat-label>
       <input matInput type="text" [(ngModel)]="filterQuery" />
       <button

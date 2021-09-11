@@ -25,6 +25,7 @@ import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { AdminAddSkillComponent } from './admin-portal/admin-add-skill/admin-add-skill.component';
 import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
+import { ProfileComponent } from './profile/profile.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatCardModule } from '@angular/material/card';
@@ -56,6 +57,13 @@ import { StatsComponent } from './stats/stats.component';
 import { SkillCollectionCardComponent } from './skill-collection-control/skill-collection-card/skill-collection-card.component';
 import { SkillCollectionAdvancedSearchComponent } from './skill-collection-control/skill-collection-advanced-search/skill-collection-advanced-search.component';
 import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
+import { ShowSkillsComponent } from './user-control/show-skills/show-skills.component';
+import { AddSkillComponent } from './profile/add-skill/add-skill.component';
+import { SliderComponent } from './profile/slider/slider.component';
+import { ProfileImgComponent } from './profile/profile-img/profile-img.component';
+import { ShowProjectSkillComponent } from './project-control/show-project-skill/show-project-skill.component';
+import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
+import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
 
 
 @NgModule({
@@ -75,6 +83,7 @@ import { InviteCandidateComponent } from './match-candidate/candidate-card/invit
     AdminAddSkillComponent,
     AddSkillsComponent,
     AddSkillsCollectionComponent,
+    ProfileComponent,
     SidebarComponent,
     AdminBoardComponent,
     BoardContentComponent,
@@ -99,6 +108,13 @@ import { InviteCandidateComponent } from './match-candidate/candidate-card/invit
     SkillCollectionCardComponent,
     SkillCollectionAdvancedSearchComponent,
     InviteCandidateComponent,
+    ShowSkillsComponent,
+    AddSkillComponent,
+    SliderComponent,
+    ProfileImgComponent,
+    ShowProjectSkillComponent,
+    AddSkillCategoryComponent,
+    AddSkillCollectionComponent
   ],
   imports: [
     BrowserModule,
@@ -111,9 +127,7 @@ import { InviteCandidateComponent } from './match-candidate/candidate-card/invit
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    FormsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
