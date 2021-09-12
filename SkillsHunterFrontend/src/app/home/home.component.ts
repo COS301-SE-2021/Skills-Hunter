@@ -40,23 +40,17 @@ export class HomeComponent implements OnInit {
     document.getElementById('adminlist').style.display = 'none';
     // document.getElementById('houseAdmin').style.display = 'none';
 
-    // console.log('\n\nFIRED UP ON INIT\n\n');
-
     //read data of projects
     var functiontoCall;
     if (localStorage.getItem('role') == '1') {
       console.log('\n\n RECRUITER, HERE! \n\n');
-
       this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
         this._projects = data;
         console.log('Response post', data);
       });
     } else {
-      console.log('\n\n OTHERWISE, HERE! \n\n');
-
       document.getElementById('creatediv').style.display = 'none';
       this.projectCrud.getAllProjects().subscribe((data) => {
-        console.log('\n\nWE HAVE LOGGED IN');
         console.log(data);
         this._projects = data;
         console.log('Response post', data);
@@ -66,11 +60,5 @@ export class HomeComponent implements OnInit {
 
   create() {
     this._router.navigate([`createproject`]);
-    /*
-    const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '40%';
-    configDialog.height = '80%';
-    this.dialog.open(CreateprojectComponent, configDialog);*/
   }
 }

@@ -137,7 +137,6 @@ export class CreateprojectComponent implements OnInit {
       if (collection != undefined) {
         this.selectedCollections.push(collection.data);
         mockSkillCollection.push(collection.data);
-        // this.ngOnInit();
       } else console.log('Returned Empty Collection');
     });
   }
@@ -199,6 +198,9 @@ export class CreateprojectComponent implements OnInit {
       this.newSelectedSkills
     );
 
+    console.log('Consoling the Skills with IDs:');
+    console.log(selectedSkillsIDs);
+
     // Process the collections:
     for (var x = 0; x < this.selectedCollections.length; x++) {
       var extractCollectionSkillsId = [];
@@ -206,7 +208,7 @@ export class CreateprojectComponent implements OnInit {
       if (this.selectedCollections[x].skills != undefined)
         for (var q = 0; q < this.selectedCollections[x].skills.length; q++) {
           extractCollectionSkillsId.push({
-            skillId: this.selectedCollections[x].skills[q].id,
+            skillId: this.selectedCollections[x].skills[q].skillId,
             weight: 0,
           });
         }
