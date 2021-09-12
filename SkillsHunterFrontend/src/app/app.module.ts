@@ -69,6 +69,7 @@ import { ShowProjectCollectionComponent } from './project-control/show-project-c
 import { NewSkillComponent } from './skill-control/new-skill/new-skill.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 
 @NgModule({
@@ -123,6 +124,7 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
     ShowProjectCollectionComponent,
     NewSkillComponent,
     NotificationMenuComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,
