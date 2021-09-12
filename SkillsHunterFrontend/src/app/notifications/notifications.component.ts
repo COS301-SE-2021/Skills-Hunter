@@ -94,6 +94,12 @@ const NOTIFICATION_DATA: NotificationItem[] = [
     ]),
   ],
 })
+export class TableExpandableRowsExample {
+  dataSource = NOTIFICATION_DATA;
+  columnsToDisplay = ['id', 'type', 'subject', 'message'];
+  expandedElement: NotificationItem | null;
+}
+
 export class NotificationsComponent implements OnInit {
   constructor() {}
 
