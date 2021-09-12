@@ -23,6 +23,7 @@ import { InviteCandidateComponent } from './match-candidate/candidate-card/invit
 import { AddSkillComponent } from './profile/add-skill/add-skill.component';
 import { SliderComponent } from './profile/slider/slider.component';
 import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Routes = [
   {
@@ -112,6 +113,10 @@ const routes: Routes = [
   {
     path: 'notification-menu',
     component: NotificationMenuComponent,
+  },
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
   },
 ];
 
