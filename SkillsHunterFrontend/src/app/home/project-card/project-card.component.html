@@ -9,8 +9,7 @@
 <mat-card class="project-card">
   <mat-card-header>
     <div mat-card-avatar class="project-menu-header-image"></div>
-    <mat-card-title>{{ card_project.Name }}</mat-card-title>
-    <mat-card-subtitle>{{ card_project.Owner }}</mat-card-subtitle>
+    <mat-card-title>{{ card_project.name }}</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
@@ -68,21 +67,22 @@
       Update Project
     </button>
 
-    <button class="card-project-apply"
-    mat-raised-button
-    color="accent"
-    (click)="apply(card_project)"
+    <button
+      class="card-project-apply"
+      mat-raised-button
+      color="accent"
+      (click)="apply(card_project)"
     >
       Apply
     </button>
 
-    <button class="card-project-cancelappl"
-    mat-raised-button
-    color="accent"
-    (click)="update(card_project)"
+    <button
+      class="card-project-cancelappl"
+      mat-raised-button
+      color="accent"
+      (click)="cancel()"
     >
       Cancel Application
     </button>
-
   </mat-card-actions>
 </mat-card>

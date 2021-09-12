@@ -1,0 +1,23 @@
+<mat-card class = "edit-card">
+    <h1><b>Edit</b></h1>
+    <form class="form-inline" (ngSubmit) = "onSave()">
+        <input class="form-control" type = "text" placeholder="Name" aria-label="Search"
+        mdbInput id = "skillname" name = "name" [(ngModel)] = "data.name"><br><br>
+            <mat-radio-group
+                aria-labelledby="example-radio-group-label"
+                class="example-radio-group"
+                [(ngModel)]="data.status" [value] = "data.status" name = "status">
+                <mat-radio-button class="example-radio-button"  [value]="0">
+                    Accepted
+                </mat-radio-button><br><br>
+                <mat-radio-button class="example-radio-button"  [value]="1">
+                    Pending
+                </mat-radio-button><br><br>
+                <mat-radio-button class="example-radio-button"  [value]="2">
+                    Declined
+                </mat-radio-button><br><br>
+            </mat-radio-group>
+        <button  [type] = "'submit'" id = "btnAdd" class = "btn" value = "Save" [mat-dialog-close] = "data">Save</button>
+    </form>
+ 
+</mat-card>

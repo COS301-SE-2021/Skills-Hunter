@@ -1,0 +1,40 @@
+#user-searchbar{
+    width: 95%;
+    color: black;
+}
+
+#btnUserGroup{
+    width: 95%;
+    margin-top: 20px;
+}
+
+#btnAdvanced{
+    margin-top: 20px;
+}
+
+#btnViewAll{
+    margin-left: 20px;
+}
+
+h1,#card{
+    margin: 15px;
+}
+
+#card{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    margin-top: 5%;
+    color: purple;
+    box-shadow: 2px 2px 10px #000000;
+    background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
+}
+
+#btnAdd{
+    margin-left: 20px;
+}
+
+.user-info{
+    margin-top: 15px;
+    display: block;
+}

@@ -9,7 +9,6 @@
           matInput
           placeholder="C++"
           formControlName="skillName"
-          [(ngModel)]="skillName"
           required
         />
         <mat-icon matSuffix>text_fields</mat-icon>
@@ -54,7 +53,7 @@
         <mat-label>Category</mat-label>
         <mat-select multiple required [(ngModel)]="skillCategory">
           <mat-option *ngFor="let item of categoryArray" [value]="item">
-            {{ item.CategoryName }}
+            {{ item.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>

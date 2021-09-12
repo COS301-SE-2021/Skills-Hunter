@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Projects } from '../mock-data/mock-projects';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -11,12 +12,13 @@ import { MaterialModule } from '../material/material.module';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   title: string = 'Projects';
   filterQuery: string = '';
-  _projects: Project[] = Projects;
+  _projects = []; //= Projects;
 
   constructor(
     private _router: Router,
@@ -32,14 +34,33 @@ export class HomeComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+    document.getElementById('tool').style.display = 'block';
+    document.getElementById('side').style.display = 'block';
+    document.getElementById('adminlist').style.display = 'none';
+    // document.getElementById('houseAdmin').style.display = 'none';
+
+    // console.log('\n\nFIRED UP ON INIT\n\n');
+
     //read data of projects
-    /*this.projectCrud.getProjects()
-    .subscribe(
-      data=>{
-        this._projects=data;
+    var functiontoCall;
+    if (localStorage.getItem('role') == '1') {
+      console.log('\n\n RECRUITER, HERE! \n\n');
+
+      this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
+        this._projects = data;
         console.log('Response post', data);
-      }
-    );*/
+      });
+    } else {
+      console.log('\n\n OTHERWISE, HERE! \n\n');
+
+      document.getElementById('creatediv').style.display = 'none';
+      this.projectCrud.getAllProjects().subscribe((data) => {
+        console.log('\n\nWE HAVE LOGGED IN');
+        console.log(data);
+        this._projects = data;
+        console.log('Response post', data);
+      });
+    }
   }
 
   create() {

@@ -1,50 +1,52 @@
-.options{
-    color: green;
+.options {
+  color: green;
 }
 
 .itemContainer {
-    margin-bottom: 20px;
-  }
-  
-  
-  .example-card {
-    color: #003333;
-    width: 400px;
-    background-color: #e6ffff;
-    margin: 20px;
-    display: inline-block;
-  }
-  
-  .buttonActions {
-    display: inline-block;
-  }
-  
-  :root {
-    --visFind: flex;
-    --visDelete: flex;
-    --visUpdate: flex;
-    --visAppl: flex;
-    --visCancel: flex;
-  }
-  .card-project-find {
-    float: left;
-    width: 170px;
-    display: var(--visFind);
-  }
-  
-  .card-project-delete {
-    float: none;
-    left: 5%;
-    width: 170px;
-    display: var(--visDelete);
-  }
-  
-  .project-card-skills {
-    background-color: #00b3b3;
-  }
-  
-  .project-menu-header-image {
-    background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
-    background-size: cover;
-  }
-  
+  margin-bottom: 20px;
+}
+
+.example-card {
+  color: #003333;
+  width: 400px;
+  background-color: #e6ffff;
+  margin: 20px;
+  display: inline-block;
+}
+
+.buttonActions {
+  display: inline-block;
+}
+
+::ng-deep mat-form-field {
+  width: 100%;
+}
+
+:root {
+  --visFind: flex;
+  --visDelete: flex;
+  --visUpdate: flex;
+  --visAppl: flex;
+  --visCancel: flex;
+}
+.card-project-find {
+  float: left;
+  width: 170px;
+  display: var(--visFind);
+}
+
+.card-project-delete {
+  float: none;
+  left: 5%;
+  width: 170px;
+  display: var(--visDelete);
+}
+
+.project-card-skills {
+  background-color: #00b3b3;
+}
+
+.project-menu-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}

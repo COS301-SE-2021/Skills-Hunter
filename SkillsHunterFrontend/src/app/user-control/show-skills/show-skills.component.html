@@ -1,0 +1,11 @@
+<mat-card class = "show-skills-card" >
+    <h2><b>User Skills</b></h2>
+    
+    <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selectionaccent">
+        <mat-chip *ngFor="let chip of data" selected [color]="chip.color">
+          {{chip.name}}    |     {{chip.weight}}
+        </mat-chip>
+    </mat-chip-list>
+      
+</mat-card>
+

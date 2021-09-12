@@ -1,6 +1,4 @@
-import { Collection } from './../classes/Collection';
-import { Collections } from './../mock-data/mock-collections';
-import { Skill } from 'src/app/classes/Skill';
+import { SkillCollection } from 'src/app/classes/SkillCollection';
 import { Projects } from './../mock-data/mock-projects';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -16,52 +14,83 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
-import { Skills } from '../mock-data/mock-skills';
-import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-collection.component';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Skill } from '../classes/Skill';
+import { mockSkillCollection } from '../mock-data/mock-collection';
 import { AddSkillCategoryComponent } from './add-skill-category/add-skill-category.component';
+import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-collection.component';
 
 @Component({
   selector: 'app-createproject',
   templateUrl: './createproject.component.html',
+
   styleUrls: ['./createproject.component.scss'],
 })
 export class CreateprojectComponent implements OnInit {
-  isLinear = true;
+  isLinear = false;
+  projName: string;
+  projDescription: string;
+  projLocation: string;
+  isCheckedOpenForApplications = true;
+  toggleNewSkillsAdded = false;
+
+  // existing skills:
+  selectedSkills = [];
+  selectedCollections = [];
+
+  // new skills
+  newSelectedSkills = [];
+
+  // options for the dropdown for skills and collections:
+  dropdownOptionsSkills = [];
+  dropdownOptionsCollections = [];
 
   projectBasicInfo: FormGroup;
   projectSkillsAndCollections: FormGroup;
 
-  dropdownListForSkills = [];
-  selectedItemsForSkills = [];
-  selectedObjectsSkills = [];
+  configSkills = {
+    displayKey: 'name', //if objects array passed which key to be displayed defaults to description
+    search: true, //true/false for the search functionlity defaults to false,
+    height: '250px', //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
+    placeholder: 'Select', // text to be displayed when no item is selected defaults to Select,
+    customComparator: () => {}, // a custom function using which user wants to sort the items. default is undefined and Array.sort() will be used in that case,
+    limitTo: 0, // number thats limits the no of options displayed in the UI (if zero, options will not be limited)
+    moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
+    noResultsFound: 'No results found!', // text to be displayed when no items are found while searching
+    searchPlaceholder: 'Search skills', // label thats displayed in search input,
+    searchOnKey: 'name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
+  };
 
-  dropdownListForCollections = [];
-  selectedItemsForCollections = [];
-  selectedObjectsCollections = [];
-
-  existingSkillsArray = [];
-  newSkillsArray = [];
-
-  existingCollectionsArray = [];
-  newCollectionsArray = [];
-
-  dropdownSettings: IDropdownSettings;
-
-  constructor(
-    private _formBuilder: FormBuilder,
-    private _router: Router,
-    private dialog: MatDialog
-  ) {}
+  configCollections = {
+    displayKey: 'name', //if objects array passed which key to be displayed defaults to description
+    search: true, //true/false for the search functionlity defaults to false,
+    height: '250px', //height of the list so that if there are more no of items it can show a scroll defaults to auto. With auto height scroll will never appear
+    placeholder: 'Select', // text to be displayed when no item is selected defaults to Select,
+    customComparator: () => {}, // a custom function using which user wants to sort the items. default is undefined and Array.sort() will be used in that case,
+    limitTo: 0, // number thats limits the no of options displayed in the UI (if zero, options will not be limited)
+    moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
+    noResultsFound: 'No results found!', // text to be displayed when no items are found while searching
+    searchPlaceholder: 'Search Collections', // label thats displayed in search input,
+    searchOnKey: 'name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
+  };
 
   ngOnInit(): void {
-    this.projectBasicInfo = this._formBuilder.group({
-      projectName: ['', Validators.required],
-      projectDescription: ['', Validators.required],
+    this.projectBasicInfo = new FormGroup({
+      projectName: new FormControl('', [Validators.required]),
+      projectDescription: new FormControl('', [Validators.required]),
+      projectLocation: new FormControl('', [Validators.required]),
     });
-    this.projectSkillsAndCollections = this._formBuilder.group({
-      projectSkills: ['', Validators.required],
-      projectCollections: ['', Validators.required],
+    this.projectSkillsAndCollections = new FormGroup({
+      projectSkills: new FormControl('', [Validators.required]),
+      projectCollections: new FormControl('', [Validators.required]),
+    });
+
+    this.projectCrud.getSkills().subscribe((data) => {
+      // Capture the array of Skill objects:
+      this.dropdownOptionsSkills = data[Object.keys(data)[0]];
+    });
+
+    this.projectCrud.getCollections().subscribe((data) => {
+      this.dropdownOptionsCollections = data;
     });
 
     for (var x = 0; x < Skills.length; x++) {
@@ -110,79 +139,40 @@ export class CreateprojectComponent implements OnInit {
     return [-1, -1];
   }
 
-  onItemSelect(item: any) {
-    var occurance = this.searchForOccurance(item.item_id, item.item_text);
+  constructor(
+    private _router: Router,
+    private dialog: MatDialog,
+    private projectCrud: ProjectCRUDService
+  ) {}
 
-    // SKILL = 0,x
-    // COLLECTION = 1,x
-    // NEITHER = -1,-1
-
-    if (occurance[0] == 0) {
-      // process skill:
-      var obj = new Skill();
-      obj.SkillId = Skills[occurance[1]].SkillId;
-      obj.SkillName = Skills[occurance[1]].SkillName;
-      obj.SkillWeight = 11;
-
-      // this.selectedObjectsSkills.push(obj);
-
-      this.existingSkillsArray.push(obj);
-    } else if (occurance[0] == 1) {
-      // process collection:
-      var col = new Collection();
-      col.CollectionId = Collections[occurance[1]].CollectionId;
-      col.CollectionName = Collections[occurance[1]].CollectionName;
-      col.Skills = Collections[occurance[1]].Skills;
-
-      // this.selectedObjectsCollections.push(col);
-      this.existingCollectionsArray.push(col);
-    } else {
-      console.log('Skill/Collection not found.');
-    }
-  }
-
-  onSelectAll(items: any) {
-    console.log(items);
+  captureBasicDetails() {
+    this.projName = this.projectBasicInfo.get('projectName').value;
+    this.projDescription =
+      this.projectBasicInfo.get('projectDescription').value;
+    this.projLocation = this.projectBasicInfo.get('projectLocation').value;
   }
 
   addSkill() {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '45%';
-    configDialog.height = '450px';
+    configDialog.height = '550px';
     const dialogRef = this.dialog.open(AddSkillCategoryComponent, configDialog);
 
     dialogRef.afterClosed().subscribe((skill) => {
       if (skill != undefined) {
-        var obj = new Skill();
-        obj.SkillId = skill.data.SkillId;
-        obj.SkillName = skill.data.SkillName;
-        obj.SkillWeight = skill.data.SkillWeight;
-
-        Skills.push(obj);
-
-        // this.selectedObjectsSkills.push(obj);
-        this.newSkillsArray.push(obj);
-
-        this.dropdownListForSkills = [];
-
-        var sel = {
-          item_id: obj.SkillId,
-          item_text: obj.SkillName,
-        };
-
-        // this.onItemSelect(sel);
-
-        this.ngOnInit();
-      } else console.log('Returned Empty');
+        this.selectedSkills.push(skill.data);
+        this.newSelectedSkills.push(skill.data);
+        this.dropdownOptionsSkills.push(skill.data);
+      } else console.log('Returned Empty Skill');
     });
   }
 
   addCollection() {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
-    configDialog.width = '60%';
-    configDialog.height = '450px';
+    configDialog.width = '45%';
+    configDialog.height = '550px';
     const dialogRef = this.dialog.open(
       AddSkillCollectionComponent,
       configDialog
@@ -190,115 +180,108 @@ export class CreateprojectComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((collection) => {
       if (collection != undefined) {
-        var obj = new Collection();
-        obj.CollectionId = collection.data.CollectionId;
-        obj.CollectionName = collection.data.CollectionName;
-        obj.Skills = collection.data.Skills;
-
-        Collections.push(obj);
-
-        // this.selectedObjectsCollections.push(obj);
-        this.newCollectionsArray.push(obj);
-
-        this.dropdownListForCollections = [];
-
-        var sel = {
-          item_id: obj.CollectionId,
-          item_text: obj.CollectionName,
-        };
-
-        // this.onItemSelect(sel);
-
-        this.ngOnInit();
-      } else console.log('Returned Empty');
+        this.selectedCollections.push(collection.data);
+        mockSkillCollection.push(collection.data);
+        // this.ngOnInit();
+      } else console.log('Returned Empty Collection');
     });
   }
 
-  createTheProject() {
-    var proj = new Project();
-    proj.ProjectId = (Projects.length + 1).toString();
-    proj.Name = this.projectBasicInfo.value.projectName;
-    proj.Description = this.projectBasicInfo.value.projectDescription;
-    proj.Owner = 'New Developers';
-    proj.Location = 'Hatfield';
+  changeDetectedSkills(allSelectedSkills: any) {
+    // detect changes in selecting new and old skills
+    var arrNew = [];
+    var arr: any[] = allSelectedSkills.value;
 
-    console.log('Creating Project!\n');
+    for (var x = 0; x < arr.length; x++) {
+      if (arr[x].skillId == undefined) {
+        arrNew.push(arr[x]);
+      }
+    }
 
-    // proj.Skill.push('Hi');
+    this.newSelectedSkills = arrNew;
 
-    console.log(this.newCollectionsArray);
-    console.log(this.existingSkillsArray);
-    console.log(this.newCollectionsArray);
-    console.log(this.existingCollectionsArray);
-
-    // proj.Skill.push('SKILLS!');
-    // if (this.selectedObjectsSkills != undefined) {
-    //   if (this.selectedObjectsSkills.length > 0) {
-    //     proj.Skill.push(JSON.stringify(this.selectedObjectsSkills));
-    //   }
-    // }
-
-    // for (var x = 0; x < this.selectedObjectsCollections.length; x++) {
-    //   if (this.selectedObjectsCollections != undefined) {
-    //     if (this.selectedObjectsCollections[x].Skills != undefined) {
-    //       proj.Skill.push(
-    //         JSON.stringify(this.selectedObjectsCollections[x].Skills)
-    //       );
-    //     }
-    //   }
-    // }
-
-    console.log(this.selectedObjectsSkills);
-    console.log(this.selectedObjectsCollections);
-
-    proj.OpenForApplication = false;
-
-    Projects.push(proj);
-    console.log('Created Project!');
-    console.log(proj);
-    this.cancel();
+    // disable the open toggle if there are any new skills present:
+    if (this.newSelectedSkills.length > 0) {
+      this.isCheckedOpenForApplications = false;
+      this.toggleNewSkillsAdded = true;
+    } else {
+      this.toggleNewSkillsAdded = false;
+    }
   }
 
-  updateTheProject() {
-    var proj = new Project();
-    proj.ProjectId = (Projects.length + 1).toString();
-    proj.Name = this.projectBasicInfo.value.projectName;
-    proj.Description = this.projectBasicInfo.value.projectDescription;
-    proj.Owner = 'New Developers';
-    proj.Location = 'Hatfield';
+  changeDetectedCollections(a: any) {
+    this.selectedCollections = a.value;
+  }
 
-    console.log('Updating Project!\n');
+  extractSkillId(a: any[], b: any[]) {
+    var dupp = false;
+    var selectedSkillsIDs = [];
 
-    // proj.Skill.push('Hi');
+    // Process the existing skills:
+    for (var x = 0; x < a.length; x++) {
+      dupp = false;
+      for (var y = 0; y < b.length; y++) {
+        if (a[x].skillId == b[y].skillId) {
+          dupp = true;
+          break;
+        }
+      }
 
-    // proj.Skill.push('SKILLS!');
-    // if (this.selectedObjectsSkills != undefined) {
-    //   if (this.selectedObjectsSkills.length > 0) {
-    // proj.Skill.push(JSON.stringify(this.selectedObjectsSkills));
-    //   }
-    // }
+      if (!dupp)
+        selectedSkillsIDs.push({
+          skillId: a[x].skillId,
+          weight: 0,
+        });
+    }
+    return selectedSkillsIDs;
+  }
 
-    console.log(this.selectedObjectsSkills);
-    console.log(this.selectedObjectsCollections);
+  createTheProject() {
+    var processedCollections = [];
 
-    // for (var x = 0; x < this.selectedObjectsCollections.length; x++) {
-    //   if (this.selectedObjectsCollections != undefined) {
-    //     if (this.selectedObjectsCollections[x].Skills != undefined) {
-    //       proj.Skill.push(
-    // JSON.stringify(this.selectedObjectsCollections[x].Skills);
-    //       );
-    //     }
-    //   }
-    // }
+    var selectedSkillsIDs = this.extractSkillId(
+      this.selectedSkills,
+      this.newSelectedSkills
+    );
 
-    console.log(this.selectedObjectsSkills);
-    console.log(this.selectedObjectsCollections);
+    // Process the collections:
+    for (var x = 0; x < this.selectedCollections.length; x++) {
+      var extractCollectionSkillsId = [];
 
-    proj.OpenForApplication = false;
+      if (this.selectedCollections[x].skills != undefined)
+        for (var q = 0; q < this.selectedCollections[x].skills.length; q++) {
+          extractCollectionSkillsId.push({
+            skillId: this.selectedCollections[x].skills[q].id,
+            weight: 0,
+          });
+        }
 
-    Projects.push(proj);
-    console.log('Created Updated!');
+      processedCollections.push({
+        name: this.selectedCollections[x].name,
+        description: this.selectedCollections[x].description,
+        weight: this.selectedCollections[x].weight,
+        skills: extractCollectionSkillsId,
+      });
+    }
+
+    // Create the Project:
+    var proj = {
+      name: this.projName,
+      description: this.projDescription,
+      location: this.projLocation,
+      openForApplication: this.isCheckedOpenForApplications,
+      existingSkills: selectedSkillsIDs,
+      newSkills: this.newSelectedSkills,
+      skillCollections: processedCollections,
+    };
+
+    console.log('Creating Project...\n');
     console.log(proj);
+
+    this.projectCrud.createProject(proj).subscribe((data) => {
+      console.log('Response for Create Project: ', data);
+    });
+
     this.cancel();
   }
 

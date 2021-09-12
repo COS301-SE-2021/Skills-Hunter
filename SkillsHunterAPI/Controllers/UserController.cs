@@ -17,6 +17,7 @@ using SkillsHunterAPI.Models.Skill;
 using Microsoft.AspNetCore.Http;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.User.Request;
+using SkillsHunterAPI.Models.User.Response;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -30,8 +31,6 @@ namespace SkillsHunterAPI.Controllers
         {
             _userService = userService;
         }
-
-
 
         [HttpGet]
         [Route("api/[controller]/getCurrentUserId")]
@@ -138,15 +137,33 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/update")]
-        public async Task<UpdateUserResponse> UpdateUser([FromBody]UpdateUserRequest request)
+        public async Task<GetUserResponse> UpdateUser([FromBody]UpdateUserRequest request)
         {
             Guid LoggedInUser = GetCurrentUserId();
             await _userService.UpdateUser(request,LoggedInUser);
 
+            //Updating user skills
+            if(request.UserSkills != null)
+            {
+                foreach (AddExistingSkillRequest userSkill in request.UserSkills)
+                {
+                    UserSkill UserSkillToUpdate = new UserSkill();
+                    UserSkillToUpdate.SkillId = userSkill.SkillId;
+                    UserSkillToUpdate.UserId = GetCurrentUserId();
+                    UserSkillToUpdate.Weight = userSkill.Weight;
+                    UserSkillToUpdate.UserId = LoggedInUser;
+
+                    await _userService.UpdateUserSkill(UserSkillToUpdate);
+                }
+            }
+            
+
             UpdateUserResponse response = new UpdateUserResponse();
             response.Success = true;
 
-            return response;
+            GetUserRequest getUser = new GetUserRequest();
+            getUser.UserId = LoggedInUser;
+            return await GetUser(getUser);
            
         }
 
@@ -198,6 +215,11 @@ namespace SkillsHunterAPI.Controllers
             response.Surname = user.Surname;
             response.UserId = user.UserId;
             response.UserType = user.UserType;
+
+            //Retrieving the userskills
+            GetUserSkillsRequest skillsRequest = new GetUserSkillsRequest();
+            skillsRequest.UserId = request.UserId;
+            response.UserSkills = (List<GetUserSkillResponse>)await _userService.GetUserSkillsByUserId(user.UserId);
 
             return response;
         }
@@ -383,9 +405,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getUserSkillsByUserId")]
-        public async Task<IEnumerable<UserSkill>> GetUserSkillsByUserId([FromBody] GetUserSkillsRequest request)
+        public async Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId([FromQuery] Guid  userId)
         {
-            return await _userService.GetUserSkillsByUserId(request.UserId);
+            return await _userService.GetUserSkillsByUserId(userId);
         }
 
     }

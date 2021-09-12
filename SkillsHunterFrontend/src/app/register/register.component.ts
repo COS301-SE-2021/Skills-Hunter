@@ -16,7 +16,8 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    document.getElementById('tool').style.display = 'none';
+    document.getElementById('tool').style.display = "none";
+    document.getElementById('side').style.display = "none";
   }
 
   hide = true; // for hiding password in UI

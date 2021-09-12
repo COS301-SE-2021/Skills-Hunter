@@ -1,0 +1,24 @@
+
+ 
+<mat-card id = "card">
+    <h1 style = "color:black">Skill</h1>
+    <form class="form-inline user-searchbar" (ngSubmit) = "Search()">
+        <mat-form-field appearance="outline" style = "width: 100%">
+            <input
+              matInput
+              placeholder="Search User"
+              class = "user-searchbar"
+              [(ngModel)]  = "searchTerm"
+              name = "searchTerm"
+            />
+        </mat-form-field>
+    </form>
+    
+    <div id = "btnUserGroup">
+        <button color = "primary" mat-raised-button id = "btnAdvanced" (click) = "advancedSearch()">Advanced Search</button>
+        <button color = "primary" mat-raised-button id = "btnViewAll" (click) = "viewAll()">View All</button>
+        <button color = "primary" mat-raised-button color="primary" id = "btnAdd" (click) = "newSKill()">New</button>
+    </div>
+
+    <app-skill-card *ngFor = "let skill of data" [skill] = "skill" class = "user-info" (onDeleteUser)="deleteUser(skill)"></app-skill-card>
+</mat-card>

@@ -3,392 +3,112 @@ import { Skill } from '../classes/Skill';
 export const Skills: Skill[] = [
   {
     SkillId: '1',
-    SkillName: 'C++',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-      {
-        CategoryId: '2',
-        CategoryName: 'Desktop App',
-      },
-    ],
+    Name: 'C++',
+    // CategoryId: '0',
   },
   {
     SkillId: '2',
-    SkillName: 'JavaScript',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '2',
-        CategoryName: 'Desktop App',
-      },
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '4',
-        CategoryName: 'Front-End',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'JavaScript',
+    // CategoryId: '0',
   },
   {
     SkillId: '3',
-    SkillName: 'Elm',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'Elm',
+    // CategoryId: '0',
   },
   {
     SkillId: '4',
-    SkillName: 'TypeScript',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-      {
-        CategoryId: '2',
-        CategoryName: 'Desktop App',
-      },
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '4',
-        CategoryName: 'Front-End',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'TypeScript',
+    // CategoryId: '0',
   },
   {
     SkillId: '5',
-    SkillName: 'Scala',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-    ],
+    Name: 'Scala',
+    // CategoryId: '0',
   },
   {
     SkillId: '6',
-    SkillName: 'Python',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'Python',
+    // CategoryId: '0',
   },
   {
     SkillId: '7',
-    SkillName: 'Go',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-    ],
+    Name: 'Go',
+    // CategoryId: '0',
   },
   {
     SkillId: '8',
-    SkillName: 'Ruby',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'Ruby',
+    // CategoryId: '0',
   },
   {
     SkillId: '9',
-    SkillName: 'Swift',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-    ],
+    Name: 'Swift',
+    // CategoryId: '0',
   },
   {
     SkillId: '10',
-    SkillName: 'Java',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-      {
-        CategoryId: '2',
-        CategoryName: 'Desktop App',
-      },
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '4',
-        CategoryName: 'Front-End',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'Java',
+    // CategoryId: '0',
   },
   {
     SkillId: '11',
-    SkillName: 'Objective C',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'Objective C',
+    // CategoryId: '0',
   },
   {
     SkillId: '12',
-    SkillName: 'Unity',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-      {
-        CategoryId: '2',
-        CategoryName: 'Desktop App',
-      },
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '4',
-        CategoryName: 'Front-End',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'Unity',
+    // CategoryId: '0',
   },
   {
     SkillId: '13',
-    SkillName: 'Rust',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '4',
-        CategoryName: 'Front-End',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'Rust',
+    // CategoryId: '0',
   },
   {
     SkillId: '14',
-    SkillName: 'Docker',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-      {
-        CategoryId: '2',
-        CategoryName: 'Desktop App',
-      },
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '4',
-        CategoryName: 'Front-End',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'Docker',
+    // CategoryId: '0',
   },
   {
     SkillId: '15',
-    SkillName: 'DotNet Core',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-      {
-        CategoryId: '2',
-        CategoryName: 'Desktop App',
-      },
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'DotNet Core',
+    // CategoryId: '0',
   },
   {
     SkillId: '16',
-    SkillName: 'Angular',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '4',
-        CategoryName: 'Front-End',
-      },
-    ],
+    Name: 'Angular',
+    // CategoryId: '0',
   },
   {
     SkillId: '17',
-    SkillName: 'VueJS',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '4',
-        CategoryName: 'Front-End',
-      },
-    ],
+    Name: 'VueJS',
+    // CategoryId: '0',
   },
   {
     SkillId: '18',
-    SkillName: 'ReactJS',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '4',
-        CategoryName: 'Front-End',
-      },
-    ],
+    Name: 'ReactJS',
+    // CategoryId: '0',
   },
   {
     SkillId: '19',
-    SkillName: 'Kotlin',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-    ],
+    Name: 'Kotlin',
+    // CategoryId: '0',
   },
   {
     SkillId: '20',
-    SkillName: 'PHP',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'PHP',
+    // CategoryId: '0',
   },
   {
     SkillId: '21',
-    SkillName: 'Matlab',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '2',
-        CategoryName: 'Desktop App',
-      },
-      {
-        CategoryId: '3',
-        CategoryName: 'Web App',
-      },
-      {
-        CategoryId: '5',
-        CategoryName: 'Back-End',
-      },
-    ],
+    Name: 'Matlab',
+    // CategoryId: '0',
   },
   {
     SkillId: '22',
-    SkillName: 'R',
-    SkillWeight: 0,
-    SkillCategory: [
-      {
-        CategoryId: '1',
-        CategoryName: 'Mobile App',
-      },
-    ],
+    Name: 'R',
+    // CategoryId: '0',
   },
 ];
