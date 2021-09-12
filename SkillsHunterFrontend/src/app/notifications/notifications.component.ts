@@ -95,35 +95,10 @@ const NOTIFICATION_DATA: NotificationItem[] = [
   ],
 })
 export class NotificationsComponent implements OnInit {
-  // columnsToDisplay = ['id', 'type', 'subject', 'message'];
   columnsToDisplay = ['id', 'type', 'subject'];
   expandedElement: NotificationItem | null;
   dataSource = NOTIFICATION_DATA;
-  // displayedColumns = this.columns.map((c) => c.columnDef);
   constructor() {}
 
   ngOnInit(): void {}
-
-  // columns = [
-  //   {
-  //     columnDef: 'id',
-  //     header: 'No.',
-  //     cell: (element: NotificationItem) => `${element.id}`,
-  //   },
-  //   {
-  //     columnDef: 'subject',
-  //     header: 'Subject',
-  //     cell: (element: NotificationItem) => `${element.subject}`,
-  //   },
-  //   {
-  //     columnDef: 'type',
-  //     header: 'Type',
-  //     cell: (element: NotificationItem) => `${element.type}`,
-  //   },
-  //   {
-  //     columnDef: 'message',
-  //     header: 'Message',
-  //     cell: (element: NotificationItem) => `${element.message}`,
-  //   },
-  // ];
 }
