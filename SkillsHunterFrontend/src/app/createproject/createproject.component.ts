@@ -26,7 +26,7 @@ import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-co
   styleUrls: ['./createproject.component.scss'],
 })
 export class CreateprojectComponent implements OnInit {
-  isLinear = false;
+  isLinear = true;
   projName: string;
   projDescription: string;
   projLocation: string;
