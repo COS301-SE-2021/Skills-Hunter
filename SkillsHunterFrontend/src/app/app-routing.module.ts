@@ -22,7 +22,7 @@ import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
 import { AddSkillComponent } from './profile/add-skill/add-skill.component';
 import { SliderComponent } from './profile/slider/slider.component';
-
+import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
 
 const routes: Routes = [
   {
@@ -62,7 +62,7 @@ const routes: Routes = [
     component: CreateprojectComponent,
   },
   {
-    path: 'individualskill', 
+    path: 'individualskill',
     component: AddSkillsComponent,
   },
   {
@@ -79,36 +79,40 @@ const routes: Routes = [
   },
   {
     path: '',
-    component:LoginComponent,
+    component: LoginComponent,
   },
   {
-    path: 'dashboard', 
-    component: AdminBoardComponent
+    path: 'dashboard',
+    component: AdminBoardComponent,
   },
   {
-    path: 'user-control', 
-    component: UserControlComponent
+    path: 'user-control',
+    component: UserControlComponent,
   },
   {
-    path: 'project-control', 
-    component: ProjectControlComponent
+    path: 'project-control',
+    component: ProjectControlComponent,
   },
   {
-    path: 'skill-control', 
-    component: SkillControlComponent
+    path: 'skill-control',
+    component: SkillControlComponent,
   },
   {
-    path: 'category-control', 
-    component: CategoryControlComponent
+    path: 'category-control',
+    component: CategoryControlComponent,
   },
   {
-    path: 'statistics', 
-    component: StatisticsComponent
+    path: 'statistics',
+    component: StatisticsComponent,
   },
   {
-    path: 'skill-collection-control', 
-    component: SkillCollectionControlComponent
-  }
+    path: 'skill-collection-control',
+    component: SkillCollectionControlComponent,
+  },
+  {
+    path: 'notification-menu',
+    component: NotificationMenuComponent,
+  },
 ];
 
 @NgModule({
