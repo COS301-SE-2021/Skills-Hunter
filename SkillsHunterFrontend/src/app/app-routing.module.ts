@@ -118,6 +118,10 @@ const routes: Routes = [
     path: 'notifications',
     component: NotificationsComponent,
   },
+  {
+    path: 'update-project',
+    component: UpdateProjectComponent,
+  },
 ];
 
 @NgModule({

@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
     this._router.navigate([`createproject`]);
   }
 
-  notifications() {
-    this._router.navigate([`notifications`]);
+  update() {
+    this._router.navigate([`update-project`]);
   }
 }
