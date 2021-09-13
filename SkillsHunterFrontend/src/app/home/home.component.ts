@@ -1,3 +1,4 @@
+import { AdminService } from 'src/app/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Projects } from '../mock-data/mock-projects';
@@ -75,6 +76,7 @@ export class HomeComponent implements OnInit {
     private _router: Router,
     private dialog: MatDialog,
     private projectCrud: ProjectCRUDService,
+    private adminCrud: AdminService,
     private projectData: projectService
   ) {}
 
@@ -94,13 +96,14 @@ export class HomeComponent implements OnInit {
     var functiontoCall;
     if (localStorage.getItem('role') == '1') {
       this._projects = theProject;
+
       // this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
       //   // this._projects = data;
       //   this._projects = this.theProject;
       //   console.log('Response post', data);
       // });
     } else {
-      document.getElementById('creatediv').style.display = 'none';
+      document.getElementById('createbtn').style.display = 'none';
       this._projects = theProject;
 
       // this.projectCrud.getAllProjects().subscribe((data) => {
