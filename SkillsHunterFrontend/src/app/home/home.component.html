@@ -31,11 +31,8 @@
     <button mat-raised-button id="createbtn" (click)="create()">
       Create Project
     </button>
-
-    <button mat-raised-button id="createbtn" (click)="update()">
-      Update Project
-    </button>
   </div>
+
   <div id="projectCard">
     <app-project-card
       *ngFor="let project of _projects"
