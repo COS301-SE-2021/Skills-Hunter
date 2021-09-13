@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   MatDialog,
   MatDialogConfig,
   MatDialogRef,
+  MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -22,85 +23,6 @@ import { projectService } from '../services/project-edit.service';
   styleUrls: ['./update-project.component.scss'],
 })
 export class UpdateProjectComponent implements OnInit {
-  // title: string = 'Candidate';
-  // candidatesList: Candidate[] = CandidatesList;
-
-  // constructor(
-  //   public dialogRef: MatDialogRef<UpdateProjectComponent>,
-  //   private projectCrud: ProjectCRUDService,
-  //   private projectData: projectService
-  // ) {}
-
-  //this function retrieves the data that was set by the component calling this dialog/pop up
-  // get getProjectInfo(): Project {
-  //   return this.projectData.projectBeingedited;
-  // }
-
-  // skills: string[] = [
-  //   'Project Manager',
-  //   'C++',
-  //   'Java',
-  //   'JavaScript',
-  //   'Angular',
-  //   'DotNet Core',
-  // ];
-  // industries: string[] = ['Finance', 'Construction', 'Agriculture', 'IT'];
-  // open: string[] = ['Yes', 'No'];
-
-  // ngOnInit(): void {
-  //   this.projectInfo.controls['projectName'].setValue(this.getProjectInfo.name);
-  //   this.projectInfo.controls['description'].setValue(
-  //     this.getProjectInfo.description
-  //   );
-  //   this.projectInfo.controls['skill'].setValue(
-  //     this.getProjectInfo.skill.slice()
-  //   );
-  //   this.projectInfo.controls['openForApplication'].setValue('Yes');
-  // }
-
-  // projectInfo: FormGroup = new FormGroup({
-  //   projectName: new FormControl('', [Validators.required]),
-  //   description: new FormControl('', [Validators.required]),
-  //   skill: new FormControl('', [Validators.required]),
-  //   openForApplication: new FormControl('', [Validators.required]),
-  // });
-
-  // //when submit is clicked this function is called to send info to service
-  // onSubmit() {
-  //   var formData = new Project();
-  //   formData.projectId = this.getProjectInfo.projectId;
-  //   formData.name = <string>(
-  //     (<any>this.projectInfo.controls['projectName'].value)
-  //   );
-  //   formData.description = <string>(
-  //     (<any>this.projectInfo.controls['description'].value)
-  //   );
-  //   formData.skill = <string[]>(<any>this.projectInfo.controls['skill'].value);
-  //   if (
-  //     <string>(<any>this.projectInfo.controls['openForApplication'].value) ==
-  //     'yes'
-  //   ) {
-  //     formData.openForApplication = true;
-  //   } else {
-  //     formData.openForApplication = true;
-  //   }
-
-  //   //set new info on the card(replace old info with new after submit is clicked)
-  //   this.getProjectInfo.name = formData.name;
-  //   this.getProjectInfo.description = formData.description;
-  //   this.getProjectInfo.skill = formData.skill;
-  //   this.getProjectInfo.openForApplication = formData.openForApplication;
-
-  //   //the service is called below
-  //   this.projectCrud
-  //     .updateProject(formData) //change so it calls update
-  //     .subscribe((data) => {
-  //       console.log('Response post', data);
-  //     });
-
-  //   this.dialogRef.close();
-  // }
-
   isLinear = true;
   projName: string;
   projDescription: string;
@@ -118,9 +40,6 @@ export class UpdateProjectComponent implements OnInit {
   // options for the dropdown for skills and collections:
   dropdownOptionsSkills = [];
   dropdownOptionsCollections = [];
-
-  projectBasicInfo: FormGroup;
-  projectSkillsAndCollections: FormGroup;
 
   configSkills = {
     displayKey: 'name', //if objects array passed which key to be displayed defaults to description
@@ -148,16 +67,27 @@ export class UpdateProjectComponent implements OnInit {
     searchOnKey: 'name', // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
   };
 
+  projectBasicInfo = new FormGroup({
+    projectName: new FormControl('', [Validators.required]),
+    projectDescription: new FormControl('', [Validators.required]),
+    projectLocation: new FormControl('', [Validators.required]),
+  });
+
+  projectSkillsAndCollections = new FormGroup({
+    projectSkills: new FormControl('', [Validators.required]),
+    projectCollections: new FormControl('', [Validators.required]),
+  });
+
   ngOnInit(): void {
-    this.projectBasicInfo = new FormGroup({
-      projectName: new FormControl('', [Validators.required]),
-      projectDescription: new FormControl('', [Validators.required]),
-      projectLocation: new FormControl('', [Validators.required]),
-    });
-    this.projectSkillsAndCollections = new FormGroup({
-      projectSkills: new FormControl('', [Validators.required]),
-      projectCollections: new FormControl('', [Validators.required]),
-    });
+    this.projectBasicInfo.controls['projectName'].setValue(
+      this.selected_project.name
+    );
+    this.projectBasicInfo.controls['projectDescription'].setValue(
+      this.selected_project.description
+    );
+    this.projectBasicInfo.controls['projectLocation'].setValue(
+      this.selected_project.location
+    );
 
     this.projectCrud.getSkills().subscribe((data) => {
       // Capture the array of Skill objects:
@@ -170,18 +100,12 @@ export class UpdateProjectComponent implements OnInit {
   }
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public selected_project: any,
     private _router: Router,
     private dialog: MatDialog,
     private projectCrud: ProjectCRUDService,
     private _snackBar: MatSnackBar
   ) {}
-
-  captureBasicDetails() {
-    this.projName = this.projectBasicInfo.get('projectName').value;
-    this.projDescription =
-      this.projectBasicInfo.get('projectDescription').value;
-    this.projLocation = this.projectBasicInfo.get('projectLocation').value;
-  }
 
   addSkill() {
     const configDialog = new MatDialogConfig();
@@ -266,7 +190,7 @@ export class UpdateProjectComponent implements OnInit {
     return selectedSkillsIDs;
   }
 
-  createTheProject() {
+  updateTheProject() {
     var processedCollections = [];
 
     var selectedSkillsIDs = this.extractSkillId(
@@ -299,16 +223,16 @@ export class UpdateProjectComponent implements OnInit {
 
     // Create the Project:
     var proj = {
-      name: this.projName,
-      description: this.projDescription,
-      location: this.projLocation,
+      name: this.projectBasicInfo.controls['projectName'].value,
+      description: this.projectBasicInfo.controls['projectDescription'].value,
+      location: this.projectBasicInfo.controls['projectLocation'].value,
       openForApplication: this.isCheckedOpenForApplications,
       existingSkills: selectedSkillsIDs,
       newSkills: this.newSelectedSkills,
       skillCollections: processedCollections,
     };
 
-    console.log('Creating Project...\n');
+    console.log('Updating Project...\n');
     console.log(proj);
 
     this.projectCrud.updateProject(proj).subscribe((data) => {
@@ -329,13 +253,7 @@ export class UpdateProjectComponent implements OnInit {
   }
 
   cancel() {
+    this.dialog.closeAll();
     this._router.navigate([`home`]);
   }
-
-  updateTheProject() {}
-
-  //close dialog popup
-  // cancel() {
-  //   this.dialogRef.close();
-  // }
 }

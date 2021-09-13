@@ -31,7 +31,7 @@ export class ProjectCRUDService {
   }
 
   //external api to update project is called here
-  updateProject(formData: Project): Observable<any> {
+  updateProject(formData: any): Observable<any> {
     return this.httpclient.put(
       'http://localhost:5000/api/Project/updateProject',
       formData,

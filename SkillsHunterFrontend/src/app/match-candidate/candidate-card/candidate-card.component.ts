@@ -15,13 +15,11 @@ export class CandidateCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  inviteCandidate(){
+  inviteCandidate() {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '35%';
-    configDialog.height = '30%';
+    configDialog.panelClass = 'custom-modalbox';
     this.dialog.open(InviteCandidateComponent, configDialog);
   }
-
-
 }
