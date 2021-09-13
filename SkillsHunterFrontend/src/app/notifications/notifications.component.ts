@@ -6,6 +6,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { NotificationResponseComponent } from './notification-response/notification-response.component';
 
 export interface NotificationItem {
   subject: string;
@@ -98,7 +100,23 @@ export class NotificationsComponent implements OnInit {
   columnsToDisplay = ['id', 'type', 'subject'];
   expandedElement: NotificationItem | null;
   dataSource = NOTIFICATION_DATA;
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
+
+  respondToNotification() {
+    const configDialog = new MatDialogConfig();
+    configDialog.backdropClass = 'backGround';
+    configDialog.width = '45%';
+    configDialog.height = '550px';
+    const dialogRef = this.dialog.open(
+      NotificationResponseComponent,
+      configDialog
+    );
+
+    dialogRef.afterClosed().subscribe((response) => {
+      console.log('We got back the reponse!');
+      console.log(response);
+    });
+  }
 
   ngOnInit(): void {}
 }
