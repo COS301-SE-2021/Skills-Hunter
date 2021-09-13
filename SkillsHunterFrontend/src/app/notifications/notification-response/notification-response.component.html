@@ -1,16 +1,51 @@
-<div class="container">
+<div id="noti-display">
   <mat-form-field appearance="outline">
-    <mat-label>Project Description</mat-label>
-    <textarea matInput placeholder="..." required></textarea>
+    <textarea matInput placeholder="..." readonly>
+       Here is the information</textarea
+    >
   </mat-form-field>
 </div>
 
-<!-- <mat-form-field class="example-full-width" appearance="outline">
-    <mat-label>Project Description</mat-label>
-    <textarea
-      matInput
-      placeholder="..."
-      formControlName="projectDescription"
-      required
-    ></textarea>
-  </mat-form-field> -->
+<!-- subject: string;
+id: number;
+type: string;
+message: string; -->
+
+<mat-card class="noti-display-card">
+  <mat-card-header>
+    <div mat-card-avatar class="candidate-menu-header-image"></div>
+    <mat-card-title>{{ card_candidate.name }}</mat-card-title>
+    <mat-card-subtitle>{{ card_candidate.job }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+      {{ card_candidate.description }}
+    </p>
+  </mat-card-content>
+
+  <mat-card class="candidate-card-skills">
+    <mat-card-title>Skills</mat-card-title>
+    <mat-chip-list aria-label="Candidate Skills">
+      <mat-chip color="primary" selected>{{ card_candidate.skills }}</mat-chip>
+    </mat-chip-list>
+  </mat-card>
+
+  <mat-card-actions>
+    <button
+      class="candidate-invite"
+      (click)="inviteCandidate()"
+      mat-raised-button
+      color="accent"
+    >
+      Invite To Project
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<div id="noti-reply">
+  <mat-form-field id="noti-reply" appearance="outline">
+    <mat-label>Reply Message</mat-label>
+    <textarea matInput placeholder="..." required></textarea>
+  </mat-form-field>
+</div>
