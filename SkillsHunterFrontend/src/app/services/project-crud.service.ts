@@ -52,16 +52,16 @@ export class ProjectCRUDService {
   }
 
   //external api to read project is called here
-  getAllProjects(): Observable<Project[]> {
-    return this.httpclient.get<Project[]>(
+  getAllProjects(): Observable<any[]> {
+    return this.httpclient.get<any[]>(
       'http://localhost:5000/api/Project/getProjects',
       this.httpOptions
     );
   }
 
   //external api to read project is called here
-  getProjectsByProjectOwnerId(): Observable<Project[]> {
-    return this.httpclient.get<Project[]>(
+  getProjectsByProjectOwnerId(): Observable<any[]> {
+    return this.httpclient.get<any[]>(
       'http://localhost:5000/api/Project/getProjectsByOwnerId',
       this.httpOptions
     );
