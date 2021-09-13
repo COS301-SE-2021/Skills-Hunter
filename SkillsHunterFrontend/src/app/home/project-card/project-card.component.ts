@@ -15,7 +15,8 @@ import { Apply } from 'src/app/classes/Apply';
 export class ProjectCardComponent implements OnInit {
   panelOpenState: boolean = false;
 
-  @Input() card_project: Project;
+  @Input() card_project;
+  arrAllSkills = [];
 
   constructor(
     private dialog: MatDialog,
@@ -24,29 +25,22 @@ export class ProjectCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    if(localStorage.getItem('role')=='0'){
-      
+    if (localStorage.getItem('role') == '0') {
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visDelete', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
-      document.getElementById("createbtn").style.visibility = "hidden";
-    }
-    else if(localStorage.getItem('role')=='3'){
+      document.getElementById('createbtn').style.visibility = 'hidden';
+    } else if (localStorage.getItem('role') == '3') {
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visAppl', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
-      document.getElementById("createbtn").style.visibility = "hidden";
-
-    }
-    else{
+      document.getElementById('createbtn').style.visibility = 'hidden';
+    } else {
       document.documentElement.style.setProperty('--visAppl', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
     }
-    
-
   }
 
   get getProjectInfo(): Project {
@@ -57,12 +51,11 @@ export class ProjectCardComponent implements OnInit {
     this.projectData.projectBeingedited = project;
   }
 
-  update(_project: Project) {
-    this.setProjectInfo = _project;
+  update(_project) {
+    // this.setProjectInfo = _project;
     const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '40%';
-    configDialog.height = '80%';
+    configDialog.panelClass = 'custom-modalbox';
+    configDialog.data = _project;
     this.dialog.open(UpdateProjectComponent, configDialog);
   }
 
@@ -75,35 +68,33 @@ export class ProjectCardComponent implements OnInit {
       }*/
 
       //the service is called below
-      console.log("here"+_project.projectId);
-        this.projectCrud
-         .deleteProject(_project.projectId) //change so it calls update
-         .subscribe((data) => {
-           console.log('Response post', data);
-         });
-         window.location.reload();
+      console.log('here' + _project.projectId);
+      this.projectCrud
+        .deleteProject(_project.projectId) //change so it calls update
+        .subscribe((data) => {
+          console.log('Response post', data);
+        });
+      window.location.reload();
     }
   }
 
-  apply(_project: Project){
-
+  apply(_project: Project) {
     console.log(_project.projectId);
     var formData = new Apply();
-    formData.UserId=localStorage.getItem('userID');
-    formData.ProjectId="3fa85f64-5717-4562-b3fc-2c963f66afa4"//_project.ProjectId;
+    formData.UserId = localStorage.getItem('userID');
+    formData.ProjectId = '3fa85f64-5717-4562-b3fc-2c963f66afa4'; //_project.ProjectId;
 
+    //the service is called below;
+    this.projectCrud
+      .applyForProject(formData) //change so it calls update
+      .subscribe((data) => {
+        console.log('Response post', data);
+      });
 
-     //the service is called below;
-       this.projectCrud
-         .applyForProject(formData) //change so it calls update
-         .subscribe((data) => {
-           console.log('Response post', data);
-         });
-
-         this.cancel();
+    this.cancel();
   }
 
-  cancel(){
+  cancel() {
     this.dialog.closeAll();
   }
 }
