@@ -31,17 +31,19 @@
             <div class="element-symbol">{{ element.name }}</div>
             <div class="element-name">{{ element.type }}</div>
           </div>
+
           <div class="element-description">
             {{ element.message }}
-            <span class="notifications-options">
-              <button
-                class="btn btn-primary"
-                (click)="respondToNotification(element)"
-              >
-                Respond
-              </button>
-            </span>
           </div>
+
+          <span class="notifications-options">
+            <button
+              class="btn btn-primary"
+              (click)="respondToNotification(element)"
+            >
+              Respond
+            </button>
+          </span>
         </div>
       </td>
     </ng-container>

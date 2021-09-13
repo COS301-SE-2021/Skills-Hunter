@@ -16,7 +16,12 @@
     <div id="noti-reply">
       <mat-form-field id="noti-reply" appearance="outline">
         <mat-label>Reply Message</mat-label>
-        <textarea matInput placeholder="..." required></textarea>
+        <textarea
+          matInput
+          placeholder="..."
+          formControlName="notificationResponseMessage"
+          required
+        ></textarea>
       </mat-form-field>
     </div>
   </mat-card-content>
