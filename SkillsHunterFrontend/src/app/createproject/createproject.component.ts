@@ -240,7 +240,7 @@ export class CreateprojectComponent implements OnInit {
     this.projectCrud.createProject(proj).subscribe((data) => {
       console.log('Response for Create Project: ', data);
 
-      if (data.status != undefined && data.status == 200)
+      if (data.projectId != undefined)
         this._snackBar.open('Project Successfully Created!', '', {
           duration: 3000,
         });
