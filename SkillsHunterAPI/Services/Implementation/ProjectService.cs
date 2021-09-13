@@ -377,5 +377,11 @@ namespace SkillsHunterAPI.Services
             return matchCandidateResponse;
 
         }
+
+        private int getMatchingSkillWeight(Guid userSkillId, List<GetProjectSkillResponse> projectSkills)
+        {
+            
+            return 0;
+        }
     }
 }
