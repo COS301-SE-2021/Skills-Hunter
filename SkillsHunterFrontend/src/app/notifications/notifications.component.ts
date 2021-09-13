@@ -8,6 +8,7 @@ import {
 } from '@angular/animations';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NotificationResponseComponent } from './notification-response/notification-response.component';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export interface NotificationItem {
   subject: string;
@@ -102,11 +103,13 @@ export class NotificationsComponent implements OnInit {
   dataSource = NOTIFICATION_DATA;
   constructor(private dialog: MatDialog) {}
 
-  respondToNotification() {
+  respondToNotification(selectedNotification) {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '45%';
-    configDialog.height = '550px';
+    configDialog.height = '400px';
+    configDialog.data = selectedNotification;
+
     const dialogRef = this.dialog.open(
       NotificationResponseComponent,
       configDialog

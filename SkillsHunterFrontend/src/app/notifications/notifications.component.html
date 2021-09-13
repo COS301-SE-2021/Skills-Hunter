@@ -34,7 +34,10 @@
           <div class="element-description">
             {{ element.message }}
             <span class="notifications-options">
-              <button class="btn btn-primary" (click)="respondToNotification()">
+              <button
+                class="btn btn-primary"
+                (click)="respondToNotification(element)"
+              >
                 Respond
               </button>
             </span>
