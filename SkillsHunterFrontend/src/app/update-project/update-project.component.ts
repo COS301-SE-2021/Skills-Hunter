@@ -249,6 +249,12 @@ export class UpdateProjectComponent implements OnInit {
         });
       }
     });
+
+    theProject[0].name = proj.name;
+    theProject[0].description = proj.description;
+    theProject[0].location = proj.location;
+    // theProject[0].name = proj.name;
+
     // theProject.pop();
     // theProject.push(proj);
 
@@ -256,7 +262,7 @@ export class UpdateProjectComponent implements OnInit {
   }
 
   cancel() {
-    this.dialog.closeAll();
+    // this.dialog.closeAll();
     this._router.navigate([`home`]);
   }
 }
