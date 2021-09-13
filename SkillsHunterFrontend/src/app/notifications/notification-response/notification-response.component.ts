@@ -1,5 +1,5 @@
 import { NotificationItem } from './../notifications.component';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -9,7 +9,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./notification-response.component.scss'],
 })
 export class NotificationResponseComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public card_notification: any) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public card_notification: any,
+    public dialogRef: MatDialogRef<NotificationResponseComponent>
+  ) {}
 
   notificationResponseForm: FormGroup;
 
@@ -19,7 +22,15 @@ export class NotificationResponseComponent implements OnInit {
     });
   }
 
+  //   this.dialogRef.close({ data: collection });
+  // }
+
+  cancel() {
+    this.dialogRef.close();
+  }
+
   captureNotificationResponse() {
     console.log('Message sent!');
+    this.cancel();
   }
 }
