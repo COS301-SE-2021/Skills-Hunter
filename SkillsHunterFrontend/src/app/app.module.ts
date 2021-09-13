@@ -70,6 +70,7 @@ import { NewSkillComponent } from './skill-control/new-skill/new-skill.component
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { NotificationResponseComponent } from './notifications/notification-response/notification-response.component';
 
 
 @NgModule({
@@ -125,6 +126,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     NewSkillComponent,
     NotificationMenuComponent,
     NotificationsComponent,
+    NotificationResponseComponent,
   ],
   imports: [
     BrowserModule,
