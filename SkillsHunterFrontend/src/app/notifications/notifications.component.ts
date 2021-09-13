@@ -107,7 +107,7 @@ export class NotificationsComponent implements OnInit {
     const configDialog = new MatDialogConfig();
     configDialog.width = '30%';
     configDialog.data = selectedNotification;
-    configDialog.panelClass : 'custom-modalbox';
+    configDialog.panelClass = 'custom-modalbox';
 
     const dialogRef = this.dialog.open(
       NotificationResponseComponent,

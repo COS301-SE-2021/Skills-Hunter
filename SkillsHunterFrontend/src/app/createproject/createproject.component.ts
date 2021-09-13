@@ -113,7 +113,7 @@ export class CreateprojectComponent implements OnInit {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '45%';
-    configDialog.height = '550px';
+    configDialog.panelClass = 'custom-modalbox';
     const dialogRef = this.dialog.open(AddSkillCategoryComponent, configDialog);
 
     dialogRef.afterClosed().subscribe((skill) => {
@@ -129,7 +129,7 @@ export class CreateprojectComponent implements OnInit {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '45%';
-    configDialog.height = '550px';
+    configDialog.panelClass = 'custom-modalbox';
     const dialogRef = this.dialog.open(
       AddSkillCollectionComponent,
       configDialog
