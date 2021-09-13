@@ -6,6 +6,7 @@ using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.User.Response;
+using SkillsHunterAPI.Models.Project.Response;
 
 namespace SkillsHunterAPI.Services
 {

@@ -366,5 +366,16 @@ namespace SkillsHunterAPI.Services
 
             return skill;
         }
+
+
+        //Matching algorithm
+        public async Task<List<MatchCandidateResponse>> MatchCandidates(Guid projectId)
+        {
+            List<MatchCandidateResponse> matchCandidateResponse = new List<MatchCandidateResponse>();
+
+
+            return matchCandidateResponse;
+
+        }
     }
 }

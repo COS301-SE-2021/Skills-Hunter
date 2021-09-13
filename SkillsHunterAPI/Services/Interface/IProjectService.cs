@@ -55,5 +55,9 @@ namespace SkillsHunterAPI.Services
         Task<List<ProjectSkillCollection>> GetCollectionsByProject(Guid ProjectId);
 
         Task<Skill> AddNewSkill(AddSkillRequest addSkillRequest);
+
+
+        //Matching algorithm
+        Task<List<MatchCandidateResponse>> MatchCandidates(Guid projectId);
     }
 }
