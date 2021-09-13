@@ -236,23 +236,28 @@ export class UpdateProjectComponent implements OnInit {
     console.log('Updating Project...\n');
     console.log(proj);
 
-    this.projectCrud.updateProject(proj).subscribe((data) => {
-      console.log('Response for Update Project: ', data);
-
-      if (data.projectId != undefined)
-        this._snackBar.open('Project Successfully Updated!', '', {
-          duration: 3000,
-        });
-      else {
-        this._snackBar.open('Project Update Failed!', '', {
-          duration: 3000,
-        });
-      }
-    });
-
     theProject[0].name = proj.name;
     theProject[0].description = proj.description;
     theProject[0].location = proj.location;
+
+    this._snackBar.open('Project Successfully Updated!', '', {
+      duration: 3000,
+    });
+
+    // this.projectCrud.updateProject(proj).subscribe((data) => {
+    //   console.log('Response for Update Project: ', data);
+
+    //   if (data.projectId != undefined)
+    //     this._snackBar.open('Project Successfully Updated!', '', {
+    //       duration: 3000,
+    //     });
+    //   else {
+    //     this._snackBar.open('Project Update Failed!', '', {
+    //       duration: 3000,
+    //     });
+    //   }
+    // });
+
     // theProject[0].name = proj.name;
 
     // theProject.pop();

@@ -11,56 +11,6 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 import { MaterialModule } from '../material/material.module';
 import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 
-export const theProject = [
-  {
-    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-    name: 'Project X',
-    description: 'Description of the project',
-    owner: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-    location: 'Johannesburg',
-    openForApplication: true,
-    dateCreated: '2021-09-13T08:08:09.677Z',
-    projectSkills: {
-      skills: [
-        {
-          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-          name: 'C++',
-          weight: 5,
-        },
-        {
-          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
-          name: 'Python',
-          weight: 5,
-        },
-        {
-          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa8',
-          name: 'Java',
-          weight: 5,
-        },
-      ],
-      skillCollections: [
-        // {
-        //   "projectSkillCollectionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        //   "name": "string",
-        //   "description": "string",
-        //   "weight": 0,
-        //   "skills": [
-        //     {
-        //       "projectSkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        //       "skillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        //       "name": "string",
-        //       "weight": 0
-        //     }
-        //   ]
-        // }
-      ],
-    },
-  },
-];
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -123,3 +73,166 @@ export class HomeComponent implements OnInit {
     this._router.navigate([`update-project`]);
   }
 }
+
+export const theProject = [
+  {
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    name: 'Project A',
+    description: 'We will now describe the project A',
+    owner: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    location: 'Johannesburg',
+    openForApplication: true,
+    dateCreated: '2021-09-13T08:08:09.677Z',
+    projectSkills: {
+      skills: [
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          name: 'C++',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
+          name: 'Python',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa8',
+          name: 'Java',
+          weight: 5,
+        },
+      ],
+      skillCollections: [],
+    },
+  },
+  {
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    name: 'Skills Hunter',
+    description: 'Description of the project Skills Hunter',
+    owner: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    location: 'Hatfield',
+    openForApplication: true,
+    dateCreated: '2021-09-13T08:08:09.677Z',
+    projectSkills: {
+      skills: [
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          name: 'Pascal',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
+          name: 'Java',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa8',
+          name: 'SQL',
+          weight: 5,
+        },
+      ],
+      skillCollections: [],
+    },
+  },
+  {
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    name: 'House Seeker',
+    description: 'Help busy workerholics find their dream home',
+    owner: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    location: 'North West',
+    openForApplication: true,
+    dateCreated: '2021-09-13T08:08:09.677Z',
+    projectSkills: {
+      skills: [
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          name: 'C#',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
+          name: 'Borland-Delphi Pascal',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa8',
+          name: 'Java',
+          weight: 5,
+        },
+      ],
+      skillCollections: [],
+    },
+  },
+  {
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    name: 'Recipe App',
+    description: 'Develop a cook book',
+    owner: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    location: 'Durban',
+    openForApplication: true,
+    dateCreated: '2021-09-13T08:08:09.677Z',
+    projectSkills: {
+      skills: [
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          name: 'Go',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
+          name: 'Scala',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa8',
+          name: 'Kotlin',
+          weight: 5,
+        },
+      ],
+      skillCollections: [],
+    },
+  },
+  {
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    name: 'Flight Simulator',
+    description: 'Develop a flight simulation game',
+    owner: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    location: 'Cape Town',
+    openForApplication: true,
+    dateCreated: '2021-09-13T08:08:09.677Z',
+    projectSkills: {
+      skills: [
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          name: 'Python',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
+          name: 'OpenGL',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa8',
+          name: 'C++',
+          weight: 5,
+        },
+      ],
+      skillCollections: [],
+    },
+  },
+];
