@@ -57,39 +57,29 @@ export class ProjectCardComponent implements OnInit {
     configDialog.panelClass = 'custom-modalbox';
     configDialog.data = _project;
     this.dialog.open(UpdateProjectComponent, configDialog);
+    this.cancel();
   }
 
-  delete(_project: Project) {
+  delete(_project) {
     if (confirm(`Are you sure to delete ${_project.name}`)) {
-      /*for (let [i, proj] of Projects.entries()) {
-        if (proj.ProjectId == _project.ProjectId) {
-          Projects.splice(i, 1);
-        }
-      }*/
-
       //the service is called below
-      console.log('here' + _project.projectId);
-      this.projectCrud
-        .deleteProject(_project.projectId) //change so it calls update
-        .subscribe((data) => {
-          console.log('Response post', data);
-        });
+      this.projectCrud.deleteProject(_project.projectId).subscribe((data) => {
+        console.log('Response post', data);
+      });
       window.location.reload();
     }
   }
 
-  apply(_project: Project) {
-    console.log(_project.projectId);
-    var formData = new Apply();
-    formData.UserId = localStorage.getItem('userID');
-    formData.ProjectId = '3fa85f64-5717-4562-b3fc-2c963f66afa4'; //_project.ProjectId;
+  apply(_project) {
+    var formData = {
+      userId: localStorage.getItem('userID'),
+      projectId: _project.projectId,
+    };
 
     //the service is called below;
-    this.projectCrud
-      .applyForProject(formData) //change so it calls update
-      .subscribe((data) => {
-        console.log('Response post', data);
-      });
+    this.projectCrud.applyForProject(formData).subscribe((data) => {
+      console.log('Response post', data);
+    });
 
     this.cancel();
   }

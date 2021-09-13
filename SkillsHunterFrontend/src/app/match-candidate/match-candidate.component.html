@@ -14,9 +14,7 @@
   </mat-form-field>
 </div>
 
-<!-- <app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery:filterCategory" [card_candidate]="candidate"></app-candidate-card> -->
-<!-- <app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery" [card_candidate]="candidate"></app-candidate-card> -->
-
-<!-- <app-candidate-card
-  *ngFor="let candidate of (candidatesList[card_candidate] = 'candidate')"
-></app-candidate-card> -->
+<app-candidate-card
+  *ngFor="let candidate of candidatesList"
+  [card_candidate]="candidate"
+></app-candidate-card>
