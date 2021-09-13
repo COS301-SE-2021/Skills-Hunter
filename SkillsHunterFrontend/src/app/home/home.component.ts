@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Projects } from '../mock-data/mock-projects';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -9,9 +10,11 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 import { MaterialModule } from '../material/material.module';
 import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
@@ -33,21 +36,44 @@ export class HomeComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+
+    document.getElementById('tool').style.display = "block";
+    document.getElementById('side').style.display = "block";
+    document.getElementById('adminlist').style.display = "none";
+     document.getElementById('houseAdmin').style.display = "none";
+
     //read data of projects
-    this.projectCrud.getProjects()
-    .subscribe(
-      data=>{
-        this._projects=data;
-        console.log('Response post', data);
-      }
-    );
+    var functiontoCall;
+    if(localStorage.getItem('role')=='1'){
+
+      this.projectCrud.getProjectsByProjectOwnerId()
+      .subscribe(
+        data=>{
+          this._projects=data;
+          console.log('Response post', data);
+        }
+      );
+    }else{
+      document.getElementById('creatediv').style.display = "none";
+      this.projectCrud.getAllProjects()
+      .subscribe(
+        data=>{
+          this._projects=data;
+          console.log('Response post', data);
+        }
+      );
+    }
+
+   
   }
 
   create() {
+    this._router.navigate([`createproject`]);
+    /*
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '40%';
     configDialog.height = '80%';
-    this.dialog.open(CreateprojectComponent, configDialog);
+    this.dialog.open(CreateprojectComponent, configDialog);*/
   }
 }

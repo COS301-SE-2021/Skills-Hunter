@@ -44,15 +44,15 @@ namespace SkillsHunterAPI
 
 
             //AAdding Application services
-            services.AddScoped<IProjectService, ProjectService>();
-            services.AddScoped<ISkillService, SkillService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IAdminService, AdminService>();
-            services.AddScoped<UserController, UserController>();
+            services.AddTransient<IProjectService, ProjectService>();
+            services.AddTransient<ISkillService, SkillService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<UserController, UserController>();
 
 
 
-            services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),ServiceLifetime.Transient);
             //services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllers();
             services.AddSwaggerGen(c =>

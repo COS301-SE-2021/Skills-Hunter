@@ -25,15 +25,15 @@ export class ProjectCardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(localStorage.getItem('role')=='Candidate'){
-
+    if(localStorage.getItem('role')=='0'){
+      
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visDelete', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
       document.getElementById("createbtn").style.visibility = "hidden";
     }
-    else if(localStorage.getItem('role')=='Admin'){
+    else if(localStorage.getItem('role')=='3'){
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visAppl', 'none');
@@ -95,9 +95,15 @@ export class ProjectCardComponent implements OnInit {
 
      //the service is called below;
        this.projectCrud
-         .apply(formData) //change so it calls update
+         .applyForProject(formData) //change so it calls update
          .subscribe((data) => {
            console.log('Response post', data);
          });
+
+         this.cancel();
+  }
+
+  cancel(){
+    this.dialog.closeAll();
   }
 }

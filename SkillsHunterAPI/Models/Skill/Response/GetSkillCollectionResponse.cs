@@ -14,6 +14,7 @@ namespace SkillsHunterAPI.Models.Skill.Response
 
         public GetSkillCollectionResponse()
         {
+            Skills = new List<GetSkillResponse>();
         }
     }
 }
