@@ -1,13 +1,16 @@
-.demo-table {
+table {
   width: 100%;
 }
 
 .container {
-  height: 450px;
-  overflow: auto;
+  margin-top: 2.5%;
+  height: 100%;
+  width: 70%;
+  overflow: hidden;
 }
-table {
-  width: 100%;
+
+.notifications-options {
+  float: right;
 }
 
 tr.detail-row {
@@ -42,7 +45,7 @@ tr.element-row:not(.expanded-row):active {
 
 .element-symbol {
   font-weight: bold;
-  font-size: 40px;
+  font-size: 50px;
   line-height: normal;
 }
 
@@ -50,12 +53,4 @@ tr.element-row:not(.expanded-row):active {
   margin-left: 5%;
   padding-top: 2%;
   width: 100%;
-}
-
-.element-description-attribution {
-  opacity: 0.5;
-}
-
-.notifications-options {
-  float: right;
 }
