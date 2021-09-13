@@ -18,6 +18,7 @@ import { Skill } from '../classes/Skill';
 import { mockSkillCollection } from '../mock-data/mock-collection';
 import { AddSkillCategoryComponent } from './add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-collection.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-createproject',
@@ -97,7 +98,8 @@ export class CreateprojectComponent implements OnInit {
   constructor(
     private _router: Router,
     private dialog: MatDialog,
-    private projectCrud: ProjectCRUDService
+    private projectCrud: ProjectCRUDService,
+    private _snackBar: MatSnackBar
   ) {}
 
   captureBasicDetails() {
@@ -237,6 +239,20 @@ export class CreateprojectComponent implements OnInit {
 
     this.projectCrud.createProject(proj).subscribe((data) => {
       console.log('Response for Create Project: ', data);
+
+      if (data.status != undefined && data.status == 200)
+        this._snackBar.open('Project Successfully Created!', '', {
+          duration: 3000,
+        });
+      else {
+        this._snackBar.open(
+          'Project Creation Failed! Status = ' + data.status,
+          '',
+          {
+            duration: 3000,
+          }
+        );
+      }
     });
 
     this.cancel();
