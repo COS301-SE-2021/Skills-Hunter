@@ -380,7 +380,11 @@ namespace SkillsHunterAPI.Services
 
         private int getMatchingSkillWeight(Guid userSkillId, List<GetProjectSkillResponse> projectSkills)
         {
-            
+            foreach(GetProjectSkillResponse projectSkill in projectSkills)
+            {
+                if (projectSkill.SkillId == userSkillId)
+                    return projectSkill.Weight;
+;            }
             return 0;
         }
     }
