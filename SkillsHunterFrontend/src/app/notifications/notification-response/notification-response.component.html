@@ -1,6 +1,5 @@
 <mat-card class="noti-display-card">
   <mat-card-header>
-    <div mat-card-avatar class="candidate-menu-header-image"></div>
     <mat-card-title> {{ card_notification.subject }}</mat-card-title>
     <mat-card-subtitle>{{ card_notification.type }}</mat-card-subtitle>
   </mat-card-header>
@@ -24,10 +23,9 @@
 
   <mat-card-actions layout-align="end">
     <button
-      class="candidate-invite"
       (click)="captureNotificationResponse()"
       mat-raised-button
-      color="accent"
+      color="primary"
     >
       Send
     </button>

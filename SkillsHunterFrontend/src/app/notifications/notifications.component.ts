@@ -105,9 +105,8 @@ export class NotificationsComponent implements OnInit {
 
   respondToNotification(selectedNotification) {
     const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '45%';
-    configDialog.height = '400px';
+    // configDialog.backdropClass = 'backGround';
+    configDialog.width = '30%';
     configDialog.data = selectedNotification;
 
     const dialogRef = this.dialog.open(
