@@ -1,0 +1,9 @@
+<mat-card id = "new-category-card">
+    <form class="form-inline" (ngSubmit) = "onSave()">
+        <input class="form-control" type = "text" placeholder="Name" aria-label="Search"
+        mdbInput id = "skillname" name = "name" [(ngModel)] = "data.name">
+        <input class="form-control" type = "text" placeholder="Description" aria-label="Search"
+        mdbInput id = "skilldescription" name = "description" [(ngModel)]  = "data.description">
+        <button  [type] = "'submit'" id = "btnAdd" class = "btn" value = "Save" [mat-dialog-close] = "data">Save</button>
+    </form>
+</mat-card>
