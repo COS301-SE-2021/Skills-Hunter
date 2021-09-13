@@ -311,21 +311,17 @@ export class UpdateProjectComponent implements OnInit {
     console.log('Creating Project...\n');
     console.log(proj);
 
-    this.projectCrud.createProject(proj).subscribe((data) => {
-      console.log('Response for Create Project: ', data);
+    this.projectCrud.updateProject(proj).subscribe((data) => {
+      console.log('Response for Update Project: ', data);
 
       if (data.projectId != undefined)
-        this._snackBar.open('Project Successfully Created!', '', {
+        this._snackBar.open('Project Successfully Updated!', '', {
           duration: 3000,
         });
       else {
-        this._snackBar.open(
-          'Project Creation Failed! Status = ' + data.status,
-          '',
-          {
-            duration: 3000,
-          }
-        );
+        this._snackBar.open('Project Update Failed!', '', {
+          duration: 3000,
+        });
       }
     });
 
