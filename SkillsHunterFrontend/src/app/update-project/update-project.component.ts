@@ -1,3 +1,4 @@
+import { theProject } from './../home/home.component';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
@@ -248,6 +249,8 @@ export class UpdateProjectComponent implements OnInit {
         });
       }
     });
+    // theProject.pop();
+    // theProject.push(proj);
 
     this.cancel();
   }

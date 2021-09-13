@@ -10,6 +10,56 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 import { MaterialModule } from '../material/material.module';
 import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 
+export const theProject = [
+  {
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    name: 'Project X',
+    description: 'Description of the project',
+    owner: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    location: 'Johannesburg',
+    openForApplication: true,
+    dateCreated: '2021-09-13T08:08:09.677Z',
+    projectSkills: {
+      skills: [
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          name: 'C++',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
+          name: 'Python',
+          weight: 5,
+        },
+        {
+          projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa8',
+          name: 'Java',
+          weight: 5,
+        },
+      ],
+      skillCollections: [
+        // {
+        //   "projectSkillCollectionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        //   "name": "string",
+        //   "description": "string",
+        //   "weight": 0,
+        //   "skills": [
+        //     {
+        //       "projectSkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        //       "skillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        //       "name": "string",
+        //       "weight": 0
+        //     }
+        //   ]
+        // }
+      ],
+    },
+  },
+];
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,56 +70,6 @@ export class HomeComponent implements OnInit {
   title: string = 'Projects';
   filterQuery: string = '';
   _projects = []; //= Projects;
-
-  theProject = [
-    {
-      projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-      name: 'Project X',
-      description: 'Description of the project',
-      owner: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-      location: 'Johannesburg',
-      openForApplication: true,
-      dateCreated: '2021-09-13T08:08:09.677Z',
-      projectSkills: {
-        skills: [
-          {
-            projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-            skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-            name: 'C++',
-            weight: 5,
-          },
-          {
-            projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-            skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa7',
-            name: 'Python',
-            weight: 5,
-          },
-          {
-            projectSkillId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-            skillId: '3fa85f64-5717-4562-b3fc-2c963f66afa8',
-            name: 'Java',
-            weight: 5,
-          },
-        ],
-        skillCollections: [
-          // {
-          //   "projectSkillCollectionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          //   "name": "string",
-          //   "description": "string",
-          //   "weight": 0,
-          //   "skills": [
-          //     {
-          //       "projectSkillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          //       "skillId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          //       "name": "string",
-          //       "weight": 0
-          //     }
-          //   ]
-          // }
-        ],
-      },
-    },
-  ];
 
   constructor(
     private _router: Router,
@@ -93,16 +93,15 @@ export class HomeComponent implements OnInit {
     //read data of projects
     var functiontoCall;
     if (localStorage.getItem('role') == '1') {
-      this._projects = this.theProject;
+      this._projects = theProject;
       // this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
       //   // this._projects = data;
       //   this._projects = this.theProject;
       //   console.log('Response post', data);
       // });
-      console.log(this.theProject[0]);
     } else {
       document.getElementById('creatediv').style.display = 'none';
-      this._projects = this.theProject;
+      this._projects = theProject;
 
       // this.projectCrud.getAllProjects().subscribe((data) => {
       //   console.log(data);
