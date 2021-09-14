@@ -25,6 +25,15 @@ import { SliderComponent } from './profile/slider/slider.component';
 
 
 const routes: Routes = [
+  { 
+    path: '', 
+    redirectTo: '/user-pages/login', 
+    pathMatch: 'full' 
+  },
+  { 
+    path: 'user-pages', 
+    loadChildren: () => import('./user-pages/user-pages.module').then(m => m.UserPagesModule) 
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -76,10 +85,6 @@ const routes: Routes = [
   {
     path: 'sliderpopup',
     component: SliderComponent,
-  },
-  {
-    path: '',
-    component:LoginComponent,
   },
   {
     path: 'dashboard', 

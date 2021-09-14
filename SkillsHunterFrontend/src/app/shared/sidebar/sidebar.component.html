@@ -1,0 +1,53 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item" [ngClass]="{ 'active': charts.isActive }">
+      <a class="nav-link" routerLink="charts/chartjs" routerLinkActive #charts="routerLinkActive">
+        <span class="menu-title">Statistics</span>
+        <i class="mdi mdi-chart-bar menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': forms.isActive }">
+      <a class="nav-link" routerLink="forms/basic-elements" routerLinkActive #forms="routerLinkActive">
+        <span class="menu-title">Users</span>
+        <i class="mdi mdi-account-multiple menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': tables.isActive }">
+      <a class="nav-link" routerLink="tables/basic-table" routerLinkActive #tables="routerLinkActive">
+        <span class="menu-title">Projects</span>
+        <i class="mdi mdi-file-multiple menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': icons.isActive }">
+      <a class="nav-link" routerLink="icons/mdi" routerLinkActive #icons="routerLinkActive">
+        <span class="menu-title">Skills</span>
+        <i class="mdi mdi-star menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': icons.isActive }">
+      <a class="nav-link" routerLink="icons/mdi" routerLinkActive #icons="routerLinkActive">
+        <span class="menu-title">Categories</span>
+        <i class="mdi mdi-group menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{ 'active': icons.isActive }">
+      <a class="nav-link" routerLink="icons/mdi" routerLinkActive #icons="routerLinkActive">
+        <span class="menu-title">Skill Collections</span>
+        <i class="mdi mdi-layers menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active' : accordions.isActive || buttons.isActive }">
+      <a class="nav-link" (click)="uiBasicCollapsed = !uiBasicCollapsed" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
+        <span class="menu-title">Settings</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-screwdriver menu-icon"></i>
+      </a>
+      <div class="collapse" id="ui-basic" [ngbCollapse]="!uiBasicCollapsed">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/accordions" routerLinkActive="active" #accordions="routerLinkActive">Account</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/buttons" routerLinkActive="active" #buttons="routerLinkActive">Appearance</a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</nav>

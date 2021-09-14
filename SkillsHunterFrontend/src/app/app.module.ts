@@ -1,10 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {
-  BrowserAnimationsModule,
-  NoopAnimationsModule,
-} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule,NoopAnimationsModule,} from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
@@ -13,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatchCandidateComponent } from './match-candidate/match-candidate.component';
 import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
-// import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidate.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectCRUDService } from './services/project-crud.service';
 import { RegisterComponent } from './register/register.component';
@@ -27,7 +24,6 @@ import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatCardModule } from '@angular/material/card';
 import { AdminBoardComponent } from './admin-board/admin-board.component';
 import { BoardContentComponent } from './board-content/board-content.component';
@@ -68,7 +64,11 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ShowProjectCollectionComponent } from './project-control/show-project-collection/show-project-collection.component';
 import { NewSkillComponent } from './skill-control/new-skill/new-skill.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
-import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { ContentAnimateDirective } from './shared/directives/content-animate.directive';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 @NgModule({
@@ -81,7 +81,6 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
     RegisterComponent,
     MatchCandidateComponent,
     CandidateCardComponent,
-    // SearchAndFilterCandidatePipe,
     UpdateProjectComponent,
     ProjectCardComponent,
     AdminPortalComponent,
@@ -89,7 +88,6 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
     AddSkillsComponent,
     AddSkillsCollectionComponent,
     ProfileComponent,
-    SidebarComponent,
     AdminBoardComponent,
     BoardContentComponent,
     ProjectControlComponent,
@@ -122,7 +120,11 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
     AddSkillCollectionComponent,
     ShowProjectCollectionComponent,
     NewSkillComponent,
-    NotificationMenuComponent,
+    SpinnerComponent,
+    ContentAnimateDirective,
+    NavbarComponent,
+    SidebarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -147,7 +149,8 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
     MatCardModule,
     MatDialogModule,
     MatChipsModule,
-    SelectDropDownModule
+    SelectDropDownModule,
+    NgbModule  
   ],
   providers: [],
   bootstrap: [AppComponent],
