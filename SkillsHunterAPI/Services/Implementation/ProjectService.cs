@@ -387,5 +387,12 @@ namespace SkillsHunterAPI.Services
 ;            }
             return 0;
         }
+
+        private double getSkillMatchingPercentage(int userSkillWeight, int projectSkillWeight)
+        {
+            double percentage = 0.0;
+
+            return percentage;
+        }
     }
 }
