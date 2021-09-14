@@ -69,7 +69,7 @@ import { ContentAnimateDirective } from './shared/directives/content-animate.dir
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { FooterComponent } from './shared/footer/footer.component';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -140,7 +140,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatInputModule, 
     MatButtonModule,
     MatSelectModule,
     MatProgressBarModule,
@@ -150,7 +150,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     MatDialogModule,
     MatChipsModule,
     SelectDropDownModule,
-    NgbModule  
+    NgbModule,
+    MatSnackBarModule  
   ],
   providers: [],
   bootstrap: [AppComponent],
