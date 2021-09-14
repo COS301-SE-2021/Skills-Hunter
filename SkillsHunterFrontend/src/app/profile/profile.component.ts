@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ProfileInfoService } from '../services/profile-info.service';
 import { MatDialogRef,MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddSkillComponent } from './add-skill/add-skill.component';
+import {WorkExpComponent} from './work-exp/work-exp.component';
 import { ProfileImgComponent } from './profile-img/profile-img.component';
 import { ProjectCRUDService } from './../services/project-crud.service';
 import { JsonpClientBackend } from '@angular/common/http';
+import {MatPaginator} from '@angular/material/paginator';
+import { MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-profile',
@@ -13,13 +16,13 @@ import { JsonpClientBackend } from '@angular/common/http';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
+@ViewChild(MatPaginator, { static: false }) paginator:MatPaginator;
   imageUrl: string = "/assets/images/profile.png";
   fileToUpload: File = null;
 
-  constructor(private service: ProjectCRUDService,private profileService: ProfileInfoService,private dialog: MatDialog) { }
-
-  firstFormGroup: FormGroup;
+  constructor(private service: ProjectCRUDService,private profileService: ProfileInfoService,private dialog: MatDialog,private _formBuilder: FormBuilder) { }
+  isLinear = true;
+ 
   secondFormGroup: FormGroup;
 
    noElements=0;
@@ -30,9 +33,14 @@ export class ProfileComponent implements OnInit {
 
   returned;
   array2=[];
-
+  dataSource1: MatTableDataSource<any>;//= new MatTableDataSource([]);
   ngOnInit(): void {
-
+ 
+   
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['']
+    });
+  ///////////
     document.getElementById('tool').style.display = "block";
     document.getElementById('side').style.display = "block";
     document.getElementById('adminlist').style.display = "none";
@@ -95,6 +103,19 @@ export class ProfileComponent implements OnInit {
     phone: new FormControl('', [Validators.required,Validators.pattern('[- +()0-9]+')]),
     password: new FormControl('', [Validators.required]),
     open: new FormControl('')
+  });
+
+  firstFormGroup=new FormGroup({
+    name: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z ]*$'),
+    ]),
+    surname: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z ]*$'),
+    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required,Validators.pattern('[- +()0-9]+')])
   });
 
   viewImg(){
@@ -233,5 +254,59 @@ export class ProfileComponent implements OnInit {
      );
     
    }
+ 
+   addExperience(){
+     
+    const configDialog = new MatDialogConfig();
+    const dialogRef = this.dialog.open(WorkExpComponent,
+      {   width: '40%',
+         height:'80%'
+      });
+   // console.log("back");
+    dialogRef.afterClosed().subscribe(returnedData => {
+   
+      if(returnedData !=undefined)
+      {/*
+        console.log("profile: "+returnedData.data.selectedSkill);
+        console.log("rate: "+returnedData.data.rateValue);
+        //first check if skill is already in the list
+        var key=false;
+        for(let j=0;j<this.ELEMENT_DATA.length;j++){
+
+          if(this.ELEMENT_DATA[j].name=returnedData.data.selectedSkill)
+          {
+            key=true;
+          }
+        }
+        if(!key){
+
+        
+        this.noElements++;
+        console.log("element"+JSON.stringify(this.ELEMENT_DATA[0]));
+        var arr=[];
+        for(let i=0;i<this.ELEMENT_DATA.length;i++)
+        {
+              arr.push(this.ELEMENT_DATA[i]);
+            }
+
+          arr.push({
+                No:this.noElements,
+                name: returnedData.data.selectedSkill,
+                rating: returnedData.data.rateValue
+                });
+
+        this.ELEMENT_DATA=arr;
+        //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
+        this.dataSource =this.ELEMENT_DATA;
+      }*/
+      //return the skill and the value to profile then send request to backend
+      }
+      else{ 
+        console.log("returned empty:");
+      }//dialog closed
+    });
+   }
+ 
+ 
  
 }
