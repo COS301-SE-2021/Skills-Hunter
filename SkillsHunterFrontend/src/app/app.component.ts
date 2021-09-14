@@ -1,5 +1,4 @@
 import {Component, OnInit } from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
 import { Router, NavigationEnd, NavigationStart, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
 
 @Component({
@@ -8,19 +7,20 @@ import { Router, NavigationEnd, NavigationStart, RouteConfigLoadStart, RouteConf
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-    title = 'SkillsHunterFrontend';
+  title = 'SkillsHunterFrontend';
   showSidebar: boolean = true;
   showNavbar: boolean = true;
   showFooter: boolean = true;
-  isLoading: boolean = false;
+  isLoading: boolean;
 
 
   constructor(private router: Router) {
     
     // Removing Sidebar, Navbar, Footer for Documentation, Error and Auth pages
     router.events.forEach((event) => { 
+      console.log("url('" + event['url'] + "')");
       if(event instanceof NavigationStart) {
-        if((event['url'] == '/user-pages/login') || (event['url'] == '/user-pages/register') || (event['url'] == '/error-pages/404') || (event['url'] == '/error-pages/500') ) {
+        if((event['url'] == '/') || (event['url'] == '/login') ||(event['url'] == '/user-pages/login') || (event['url'] == '/register') || (event['url'] == '/user-pages/register') || (event['url'] == '/error-pages/404') || (event['url'] == '/error-pages/500') ) {
           this.showSidebar = false;
           this.showNavbar = false;
           this.showFooter = false;
@@ -63,5 +63,5 @@ export class AppComponent implements OnInit{
       window.scrollTo(0, 0);
     });
   }
-  }
+}
   

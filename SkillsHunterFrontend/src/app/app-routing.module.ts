@@ -30,17 +30,19 @@ const routes: Routes = [
     redirectTo: '/user-pages/login', 
     pathMatch: 'full' 
   },
+  {
+    path: 'login', 
+    redirectTo: '/user-pages/login', 
+    pathMatch: 'full' 
+  },
+  {
+    path: 'register', 
+    redirectTo: '/user-pages/register', 
+    pathMatch: 'full' 
+  },
   { 
     path: 'user-pages', 
     loadChildren: () => import('./user-pages/user-pages.module').then(m => m.UserPagesModule) 
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
   },
   {
     path: 'home',
