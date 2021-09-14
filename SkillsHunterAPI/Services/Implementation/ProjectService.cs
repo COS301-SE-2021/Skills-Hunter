@@ -373,6 +373,9 @@ namespace SkillsHunterAPI.Services
         public async Task<List<MatchCandidateResponse>> MatchCandidates(Guid projectId)
         {
             List<MatchCandidateResponse> response = new List<MatchCandidateResponse>();
+            int numProjectSkills = 0;   //To store the number of skills in the project
+            //int numUserSkills = 0;
+            double matchPercentage = 0; //To store the final match percentage
 
             //Getting the project skills
             List<GetProjectSkillResponse> projectSkills = (List<GetProjectSkillResponse>)await GetProjectSkillsByProjectId(projectId);
@@ -380,11 +383,20 @@ namespace SkillsHunterAPI.Services
             //getting the skills from project skill collections
             List<GetProjectSkillCollectionResponse> projectSkillCollections = (List<GetProjectSkillCollectionResponse>)await GetProjectSkillCollectionsByProjectId(projectId);
 
+            //Getting the number of skills in the project
+            numProjectSkills += projectSkills.Count;
+
+            foreach(GetProjectSkillCollectionResponse projectSkillCollection in projectSkillCollections)
+            {
+                numProjectSkills += projectSkillCollection.Skills.Count;
+            }
+
             //getting all users
             List<User> users = await _context.Users.ToListAsync();
 
             foreach(User user in users)
             {
+                matchPercentage = 0;
                 List<UserSkill> userSkills = await _context.UserSkills.Where(u => u.UserId == user.UserId).ToListAsync();
 
                 if(userSkills != null)
@@ -392,6 +404,8 @@ namespace SkillsHunterAPI.Services
                     MatchCandidateResponse matchCandidate = new MatchCandidateResponse();
                     matchCandidate.Name = user.Name;
                     matchCandidate.UserId = user.UserId;
+                    matchCandidate.Email = user.Email;
+                    matchCandidate.Surname = user.Surname;
 
                     //Matching the user skills
                     if(projectSkills != null)
@@ -404,14 +418,20 @@ namespace SkillsHunterAPI.Services
                                 {
                                     double percentage = getSkillMatchingPercentage(userSkill.Weight, projectSkill.Weight);
 
-                                    MatchingSkill matchingSkill = new MatchingSkill();
-                                    matchingSkill.SkillId = projectSkill.SkillId;
-                                    matchingSkill.Name = projectSkill.Name;
-                                    matchingSkill.Weight = userSkill.Weight;
-                                    matchingSkill.Percentage = percentage;
+                                    if(percentage > 0.0)
+                                    {
+                                        MatchingSkill matchingSkill = new MatchingSkill();
+                                        matchingSkill.SkillId = projectSkill.SkillId;
+                                        matchingSkill.Name = projectSkill.Name;
+                                        matchingSkill.Weight = userSkill.Weight;
+                                        matchingSkill.Percentage = percentage;
 
-                                    matchCandidate.MatchingSkills.Add(matchingSkill);
+                                        matchCandidate.MatchingSkills.Add(matchingSkill);
+                                        matchPercentage += percentage;
+                                    }
                                 }
+
+                               // numProjectSkills++;
                             }
                         }
                     }
@@ -427,26 +447,70 @@ namespace SkillsHunterAPI.Services
                                 {
                                     if (skillFromCollection.SkillId == userSkill.SkillId && skillFromCollection.Weight > 0 && userSkill.Weight > 0)
                                     {
-                                        double percentage = getSkillMatchingPercentage(userSkill.Weight, skillFromCollection.Weight);
+                                        double percentage = getSkillMatchingPercentage(userSkill.Weight, projectSkillCollection.Weight);
 
-                                        MatchingSkill matchingSkill = new MatchingSkill();
-                                        matchingSkill.SkillId = skillFromCollection.SkillId;
-                                        matchingSkill.Name = skillFromCollection.Name;
-                                        matchingSkill.Weight = userSkill.Weight;
-                                        matchingSkill.Percentage = percentage;
+                                        if(percentage > 0.0)
+                                        {
+                                            MatchingSkill matchingSkill = new MatchingSkill();
+                                            matchingSkill.SkillId = skillFromCollection.SkillId;
+                                            matchingSkill.Name = skillFromCollection.Name;
+                                            matchingSkill.Weight = userSkill.Weight;
+                                            matchingSkill.Percentage = percentage;
 
-                                        matchCandidate.MatchingSkills.Add(matchingSkill);
+                                            matchPercentage += percentage;
+
+                                            matchCandidate.MatchingSkills.Add(matchingSkill);
+                                        }
                                     }
+
+                                    //numProjectSkills++;
                                 }
                             }
+                        }
+                    }
+
+                    if(matchPercentage > 0.0 && matchCandidate.MatchingSkills.Count > 0)
+                    {
+                        //matchCandidate.numProjectSkills = numProjectSkills;
+                        matchCandidate.Percentage = (1.0 *matchPercentage) / (1.0*(numProjectSkills));
+
+                        if (matchCandidate.Percentage > 0.0)
+                        {
+                            response.Add(matchCandidate);
                         }
                     }
                 }
             }
 
+            return sortCandidates(response);
 
-            return response;
+        }
 
+        private List<MatchCandidateResponse> sortCandidates(List<MatchCandidateResponse> candidates)
+        {
+            //List<MatchCandidateResponse> sortedCandidates = new List<MatchCandidateResponse>();
+
+            bool swapped = true;
+
+            while(swapped)
+            {
+                swapped = false;
+                for(int i = 0; i < candidates.Count - 1; i++)
+                {
+                    if(candidates[i].Percentage < candidates[i + 1].Percentage)
+                    {
+                        MatchCandidateResponse first = candidates[i + 1];
+                        MatchCandidateResponse second = candidates[i];
+
+                        candidates[i] = first;
+                        candidates[i + 1] = second;
+
+                        swapped = true;
+                    }
+                }
+            }
+
+            return candidates;
         }
 
         private int getMatchingSkillWeight(Guid userSkillId, List<GetProjectSkillResponse> projectSkills)
@@ -461,13 +525,13 @@ namespace SkillsHunterAPI.Services
 
         private double getSkillMatchingPercentage(int userSkillWeight, int projectSkillWeight)
         {
-            double percentage = 0.0;
-
-            percentage = userSkillWeight / projectSkillWeight;
-            percentage *= 100;
+            double percentage =  (1.0 *userSkillWeight) / (1.0* projectSkillWeight);
+            percentage *= 100.0;
 
             if (percentage > 100.0)
-                percentage = 100.0;
+            {
+                return 100.0;
+            }    
 
             return percentage;
         }
