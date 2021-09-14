@@ -392,6 +392,12 @@ namespace SkillsHunterAPI.Services
         {
             double percentage = 0.0;
 
+            percentage = userSkillWeight / projectSkillWeight;
+            percentage *= 100;
+
+            if (percentage > 100.0)
+                percentage = 100.0;
+
             return percentage;
         }
     }
