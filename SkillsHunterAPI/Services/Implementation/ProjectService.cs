@@ -157,30 +157,33 @@ namespace SkillsHunterAPI.Services
 
                 SkillCollection skillCollection = await _context.SkillCollections.Where(sc => sc.SkillCollectionId == projectSkillCollection.SkillCollectionId).FirstOrDefaultAsync();
 
-                GetProjectSkillCollectionResponse skillCollectionToAdd = new GetProjectSkillCollectionResponse();
-                skillCollectionToAdd.ProjectSkillCollectionId = projectSkillCollection.ProjectSkillCollectionId;
-                skillCollectionToAdd.Name = skillCollection.Name;
-                skillCollectionToAdd.Weight = projectSkillCollection.Weight;
-                skillCollectionToAdd.Description = skillCollection.Description;
-
-                //Retrieving the skills from the maps
-                foreach (SkillCollectionMap skillCollectionMap in skillCollectionMaps)
+                if (skillCollection != null)
                 {
-                    Skill skill = await _context.Skills.Where(s => s.SkillId == skillCollectionMap.SkillId).FirstOrDefaultAsync();
+                    GetProjectSkillCollectionResponse skillCollectionToAdd = new GetProjectSkillCollectionResponse();
+                    skillCollectionToAdd.ProjectSkillCollectionId = projectSkillCollection.ProjectSkillCollectionId;
+                    skillCollectionToAdd.Name = skillCollection.Name;
+                    skillCollectionToAdd.Weight = projectSkillCollection.Weight;
+                    skillCollectionToAdd.Description = skillCollection.Description;
 
-                    if(skill != null)
+                    //Retrieving the skills from the maps
+                    foreach (SkillCollectionMap skillCollectionMap in skillCollectionMaps)
                     {
-                        //Adding the skill to the response object
-                        GetProjectSkillResponse skillToAdd = new GetProjectSkillResponse();
-                        skillToAdd.SkillId = skill.SkillId;
-                        skillToAdd.Name = skill.Name;
-                        skillToAdd.Weight = projectSkillCollection.Weight;
+                        Skill skill = await _context.Skills.Where(s => s.SkillId == skillCollectionMap.SkillId).FirstOrDefaultAsync();
 
-                        skillCollectionToAdd.Skills.Add(skillToAdd);
+                        if (skill != null)
+                        {
+                            //Adding the skill to the response object
+                            GetProjectSkillResponse skillToAdd = new GetProjectSkillResponse();
+                            skillToAdd.SkillId = skill.SkillId;
+                            skillToAdd.Name = skill.Name;
+                            skillToAdd.Weight = projectSkillCollection.Weight;
+
+                            skillCollectionToAdd.Skills.Add(skillToAdd);
+                        }
                     }
-                }
 
-                response.Add(skillCollectionToAdd);
+                    response.Add(skillCollectionToAdd);
+                }
             }
 
             return response;
