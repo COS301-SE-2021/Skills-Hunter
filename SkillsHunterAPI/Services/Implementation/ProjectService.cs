@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Skill.Entity;
+using SkillsHunterAPI.Models.Project.Entity;
 
 namespace SkillsHunterAPI.Services
 {
@@ -371,10 +372,54 @@ namespace SkillsHunterAPI.Services
         //Matching algorithm
         public async Task<List<MatchCandidateResponse>> MatchCandidates(Guid projectId)
         {
-            List<MatchCandidateResponse> matchCandidateResponse = new List<MatchCandidateResponse>();
+            List<MatchCandidateResponse> response = new List<MatchCandidateResponse>();
+
+            //Getting the project skills
+            List<GetProjectSkillResponse> projectSkills = (List<GetProjectSkillResponse>)await GetProjectSkillsByProjectId(projectId);
+
+            //getting the skills from project skill collections
+            List<GetProjectSkillCollectionResponse> projectSkillCollections = (List<GetProjectSkillCollectionResponse>)await GetProjectSkillCollectionsByProjectId(projectId);
+
+            //getting all users
+            List<User> users = await _context.Users.ToListAsync();
+
+            foreach(User user in users)
+            {
+                List<UserSkill> userSkills = await _context.UserSkills.Where(u => u.UserId == user.UserId).ToListAsync();
+
+                if(userSkills != null)
+                {
+                    MatchCandidateResponse matchCandidate = new MatchCandidateResponse();
+                    matchCandidate.Name = user.Name;
+                    matchCandidate.UserId = user.UserId;
+
+                    //Matching the user skills
+                    if(projectSkills != null)
+                    {
+                        foreach (UserSkill userSkill in userSkills)
+                        {
+                            foreach(GetProjectSkillResponse projectSkill in projectSkills)
+                            {
+                                if(projectSkill.SkillId == userSkill.SkillId && projectSkill.Weight>0 && userSkill.Weight > 0)
+                                {
+                                    double percentage = getSkillMatchingPercentage(userSkill.Weight, projectSkill.Weight);
+
+                                    MatchingSkill matchingSkill = new MatchingSkill();
+                                    matchingSkill.SkillId = projectSkill.SkillId;
+                                    matchingSkill.Name = projectSkill.Name;
+                                    matchingSkill.Weight = userSkill.Weight;
+                                    matchingSkill.Percentage = percentage;
+
+                                    matchCandidate.MatchingSkills.Add(matchingSkill);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
 
-            return matchCandidateResponse;
+            return response;
 
         }
 
