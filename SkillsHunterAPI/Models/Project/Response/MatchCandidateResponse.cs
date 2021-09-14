@@ -8,6 +8,8 @@ namespace SkillsHunterAPI.Models.Project.Response
     {
         public Guid UserId { get; set; }
         public String Name { get; set; }
+        public String Surname { get; set; }
+        public String Email { get; set; }
         public double Percentage { get; set; }
         public List<MatchingSkill> MatchingSkills { get; set; }
 
