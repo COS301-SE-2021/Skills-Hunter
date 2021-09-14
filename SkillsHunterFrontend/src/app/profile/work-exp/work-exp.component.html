@@ -1,0 +1,64 @@
+<div>
+    <form [formGroup]="workDetailsForm" class="content" id="details" >
+        <mat-form-field appearance="outline" class="field">
+            <mat-label>Organisation name</mat-label>
+            <input matInput placeholder="University of Pretoria" formControlName="organisation" required>
+            
+            <mat-error
+                *ngIf="workDetailsForm.controls['organisation'].hasError('pattern') &&
+                !workDetailsForm.controls['organisation'].hasError('required')">
+                please enter a organisation name
+            </mat-error>
+            <mat-error *ngIf="workDetailsForm.controls['organisation'].hasError('required')">
+                Organisation is <strong>required</strong>
+            </mat-error>
+        </mat-form-field><br/>
+        <mat-form-field appearance="outline" class="field">
+            <mat-label>Role</mat-label>
+            <input matInput placeholder="example@mail.com" formControlName="role" required>
+            
+            <mat-error
+                *ngIf="workDetailsForm.controls['role'].hasError('pattern') &&
+                !workDetailsForm.controls['role'].hasError('required')">
+                please enter a role name
+            </mat-error>
+            <mat-error *ngIf="workDetailsForm.controls['role'].hasError('required')">
+                role is <strong>required</strong>
+            </mat-error>
+        </mat-form-field><br/>
+        <mat-form-field appearance="outline" class="field">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="description of position or tasks of position" formControlName="description" required>
+            
+            <mat-error
+                *ngIf="workDetailsForm.controls['description'].hasError('pattern') &&
+                !workDetailsForm.controls['description'].hasError('required')">
+                please write a description
+            </mat-error>
+            <mat-error *ngIf="workDetailsForm.controls['description'].hasError('required')">
+                description is <strong>required</strong>
+            </mat-error>
+        </mat-form-field><br/>
+
+        <mat-form-field appearance="outline" class="field">
+            <mat-label>Duration</mat-label>
+            <input matInput placeholder="description of position or tasks of position" formControlName="duration" required>
+            
+            <mat-error
+                *ngIf="workDetailsForm.controls['duration'].hasError('pattern') &&
+                !workDetailsForm.controls['duration'].hasError('required')">
+                please enter a duration
+            </mat-error>
+            <mat-error *ngIf="workDetailsForm.controls['duration'].hasError('required')">
+                duration is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" >
+            <mat-label>duration</mat-label>
+            <mat-select formControlName="time" multiple>
+              <mat-option style="color:black" *ngFor="let list of dropList" [value]="list" >{{list}}</mat-option>
+            </mat-select>
+          </mat-form-field><br/>
+    </form>
+    
+</div>
