@@ -415,6 +415,32 @@ namespace SkillsHunterAPI.Services
                             }
                         }
                     }
+
+                    //Matching the skills from the project skill collections
+                    if(projectSkillCollections != null)
+                    {
+                        foreach (UserSkill userSkill in userSkills)
+                        {
+                            foreach (GetProjectSkillCollectionResponse projectSkillCollection in projectSkillCollections)
+                            {
+                                foreach (GetProjectSkillResponse skillFromCollection in projectSkillCollection.Skills)
+                                {
+                                    if (skillFromCollection.SkillId == userSkill.SkillId && skillFromCollection.Weight > 0 && userSkill.Weight > 0)
+                                    {
+                                        double percentage = getSkillMatchingPercentage(userSkill.Weight, skillFromCollection.Weight);
+
+                                        MatchingSkill matchingSkill = new MatchingSkill();
+                                        matchingSkill.SkillId = skillFromCollection.SkillId;
+                                        matchingSkill.Name = skillFromCollection.Name;
+                                        matchingSkill.Weight = userSkill.Weight;
+                                        matchingSkill.Percentage = percentage;
+
+                                        matchCandidate.MatchingSkills.Add(matchingSkill);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
