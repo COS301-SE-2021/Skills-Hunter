@@ -556,8 +556,8 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/MatchCandidates/{projectId}")]
-        public async Task<IEnumerable<MatchCandidateResponse>> MatchCandidates(Guid projectId)
+        [Route("api/[controller]/MatchCandidates/")]
+        public async Task<IEnumerable<MatchCandidateResponse>> MatchCandidates([FromQuery]Guid projectId)
         {
             List<MatchCandidateResponse> response = await _projectService.MatchCandidates(projectId);
 
