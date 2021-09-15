@@ -1,5 +1,5 @@
 <div id="workf">
-    <form [formGroup]="workDetailsForm" class="content" id="details" >
+    <form [formGroup]="workDetailsForm" class="content" id="details" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline" class="field">
             <mat-label>Organisation name</mat-label>
             <input matInput placeholder="University of Pretoria" formControlName="organisation" required>
@@ -59,7 +59,7 @@
               <mat-option style="color:black" *ngFor="let list of dropList" [value]="list" >{{list}}</mat-option>
             </mat-select>
         </mat-form-field><br/>
-        <button id="applyBtn" class="btn btn-primary btn-lg">
+        <button id="applyBtn" class="btn btn-primary btn-lg" type="submit">
             Submit
         </button><br/>
     </form>
