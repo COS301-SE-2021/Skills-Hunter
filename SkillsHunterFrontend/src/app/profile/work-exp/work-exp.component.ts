@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { MatDialogRef,MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialogRef,MatDialog, MatDialogConfig,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-work-exp',
@@ -9,9 +10,21 @@ import { MatDialogRef,MatDialog, MatDialogConfig } from '@angular/material/dialo
 })
 export class WorkExpComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<WorkExpComponent>,private dialog: MatDialog) { }
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data,public dialogRef: MatDialogRef<WorkExpComponent>,private dialog: MatDialog) { }
+empty=false;//show if this is new data being created or existing being edited. false=new data
   ngOnInit(): void {
+
+    var d=this.data;
+    console.log("empty");
+    if(d!=""){
+
+      this.workDetailsForm.controls['organisation'].setValue=d.organisation;
+      this.workDetailsForm.controls['role'].setValue=d.role;
+      this.workDetailsForm.controls['description'].setValue=d.description;
+      this.workDetailsForm.controls['duration'].setValue=d.duration;
+      this.workDetailsForm.controls['time'].setValue=d.time;
+    }
+
   }
 
 dropList: string[] = ['Day(s)', 'Month(s)','Year(s)'];
