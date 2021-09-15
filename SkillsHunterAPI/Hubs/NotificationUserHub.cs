@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using SkillsHunterAPI.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,15 @@ namespace SkillsHunterAPI.Hubs
         {
             _userConnectionManager = userConnectionManager;
         }
+
+        public string GetConnectionId()
+        {
+            var httpContext = this.Context.GetHttpContext();
+            var userId = httpContext.Request.Query["userId"];
+            _userConnectionManager.KeepUserConnection(userId, Context.ConnectionId);
+
+            return Context.ConnectionId;
+        }
+
     }
 }
