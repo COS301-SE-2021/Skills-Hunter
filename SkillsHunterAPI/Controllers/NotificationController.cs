@@ -19,12 +19,23 @@ namespace SkillsHunterAPI.Controllers
 
         private readonly IUserConnectionManager _userConnectionManager;
 
-        public NotificationController(IHubContext<NotificationHub> notificationHubContext, IHubContext<NotificationUserHub> notificationUserHubContext, IUserConnectionManager userConnectionManager)
+        private UserController _userController;
+
+        public NotificationController(IHubContext<NotificationHub> notificationHubContext, IHubContext<NotificationUserHub> notificationUserHubContext, IUserConnectionManager userConnectionManager, UserController userController)
         {
             _notificationHubContext = notificationHubContext;
             _notificationUserHubContext = notificationUserHubContext;
             _userConnectionManager = userConnectionManager;
+            _userController = userController;
         }
+
+
+
+
+
+
+
+
 
 
         public IActionResult Index()
@@ -36,19 +47,27 @@ namespace SkillsHunterAPI.Controllers
         [HttpPost]
         public async Task<ActionResult> SendToSpecificUser(Message model)
         {
-            var currentLoggedInUser = ' ';
 
-            /*var connections = _userConnectionManager.GetUserConnections(model.);
+
+            //This initialize the user controller object to be accessible this side.
+            InitControllers();
+
+
+            //This gets identity of the user currently authenticated.
+            var LoggedInOwner = _userController.GetCurrentUserId().ToString();
+
+
+            var connections = _userConnectionManager.GetUserConnections(LoggedInOwner);
             if (connections != null && connections.Count > 0)
             {
                 foreach (var connectionId in connections)
                 {
-                    await _notificationUserHubContext.Clients.Client(connectionId).SendAsync("sendToUser", model.articleHeading, model.articleContent);
+                    await _notificationUserHubContext.Clients.Client(connectionId).SendAsync("sendToUser", model.MessageContent, model.IsRead);
                 }
             }
-            return View();*/
+            return View();
 
-            return null;
+       
         }
     }
 

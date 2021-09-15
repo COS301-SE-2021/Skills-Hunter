@@ -7,10 +7,10 @@ namespace SkillsHunterAPI.Models.Notification
 {
     public class Message
     {
-        public string message { get; set; }
+        public string MessageContent { get; set; }
 
-        public bool isRead { get; set; }
+        public bool IsRead { get; set; }
 
-        public DateTime created { get; set; } = DateTime.Now;
+        public DateTime Created { get; set; } = DateTime.Now;
     }
 }
