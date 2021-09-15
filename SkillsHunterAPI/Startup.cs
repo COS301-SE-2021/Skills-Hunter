@@ -26,6 +26,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using SkillsHunterAPI.Hubs;
 
 namespace SkillsHunterAPI
 {
@@ -41,6 +42,9 @@ namespace SkillsHunterAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //For SignalR
+            services.AddSignalR();
 
 
             //AAdding Application services
@@ -137,6 +141,10 @@ namespace SkillsHunterAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                //For SignalR notifications
+                endpoints.MapHub<NotificationHub>("/NotificationHub");
+                endpoints.MapHub<NotificationUserHub>("/NotificationUserHub");
             });
         }
     }
