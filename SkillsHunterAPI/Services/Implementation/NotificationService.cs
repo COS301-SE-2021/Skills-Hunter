@@ -1,4 +1,6 @@
-﻿using SkillsHunterAPI.Models.Notification;
+﻿using Microsoft.EntityFrameworkCore;
+using SkillsHunterAPI.Data;
+using SkillsHunterAPI.Models.Notification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +10,27 @@ namespace SkillsHunterAPI.Services.Implementation
 {
     public class NotificationService
     {
-        Task<IEnumerable<Notification>> GetNotificationsByOwnerId()
+
+        private readonly ApplicationDbContext _context;
+
+        public NotificationService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+
+        public async Task<IEnumerable<Notification>> GetNotificationsByRecepientId(Guid id)
+        {
+            
+            
+        }
+
+        public async Task<IEnumerable<Notification>> GetUnReadNotificationsByRecepientId(Guid id)
         {
             return null;
         }
 
-        Task<IEnumerable<Notification>> GetUnReadNotificationsByOwnerId()
-        {
-            return null;
-        }
-
-        Task UpdatingReadStatus(Guid notificationId)
+        public async Task UpdatingReadStatus(Guid notificationId)
         {
             return null;
         }

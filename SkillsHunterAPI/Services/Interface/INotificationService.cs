@@ -10,9 +10,9 @@ namespace SkillsHunterAPI.Services.Interface
     {
 
 
-        Task<IEnumerable<Notification>> GetNotificationsByOwnerId();
+        Task<IEnumerable<Notification>> GetNotificationsByRecepientId(Guid id);
 
-        Task<IEnumerable<Notification>> GetUnReadNotificationsByOwnerId();
+        Task<IEnumerable<Notification>> GetUnReadNotificationsByRecepientId(Guid id);
 
         Task UpdatingReadStatus(Guid notificationId);
 

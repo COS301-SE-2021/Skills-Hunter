@@ -21,12 +21,18 @@ namespace SkillsHunterAPI.Controllers
 
         private UserController _userController;
 
-        public NotificationController(IHubContext<NotificationHub> notificationHubContext, IHubContext<NotificationUserHub> notificationUserHubContext, IUserConnectionManager userConnectionManager, UserController userController)
+        private readonly INotificationService _notificationService;
+
+
+        public NotificationController(IHubContext<NotificationHub> notificationHubContext, IHubContext<NotificationUserHub> notificationUserHubContext, IUserConnectionManager userConnectionManager, UserController userController, INotificationService notificationService)
         {
             _notificationHubContext = notificationHubContext;
             _notificationUserHubContext = notificationUserHubContext;
             _userConnectionManager = userConnectionManager;
             _userController = userController;
+            notificationService = _notificationService;
+
+            InitControllers();
         }
 
 
@@ -78,10 +84,39 @@ namespace SkillsHunterAPI.Controllers
 
        
         }
+
+
+
+
+
+        
+        //This is for the Notifications entity 
+        [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/getNotifications")]
+        public async Task<IEnumerable<Notification>> GetNotificationsByRecepientId()
+        {
+
+
+                var LoggedInOwner = _userController.GetCurrentUserId();
+
+                return await _notificationService.GetNotificationsByRecepientId(LoggedInOwner);
+        }
+
+
+        public async Task<IEnumerable<Notification>> GetUnReadNotificationsByRecepientId()
+        {
+            return null;
+        }
+
+
+
+
+
     }
 
 
 
 
+
 }
-}
+

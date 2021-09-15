@@ -9,17 +9,17 @@ namespace SkillsHunterAPI.Models.Notification
     {
         public Guid NotificationId { get; set; }
 
-        public Guid Recepient { get; set; }
+        public Guid RecepientId { get; set; }
 
-        public Guid Initiator{ get; set; }
+        public Guid InitiatorId{ get; set; }
 
         public string Subject { get; set; }
         
         public string Message { get; set; }
 
-        public bool IsRead { get; set; }
+        public bool IsRead { get; set; } = false;
 
-        public DateTime DateSent { get; set; }
+        public DateTime DateSent { get; set; } = DateTime.Now;
 
        
     }
