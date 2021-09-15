@@ -17,8 +17,7 @@ export class AppComponent implements OnInit{
   constructor(private router: Router) {
     
     // Removing Sidebar, Navbar, Footer for Documentation, Error and Auth pages
-    router.events.forEach((event) => { 
-      console.log("url('" + event['url'] + "')");
+    router.events.forEach((event) => {
       if(event instanceof NavigationStart) {
         if((event['url'] == '/') || (event['url'] == '/login') ||(event['url'] == '/user-pages/login') || (event['url'] == '/register') || (event['url'] == '/user-pages/register') || (event['url'] == '/error-pages/404') || (event['url'] == '/error-pages/500') ) {
           this.showSidebar = false;
@@ -51,6 +50,8 @@ export class AppComponent implements OnInit{
           this.isLoading = false;
       }
     });
+
+    //create custom event for when user logs in
   }
 
   

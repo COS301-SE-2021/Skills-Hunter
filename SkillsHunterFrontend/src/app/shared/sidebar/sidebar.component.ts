@@ -6,13 +6,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  public uiBasicCollapsed = false;
-  public samplePagesCollapsed = false;
-  
-  constructor() { }
+  public uiBasicCollapsed: boolean = false;
+  public samplePagesCollapsed: boolean = false;
+  public name: string = "";
+  public lastname: string = "";
+  public userType: number = -1;
+  public userTypeName: string = ""; 
+  constructor() {
+  }
 
   ngOnInit() {
     const body = document.querySelector('body');
+
+    if(localStorage.getItem("rememberMe") !== null){
+      if(localStorage.getItem("rememberMe") == "true"){
+          this.userType = parseInt(localStorage.getItem("role"));
+          this.name = localStorage.getItem("name");
+          this.lastname = localStorage.getItem("surname");
+          this.userTypeName = this.userType == 0 ? "Candidate" : (this.userType == 1 ? "Project Manager" : (this.userType == 2 ? "Organisation" : (this.userType == 3 ? "System Administrator" : ""))); 
+      }else{
+          this.userType = parseInt(sessionStorage.getItem("role"));
+          this.name = sessionStorage.getItem("name");
+          this.lastname = sessionStorage.getItem("surname");
+          this.userTypeName = this.userType == 0 ? "Candidate" : (this.userType == 1 ? "Project Manager" : (this.userType == 2 ? "Organisation" : (this.userType == 3 ? "System Administrator" : ""))); 
+      }
+    }
+
+    document.addEventListener("roleSet", () => {
+      if(localStorage.getItem("rememberMe") == "true"){
+        this.userType = parseInt(localStorage.getItem("role"));
+        this.name = localStorage.getItem("name");
+        this.lastname = localStorage.getItem("surname");
+        this.userTypeName = this.userType == 0 ? "Candidate" : (this.userType == 1 ? "Project Manager" : (this.userType == 2 ? "Organisation" : (this.userType == 3 ? "System Administrator" : ""))); 
+      }else{
+        this.userType = parseInt(sessionStorage.getItem("role"));
+        this.name = sessionStorage.getItem("name");
+        this.lastname = sessionStorage.getItem("surname");
+        this.userTypeName = this.userType == 0 ? "Candidate" : (this.userType == 1 ? "Project Manager" : (this.userType == 2 ? "Organisation" : (this.userType == 3 ? "System Administrator" : ""))); 
+      }
+      this.ngOnInit();
+    });
 
     // add class 'hover-open' to sidebar navitem while hover in sidebar-icon-only menu
     document.querySelectorAll('.sidebar .nav-item').forEach(function (el) {
@@ -27,6 +60,9 @@ export class SidebarComponent implements OnInit {
         }
       });
     });
+
+
+
   }
 
 }

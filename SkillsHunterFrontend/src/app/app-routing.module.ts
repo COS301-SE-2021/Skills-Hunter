@@ -26,23 +26,16 @@ import { SliderComponent } from './profile/slider/slider.component';
 
 const routes: Routes = [
   { 
-    path: '', 
-    redirectTo: '/user-pages/login', 
-    pathMatch: 'full' 
+    path: '',
+    component: LoginComponent
   },
   {
-    path: 'login', 
-    redirectTo: '/user-pages/login', 
-    pathMatch: 'full' 
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path: 'register', 
-    redirectTo: '/user-pages/register', 
-    pathMatch: 'full' 
-  },
-  { 
-    path: 'user-pages', 
-    loadChildren: () => import('./user-pages/user-pages.module').then(m => m.UserPagesModule) 
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'home',

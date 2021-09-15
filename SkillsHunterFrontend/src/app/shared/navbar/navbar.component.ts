@@ -10,12 +10,39 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 export class NavbarComponent implements OnInit {
   public iconOnlyToggled = false;
   public sidebarToggled = false;
+  public firstname:string = "";
+  public lastname: string = "";
+  public userType: number = -1;
   
   constructor(config: NgbDropdownConfig) {
     config.placement = 'bottom-right';
   }
 
   ngOnInit() {
+      if(localStorage.getItem("rememberMe") !== null){
+      if(localStorage.getItem("rememberMe") == "true"){
+          this.userType = parseInt(localStorage.getItem("role"));
+          this.firstname = localStorage.getItem("name");
+          this.lastname = localStorage.getItem("surname");
+      }else{
+          this.userType = parseInt(localStorage.getItem("role"));
+          this.firstname = sessionStorage.getItem("name");
+          this.lastname = sessionStorage.getItem("surname");
+      }
+    }
+
+    document.addEventListener("roleSet", () => {
+      if(localStorage.getItem("rememberMe") == "true"){
+        this.userType = parseInt(localStorage.getItem("role"));
+        this.firstname = localStorage.getItem("name");
+        this.lastname = localStorage.getItem("surname");
+      }else{
+        this.userType = parseInt(localStorage.getItem("role"));
+        this.firstname = sessionStorage.getItem("name");
+        this.lastname = sessionStorage.getItem("surname");
+      }
+      this.ngOnInit();
+    });
   }
 
   // toggle sidebar in small devices

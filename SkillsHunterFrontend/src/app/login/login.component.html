@@ -1,75 +1,38 @@
-<div class="wrapper">
-  <div id="SHdiv">
-    <h1 id="SH">Skills Hunter</h1>
-  </div>
-  <h2 id="loginL">LOGIN</h2>
-  <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" class="LoginForm">
-    <mat-form-field class="field">
-      <mat-label>Email</mat-label>
-      <input formControlName="email" matInput required />
-      <!-- mat-error is for validation -->
-      <mat-error
-        *ngIf="
-          LoginForm.controls['email'].hasError('email') &&
-          !LoginForm.controls['email'].hasError('required')
-        "
-      >
-        Please Enter A Valid Email Address
-      </mat-error>
-      <mat-error *ngIf="LoginForm.controls['email'].hasError('required')">
-        email address is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    <br />
-
-    <mat-form-field class="field" color="accent">
-      <mat-label>Password</mat-label>
-      <input
-        formControlName="password"
-        matInput
-        required
-        [type]="hide ? 'password' : 'text'"
-      />
-      <mat-error *ngIf="LoginForm.controls['password'].hasError('required')">
-        Password is <strong>required</strong>
-      </mat-error>
-
-      <button
-        id="pbutton"
-        mat-icon-button
-        matSuffix
-        (click)="hide = !hide"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide"
-        type="button"
-      >
-        <mat-icon id="pIcon">{{
-          hide ? "visibility_off" : "visibility"
-        }}</mat-icon>
-      </button>
-    </mat-form-field>
-    <br />
-    <a href="#" id="forgot">Forgot Your Password?</a>
-    <div class="form-group">
-      <button
-        id="login"
-        class="btn btn-primary"
-        [disabled]="
-          LoginForm.controls['email'].invalid ||
-          LoginForm.controls['password'].invalid
-        "
-        type="submit"
-      >
-        Login</button
-      ><br /><br />
-      <p *ngIf="!_match" class="alert alert-danger">
-        Invalid Username or Password!
-      </p>
-      <p id="accountLink">
-        <a id="registerlink" [routerLink]="['/register']"
-          >Don't Have An Account Yet? Register.
-        </a>
-      </p>
+<div class="d-flex align-items-center auth px-0">
+  <div class="row w-100 mx-0">
+    <div class="col-lg-4 mx-auto">
+      <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+        <div class="brand-logo">
+          <img src="assets/images/logo.svg" alt="logo">
+        </div>
+        <h4>Welcome to SkillsHunter</h4>
+        <h6 class="font-weight-light">Sign in to continue.</h6>
+        <form class="pt-3">
+          <div class="form-group">
+            <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" name = "email" [(ngModel)] = "email" (click)="err=false">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name = "password" [(ngModel)] = "password" (click)="err=false">
+          </div>
+          <p class = "mt-2" *ngIf= "err" style = "color:red;">{{errorMessage}}</p>
+          <div class="mt-3 btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" (click) = "onSubmit()">
+            SIGN IN
+          </div>
+          <div class="my-2 d-flex justify-content-between align-items-center">
+            <div class="form-check">
+              <label class="form-check-label text-muted">
+                <input type="checkbox" class="form-check-input" name = "rememberMe" [(ngModel)] = "rememberMe">
+                <i class="input-helper"></i>
+                Keep me signed in
+              </label>
+            </div>
+            <a href="javascript:(void)" class="auth-link text-black">Forgot password?</a>
+          </div>
+          <div class="text-center mt-4 font-weight-light">
+            Don't have an account? <a routerLink="/register" class="text-primary">Create</a>
+          </div>
+        </form>
+      </div>
     </div>
-  </form>
-</div>
+  </div>
+</div>  
