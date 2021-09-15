@@ -41,11 +41,11 @@ dropList: string[] = ['Day(s)', 'Month(s)','Year(s)'];
       this.workDetailsForm.controls['organisation'].value
 
       this.dialogRef.close({data:{
-        organisation:this.workDetailsForm.controls['organisation'].invalid,
-        role:this.workDetailsForm.controls['role'].invalid,
-        description:this.workDetailsForm.controls['description'].invalid,
-        duration:this.workDetailsForm.controls['duration'].invalid,
-        time:this.workDetailsForm.controls['time'].invalid,
+        organisation:this.workDetailsForm.controls['organisation'].value,
+        role:this.workDetailsForm.controls['role'].value,
+        description:this.workDetailsForm.controls['description'].value,
+        duration:this.workDetailsForm.controls['duration'].value,
+        time:this.workDetailsForm.controls['time'].value
       }});
     }
   }
