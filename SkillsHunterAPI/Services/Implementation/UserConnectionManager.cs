@@ -48,7 +48,17 @@ namespace SkillsHunterAPI.Services.Implementation
         }
 
 
+        //This function get the user connections
+        public List<string> GetUserConnections(string userId)
+        {
+            var conn = new List<string>();
 
+            lock (userConnectionMapLocker)
+            {
+                conn = userConnectionMap[userId];
+            }
+            return conn;
+        }
 
     }
 }
