@@ -31,9 +31,18 @@ namespace SkillsHunterAPI.Controllers
 
 
 
+        //This initialize the user controller object to be accessible this side.
+        private void InitControllers()
+        {
+            // We can't set this at Ctor because we don't have our local copy yet
+            // Access to Url 
+            _userController.Url = Url;
 
 
+            //This gives Access to User
+            _userController.ControllerContext = ControllerContext;
 
+        }
 
 
 
