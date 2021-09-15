@@ -64,6 +64,7 @@ import { ProfileImgComponent } from './profile/profile-img/profile-img.component
 import { ShowProjectSkillComponent } from './project-control/show-project-skill/show-project-skill.component';
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
+import { WorkExpComponent } from './profile/work-exp/work-exp.component';
 
 
 @NgModule({
@@ -114,7 +115,8 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     ProfileImgComponent,
     ShowProjectSkillComponent,
     AddSkillCategoryComponent,
-    AddSkillCollectionComponent
+    AddSkillCollectionComponent,
+    WorkExpComponent
   ],
   imports: [
     BrowserModule,
