@@ -11,18 +11,21 @@ import { Inject } from '@angular/core';
 export class WorkExpComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,public dialogRef: MatDialogRef<WorkExpComponent>,private dialog: MatDialog) { }
-empty=false;//show if this is new data being created or existing being edited. false=new data
+
+  empty=true;//show if this is new data being created or existing being edited. true means new data
+  
   ngOnInit(): void {
 
     var d=this.data;
-    console.log("empty");
-    if(d!=""){
 
-      this.workDetailsForm.controls['organisation'].setValue=d.organisation;
-      this.workDetailsForm.controls['role'].setValue=d.role;
-      this.workDetailsForm.controls['description'].setValue=d.description;
-      this.workDetailsForm.controls['duration'].setValue=d.duration;
-      this.workDetailsForm.controls['time'].setValue=d.time;
+    if(d!=""){
+      console.log("not empty");
+      console.log("data: "+d.organisation);
+      this.workDetailsForm.controls['organisation'].setValue(d.organisation);
+      this.workDetailsForm.controls['role'].setValue(d.role);
+      this.workDetailsForm.controls['description'].setValue(d.description);
+      this.workDetailsForm.controls['duration'].setValue(d.duration);
+      this.workDetailsForm.controls['time'].setValue(d.time);
     }
 
   }
