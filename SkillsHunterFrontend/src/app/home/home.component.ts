@@ -45,32 +45,27 @@ export class HomeComponent implements OnInit {
     //read data of projects
     var functiontoCall;
     if (localStorage.getItem('role') == '1') {
-      this._projects = theProject;
+      // this._projects = theProject;
 
-      // this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
-      //   // this._projects = data;
-      //   this._projects = this.theProject;
-      //   console.log('Response post', data);
-      // });
+      this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
+        console.log(data);
+        this._projects = data;
+        console.log('Response post', data);
+      });
     } else {
       document.getElementById('createbtn').style.display = 'none';
-      this._projects = theProject;
+      // this._projects = theProject;
 
-      // this.projectCrud.getAllProjects().subscribe((data) => {
-      //   console.log(data);
-      //   // this._projects = data;
-      //   this._projects = this.theProject;
-      //   console.log('Response post', data);
-      // });
+      this.projectCrud.getAllProjects().subscribe((data) => {
+        console.log(data);
+        this._projects = data;
+        console.log('Response post', data);
+      });
     }
   }
 
   create() {
     this._router.navigate([`createproject`]);
-  }
-
-  update() {
-    this._router.navigate([`update-project`]);
   }
 }
 
