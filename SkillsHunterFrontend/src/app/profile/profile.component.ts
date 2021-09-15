@@ -267,7 +267,8 @@ export class ProfileComponent implements OnInit {
     const configDialog = new MatDialogConfig();
     const dialogRef = this.dialog.open(WorkExpComponent,
       {   width: '40%',
-         height:'80%'
+         height:'80%',
+         data:""
       });
    // console.log("back");
     dialogRef.afterClosed().subscribe(returnedData => {
@@ -320,6 +321,28 @@ export class ProfileComponent implements OnInit {
     });
    }
  
- 
+   //edit work information
+   edit(n){
+     console.log(n);
+     var key=false;
+     var i=0;
+     var dataToEdit;
+     //find data that needs to be edited
+     while(!key){
+
+      if(this.work_DATA[i].No==n){
+        dataToEdit=this.work_DATA[i];
+        key=true;
+      }
+      i++;
+     }
+   
+     const dialogRef = this.dialog.open(WorkExpComponent,
+      {   width: '40%',
+         height:'80%',
+        data:dataToEdit
+      });
+
+   }
  
 }
