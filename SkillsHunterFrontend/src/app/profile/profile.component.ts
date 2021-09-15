@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
   isLinear = true;
  
   secondFormGroup: FormGroup;
-
+//variables below used to display table of skills
    noElements=0;
   ELEMENT_DATA= [
   ];
@@ -33,7 +33,14 @@ export class ProfileComponent implements OnInit {
 
   returned;
   array2=[];
-  dataSource1: MatTableDataSource<any>;//= new MatTableDataSource([]);
+
+  //variables below used to display table of work experience
+  noElements2=0;
+  work_DATA= [
+  ];
+  displayedColumns2: string[] = ['No', 'organisation', 'role','description', 'duration','time','actions'];
+  dataSourceWork = this.work_DATA;
+
   ngOnInit(): void {
  
    
@@ -159,7 +166,7 @@ export class ProfileComponent implements OnInit {
         var key=false;
         for(let j=0;j<this.ELEMENT_DATA.length;j++){
 
-          if(this.ELEMENT_DATA[j].name=returnedData.data.selectedSkill)
+          if(this.ELEMENT_DATA[j].name==returnedData.data.selectedSkill)
           {
             key=true;
           }
@@ -265,15 +272,18 @@ export class ProfileComponent implements OnInit {
    // console.log("back");
     dialogRef.afterClosed().subscribe(returnedData => {
    
-      if(returnedData !=undefined)
-      {/*
-        console.log("profile: "+returnedData.data.selectedSkill);
-        console.log("rate: "+returnedData.data.rateValue);
-        //first check if skill is already in the list
+      if(returnedData !=undefined && returnedData.data !=-1)
+      {
+        console.log("in back");
+        // console.log("prof: "+JSON.stringify(returnedD.data));
+        //console.log("prof: "+JSON.stringify(returnedD.data.organisation));
+       console.log("prof: "+returnedData.data.organisation);
+       
+        //first check if organisation is already in the list
         var key=false;
-        for(let j=0;j<this.ELEMENT_DATA.length;j++){
+        for(let j=0;j<this.work_DATA.length;j++){
 
-          if(this.ELEMENT_DATA[j].name=returnedData.data.selectedSkill)
+          if(this.work_DATA[j].organisation==returnedData.data.organisation)
           {
             key=true;
           }
@@ -281,24 +291,27 @@ export class ProfileComponent implements OnInit {
         if(!key){
 
         
-        this.noElements++;
-        console.log("element"+JSON.stringify(this.ELEMENT_DATA[0]));
+        this.noElements2++;
+        
         var arr=[];
-        for(let i=0;i<this.ELEMENT_DATA.length;i++)
+        for(let i=0;i<this.work_DATA.length;i++)
         {
-              arr.push(this.ELEMENT_DATA[i]);
+              arr.push(this.work_DATA[i]);
             }
 
           arr.push({
-                No:this.noElements,
-                name: returnedData.data.selectedSkill,
-                rating: returnedData.data.rateValue
+            No:this.noElements2,
+            organisation:returnedData.data.organisation,
+            role: returnedData.data.role,
+            description: returnedData.data.description,
+            duration: returnedData.data.duration,
+            time: returnedData.data.time
                 });
 
-        this.ELEMENT_DATA=arr;
+        this.work_DATA=arr;
         //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
-        this.dataSource =this.ELEMENT_DATA;
-      }*/
+        this.dataSourceWork =this.work_DATA;
+      }
       //return the skill and the value to profile then send request to backend
       }
       else{ 
