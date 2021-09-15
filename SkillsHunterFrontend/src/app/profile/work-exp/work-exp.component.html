@@ -1,4 +1,4 @@
-<div>
+<div id="workf">
     <form [formGroup]="workDetailsForm" class="content" id="details" >
         <mat-form-field appearance="outline" class="field">
             <mat-label>Organisation name</mat-label>
@@ -40,7 +40,7 @@
             </mat-error>
         </mat-form-field><br/>
 
-        <mat-form-field appearance="outline" class="field">
+        <mat-form-field appearance="outline" id="duration">
             <mat-label>Duration</mat-label>
             <input matInput placeholder="description of position or tasks of position" formControlName="duration" required>
             
@@ -53,12 +53,15 @@
                 duration is <strong>required</strong>
             </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline" >
+        <mat-form-field appearance="outline" id="drop">
             <mat-label>duration</mat-label>
-            <mat-select formControlName="time" multiple>
+            <mat-select formControlName="time">
               <mat-option style="color:black" *ngFor="let list of dropList" [value]="list" >{{list}}</mat-option>
             </mat-select>
-          </mat-form-field><br/>
+        </mat-form-field><br/>
+        <button id="applyBtn" class="btn btn-primary btn-lg">
+            Submit
+        </button><br/>
     </form>
     
 </div>
