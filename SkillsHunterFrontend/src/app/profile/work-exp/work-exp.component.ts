@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatDialogRef,MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-work-exp',
@@ -8,7 +9,7 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 })
 export class WorkExpComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<WorkExpComponent>,private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +29,28 @@ dropList: string[] = ['Day(s)', 'Month(s)','Year(s)'];
       Validators.pattern('^[a-zA-Z ]*$'),
     ]),
     duration: new FormControl('', [Validators.required,Validators.pattern('[- +()0-9]+')]),
-    time:new FormControl(''),
+    time:new FormControl('',[Validators.required]),
   
   });
+
+  onSubmit(){
+    console.log("clicked work");
+    if(!this.workDetailsForm.controls['organisation'].invalid && !this.workDetailsForm.controls['role'].invalid && 
+    !this.workDetailsForm.controls['description'].invalid && !this.workDetailsForm.controls['duration'].invalid && !this.workDetailsForm.controls['time'].invalid){
+      console.log("valid");
+      this.workDetailsForm.controls['organisation'].value
+
+      this.dialogRef.close({data:{
+        organisation:this.workDetailsForm.controls['organisation'].invalid,
+        role:this.workDetailsForm.controls['role'].invalid,
+        description:this.workDetailsForm.controls['description'].invalid,
+        duration:this.workDetailsForm.controls['duration'].invalid,
+        time:this.workDetailsForm.controls['time'].invalid,
+      }});
+    }
+  }
+
+  cancel(){
+    this.dialogRef.close({data:-1});//-1 to indicate cancellation
+  }
 }
