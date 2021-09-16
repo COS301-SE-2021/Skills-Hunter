@@ -296,11 +296,11 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/removeImage")]
-        public async Task<IActionResult> RemoveImage(RemoveImageRequest request){
+        public async Task<IActionResult> RemoveImage([FromQuery]Guid request){
             try
             {
                 // Get Image code here
-                var response = await _userService.RemoveImage(new Guid(request.ImageId));
+                var response = await _userService.RemoveImage(request);
 
                 return Ok(new RemoveImageResponse(){
                     result = response
