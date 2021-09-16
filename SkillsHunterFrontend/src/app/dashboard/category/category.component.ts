@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-category',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-
-  constructor() { }
+  filter:boolean = false;
+  create:boolean = false;
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
+  }
+
+    openMediumModal( mediumModalContent ) {
+    this.modalService.open( mediumModalContent );
   }
 
 }

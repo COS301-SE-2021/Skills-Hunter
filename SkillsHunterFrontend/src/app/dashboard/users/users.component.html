@@ -1,1 +1,114 @@
-<p>users works!</p>
+<div class="page-header">
+  <h3 class="page-title">
+    Users
+  </h3>
+</div>
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+
+	    <div class="form-group" (click) = "filter=false;reset()">
+	      <div class="input-group">
+	        <input type="text" class="form-control" placeholder="search" aria-label="Recipient's username" name = "searchTerm" [(ngModel)] = "searchTerm">
+	        <div class="input-group-append">
+	          <button class="btn btn-sm btn-gradient-primary" type="button" (click)="search()">Search</button>
+	        </div>
+	      </div>
+	    </div>
+
+	    <button type="button" class="btn btn-gradient-primary btn-icon-text" (click)="onfilter()">
+	       <i class="mdi mdi-filter btn-icon-prepend"></i>
+	        filter
+	    </button>
+
+      <div role="alert" [ngClass]="{'alert  mt-3 alert-success' : notificationType == 0,'alert  mt-3 alert-warning' : notificationType == 2,'alert  mt-3 alert-danger' : notificationType == 3}" *ngIf="notificationType > 0">
+          {{notification}}
+      </div>
+
+	    <div class = "border border-secondary rounded mt-5 p-4 " *ngIf="filter">
+	    	<div class="form-check">
+              <label class="form-check-label text-muted">
+                <input type="checkbox" class="form-check-input" (change)="filterData()" name="open" [(ngModel)] = "open">
+                <i class="input-helper"></i>
+                Open
+              </label>
+            </div>
+            <div ngbDropdown class = "mt-4">
+                <button type="button" class="btn btn-gradient-dark" id="dropdownMenuIconButton7" ngbDropdownToggle>
+                  <i class="mdi mdi-account"></i>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownMenuIconButton7">
+                  <h6 class="dropdown-header">Role</h6>
+                  <a class="dropdown-item" (click)="role=0;filterData()">Candidate</a>
+                  <a class="dropdown-item" (click)="role=1;filterData()">Project Owner</a>
+                  <a class="dropdown-item" (click)="role=2;filterData()">Organisation</a>
+                  <a class="dropdown-item" (click)="role=3;filterData()">System Administrator</a>
+                </div>
+            </div>
+	    </div>        
+
+        <div class="table-responsive mt-5">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>
+                  
+                </th>
+                <th>
+                  First name
+                </th>
+                <th>
+                  Last name
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Phone
+                </th>
+                <th>
+                  Start date
+                </th>
+                <th>
+                  Open
+                </th>
+                <th>
+                  Role	
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let user of show; trackBy:identify">
+                <td class="py-1">
+                  <img src="assets/images/faces/face1.jpg" alt="image"/>
+                </td>
+                <td>
+                  {{user.name}}
+                </td>
+                <td>
+                  {{user.surname}}
+                </td>
+                <td>
+                  {{user.email}}
+                </td>
+                <td>
+                  {{user.phone}}
+                </td>
+                <td>
+                  {{user.startDate}}
+                </td>
+                <td>
+                  {{user.openForWork == true ? 'Yes' : 'No'}}
+                </td>
+                <td>
+                  {{user.userType == 0 ? 'Candidate' : (user.userType == 1 ? 'Project Manager' : (user.userType == 2 ? 'Organisation' : (user.userType == 3 ? 'System Administrator' : '')))}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>	
+</div>

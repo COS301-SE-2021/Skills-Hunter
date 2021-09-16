@@ -1,1 +1,136 @@
-<p>skills works!</p>
+<div class="page-header">
+  <h3 class="page-title">
+    Skills
+  </h3>
+</div>
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+
+	    <div class="form-group" (click) = "filter=false">
+	      <div class="input-group">
+	        <input type="text" class="form-control" placeholder="search" aria-label="Recipient's username">
+	        <div class="input-group-append">
+	          <button class="btn btn-sm btn-gradient-primary" type="button">Search</button>
+	        </div>
+	      </div>
+	    </div>
+
+	    <button type="button" class="btn btn-gradient-primary btn-icon-text" (click)="filter=!filter;create=false">
+	       <i class="mdi mdi-filter btn-icon-prepend"></i>
+	        filter
+	    </button>
+
+	   	<button type="button" class="btn btn-gradient-primary btn-icon-text" (click)="create=!create;filter=false">
+	        create
+	    </button>
+
+      <div role="alert" [ngClass]="{'alert  mt-3 alert-success' : notificationType == 0,'alert  mt-3 alert-warning' : notificationType == 2,'alert  mt-3 alert-danger' : notificationType == 3}" *ngIf="notificationType > 0">
+          {{notification}}
+      </div> 
+
+	    <div class = "border border-secondary rounded mt-5 p-4 " *ngIf="filter">
+          <div ngbDropdown>
+            <button class="btn btn-info" type="button" id="dropdownMenuButton6" ngbDropdownToggle>
+              Status
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownMenuButton6" >
+              <h6 class="dropdown-header">Status</h6>
+              <a class="dropdown-item" (click)="status=1;filterData()">Accepted</a>
+              <a class="dropdown-item" (click)="status=0;filterData()">Pending</a>
+              <a class="dropdown-item" (click)="status=2;filterData()">Declined</a>
+            </div>
+          </div>
+	    </div>
+
+	    <div class = "border border-secondary rounded mt-5 p-4 w-75" *ngIf="create">
+	        <form class="forms-sample">
+		          <div class="form-group">
+		            <label for="exampleInputUsername1">Name</label>
+		            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="name" name="name" [(ngModel)]="name">
+		          </div>
+
+		        <div class="form-group">
+		          <label for="exampleFormControlSelect2">Category</label>
+		          <select class="form-control" id="exampleFormControlSelect2" name = "cat" [(ngModel)]="cat">
+		            <option *ngFor="let cat from category" [value]="cat.categoryId">{{cat.name}}</option>
+		          </select>
+		        </div>	          
+	          <button type="submit" class="btn btn-gradient-dark btn-fw mr-2 btn-icon-text" (click)="createSkill()">
+          		<i class="mdi mdi-content-save btn-icon-prepend"></i>
+	          	Save
+	          </button>
+	          <button class="btn btn-light">Cancel</button>
+	        </form>	    	
+	    </div>        
+
+		<div class="row mt-5">
+		  <div *ngFor = "let skill of show" class="col-lg-3 grid-margin stretch-card">
+		  	<div class="card-body bg-success rounded">
+		        <p class="mt-3 ml-3"><b>Name</b></p>
+		        <p class="card-description ml-3">{{skill.name}}</p>
+		       	<p class="ml-3"><b>Status</b></p>
+		        <p class="card-description ml-3">{{skill.status == 0 ? 'Pending' : (skill.status == 1 ? 'Accepted' : 'Declined')}}</p>
+		        <button type="button" class="btn btn-rounded btn-icon bg-info ml-3" (click)="openMediumModal(mediumModalContent)">
+                	<mat-icon>edit</mat-icon>
+              	</button>
+        <ng-template #mediumModalContent let-modal class="modal fade" id="exampleModal-2" aria-labelledby="exampleModalLabel-2">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel-2">Edit Skill</h5>
+              <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+		        <form class="forms-sample">
+			          <div class="form-group">
+			            <label for="exampleInputUsername1">Name</label>
+			            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="name">
+			          </div>
+
+			        <div class="form-group">
+			          <label for="exampleFormControlSelect2">Category</label>
+			          <select class="form-control" id="exampleFormControlSelect2">
+			            <option>1</option>
+			            <option>2</option>
+			            <option>3</option>
+			            <option>4</option>
+			            <option>5</option>
+			          </select>
+			        </div>	
+
+
+			        <div class="form-group">
+			          <label for="exampleFormControlSelect2">Status</label>
+			          <select class="form-control" id="exampleFormControlSelect2">
+			            <option>1</option>
+			            <option>2</option>
+			            <option>3</option>
+			            <option>4</option>
+			            <option>5</option>
+			          </select>
+			        </div>    
+		        </form>	
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-gradient-dark btn-fw mr-2 btn-icon-text" (click)="modal.close()"><i class="mdi mdi-content-save btn-icon-prepend"></i>
+		          	Save</button>
+              <button type="button" class="btn btn-light" (click)="modal.close()">Cancel</button>
+            </div>
+          </div>
+        </ng-template>
+
+				
+              	<button type="button" class="btn btn-rounded btn-icon bg-danger ml-3 ml-3">
+                	<mat-icon>delete</mat-icon>
+              	</button>
+		    </div>
+		  </div>
+		</div>
+
+      </div>
+    </div>
+  </div>	
+</div>

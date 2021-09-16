@@ -43,38 +43,39 @@
         <i class="mdi mdi-application menu-icon"></i>
       </a>
     </li>
+
     <li class="nav-item" [ngClass]="{ 'active': charts.isActive }" *ngIf="userType == 3">
-      <a class="nav-link" routerLink="charts/chartjs" routerLinkActive #charts="routerLinkActive">
+      <a class="nav-link" routerLink="dashboard/statistics" routerLinkActive #charts="routerLinkActive">
         <span class="menu-title">Statistics</span>
         <i class="mdi mdi-chart-bar menu-icon"></i>
       </a>
     </li>
     <li class="nav-item" [ngClass]="{ 'active': forms.isActive }" *ngIf="userType == 3">
-      <a class="nav-link" routerLink="forms/basic-elements" routerLinkActive #forms="routerLinkActive">
+      <a class="nav-link" routerLink="dashboard/users" routerLinkActive #forms="routerLinkActive">
         <span class="menu-title">Users</span>
         <i class="mdi mdi-account-multiple menu-icon"></i>
       </a>
     </li>
     <li class="nav-item" [ngClass]="{ 'active': tables.isActive }" *ngIf="userType == 3">
-      <a class="nav-link" routerLink="tables/basic-table" routerLinkActive #tables="routerLinkActive">
+      <a class="nav-link" routerLink="dashboard/projects" routerLinkActive #tables="routerLinkActive">
         <span class="menu-title">Projects</span>
         <i class="mdi mdi-file-multiple menu-icon"></i>
       </a>
     </li>
     <li class="nav-item" [ngClass]="{ 'active': icons.isActive }" *ngIf="userType === 3">
-      <a class="nav-link" routerLink="icons/mdi" routerLinkActive #icons="routerLinkActive">
+      <a class="nav-link" routerLink="dashboard/skills" routerLinkActive #icons="routerLinkActive">
         <span class="menu-title">Skills</span>
         <i class="mdi mdi-star menu-icon"></i>
       </a>
     </li>
     <li class="nav-item" [ngClass]="{ 'active': icons.isActive }" *ngIf="userType == 3">
-      <a class="nav-link" routerLink="icons/mdi" routerLinkActive #icons="routerLinkActive">
+      <a class="nav-link" routerLink="dashboard/category" routerLinkActive #icons="routerLinkActive">
         <span class="menu-title">Categories</span>
         <i class="mdi mdi-group menu-icon"></i>
       </a>
     </li>
     <li class="nav-item" [ngClass]="{ 'active': icons.isActive }" *ngIf="userType == 3">
-      <a class="nav-link" routerLink="icons/mdi" routerLinkActive #icons="routerLinkActive">
+      <a class="nav-link" routerLink="dashboard/skill-collection" routerLinkActive #icons="routerLinkActive">
         <span class="menu-title">Skill Collections</span>
         <i class="mdi mdi-layers menu-icon"></i>
       </a>

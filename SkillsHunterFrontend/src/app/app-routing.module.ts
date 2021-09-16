@@ -37,6 +37,10 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
+  { 
+    path: 'dashboard', 
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) 
+  },
   {
     path: 'home',
     component: HomeComponent,
@@ -80,34 +84,6 @@ const routes: Routes = [
   {
     path: 'sliderpopup',
     component: SliderComponent,
-  },
-  {
-    path: 'dashboard', 
-    component: AdminBoardComponent
-  },
-  {
-    path: 'user-control', 
-    component: UserControlComponent
-  },
-  {
-    path: 'project-control', 
-    component: ProjectControlComponent
-  },
-  {
-    path: 'skill-control', 
-    component: SkillControlComponent
-  },
-  {
-    path: 'category-control', 
-    component: CategoryControlComponent
-  },
-  {
-    path: 'statistics', 
-    component: StatisticsComponent
-  },
-  {
-    path: 'skill-collection-control', 
-    component: SkillCollectionControlComponent
   }
 ];
 
