@@ -19,20 +19,17 @@ export class MatchCandidateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => console.log(params));
+    this.route.params.subscribe((params) => {
+      // Extract the Project ID:
+      var projectID = params.projectId;
 
-    // var projectAsReceived = this.route.paramMap.subscribe((params) => {
-    // Defaults to 0 if no query param provided.
-    // proj  = +params['projectData'];
-    //   console.log('\nProject as Received\n');
-    //   console.log(params['data']);
-    // });
+      console.log('About to Log the Project ID');
+      console.log(projectID);
 
-    // this.projectCrud
-    //   .obtainMatchingCandidates('a0b67c06-3ef7-4dc3-9891-08d978769a8')
-    //   .subscribe((data) => {
-    //     this.candidatesList = data;
-    //     console.log('Response post', data);
-    //   });
+      this.projectCrud.obtainMatchingCandidates(projectID).subscribe((data) => {
+        this.candidatesList = data;
+        console.log('Response post', data);
+      });
+    });
   }
 }

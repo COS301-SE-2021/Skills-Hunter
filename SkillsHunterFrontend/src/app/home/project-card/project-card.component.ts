@@ -104,11 +104,10 @@ export class ProjectCardComponent implements OnInit {
 
   match(_project: any) {
     // this._router.navigate([`match-candidate`, { _project }]);
-    console.log('About to match now...');
-    console.log(_project);
-    this._router.navigate(['match-candidate'], {
-      queryParams: { data: _project },
-    });
+    // this._router.navigate(['match-candidate'], {
+    //   queryParams: { data: _project },
+    // });
+    this._router.navigate(['match-candidate', _project]);
   }
 
   cancel() {
