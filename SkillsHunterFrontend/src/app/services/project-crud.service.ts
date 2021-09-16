@@ -83,6 +83,14 @@ export class ProjectCRUDService {
     );
   }
 
+  updateUser(formData: any): Observable<any> {
+    return this.httpclient.post(
+      'http://localhost:5000/api/User/update',
+      formData,
+      this.httpOptions
+    );
+  }
+
   getMyUserID(): Observable<any> {
     return this.httpclient.get(
       'http://localhost:5000/api/User/getCurrentUserId',
