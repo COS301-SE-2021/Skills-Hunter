@@ -34,13 +34,13 @@ namespace SkillsHunterAPI.Services
 
         Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId(Guid id);
 
-        Task AddWorkExperience(WorkExperience request);
+        Task AddWorkExperience(ExternalWorkExperience request);
         
-        Task UpdateWorkExperience(Guid workExperienceID, WorkExperience request);
+        Task UpdateWorkExperience(Guid workExperienceID, ExternalWorkExperience request);
 
         Task DeleteWorkExperience(Guid id);
         
-        Task<WorkExperience> GetWorkExperience(Guid id);
+        Task<ExternalWorkExperience> GetWorkExperience(Guid id);
 
         Task<Image> uploadProfileImage(Image request);
 

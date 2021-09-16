@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SkillsHunterAPI.Data;
-using SkillsHunterAPI.Models;
 using SkillsHunterAPI.Models.Project;
 using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Project.Request;
@@ -13,6 +12,7 @@ using System.Threading.Tasks;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Skill.Entity;
 using SkillsHunterAPI.Models.Project.Entity;
+using Microsoft.ML;
 
 namespace SkillsHunterAPI.Services
 {
@@ -526,7 +526,7 @@ namespace SkillsHunterAPI.Services
                         //matchCandidate.numProjectSkills = numProjectSkills;
                         matchCandidate.Percentage = (1.0 *matchPercentage) / (1.0*(skills.Count));
 
-                        matchCandidate = processWorkExperience(matchCandidate, skills);
+                        matchCandidate = (MatchCandidateResponse) await ProcessExternalWorkExperience(matchCandidate, skills);
 
                         if (matchCandidate.Percentage > 0.0)
                         {
@@ -540,10 +540,45 @@ namespace SkillsHunterAPI.Services
 
         }
 
-        private MatchCandidateResponse processWorkExperience(MatchCandidateResponse candidate, List<Skill> projectSkills)
+        private async Task<MatchCandidateResponse> ProcessExternalWorkExperience(MatchCandidateResponse candidate, List<Skill> projectSkills)
         {
-            //retrieving the work experience of the person
+            /*string paragraph = "Testing Tokenization with ML.net. Second sentence.";
 
+            var mlContext = new MLContext();
+
+            var emptyData = new List<TextData>();
+            var data = mlContext.Data.LoadFromEnumerable(emptyData);
+            var tokenization = mlContext.Transforms.Text.TokenizeIntoWords("Tokens", "Text", separators: new[] { ' ', '?' });
+
+            var tokenModel = tokenization.Fit(data);
+
+            var engine = mlContext.Model.CreatePredictionEngine<TextData, TextTokens>(tokenModel);
+
+            var tokens = engine.Predict(new TextData() { Text = paragraph });
+
+            candidate.Email = string.Join(",", tokens.Tokens);*/
+
+
+            //retrieving the work experience of the person
+            List<ExternalWorkExperience> experiences = await _context.ExternalWorkExperiences.Where(w => w.UserId == candidate.UserId).ToListAsync();
+
+            if(experiences != null)
+            {
+                foreach (ExternalWorkExperience experience in experiences)
+                {
+                    var mlContext = new MLContext();
+
+                    var emptyData = new List<TextData>();
+                    var data = mlContext.Data.LoadFromEnumerable(emptyData);
+                    var tokenization = mlContext.Transforms.Text.TokenizeIntoWords("Tokens", "Text", separators: new[] { ' ', '.', '?' });
+
+                    var tokenModel = tokenization.Fit(data);
+
+                    var engine = mlContext.Model.CreatePredictionEngine<TextData, TextTokens>(tokenModel);
+
+                    TextTokens tokens = engine.Predict(new TextData() { Text = experience.Description });
+                }
+            }
 
             return candidate;
         }
@@ -597,5 +632,15 @@ namespace SkillsHunterAPI.Services
 
             return percentage;
         }
+    }
+
+    public class TextData
+    {
+        public string Text { get; set; }
+    }
+
+    public class TextTokens : TextData
+    {
+        public string[] Tokens { get; set; }
     }
 }

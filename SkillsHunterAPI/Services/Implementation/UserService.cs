@@ -240,37 +240,37 @@ namespace SkillsHunterAPI.Services
 
         // Crud operations on the Work Experience Model
 
-        public async Task AddWorkExperience(WorkExperience request)
+        public async Task AddWorkExperience(ExternalWorkExperience request)
         {
 
-            request.WorkExperienceId = new Guid();
+            request.ExternalWorkExperienceId = new Guid();
             
-            _context.WorkExperiences.Add(request);
+            _context.ExternalWorkExperiences.Add(request);
             await _context.SaveChangesAsync();
         }
         
-        public async Task UpdateWorkExperience(Guid workExperienceID, WorkExperience request)
+        public async Task UpdateWorkExperience(Guid workExperienceID, ExternalWorkExperience request)
         {
 
-            WorkExperience result = await _context.WorkExperiences.FindAsync(request.WorkExperienceId);
+            ExternalWorkExperience result = await _context.ExternalWorkExperiences.FindAsync(request.ExternalWorkExperienceId);
 
-            result.ProjectId = request.ProjectId;
-            result.startDate = request.startDate;
-            result.endDate = request.endDate;
-            result.performanceRating = request.performanceRating;
+            //result.ProjectId = request.ProjectId;
+            result.StartDate = request.StartDate;
+            result.EndDate = request.EndDate;
+            //result.performanceRating = request.performanceRating;
 
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteWorkExperience(Guid id){
-            var result = await _context.WorkExperiences.FindAsync(id);
+            var result = await _context.ExternalWorkExperiences.FindAsync(id);
 
-            _context.WorkExperiences.Remove(result);
+            _context.ExternalWorkExperiences.Remove(result);
             await _context.SaveChangesAsync();
         }
         
-        public async Task<WorkExperience> GetWorkExperience(Guid id){
-            return await _context.WorkExperiences.FindAsync(id);
+        public async Task<ExternalWorkExperience> GetWorkExperience(Guid id){
+            return await _context.ExternalWorkExperiences.FindAsync(id);
         }
 
         public async Task<Image> uploadProfileImage(Image request){
