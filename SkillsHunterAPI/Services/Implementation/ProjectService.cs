@@ -386,13 +386,21 @@ namespace SkillsHunterAPI.Services
             //Getting the number of skills in the project
             numProjectSkills += projectSkills.Count;
 
-            //getting all users
+            //getting all users and skills
             List<User> users = new List<User>();
+            List<Skill> skills = new List<Skill>();
 
             //getting the users that match a specific skill
             foreach(GetProjectSkillResponse projectSkill in projectSkills)
             {
                 List<UserSkill> userSkills = await _context.UserSkills.Where(skill => skill.SkillId == projectSkill.SkillId).ToListAsync();
+
+                Skill skill = await _context.Skills.Where(s => s.SkillId == projectSkill.SkillId).FirstOrDefaultAsync();
+
+                if(skill != null)
+                {
+                    skills.Add(skill);
+                }
 
                 if(userSkills != null)
                 {
@@ -410,10 +418,17 @@ namespace SkillsHunterAPI.Services
 
             foreach (GetProjectSkillCollectionResponse projectSkillCollection in projectSkillCollections)
             {
-                numProjectSkills += projectSkillCollection.Skills.Count;
 
                 foreach (GetProjectSkillResponse skillFromCollection in projectSkillCollection.Skills)
                 {
+
+                    Skill skill = await _context.Skills.Where(s => s.SkillId == skillFromCollection.SkillId).FirstOrDefaultAsync();
+
+                    if (skill != null)
+                    {
+                        skills.Add(skill);
+                    }
+
                     List<UserSkill> userSkills = await _context.UserSkills.Where(skill => skill.SkillId == skillFromCollection.SkillId).ToListAsync();
 
                     if (userSkills != null)
@@ -509,7 +524,9 @@ namespace SkillsHunterAPI.Services
                     if(matchPercentage > 0.0 && matchCandidate.MatchingSkills.Count > 0)
                     {
                         //matchCandidate.numProjectSkills = numProjectSkills;
-                        matchCandidate.Percentage = (1.0 *matchPercentage) / (1.0*(numProjectSkills));
+                        matchCandidate.Percentage = (1.0 *matchPercentage) / (1.0*(skills.Count));
+
+                        matchCandidate = processWorkExperience(matchCandidate, skills);
 
                         if (matchCandidate.Percentage > 0.0)
                         {
@@ -521,6 +538,14 @@ namespace SkillsHunterAPI.Services
 
             return sortCandidates(response);
 
+        }
+
+        private MatchCandidateResponse processWorkExperience(MatchCandidateResponse candidate, List<Skill> projectSkills)
+        {
+            //retrieving the work experience of the person
+
+
+            return candidate;
         }
 
         private List<MatchCandidateResponse> sortCandidates(List<MatchCandidateResponse> candidates)
@@ -556,7 +581,7 @@ namespace SkillsHunterAPI.Services
             {
                 if (projectSkill.SkillId == userSkillId)
                     return projectSkill.Weight;
-;            }
+            }
             return 0;
         }
 
