@@ -43,6 +43,10 @@ const routes: Routes = [
     component: MatchCandidateComponent,
   },
   {
+    path: 'match-candidate:/project',
+    component: MatchCandidateComponent,
+  },
+  {
     path: 'update-project',
     component: UpdateProjectComponent,
   },
