@@ -102,8 +102,13 @@ export class ProjectCardComponent implements OnInit {
     this.cancel();
   }
 
-  match(_project) {
-    this._router.navigate([`match-candidate`, { _project }]);
+  match(_project: any) {
+    // this._router.navigate([`match-candidate`, { _project }]);
+    console.log('About to match now...');
+    console.log(_project);
+    this._router.navigate(['match-candidate'], {
+      queryParams: { page: _project },
+    });
   }
 
   cancel() {
