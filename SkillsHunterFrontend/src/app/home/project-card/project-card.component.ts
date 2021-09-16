@@ -71,24 +71,18 @@ export class ProjectCardComponent implements OnInit {
   apply(_project) {
     console.log('\nApplying for Project\n');
 
-    var myUserId = null;
+    this.projectCrud.getMyUserID().subscribe((userID) => {
+      var formData = {
+        userId: userID,
+        projectId: _project.projectId,
+      };
 
-    this.projectCrud.getMyUserID().subscribe((data) => {
-      console.log('Calling get my user ID');
-      myUserId = data;
-      console.log('Response post', data);
-    });
+      console.log(formData);
 
-    var formData = {
-      userId: myUserId,
-      projectId: _project.projectId,
-    };
-
-    console.log(formData);
-
-    //the service is called below;
-    this.projectCrud.applyForProject(formData).subscribe((data) => {
-      console.log('Response post', data);
+      // the service is called below;
+      this.projectCrud.applyForProject(formData).subscribe((data) => {
+        console.log('Response post', data);
+      });
     });
 
     this.cancel();
