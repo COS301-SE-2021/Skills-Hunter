@@ -583,6 +583,11 @@ namespace SkillsHunterAPI.Services
             return candidate;
         }
 
+        private string[] TokenizeText(string input)
+        {
+            return null;
+        }
+
         private string[] cleanTokens(string[] tokens)
         {
             for(int i = 0; i < tokens.Length; i++)
