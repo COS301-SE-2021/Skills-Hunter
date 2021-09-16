@@ -556,7 +556,7 @@ namespace SkillsHunterAPI.Services
 
             var tokens = engine.Predict(new TextData() { Text = paragraph });
 
-            candidate.Email = string.Join(",", tokens.Tokens);*/
+            candidate.Email = string.Join(",", cleanTokens(tokens.Tokens));*/
 
 
             //retrieving the work experience of the person
@@ -597,6 +597,7 @@ namespace SkillsHunterAPI.Services
                     {
                         newToken += token[j];
                     }
+                    tokens[i] = newToken;
                 }
             }
             return tokens;
