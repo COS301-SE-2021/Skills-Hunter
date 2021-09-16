@@ -103,7 +103,7 @@ export class ProjectCardComponent implements OnInit {
   }
 
   match(_project) {
-    this._router.navigate([`createproject`, { _project }]);
+    this._router.navigate([`match-candidate`, { _project }]);
   }
 
   cancel() {
