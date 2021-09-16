@@ -96,16 +96,22 @@ namespace SkillsHunterAPI.Controllers
         public async Task<IEnumerable<Notification>> GetNotificationsByRecepientId()
         {
 
-
-                var LoggedInOwner = _userController.GetCurrentUserId();
+            //This get the current logged in user
+            var LoggedInOwner = _userController.GetCurrentUserId();
 
                 return await _notificationService.GetNotificationsByRecepientId(LoggedInOwner);
         }
 
 
+        //This is for the Notifications entity 
+        [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/getUnreadNotifications")]
         public async Task<IEnumerable<Notification>> GetUnReadNotificationsByRecepientId()
         {
-            return null;
+            //This get the current logged in user
+            var LoggedInOwner = _userController.GetCurrentUserId();
+
+            return await _notificationService.GetUnReadNotificationsByRecepientId(LoggedInOwner);
         }
 
 

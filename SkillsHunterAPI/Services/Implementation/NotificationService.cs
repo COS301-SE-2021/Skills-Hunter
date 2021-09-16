@@ -29,7 +29,9 @@ namespace SkillsHunterAPI.Services.Implementation
 
         public async Task<IEnumerable<Notification>> GetUnReadNotificationsByRecepientId(Guid id)
         {
-            return null;
+            //This returns all unread notications of current logged in user
+
+            return await _context.Notifications.Where(o => o.RecepientId == id && o.IsRead==false).ToListAsync();
         }
 
         public Task UpdatingReadStatus(Guid notificationId)
