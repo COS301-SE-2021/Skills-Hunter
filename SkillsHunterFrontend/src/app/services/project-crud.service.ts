@@ -67,6 +67,13 @@ export class ProjectCRUDService {
     );
   }
 
+  obtainMatchingCandidates(formData: any): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'localhost:5000/api/Project/MatchCandidates?projectId=' + formData,
+      this.httpOptions
+    );
+  }
+
   inviteCandidate(formData): Observable<any[]> {
     return this.httpclient.post<any[]>(
       'http://localhost:5000/api/Project/inviteCandidate',
