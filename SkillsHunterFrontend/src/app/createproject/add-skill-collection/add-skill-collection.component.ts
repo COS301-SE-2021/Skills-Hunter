@@ -17,9 +17,6 @@ export class AddSkillCollectionComponent implements OnInit {
   collectionArray = [];
   collectionWeight: number = 1;
   collectionSkills = [];
-
-  // collectionDescription = 'An undescribed collection of skills.';
-
   skillArray = [];
 
   collectionFormGroup: FormGroup;
