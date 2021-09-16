@@ -312,6 +312,9 @@ export class ProfileComponent implements OnInit {
         this.work_DATA=arr;
         //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
         this.dataSourceWork =this.work_DATA;
+
+      }else{
+        alert("organisation already exists");
       }
       //return the skill and the value to profile then send request to backend
       }
@@ -343,6 +346,64 @@ export class ProfileComponent implements OnInit {
         data:dataToEdit
       });
 
+      dialogRef.afterClosed().subscribe(returnedData => {
+   
+        if(returnedData !=undefined && returnedData.data !=-1)
+        {
+          
+         
+          //first check if organisation is already in the list
+          var key=false;
+          for(let j=0;j<this.work_DATA.length;j++){
+  
+            if(this.work_DATA[j].organisation==returnedData.data.organisation)
+            {
+              key=true;
+            }
+          }
+          
+          var arr=[];
+          for(let j=0;j<this.work_DATA.length;j++)
+          {
+              if(j==(i-1)){
+                
+                arr.push({
+                  No:n,
+                  organisation:returnedData.data.organisation,
+                  role: returnedData.data.role,
+                  description: returnedData.data.description,
+                  duration: returnedData.data.duration,
+                  time: returnedData.data.time
+                      });
+              }
+              else{
+                arr.push(this.work_DATA[j]);
+              }
+                
+             }
+  
+             //send request to backend
+            /*if(success) {
+              this.work_DATA=arr;
+            }else{
+              alert("unable to ubdate an error has occured");
+            }*/
+  
+          this.work_DATA=arr;//remove after if else
+
+          //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
+          this.dataSourceWork =this.work_DATA;
+     
+        //return the skill and the value to profile then send request to backend
+        }
+        else{ 
+          console.log("returned empty:");
+        }//dialog closed
+      });
+
    }
  
+   delete(n){
+     
+   }
 }
