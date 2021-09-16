@@ -21,8 +21,10 @@ namespace SkillsHunterAPI.Services.Implementation
 
         public async Task<IEnumerable<Notification>> GetNotificationsByRecepientId(Guid id)
         {
-            
-            
+            //This returns all notications of current logged in user
+
+            return await _context.Notifications.Where(o => o.RecepientId == id).ToListAsync();
+
         }
 
         public async Task<IEnumerable<Notification>> GetUnReadNotificationsByRecepientId(Guid id)
@@ -30,9 +32,9 @@ namespace SkillsHunterAPI.Services.Implementation
             return null;
         }
 
-        public async Task UpdatingReadStatus(Guid notificationId)
+        public Task UpdatingReadStatus(Guid notificationId)
         {
-            return null;
+            return new Task(null);
         }
 
         Task<Notification> SendNotifications(Notification notification)
