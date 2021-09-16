@@ -578,11 +578,37 @@ namespace SkillsHunterAPI.Services
             return candidate;
         }
 
-        private bool MatchSkillFromExperienceDescription(string skillName, string[] DescriptionTokens)
+        private bool MatchSkillFromExperienceDescription(string skillName, string[] descriptionTokens)
         {
-            bool match = true;
 
-            return match
+            //Tokenizing the name of the skill
+            string[] skillNameTokens = Tokenize(skillName);
+
+            int numNameTokens = skillNameTokens.Length; //The number of token returned from tokenizing the skill name
+
+            for (int d = 0; d < descriptionTokens.Length; d++)
+            {
+                if (descriptionTokens[d].ToLower() == skillNameTokens[0].ToLower())
+                {
+                    bool match = true;
+
+                    for (int i = 1; i < numNameTokens; i++)
+                    {
+                        if (i > descriptionTokens.Length || descriptionTokens[d + i].ToLower() != skillNameTokens[i].ToLower())
+                        {
+                            match = false;
+                            break;
+                        }
+                    }
+
+                    if (match)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private string[] Tokenize(string input)
