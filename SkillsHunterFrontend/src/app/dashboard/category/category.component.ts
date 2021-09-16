@@ -19,6 +19,9 @@ export class CategoryComponent implements OnInit {
   notification: string = "no message";
   createName: string = "";
   createDescription: string = "";
+  editCategoryId: string = "";
+  editName: string = "";
+  editDescription: string = "";
 
   constructor(private modalService: NgbModal,private adminService: AdminService,private _snackBar: MatSnackBar) { }
 
@@ -64,6 +67,13 @@ export class CategoryComponent implements OnInit {
     this.modalService.open( createModalContent );
   }
 
+  editModal(editModalContent,categoryId,name,Description):void{
+    this.editCategoryId = categoryId;
+    this.editName = name;
+    this.editDescription = Description;
+    this.modalService.open( editModalContent );
+  }
+
   saveCategory(createModalContent):void{
     if(this.createName == "" || this.createDescription == ""){
         this._snackBar.open("Empty field detected", "",{
@@ -72,6 +82,8 @@ export class CategoryComponent implements OnInit {
     }else{
       this.adminService.addCategory(this.createName,this.createDescription).subscribe(result =>{
         
+        this.loadData();
+
         this._snackBar.open("Successfully created new category", "",{
           duration: 4000,
         });
@@ -99,6 +111,28 @@ export class CategoryComponent implements OnInit {
       }, 3000);
     
     });
+  }
+
+  editCategory():void{
+    if(this.editCategoryId == "" || this.editName == "" || this.editDescription == ""){
+        this._snackBar.open("Empty field detected", "",{
+          duration: 4000,
+        });
+    }else{
+      this.adminService.updateCategory(this.editCategoryId,this.editName,this.editDescription).subscribe(result =>{
+        this.loadData();
+        
+        this._snackBar.open("Successfully edited category", "",{
+          duration: 4000,
+        });
+
+      },error=>{
+        this._snackBar.open("An error has occurred while creating category on the server", "",{
+          duration: 4000,
+        });
+     });
+
+    }
   }
 
 }
