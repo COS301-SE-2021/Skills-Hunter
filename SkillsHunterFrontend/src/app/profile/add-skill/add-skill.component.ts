@@ -61,9 +61,13 @@ export class AddSkillComponent implements OnInit {
     //call slider 
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
-    configDialog.width = '25%';
-    configDialog.height = '27%';
-    const dialogRef = this.dialog.open(SliderComponent, configDialog);
+
+    const dialogRef = this.dialog.open(SliderComponent,
+      {   width: '25%',
+         height:'27%',
+        data:""
+      });
+
    // console.log("back");
     dialogRef.afterClosed().subscribe(value => {
      
