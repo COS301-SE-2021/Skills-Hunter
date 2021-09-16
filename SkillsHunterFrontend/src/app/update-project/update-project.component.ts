@@ -79,6 +79,18 @@ export class UpdateProjectComponent implements OnInit {
     projectCollections: new FormControl('', [Validators.required]),
   });
 
+  extractSelectedSkills() {
+    var arr = [];
+
+    return arr;
+  }
+
+  extractSelectedCollections() {
+    var arr = [];
+
+    return arr;
+  }
+
   ngOnInit(): void {
     this.projectBasicInfo.controls['projectName'].setValue(
       this.selected_project.name
@@ -89,6 +101,9 @@ export class UpdateProjectComponent implements OnInit {
     this.projectBasicInfo.controls['projectLocation'].setValue(
       this.selected_project.location
     );
+
+    this.selectedSkills = this.extractSelectedSkills();
+    this.selectedCollections = this.extractSelectedCollections();
 
     this.projectCrud.getSkills().subscribe((data) => {
       // Capture the array of Skill objects:
@@ -236,32 +251,33 @@ export class UpdateProjectComponent implements OnInit {
     console.log('Updating Project...\n');
     console.log(proj);
 
-    theProject[0].name = proj.name;
-    theProject[0].description = proj.description;
-    theProject[0].location = proj.location;
+    // theProject[0].name = proj.name;
+    // theProject[0].description = proj.description;
+    // theProject[0].location = proj.location;
 
-    this._snackBar.open('Project Successfully Updated!', '', {
-      duration: 3000,
-    });
-
-    // this.projectCrud.updateProject(proj).subscribe((data) => {
-    //   console.log('Response for Update Project: ', data);
-
-    //   if (data.projectId != undefined)
-    //     this._snackBar.open('Project Successfully Updated!', '', {
-    //       duration: 3000,
-    //     });
-    //   else {
-    //     this._snackBar.open('Project Update Failed!', '', {
-    //       duration: 3000,
-    //     });
-    //   }
+    // this._snackBar.open('Project Successfully Updated!', '', {
+    //   duration: 3000,
     // });
+
+    this.projectCrud.updateProject(proj).subscribe((data) => {
+      console.log('Response for Update Project: ', data);
+
+      if (data.projectId != undefined)
+        this._snackBar.open('Project Successfully Updated!', '', {
+          duration: 3000,
+        });
+      else {
+        this._snackBar.open('Project Update Failed!', '', {
+          duration: 3000,
+        });
+      }
+    });
 
     // theProject[0].name = proj.name;
 
     // theProject.pop();
     // theProject.push(proj);
+    this.dialog.closeAll();
 
     this.cancel();
   }

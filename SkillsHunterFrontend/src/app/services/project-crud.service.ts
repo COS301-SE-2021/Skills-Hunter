@@ -76,12 +76,16 @@ export class ProjectCRUDService {
   }
 
   applyForProject(formData: any): Observable<any> {
-    // var auth = new Headers();
-    // auth.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
-
     return this.httpclient.post(
       'http://localhost:5000/api/Project/applyForProject',
       formData,
+      this.httpOptions
+    );
+  }
+
+  getMyUserID(): Observable<any> {
+    return this.httpclient.get(
+      'http://localhost:5000/api/User/getCurrentUserId',
       this.httpOptions
     );
   }

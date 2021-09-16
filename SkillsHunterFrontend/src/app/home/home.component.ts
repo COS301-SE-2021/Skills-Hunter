@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
     //read data of projects
     var functiontoCall;
     if (localStorage.getItem('role') == '1') {
-      // this._projects = theProject;
+      console.log('Getting projects by owner ID');
 
       this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
         console.log(data);
@@ -54,7 +54,8 @@ export class HomeComponent implements OnInit {
       });
     } else {
       document.getElementById('createbtn').style.display = 'none';
-      // this._projects = theProject;
+
+      console.log('Getting all Projects');
 
       this.projectCrud.getAllProjects().subscribe((data) => {
         console.log(data);

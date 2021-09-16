@@ -5,7 +5,6 @@ import { Projects } from 'src/app/mock-data/mock-projects';
 import { ProjectCRUDService } from 'src/app/services/project-crud.service';
 import { projectService } from 'src/app/services/project-edit.service';
 import { UpdateProjectComponent } from 'src/app/update-project/update-project.component';
-import { Apply } from 'src/app/classes/Apply';
 
 @Component({
   selector: 'app-project-card',
@@ -52,17 +51,16 @@ export class ProjectCardComponent implements OnInit {
   }
 
   update(_project) {
-    // this.setProjectInfo = _project;
+    console.log('About to update!!');
+    console.log(_project);
     const configDialog = new MatDialogConfig();
     configDialog.panelClass = 'custom-modalbox';
     configDialog.data = _project;
     this.dialog.open(UpdateProjectComponent, configDialog);
-    this.cancel();
   }
 
   delete(_project) {
-    if (confirm(`Are you sure to delete ${_project.name}`)) {
-      //the service is called below
+    if (confirm(`Are you sure you want to delete ${_project.name}?`)) {
       this.projectCrud.deleteProject(_project.projectId).subscribe((data) => {
         console.log('Response post', data);
       });
@@ -71,10 +69,22 @@ export class ProjectCardComponent implements OnInit {
   }
 
   apply(_project) {
+    console.log('\nApplying for Project\n');
+
+    var myUserId = null;
+
+    this.projectCrud.getMyUserID().subscribe((data) => {
+      console.log('Calling get my user ID');
+      myUserId = data;
+      console.log('Response post', data);
+    });
+
     var formData = {
-      userId: localStorage.getItem('userID'),
+      userId: myUserId,
       projectId: _project.projectId,
     };
+
+    console.log(formData);
 
     //the service is called below;
     this.projectCrud.applyForProject(formData).subscribe((data) => {
