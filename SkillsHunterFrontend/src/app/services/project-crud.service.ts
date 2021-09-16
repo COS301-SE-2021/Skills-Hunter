@@ -74,7 +74,7 @@ export class ProjectCRUDService {
     );
   }
 
-  inviteCandidate(formData): Observable<any[]> {
+  inviteCandidate(formData: any): Observable<any[]> {
     return this.httpclient.post<any[]>(
       'http://localhost:5000/api/Project/inviteCandidate',
       formData,

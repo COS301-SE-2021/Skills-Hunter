@@ -1,6 +1,5 @@
 import { InviteCandidateComponent } from './invite-candidate/invite-candidate.component';
-import { Component, Input, OnInit } from '@angular/core';
-import { Candidate } from 'src/app/classes/Candidate';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
@@ -15,7 +14,7 @@ export class CandidateCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  inviteCandidate() {
+  inviteCandidate(_candidateId: any) {
     console.log('\nInviting a Candidate\n');
     console.log(this.card_candidate);
 
@@ -23,7 +22,8 @@ export class CandidateCardComponent implements OnInit {
     configDialog.backdropClass = 'backGround';
     configDialog.width = '35%';
     configDialog.panelClass = 'custom-modalbox';
+    configDialog.data = _candidateId;
 
-    // this.dialog.open(InviteCandidateComponent, configDialog);
+    this.dialog.open(InviteCandidateComponent, configDialog);
   }
 }

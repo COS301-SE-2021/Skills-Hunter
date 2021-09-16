@@ -13,7 +13,7 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 export class HomeComponent implements OnInit {
   title: string = 'Projects';
   filterQuery: string = '';
-  _projects = []; //= Projects;
+  _projects = [];
 
   constructor(
     private _router: Router,
@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
       this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
         console.log(data);
         this._projects = data;
-        console.log('Response post', data);
       });
     } else {
       document.getElementById('createbtn').style.display = 'none';
@@ -43,7 +42,6 @@ export class HomeComponent implements OnInit {
       this.projectCrud.getAllProjects().subscribe((data) => {
         console.log(data);
         this._projects = data;
-        console.log('Response post', data);
       });
     }
   }

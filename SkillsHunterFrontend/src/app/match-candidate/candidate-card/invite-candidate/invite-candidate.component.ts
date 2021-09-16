@@ -1,7 +1,8 @@
 import { ProjectCRUDService } from './../../../services/project-crud.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-invite-candidate',
@@ -13,7 +14,9 @@ export class InviteCandidateComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<InviteCandidateComponent>,
-    private projService: ProjectCRUDService
+    private projService: ProjectCRUDService,
+    @Inject(MAT_DIALOG_DATA) public SendInviteData,
+    private _snackBar: MatSnackBar
   ) {}
 
   invitationForm: FormGroup = new FormGroup({
@@ -22,17 +25,32 @@ export class InviteCandidateComponent implements OnInit {
 
   onSubmit() {
     var formData = {
-      userId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-      projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-      inviteeId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-      message: 'message is this!',
+      userId: this.SendInviteData.userId,
+      projectId: this.SendInviteData.projectId,
+      inviteeId: this.SendInviteData.inviteeId,
+      message: this.invitationForm.value.candidateMessage,
     };
 
-    console.log('MESSAGE IS = ' + formData.message);
+    console.log('About to Invite the Candidate!');
+    console.log(formData);
 
     this.projService.inviteCandidate(formData).subscribe((data) => {
-      console.log('Candidate was invited...');
+      console.log('Logging the Data Returned');
+      console.log(data[Object.keys(data)[0]]);
+      // if (data.success == true)
+      //   this._snackBar.open('Successfully Applied for Project!', '', {
+      //     duration: 3000,
+      //   });
+      // else {
+      //   this._snackBar.open('Project Application Failed.', '', {
+      //     duration: 3000,
+      //   });
+      // }
+
       console.log('Response: ', data);
+      this._snackBar.open('Successfully Applied for Project!', '', {
+        duration: 3000,
+      });
     });
 
     this.cancel();
