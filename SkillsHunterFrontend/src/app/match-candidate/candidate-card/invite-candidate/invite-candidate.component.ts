@@ -35,22 +35,16 @@ export class InviteCandidateComponent implements OnInit {
     console.log(formData);
 
     this.projService.inviteCandidate(formData).subscribe((data) => {
-      console.log('Logging the Data Returned');
-      console.log(data[Object.keys(data)[0]]);
-      // if (data.success == true)
-      //   this._snackBar.open('Successfully Applied for Project!', '', {
-      //     duration: 3000,
-      //   });
-      // else {
-      //   this._snackBar.open('Project Application Failed.', '', {
-      //     duration: 3000,
-      //   });
-      // }
-
+      if (data[Object.keys(data)[0]] == true)
+        this._snackBar.open('Successfully Applied for Project!', '', {
+          duration: 3000,
+        });
+      else {
+        this._snackBar.open('Project Application Failed.', '', {
+          duration: 3000,
+        });
+      }
       console.log('Response: ', data);
-      this._snackBar.open('Successfully Applied for Project!', '', {
-        duration: 3000,
-      });
     });
 
     this.cancel();
