@@ -585,6 +585,20 @@ namespace SkillsHunterAPI.Services
 
         private string[] cleanTokens(string[] tokens)
         {
+            for(int i = 0; i < tokens.Length; i++)
+            {
+                string token = tokens[i];
+
+                if(!char.IsLetter(token[token.Length - 1]))
+                {
+                    string newToken = "";
+
+                    for(int j = 0; j < token.Length - 1; j++)
+                    {
+                        newToken += token[j];
+                    }
+                }
+            }
             return tokens;
         }
 
