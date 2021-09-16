@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Project } from 'src/app/classes/Project';
 import { Projects } from 'src/app/mock-data/mock-projects';
 import { ProjectCRUDService } from 'src/app/services/project-crud.service';
@@ -22,7 +23,8 @@ export class ProjectCardComponent implements OnInit {
     private dialog: MatDialog,
     private projectData: projectService,
     private projectCrud: ProjectCRUDService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -98,6 +100,10 @@ export class ProjectCardComponent implements OnInit {
     });
 
     this.cancel();
+  }
+
+  match(_project) {
+    this._router.navigate([`createproject`, { _project }]);
   }
 
   cancel() {
