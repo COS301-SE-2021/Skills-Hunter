@@ -566,24 +566,26 @@ namespace SkillsHunterAPI.Services
             {
                 foreach (ExternalWorkExperience experience in experiences)
                 {
-                    var mlContext = new MLContext();
+                    string[] tokens = Tokenize(experience.Description);
 
-                    var emptyData = new List<TextData>();
-                    var data = mlContext.Data.LoadFromEnumerable(emptyData);
-                    var tokenization = mlContext.Transforms.Text.TokenizeIntoWords("Tokens", "Text", separators: new[] { ' ', '.', '?' });
+                    foreach(MatchingSkill skill in candidate.MatchingSkills)
+                    {
 
-                    var tokenModel = tokenization.Fit(data);
-
-                    var engine = mlContext.Model.CreatePredictionEngine<TextData, TextTokens>(tokenModel);
-
-                    TextTokens tokens = engine.Predict(new TextData() { Text = experience.Description });
+                    }
                 }
             }
 
             return candidate;
         }
 
-        private string[] TokenizeText(string input)
+        private bool MatchSkillFromExperienceDescription(string skillName, string[] DescriptionTokens)
+        {
+            bool match = true;
+
+            return match
+        }
+
+        private string[] Tokenize(string input)
         {
             //string paragraph = "Testing Tokenization with ML.net. Second sentence.";
 
