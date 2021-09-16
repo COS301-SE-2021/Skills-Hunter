@@ -585,7 +585,21 @@ namespace SkillsHunterAPI.Services
 
         private string[] TokenizeText(string input)
         {
-            return null;
+            //string paragraph = "Testing Tokenization with ML.net. Second sentence.";
+
+            var mlContext = new MLContext();
+
+            var emptyData = new List<TextData>();
+            var data = mlContext.Data.LoadFromEnumerable(emptyData);
+            var tokenization = mlContext.Transforms.Text.TokenizeIntoWords("Tokens", "Text", separators: new[] { ' ', '?' });
+
+            var tokenModel = tokenization.Fit(data);
+
+            var engine = mlContext.Model.CreatePredictionEngine<TextData, TextTokens>(tokenModel);
+
+            var tokens = engine.Predict(new TextData() { Text = input });
+
+            return cleanTokens(tokens.Tokens);
         }
 
         private string[] cleanTokens(string[] tokens)
