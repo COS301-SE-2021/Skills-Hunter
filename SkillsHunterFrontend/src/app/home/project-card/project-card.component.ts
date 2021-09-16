@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Project } from 'src/app/classes/Project';
 import { Projects } from 'src/app/mock-data/mock-projects';
 import { ProjectCRUDService } from 'src/app/services/project-crud.service';
@@ -20,7 +21,8 @@ export class ProjectCardComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private projectData: projectService,
-    private projectCrud: ProjectCRUDService
+    private projectCrud: ProjectCRUDService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -82,6 +84,16 @@ export class ProjectCardComponent implements OnInit {
       // the service is called below;
       this.projectCrud.applyForProject(formData).subscribe((data) => {
         console.log('Response post', data);
+
+        if (data.success == true)
+          this._snackBar.open('Successfully Applied for Project!', '', {
+            duration: 3000,
+          });
+        else {
+          this._snackBar.open('Project Application Failed.', '', {
+            duration: 3000,
+          });
+        }
       });
     });
 
