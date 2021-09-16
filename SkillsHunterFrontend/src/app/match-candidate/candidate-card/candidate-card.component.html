@@ -14,18 +14,22 @@
   <mat-card class="candidate-card-skills">
     <mat-card-title>Skills</mat-card-title>
     <mat-chip-list aria-label="Candidate Skills">
-      <mat-chip color="primary" selected>{{ card_candidate.skills }}</mat-chip>
+      <!-- <mat-chip color="primary" selected>{{ card_candidate.matchingSkills }}</mat-chip> -->
 
-      <!-- <mat-chip *ngFor="let skill of card_candidate.skills" selected [color]="chip.color">
-                {{skill.}}
-              </mat-chip> -->
+      <mat-chip
+        *ngFor="let skill of card_candidate.matchingSkills"
+        selected
+        color="primary"
+      >
+        {{ skill.name }}
+      </mat-chip>
     </mat-chip-list>
   </mat-card>
 
   <mat-card-actions>
     <button
       class="candidate-invite"
-      (click)="inviteCandidate()"
+      (click)="inviteCandidate(candidate - card.userId)"
       mat-raised-button
       color="accent"
     >
