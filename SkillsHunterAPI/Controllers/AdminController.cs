@@ -282,15 +282,15 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
+        [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/removeCategory")]
-        public async Task<IActionResult> RemoveCategory(RemoveCategoryRequest request)
+        public async Task<IActionResult> RemoveCategory([FromQuery]Guid request)
         {
             try
             {
                 // Remove category code here
 
-                Category result = await _adminService.RemoveCategory(request.CategoryId);
+                Category result = await _adminService.RemoveCategory(request);
 
                 return Ok(new RemoveCategoryResponse()
                 {
