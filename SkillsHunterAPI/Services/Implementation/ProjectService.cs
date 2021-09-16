@@ -570,7 +570,14 @@ namespace SkillsHunterAPI.Services
 
                     foreach(MatchingSkill skill in candidate.MatchingSkills)
                     {
+                        if(MatchSkillFromExperienceDescription(skill.Name, tokens))
+                        {
+                            TimeSpan ts = experience.EndDate - experience.StartDate;
 
+                            double years = ts.TotalDays / 365;
+
+                            skill.YearsOfExperience = Math.Round((double)years, 1);
+                        }
                     }
                 }
             }
