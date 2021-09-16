@@ -15,7 +15,6 @@ export class CandidateCardComponent implements OnInit {
   ngOnInit(): void {}
 
   inviteCandidate(_candidateId: any) {
-    console.log('\nInviting a Candidate\n');
     console.log(this.card_candidate);
 
     const configDialog = new MatDialogConfig();

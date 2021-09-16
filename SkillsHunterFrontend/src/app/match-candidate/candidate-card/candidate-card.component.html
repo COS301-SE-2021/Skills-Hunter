@@ -1,8 +1,10 @@
 <mat-card class="candidate-card">
   <mat-card-header>
     <div mat-card-avatar class="candidate-menu-header-image"></div>
-    <mat-card-title>{{ card_candidate.name }}</mat-card-title>
-    <mat-card-subtitle>{{ card_candidate.job }}</mat-card-subtitle>
+    <mat-card-title
+      >{{ card_candidate.name }} {{ card_candidate.surname }}</mat-card-title
+    >
+    <mat-card-subtitle>{{ card_candidate.email }}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
