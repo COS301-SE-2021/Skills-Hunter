@@ -386,13 +386,50 @@ namespace SkillsHunterAPI.Services
             //Getting the number of skills in the project
             numProjectSkills += projectSkills.Count;
 
-            foreach(GetProjectSkillCollectionResponse projectSkillCollection in projectSkillCollections)
+            //getting all users
+            List<User> users = new List<User>();
+
+            //getting the users that match a specific skill
+            foreach(GetProjectSkillResponse projectSkill in projectSkills)
             {
-                numProjectSkills += projectSkillCollection.Skills.Count;
+                List<UserSkill> userSkills = await _context.UserSkills.Where(skill => skill.SkillId == projectSkill.SkillId).ToListAsync();
+
+                if(userSkills != null)
+                {
+                    foreach (UserSkill userSkill in userSkills)
+                    {
+                        User user = await _context.Users.Where(u => u.UserId == userSkill.UserId).FirstOrDefaultAsync();
+
+                        if(user != null && !users.Contains(user))
+                        {
+                            users.Add(user);
+                        }
+                    }
+                }
             }
 
-            //getting all users
-            List<User> users = await _context.Users.ToListAsync();
+            foreach (GetProjectSkillCollectionResponse projectSkillCollection in projectSkillCollections)
+            {
+                numProjectSkills += projectSkillCollection.Skills.Count;
+
+                foreach (GetProjectSkillResponse skillFromCollection in projectSkillCollection.Skills)
+                {
+                    List<UserSkill> userSkills = await _context.UserSkills.Where(skill => skill.SkillId == skillFromCollection.SkillId).ToListAsync();
+
+                    if (userSkills != null)
+                    {
+                        foreach (UserSkill userSkill in userSkills)
+                        {
+                            User user = await _context.Users.Where(u => u.UserId == userSkill.UserId).FirstOrDefaultAsync();
+
+                            if (user != null && !users.Contains(user))
+                            {
+                                users.Add(user);
+                            }
+                        }
+                    }
+                }
+            }
 
             foreach(User user in users)
             {
