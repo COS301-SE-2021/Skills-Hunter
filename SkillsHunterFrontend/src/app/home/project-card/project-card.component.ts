@@ -2,8 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Project } from 'src/app/classes/Project';
-import { Projects } from 'src/app/mock-data/mock-projects';
 import { ProjectCRUDService } from 'src/app/services/project-crud.service';
 import { projectService } from 'src/app/services/project-edit.service';
 import { UpdateProjectComponent } from 'src/app/update-project/update-project.component';
@@ -16,8 +14,7 @@ import { UpdateProjectComponent } from 'src/app/update-project/update-project.co
 export class ProjectCardComponent implements OnInit {
   panelOpenState: boolean = false;
 
-  @Input() card_project;
-  arrAllSkills = [];
+  @Input() card_project: any;
 
   constructor(
     private dialog: MatDialog,
@@ -46,14 +43,6 @@ export class ProjectCardComponent implements OnInit {
     }
   }
 
-  get getProjectInfo(): Project {
-    return this.projectData.projectBeingedited;
-  }
-  //this sets project service which holds the data which will be displayed in the update dialog
-  set setProjectInfo(project: Project) {
-    this.projectData.projectBeingedited = project;
-  }
-
   update(_project) {
     console.log('About to update!!');
     console.log(_project);
@@ -80,8 +69,6 @@ export class ProjectCardComponent implements OnInit {
         userId: userID,
         projectId: _project.projectId,
       };
-
-      console.log(formData);
 
       // the service is called below;
       this.projectCrud.applyForProject(formData).subscribe((data) => {
