@@ -189,14 +189,12 @@
                     </div>
                 </form>
                 </mat-step>
-                <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+                <mat-step [stepControl]="secondFormGroup" label="Fill out your Skills">
                     <button id="addskillBtn" (click)="addskill()" mat-button color="accent">add skill</button>
                     <br />
                     <table mat-table id="tablecont" [dataSource]="dataSource" class="mat-elevation-z0">
                         <caption>Table of skills</caption>
-                        - Note that these columns can be defined in any order.
-                              The actual rendered columns are set as a property on the row definition" -
-                      
+                    
                         <!--Position Column -->
                        <ng-container matColumnDef="No">
                           <th mat-header-cell *matHeaderCellDef id="number"> No. </th>
@@ -218,7 +216,7 @@
                         <ng-container matColumnDef="actions">
                             <mat-header-cell *matHeaderCellDef></mat-header-cell>
                             <mat-cell *matCellDef="let element">
-                              <button mat-icon-button><mat-icon>launch</mat-icon></button>
+                              <button mat-icon-button><mat-icon (click)="editSkill(element.No)">launch</mat-icon></button>
                               <button mat-icon-button color="warn" (click)="deleteSkill(element.No)"><mat-icon>delete_outline</mat-icon></button>
                             </mat-cell>
                         </ng-container>
@@ -236,7 +234,7 @@
                 <button id="addskillBtn" (click)="addExperience()" mat-button color="accent">add previous work experience</button>
                     <br />
                     <table mat-table id="tablecont" [dataSource]="dataSourceWork" class="mat-elevation-z0">
-                        <caption>Table of skills</caption>
+                        <caption>Table of experience</caption>
                       
                         <!--Position Column -->
                        <ng-container matColumnDef="No">
