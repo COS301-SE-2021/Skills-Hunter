@@ -163,7 +163,7 @@ namespace SkillsHunterAPI.Controllers
 
             GetUserRequest getUser = new GetUserRequest();
             getUser.UserId = LoggedInUser;
-            return await GetUser(getUser);
+            return await GetUser(getUser.UserId);
            
         }
 
@@ -187,7 +187,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 GetUserRequest req = new GetUserRequest();
                 req.UserId = user.UserId;
-                GetUserResponse tempUser = await GetUser(req);
+                GetUserResponse tempUser = await GetUser(req.UserId);
 
                 response.Add(tempUser);
             }
@@ -197,9 +197,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getUser")]
-        public async Task<GetUserResponse> GetUser([FromBody] GetUserRequest request)
+        public async Task<GetUserResponse> GetUser([FromQuery] Guid request)
         {
-            User user = await _userService.GetUser(request.UserId);
+            User user = await _userService.GetUser(request);
 
             GetUserResponse response = new GetUserResponse();
 
@@ -218,7 +218,7 @@ namespace SkillsHunterAPI.Controllers
 
             //Retrieving the userskills
             GetUserSkillsRequest skillsRequest = new GetUserSkillsRequest();
-            skillsRequest.UserId = request.UserId;
+            skillsRequest.UserId = request;
             response.UserSkills = (List<GetUserSkillResponse>)await _userService.GetUserSkillsByUserId(user.UserId);
 
             return response;
