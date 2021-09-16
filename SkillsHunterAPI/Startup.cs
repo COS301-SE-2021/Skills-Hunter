@@ -55,7 +55,10 @@ namespace SkillsHunterAPI
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAdminService, AdminService>();
             services.AddTransient<UserController, UserController>();
+
+            //added this recently for notificcations and SignalR
             services.AddTransient<INotificationService, NotificationService>();
+            services.AddTransient<IUserConnectionManager, UserConnectionManager>();
 
 
 

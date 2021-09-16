@@ -1,11 +1,12 @@
-﻿using System;
+﻿using SkillsHunterAPI.Services.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkillsHunterAPI.Services.Implementation
 {
-    public class UserConnectionManager
+    public class UserConnectionManager:IUserConnectionManager
     {
 
         private static Dictionary<string, List<string>> userConnectionMap = new Dictionary<string, List<string>>();

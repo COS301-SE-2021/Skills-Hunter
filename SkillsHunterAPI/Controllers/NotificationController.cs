@@ -30,9 +30,8 @@ namespace SkillsHunterAPI.Controllers
             _notificationUserHubContext = notificationUserHubContext;
             _userConnectionManager = userConnectionManager;
             _userController = userController;
-            notificationService = _notificationService;
+            _notificationService = notificationService;
 
-            InitControllers();
         }
 
 
@@ -95,7 +94,7 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getNotifications")]
         public async Task<IEnumerable<Notification>> GetNotificationsByRecepientId()
         {
-
+            InitControllers();
             //This get the current logged in user
             var LoggedInOwner = _userController.GetCurrentUserId();
 
@@ -108,6 +107,7 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getUnreadNotifications")]
         public async Task<IEnumerable<Notification>> GetUnReadNotificationsByRecepientId()
         {
+            InitControllers();
             //This get the current logged in user
             var LoggedInOwner = _userController.GetCurrentUserId();
 
