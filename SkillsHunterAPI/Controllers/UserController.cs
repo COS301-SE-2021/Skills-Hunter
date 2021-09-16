@@ -316,11 +316,11 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getImageByUserId")]
-        public async Task<IActionResult> GetImageByUser(GetImageByUserRequest request){
+        public async Task<IActionResult> GetImageByUser([FromQuery]Guid request){
             try
             {
                 // Get Image code here
-                var response = await _userService.GetImageByUser(new Guid(request.UserId));
+                var response = await _userService.GetImageByUser(request);
 
                 return Ok(new GetImageByUserResponse(){
                     result = response
