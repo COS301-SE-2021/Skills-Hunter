@@ -22,7 +22,7 @@ export class AdminService {
   }
 
   getUser(id: string): Observable<getUserResponse>{
-    return this.http.get<getUserResponse>(this.apiUrl + "api/User/getUserById?userId=" + id,{headers : this.header})
+    return this.http.get<getUserResponse>(this.apiUrl + "api/User/getUserById?request=" + id,{headers : this.header})
   }
 
   creatSkill(nam: string, cat: getCategoryByIdRequest[]): Observable<createSkillResponse>{

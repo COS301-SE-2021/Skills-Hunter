@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { UsersComponent } from './users/users.component';
@@ -26,7 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
     NgbModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ]
 })
 export class DashboardModule { }

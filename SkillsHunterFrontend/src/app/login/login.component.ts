@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
         else if(data.body.role == 2)
           this._router.navigate([`home`]);
         else if(data.body.role == 3)
-          this._router.navigate([`user-control`]);
+          this._router.navigate([`dashboard`]);
 
 
       },error=>{

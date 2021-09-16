@@ -16,12 +16,26 @@ export class UsersComponent implements OnInit {
   show: getUserResponse[] = [];
   notificationType: number = 0;
   notification: string = "no message";
-  constructor(private adminService:AdminService) { }
+  
+  constructor(private adminService:AdminService) { 
+    this.adminService.getUsers().subscribe(result =>{
+        this.data = result;
+        this.show = result;
+    },
+    error=>{
+      this.notification = "An error has occurred while retrieving all users from server";
+      this.notificationType = 3;
+      
+      setTimeout(function(){
+        this.notificationType = 0;
+      }, 3000);
+    
+    });
+  }
 
   ngOnInit(): void {
     this.adminService.getUsers().subscribe(result =>{
         this.data = result;
-        this.show = result;
     },
     error=>{
       this.notification = "An error has occurred while retrieving all users from server";
@@ -78,19 +92,14 @@ export class UsersComponent implements OnInit {
 
   search(): void{
     this.show = [];
-    
-    for(let count  = 0; count < this.data.length; count++){
-      if(this.match(this.searchTerm.toLowerCase(),this.data[count].name.toLowerCase(),this.data[count].surname.toLowerCase())){
-        this.show.push(this.data[count]);
-        console.log("true");
-      }
-    }  
-    console.log(this.show)
-      
-  }
-
-  identify(index,item){
-    return item.email;
+    if(this.searchTerm != ""){  
+      for(let count  = 0; count < this.data.length; count++){
+        if(this.match(this.searchTerm.toLowerCase(),this.data[count].name.toLowerCase(),this.data[count].surname.toLowerCase())){
+          this.show.push(this.data[count]);
+          console.log("true");
+        }
+      } 
+    } 
   }
 
 }

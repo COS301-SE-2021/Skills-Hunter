@@ -9,12 +9,7 @@
       <div class="card-body">
 
 	    <div class="form-group" (click) = "filter=false">
-	      <div class="input-group">
-	        <input type="text" class="form-control" placeholder="search" aria-label="Recipient's username">
-	        <div class="input-group-append">
-	          <button class="btn btn-sm btn-gradient-primary" type="button">Search</button>
-	        </div>
-	      </div>
+	        <input type="text" class="form-control form-control-lg" placeholder="search" aria-label="Recipient's username" (keyup.enter)="search()" name = "searchTerm" [(ngModel)] = "searchTerm">
 	    </div>
 
 	    <button type="button" class="btn btn-gradient-primary btn-icon-text" (click)="filter=!filter;create=false">

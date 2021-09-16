@@ -19,7 +19,7 @@ export class SkillsComponent implements OnInit {
   notification: string = "no message";
   status: number = -1;
   name: string = "";
-  cat: string = ""
+  cat: string = "";
 
   constructor(private modalService: NgbModal,private adminService:AdminService) { }
 
@@ -78,6 +78,10 @@ export class SkillsComponent implements OnInit {
   }
 
   createSkill(): void{
+
+  }
+
+  search(): void{
 
   }
 
