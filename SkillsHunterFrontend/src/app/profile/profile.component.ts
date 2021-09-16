@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   fileToUpload: File = null;
 
   constructor(private service: ProjectCRUDService,private profileService: ProfileInfoService,private dialog: MatDialog,private _formBuilder: FormBuilder) { }
-  isLinear = true;
+  isLinear = false;
  
   secondFormGroup: FormGroup;
 //variables below used to display table of skills
@@ -53,11 +53,11 @@ export class ProfileComponent implements OnInit {
     document.getElementById('adminlist').style.display = "none";
      document.getElementById('houseAdmin').style.display = "none";
      
-    this.personalDetailsForm.controls['name'].setValue(localStorage.getItem('name'));
-    this.personalDetailsForm.controls['surname'].setValue(localStorage.getItem('surname'));
-    this.personalDetailsForm.controls['email'].setValue(localStorage.getItem('email'));
-    this.personalDetailsForm.controls['phone'].setValue(localStorage.getItem('phone'));
-    this.personalDetailsForm.controls['open'].setValue(localStorage.getItem('openForWork'));
+    this.firstFormGroup.controls['name'].setValue(localStorage.getItem('name'));
+    this.firstFormGroup.controls['surname'].setValue(localStorage.getItem('surname'));
+    this.firstFormGroup.controls['email'].setValue(localStorage.getItem('email'));
+    this.firstFormGroup.controls['phone'].setValue(localStorage.getItem('phone'));
+    this.firstFormGroup.controls['open'].setValue(localStorage.getItem('openForWork'));
 
     if(localStorage.getItem('role')=='1'){
       document.getElementById('toggleB').style.display = "none";
@@ -122,7 +122,8 @@ export class ProfileComponent implements OnInit {
       Validators.pattern('^[a-zA-Z ]*$'),
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required,Validators.pattern('[- +()0-9]+')])
+    phone: new FormControl('', [Validators.required,Validators.pattern('[- +()0-9]+')]),
+    open: new FormControl('')
   });
 
   viewImg(){
@@ -192,6 +193,9 @@ export class ProfileComponent implements OnInit {
         //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
         this.dataSource =this.ELEMENT_DATA;
       }
+      else{
+        alert("Skill already exists");
+      }
       //return the skill and the value to profile then send request to backend
       }
       else{ 
@@ -200,6 +204,34 @@ export class ProfileComponent implements OnInit {
     });
    
   }
+
+  //parameter n is a number indicating position of details on table
+  deleteSkill(n){
+
+    if(confirm(`Are you sure to delete ${this.ELEMENT_DATA[n-1].name} from the list?`)) {
+     
+      var arr=[];
+      var f=false;
+      for(let j=0;j<this.ELEMENT_DATA.length;j++)
+      {
+          if(j==(n-1)){
+            f=true;
+          }
+
+          if(j!=(n-1)){
+
+            if(f){// adjust numbering after element is deleted
+              this.ELEMENT_DATA[j].No=this.ELEMENT_DATA[j].No-1;
+            }
+            arr.push(this.ELEMENT_DATA[j]);
+          }  
+      }
+
+      this.ELEMENT_DATA=arr;
+      this.dataSource =this.ELEMENT_DATA;
+      this.noElements--;
+    }
+   }
 
   onSubmit(){
     console.log("in on submit");
