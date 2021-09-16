@@ -325,6 +325,7 @@ export class ProfileComponent implements OnInit {
    }
  
    //edit work information
+   //parameter n is a number indicating position of details on table
    edit(n){
      console.log(n);
      var key=false;
@@ -382,14 +383,7 @@ export class ProfileComponent implements OnInit {
                 
              }
   
-             //send request to backend
-            /*if(success) {
-              this.work_DATA=arr;
-            }else{
-              alert("unable to ubdate an error has occured");
-            }*/
-  
-          this.work_DATA=arr;//remove after if else
+          this.work_DATA=arr;
 
           //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
           this.dataSourceWork =this.work_DATA;
@@ -402,8 +396,31 @@ export class ProfileComponent implements OnInit {
       });
 
    }
- 
+ //parameter n is a number indicating position of details on table
    delete(n){
+
+    if(confirm(`Are you sure to delete ${this.work_DATA[n-1].organisation} from the list?`)) {
      
+      var arr=[];
+      var f=false;
+      for(let j=0;j<this.work_DATA.length;j++)
+      {
+          if(j==(n-1)){
+            f=true;
+          }
+
+          if(j!=(n-1)){
+
+            if(f){// adjust numbering after element is deleted
+              this.work_DATA[j].No=this.work_DATA[j].No-1;
+            }
+            arr.push(this.work_DATA[j]);
+          }  
+      }
+
+      this.work_DATA=arr;
+      this.dataSourceWork =this.work_DATA;
+      this.noElements2--;
+    }
    }
 }
