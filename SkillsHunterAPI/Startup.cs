@@ -27,6 +27,8 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using SkillsHunterAPI.Hubs;
+using SkillsHunterAPI.Services.Interface;
+using SkillsHunterAPI.Services.Implementation;
 
 namespace SkillsHunterAPI
 {
@@ -53,6 +55,7 @@ namespace SkillsHunterAPI
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAdminService, AdminService>();
             services.AddTransient<UserController, UserController>();
+            services.AddTransient<INotificationService, NotificationService>();
 
 
 

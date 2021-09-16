@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SkillsHunterAPI.Data;
 using SkillsHunterAPI.Models.Notification;
+using SkillsHunterAPI.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SkillsHunterAPI.Services.Implementation
 {
-    public class NotificationService
+    public class NotificationService:INotificationService
     {
 
         private readonly ApplicationDbContext _context;
@@ -39,12 +40,12 @@ namespace SkillsHunterAPI.Services.Implementation
             return new Task(null);
         }
 
-        Task<Notification> SendNotifications(Notification notification)
+        public Task<Notification> SendNotifications(Notification notification)
         {
             return null;
         }
 
-        Task DeleteNotifications(Guid id)
+        public Task DeleteNotifications(Guid id)
         {
             return null;
         }
