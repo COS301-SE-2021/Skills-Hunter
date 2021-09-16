@@ -583,6 +583,11 @@ namespace SkillsHunterAPI.Services
             return candidate;
         }
 
+        private string[] cleanTokens(string[] tokens)
+        {
+            return tokens;
+        }
+
         private List<MatchCandidateResponse> sortCandidates(List<MatchCandidateResponse> candidates)
         {
             //List<MatchCandidateResponse> sortedCandidates = new List<MatchCandidateResponse>();
