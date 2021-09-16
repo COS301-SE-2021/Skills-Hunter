@@ -9,6 +9,7 @@ import { ProjectCRUDService } from './../services/project-crud.service';
 import { JsonpClientBackend } from '@angular/common/http';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource} from '@angular/material/table';
+import { SliderComponent } from './slider/slider.component';
 
 @Component({
   selector: 'app-profile',
@@ -232,6 +233,58 @@ export class ProfileComponent implements OnInit {
       this.noElements--;
     }
    }
+
+   //edit skill rating
+   //parameter n is a number indicating position of details on table
+   editSkill(n){
+    console.log("inx"+n);
+    var key=false;
+    var i=0;
+    var dataToEdit;
+    //find data that needs to be edited
+    while(!key){
+
+     if(this.ELEMENT_DATA[i].No==n){
+       dataToEdit=this.ELEMENT_DATA[i];
+       key=true;
+     }
+     i++;
+    }
+  
+    const dialogRef = this.dialog.open(SliderComponent,
+      {   width: '25%',
+         height:'27%',
+        data:this.ELEMENT_DATA[i-1].rating
+      });
+console.log("v: "+this.ELEMENT_DATA[i-1].rating);
+
+     dialogRef.afterClosed().subscribe(returnedData => {
+  
+       if(returnedData !=undefined && returnedData.data !=-1)
+       {
+         var arr=[];
+         for(let j=0;j<this.ELEMENT_DATA.length;j++)
+         {
+             if(j==(i-1)){
+              this.ELEMENT_DATA[j].rating=returnedData.data;
+               
+             }
+               arr.push(this.ELEMENT_DATA[j]);
+            }
+ 
+         this.ELEMENT_DATA=arr;
+
+         //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
+         this.dataSource =this.ELEMENT_DATA;
+    
+       //return the skill and the value to profile then send request to backend
+       }
+       else{ 
+         console.log("returned empty:");
+       }//dialog closed
+     });
+
+  }
 
   onSubmit(){
     console.log("in on submit");
