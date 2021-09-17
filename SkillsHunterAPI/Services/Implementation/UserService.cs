@@ -164,6 +164,8 @@ namespace SkillsHunterAPI.Services
                 user.Email = request.Email;
                 user.Phone = request.PhoneNumber;
                 user.OpenForWork = request.OpenForWork;
+                user.LinkedIn = request.LinkedIn;
+                user.Github = request.Github;
 
                 await _context.SaveChangesAsync();
 
@@ -240,7 +242,7 @@ namespace SkillsHunterAPI.Services
 
         // Crud operations on the Work Experience Model
 
-        public async Task AddWorkExperience(ExternalWorkExperience request)
+        public async Task AddExternalWorkExperience(ExternalWorkExperience request)
         {
 
             request.ExternalWorkExperienceId = new Guid();
@@ -249,17 +251,24 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
         }
         
-        public async Task UpdateWorkExperience(Guid workExperienceID, ExternalWorkExperience request)
+        public async Task UpdateExternalWorkExperience(ExternalWorkExperience request)
         {
 
-            ExternalWorkExperience result = await _context.ExternalWorkExperiences.FindAsync(request.ExternalWorkExperienceId);
+            ExternalWorkExperience result = await _context.ExternalWorkExperiences.Where( w=> w.ExternalWorkExperienceId == request.ExternalWorkExperienceId).FirstOrDefaultAsync();
 
-            //result.ProjectId = request.ProjectId;
-            result.StartDate = request.StartDate;
-            result.EndDate = request.EndDate;
-            //result.performanceRating = request.performanceRating;
+            if(result == null)
+            {
+                await AddExternalWorkExperience(request);
+            }
+            else
+            {
+                result.Description = request.Description;
+                result.EndDate = request.EndDate;
+                request.Role = request.Role;
+                result.StartDate = request.StartDate;
 
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task DeleteWorkExperience(Guid id){

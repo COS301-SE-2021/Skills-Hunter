@@ -156,6 +156,15 @@ namespace SkillsHunterAPI.Controllers
                     await _userService.UpdateUserSkill(UserSkillToUpdate);
                 }
             }
+
+            //Updating the External work experience
+            if(request.ExternalWorkExperiences != null)
+            {
+                foreach(ExternalWorkExperience externalWorkExperience in request.ExternalWorkExperiences)
+                {
+                    await _userService.UpdateExternalWorkExperience(externalWorkExperience);
+                }
+            }
             
 
             UpdateUserResponse response = new UpdateUserResponse();
