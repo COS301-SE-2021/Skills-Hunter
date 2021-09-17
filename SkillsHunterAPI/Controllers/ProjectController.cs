@@ -355,7 +355,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/applyForProject")]
-        public async Task<ApplyForProjectResponse> ApplyForProject([FromBody] ApplyForProjectRequest request)
+        public Task<ApplyForProjectResponse> ApplyForProject([FromBody] ApplyForProjectRequest request)
         {
             ApplyForProjectResponse applyForProjectResponse = new ApplyForProjectResponse();
 
@@ -369,7 +369,9 @@ namespace SkillsHunterAPI.Controllers
             {
                 applyForProjectResponse.Success = false;
             }
-            return applyForProjectResponse;
+
+
+            return Task.FromResult(applyForProjectResponse);
         }
 
 
