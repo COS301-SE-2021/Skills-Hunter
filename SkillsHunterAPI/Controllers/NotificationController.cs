@@ -141,6 +141,15 @@ namespace SkillsHunterAPI.Controllers
 
 
 
+        [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/DeleteNotifications")]
+        public  Task DeleteNotifications([FromQuery]Guid id)
+        {
+            return  _notificationService.DeleteNotifications(id);
+        }
+
+
+
     }
 
 
