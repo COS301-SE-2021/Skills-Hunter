@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using SkillsHunterAPI.Models.Skill.Request;
+using SkillsHunterAPI.Models.Notification;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -23,12 +24,14 @@ namespace SkillsHunterAPI.Controllers
         private readonly IProjectService _projectService;
         private readonly ISkillService _skillService;
         private UserController _userController;
+        private NotificationController _notificationController;
 
-        public ProjectController(IProjectService projectService, ISkillService skillService, UserController userController)
+        public ProjectController(IProjectService projectService, ISkillService skillService, UserController userController,NotificationController notificationController)
         {
             _projectService = projectService;
             _skillService = skillService;
             _userController = userController;
+            _notificationController = notificationController;
             //InitControllers();
         }
 
@@ -372,23 +375,35 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/inviteCandidate")]
-        public InviteCandidateResponse InviteCandidate([FromBody] InviteCandidateRequest request)
+        public async Task<InviteCandidateResponse> InviteCandidateAsync([FromBody] InviteCandidateRequest request)
         {
             //This create an Invite candidate response object
             InviteCandidateResponse inviteCandidateResponse = new InviteCandidateResponse();
 
 
             var InviteStatus = _projectService.InviteCandidate(request.UserId, request.ProjectId, request.InviteeId, request.Message);
+            var Subject = "Project Invitation";
+
+
+            Notification newNotification = new Notification();
+            newNotification.InitiatorId = request.UserId;
+            newNotification.RecepientId = request.InviteeId;
+            newNotification.Subject = Subject;
+            newNotification.Message = request.Message;
+            newNotification.IsRead = false;
+            newNotification.DateSent = DateTime.Now;
 
             if (InviteStatus)
             {
                 inviteCandidateResponse.Success = true;
+  
             }
             else
             {
                 inviteCandidateResponse.Success = false;
             }
 
+            await _notificationController.SendNotifications(newNotification);
 
             return inviteCandidateResponse;
         }
