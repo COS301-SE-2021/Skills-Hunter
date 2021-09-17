@@ -9,19 +9,29 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 })
 export class CandidateCardComponent implements OnInit {
   @Input() card_candidate: any;
+  @Input() selected_project: any;
 
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
   inviteCandidate(_candidateId: any) {
-    console.log(this.card_candidate);
+    console.log('Logging the Project');
+    console.log(this.selected_project);
+
+    var _data = {
+      projectId: this.selected_project,
+      inviteeId: _candidateId,
+    };
+
+    console.log('Logging the Data');
+    console.log(_data);
 
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '35%';
     configDialog.panelClass = 'custom-modalbox';
-    configDialog.data = _candidateId;
+    configDialog.data = _data;
 
     this.dialog.open(InviteCandidateComponent, configDialog);
   }
