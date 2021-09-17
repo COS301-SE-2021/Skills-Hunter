@@ -241,6 +241,7 @@ namespace SkillsHunterAPI.Controllers
             GetUserSkillsRequest skillsRequest = new GetUserSkillsRequest();
             skillsRequest.UserId = request;
             response.UserSkills = (List<GetUserSkillResponse>)await _userService.GetUserSkillsByUserId(user.UserId);
+            response.ExternalWorkExperiences = (List<ExternalWorkExperience>)await _userService.GetExternalWorkExperiences(user.UserId);
 
             return response;
         }
