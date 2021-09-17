@@ -31,20 +31,20 @@
 }
 .card-project-find {
   float: left;
-  width: 140px;
+  width: 150px;
   display: var(--visFind);
 }
 
 .card-project-delete {
-  float: none;
-  left: 5%;
-  width: 140px;
+  // float: none;
+  // left: 5%;
+  width: 150px;
   display: var(--visDelete);
 }
 
 .card-project-update {
   float: right;
-  width: 140px;
+  width: 150px;
   display: var(--visUpdate);
 }
 
