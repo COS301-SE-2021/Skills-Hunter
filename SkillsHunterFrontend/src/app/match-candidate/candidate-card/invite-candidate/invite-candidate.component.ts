@@ -16,9 +16,6 @@ export class InviteCandidateComponent implements OnInit {
     this.projService.getMyUserID().subscribe((uID) => {
       this.userID = uID;
     });
-
-    console.log('LOGGING');
-    console.log(this.SendInviteData);
   }
 
   constructor(

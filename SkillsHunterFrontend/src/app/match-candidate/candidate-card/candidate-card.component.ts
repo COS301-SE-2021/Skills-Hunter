@@ -16,16 +16,10 @@ export class CandidateCardComponent implements OnInit {
   ngOnInit(): void {}
 
   inviteCandidate(_candidateId: any) {
-    console.log('Logging the Project');
-    console.log(this.selected_project);
-
     var _data = {
       projectId: this.selected_project,
       inviteeId: _candidateId,
     };
-
-    console.log('Logging the Data');
-    console.log(_data);
 
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
