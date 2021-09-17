@@ -12,6 +12,7 @@ import { SkillsComponent } from './skills/skills.component';
 import { CategoryComponent } from './category/category.component';
 import { SkillCollectionComponent } from './skill-collection/skill-collection.component';
 import { MatIconModule } from '@angular/material/icon';
+import { GeneralComponent } from './general/general.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
     ProjectsComponent,
     SkillsComponent,
     CategoryComponent,
-    SkillCollectionComponent
+    SkillCollectionComponent,
+    GeneralComponent
   ],
   imports: [
     CommonModule,

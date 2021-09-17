@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./skill-collection.component.scss']
 })
 export class SkillCollectionComponent implements OnInit {
-
+  searchTerm: string = "";
+  notification: string = "";
+  notificationType: number = 0;
   constructor() { }
 
   ngOnInit(): void {
