@@ -24,6 +24,7 @@ import { AddSkillComponent } from './profile/add-skill/add-skill.component';
 import { SliderComponent } from './profile/slider/slider.component';
 import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { ApplicationsComponent } from './applications/applications.component';
 
 const routes: Routes = [
   {
@@ -82,10 +83,10 @@ const routes: Routes = [
     path: 'sliderpopup',
     component: SliderComponent,
   },
-  {
-    path: '',
-    component: LoginComponent,
-  },
+  // {
+  //   path: '',
+  //   component: LoginComponent,
+  // },
   {
     path: 'dashboard',
     component: AdminBoardComponent,
@@ -125,6 +126,14 @@ const routes: Routes = [
   {
     path: 'update-project',
     component: UpdateProjectComponent,
+  },
+  {
+    path: 'applications',
+    component: ApplicationsComponent,
+  },
+  {
+    path: '',
+    component: ApplicationsComponent,
   },
 ];
 
