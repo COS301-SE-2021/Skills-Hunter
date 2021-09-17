@@ -53,11 +53,19 @@ export class ProjectCardComponent implements OnInit {
   }
 
   delete(_project) {
+    console.log('About to delete');
+    console.log(_project);
+
+    var formData = {
+      projectId: _project.projectId,
+    };
+
     if (confirm(`Are you sure you want to delete ${_project.name}?`)) {
-      this.projectCrud.deleteProject(_project.projectId).subscribe((data) => {
+      this.projectCrud.deleteProject(formData).subscribe((data) => {
         console.log('Response post', data);
       });
       window.location.reload();
+      // this._router.navigate([`home`]);
     }
   }
 
