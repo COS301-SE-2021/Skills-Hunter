@@ -53,7 +53,7 @@ namespace SkillsHunterAPI.Services.Implementation
 
         public Task DeleteNotifications(Guid id)
         {
-            return null;
+            return DeleteNotifications(id);
         }
     }
 }
