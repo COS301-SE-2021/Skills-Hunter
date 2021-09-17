@@ -51,9 +51,17 @@ namespace SkillsHunterAPI.Services.Implementation
 
         }
 
-        public Task DeleteNotifications(Guid id)
+        public async Task<Notification> DeleteNotifications(Guid id)
         {
-            return DeleteNotifications(id);
+            var result = await _context.Notifications.FindAsync(id);
+
+            if (result != null)
+            {
+                _context.Notifications.Remove(result);
+            }
+
+            await _context.SaveChangesAsync();
+            return result;
         }
     }
 }

@@ -18,6 +18,6 @@ namespace SkillsHunterAPI.Services.Interface
 
         Task<Notification> SendNotifications(Notification notification);
 
-        Task DeleteNotifications(Guid id);
+        Task<Notification> DeleteNotifications(Guid id);
     }
 }
