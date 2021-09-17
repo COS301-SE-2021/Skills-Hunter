@@ -37,7 +37,7 @@ namespace SkillsHunterAPI.Controllers
 
 
         //This initialize the user controller object to be accessible this side.
-        private void InitControllers()
+        public void InitControllers()
         {
             // We can't set this at Ctor because we don't have our local copy yet
             // Access to Url 
@@ -115,13 +115,33 @@ namespace SkillsHunterAPI.Controllers
         }
 
 
+        //This is for the Notifications entity 
+        [HttpPost]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/sendNotification")]
+        public async Task<Notification> SendNotifications([FromBody]Notification notification)
+        {
+            //InitControllers();
+
+            //var LoggedInOwner = _userController.GetCurrentUserId();
+
+    
+            Notification newNotification = new Notification();
+            newNotification.InitiatorId = notification.InitiatorId;
+            newNotification.RecepientId = notification.RecepientId;
+            newNotification.Subject = notification.Subject;
+            newNotification.Message = notification.Message;
+            newNotification.IsRead = notification.IsRead;
+            newNotification.DateSent = notification.DateSent;
+
+            //Adding the project to the database;
+
+            return await _notificationService.SendNotifications(newNotification);
+
+        }
 
 
 
     }
-
-
-
 
 
 }
