@@ -163,7 +163,7 @@ namespace SkillsHunterAPI.Controllers
 
             GetUserRequest getUser = new GetUserRequest();
             getUser.UserId = LoggedInUser;
-            return await GetUser(getUser);
+            return await GetUser(getUser.UserId);
            
         }
 
@@ -187,7 +187,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 GetUserRequest req = new GetUserRequest();
                 req.UserId = user.UserId;
-                GetUserResponse tempUser = await GetUser(req);
+                GetUserResponse tempUser = await GetUser(req.UserId);
 
                 response.Add(tempUser);
             }
@@ -197,9 +197,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getUser")]
-        public async Task<GetUserResponse> GetUser([FromBody] GetUserRequest request)
+        public async Task<GetUserResponse> GetUser([FromQuery] Guid request)
         {
-            User user = await _userService.GetUser(request.UserId);
+            User user = await _userService.GetUser(request);
 
             GetUserResponse response = new GetUserResponse();
 
@@ -218,7 +218,7 @@ namespace SkillsHunterAPI.Controllers
 
             //Retrieving the userskills
             GetUserSkillsRequest skillsRequest = new GetUserSkillsRequest();
-            skillsRequest.UserId = request.UserId;
+            skillsRequest.UserId = request;
             response.UserSkills = (List<GetUserSkillResponse>)await _userService.GetUserSkillsByUserId(user.UserId);
 
             return response;
@@ -276,11 +276,11 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getImage")]
-        public async Task<IActionResult> GetImage(GetImageRequest request){
+        public async Task<IActionResult> GetImage([FromQuery]Guid request){
             try
             {
                 // Get Image code here
-                Image response = await _userService.GetImage(new Guid(request.ImageId));
+                Image response = await _userService.GetImage(request);
 
                 return Ok(new GetImageResponse(){
                     result = response
@@ -296,11 +296,11 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/removeImage")]
-        public async Task<IActionResult> RemoveImage(RemoveImageRequest request){
+        public async Task<IActionResult> RemoveImage([FromQuery]Guid request){
             try
             {
                 // Get Image code here
-                var response = await _userService.RemoveImage(new Guid(request.ImageId));
+                var response = await _userService.RemoveImage(request);
 
                 return Ok(new RemoveImageResponse(){
                     result = response
@@ -316,11 +316,11 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getImageByUserId")]
-        public async Task<IActionResult> GetImageByUser(GetImageByUserRequest request){
+        public async Task<IActionResult> GetImageByUser([FromQuery]Guid request){
             try
             {
                 // Get Image code here
-                var response = await _userService.GetImageByUser(new Guid(request.UserId));
+                var response = await _userService.GetImageByUser(request);
 
                 return Ok(new GetImageByUserResponse(){
                     result = response

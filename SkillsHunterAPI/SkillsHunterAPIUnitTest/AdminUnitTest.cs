@@ -125,7 +125,7 @@ namespace SkillsHunterAPIUnitTest.Tests
 
             // Act
             
-            var result = await testController.RemoveCategory(request);
+            var result = await testController.RemoveCategory(request.CategoryId);
 
             // Assert
 
