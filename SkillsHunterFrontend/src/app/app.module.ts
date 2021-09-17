@@ -71,6 +71,7 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationResponseComponent } from './notifications/notification-response/notification-response.component';
+import { ApplicationsComponent } from './applications/applications.component';
 
 
 @NgModule({
@@ -127,6 +128,7 @@ import { NotificationResponseComponent } from './notifications/notification-resp
     NotificationMenuComponent,
     NotificationsComponent,
     NotificationResponseComponent,
+    ApplicationsComponent,
   ],
   imports: [
     BrowserModule,
