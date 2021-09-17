@@ -59,9 +59,6 @@ export class CategoryComponent implements OnInit {
     alert("edit")
   }
 
-  close(ev:Event): void{
-    ev.stopPropagation();
-  }
 
   createModal(createModalContent):void{
     this.modalService.open( createModalContent );
@@ -133,6 +130,22 @@ export class CategoryComponent implements OnInit {
      });
 
     }
+  }
+
+  remove(ev:Event,id:string): void{
+      ev.stopPropagation();
+      this.adminService.removeCategory(id).subscribe(result =>{
+        this.loadData();
+        
+        this._snackBar.open("Successfully edited category", "",{
+          duration: 4000,
+        });
+
+      },error=>{
+        this._snackBar.open("An error has occurred while creating category on the server", "",{
+          duration: 4000,
+        });
+     });    
   }
 
 }

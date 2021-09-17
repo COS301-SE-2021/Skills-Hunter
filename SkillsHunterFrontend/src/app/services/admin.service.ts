@@ -87,11 +87,7 @@ export class AdminService {
   }
 
   removeCategory(id: string): Observable<removeCategoryResponse> {
-    let request: removeCategoryRequest = {
-      Id: id,
-    };
-
-    return this.http.post<removeCategoryResponse>(this.apiUrl + "api/Admin/removeCategory",request,{headers : this.header});
+    return this.http.get<removeCategoryResponse>(this.apiUrl + "api/Admin/removeCategory?request="+id,{headers : this.header});
 
   }
 
