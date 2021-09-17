@@ -14,4 +14,7 @@ export class SkillCollectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  search(): void{
+    
+  }
 }

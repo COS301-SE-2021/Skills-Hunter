@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ChartsModule, ThemeService } from 'ng2-charts';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { UsersComponent } from './users/users.component';
@@ -30,7 +31,9 @@ import { GeneralComponent } from './general/general.component';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
-  ]
+    MatSnackBarModule,
+    ChartsModule
+  ],
+  providers: [ThemeService]
 })
 export class DashboardModule { }
