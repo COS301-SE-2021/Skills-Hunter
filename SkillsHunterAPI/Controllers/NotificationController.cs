@@ -148,7 +148,12 @@ namespace SkillsHunterAPI.Controllers
             return  _notificationService.DeleteNotifications(id);
         }
 
-
+        [HttpGet]//This tells ASP.Net that the method will handle http get request
+        [Route("api/[controller]/changeUnreadStatus")]
+        public Task changeUnreadStatus([FromQuery] Guid id)
+        {
+            return _notificationService.UpdatingReadStatus(id);
+        }
 
     }
 

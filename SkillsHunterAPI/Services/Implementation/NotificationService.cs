@@ -35,9 +35,17 @@ namespace SkillsHunterAPI.Services.Implementation
             return await _context.Notifications.Where(o => o.RecepientId == id && o.IsRead==false).ToListAsync();
         }
 
-        public Task UpdatingReadStatus(Guid notificationId)
+        public async Task UpdatingReadStatus(Guid notificationId)
         {
-            return new Task(null);
+            Notification existingNotification =await  _context.Notifications.Where(s => s.NotificationId == notificationId).FirstOrDefaultAsync();
+            
+            if(existingNotification != null)
+            {
+                existingNotification.IsRead = !existingNotification.IsRead;
+
+                await _context.SaveChangesAsync();
+
+            }
         }
 
         public async Task<Notification> SendNotifications(Notification notification)
