@@ -22,8 +22,6 @@ export class CandidateCardComponent implements OnInit {
     };
 
     const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '35%';
     configDialog.panelClass = 'custom-modalbox';
     configDialog.data = _data;
 
