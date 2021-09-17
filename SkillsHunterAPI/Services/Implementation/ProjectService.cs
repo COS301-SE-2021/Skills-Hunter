@@ -12,20 +12,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Skill.Entity;
+using SkillsHunterAPI.Models.Notification;
+using SkillsHunterAPI.Services.Interface;
 
 namespace SkillsHunterAPI.Services
 {
     public class ProjectService : IProjectService
     {
         private readonly ApplicationDbContext _context;
+        private readonly INotificationService _notificationService;
 
         /// <summary>
         /// We inject the context through the constructor
         /// </summary>
         /// <param name="context"></param>
-        public ProjectService(ApplicationDbContext context)
+        public ProjectService(ApplicationDbContext context, INotificationService notificationService)
         {
             _context = context;
+            _notificationService = notificationService;
         }
 
         //Project
@@ -189,7 +193,7 @@ namespace SkillsHunterAPI.Services
             return response;
         }
 
-        public bool ApplyForProject(Guid userId,Guid ProjectId)
+        public  bool ApplyForProject(Guid userId,Guid ProjectId)
         {
             bool applicationSuccess = false;
 
@@ -198,18 +202,19 @@ namespace SkillsHunterAPI.Services
             User userFromDB = _context.Users.Where(ss => ss.UserId == userId).FirstOrDefault();
             Project projectFromDB = _context.Projects.Where(ss => ss.ProjectId == ProjectId).FirstOrDefault();
             if (applicationFromDB != null || userFromDB == null || projectFromDB == null)
-
             {
                 return false;
             }
+
+            
 
             Application newApplication = new Application();
             newApplication.ApplicationId = new Guid();
             newApplication.ProjectId = ProjectId;
             newApplication.ApplicantId = userId;
 
-            _context.Applications.Add(newApplication);
-            _context.SaveChangesAsync();
+             _context.Applications.Add(newApplication);
+             _context.SaveChangesAsync();
 
             //Application application = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
 
@@ -218,8 +223,26 @@ namespace SkillsHunterAPI.Services
                 return true;
             }*/
 
+            Guid projectOwnerId = projectFromDB.Owner;
+            var Subject = "Project Application";
+            var Message = userFromDB.Name + " has applied to be part of your project.";
+
+            Notification newNotification = new Notification();
+            newNotification.InitiatorId = userFromDB.UserId;
+            newNotification.RecepientId = projectOwnerId;
+            newNotification.Subject = Subject;
+            newNotification.Message = Message;
+            newNotification.IsRead = false;
+            newNotification.DateSent = DateTime.Now;
+
+
+             _notificationService.SendNotifications(newNotification);
+
+           
             return true;
         }
+
+
 
         public bool InviteCandidate(Guid userId, Guid ProjectId, Guid inviteeId, String message)
         {
