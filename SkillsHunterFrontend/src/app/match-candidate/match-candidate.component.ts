@@ -9,15 +9,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class MatchCandidateComponent implements OnInit {
   title: string = 'Candidate';
-  candidatesList = { projectId: '', candidates: [] };
+
+  candidatesList = [];
+
+  // candidatesList = { projectId: '', candidates: [] };
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       // store the Project ID along with the candidate list:
-      this.candidatesList.projectId = params.projectId;
-      this.candidatesList.candidates = theCandidate;
+      // this.candidatesList.projectId = params.projectId;
+      // this.candidatesList.candidates = theCandidate;
+
+      this.candidatesList = theCandidate;
 
       // this.candidatesList = theCandidate;
       // this.projectCrud.obtainMatchingCandidates(params.projectId).subscribe((data) => {

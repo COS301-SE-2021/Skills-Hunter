@@ -16,7 +16,12 @@
 
 <div class="container">
   <app-candidate-card
-    *ngFor="let candidate of candidatesList.candidates"
+    *ngFor="let candidate of candidatesList"
     [card_candidate]="candidate"
   ></app-candidate-card>
+
+  <!-- <app-candidate-card
+    *ngFor="let candidate of candidatesList.candidates"
+    [card_candidate]="candidate"
+  ></app-candidate-card> -->
 </div>

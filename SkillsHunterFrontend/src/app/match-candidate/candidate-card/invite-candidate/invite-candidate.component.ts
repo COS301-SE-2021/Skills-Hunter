@@ -10,7 +10,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./invite-candidate.component.scss'],
 })
 export class InviteCandidateComponent implements OnInit {
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.projService.getMyUserID().subscribe((uID) => {
+      this.userID = uID;
+      console.log(this.userID);
+    });
+  }
 
   constructor(
     public dialogRef: MatDialogRef<InviteCandidateComponent>,
@@ -19,13 +24,20 @@ export class InviteCandidateComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {}
 
+  userID: any;
+
   invitationForm: FormGroup = new FormGroup({
     candidateMessage: new FormControl('', [Validators.required]),
   });
 
   onSubmit() {
+    var userID: any;
+    this.projService.getMyUserID().subscribe((uID) => {
+      userID = uID;
+    });
+
     var formData = {
-      userId: this.SendInviteData.userId,
+      userId: userID,
       projectId: this.SendInviteData.projectId,
       inviteeId: this.SendInviteData.inviteeId,
       message: this.invitationForm.value.candidateMessage,

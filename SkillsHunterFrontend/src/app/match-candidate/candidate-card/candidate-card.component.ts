@@ -12,9 +12,7 @@ export class CandidateCardComponent implements OnInit {
 
   constructor(private dialog: MatDialog) {}
 
-  ngOnInit(): void {
-    console.log(this.card_candidate);
-  }
+  ngOnInit(): void {}
 
   inviteCandidate(_candidateId: any) {
     console.log(this.card_candidate);
