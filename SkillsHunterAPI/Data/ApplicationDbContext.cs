@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using SkillsHunterAPI.Models.Skill.Entity;
 using SkillsHunterAPI.Models.User.Entity;
+using SkillsHunterAPI.Models.Notification;
 
 namespace SkillsHunterAPI.Data
 {
@@ -35,6 +36,8 @@ namespace SkillsHunterAPI.Data
         public DbSet<Invitation> Invitations { get; set; }
         public DbSet<SkillCategory> SkillCategories { get; set; }
         public DbSet<UserSkillCollection> UserSkillCollections { get; set; }
+
+        public DbSet<Notification> Notifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -83,6 +86,9 @@ namespace SkillsHunterAPI.Data
 
             modelBuilder.Entity<UserSkillCollection>().ToTable("UserSkillCollection");
             modelBuilder.Entity<UserSkillCollection>().HasKey("UserSkillCollectionId");
+
+            modelBuilder.Entity<Notification>().ToTable("Notification");
+            modelBuilder.Entity<Notification>().HasKey("NotificationId");
 
         }
 
