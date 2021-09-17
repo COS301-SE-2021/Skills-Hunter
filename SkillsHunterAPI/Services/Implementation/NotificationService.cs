@@ -40,9 +40,15 @@ namespace SkillsHunterAPI.Services.Implementation
             return new Task(null);
         }
 
-        public Task<Notification> SendNotifications(Notification notification)
+        public async Task<Notification> SendNotifications(Notification notification)
         {
-            return null;
+
+            notification.NotificationId = new Guid();
+            _context.Notifications.Add(notification);
+            await _context.SaveChangesAsync();
+
+            return notification;
+
         }
 
         public Task DeleteNotifications(Guid id)
