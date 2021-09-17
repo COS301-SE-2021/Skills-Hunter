@@ -160,9 +160,21 @@ namespace SkillsHunterAPI.Controllers
             //Updating the External work experience
             if(request.ExternalWorkExperiences != null)
             {
+                //Updating existing work experience
                 foreach(ExternalWorkExperience externalWorkExperience in request.ExternalWorkExperiences)
                 {
                     await _userService.UpdateExternalWorkExperience(externalWorkExperience);
+                }
+
+                //Removing work experience that needs to be removed
+                List<ExternalWorkExperience> experiencesFromDB = (List<ExternalWorkExperience>)await _userService.GetExternalWorkExperiences(LoggedInUser);
+
+                foreach (ExternalWorkExperience externalWorkExperience in request.ExternalWorkExperiences)
+                {
+                    if (!experiencesFromDB.Contains(externalWorkExperience))
+                    {
+                        await _userService.DeleteExternalWorkExperience(externalWorkExperience.ExternalWorkExperienceId);
+                    }
                 }
             }
             

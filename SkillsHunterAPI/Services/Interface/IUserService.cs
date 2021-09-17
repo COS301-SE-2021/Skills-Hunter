@@ -38,9 +38,9 @@ namespace SkillsHunterAPI.Services
         
         Task UpdateExternalWorkExperience(ExternalWorkExperience request);
 
-        Task DeleteWorkExperience(Guid id);
+        Task DeleteExternalWorkExperience(Guid id);
         
-        Task<ExternalWorkExperience> GetWorkExperience(Guid id);
+        Task<IEnumerable<ExternalWorkExperience>> GetExternalWorkExperiences(Guid userid);
 
         Task<Image> uploadProfileImage(Image request);
 

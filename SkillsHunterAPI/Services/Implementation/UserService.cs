@@ -266,20 +266,22 @@ namespace SkillsHunterAPI.Services
                 result.EndDate = request.EndDate;
                 request.Role = request.Role;
                 result.StartDate = request.StartDate;
+                _context.ExternalWorkExperiences.Update(result);
 
                 await _context.SaveChangesAsync();
             }
         }
 
-        public async Task DeleteWorkExperience(Guid id){
+        public async Task DeleteExternalWorkExperience(Guid id){
             var result = await _context.ExternalWorkExperiences.FindAsync(id);
 
             _context.ExternalWorkExperiences.Remove(result);
             await _context.SaveChangesAsync();
         }
         
-        public async Task<ExternalWorkExperience> GetWorkExperience(Guid id){
-            return await _context.ExternalWorkExperiences.FindAsync(id);
+        public async Task<IEnumerable<ExternalWorkExperience>> GetExternalWorkExperiences(Guid userid)
+        {
+            return await _context.ExternalWorkExperiences.Where(w => w.UserId == userid).ToListAsync();
         }
 
         public async Task<Image> uploadProfileImage(Image request){
