@@ -1,8 +1,16 @@
 <mat-tab-group mat-align-tabs="center">
-  <mat-tab label="Applications Sent">Applications Content Goes Here</mat-tab>
+  <mat-tab label="Applications Sent"> </mat-tab>
+
   <mat-tab label="Invitations Received">Invitations Content Goes Here</mat-tab>
-  <mat-tab label="Applications Received"
-    >Applications Content Goes Here</mat-tab
-  >
+
+  <mat-tab label="Applications Received">
+    <div class="container">
+      <app-candidate-card
+        *ngFor="let candidate of candidatesList"
+        [card_candidate]="candidate"
+        [selected_project]="projectId"
+      ></app-candidate-card></div
+  ></mat-tab>
+
   <mat-tab label="Invitations Sent">Invitations Content Goes Here</mat-tab>
 </mat-tab-group>
