@@ -34,7 +34,7 @@ namespace SkillsHunterAPI.Services
 
         Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId(Guid id);
 
-        Task AddWorkExternalExperience(ExternalWorkExperience request);
+        Task AddExternalWorkExperience(ExternalWorkExperience request);
         
         Task UpdateExternalWorkExperience(ExternalWorkExperience request);
 
