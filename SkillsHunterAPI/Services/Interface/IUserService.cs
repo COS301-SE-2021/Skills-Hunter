@@ -57,6 +57,6 @@ namespace SkillsHunterAPI.Services
 
         Task CreateUserSkillCollection(CreateSkillCollectionRequest request, Guid currentUser);
 
-        Task<IEnumerable<Application>> GetApplications();
+        Task<IEnumerable<Application>> GetApplications(Guid applicantId);
     }
 }

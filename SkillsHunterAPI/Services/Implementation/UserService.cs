@@ -437,9 +437,9 @@ namespace SkillsHunterAPI.Services
             return response;
         }
 
-        public async Task<IEnumerable<Application>> GetApplications()
+        public async Task<IEnumerable<Application>> GetApplications(Guid applicantId)
         {
-            return null;
+            return await _context.Applications.Where(a => a.ApplicantId == applicantId).OrderByDescending(a => a.Date).ToListAsync();
         }
     }
 }
