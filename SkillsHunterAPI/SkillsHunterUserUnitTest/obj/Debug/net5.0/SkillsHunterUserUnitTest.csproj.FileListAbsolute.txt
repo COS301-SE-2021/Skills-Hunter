@@ -1,5 +1,0 @@
-C:\Users\SbonisoMasilela\Desktop\Capstone\Skills-Hunter\SkillsHunterAPI\SkillsHunterUserUnitTest\obj\Debug\net5.0\SkillsHunterUserUnitTest.csproj.AssemblyReference.cache
-C:\Users\SbonisoMasilela\Desktop\Capstone\Skills-Hunter\SkillsHunterAPI\SkillsHunterUserUnitTest\obj\Debug\net5.0\SkillsHunterUserUnitTest.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\SbonisoMasilela\Desktop\Capstone\Skills-Hunter\SkillsHunterAPI\SkillsHunterUserUnitTest\obj\Debug\net5.0\SkillsHunterUserUnitTest.AssemblyInfoInputs.cache
-C:\Users\SbonisoMasilela\Desktop\Capstone\Skills-Hunter\SkillsHunterAPI\SkillsHunterUserUnitTest\obj\Debug\net5.0\SkillsHunterUserUnitTest.AssemblyInfo.cs
-C:\Users\SbonisoMasilela\Desktop\Capstone\Skills-Hunter\SkillsHunterAPI\SkillsHunterUserUnitTest\obj\Debug\net5.0\SkillsHunterUserUnitTest.csproj.CoreCompileInputs.cache

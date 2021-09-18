@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Http;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.User.Request;
 using SkillsHunterAPI.Models.User.Response;
+using SkillsHunterAPI.Models.Project;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -156,6 +157,27 @@ namespace SkillsHunterAPI.Controllers
                     await _userService.UpdateUserSkill(UserSkillToUpdate);
                 }
             }
+
+            //Updating the External work experience
+            if(request.ExternalWorkExperiences != null)
+            {
+                //Updating existing work experience
+                foreach(ExternalWorkExperience externalWorkExperience in request.ExternalWorkExperiences)
+                {
+                    await _userService.UpdateExternalWorkExperience(externalWorkExperience);
+                }
+
+                //Removing work experience that needs to be removed
+                List<ExternalWorkExperience> experiencesFromDB = (List<ExternalWorkExperience>)await _userService.GetExternalWorkExperiences(LoggedInUser);
+
+                foreach (ExternalWorkExperience externalWorkExperience in request.ExternalWorkExperiences)
+                {
+                    if (!experiencesFromDB.Contains(externalWorkExperience))
+                    {
+                        await _userService.DeleteExternalWorkExperience(externalWorkExperience.ExternalWorkExperienceId);
+                    }
+                }
+            }
             
 
             UpdateUserResponse response = new UpdateUserResponse();
@@ -163,7 +185,7 @@ namespace SkillsHunterAPI.Controllers
 
             GetUserRequest getUser = new GetUserRequest();
             getUser.UserId = LoggedInUser;
-            return await GetUser(getUser);
+            return await GetUser(getUser.UserId);
            
         }
 
@@ -187,7 +209,7 @@ namespace SkillsHunterAPI.Controllers
             {
                 GetUserRequest req = new GetUserRequest();
                 req.UserId = user.UserId;
-                GetUserResponse tempUser = await GetUser(req);
+                GetUserResponse tempUser = await GetUser(req.UserId);
 
                 response.Add(tempUser);
             }
@@ -197,9 +219,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getUser")]
-        public async Task<GetUserResponse> GetUser([FromBody] GetUserRequest request)
+        public async Task<GetUserResponse> GetUser([FromQuery] Guid request)
         {
-            User user = await _userService.GetUser(request.UserId);
+            User user = await _userService.GetUser(request);
 
             GetUserResponse response = new GetUserResponse();
 
@@ -218,8 +240,9 @@ namespace SkillsHunterAPI.Controllers
 
             //Retrieving the userskills
             GetUserSkillsRequest skillsRequest = new GetUserSkillsRequest();
-            skillsRequest.UserId = request.UserId;
+            skillsRequest.UserId = request;
             response.UserSkills = (List<GetUserSkillResponse>)await _userService.GetUserSkillsByUserId(user.UserId);
+            response.ExternalWorkExperiences = (List<ExternalWorkExperience>)await _userService.GetExternalWorkExperiences(user.UserId);
 
             return response;
         }
@@ -276,11 +299,11 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getImage")]
-        public async Task<IActionResult> GetImage(GetImageRequest request){
+        public async Task<IActionResult> GetImage([FromQuery]Guid request){
             try
             {
                 // Get Image code here
-                Image response = await _userService.GetImage(new Guid(request.ImageId));
+                Image response = await _userService.GetImage(request);
 
                 return Ok(new GetImageResponse(){
                     result = response
@@ -296,11 +319,11 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/removeImage")]
-        public async Task<IActionResult> RemoveImage(RemoveImageRequest request){
+        public async Task<IActionResult> RemoveImage([FromQuery]Guid request){
             try
             {
                 // Get Image code here
-                var response = await _userService.RemoveImage(new Guid(request.ImageId));
+                var response = await _userService.RemoveImage(request);
 
                 return Ok(new RemoveImageResponse(){
                     result = response
@@ -316,11 +339,11 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpGet]
         [Route("api/[controller]/getImageByUserId")]
-        public async Task<IActionResult> GetImageByUser(GetImageByUserRequest request){
+        public async Task<IActionResult> GetImageByUser([FromQuery]Guid request){
             try
             {
                 // Get Image code here
-                var response = await _userService.GetImageByUser(new Guid(request.UserId));
+                var response = await _userService.GetImageByUser(request);
 
                 return Ok(new GetImageByUserResponse(){
                     result = response
@@ -408,6 +431,13 @@ namespace SkillsHunterAPI.Controllers
         public async Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId([FromQuery] Guid  userId)
         {
             return await _userService.GetUserSkillsByUserId(userId);
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/getApplications")]
+        public async Task<IEnumerable<Application>> GetApplications()
+        {
+            return await _userService.GetApplications(GetCurrentUserId());
         }
 
     }

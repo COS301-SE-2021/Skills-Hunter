@@ -572,5 +572,23 @@ namespace SkillsHunterAPI.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("api/[controller]/MatchCandidates")]
+        public async Task<IEnumerable<MatchCandidateResponse>> MatchCandidates([FromQuery]Guid projectId)
+        {
+            List<MatchCandidateResponse> response = await _projectService.MatchCandidates(projectId);
+
+            return response;
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/getApplicationsByProjectId")]
+        public async Task<IEnumerable<GetApplicationsResponse>> getApplicationsByProjectId([FromQuery] Guid projectId)
+        {
+            List<GetApplicationsResponse> response = await _projectService.GetApplicationsByProjectId(projectId);
+
+            return response;
+        }
+
     }
 }
