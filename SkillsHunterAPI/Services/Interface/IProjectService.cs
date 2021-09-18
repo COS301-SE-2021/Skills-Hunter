@@ -62,5 +62,8 @@ namespace SkillsHunterAPI.Services
 
         Task<List<GetApplicationsResponse>> GetApplicationsByProjectId(Guid projectId);
 
+        Task<IEnumerable<Invitation>> GetInvitationsByProjectId(Guid projectId);
+
+
     }
 }
