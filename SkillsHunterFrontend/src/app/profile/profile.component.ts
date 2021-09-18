@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   fileToUpload: File = null;
 
   constructor(private service: ProjectCRUDService,private profileService: ProfileInfoService,private dialog: MatDialog,private _formBuilder: FormBuilder) { }
-  isLinear = false;
+  isLinear = true;
  
   secondFormGroup: FormGroup;
 //variables below used to display table of skills
@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit {
   noElements2=0;
   work_DATA= [
   ];
-  displayedColumns2: string[] = ['No', 'organisation', 'role','description', 'duration','time','actions'];
+  displayedColumns2: string[] = ['No', 'organisation', 'role','description', 'from','to','actions'];
   dataSourceWork = this.work_DATA;
 
   ngOnInit(): void {
@@ -127,6 +127,10 @@ export class ProfileComponent implements OnInit {
     open: new FormControl('')
   });
 
+  linksFormGroup=new FormGroup({
+    link: new FormControl(''),
+    github: new FormControl('')
+  });
   viewImg(){
  
     const configDialog = new MatDialogConfig();
@@ -378,20 +382,29 @@ console.log("v: "+this.ELEMENT_DATA[i-1].rating);
 
         
         this.noElements2++;
-        
+        var temp;
         var arr=[];
         for(let i=0;i<this.work_DATA.length;i++)
         {
               arr.push(this.work_DATA[i]);
             }
 
+            if(returnedData.data.end==null){
+              temp="present";
+            }
+            else{
+              temp=String(returnedData.data.end).substring(4, 15);
+            }
+ 
           arr.push({
             No:this.noElements2,
             organisation:returnedData.data.organisation,
             role: returnedData.data.role,
             description: returnedData.data.description,
-            duration: returnedData.data.duration,
-            time: returnedData.data.time
+            start: String(returnedData.data.start).substring(4, 15),
+            end: temp,
+            realStart:returnedData.data.start,
+            realEnd:returnedData.data.end
                 });
 
         this.work_DATA=arr;
@@ -447,19 +460,26 @@ console.log("v: "+this.ELEMENT_DATA[i-1].rating);
               key=true;
             }
           }
-          
+          var temp;
           var arr=[];
           for(let j=0;j<this.work_DATA.length;j++)
           {
               if(j==(i-1)){
-                
+                if(returnedData.data.end==null){
+                  temp="present";
+                }
+                else{
+                  temp=String(returnedData.data.end).substring(4, 15);
+                }
                 arr.push({
                   No:n,
                   organisation:returnedData.data.organisation,
                   role: returnedData.data.role,
                   description: returnedData.data.description,
-                  duration: returnedData.data.duration,
-                  time: returnedData.data.time
+                  start: String(returnedData.data.start).substring(4, 15),
+                  end: temp,
+                  realStart:returnedData.data.start,
+                  realEnd:returnedData.data.end
                       });
               }
               else{
