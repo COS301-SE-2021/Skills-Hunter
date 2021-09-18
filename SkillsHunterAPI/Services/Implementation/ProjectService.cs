@@ -782,6 +782,16 @@ namespace SkillsHunterAPI.Services
 
             return response;
         }
+
+
+        public async Task<IEnumerable<Invitation>> GetInvitationsByProjectId(Guid projectId)
+        {
+            return await _context.Invitations.Where(a => a.ProjectId == projectId).OrderByDescending(a => a.InviteDate).ToListAsync();
+        }
+
+
+
+
     }
 
     public class TextData
