@@ -748,6 +748,11 @@ namespace SkillsHunterAPI.Services
 
             return percentage;
         }
+
+        public Task<List<GetApplicationsResponse>> GetApplicationsByProjectId(Guid projectId)
+        {
+            return null;
+        }
     }
 
     public class TextData
