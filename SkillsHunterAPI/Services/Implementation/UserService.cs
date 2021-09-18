@@ -16,6 +16,7 @@ using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Skill.Entity;
 using SkillsHunterAPI.Models.User.Entity;
 using SkillsHunterAPI.Models.User.Response;
+using SkillsHunterAPI.Models.Project;
 
 namespace SkillsHunterAPI.Services
 {
@@ -436,5 +437,9 @@ namespace SkillsHunterAPI.Services
             return response;
         }
 
+        public async Task<IEnumerable<Application>> GetApplications()
+        {
+            return null;
+        }
     }
 }

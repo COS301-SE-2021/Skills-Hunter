@@ -7,6 +7,7 @@ using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.User.Response;
 using SkillsHunterAPI.Models.Project.Response;
+using SkillsHunterAPI.Models.Project;
 
 namespace SkillsHunterAPI.Services
 {
@@ -55,5 +56,7 @@ namespace SkillsHunterAPI.Services
         Task<Skill> AddNewSkill(AddNewSkillRequest request);
 
         Task CreateUserSkillCollection(CreateSkillCollectionRequest request, Guid currentUser);
+
+        Task<IEnumerable<Application>> GetApplications();
     }
 }
