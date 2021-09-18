@@ -440,5 +440,13 @@ namespace SkillsHunterAPI.Controllers
             return await _userService.GetApplications(GetCurrentUserId());
         }
 
+
+        [HttpGet]
+        [Route("api/[controller]/getInvitations")]
+        public async Task<IEnumerable<Invitation>> GetInvitations()
+        {
+            return await _userService.GetInvitations(GetCurrentUserId());
+        }
+
     }
 }
