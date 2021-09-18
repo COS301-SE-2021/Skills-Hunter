@@ -16,6 +16,7 @@ using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Skill.Entity;
 using SkillsHunterAPI.Models.User.Entity;
 using SkillsHunterAPI.Models.User.Response;
+using SkillsHunterAPI.Models.Project;
 
 namespace SkillsHunterAPI.Services
 {
@@ -164,6 +165,8 @@ namespace SkillsHunterAPI.Services
                 user.Email = request.Email;
                 user.Phone = request.PhoneNumber;
                 user.OpenForWork = request.OpenForWork;
+                user.LinkedIn = request.LinkedIn;
+                user.Github = request.Github;
 
                 await _context.SaveChangesAsync();
 
@@ -240,7 +243,7 @@ namespace SkillsHunterAPI.Services
 
         // Crud operations on the Work Experience Model
 
-        public async Task AddWorkExperience(ExternalWorkExperience request)
+        public async Task AddExternalWorkExperience(ExternalWorkExperience request)
         {
 
             request.ExternalWorkExperienceId = new Guid();
@@ -249,28 +252,37 @@ namespace SkillsHunterAPI.Services
             await _context.SaveChangesAsync();
         }
         
-        public async Task UpdateWorkExperience(Guid workExperienceID, ExternalWorkExperience request)
+        public async Task UpdateExternalWorkExperience(ExternalWorkExperience request)
         {
 
-            ExternalWorkExperience result = await _context.ExternalWorkExperiences.FindAsync(request.ExternalWorkExperienceId);
+            ExternalWorkExperience result = await _context.ExternalWorkExperiences.Where( w=> w.ExternalWorkExperienceId == request.ExternalWorkExperienceId).FirstOrDefaultAsync();
 
-            //result.ProjectId = request.ProjectId;
-            result.StartDate = request.StartDate;
-            result.EndDate = request.EndDate;
-            //result.performanceRating = request.performanceRating;
+            if(result == null)
+            {
+                await AddExternalWorkExperience(request);
+            }
+            else
+            {
+                result.Description = request.Description;
+                result.EndDate = request.EndDate;
+                request.Role = request.Role;
+                result.StartDate = request.StartDate;
+                _context.ExternalWorkExperiences.Update(result);
 
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public async Task DeleteWorkExperience(Guid id){
+        public async Task DeleteExternalWorkExperience(Guid id){
             var result = await _context.ExternalWorkExperiences.FindAsync(id);
 
             _context.ExternalWorkExperiences.Remove(result);
             await _context.SaveChangesAsync();
         }
         
-        public async Task<ExternalWorkExperience> GetWorkExperience(Guid id){
-            return await _context.ExternalWorkExperiences.FindAsync(id);
+        public async Task<IEnumerable<ExternalWorkExperience>> GetExternalWorkExperiences(Guid userid)
+        {
+            return await _context.ExternalWorkExperiences.Where(w => w.UserId == userid).ToListAsync();
         }
 
         public async Task<Image> uploadProfileImage(Image request){
@@ -425,5 +437,9 @@ namespace SkillsHunterAPI.Services
             return response;
         }
 
+        public async Task<IEnumerable<Application>> GetApplications(Guid applicantId)
+        {
+            return await _context.Applications.Where(a => a.ApplicantId == applicantId).OrderByDescending(a => a.Date).ToListAsync();
+        }
     }
 }

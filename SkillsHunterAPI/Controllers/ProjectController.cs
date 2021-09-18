@@ -581,5 +581,14 @@ namespace SkillsHunterAPI.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("api/[controller]/getApplicationsByProjectId")]
+        public async Task<IEnumerable<GetApplicationsResponse>> getApplicationsByProjectId([FromQuery] Guid projectId)
+        {
+            List<GetApplicationsResponse> response = await _projectService.GetApplicationsByProjectId(projectId);
+
+            return response;
+        }
+
     }
 }

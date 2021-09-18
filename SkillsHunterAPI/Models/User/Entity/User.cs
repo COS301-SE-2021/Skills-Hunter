@@ -23,6 +23,8 @@ namespace SkillsHunterAPI.Models.User
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string Phone {get; set; }
+        public string Github { get; set; }
+        public string LinkedIn { get; set; }
         public DateTime StartDate {get; set; }
         public Boolean OpenForWork {get; set; }
         public UserType UserType {get; set; }
