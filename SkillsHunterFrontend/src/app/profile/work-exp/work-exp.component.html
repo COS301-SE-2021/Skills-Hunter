@@ -40,7 +40,7 @@
             </mat-error>
         </mat-form-field><br/>
 
-        <mat-form-field appearance="outline" id="duration">
+       <!-- <mat-form-field appearance="outline" id="duration">
             <mat-label>Duration</mat-label>
             <input matInput placeholder="description of position or tasks of position" formControlName="duration" required>
             
@@ -58,11 +58,27 @@
             <mat-select formControlName="time">
               <mat-option style="color:black" *ngFor="let list of dropList" [value]="list" >{{list}}</mat-option>
             </mat-select>
+        </mat-form-field><br/>-->
+        <mat-form-field appearance="outline" class="field">
+            <mat-label>Duration</mat-label>
+            <mat-date-range-input [formGroup]="workDetailsForm" [rangePicker]="picker">
+              <input matStartDate formControlName="start" placeholder="Start date" required>
+              <input matEndDate formControlName="end" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          
+            <mat-error
+            *ngIf="workDetailsForm.controls['start'].hasError('required')">
+            please enter a duration
+            </mat-error>
+            <mat-error *ngIf="workDetailsForm.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="workDetailsForm.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
         </mat-form-field><br/>
-        <button id="applyBtn" class="btn btn-primary btn-lg" (click)="cancel()">
+        <button mat-raised-button color="warn" id="cancel"  (click)="cancel()">
             Cancel
         </button>
-        <button id="applyBtn" class="btn btn-primary btn-lg" type="submit">
+        <button mat-raised-button color="primary" id="applyBtn"  type="submit">
             Submit
         </button><br/>
     </form>
