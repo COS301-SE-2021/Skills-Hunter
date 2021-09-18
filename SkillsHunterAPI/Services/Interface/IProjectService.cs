@@ -58,6 +58,6 @@ namespace SkillsHunterAPI.Services
 
 
         //Matching algorithm
-        Task<List<MatchCandidateResponse>> MatchCandidates(Guid projectId);
+        Task<List<MatchCandidateResponse>> MatchCandidates(Guid projectId, string userId = null);
     }
 }
