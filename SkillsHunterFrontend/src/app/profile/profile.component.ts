@@ -17,7 +17,7 @@ import { SliderComponent } from './slider/slider.component';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-@ViewChild(MatPaginator, { static: false }) paginator:MatPaginator;
+
   imageUrl: string = "/assets/images/profile.png";
   fileToUpload: File = null;
 
@@ -128,7 +128,7 @@ export class ProfileComponent implements OnInit {
   });
 
   linksFormGroup=new FormGroup({
-    link: new FormControl(''),
+    linkedIn: new FormControl(''),
     github: new FormControl('')
   });
   viewImg(){
@@ -380,7 +380,7 @@ console.log("v: "+this.ELEMENT_DATA[i-1].rating);
         }
         if(!key){
 
-        
+        console.log(returnedData.data.start);
         this.noElements2++;
         var temp;
         var arr=[];
