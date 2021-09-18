@@ -231,6 +231,17 @@
                 </mat-step>
                 <mat-step>
                 <ng-template matStepLabel>Previous experience</ng-template>
+                <form [formGroup]="linksFormGroup">
+                    <mat-form-field appearance="outline" class="field">
+                        <mat-label>LinkedIn Link(optional)</mat-label>
+                        <input matInput  placeholder="link" formControlName="linkedin">
+                    </mat-form-field><br/>
+                    <mat-form-field appearance="outline" class="field">
+                        <mat-label>Github Link (optional)</mat-label>
+                        <input matInput  placeholder="link" formControlName="github" >
+                    </mat-form-field><br/>
+                </form>
+
                 <button id="addskillBtn" (click)="addExperience()" mat-button color="accent">add previous work experience</button>
                     <br />
                     <table mat-table id="tablecont" [dataSource]="dataSourceWork" class="mat-elevation-z0">
@@ -259,14 +270,14 @@
                           <td mat-cell *matCellDef="let element" id="element"> {{element.description}} </td>
                         </ng-container>
 
-                        <ng-container matColumnDef="duration">
-                            <th mat-header-cell *matHeaderCellDef id="duration"> duration </th>
-                            <td mat-cell *matCellDef="let element" id="element"> {{element.duration}} </td>
+                        <ng-container matColumnDef="from">
+                            <th mat-header-cell *matHeaderCellDef id="from"> from </th>
+                            <td mat-cell *matCellDef="let element" id="element"> {{element.start}} </td>
                           </ng-container>
 
-                          <ng-container matColumnDef="time">
-                            <th mat-header-cell *matHeaderCellDef id="time"> time </th>
-                            <td mat-cell *matCellDef="let element" id="element"> {{element.time}} </td>
+                          <ng-container matColumnDef="to">
+                            <th mat-header-cell *matHeaderCellDef id="to"> to </th>
+                            <td mat-cell *matCellDef="let element" id="element"> {{element.end}} </td>
                           </ng-container>
                         <ng-container matColumnDef="actions">
                             <mat-header-cell *matHeaderCellDef></mat-header-cell>
