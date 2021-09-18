@@ -749,9 +749,38 @@ namespace SkillsHunterAPI.Services
             return percentage;
         }
 
-        public Task<List<GetApplicationsResponse>> GetApplicationsByProjectId(Guid projectId)
+        public async Task<List<GetApplicationsResponse>> GetApplicationsByProjectId(Guid projectId)
         {
-            return null;
+            List<GetApplicationsResponse> response = new List<GetApplicationsResponse>();
+
+            //Getting the list of applications
+            List<Application> applications = await _context.Applications.Where(a => a.ProjectId == projectId).OrderByDescending(a => a.Date).ToListAsync();
+
+            if(applications != null)
+            {
+                foreach(Application application in applications)
+                {
+                    List<MatchCandidateResponse> matches = await MatchCandidates(projectId, application.ApplicantId.ToString());
+
+                    if(matches != null)
+                    {
+                        MatchCandidateResponse match = matches[0];
+
+                        GetApplicationsResponse applicant = new GetApplicationsResponse();
+                        applicant.UserId = match.UserId;
+                        applicant.Surname = match.Surname;
+                        applicant.Name = match.Name;
+                        applicant.Email = match.Email;
+                        applicant.MatchingSkills = match.MatchingSkills;
+                        applicant.ApplicationDate = application.Date;
+                        applicant.Percentage = match.Percentage;
+
+                        response.Add(applicant);
+                    }
+                } 
+            }
+
+            return response;
         }
     }
 
