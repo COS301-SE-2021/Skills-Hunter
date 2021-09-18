@@ -267,6 +267,7 @@ namespace SkillsHunterAPI.Services
                 result.EndDate = request.EndDate;
                 request.Role = request.Role;
                 result.StartDate = request.StartDate;
+                result.Organisation = request.Organisation;
                 _context.ExternalWorkExperiences.Update(result);
 
                 await _context.SaveChangesAsync();
