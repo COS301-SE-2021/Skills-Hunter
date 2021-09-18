@@ -65,7 +65,9 @@ import { ShowProjectSkillComponent } from './project-control/show-project-skill/
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
 import { WorkExpComponent } from './profile/work-exp/work-exp.component';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -140,9 +142,9 @@ import { WorkExpComponent } from './profile/work-exp/work-exp.component';
     MatSidenavModule,
     MatCardModule,
     MatDialogModule,
-
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [MatNativeDateModule,{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
