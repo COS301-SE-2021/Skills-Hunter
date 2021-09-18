@@ -61,5 +61,6 @@ namespace SkillsHunterAPI.Services
         Task<List<MatchCandidateResponse>> MatchCandidates(Guid projectId, string userId = null);
 
         Task<List<GetApplicationsResponse>> GetApplicationsByProjectId(Guid projectId);
+
     }
 }
