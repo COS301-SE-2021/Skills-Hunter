@@ -1,7 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule,NoopAnimationsModule,} from '@angular/platform-browser/animations';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -64,6 +67,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ShowProjectCollectionComponent } from './project-control/show-project-collection/show-project-collection.component';
 import { NewSkillComponent } from './skill-control/new-skill/new-skill.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { NotificationResponseComponent } from './notifications/notification-response/notification-response.component';
+import { ApplicationsComponent } from './applications/applications.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ContentAnimateDirective } from './shared/directives/content-animate.directive';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -71,9 +78,13 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { WorkExpComponent } from './profile/work-exp/work-exp.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -124,12 +135,16 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
     AddSkillCollectionComponent,
     ShowProjectCollectionComponent,
     NewSkillComponent,
+    NotificationMenuComponent,
+    NotificationsComponent,
+    NotificationResponseComponent,
+    ApplicationsComponent,
     SpinnerComponent,
     ContentAnimateDirective,
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
-    WorkExpComponent
+    WorkExpComponent,
   ],
   imports: [
     BrowserModule,
@@ -145,7 +160,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
     BrowserAnimationsModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatInputModule, 
+    MatInputModule,
     MatButtonModule,
     MatSelectModule,
     MatProgressBarModule,
@@ -156,10 +171,13 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
     MatChipsModule,
     SelectDropDownModule,
     NgbModule,
-    MatSnackBarModule ,
-    MatNativeDateModule
+    MatSnackBarModule,
+    MatNativeDateModule,
   ],
-  providers: [MatNativeDateModule,{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [
+    MatNativeDateModule,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

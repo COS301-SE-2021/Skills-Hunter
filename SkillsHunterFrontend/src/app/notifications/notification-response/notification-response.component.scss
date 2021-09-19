@@ -1,0 +1,28 @@
+mat-form-field {
+  width: 100%;
+  height: 30px;
+}
+
+mat-card {
+  margin: 5px;
+  color: navy;
+  box-shadow: 5px #000000;
+  background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
+}
+
+button {
+  text-align: center;
+  height: 50px;
+  width: 45%;
+  left: 30%;
+}
+
+.noti-display-card {
+  height: 150px;
+}
+
+::ng-deep .custom-modalbox {
+  mat-dialog-container {
+    padding: 0;
+  }
+}

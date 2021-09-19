@@ -1,14 +1,8 @@
+import { AdminService } from 'src/app/services/admin.service';
 import { Component, OnInit } from '@angular/core';
-
-import { Projects } from '../mock-data/mock-projects';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CreateprojectComponent } from './../createproject/createproject.component';
-import { projectService } from '../services/project-edit.service';
-import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
-import { MaterialModule } from '../material/material.module';
-import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 
 @Component({
   selector: 'app-home',
@@ -19,13 +13,11 @@ import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 export class HomeComponent implements OnInit {
   title: string = 'Projects';
   filterQuery: string = '';
-  _projects = []; //= Projects;
+  _projects = [];
 
   constructor(
     private _router: Router,
-    private dialog: MatDialog,
-    private projectCrud: ProjectCRUDService,
-    private projectData: projectService
+    private projectCrud: ProjectCRUDService
   ) {}
 
   // //this function sets(assigns) the project data from the 'projectService'
@@ -49,37 +41,27 @@ export class HomeComponent implements OnInit {
     document.getElementById('adminlist').style.display = 'none';
     // document.getElementById('houseAdmin').style.display = 'none';
 
-    // console.log('\n\nFIRED UP ON INIT\n\n');
-
-    //read data of projects
-    var functiontoCall;
+    //read data of projects:
     if (localStorage.getItem('role') == '1') {
-      console.log('\n\n RECRUITER, HERE! \n\n');
+      console.log('Getting projects by owner ID');
 
       this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
-        this._projects = data;
-        console.log('Response post', data);
-      });
-    } else {
-      console.log('\n\n OTHERWISE, HERE! \n\n');
-
-      document.getElementById('creatediv').style.display = 'none';
-      this.projectCrud.getAllProjects().subscribe((data) => {
-        console.log('\n\nWE HAVE LOGGED IN');
         console.log(data);
         this._projects = data;
-        console.log('Response post', data);
+      });
+    } else {
+      document.getElementById('createbtn').style.display = 'none';
+
+      console.log('Getting all Projects');
+
+      this.projectCrud.getAllProjects().subscribe((data) => {
+        console.log(data);
+        this._projects = data;
       });
     }
   }
 
   create() {
     this._router.navigate([`createproject`]);
-    /*
-    const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '40%';
-    configDialog.height = '80%';
-    this.dialog.open(CreateprojectComponent, configDialog);*/
   }
 }

@@ -18,6 +18,7 @@ import { Skill } from '../classes/Skill';
 import { mockSkillCollection } from '../mock-data/mock-collection';
 import { AddSkillCategoryComponent } from './add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-collection.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-createproject',
@@ -26,7 +27,7 @@ import { AddSkillCollectionComponent } from './add-skill-collection/add-skill-co
   styleUrls: ['./createproject.component.scss'],
 })
 export class CreateprojectComponent implements OnInit {
-  isLinear = false;
+  isLinear = true;
   projName: string;
   projDescription: string;
   projLocation: string;
@@ -97,7 +98,8 @@ export class CreateprojectComponent implements OnInit {
   constructor(
     private _router: Router,
     private dialog: MatDialog,
-    private projectCrud: ProjectCRUDService
+    private projectCrud: ProjectCRUDService,
+    private _snackBar: MatSnackBar
   ) {}
 
   captureBasicDetails() {
@@ -111,7 +113,7 @@ export class CreateprojectComponent implements OnInit {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '45%';
-    configDialog.height = '550px';
+    configDialog.panelClass = 'custom-modalbox';
     const dialogRef = this.dialog.open(AddSkillCategoryComponent, configDialog);
 
     dialogRef.afterClosed().subscribe((skill) => {
@@ -127,7 +129,7 @@ export class CreateprojectComponent implements OnInit {
     const configDialog = new MatDialogConfig();
     configDialog.backdropClass = 'backGround';
     configDialog.width = '45%';
-    configDialog.height = '550px';
+    configDialog.panelClass = 'custom-modalbox';
     const dialogRef = this.dialog.open(
       AddSkillCollectionComponent,
       configDialog
@@ -137,7 +139,6 @@ export class CreateprojectComponent implements OnInit {
       if (collection != undefined) {
         this.selectedCollections.push(collection.data);
         mockSkillCollection.push(collection.data);
-        // this.ngOnInit();
       } else console.log('Returned Empty Collection');
     });
   }
@@ -199,6 +200,9 @@ export class CreateprojectComponent implements OnInit {
       this.newSelectedSkills
     );
 
+    console.log('Consoling the Skills with IDs:');
+    console.log(selectedSkillsIDs);
+
     // Process the collections:
     for (var x = 0; x < this.selectedCollections.length; x++) {
       var extractCollectionSkillsId = [];
@@ -206,7 +210,7 @@ export class CreateprojectComponent implements OnInit {
       if (this.selectedCollections[x].skills != undefined)
         for (var q = 0; q < this.selectedCollections[x].skills.length; q++) {
           extractCollectionSkillsId.push({
-            skillId: this.selectedCollections[x].skills[q].id,
+            skillId: this.selectedCollections[x].skills[q].skillId,
             weight: 0,
           });
         }
@@ -235,6 +239,20 @@ export class CreateprojectComponent implements OnInit {
 
     this.projectCrud.createProject(proj).subscribe((data) => {
       console.log('Response for Create Project: ', data);
+
+      if (data.projectId != undefined)
+        this._snackBar.open('Project Successfully Created!', '', {
+          duration: 3000,
+        });
+      else {
+        this._snackBar.open(
+          'Project Creation Failed! Status = ' + data.status,
+          '',
+          {
+            duration: 3000,
+          }
+        );
+      }
     });
 
     this.cancel();
