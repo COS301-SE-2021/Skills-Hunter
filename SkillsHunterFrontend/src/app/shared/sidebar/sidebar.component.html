@@ -3,93 +3,234 @@
     <li class="nav-item nav-profile">
       <a href="javascript:;" class="nav-link">
         <div class="nav-profile-image">
+
           <img [src]="imageUrl" alt="profile">
           <span class="login-status online"></span> <!--change to offline or busy as needed-->              
+
         </div>
         <div class="nav-profile-text">
-          <span class="font-weight-bold mb-2">{{name}} {{lastname}}</span>
-          <span class="text-secondary text-small">{{userTypeName}}</span>
+          <span class="font-weight-bold mb-2">{{ name }} {{ lastname }}</span>
+          <span class="text-secondary text-small">{{ userTypeName }}</span>
         </div>
         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': tables.isActive }" *ngIf="userType == 0">
-      <a class="nav-link" routerLink="tables/basic-table" routerLinkActive #tables="routerLinkActive">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: tables.isActive }"
+      *ngIf="userType == 0"
+    >
+      <a
+        class="nav-link"
+        routerLink="profile"
+        routerLinkActive
+        #tables="routerLinkActive"
+      >
+        <span class="menu-title">Profile</span>
+        <i class="mdi mdi-application menu-icon"></i>
+      </a>
+    </li>
+    <li
+      class="nav-item"
+      [ngClass]="{ active: tables.isActive }"
+      *ngIf="userType == 0"
+    >
+      <a
+        class="nav-link"
+        routerLink="tables/basic-table"
+        routerLinkActive
+        #tables="routerLinkActive"
+      >
         <span class="menu-title">Applications</span>
         <i class="mdi mdi-application menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': tables.isActive }" *ngIf="userType == 1 || userType == 2">
-      <a class="nav-link" routerLink="tables/basic-table" routerLinkActive #tables="routerLinkActive">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: tables.isActive }"
+      *ngIf="userType == 1 || userType == 2"
+    >
+      <a
+        class="nav-link"
+        routerLink="tables/basic-table"
+        routerLinkActive
+        #tables="routerLinkActive"
+      >
         <span class="menu-title">Projects</span>
         <i class="mdi mdi-file-multiple menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': charts.isActive }" *ngIf="userType == 1 || userType == 2">
-      <a class="nav-link" routerLink="charts/chartjs" routerLinkActive #charts="routerLinkActive">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: charts.isActive }"
+      *ngIf="userType == 1 || userType == 2"
+    >
+      <a
+        class="nav-link"
+        routerLink="charts/chartjs"
+        routerLinkActive
+        #charts="routerLinkActive"
+      >
         <span class="menu-title">Create Project</span>
         <i class="mdi mdi-plus-box menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': tables.isActive }" *ngIf="userType == 1 || userType == 2">
-      <a class="nav-link" routerLink="tables/basic-table" routerLinkActive #tables="routerLinkActive">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: tables.isActive }"
+      *ngIf="userType == 1 || userType == 2"
+    >
+      <a
+        class="nav-link"
+        routerLink="tables/basic-table"
+        routerLinkActive
+        #tables="routerLinkActive"
+      >
         <span class="menu-title">Invite</span>
         <i class="mdi mdi-account-search menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': tables.isActive }" *ngIf="userType == 1 || userType == 2">
-      <a class="nav-link" routerLink="tables/basic-table" routerLinkActive #tables="routerLinkActive">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: tables.isActive }"
+      *ngIf="userType == 1 || userType == 2"
+    >
+      <a
+        class="nav-link"
+        routerLink="tables/basic-table"
+        routerLinkActive
+        #tables="routerLinkActive"
+      >
         <span class="menu-title">Applications</span>
         <i class="mdi mdi-application menu-icon"></i>
       </a>
     </li>
 
-    <li class="nav-item" [ngClass]="{ 'active': charts.isActive }" *ngIf="userType == 3">
-      <a class="nav-link" routerLink="dashboard/general" routerLinkActive #charts="routerLinkActive">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: charts.isActive }"
+      *ngIf="userType == 3"
+    >
+      <a
+        class="nav-link"
+        routerLink="dashboard/general"
+        routerLinkActive
+        #charts="routerLinkActive"
+      >
         <span class="menu-title">General</span>
         <i class="mdi mdi-chart-bar menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': forms.isActive }" *ngIf="userType == 3">
-      <a class="nav-link" routerLink="dashboard/users" routerLinkActive #forms="routerLinkActive">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: forms.isActive }"
+      *ngIf="userType == 3"
+    >
+      <a
+        class="nav-link"
+        routerLink="dashboard/users"
+        routerLinkActive
+        #forms="routerLinkActive"
+      >
         <span class="menu-title">Users</span>
         <i class="mdi mdi-account-multiple menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': tables.isActive }" *ngIf="userType == 3">
-      <a class="nav-link" routerLink="dashboard/projects" routerLinkActive #tables="routerLinkActive">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: tables.isActive }"
+      *ngIf="userType == 3"
+    >
+      <a
+        class="nav-link"
+        routerLink="dashboard/projects"
+        routerLinkActive
+        #tables="routerLinkActive"
+      >
         <span class="menu-title">Projects</span>
         <i class="mdi mdi-file-multiple menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': icons.isActive }" *ngIf="userType === 3">
-      <a class="nav-link" routerLink="dashboard/skills" routerLinkActive #icons="routerLinkActive">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: icons.isActive }"
+      *ngIf="userType === 3"
+    >
+      <a
+        class="nav-link"
+        routerLink="dashboard/skills"
+        routerLinkActive
+        #icons="routerLinkActive"
+      >
         <span class="menu-title">Skills</span>
         <i class="mdi mdi-star menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': icons.isActive }" *ngIf="userType == 3">
-      <a class="nav-link" routerLink="dashboard/category" routerLinkActive #icons="routerLinkActive">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: icons.isActive }"
+      *ngIf="userType == 3"
+    >
+      <a
+        class="nav-link"
+        routerLink="dashboard/category"
+        routerLinkActive
+        #icons="routerLinkActive"
+      >
         <span class="menu-title">Categories</span>
         <i class="mdi mdi-group menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': icons.isActive }" *ngIf="userType == 3">
-      <a class="nav-link" routerLink="dashboard/skill-collection" routerLinkActive #icons="routerLinkActive">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: icons.isActive }"
+      *ngIf="userType == 3"
+    >
+      <a
+        class="nav-link"
+        routerLink="dashboard/skill-collection"
+        routerLinkActive
+        #icons="routerLinkActive"
+      >
         <span class="menu-title">Skill Collections</span>
         <i class="mdi mdi-layers menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{'active' : accordions.isActive || buttons.isActive }" *ngIf="userType == 3">
-      <a class="nav-link" (click)="uiBasicCollapsed = !uiBasicCollapsed" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
+    <li
+      class="nav-item"
+      [ngClass]="{ active: accordions.isActive || buttons.isActive }"
+      *ngIf="userType == 3"
+    >
+      <a
+        class="nav-link"
+        (click)="uiBasicCollapsed = !uiBasicCollapsed"
+        [attr.aria-expanded]="uiBasicCollapsed"
+        aria-controls="ui-basic"
+      >
         <span class="menu-title">Settings</span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-screwdriver menu-icon"></i>
       </a>
       <div class="collapse" id="ui-basic" [ngbCollapse]="!uiBasicCollapsed">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/accordions" routerLinkActive="active" #accordions="routerLinkActive">Account</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/buttons" routerLinkActive="active" #buttons="routerLinkActive">Appearance</a></li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="basic-ui/accordions"
+              routerLinkActive="active"
+              #accordions="routerLinkActive"
+              >Account</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="basic-ui/buttons"
+              routerLinkActive="active"
+              #buttons="routerLinkActive"
+              >Appearance</a
+            >
+          </li>
         </ul>
       </div>
     </li>

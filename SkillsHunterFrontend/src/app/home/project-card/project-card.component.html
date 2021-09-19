@@ -1,16 +1,7 @@
-<!-- id: number;
-  Name: string;
-  Description: string;
-  Owner: string;
-  Location: string;
-  Skill: string[];
-  OpenForApplication: boolean; -->
-
 <mat-card class="project-card">
   <mat-card-header>
     <div mat-card-avatar class="project-menu-header-image"></div>
     <mat-card-title>{{ card_project.name }}</mat-card-title>
-    
   </mat-card-header>
 
   <mat-card-content>
@@ -31,9 +22,12 @@
         <mat-card class="project-card-skills">
           <mat-card-title>Skills</mat-card-title>
           <mat-chip-list aria-label="Project Required Skills">
-            <mat-chip color="primary" selected>{{
-              card_project.skill
-            }}</mat-chip>
+            <mat-chip
+              *ngFor="let item of this.card_project.projectSkills.skills"
+              color="accent"
+            >
+              {{ item.name }}
+            </mat-chip>
           </mat-chip-list>
         </mat-card>
       </mat-expansion-panel>
@@ -45,15 +39,15 @@
       class="card-project-find"
       mat-raised-button
       color="accent"
-      [routerLink]="['/match-candidate']"
+      (click)="match(card_project)"
     >
       Match Candidates
     </button>
 
     <button
       class="card-project-delete"
-      mat-raised-button
-      color="accent"
+      mat-stroked-button
+      color="warn"
       (click)="delete(card_project)"
     >
       Remove Project
@@ -61,28 +55,29 @@
 
     <button
       class="card-project-update"
-      mat-raised-button
+      mat-stroked-button
       color="accent"
       (click)="update(card_project)"
     >
       Update Project
     </button>
 
-    <button class="card-project-apply"
-    mat-raised-button
-    color="accent"
-    (click)="apply(card_project)"
+    <button
+      class="card-project-apply"
+      mat-raised-button
+      color="primary"
+      (click)="apply(card_project)"
     >
       Apply
     </button>
 
-    <button class="card-project-cancelappl"
-    mat-raised-button
-    color="accent"
-    (click)="cancel()"
+    <button
+      class="card-project-cancelappl"
+      mat-raised-button
+      color="accent"
+      (click)="cancel()"
     >
       Cancel Application
     </button>
-
   </mat-card-actions>
 </mat-card>

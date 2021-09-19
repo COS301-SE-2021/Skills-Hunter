@@ -1,7 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule,NoopAnimationsModule,} from '@angular/platform-browser/animations';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -64,6 +67,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ShowProjectCollectionComponent } from './project-control/show-project-collection/show-project-collection.component';
 import { NewSkillComponent } from './skill-control/new-skill/new-skill.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { NotificationResponseComponent } from './notifications/notification-response/notification-response.component';
+import { ApplicationsComponent } from './applications/applications.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ContentAnimateDirective } from './shared/directives/content-animate.directive';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -76,6 +83,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ConnectionServiceModule } from 'ng-connection-service';
+
 
 @NgModule({
   declarations: [
@@ -126,13 +134,21 @@ import { ConnectionServiceModule } from 'ng-connection-service';
     AddSkillCollectionComponent,
     ShowProjectCollectionComponent,
     NewSkillComponent,
+    NotificationMenuComponent,
+    NotificationsComponent,
+    NotificationResponseComponent,
+    ApplicationsComponent,
     SpinnerComponent,
     ContentAnimateDirective,
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
+<<<<<<< HEAD
     TodoComponent,
     WorkExpComponent
+=======
+    WorkExpComponent,
+>>>>>>> a0c914aeab3b71d008f65fa96b0ec5375c28c5ed
   ],
   imports: [
     BrowserModule,
@@ -148,7 +164,7 @@ import { ConnectionServiceModule } from 'ng-connection-service';
     BrowserAnimationsModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatInputModule, 
+    MatInputModule,
     MatButtonModule,
     MatSelectModule,
     MatProgressBarModule,
@@ -159,11 +175,19 @@ import { ConnectionServiceModule } from 'ng-connection-service';
     MatChipsModule,
     SelectDropDownModule,
     NgbModule,
+<<<<<<< HEAD
     MatSnackBarModule ,
     MatNativeDateModule,
     ConnectionServiceModule
+=======
+    MatSnackBarModule,
+    MatNativeDateModule,
   ],
-  providers: [MatNativeDateModule,{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [
+    MatNativeDateModule,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+>>>>>>> a0c914aeab3b71d008f65fa96b0ec5375c28c5ed
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

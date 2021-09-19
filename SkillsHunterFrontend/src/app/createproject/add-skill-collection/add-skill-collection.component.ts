@@ -17,9 +17,6 @@ export class AddSkillCollectionComponent implements OnInit {
   collectionArray = [];
   collectionWeight: number = 1;
   collectionSkills = [];
-
-  // collectionDescription = 'An undescribed collection of skills.';
-
   skillArray = [];
 
   collectionFormGroup: FormGroup;
@@ -42,7 +39,6 @@ export class AddSkillCollectionComponent implements OnInit {
 
     this.projectCrud.getSkills().subscribe((data) => {
       // Capture the array of Skill objects:
-      console.log(data);
       this.skillArray = data[Object.keys(data)[0]];
     });
 

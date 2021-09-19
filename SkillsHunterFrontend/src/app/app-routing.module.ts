@@ -22,24 +22,27 @@ import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 import { InviteCandidateComponent } from './match-candidate/candidate-card/invite-candidate/invite-candidate.component';
 import { AddSkillComponent } from './profile/add-skill/add-skill.component';
 import { SliderComponent } from './profile/slider/slider.component';
-import {WorkExpComponent } from './profile/work-exp/work-exp.component';
-
+import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { ApplicationsComponent } from './applications/applications.component';
+import { WorkExpComponent } from './profile/work-exp/work-exp.component';
 const routes: Routes = [
-  { 
+  {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
   },
-  { 
-    path: 'dashboard', 
-    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) 
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   { 
     path: 'create-project', 
@@ -51,6 +54,10 @@ const routes: Routes = [
   },
   {
     path: 'match-candidate',
+    component: MatchCandidateComponent,
+  },
+  {
+    path: 'match-candidate:/project',
     component: MatchCandidateComponent,
   },
   {
@@ -74,7 +81,7 @@ const routes: Routes = [
     component: CreateprojectComponent,
   },
   {
-    path: 'individualskill', 
+    path: 'individualskill',
     component: AddSkillsComponent,
   },
   {
@@ -89,42 +96,70 @@ const routes: Routes = [
     path: 'sliderpopup',
     component: SliderComponent,
   },
+  // {
+  //   path: '',
+  //   component: LoginComponent,
+  // },
+  {
+    path: 'dashboard',
+    component: AdminBoardComponent,
+  },
+  {
+    path: 'user-control',
+    component: UserControlComponent,
+  },
+  {
+    path: 'project-control',
+    component: ProjectControlComponent,
+  },
+  {
+    path: 'skill-control',
+    component: SkillControlComponent,
+  },
+  {
+    path: 'category-control',
+    component: CategoryControlComponent,
+  },
+  {
+    path: 'statistics',
+    component: StatisticsComponent,
+  },
+  {
+    path: 'skill-collection-control',
+    component: SkillCollectionControlComponent,
+  },
+  {
+    path: 'notification-menu',
+    component: NotificationMenuComponent,
+  },
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
+  },
+  {
+    path: 'update-project',
+    component: UpdateProjectComponent,
+  },
+  {
+    path: 'applications',
+    component: ApplicationsComponent,
+  },
   {
     path: '',
-    component:LoginComponent,
+    component: NotificationsComponent,
+  },
+  // {
+  //   path: '',
+  //   component: ApplicationsComponent,
+  // },
+  {
+    path: 'skill-collection-control',
+    component: SkillCollectionControlComponent,
   },
   {
-    path: 'dashboard', 
-    component: AdminBoardComponent
+    path: 'workexp',
+    component: WorkExpComponent,
   },
-  {
-    path: 'user-control', 
-    component: UserControlComponent
-  },
-  {
-    path: 'project-control', 
-    component: ProjectControlComponent
-  },
-  {
-    path: 'skill-control', 
-    component: SkillControlComponent
-  },
-  {
-    path: 'category-control', 
-    component: CategoryControlComponent
-  },
-  {
-    path: 'statistics', 
-    component: StatisticsComponent
-  },
-  {
-    path: 'skill-collection-control', 
-    component: SkillCollectionControlComponent
-  },
-  {
-    path: 'workexp', 
-    component: WorkExpComponent
-  }
 ];
 
 @NgModule({

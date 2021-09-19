@@ -31,7 +31,7 @@ export class ProjectCRUDService {
   }
 
   //external api to update project is called here
-  updateProject(formData: Project): Observable<any> {
+  updateProject(formData: any): Observable<any> {
     return this.httpclient.put(
       'http://localhost:5000/api/Project/updateProject',
       formData,
@@ -40,34 +40,38 @@ export class ProjectCRUDService {
   }
 
   //external api to delete project is called here
-  deleteProject(id): Observable<any> {
-    let obj = {
-      projectId: id,
-    };
+  deleteProject(formData: any): Observable<any> {
     return this.httpclient.post(
       'http://localhost:5000/api/Project/deleteProject/',
-      obj,
+      formData,
       this.httpOptions
     );
   }
 
   //external api to read project is called here
-  getAllProjects(): Observable<Project[]> {
-    return this.httpclient.get<Project[]>(
+  getAllProjects(): Observable<any[]> {
+    return this.httpclient.get<any[]>(
       'http://localhost:5000/api/Project/getProjects',
       this.httpOptions
     );
   }
 
   //external api to read project is called here
-  getProjectsByProjectOwnerId(): Observable<Project[]> {
-    return this.httpclient.get<Project[]>(
+  getProjectsByProjectOwnerId(): Observable<any[]> {
+    return this.httpclient.get<any[]>(
       'http://localhost:5000/api/Project/getProjectsByOwnerId',
       this.httpOptions
     );
   }
 
-  inviteCandidate(formData): Observable<any[]> {
+  obtainMatchingCandidates(formData: any): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'localhost:5000/api/Project/MatchCandidates?projectId=' + formData,
+      this.httpOptions
+    );
+  }
+
+  inviteCandidate(formData: any): Observable<any[]> {
     return this.httpclient.post<any[]>(
       'http://localhost:5000/api/Project/inviteCandidate',
       formData,
@@ -76,12 +80,24 @@ export class ProjectCRUDService {
   }
 
   applyForProject(formData: any): Observable<any> {
-    // var auth = new Headers();
-    // auth.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
-
     return this.httpclient.post(
       'http://localhost:5000/api/Project/applyForProject',
       formData,
+      this.httpOptions
+    );
+  }
+
+  updateUser(formData: any): Observable<any> {
+    return this.httpclient.post(
+      'http://localhost:5000/api/User/update',
+      formData,
+      this.httpOptions
+    );
+  }
+
+  getMyUserID(): Observable<any> {
+    return this.httpclient.get(
+      'http://localhost:5000/api/User/getCurrentUserId',
       this.httpOptions
     );
   }
