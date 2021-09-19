@@ -23,7 +23,7 @@ import { SliderComponent } from './slider/slider.component';
 })
 export class ProfileComponent implements OnInit {
 @ViewChild(MatPaginator, { static: false }) paginator:MatPaginator;
-  imageUrl: string = "/assets/images/profile.png";
+  imageUrl = "/assets/images/profile.png";
   fileToUpload: File = null;
 
   constructor(private service: ProjectCRUDService,private profileService: ProfileInfoService,private imageService: AdminService,private dialog: MatDialog,private _formBuilder: FormBuilder) { }
@@ -62,7 +62,20 @@ console.log("in here");
       this.firstFormGroup.controls['email'].setValue(localStorage.getItem('email'));
       this.firstFormGroup.controls['phone'].setValue(localStorage.getItem('phone'));
       this.firstFormGroup.controls['open'].setValue(localStorage.getItem('openForWork'));
-      console.log(this.imageService.getImage("img"+localStorage.getItem('userID')));
+  
+      //retrieve profile image
+      this.imageService.getImage(localStorage.getItem('userID')).subscribe((data) => {
+        if (data) {
+          //status==200)
+          console.log("img"+data.result);
+          if(data.result!=null){
+            this.imageUrl=this.imageService.getApiUrl() + data.result.path;
+          }
+        } else {
+          //alert that couldnt fetch data
+        }
+      });
+
     }else{
       console.log("in else");
       this.firstFormGroup.controls['name'].setValue(sessionStorage.getItem('name'));
@@ -72,6 +85,17 @@ console.log("in here");
       this.firstFormGroup.controls['open'].setValue(sessionStorage.getItem('openForWork'));
       console.log(this.imageService.getImage("img"+sessionStorage.getItem('userID')));
       
+      //retrieve profile image
+      this.imageService.getImage(sessionStorage.getItem('userID')).subscribe((data) => {
+        if (data) {
+          console.log("img"+data.result);
+          if(data.result!=null){
+            this.imageUrl=this.imageService.getApiUrl() + data.result.path;
+          }
+        } else {
+          //alert that couldnt fetch data
+        }
+      });
     }
    
     if(localStorage.getItem('role')=='1'){
@@ -321,8 +345,8 @@ console.log("v: "+this.ELEMENT_DATA[i-1].rating);
        phoneNumber: this.personalDetailsForm.get('phone').value,
        startDate: "2021-08-17T21:16:36.745Z",
        openForWork:o,
-       existingSkills:arrRequest
-
+       existingSkills:arrRequest,
+       externalWorkExperiences:this.work_DATA
      };
      console.log(JSON.stringify(obj));
 
