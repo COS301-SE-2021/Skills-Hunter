@@ -22,10 +22,16 @@ export class ProfileInfoService {
   }
 
   userDetailUpdate(formData){
+    var auth;
+    if(localStorage.getItem('rememberMe')=="true"){
+      auth=localStorage.getItem('token');
+    }else{
+      auth=sessionStorage.getItem('token');
+    }
 
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: 'Bearer '+localStorage.getItem('token')
+        Authorization: 'Bearer '+auth
       })
     };
     return this.httpclient.post<any>(
