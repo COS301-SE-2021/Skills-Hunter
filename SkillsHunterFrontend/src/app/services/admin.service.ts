@@ -22,7 +22,7 @@ export class AdminService {
   }
 
   getUser(id: string): Observable<getUserResponse>{
-    return this.http.get<getUserResponse>(this.apiUrl + "api/User/getUserById?userId=" + id,{headers : this.header})
+    return this.http.get<getUserResponse>(this.apiUrl + "api/User/getUserById?request=" + id,{headers : this.header})
   }
 
   creatSkill(nam: string, cat: getCategoryByIdRequest[]): Observable<createSkillResponse>{
@@ -82,12 +82,12 @@ export class AdminService {
     return this.http.get<getCategoriesResponse>(this.apiUrl + "api/Admin/getCategories",{headers : this.header});
   }
 
-  removeCategory(id: string): Observable<removeCategoryResponse> {
-    let request: removeCategoryRequest = {
-      Id: id,
-    };
+  updateCategory(id: string,name: string,description: string): Observable<any>{
+    return this.http.post<any>(this.apiUrl + "api/Admin/updateCategory",{id:id,name:name,description:description},{headers : this.header});
+  }
 
-    return this.http.post<removeCategoryResponse>(this.apiUrl + "api/Admin/removeCategory",request,{headers : this.header});
+  removeCategory(id: string): Observable<removeCategoryResponse> {
+    return this.http.get<removeCategoryResponse>(this.apiUrl + "api/Admin/removeCategory?request="+id,{headers : this.header});
 
   }
 

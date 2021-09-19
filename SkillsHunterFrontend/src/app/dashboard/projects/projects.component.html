@@ -1,0 +1,74 @@
+<div class="page-header">
+  <h3 class="page-title">
+    Users
+  </h3>
+</div>
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+
+	    <div class="form-group" (click) = "filter=false">
+	        <input type="text" class="form-control form-control-lg" placeholder="search" aria-label="Recipient's username" (keyup.enter)="search()" name = "searchTerm" [(ngModel)] = "searchTerm">
+	    </div>
+
+	    <button type="button" class="btn btn-gradient-primary btn-icon-text" (click)="filter=!filter">
+	       <i class="mdi mdi-filter btn-icon-prepend"></i>
+	        filter
+	    </button>
+
+      <div role="alert" [ngClass]="{'alert  mt-3 alert-success' : notificationType == 0,'alert  mt-3 alert-warning' : notificationType == 2,'alert  mt-3 alert-danger' : notificationType == 3}" *ngIf="notificationType > 0">
+          {{notification}}
+      </div>
+
+	    <div class = "border border-secondary rounded mt-5 p-4 " *ngIf="filter">
+	    	<div class="form-check">
+              <label class="form-check-label text-muted">
+                <input type="checkbox" class="form-check-input" name = "open" [(ngModel)] = "open" (change)="filterData()">
+                <i class="input-helper"></i>
+                Open
+              </label>
+            </div>
+	    </div>        
+
+        <div class="table-responsive mt-5">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>
+                  Name
+                </th>
+                <th>
+                  Description
+                </th>
+                <th>
+                  Owner
+                </th>
+                <th>
+                  Open
+                </th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let project of show">
+                <td>
+                  {{project.name}}
+                </td>
+                <td>
+                  {{project.description}}	
+                </td>
+                <td>
+                  {{project.owner}}
+                </td>
+                <td>
+                  {{project.openForApplication == true ? 'Yes' : 'No'}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>	
+</div>

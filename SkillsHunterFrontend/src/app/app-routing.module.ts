@@ -25,8 +25,12 @@ import { SliderComponent } from './profile/slider/slider.component';
 import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ApplicationsComponent } from './applications/applications.component';
-
+import { WorkExpComponent } from './profile/work-exp/work-exp.component';
 const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent,
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -34,6 +38,11 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
     path: 'home',
@@ -139,6 +148,14 @@ const routes: Routes = [
   //   path: '',
   //   component: ApplicationsComponent,
   // },
+  {
+    path: 'skill-collection-control',
+    component: SkillCollectionControlComponent,
+  },
+  {
+    path: 'workexp',
+    component: WorkExpComponent,
+  },
 ];
 
 @NgModule({

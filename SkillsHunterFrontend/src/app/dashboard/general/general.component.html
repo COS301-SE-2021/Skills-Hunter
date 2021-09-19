@@ -1,0 +1,205 @@
+<div class="page-header">
+  <h3 class="page-title">
+    General
+  </h3>
+</div>
+
+<div class="row">
+  <div class="col-md-3 stretch-card grid-margin total-card" style = "height: 130px">
+    <div class="card bg-gradient-danger card-img-holder text-white">
+      <div class="card-body">
+        <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
+        <h4 class="font-weight-normal mb-3">Users
+          <i class="mdi mdi-account-multiple mdi-24px float-right"></i>
+        </h4>
+        <h2 class="mb-5">{{users.length}}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 stretch-card grid-margin  total-card" style = "height: 130px">
+    <div class="card bg-gradient-info card-img-holder text-white">
+      <div class="card-body">
+        <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                  
+        <h4 class="font-weight-normal mb-3">Projects
+          <i class="mdi mdi-file-multiple mdi-24px float-right"></i>
+        </h4>
+        <h2 class="mb-5">{{projects.length}}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 stretch-card grid-margin  total-card" style = "height: 130px">
+    <div class="card bg-gradient-success card-img-holder text-white">
+      <div class="card-body">
+        <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                                    
+        <h4 class="font-weight-normal mb-3">Categories
+          <i class="mdi mdi-group mdi-24px float-right"></i>
+        </h4>
+        <h2 class="mb-5">{{categories.length}}</h2>
+      </div>
+    </div>
+  </div>
+
+   <div class="col-md-3 stretch-card grid-margin total-card" style = "height: 130px">
+    <div class="card bg-gradient-warning card-img-holder text-white">
+      <div class="card-body">
+        <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                                    
+        <h4 class="font-weight-normal mb-3">Skills
+          <i class="mdi mdi-star mdi-24px float-right"></i>
+        </h4>
+        <h2 class="mb-5">{{skills.length}}</h2>
+      </div>
+    </div>
+  </div>
+
+   <div class="col-md-3 stretch-card grid-margin  total-card" style = "height: 130px">
+    <div class="card bg-gradient-secondary card-img-holder text-white">
+      <div class="card-body">
+        <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                                    
+        <h4 class="font-weight-normal mb-3">Skill Collections
+          <i class="mdi mdi-layers mdi-24px float-right"></i>
+        </h4>
+        <h2 class="mb-5">n/a</h2>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-lg-6 grid-margin stretch-card" id = "user-stats">
+    <div class="card">
+      <div class="card-body">
+          <h4 class="card-title">Users</h4>
+
+      	  <div class="row">
+  		  	<div class="col-lg-6 grid-margin stretch-card">
+  		  		<div class="card-body">
+
+		          	<!--<div class = "form-group border rounded p-2" style="border-size:2px">
+		          		<label><b>Select field</b></label>
+						<div class="form-check form-check-danger">
+		                  <label class="form-check-label">
+		                    <input type="radio" class="form-check-input" name="user-field" id="ExampleRadio1" checked (change) = "updateUserchart('open')">
+		                    Open
+		                    <i class="input-helper"></i>
+		                  </label>
+		                </div>
+		                <div class="form-check form-check-danger">
+		                  <label class="form-check-label">
+		                    <input type="radio" class="form-check-input" name="user-field" id="ExampleRadio2" checked (change) = "updateUserchart('role')">
+		                    Role
+		                    <i class="input-helper"></i>
+		                  </label>
+		                </div>
+		          	</div>-->
+
+		            <canvas class = "float-left" baseChart [chartType]="'doughnut'" [datasets]="userChartData" [labels]="userChartLabels" [options]="userChartOptions" [colors]="userChartColors"></canvas>
+			        <div id="traffic-chart-legend" class="mt-7 rounded-legend legend-vertical legend-bottom-left pt-4">
+			          <ul>
+			            <li *ngFor = "let value of userChartLabels;index as i">
+			              <span class="legend-dots" [ngStyle]="{'background-color': userChartColors[0].backgroundColor[i]}"></span>{{value}}
+			              <span class="float-right">{{((userChartData[0].data[i] / users.length) * 100).toFixed(2) }}%</span>
+			            </li>
+			          </ul>
+			        </div>
+
+  		  		</div>
+
+  		  	</div>
+  		  </div>
+      </div>
+    </div>
+  </div>
+
+
+   <div class="col-lg-6 grid-margin stretch-card" id = "project-stats">
+    <div class="card">
+      <div class="card-body">
+          <h4 class="card-title">Projects</h4>
+
+      	  <div class="row">
+  		  	<div class="col-lg-6 grid-margin stretch-card">
+  		  		<div class="card-body">
+
+		          	<!--<div class = "form-group border rounded p-2" style="border-size:2px">
+		          		<label><b>Select field</b></label>
+						<div class="form-check form-check-danger">
+		                  <label class="form-check-label">
+		                    <input type="radio" class="form-check-input" name="user-field" id="ExampleRadio1" checked (change) = "updateUserchart('open')">
+		                    Open
+		                    <i class="input-helper"></i>
+		                  </label>
+		                </div>
+		                <div class="form-check form-check-danger">
+		                  <label class="form-check-label">
+		                    <input type="radio" class="form-check-input" name="user-field" id="ExampleRadio2" checked (change) = "updateUserchart('role')">
+		                    Role
+		                    <i class="input-helper"></i>
+		                  </label>
+		                </div>
+		          	</div>-->
+
+		            <canvas class = "float-left" baseChart [chartType]="'doughnut'" [datasets]="projectChartData" [labels]="projectChartLabels" [options]="userChartOptions" [colors]="projectChartColors"></canvas>
+			        <div id="traffic-chart-legend" class="mt-7 rounded-legend legend-vertical legend-bottom-left pt-4">
+			          <ul>
+			            <li *ngFor = "let value of projectChartLabels;index as i">
+			              <span class="legend-dots" [ngStyle]="{'background-color': projectChartColors[0].backgroundColor[i]}"></span>{{value}}
+			              <span class="float-right">{{((projectChartData[0].data[i] / projects.length) * 100).toFixed(2) }}%</span>
+			            </li>
+			          </ul>
+			        </div>
+
+  		  		</div>
+
+  		  	</div>
+  		  </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="col-lg-6 grid-margin stretch-card" id = "skill-stats">
+    <div class="card">
+      <div class="card-body">
+          <h4 class="card-title">Skills</h4>
+
+      	  <div class="row">
+  		  	<div class="col-lg-6 grid-margin stretch-card">
+  		  		<div class="card-body">
+
+		          	<!--<div class = "form-group border rounded p-2" style="border-size:2px">
+		          		<label><b>Select field</b></label>
+						<div class="form-check form-check-danger">
+		                  <label class="form-check-label">
+		                    <input type="radio" class="form-check-input" name="user-field" id="ExampleRadio1" checked (change) = "updateUserchart('open')">
+		                    Open
+		                    <i class="input-helper"></i>
+		                  </label>
+		                </div>
+		                <div class="form-check form-check-danger">
+		                  <label class="form-check-label">
+		                    <input type="radio" class="form-check-input" name="user-field" id="ExampleRadio2" checked (change) = "updateUserchart('role')">
+		                    Role
+		                    <i class="input-helper"></i>
+		                  </label>
+		                </div>
+		          	</div>-->
+
+		            <canvas class = "float-left" baseChart [chartType]="'doughnut'" [datasets]="skillChartData" [labels]="skillChartLabels" [options]="userChartOptions" [colors]="skillChartColors"></canvas>
+			        <div id="traffic-chart-legend" class="mt-7 rounded-legend legend-vertical legend-bottom-left pt-4">
+			          <ul>
+			            <li *ngFor = "let value of skillChartLabels;index as i">
+			              <span class="legend-dots" [ngStyle]="{'background-color': skillChartColors[0].backgroundColor[i]}"></span>{{value}}
+			              <span class="float-right">{{((skillChartData[0].data[i] / skills.length) * 100).toFixed(2) }}%</span>
+			            </li>
+			          </ul>
+			        </div>
+
+  		  		</div>
+
+  		  	</div>
+  		  </div>
+      </div>
+    </div>
+  </div>
+
+</div>

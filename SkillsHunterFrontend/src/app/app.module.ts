@@ -5,6 +5,7 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
@@ -13,7 +14,6 @@ import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatchCandidateComponent } from './match-candidate/match-candidate.component';
 import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
-// import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidate.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectCRUDService } from './services/project-crud.service';
 import { RegisterComponent } from './register/register.component';
@@ -27,7 +27,6 @@ import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatCardModule } from '@angular/material/card';
 import { AdminBoardComponent } from './admin-board/admin-board.component';
 import { BoardContentComponent } from './board-content/board-content.component';
@@ -72,7 +71,20 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationResponseComponent } from './notifications/notification-response/notification-response.component';
 import { ApplicationsComponent } from './applications/applications.component';
-
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { ContentAnimateDirective } from './shared/directives/content-animate.directive';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { WorkExpComponent } from './profile/work-exp/work-exp.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -84,7 +96,6 @@ import { ApplicationsComponent } from './applications/applications.component';
     RegisterComponent,
     MatchCandidateComponent,
     CandidateCardComponent,
-    // SearchAndFilterCandidatePipe,
     UpdateProjectComponent,
     ProjectCardComponent,
     AdminPortalComponent,
@@ -92,7 +103,6 @@ import { ApplicationsComponent } from './applications/applications.component';
     AddSkillsComponent,
     AddSkillsCollectionComponent,
     ProfileComponent,
-    SidebarComponent,
     AdminBoardComponent,
     BoardContentComponent,
     ProjectControlComponent,
@@ -129,6 +139,12 @@ import { ApplicationsComponent } from './applications/applications.component';
     NotificationsComponent,
     NotificationResponseComponent,
     ApplicationsComponent,
+    SpinnerComponent,
+    ContentAnimateDirective,
+    NavbarComponent,
+    SidebarComponent,
+    FooterComponent,
+    WorkExpComponent,
   ],
   imports: [
     BrowserModule,
@@ -153,9 +169,15 @@ import { ApplicationsComponent } from './applications/applications.component';
     MatCardModule,
     MatDialogModule,
     MatChipsModule,
-    SelectDropDownModule
+    SelectDropDownModule,
+    NgbModule,
+    MatSnackBarModule,
+    MatNativeDateModule,
   ],
-  providers: [],
+  providers: [
+    MatNativeDateModule,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,0 +1,1 @@
+export const roleSet = new Event("roleSet");
