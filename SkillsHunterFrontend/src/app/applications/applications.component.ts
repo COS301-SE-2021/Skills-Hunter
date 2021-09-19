@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+
+// export interface Invitation  {
+//   invitationId: string,
+//   inviteeId: string,
+//   inviterId: string,
+//   projectId: string,
+//   message: 'string',
+//   inviteDate: string,
+//   status: number,
+// },
 
 @Component({
   selector: 'app-applications',
@@ -10,8 +21,59 @@ export class ApplicationsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  candidatesList = theCandidate;
+  displayedColumns: string[] = ['invitation_date', 'invitation_message'];
+  dataSource = new MatTableDataSource(invitations);
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  showInvitation(element: any) {
+    console.log('Logging It');
+    console.log(element);
+  }
+
+  // candidatesList = theCandidate;
 }
+
+var invitations = [
+  {
+    invitationId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviteeId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    message: 'Hello',
+    inviteDate: '2021-09-19T15:30:08.693Z',
+    status: 0,
+  },
+  {
+    invitationId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviteeId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    message: 'Welcome',
+    inviteDate: '2021-09-19T15:30:08.693Z',
+    status: 0,
+  },
+  {
+    invitationId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviteeId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    message: 'Nicely done.',
+    inviteDate: '2021-09-19T15:30:08.693Z',
+    status: 0,
+  },
+  {
+    invitationId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviteeId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    message: 'Hey',
+    inviteDate: '2021-09-19T15:30:08.693Z',
+    status: 0,
+  },
+];
 
 const theCandidate = [
   {

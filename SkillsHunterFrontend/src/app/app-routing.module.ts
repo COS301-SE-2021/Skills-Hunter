@@ -27,10 +27,10 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { ApplicationsComponent } from './applications/applications.component';
 import { WorkExpComponent } from './profile/work-exp/work-exp.component';
 const routes: Routes = [
-  {
-    path: '',
-    component: LoginComponent,
-  },
+  // {
+  //   path: '',
+  //   component: LoginComponent,
+  // },
   {
     path: 'login',
     component: LoginComponent,
@@ -140,14 +140,14 @@ const routes: Routes = [
     path: 'applications',
     component: ApplicationsComponent,
   },
-  {
-    path: '',
-    component: NotificationsComponent,
-  },
   // {
   //   path: '',
-  //   component: ApplicationsComponent,
+  //   component: NotificationsComponent,
   // },
+  {
+    path: '',
+    component: ApplicationsComponent,
+  },
   {
     path: 'skill-collection-control',
     component: SkillCollectionControlComponent,
