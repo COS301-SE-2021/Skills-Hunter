@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef} from '@angular/material/dialog';
-
+import { MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
@@ -9,10 +9,16 @@ import { MatDialogRef} from '@angular/material/dialog';
 })
 export class SliderComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<SliderComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data,public dialogRef: MatDialogRef<SliderComponent>) { }
 
   ngOnInit(): void {
-      // This is intentional
+  
+      var d=this.data;
+
+    if(d!=""){
+      console.log("in slider: "+this.data);
+      this.value=this.data;
+    }
   }
   formatLabel(value: number) {
     if (value >= 1000) {
