@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj": {}
+    "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\SkillsHunterUserUnitTest.csproj": {}
   },
   "projects": {
-    "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj": {
+    "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj",
+        "projectUniqueName": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj",
         "projectName": "SkillsHunterAPI",
-        "projectPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj",
-        "packagesPath": "/Users/mxolisi/.nuget/packages/",
-        "outputPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/obj/",
+        "projectPath": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj",
+        "packagesPath": "C:\\Users\\SbonisoMasilela\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mxolisi/.config/NuGet/NuGet.Config"
+          "C:\\Users\\SbonisoMasilela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -121,34 +123,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj": {
+    "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\SkillsHunterUserUnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj",
+        "projectUniqueName": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\SkillsHunterUserUnitTest.csproj",
         "projectName": "SkillsHunterUserUnitTest",
-        "projectPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj",
-        "packagesPath": "/Users/mxolisi/.nuget/packages/",
-        "outputPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/obj/",
+        "projectPath": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\SkillsHunterUserUnitTest.csproj",
+        "packagesPath": "C:\\Users\\SbonisoMasilela\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mxolisi/.config/NuGet/NuGet.Config"
+          "C:\\Users\\SbonisoMasilela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj": {
-                "projectPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj"
+              "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj": {
+                "projectPath": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj"
               }
             }
           }
@@ -165,7 +169,7 @@
           "dependencies": {
             "FakeItEasy": {
               "target": "Package",
-              "version": "[7.1.0, )"
+              "version": "[7.2.0, )"
             },
             "Microsoft.AspNetCore": {
               "target": "Package",
@@ -207,7 +211,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }
