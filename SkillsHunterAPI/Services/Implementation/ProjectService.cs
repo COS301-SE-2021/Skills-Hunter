@@ -288,6 +288,13 @@ namespace SkillsHunterAPI.Services
 
         public async Task<ProjectSkillCollection> CreateCollection(CreateSkillCollectionRequest request, Guid projectId)
         {
+            ProjectSkillCollection collection = await _context.ProjectSkillCollections.Where(s => s.ProjectSkillCollectionId == request.ProjectSkillCollectionId).FirstOrDefaultAsync();
+            
+            
+            if(collection != null)
+            {
+                return await UpdateProjectSkillCollection(request);
+            }
             //Creating the new SkillCollection object
             SkillCollection skillCollection = new SkillCollection();
             skillCollection.SkillCollectionId = new Guid();
@@ -339,12 +346,16 @@ namespace SkillsHunterAPI.Services
             return result;
         }
 
-        public async Task<ProjectSkillCollection> UpdateCollection(ProjectSkillCollection request)
+        public async Task<ProjectSkillCollection> UpdateProjectSkillCollection(CreateSkillCollectionRequest request)
         {
-            ProjectSkillCollection result = null;
+            ProjectSkillCollection collectionToUpdate = await _context.ProjectSkillCollections.Where(s => s.ProjectSkillCollectionId == request.ProjectSkillCollectionId).FirstOrDefaultAsync();
 
 
-            return result;
+            collectionToUpdate.Weight = request.Weight;
+            _context.ProjectSkillCollections.Update(collectionToUpdate);
+            await _context.SaveChangesAsync();
+
+            return collectionToUpdate;
         }
 
         public async Task RemoveCollection(Guid collectionId)
@@ -792,6 +803,16 @@ namespace SkillsHunterAPI.Services
 
             return response;
         }
+
+
+        public async Task<IEnumerable<Invitation>> GetInvitationsByProjectId(Guid projectId)
+        {
+            return await _context.Invitations.Where(a => a.ProjectId == projectId).OrderByDescending(a => a.InviteDate).ToListAsync();
+        }
+
+
+
+
     }
 
     public class TextData
