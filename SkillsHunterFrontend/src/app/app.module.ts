@@ -143,12 +143,8 @@ import { ConnectionServiceModule } from 'ng-connection-service';
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
-<<<<<<< HEAD
     TodoComponent,
     WorkExpComponent
-=======
-    WorkExpComponent,
->>>>>>> a0c914aeab3b71d008f65fa96b0ec5375c28c5ed
   ],
   imports: [
     BrowserModule,
@@ -175,18 +171,13 @@ import { ConnectionServiceModule } from 'ng-connection-service';
     MatChipsModule,
     SelectDropDownModule,
     NgbModule,
-<<<<<<< HEAD
     MatSnackBarModule ,
     MatNativeDateModule,
     ConnectionServiceModule
-=======
-    MatSnackBarModule,
-    MatNativeDateModule,
   ],
   providers: [
     MatNativeDateModule,
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
->>>>>>> a0c914aeab3b71d008f65fa96b0ec5375c28c5ed
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
