@@ -614,7 +614,17 @@ namespace SkillsHunterAPI.Services
                     {
                         if(MatchSkillFromExperienceDescription(skill.Name, tokens))
                         {
-                            TimeSpan ts = experience.EndDate - experience.StartDate;
+                            TimeSpan ts = new TimeSpan();
+
+                            if(experience.RealEnd != null)
+                            {
+                                ts = experience.RealStart - experience.RealStart;
+                            }
+                            else
+                            {
+                                ts = experience.RealStart - DateTime.UtcNow;
+                            }
+                            
 
                             double years = ts.TotalDays / 365;
 
