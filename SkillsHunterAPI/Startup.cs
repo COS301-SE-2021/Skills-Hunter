@@ -26,6 +26,9 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using SkillsHunterAPI.Hubs;
+using SkillsHunterAPI.Services.Interface;
+using SkillsHunterAPI.Services.Implementation;
 
 namespace SkillsHunterAPI
 {
@@ -42,6 +45,9 @@ namespace SkillsHunterAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
+            //For SignalR
+            services.AddSignalR();
+
 
             //AAdding Application services
             services.AddTransient<IProjectService, ProjectService>();
@@ -49,6 +55,12 @@ namespace SkillsHunterAPI
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAdminService, AdminService>();
             services.AddTransient<UserController, UserController>();
+
+            services.AddTransient<NotificationController, NotificationController>();
+
+            //added this recently for notificcations and SignalR
+            services.AddTransient<INotificationService, NotificationService>();
+            services.AddTransient<IUserConnectionManager, UserConnectionManager>();
 
 
 
@@ -137,6 +149,10 @@ namespace SkillsHunterAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                //For SignalR notifications
+                endpoints.MapHub<NotificationHub>("/NotificationHub");
+                endpoints.MapHub<NotificationUserHub>("/NotificationUserHub");
             });
         }
     }

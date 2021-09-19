@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using SkillsHunterAPI.Models.Skill.Request;
+using SkillsHunterAPI.Models.Notification;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -23,12 +24,14 @@ namespace SkillsHunterAPI.Controllers
         private readonly IProjectService _projectService;
         private readonly ISkillService _skillService;
         private UserController _userController;
+        private NotificationController _notificationController;
 
-        public ProjectController(IProjectService projectService, ISkillService skillService, UserController userController)
+        public ProjectController(IProjectService projectService, ISkillService skillService, UserController userController,NotificationController notificationController)
         {
             _projectService = projectService;
             _skillService = skillService;
             _userController = userController;
+            _notificationController = notificationController;
             //InitControllers();
         }
 
@@ -228,8 +231,10 @@ namespace SkillsHunterAPI.Controllers
         public async Task<ActionResult> UpdateProject([FromBody] UpdateProjectRequest projectRequest)
         {
 
+            //Get the project id from the request
+            Guid projectId = projectRequest.ProjectId;
 
-            /*Guid projectId = new Guid(projectRequest.ProjectId);
+            //Get project from the database to check if it is there
             Project project = await _projectService.GetProject(projectId);
 
             if (project == null )
@@ -237,7 +242,7 @@ namespace SkillsHunterAPI.Controllers
                 return BadRequest();
             }
 
-
+            
             ProjectResponse projectResponse = new ProjectResponse();
 
             Project ProjectToUpdate = new Project();
@@ -247,43 +252,54 @@ namespace SkillsHunterAPI.Controllers
             ProjectToUpdate.Owner = projectRequest.Owner;
             ProjectToUpdate.Name = projectRequest.Name;
             ProjectToUpdate.DateCreated = DateTime.Now;
-            Guid PID = new Guid(projectRequest.ProjectId);
+            Guid PID = projectRequest.ProjectId;
 
-
+            
             await _projectService.UpdateProject(PID, ProjectToUpdate);
 
 
-            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);*/
+            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>) await _projectService.GetProjectSkillsByProjectId(PID);
 
 
-            /*Guid _projectID = new Guid(projectRequest.ProjectId);
-            foreach (SkillRR skillFromRequest in projectRequest.ProjectSkills)
+            
+            //Guid _projectID = projectRequest.ProjectId;
+            foreach (AddExistingSkillRequest skillFromRequest in projectRequest.ExistingSkills)
             {
-                ProjectSkill projectSkill = await _projectService.GetProjectSkillBySkillId(skillFromRequest.SkillId, _projectID);
+                ProjectSkill projectSkill = await _projectService.GetProjectSkill( projectId);
 
                 if(projectSkill == null)
                 {
                     ProjectSkill newProjectSkill = new ProjectSkill();
-                    newProjectSkill.ProjectId = _projectID;
+                    newProjectSkill.ProjectId = projectId;
                     newProjectSkill.SkillId = projectSkill.SkillId;
                     await _projectService.AddProjectSkill(newProjectSkill);
                 }
 
             }
 
+            
 
             foreach (ProjectSkill projectSkill in projectSkillsFromDB)
             {
-                SkillRR projectSkillRevised = new SkillRR();
+                AddExistingSkillRequest projectSkillRevised = new AddExistingSkillRequest();
                 projectSkillRevised.SkillId = projectSkill.SkillId;
-                projectSkillRevised.SkillName = "SkillOne";
+                projectSkillRevised.Weight =projectSkill.Weight ;
 
-                if(!projectRequest.ProjectSkills.Contains(projectSkillRevised))
+                if(!projectRequest.ExistingSkills.Contains(projectSkillRevised))
                 {
                     await _projectService.RemoveProjectSkill(projectSkill.SkillId);
                 }
 
-            }*/
+            }
+            
+            List<ProjectSkillCollection> projectSkillsCollectionFromDB = (List<ProjectSkillCollection>)await _projectService.GetCollectionsByProject(PID);
+
+
+            //Adding skills from collections
+            foreach (CreateSkillCollectionRequest collection in projectRequest.SkillCollections)
+            {
+                await _projectService.CreateCollection(collection, projectId);
+            }
 
 
 
@@ -352,7 +368,7 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/applyForProject")]
-        public async Task<ApplyForProjectResponse> ApplyForProject([FromBody] ApplyForProjectRequest request)
+        public Task<ApplyForProjectResponse> ApplyForProject([FromBody] ApplyForProjectRequest request)
         {
             ApplyForProjectResponse applyForProjectResponse = new ApplyForProjectResponse();
 
@@ -366,29 +382,43 @@ namespace SkillsHunterAPI.Controllers
             {
                 applyForProjectResponse.Success = false;
             }
-            return applyForProjectResponse;
+
+
+            return Task.FromResult(applyForProjectResponse);
         }
 
 
         [HttpPost]
         [Route("api/[controller]/inviteCandidate")]
-        public InviteCandidateResponse InviteCandidate([FromBody] InviteCandidateRequest request)
+        public async Task<InviteCandidateResponse> InviteCandidateAsync([FromBody] InviteCandidateRequest request)
         {
             //This create an Invite candidate response object
             InviteCandidateResponse inviteCandidateResponse = new InviteCandidateResponse();
 
 
             var InviteStatus = _projectService.InviteCandidate(request.UserId, request.ProjectId, request.InviteeId, request.Message);
+            var Subject = "Project Invitation";
+
+
+            Notification newNotification = new Notification();
+            newNotification.InitiatorId = request.UserId;
+            newNotification.RecepientId = request.InviteeId;
+            newNotification.Subject = Subject;
+            newNotification.Message = request.Message;
+            newNotification.IsRead = false;
+            newNotification.DateSent = DateTime.Now;
 
             if (InviteStatus)
             {
                 inviteCandidateResponse.Success = true;
+  
             }
             else
             {
                 inviteCandidateResponse.Success = false;
             }
 
+            await _notificationController.SendNotifications(newNotification);
 
             return inviteCandidateResponse;
         }
@@ -553,6 +583,33 @@ namespace SkillsHunterAPI.Controllers
             response.SkillCollections = (List<GetProjectSkillCollectionResponse>)await _projectService.GetProjectSkillCollectionsByProjectId(projectId);
 
             return response;
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/MatchCandidates")]
+        public async Task<IEnumerable<MatchCandidateResponse>> MatchCandidates([FromQuery]Guid projectId)
+        {
+            List<MatchCandidateResponse> response = await _projectService.MatchCandidates(projectId);
+
+            return response;
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/getApplicationsByProjectId")]
+        public async Task<IEnumerable<GetApplicationsResponse>> getApplicationsByProjectId([FromQuery] Guid projectId)
+        {
+            List<GetApplicationsResponse> response = await _projectService.GetApplicationsByProjectId(projectId);
+
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("api/[controller]/getInvitationsByProjectId")]
+        public async Task<IEnumerable<Invitation>> GetInvitationsByProjectId([FromQuery] Guid projectId)
+        {
+            return await _projectService.GetInvitationsByProjectId(projectId);
+
         }
 
     }
