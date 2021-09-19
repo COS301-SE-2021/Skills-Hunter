@@ -440,5 +440,13 @@ namespace SkillsHunterAPI.Services
         {
             return await _context.Applications.Where(a => a.ApplicantId == applicantId).OrderByDescending(a => a.Date).ToListAsync();
         }
+
+
+
+        public async Task<IEnumerable<Invitation>> GetInvitations(Guid inviteeId)
+        {
+            return await _context.Invitations.Where(a => a.InviteeId == inviteeId).OrderByDescending(a => a.InviteDate).ToListAsync();
+        }
+
     }
 }

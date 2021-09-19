@@ -231,8 +231,10 @@ namespace SkillsHunterAPI.Controllers
         public async Task<ActionResult> UpdateProject([FromBody] UpdateProjectRequest projectRequest)
         {
 
+            //Get the project id from the request
+            Guid projectId = projectRequest.ProjectId;
 
-            /*Guid projectId = new Guid(projectRequest.ProjectId);
+            //Get project from the database to check if it is there
             Project project = await _projectService.GetProject(projectId);
 
             if (project == null )
@@ -240,7 +242,7 @@ namespace SkillsHunterAPI.Controllers
                 return BadRequest();
             }
 
-
+            
             ProjectResponse projectResponse = new ProjectResponse();
 
             Project ProjectToUpdate = new Project();
@@ -250,43 +252,54 @@ namespace SkillsHunterAPI.Controllers
             ProjectToUpdate.Owner = projectRequest.Owner;
             ProjectToUpdate.Name = projectRequest.Name;
             ProjectToUpdate.DateCreated = DateTime.Now;
-            Guid PID = new Guid(projectRequest.ProjectId);
+            Guid PID = projectRequest.ProjectId;
 
-
+            
             await _projectService.UpdateProject(PID, ProjectToUpdate);
 
 
-            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>)await _projectService.GetProjectSkills(ProjectToUpdate.ProjectId);*/
+            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>) await _projectService.GetProjectSkillsByProjectId(PID);
 
 
-            /*Guid _projectID = new Guid(projectRequest.ProjectId);
-            foreach (SkillRR skillFromRequest in projectRequest.ProjectSkills)
+            
+            //Guid _projectID = projectRequest.ProjectId;
+            foreach (AddExistingSkillRequest skillFromRequest in projectRequest.ExistingSkills)
             {
-                ProjectSkill projectSkill = await _projectService.GetProjectSkillBySkillId(skillFromRequest.SkillId, _projectID);
+                ProjectSkill projectSkill = await _projectService.GetProjectSkill( projectId);
 
                 if(projectSkill == null)
                 {
                     ProjectSkill newProjectSkill = new ProjectSkill();
-                    newProjectSkill.ProjectId = _projectID;
+                    newProjectSkill.ProjectId = projectId;
                     newProjectSkill.SkillId = projectSkill.SkillId;
                     await _projectService.AddProjectSkill(newProjectSkill);
                 }
 
             }
 
+            
 
             foreach (ProjectSkill projectSkill in projectSkillsFromDB)
             {
-                SkillRR projectSkillRevised = new SkillRR();
+                AddExistingSkillRequest projectSkillRevised = new AddExistingSkillRequest();
                 projectSkillRevised.SkillId = projectSkill.SkillId;
-                projectSkillRevised.SkillName = "SkillOne";
+                projectSkillRevised.Weight =projectSkill.Weight ;
 
-                if(!projectRequest.ProjectSkills.Contains(projectSkillRevised))
+                if(!projectRequest.ExistingSkills.Contains(projectSkillRevised))
                 {
                     await _projectService.RemoveProjectSkill(projectSkill.SkillId);
                 }
 
-            }*/
+            }
+            
+            List<ProjectSkillCollection> projectSkillsCollectionFromDB = (List<ProjectSkillCollection>)await _projectService.GetCollectionsByProject(PID);
+
+
+            //Adding skills from collections
+            foreach (CreateSkillCollectionRequest collection in projectRequest.SkillCollections)
+            {
+                await _projectService.CreateCollection(collection, projectId);
+            }
 
 
 
@@ -588,6 +601,15 @@ namespace SkillsHunterAPI.Controllers
             List<GetApplicationsResponse> response = await _projectService.GetApplicationsByProjectId(projectId);
 
             return response;
+        }
+
+
+        [HttpGet]
+        [Route("api/[controller]/getInvitationsByProjectId")]
+        public async Task<IEnumerable<Invitation>> GetInvitationsByProjectId([FromQuery] Guid projectId)
+        {
+            return await _projectService.GetInvitationsByProjectId(projectId);
+
         }
 
     }
