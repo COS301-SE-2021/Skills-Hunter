@@ -133,8 +133,12 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: ApplicationsComponent,
+    component: NotificationsComponent,
   },
+  // {
+  //   path: '',
+  //   component: ApplicationsComponent,
+  // },
 ];
 
 @NgModule({
