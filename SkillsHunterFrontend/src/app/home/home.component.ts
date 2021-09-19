@@ -25,20 +25,19 @@ export class HomeComponent implements OnInit {
   // {
   //   this.projectData.projectBeingedited = _project;
   // }
-  userType:number=-1;
+  userType: number = -1;
   ngOnInit(): void {
-    if(localStorage.getItem("rememberMe") !== null){
-      if(localStorage.getItem("rememberMe") == "true"){
-          this.userType = parseInt(localStorage.getItem("role"));
-         
-        }else{
-          this.userType = parseInt(sessionStorage.getItem("role"));
-       }
+    if (localStorage.getItem('rememberMe') !== null) {
+      if (localStorage.getItem('rememberMe') == 'true') {
+        this.userType = parseInt(localStorage.getItem('role'));
+      } else {
+        this.userType = parseInt(sessionStorage.getItem('role'));
+      }
     }
 
-    document.getElementById('tool').style.display = 'block';
-    document.getElementById('side').style.display = 'block';
-    document.getElementById('adminlist').style.display = 'none';
+    // document.getElementById('tool').style.display = 'block';
+    // document.getElementById('side').style.display = 'block';
+    // document.getElementById('adminlist').style.display = 'none';
     // document.getElementById('houseAdmin').style.display = 'none';
 
     //read data of projects:
