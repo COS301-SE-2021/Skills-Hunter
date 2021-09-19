@@ -264,9 +264,10 @@ namespace SkillsHunterAPI.Services
             else
             {
                 result.Description = request.Description;
-                result.EndDate = request.EndDate;
+                result.RealEnd = request.RealEnd;
                 request.Role = request.Role;
-                result.StartDate = request.StartDate;
+                result.RealStart = request.RealStart;
+                result.Organisation = request.Organisation;
                 _context.ExternalWorkExperiences.Update(result);
 
                 await _context.SaveChangesAsync();
@@ -325,8 +326,6 @@ namespace SkillsHunterAPI.Services
 
         public async Task<UserSkill> AddUserSkill(AddExistingSkillRequest request, Guid currentUser)
         {
-
-
 
             UserSkill userSkillRequest = new UserSkill();
             userSkillRequest.SkillId = request.SkillId;

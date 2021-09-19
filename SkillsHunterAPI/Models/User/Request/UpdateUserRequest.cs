@@ -14,6 +14,7 @@ namespace SkillsHunterAPI.Models.User
         public string Surname {get;set; }
         public string Email {get; set; }
         public string PhoneNumber {get; set; }
+        public string Organisation { get; set; }
         public DateTime StartDate {get; set; }
         public Boolean OpenForWork {get; set; }
         public string LinkedIn { get; set; }

@@ -9,12 +9,14 @@ namespace SkillsHunterAPI.Models.User
         
         public Guid UserId {get; set; }
 
+        public string Organisation { get; set; }
+
         public string Role { get; set; }
 
         public string Description { get; set; }
 
-        public DateTime StartDate {get; set; }
+        public DateTime RealStart {get; set; }
         
-        public DateTime EndDate {get; set; }
+        public DateTime RealEnd {get; set; }
     }
 }
