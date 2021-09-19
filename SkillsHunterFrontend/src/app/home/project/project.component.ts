@@ -11,16 +11,8 @@ export class ProjectComponent implements OnInit {
   
   constructor() { 
   }
-  userType:number=-1;
+
   ngOnInit(): void {
-    if(localStorage.getItem("rememberMe") !== null){
-      if(localStorage.getItem("rememberMe") == "true"){
-          this.userType = parseInt(localStorage.getItem("role"));
-         
-        }else{
-          this.userType = parseInt(sessionStorage.getItem("role"));
-       }
-    }
   }
 
 }
