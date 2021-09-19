@@ -46,7 +46,7 @@ namespace SkillsHunterAPI.Services
 
         Task<ProjectSkillCollection> GetCollection(Guid CollectionId);
 
-        Task<ProjectSkillCollection> UpdateCollection(ProjectSkillCollection request);
+        Task<ProjectSkillCollection> UpdateProjectSkillCollection(CreateSkillCollectionRequest request);
 
         Task RemoveCollection(Guid CollectionId);
 
