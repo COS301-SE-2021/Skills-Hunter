@@ -294,20 +294,12 @@ namespace SkillsHunterAPI.Controllers
             
             List<ProjectSkillCollection> projectSkillsCollectionFromDB = (List<ProjectSkillCollection>)await _projectService.GetCollectionsByProject(PID);
 
-            /*
-            foreach (ProjectSkillCollection skillCollectionFromRequest in projectRequest.SkillCollections)
+
+            //Adding skills from collections
+            foreach (CreateSkillCollectionRequest collection in projectRequest.SkillCollections)
             {
-                ProjectSkillCollection projectSkillCollect = await _projectService.GetCollectionsByProject(projectId);
-
-                if (projectSkill == null)
-                {
-                    ProjectSkill newProjectSkill = new ProjectSkill();
-                    newProjectSkill.ProjectId = projectId;
-                    newProjectSkill.SkillId = projectSkill.SkillId;
-                    await _projectService.AddProjectSkill(newProjectSkill);
-                }
-
-            }*/
+                await _projectService.CreateCollection(collection, projectId);
+            }
 
 
 
