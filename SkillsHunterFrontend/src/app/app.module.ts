@@ -71,6 +71,10 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TodoComponent } from './todo/todo.component';
+import { WorkExpComponent } from './profile/work-exp/work-exp.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -126,7 +130,11 @@ import { TodoComponent } from './todo/todo.component';
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
+<<<<<<< HEAD
     TodoComponent
+=======
+    WorkExpComponent
+>>>>>>> ae17defcdea323b45d341432126e37d489280446
   ],
   imports: [
     BrowserModule,
@@ -153,9 +161,10 @@ import { TodoComponent } from './todo/todo.component';
     MatChipsModule,
     SelectDropDownModule,
     NgbModule,
-    MatSnackBarModule  
+    MatSnackBarModule ,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [MatNativeDateModule,{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
