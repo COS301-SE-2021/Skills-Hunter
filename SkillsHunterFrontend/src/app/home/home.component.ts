@@ -39,24 +39,41 @@ export class HomeComponent implements OnInit {
     // document.getElementById('side').style.display = 'block';
     // document.getElementById('adminlist').style.display = 'none';
     // document.getElementById('houseAdmin').style.display = 'none';
-
+    console.log('Getting project');
     //read data of projects:
-    if (localStorage.getItem('role') == '1') {
-      console.log('Getting projects by owner ID');
+    
+//fetch projects
+    if(localStorage.getItem('rememberMe')=='true'){
+     
+      if (localStorage.getItem('role') == '1') {
+   
+        this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
+          console.log(data);
+          this._projects = data;
+        });
+      } else {
+        
+        this.projectCrud.getAllProjects().subscribe((data) => {
+          console.log(data);
+          this._projects = data;
+        });
+      }
 
-      this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
-        console.log(data);
-        this._projects = data;
-      });
-    } else {
-      document.getElementById('createbtn').style.display = 'none';
+    }else{
+    
+        if (sessionStorage.getItem('role') == '1') {
+   
+          this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
+            console.log(data);
+            this._projects = data;
+          });
+        } else {
 
-      console.log('Getting all Projects');
-
-      this.projectCrud.getAllProjects().subscribe((data) => {
-        console.log(data);
-        this._projects = data;
-      });
+          this.projectCrud.getAllProjects().subscribe((data) => {
+            console.log(data);
+            this._projects = data;
+          });
+        }
     }
   }
 
