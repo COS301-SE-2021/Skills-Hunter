@@ -42,7 +42,7 @@ var invitations = [
     inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
     projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
     message: 'Hello',
-    inviteDate: '2021-09-19T15:30:08.693Z',
+    inviteDate: '2021-09-17T15:30:08.693Z',
     status: 0,
   },
   {
@@ -51,7 +51,7 @@ var invitations = [
     inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
     projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
     message: 'Welcome',
-    inviteDate: '2021-09-19T15:30:08.693Z',
+    inviteDate: '2021-09-15T15:30:08.693Z',
     status: 0,
   },
   {
@@ -60,7 +60,7 @@ var invitations = [
     inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
     projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
     message: 'Nicely done.',
-    inviteDate: '2021-09-19T15:30:08.693Z',
+    inviteDate: '2021-09-10T15:30:08.693Z',
     status: 0,
   },
   {
@@ -69,7 +69,7 @@ var invitations = [
     inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
     projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
     message: 'Hey',
-    inviteDate: '2021-09-19T15:30:08.693Z',
+    inviteDate: '2021-09-09T15:30:08.693Z',
     status: 0,
   },
 ];
@@ -84,7 +84,7 @@ var theCandidate = [
     matchingSkills: [
       {
         skillId: '0267ff11-f774-4d9b-643c-08d9787120f0',
-        name: 'C++',
+        name: 'Java',
         weight: 5,
         percentage: 40,
         yearsOfExperience: 1,

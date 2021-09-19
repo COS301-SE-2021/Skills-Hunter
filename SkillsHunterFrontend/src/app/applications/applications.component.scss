@@ -15,11 +15,12 @@
 }
 
 .container {
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
+  margin: auto;
+  margin-top: 70px;
+  width: 85%;
   height: auto;
+  display: flex;
+  flex-wrap: wrap;
   background-color: #e0e0e0;
 }
 
@@ -44,7 +45,7 @@ table {
 }
 
 .mat-row:hover .mat-cell {
-  border-color: currentColor;
+  border-color: purple;
 }
 
 .demo-row-is-clicked {
