@@ -40,6 +40,8 @@ namespace SkillsHunterAPI.Services
         
         Task UpdateExternalWorkExperience(ExternalWorkExperience request);
 
+        Task UpdateInternalWorkExperience(InternalWorkExperience request);
+
         Task DeleteExternalWorkExperience(Guid id);
         
         Task<IEnumerable<ExternalWorkExperience>> GetExternalWorkExperiences(Guid userid);

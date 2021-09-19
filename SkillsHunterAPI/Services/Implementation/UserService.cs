@@ -296,6 +296,29 @@ namespace SkillsHunterAPI.Services
         }
 
 
+        public async Task UpdateInternalWorkExperience(InternalWorkExperience request)
+        {
+
+            InternalWorkExperience result = await _context.InternalWorkExperiences.Where(s => s.InternalWorkExperienceId == request.InternalWorkExperienceId).FirstOrDefaultAsync();
+
+            if (result == null)
+            {
+                await AddInternalWorkExperience(request);
+            }
+            else
+            {
+                result.UserId = request.UserId;
+                result.ProjectId = request.ProjectId;
+                request.Role = request.Role;
+                result.StartDate = request.StartDate;
+                result.EndDate = request.EndDate;
+                result.CurrentlyWorking = result.CurrentlyWorking;
+                _context.InternalWorkExperiences.Update(result);
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
 
 
         public async Task DeleteExternalWorkExperience(Guid id){
