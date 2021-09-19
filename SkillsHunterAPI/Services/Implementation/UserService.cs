@@ -327,8 +327,6 @@ namespace SkillsHunterAPI.Services
         public async Task<UserSkill> AddUserSkill(AddExistingSkillRequest request, Guid currentUser)
         {
 
-
-
             UserSkill userSkillRequest = new UserSkill();
             userSkillRequest.SkillId = request.SkillId;
             userSkillRequest.Weight = request.Weight;
