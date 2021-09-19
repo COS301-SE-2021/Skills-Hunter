@@ -15,8 +15,8 @@ namespace SkillsHunterAPI.Models.User
 
         public string Description { get; set; }
 
-        public DateTime StartDate {get; set; }
+        public DateTime RealStart {get; set; }
         
-        public DateTime EndDate {get; set; }
+        public DateTime RealEnd {get; set; }
     }
 }

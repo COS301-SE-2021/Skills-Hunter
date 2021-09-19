@@ -264,9 +264,9 @@ namespace SkillsHunterAPI.Services
             else
             {
                 result.Description = request.Description;
-                result.EndDate = request.EndDate;
+                result.RealEnd = request.RealEnd;
                 request.Role = request.Role;
-                result.StartDate = request.StartDate;
+                result.RealStart = request.RealStart;
                 result.Organisation = request.Organisation;
                 _context.ExternalWorkExperiences.Update(result);
 
