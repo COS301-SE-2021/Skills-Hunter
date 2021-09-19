@@ -39,7 +39,7 @@ export class NewSkillComponent implements OnInit {
       temp.push(tmp);
     }
 
-    this.adminService.creatSkill(this.name,temp).subscribe(result => {
+    this.adminService.createSkill(this.name,temp).subscribe(result => {
 
     })
   }

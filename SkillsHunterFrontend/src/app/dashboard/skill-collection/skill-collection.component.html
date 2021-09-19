@@ -19,103 +19,113 @@
 	    </button>
 
 
-	    <ng-template #createModalContent let-modal class="modal fade" id="exampleModal-2" aria-labelledby="exampleModalLabel-2">
-          <div class="modal-content" style="overflow: auto">
-  	        <form class="forms-sample m-2">
-
-
-		          <div class="form-group">
-		            <label for="exampleInputUsername1"><b>Name</b></label>
-		            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="name" name="createName" [(ngModel)] = "createName">
-		          </div>
-
-		          <div class="form-group">
-		            <label for="exampleTextarea1"><b>Description</b></label>
-		            <textarea class="form-control" id="exampleTextarea1" rows="4" name = "createDescription" [(ngModel)] = "createDescription"></textarea>
-		          </div>
-
-						  <div class="form-group">
-						    <label for="exampleFormControlSelect1"><b>Weight</b></label>
-						    <select class="form-control" id="exampleFormControlSelect1" name = "createWeight" [(ngModel)] = "createWeight">
-						      <option>1</option>
-						      <option>2</option>
-						      <option>3</option>
-						      <option>4</option>
-						      <option>5</option>
-						      <option>6</option>
-						      <option>7</option>
-						      <option>8</option>
-						      <option>9</option>
-						      <option>10</option>
-						    </select>
-						  </div>
-
-							<form class="add-items d-flex mb-0 mt-2" [formGroup]="form" (ngSubmit)="addTodo()">
-
-						    <select class="form-control todo-list-input" id="exampleFormControlSelect1" formControlName="skillToAdd">
-							      <option *ngFor="let skill of skills" [value]="skill.skillId">{{skill.name}}</option>
-							  </select>
-
-							  <button class="add btn btn-primary todo-list-add-btn py-2" type="submit" [disabled]="form.invalid">Add</button>
-							</form>
-
-							<div class="list-wrapper pt-2">
-							  <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-							    <li *ngFor="let todo of todoArray">
-							      <div class="form-check form-check-flat">
-							        <label class="form-check-label"><b>
-							          {{todo.name}}</b>
-							          <i class="input-helper"></i>
-							        </label>
-							      </div>
-							      <i class="remove mdi mdi-close" (click)="removeTodoItem(todo)"></i>
-							    </li>
-							  </ul>
-							</div>
-
-         
-	          <button type="submit" class="btn btn-gradient-dark btn-fw mr-2 btn-icon-text mt-2" data-dismiss="modal" (click)="saveCollection();modal.close()">
-          		<i class="mdi mdi-content-save btn-icon-prepend"></i>
-	          	Save
-	          </button>
-	          <button class="btn btn-light mt-2" data-dismiss="modal" (click)="modal.close()">Cancel</button>
-	        </form>	
-          </div>
-        </ng-template> 
+ 
 
 
 			<div class="row mt-5">
-			  <div class="col-lg-4 grid-margin stretch-card" *ngFor = "let collection of data">
-			  	<div class="card-body bg-gradient-success rounded p-1">
-			        <p class="mt-3 ml-3"><b>Name</b></p>
-			        <p class="card-description ml-3">{{collection.name}}</p>
-			       	<p class="ml-3"><b>Description</b></p>
-			        <p class="card-description ml-3">{{collection.description}}</p>
-			       	<p class="ml-3"><b>Weight</b></p>
-			        <p class="card-description ml-3">{{collection.weight}}</p>
+			  <div class="col-lg-4 grid-margin stretch-card p-1" *ngFor = "let collection of show">
+			  	<div class="card bg-gradient-danger card-img-holder text-white">
+				  	<div class="card-body bg-gradient-success rounded p-0">
+				  		<img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
+				        <p class="mt-3 ml-3"><b>Name</b></p>
+				        <p class="card-description ml-3">{{collection.name}}</p>
+				       	<p class="ml-3"><b>Description</b></p>
+				        <p class="card-description ml-3">{{collection.description}}</p>
+				       	<p class="ml-3"><b>Weight</b></p>
+				        <p class="card-description ml-3">{{collection.weight}}</p>
 
 
-			        <div class="table-responsive">
-			          <table class="table">
-			            <thead>
-			              <tr>
-			                <th><b>Skill</b></th>
-			              </tr>
-			            </thead>
-			            <tbody>
-			              <tr *ngFor="let skill of collection.skills">
-			                <td><p class="card-description">{{skill.name}}</p></td>
-			              </tr>
-			            </tbody>
-			          </table>
-			        </div>
+				        <div class="table-responsive">
+				          <table class="table">
+				            <thead>
+				              <tr>
+				                <th><b>Skills</b></th>
+				              </tr>
+				            </thead>
+				            <tbody>
+				              <tr *ngFor="let skill of collection.skills">
+				                <td><p class="card-description">{{skill.name}}</p></td>
+				              </tr>
+				            </tbody>
+				          </table>
+				        </div>
 
-			    </div>
+				    </div>
 				  </div>
-				</div>
+				 </div>
+			</div>
 
 
       </div>
     </div>
   </div>	
 </div>
+
+
+
+<!--templates-->
+
+
+<ng-template #createModalContent let-modal class="modal fade" id="exampleModal-2" aria-labelledby="exampleModalLabel-2">
+    <div class="modal-content" style="overflow: auto">
+      <form class="forms-sample m-2">
+
+
+        <div class="form-group">
+          <label for="exampleInputUsername1"><b>Name</b></label>
+          <input type="text" class="form-control" id="exampleInputUsername1" placeholder="name" name="createName" [(ngModel)] = "createName">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleTextarea1"><b>Description</b></label>
+          <textarea class="form-control" id="exampleTextarea1" rows="4" name = "createDescription" [(ngModel)] = "createDescription"></textarea>
+        </div>
+
+			  <div class="form-group">
+			    <label for="exampleFormControlSelect1"><b>Weight</b></label>
+			    <select class="form-control" id="exampleFormControlSelect1" name = "createWeight" [(ngModel)] = "createWeight">
+			      <option>1</option>
+			      <option>2</option>
+			      <option>3</option>
+			      <option>4</option>
+			      <option>5</option>
+			      <option>6</option>
+			      <option>7</option>
+			      <option>8</option>
+			      <option>9</option>
+			      <option>10</option>
+			    </select>
+			  </div>
+
+				<form class="add-items d-flex mb-0 mt-2" [formGroup]="form" (ngSubmit)="addTodo()">
+
+			    <select class="form-control todo-list-input" id="exampleFormControlSelect1" formControlName="skillToAdd">
+				      <option *ngFor="let skill of skills" [value]="skill.skillId">{{skill.name}}</option>
+				  </select>
+
+				  <button class="add btn btn-primary todo-list-add-btn py-2" type="submit" [disabled]="form.invalid">Add</button>
+				</form>
+
+				<div class="list-wrapper pt-2">
+				  <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
+				    <li *ngFor="let todo of todoArray">
+				      <div class="form-check form-check-flat">
+				        <label class="form-check-label"><b>
+				          {{todo.name}}</b>
+				          <i class="input-helper"></i>
+				        </label>
+				      </div>
+				      <i class="remove mdi mdi-close" (click)="removeTodoItem(todo)"></i>
+				    </li>
+				  </ul>
+				</div>
+
+   
+      <button type="submit" class="btn btn-gradient-dark btn-fw mr-2 btn-icon-text mt-2" data-dismiss="modal" (click)="saveCollection();modal.close()">
+    		<i class="mdi mdi-content-save btn-icon-prepend"></i>
+      	Save
+      </button>
+      <button class="btn btn-light mt-2" data-dismiss="modal" (click)="modal.close()">Cancel</button>
+    </form>	
+    </div>
+  </ng-template>

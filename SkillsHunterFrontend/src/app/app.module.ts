@@ -75,6 +75,7 @@ import { WorkExpComponent } from './profile/work-exp/work-exp.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ConnectionServiceModule } from 'ng-connection-service';
 
 @NgModule({
   declarations: [
@@ -159,7 +160,8 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
     SelectDropDownModule,
     NgbModule,
     MatSnackBarModule ,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ConnectionServiceModule
   ],
   providers: [MatNativeDateModule,{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent],

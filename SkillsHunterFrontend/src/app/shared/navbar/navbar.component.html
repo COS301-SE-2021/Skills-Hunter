@@ -74,8 +74,9 @@
       <li class="nav-item nav-profile dropdown" ngbDropdown>
         <a class="nav-link dropdown-toggle" id="profileDropdown" ngbDropdownToggle>
           <div class="nav-profile-img">
-            <img src="assets/images/faces/face1.jpg" alt="image">
-            <span class="availability-status online"></span>
+            <img [src]="imageUrl" alt="image">
+            <span class = "availability-status online" *ngIf="!noInternetConnection"></span>
+            <span class = "availability-status offline" *ngIf="noInternetConnection"></span>
           </div>
           <div class="nav-profile-text">
             <p class="mb-1 text-black">{{firstname}} {{lastname}}</p>

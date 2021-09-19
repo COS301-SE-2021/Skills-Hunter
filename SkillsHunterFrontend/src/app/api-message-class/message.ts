@@ -30,7 +30,7 @@ export interface collectionSkillModel{
 
 export interface imageModel{
     imageId: string;
-    UserId: string;
+    userId: string;
     path: string;
 }
 

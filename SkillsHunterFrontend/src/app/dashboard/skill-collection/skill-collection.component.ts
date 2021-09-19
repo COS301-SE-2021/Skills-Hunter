@@ -20,11 +20,13 @@ export class SkillCollectionComponent implements OnInit {
   createDescription: string = "";
   createWeight: string = "";
   data: getAllCollectionModel[];
+  show: getAllCollectionModel[];
 
   constructor(private modalService: NgbModal,fb: FormBuilder,private adminService:AdminService) {
     this.form = fb.group({
       skillToAdd : ['', Validators.required]
     });
+
     this.loadData();
   }
 
@@ -38,13 +40,33 @@ export class SkillCollectionComponent implements OnInit {
     });
   }
 
-  search(): void{
+  match(term: string,name: string,description: string): boolean{
+  
+    if(name.indexOf(term) != -1)
+      return true;
 
+    if(description.indexOf(term) != -1)
+      return true;
+    
+    return false;
+  }
+
+  search(): void{
+    this.show = [];
+    if(this.searchTerm != ""){  
+      for(let count  = 0; count < this.data.length; count++){
+        if(this.match(this.searchTerm.toLowerCase(),this.data[count].name.toLowerCase(),this.data[count].description.toLowerCase())){
+          this.show.push(this.data[count]);
+          console.log("true");
+        }
+      } 
+    } 
   }
 
   loadData():void{
     this.adminService.getAllCollection().subscribe(result =>{
         this.data = result;
+        this.show = result;
     },
     error=>{
       alert("An error has occurred while retrieving collections from server");

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { categoryModel, skillModel, getProjectsResponse, getUserResponse } from '../../api-message-class/message';
+import { getAllCollectionModel, categoryModel, skillModel, getProjectsResponse, getUserResponse } from '../../api-message-class/message';
 import { AdminService } from '../../services/admin.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class GeneralComponent implements OnInit {
   projects: getProjectsResponse[] = [];
   skills: skillModel[] = [];
   users: getUserResponse[] = [];
+  collection: getAllCollectionModel[] = [];
 
   userChartData: any  = [
     {
@@ -97,6 +98,13 @@ export class GeneralComponent implements OnInit {
     
     });
 
+    this.adminService.getAllCollection().subscribe(result =>{
+        this.collection = result;
+    },
+    error=>{
+      alert("An error has occurred while retrieving collections from server");
+    
+    });
   }
 
   countOpen(value:boolean): number{

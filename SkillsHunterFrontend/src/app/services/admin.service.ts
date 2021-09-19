@@ -12,7 +12,8 @@ export class AdminService {
   private header = null;
 
   constructor(private http: HttpClient) {
-    this.header = new HttpHeaders().
+    
+  this.header = new HttpHeaders().
     set('content-type','application/json').
     set('authorization','Bearer ' + localStorage.getItem('token'));
   }
@@ -25,7 +26,7 @@ export class AdminService {
     return this.http.get<getUserResponse>(this.apiUrl + "api/User/getUserById?request=" + id,{headers : this.header})
   }
 
-  creatSkill(nam: string, cat: getCategoryByIdRequest[]): Observable<createSkillResponse>{
+  createSkill(nam: string, cat: getCategoryByIdRequest[]): Observable<createSkillResponse>{
     let request: createSkillRequest = {
       name : nam,
       categories : cat
@@ -38,6 +39,10 @@ export class AdminService {
 
   getImage(id: string): Observable<getImageResponse>{
     return this.http.get<getImageResponse>(this.apiUrl + "api/User/getImageByUserId?userId=" + id,{headers : this.header});
+  }
+
+  getImageWithoutId(): Observable<getImageResponse>{
+    return this.http.get<getImageResponse>(this.apiUrl + "api/User/getImageByUser",{headers : this.header});
   }
 
   updateSkill(skill:skillModel): Observable<any>{

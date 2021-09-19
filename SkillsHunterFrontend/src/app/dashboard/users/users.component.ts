@@ -36,7 +36,6 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.adminService.getUsers().subscribe(result =>{
         this.data = result;
-        this.setImages();
     },
     error=>{
       this.notification = "An error has occurred while retrieving all users from server";
@@ -101,19 +100,6 @@ export class UsersComponent implements OnInit {
         }
       } 
     } 
-  }
-
-  setImages(): void{
-    for(let count = 0; count < this.data.length; count++){
-      this.adminService.getImage(this.data[count].userId).subscribe(result=>{
-        //let el: HTMLImageElement = document.getElementById(result.result.UserId);
-        //el.src = 
-        console.log(result.result.UserId);
-        document.getElementById(result.result.UserId).setAttribute( 'src',this.adminService.getApiUrl() + result.result.path);
-      });
-    }
-
-    this.ngOnInit();
   }
 
 }

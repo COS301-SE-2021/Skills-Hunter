@@ -74,10 +74,9 @@
               </tr>
             </thead>
             <tbody>
+              <!--<app-user *ngFor = "let user of show" [user] = "user"></app-user>-->
               <tr *ngFor = "let user of show">
-                <td class="py-1">
-                  <img [id] = "user.userId" src="assets/images/faces/face1.jpg" alt="image"/>
-                </td>
+                <app-user [user] = "user"></app-user>
                 <td>
                   {{user.name}}
                 </td>
@@ -100,6 +99,7 @@
                   {{user.userType == 0 ? 'Candidate' : (user.userType == 1 ? 'Project Manager' : (user.userType == 2 ? 'Organisation' : (user.userType == 3 ? 'System Administrator' : '')))}}
                 </td>
               </tr>
+
             </tbody>
           </table>
         </div>
