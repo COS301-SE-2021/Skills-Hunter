@@ -29,11 +29,10 @@ export class ApplicationsComponent implements OnInit {
   }
 
   showInvitation(element: any) {
-    console.log('Logging It');
     console.log(element);
   }
 
-  // candidatesList = theCandidate;
+  candidatesList = theCandidate;
 }
 
 var invitations = [
@@ -75,7 +74,7 @@ var invitations = [
   },
 ];
 
-const theCandidate = [
+var theCandidate = [
   {
     percentage: 50,
     userId: 'b3d3e53a-f875-441f-d757-08d9786a3e36',

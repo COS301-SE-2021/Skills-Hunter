@@ -63,6 +63,14 @@ export class ProjectCRUDService {
     );
   }
 
+  getApplicationsForProject(projectID: any): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/Project/getApplicationsByProjectId?projectId=' +
+        projectID,
+      this.httpOptions
+    );
+  }
+
   getAllUserInvitations(): Observable<any[]> {
     return this.httpclient.get<any[]>(
       'http://localhost:5000/api/User/getInvitations',
