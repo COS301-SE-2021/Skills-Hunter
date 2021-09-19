@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
       };
 
       this.registerService.register(account).subscribe(data=>{
-
+        alert("Successfully register");
         if(data.status==200){
           this._router.navigate([`login`]);
         }else{
