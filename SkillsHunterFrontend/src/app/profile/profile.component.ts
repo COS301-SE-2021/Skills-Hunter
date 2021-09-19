@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ProfileInfoService } from '../services/profile-info.service';
+import {AdminService } from  '../services/admin.service';
 import {
   MatDialogRef,
   MatDialog,
@@ -25,7 +26,7 @@ export class ProfileComponent implements OnInit {
   imageUrl: string = "/assets/images/profile.png";
   fileToUpload: File = null;
 
-  constructor(private service: ProjectCRUDService,private profileService: ProfileInfoService,private dialog: MatDialog,private _formBuilder: FormBuilder) { }
+  constructor(private service: ProjectCRUDService,private profileService: ProfileInfoService,private imageService: AdminService,private dialog: MatDialog,private _formBuilder: FormBuilder) { }
   isLinear = true;
  
   secondFormGroup: FormGroup;
@@ -47,23 +48,32 @@ export class ProfileComponent implements OnInit {
   dataSourceWork = this.work_DATA;
 
   ngOnInit(): void {
- 
-   
+    console.log(localStorage.getItem('userID'));
+   // 
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['']
     });
-  ///////////
-    document.getElementById('tool').style.display = "block";
-    document.getElementById('side').style.display = "block";
-    document.getElementById('adminlist').style.display = "none";
-     document.getElementById('houseAdmin').style.display = "none";
-     
-    this.firstFormGroup.controls['name'].setValue(localStorage.getItem('name'));
-    this.firstFormGroup.controls['surname'].setValue(localStorage.getItem('surname'));
-    this.firstFormGroup.controls['email'].setValue(localStorage.getItem('email'));
-    this.firstFormGroup.controls['phone'].setValue(localStorage.getItem('phone'));
-    this.firstFormGroup.controls['open'].setValue(localStorage.getItem('openForWork'));
-
+    console.log("abv");
+     //check where data is stored
+    if(localStorage.getItem('rememberMe')=='true'){
+console.log("in here");
+      this.firstFormGroup.controls['name'].setValue(localStorage.getItem('name'));
+      this.firstFormGroup.controls['surname'].setValue(localStorage.getItem('surname'));
+      this.firstFormGroup.controls['email'].setValue(localStorage.getItem('email'));
+      this.firstFormGroup.controls['phone'].setValue(localStorage.getItem('phone'));
+      this.firstFormGroup.controls['open'].setValue(localStorage.getItem('openForWork'));
+      console.log(this.imageService.getImage("img"+localStorage.getItem('userID')));
+    }else{
+      console.log("in else");
+      this.firstFormGroup.controls['name'].setValue(sessionStorage.getItem('name'));
+      this.firstFormGroup.controls['surname'].setValue(sessionStorage.getItem('surname'));
+      this.firstFormGroup.controls['email'].setValue(sessionStorage.getItem('email'));
+      this.firstFormGroup.controls['phone'].setValue(sessionStorage.getItem('phone'));
+      this.firstFormGroup.controls['open'].setValue(sessionStorage.getItem('openForWork'));
+      console.log(this.imageService.getImage("img"+sessionStorage.getItem('userID')));
+      
+    }
+   
     if(localStorage.getItem('role')=='1'){
       document.getElementById('toggleB').style.display = "none";
       document.getElementById('tablecont').style.display = "none";
