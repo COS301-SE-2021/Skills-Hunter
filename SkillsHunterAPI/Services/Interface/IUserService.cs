@@ -8,6 +8,7 @@ using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.User.Response;
 using SkillsHunterAPI.Models.Project.Response;
 using SkillsHunterAPI.Models.Project;
+using SkillsHunterAPI.Models.User.Entity;
 
 namespace SkillsHunterAPI.Services
 {
@@ -60,5 +61,9 @@ namespace SkillsHunterAPI.Services
         Task<IEnumerable<Application>> GetApplications(Guid applicantId);
 
         Task<IEnumerable<Invitation>> GetInvitations(Guid inviteeId);
+
+        Task AddInternalWorkExperience(InternalWorkExperience request);
+
+        Task<IEnumerable<InternalWorkExperience>> GetInternalWorkExperiences(Guid userid);
     }
 }
