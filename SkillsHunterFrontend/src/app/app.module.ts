@@ -130,11 +130,8 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
-<<<<<<< HEAD
-    TodoComponent
-=======
+    TodoComponent,
     WorkExpComponent
->>>>>>> ae17defcdea323b45d341432126e37d489280446
   ],
   imports: [
     BrowserModule,
