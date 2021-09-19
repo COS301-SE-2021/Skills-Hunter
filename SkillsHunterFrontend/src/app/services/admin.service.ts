@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getUserSkillResponse, getSkillCollectionResponse,getProjectsResponse, userSkillModel, getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest, updateSkillRequest, skillModel, getImageResponse, categoryModel, createSkillResponse, getCategoryByIdRequest, createSkillRequest } from '../api-message-class/message';
+import { getAllCollectionModel, createCollectionRequest, getUserSkillResponse, getSkillCollectionResponse,getProjectsResponse, userSkillModel, getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest, updateSkillRequest, skillModel, getImageResponse, categoryModel, createSkillResponse, getCategoryByIdRequest, createSkillRequest } from '../api-message-class/message';
 import { Observable, ObservableLike, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
@@ -102,5 +102,13 @@ export class AdminService {
 
     return this.http.post<addCategoryResponse>(this.apiUrl + "api/Admin/addCategory",request,{headers : this.header});
 
+  }
+
+  createCollection(request:createCollectionRequest): Observable<any>{
+    return this.http.post<any>(this.apiUrl + "api/Admin/createSkillCollection",request,{headers : this.header});
+  }
+
+  getAllCollection(): Observable<getAllCollectionModel[]>{
+    return this.http.get<getAllCollectionModel[]>(this.apiUrl + "api/Admin/getAllSkillCollections",{headers : this.header});
   }
 }

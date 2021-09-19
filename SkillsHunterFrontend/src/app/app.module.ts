@@ -70,6 +70,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +125,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ContentAnimateDirective,
     NavbarComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,

@@ -34,6 +34,18 @@ export interface imageModel{
     path: string;
 }
 
+export interface existingSkillModel{
+    skillId: string,
+    weight: number    
+}
+
+export interface createCollectionRequest{
+    name: string,
+    description: string,
+    weight: number,
+    skills: existingSkillModel[]
+}
+
 //request classes
 export interface removeSkillRequest{
     skillId: string;
@@ -62,6 +74,19 @@ export interface getCategoryByIdRequest{
 export interface createSkillRequest{
     name: string;
     categories: getCategoryByIdRequest[];
+}
+
+export interface collectionSkill{
+    id: string,
+    name: string,
+    status: number
+}
+
+export interface getAllCollectionModel{
+    skillCollectionId: string,
+    name: string,
+    description: string,
+    weight: number
 }
 
 //response classes
