@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
   imageUrl = "/assets/images/profile.png";
   fileToUpload: File = null;
 
-  constructor(private service: ProjectCRUDService,private profileService: ProfileInfoService,private imageService: AdminService,private dialog: MatDialog,private _formBuilder: FormBuilder) { }
+  constructor(private user: AdminService,private service: ProjectCRUDService,private profileService: ProfileInfoService,private imageService: AdminService,private dialog: MatDialog,private _formBuilder: FormBuilder) { }
   isLinear = true;
  
   secondFormGroup: FormGroup;
@@ -48,6 +48,19 @@ export class ProfileComponent implements OnInit {
   dataSourceWork = this.work_DATA;
 
   ngOnInit(): void {
+   
+    this.user.getUser( localStorage.getItem('userID'))
+    .subscribe(
+      data=>{
+       
+        localStorage.setItem('name', data.name);
+          localStorage.setItem('surname', data.surname);
+          localStorage.setItem('email', data.email);
+          localStorage.setItem('phone', data.phone);
+          localStorage.setItem('openForWork', data.openForWork.toString());
+      }
+    );
+
     console.log(localStorage.getItem('userID'));
    // 
     this.secondFormGroup = this._formBuilder.group({
