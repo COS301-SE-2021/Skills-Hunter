@@ -1,16 +1,145 @@
 <mat-tab-group mat-align-tabs="center">
-  <mat-tab label="Applications Sent"> </mat-tab>
+  <!-- Candidate  -->
+  <mat-tab label="Applications Sent To Recruiters">
+    <mat-form-field>
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Filter Applications"
+      />
+    </mat-form-field>
 
-  <mat-tab label="Invitations Received">Invitations Content Goes Here</mat-tab>
+    <div class="example-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <!-- Project Column -->
+        <!-- <ng-container matColumnDef="project_name">
+        <th mat-header-cell *matHeaderCellDef>Project Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.projectName }}</td>
+      </ng-container> -->
 
-  <mat-tab label="Applications Received">
+        <!-- Date Column -->
+        <ng-container matColumnDef="invitation_date">
+          <th mat-header-cell *matHeaderCellDef>Invitation Date</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.inviteDate | date: "short" }}
+          </td>
+        </ng-container>
+
+        <!-- Message Column -->
+        <ng-container matColumnDef="invitation_message">
+          <th mat-header-cell *matHeaderCellDef>Applicaion Message</th>
+          <td mat-cell *matCellDef="let element">{{ element.message }}</td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          (click)="showInvitation(row)"
+        ></tr>
+      </table>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Invitations Received from Recruiters">
+    <mat-form-field>
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Filter Invitations"
+      />
+    </mat-form-field>
+
+    <div class="example-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <!-- Project Column -->
+        <!-- <ng-container matColumnDef="project_name">
+        <th mat-header-cell *matHeaderCellDef>Project Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.projectName }}</td>
+      </ng-container> -->
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="invitation_date">
+          <th mat-header-cell *matHeaderCellDef>Invitation Date</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.inviteDate | date: "short" }}
+          </td>
+        </ng-container>
+
+        <!-- Message Column -->
+        <ng-container matColumnDef="invitation_message">
+          <th mat-header-cell *matHeaderCellDef>Invitation Message</th>
+          <td mat-cell *matCellDef="let element">{{ element.message }}</td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          (click)="showInvitation(row)"
+        ></tr>
+      </table>
+    </div>
+  </mat-tab>
+
+  <!-- Project Owner -->
+  <mat-tab label="Applications Received from Candidates">
     <div class="container">
       <app-candidate-card
         *ngFor="let candidate of candidatesList"
         [card_candidate]="candidate"
         [selected_project]="projectId"
-      ></app-candidate-card></div
-  ></mat-tab>
+      ></app-candidate-card>
+    </div>
+  </mat-tab>
 
-  <mat-tab label="Invitations Sent">Invitations Content Goes Here</mat-tab>
+  <mat-tab label="Invitations Sent to Candidates">
+    <mat-form-field>
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Filter Invitations"
+      />
+    </mat-form-field>
+
+    <div class="example-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <!-- Project Column -->
+        <!-- <ng-container matColumnDef="project_name">
+        <th mat-header-cell *matHeaderCellDef>Project Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.projectName }}</td>
+      </ng-container> -->
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="invitation_date">
+          <th mat-header-cell *matHeaderCellDef>Invitation Date</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.inviteDate | date: "short" }}
+          </td>
+        </ng-container>
+
+        <!-- Message Column -->
+        <ng-container matColumnDef="invitation_message">
+          <th mat-header-cell *matHeaderCellDef>Invitation Message</th>
+          <td mat-cell *matCellDef="let element">{{ element.message }}</td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          (click)="showInvitation(row)"
+        ></tr>
+      </table>
+    </div>
+  </mat-tab>
 </mat-tab-group>
