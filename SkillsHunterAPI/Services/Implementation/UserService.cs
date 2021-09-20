@@ -251,7 +251,28 @@ namespace SkillsHunterAPI.Services
             _context.ExternalWorkExperiences.Add(request);
             await _context.SaveChangesAsync();
         }
-        
+
+
+        public async Task AddInternalWorkExperience(InternalWorkExperience request)
+        {
+
+            InternalWorkExperience workExperience = new InternalWorkExperience();
+            
+            workExperience.InternalWorkExperienceId = new Guid();
+            workExperience.UserId = request.UserId;
+            workExperience.ProjectId = request.ProjectId;
+            workExperience.Role = request.Role;
+            workExperience.StartDate = DateTime.Now;
+            workExperience.CurrentlyWorking = false;
+            workExperience.EndDate = request.EndDate;
+
+            _context.InternalWorkExperiences.Add(workExperience);
+            await _context.SaveChangesAsync();
+           
+            
+            
+        }
+
         public async Task UpdateExternalWorkExperience(ExternalWorkExperience request)
         {
 
@@ -274,16 +295,68 @@ namespace SkillsHunterAPI.Services
             }
         }
 
+
+        public async Task UpdateInternalWorkExperience(InternalWorkExperience request)
+        {
+
+            InternalWorkExperience result = await _context.InternalWorkExperiences.Where(s => s.InternalWorkExperienceId == request.InternalWorkExperienceId).FirstOrDefaultAsync();
+
+            if (result == null)
+            {
+                await AddInternalWorkExperience(request);
+            }
+            else
+            {
+                result.UserId = request.UserId;
+                result.ProjectId = request.ProjectId;
+                request.Role = request.Role;
+                result.StartDate = request.StartDate;
+                result.EndDate = request.EndDate;
+                result.CurrentlyWorking = result.CurrentlyWorking;
+                _context.InternalWorkExperiences.Update(result);
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
+
+
         public async Task DeleteExternalWorkExperience(Guid id){
             var result = await _context.ExternalWorkExperiences.FindAsync(id);
 
             _context.ExternalWorkExperiences.Remove(result);
             await _context.SaveChangesAsync();
         }
-        
+
+
+        public async Task DeleteInternalWorkExperience(Guid id)
+        {
+            
+            //Check db if the work experience exist
+            var result = await _context.InternalWorkExperiences.FindAsync(id);
+
+            //If work experience found
+            if(result == null)
+            {
+                return;
+            }
+
+            //Delete the work experience from db
+            _context.InternalWorkExperiences.Remove(result);
+
+            //Save changes
+            await _context.SaveChangesAsync();
+        }
+
+
         public async Task<IEnumerable<ExternalWorkExperience>> GetExternalWorkExperiences(Guid userid)
         {
             return await _context.ExternalWorkExperiences.Where(w => w.UserId == userid).ToListAsync();
+        }
+
+        public async Task<IEnumerable<InternalWorkExperience>> GetInternalWorkExperiences(Guid userid)
+        {
+            return await _context.InternalWorkExperiences.Where(s => s.UserId == userid).ToListAsync();
         }
 
         public async Task<Image> uploadProfileImage(Image request){
