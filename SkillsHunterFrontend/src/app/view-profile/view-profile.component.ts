@@ -10,19 +10,37 @@ import { AdminService } from '../services/admin.service';
 export class ViewProfileComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data,private user: AdminService) { }
+ 
   userData;
   imageUrl = "/assets/images/profile.png";
+  linkedIn;
+  github;
   ngOnInit(): void {
  
     if(this.data!=""){
-      console.log("in slider: "+this.data);
-    
+      //console.log("in slider: "+this.data);
+  
   this.user.getUser("ef28e43c-b8e7-492b-880a-08d97c54598a")//this.data.id)
   .subscribe(
     data=>{
      
       console.log('Response post', data.name);
       this.userData=data;
+      if(this.userData.linkedIn==null){
+        this.linkedIn="#";
+        document.getElementById("linked").style.display = 'none';
+      }else{
+
+        this.linkedIn=this.userData.linkedIn;
+      }
+      
+      if(this.userData.github==null){
+        this.github="#";
+        document.getElementById("github").style.display = 'none';
+      }else{
+
+        this.github=this.userData.github;
+      }
     }
   );
     }
