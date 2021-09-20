@@ -87,7 +87,7 @@ export class ProjectCardComponent implements OnInit {
             duration: 3000,
           });
         else {
-          this._snackBar.open('Project Application Failed.', '', {
+          this._snackBar.open('Project Application Failed. You have already applied', '', {
             duration: 3000,
           });
         }
