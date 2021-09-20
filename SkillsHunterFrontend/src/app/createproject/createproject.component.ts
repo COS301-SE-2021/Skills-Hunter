@@ -260,5 +260,6 @@ export class CreateprojectComponent implements OnInit {
 
   cancel() {
     this._router.navigate([`home`]);
+    window.location.reload();
   }
 }
