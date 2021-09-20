@@ -41,39 +41,32 @@ export class HomeComponent implements OnInit {
     // document.getElementById('houseAdmin').style.display = 'none';
     console.log('Getting project');
     //read data of projects:
-    
-//fetch projects
-    if(localStorage.getItem('rememberMe')=='true'){
-     
+
+    //fetch projects
+    if (localStorage.getItem('rememberMe') == 'true') {
       if (localStorage.getItem('role') == '1') {
-   
         this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
           console.log(data);
           this._projects = data;
         });
       } else {
-        
         this.projectCrud.getAllProjects().subscribe((data) => {
           console.log(data);
           this._projects = data;
         });
       }
-
-    }else{
-    
-        if (sessionStorage.getItem('role') == '1') {
-   
-          this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
-            console.log(data);
-            this._projects = data;
-          });
-        } else {
-
-          this.projectCrud.getAllProjects().subscribe((data) => {
-            console.log(data);
-            this._projects = data;
-          });
-        }
+    } else {
+      if (sessionStorage.getItem('role') == '1') {
+        this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
+          console.log(data);
+          this._projects = data;
+        });
+      } else {
+        this.projectCrud.getAllProjects().subscribe((data) => {
+          console.log(data);
+          this._projects = data;
+        });
+      }
     }
   }
 

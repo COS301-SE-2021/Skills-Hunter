@@ -13,7 +13,10 @@ export class MatchCandidateComponent implements OnInit {
   candidatesList = [];
   projectId: any;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private projectCrud: ProjectCRUDService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -22,69 +25,72 @@ export class MatchCandidateComponent implements OnInit {
 
       this.candidatesList = theCandidate;
       this.projectId = params.projectId;
-
-      // this.candidatesList = theCandidate;
-      // this.projectCrud.obtainMatchingCandidates(params.projectId).subscribe((data) => {
-      //   this.candidatesList = data;
-      //   console.log('Response post', data);
-      // });
     });
+
+    // this.projectCrud
+    //   .obtainMatchingCandidates(this.projectId)
+    //   .subscribe((data) => {
+    //     console.log('ID DATA');
+    //     console.log(data);
+    //     this.candidatesList = data;
+    //     console.log('Response post', data);
+    //   });
   }
 }
 
 var theCandidate = [
   {
-    percentage: 50,
-    userId: 'b3d3e53a-f875-441f-d757-08d9786a3e36',
-    name: 'Candidate',
-    surname: 'One',
-    email: 'candidate1@gmail.com',
-    matchingSkills: [
-      {
-        skillId: '0267ff11-f774-4d9b-643c-08d9787120f0',
-        name: 'C++',
-        weight: 5,
-        percentage: 40,
-        yearsOfExperience: 1,
-      },
-      {
-        skillId: '0267ff11-f774-4d9b-643c-08d9787120f0',
-        name: 'C++',
-        weight: 5,
-        percentage: 40,
-        yearsOfExperience: 1,
-      },
-    ],
-  },
-  {
-    percentage: 80,
-    userId: 'b3e9e7eb-e355-4f24-d758-08d9786a3e36',
-    name: 'Candidate',
-    surname: 'Two',
-    email: 'candidate2@gmail.com',
-    matchingSkills: [
-      {
-        skillId: '0267ff11-f774-4d9b-643c-08d9787120f0',
-        name: 'C++',
-        weight: 8,
-        percentage: 40,
-        yearsOfExperience: 1,
-      },
-    ],
-  },
-  {
-    percentage: 70,
-    userId: '742ab9db-35ec-4f92-d759-08d9786a3e36',
-    name: 'Candidate',
-    surname: 'Three',
+    percentage: 30,
+    userId: '6129e1fb-9407-4f58-97da-08d97c0a93a8',
+    name: 'Percy',
+    surname: 'Candidate',
     email: 'candidate3@gmail.com',
     matchingSkills: [
       {
-        skillId: 'ebe1738e-c37b-4808-643d-08d9787120f0',
-        name: 'Java',
-        weight: 7,
-        percentage: 45,
-        yearsOfExperience: 1,
+        skillId: 'f663113c-e1d2-413b-1cd4-08d97c0bf9f1',
+        name: 'MySQL',
+        weight: 9,
+        percentage: 100,
+        yearsOfExperience: 0,
+      },
+      {
+        skillId: 'f1e92157-9a5b-4957-1cd3-08d97c0bf9f1',
+        name: 'Python',
+        weight: 3,
+        percentage: 50,
+        yearsOfExperience: 0,
+      },
+    ],
+  },
+  {
+    percentage: 20,
+    userId: 'd2ae4329-4455-45b5-97d8-08d97c0a93a8',
+    name: 'Sally',
+    surname: 'Candidate',
+    email: 'candidate1@gmail.com',
+    matchingSkills: [
+      {
+        skillId: 'f1e92157-9a5b-4957-1cd3-08d97c0bf9f1',
+        name: 'Python',
+        weight: 6,
+        percentage: 100,
+        yearsOfExperience: 0,
+      },
+    ],
+  },
+  {
+    percentage: 10,
+    userId: '587ba00c-5a49-40f6-97d9-08d97c0a93a8',
+    name: 'Sipho',
+    surname: 'Candidate',
+    email: 'candidate2@gmail.com',
+    matchingSkills: [
+      {
+        skillId: 'ddb3ea70-8ad6-43b7-1cd2-08d97c0bf9f1',
+        name: 'Flutter',
+        weight: 3,
+        percentage: 50,
+        yearsOfExperience: 0,
       },
     ],
   },

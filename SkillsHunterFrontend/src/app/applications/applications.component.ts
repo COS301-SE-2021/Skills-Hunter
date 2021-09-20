@@ -1,4 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { ProjectCRUDService } from '../services/project-crud.service';
+
+// export interface Invitation  {
+//   invitationId: string,
+//   inviteeId: string,
+//   inviterId: string,
+//   projectId: string,
+//   message: 'string',
+//   inviteDate: string,
+//   status: number,
+// },
 
 @Component({
   selector: 'app-applications',
@@ -6,14 +18,78 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./applications.component.scss'],
 })
 export class ApplicationsComponent implements OnInit {
-  constructor() {}
+  constructor(private projectCrud: ProjectCRUDService) {}
 
-  ngOnInit(): void {}
+  selected_project = 'a62d3f98-d227-452c-0b46-08d97c0cc7a2';
+
+  ngOnInit(): void {
+    this.projectCrud
+      .getApplicationsForProject(this.selected_project)
+      .subscribe((data) => {
+        console.log(data);
+      });
+
+    this.projectCrud
+      .getInvitationsForProject(this.selected_project)
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
+
+  displayedColumns: string[] = ['invitation_date', 'invitation_message'];
+  dataSource = new MatTableDataSource(invitations);
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  showInvitation(element: any) {
+    console.log(element);
+  }
 
   candidatesList = theCandidate;
 }
 
-const theCandidate = [
+var invitations = [
+  {
+    invitationId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviteeId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    message: 'Hello',
+    inviteDate: '2021-09-17T15:30:08.693Z',
+    status: 0,
+  },
+  {
+    invitationId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviteeId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    message: 'Welcome',
+    inviteDate: '2021-09-15T15:30:08.693Z',
+    status: 0,
+  },
+  {
+    invitationId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviteeId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    message: 'Nicely done.',
+    inviteDate: '2021-09-10T15:30:08.693Z',
+    status: 0,
+  },
+  {
+    invitationId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviteeId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    inviterId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    projectId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+    message: 'Hey',
+    inviteDate: '2021-09-09T15:30:08.693Z',
+    status: 0,
+  },
+];
+
+var theCandidate = [
   {
     percentage: 50,
     userId: 'b3d3e53a-f875-441f-d757-08d9786a3e36',
@@ -23,7 +99,7 @@ const theCandidate = [
     matchingSkills: [
       {
         skillId: '0267ff11-f774-4d9b-643c-08d9787120f0',
-        name: 'C++',
+        name: 'Java',
         weight: 5,
         percentage: 40,
         yearsOfExperience: 1,

@@ -111,8 +111,8 @@ export class CreateprojectComponent implements OnInit {
 
   addSkill() {
     const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '45%';
+    // configDialog.backdropClass = 'backGround';
+    // configDialog.width = '40%';
     configDialog.panelClass = 'custom-modalbox';
     const dialogRef = this.dialog.open(AddSkillCategoryComponent, configDialog);
 
@@ -260,5 +260,6 @@ export class CreateprojectComponent implements OnInit {
 
   cancel() {
     this._router.navigate([`home`]);
+    // window.location.reload();
   }
 }

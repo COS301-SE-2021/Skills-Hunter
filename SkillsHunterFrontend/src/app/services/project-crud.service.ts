@@ -6,7 +6,6 @@ import {
   HttpClient,
   HttpHeaders,
 } from '@angular/common/http';
-import { Project } from '../classes/Project';
 import { Skill } from '../classes/Skill';
 
 @Injectable({
@@ -18,6 +17,7 @@ export class ProjectCRUDService {
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
+      'Access-Control-Allow-Origin': '*',
     }),
   };
 
@@ -52,6 +52,51 @@ export class ProjectCRUDService {
   getAllProjects(): Observable<any[]> {
     return this.httpclient.get<any[]>(
       'http://localhost:5000/api/Project/getProjects',
+      this.httpOptions
+    );
+  }
+
+  getInvitationsForProject(projectID: any): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/Project/getInvitationsByProjectId?projectId=' +
+        projectID,
+      this.httpOptions
+    );
+  }
+
+  getApplicationsForProject(projectID: any): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/Project/getApplicationsByProjectId?projectId=' +
+        projectID,
+      this.httpOptions
+    );
+  }
+
+  getAllUserInvitations(): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/User/getInvitations',
+      this.httpOptions
+    );
+  }
+
+  deleteNotifications(id: any): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/Notification/DeleteNotifications?id=' + id,
+      this.httpOptions
+    );
+  }
+
+  changeUnreadNotificationStatus(id: any): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/Notification/changeUnreadStatus?id=' + id,
+      this.httpOptions
+    );
+  }
+
+  get(projectID: any): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/Project/getInvitationsByProjectId?projectId=' +
+        projectID,
       this.httpOptions
     );
   }

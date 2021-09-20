@@ -26,7 +26,7 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ApplicationsComponent } from './applications/applications.component';
 import { WorkExpComponent } from './profile/work-exp/work-exp.component';
-import {ViewProfileComponent} from './view-profile/view-profile.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 const routes: Routes = [
   {
@@ -46,9 +46,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
-  { 
-    path: 'create-project', 
-    loadChildren: () => import('./create-project/create-project.module').then(m => m.CreateProjectModule) 
+  {
+    path: 'create-project',
+    loadChildren: () =>
+      import('./create-project/create-project.module').then(
+        (m) => m.CreateProjectModule
+      ),
   },
   {
     path: 'home',
@@ -58,10 +61,10 @@ const routes: Routes = [
     path: 'match-candidate',
     component: MatchCandidateComponent,
   },
-  {
-    path: 'match-candidate:/project',
-    component: MatchCandidateComponent,
-  },
+  // {
+  //   path: 'match-candidate:/projectId',
+  //   component: MatchCandidateComponent,
+  // },
   {
     path: 'update-project',
     component: UpdateProjectComponent,
@@ -146,25 +149,26 @@ const routes: Routes = [
     path: 'applications',
     component: ApplicationsComponent,
   },
-  {
-    path: '',
-    component: NotificationsComponent,
-  },
   // {
   //   path: '',
-  //   component: ApplicationsComponent,
+  //   component: NotificationsComponent,
   // },
+  {
+    path: '',
+    component: ApplicationsComponent,
+  },
   {
     path: 'skill-collection-control',
     component: SkillCollectionControlComponent,
   },
   {
     path: 'workexp',
-    component: WorkExpComponent, 
-  }, {
+    component: WorkExpComponent,
+  },
+  {
     path: 'viewprofile',
-    component: ViewProfileComponent, 
-  }
+    component: ViewProfileComponent,
+  },
 ];
 
 @NgModule({
