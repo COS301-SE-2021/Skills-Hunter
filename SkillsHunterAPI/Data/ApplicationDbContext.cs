@@ -28,6 +28,8 @@ namespace SkillsHunterAPI.Data
         public DbSet<ProjectSkill> ProjectSkills { get; set; }
         public DbSet<UserSkill> UserSkills { get; set; }
         public DbSet<ExternalWorkExperience> ExternalWorkExperiences { get; set; }
+        public DbSet<InternalWorkExperience> InternalWorkExperiences { get; set; }
+
         public DbSet<Application> Applications { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<SkillCollection> SkillCollections { get; set; }
@@ -61,6 +63,9 @@ namespace SkillsHunterAPI.Data
 
             modelBuilder.Entity<ExternalWorkExperience>().ToTable("ExternalWorkExperience");
             modelBuilder.Entity<ExternalWorkExperience>().HasKey("ExternalWorkExperienceId");
+
+            modelBuilder.Entity<InternalWorkExperience>().ToTable("InternalWorkExperience");
+            modelBuilder.Entity<InternalWorkExperience>().HasKey("InternalWorkExperienceId");
 
             modelBuilder.Entity<Application>().ToTable("Application");
             modelBuilder.Entity<Application>().HasKey("ApplicationId");
