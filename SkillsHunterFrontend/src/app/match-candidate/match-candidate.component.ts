@@ -13,21 +13,27 @@ export class MatchCandidateComponent implements OnInit {
   candidatesList = [];
   projectId: any;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private projectCrud: ProjectCRUDService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log('PARAMS IS');
       console.log(params);
 
-      this.candidatesList = theCandidate;
+      // this.candidatesList = theCandidate;
       this.projectId = params.projectId;
 
-      // this.candidatesList = theCandidate;
-      // this.projectCrud.obtainMatchingCandidates(params.projectId).subscribe((data) => {
-      //   this.candidatesList = data;
-      //   console.log('Response post', data);
-      // });
+      this.projectCrud
+        .obtainMatchingCandidates(this.projectId)
+        .subscribe((data) => {
+          console.log('ID DATA');
+          console.log(data);
+          this.candidatesList = data;
+          console.log('Response post', data);
+        });
     });
   }
 }
