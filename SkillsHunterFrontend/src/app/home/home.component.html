@@ -31,10 +31,13 @@
     <!-- </div> -->
   </div>
 
-  <div id="projectCard">
-    <app-project-card
-      *ngFor="let project of _projects"
-      [card_project]="project"
-    ></app-project-card>
-  </div>
+    <div class="row mt-5">
+      <div class="col-md-3 grid-margin stretch-card" *ngFor="let project of _projects">
+      <app-project-card
+        
+        [card_project]="project"
+        
+      ></app-project-card>
+      </div>
+    </div>
 </div>
