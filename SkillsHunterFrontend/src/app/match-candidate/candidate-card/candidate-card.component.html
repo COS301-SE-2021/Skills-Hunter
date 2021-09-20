@@ -1,4 +1,7 @@
 <mat-card class="candidate-card">
+  <a  (click)="profile(card_candidate.userId)">
+        <i class="mdi mdi-arrow-expand menu-icon"></i>
+  </a>
   <mat-card-header>
     <div mat-card-avatar class="candidate-menu-header-image"></div>
 
@@ -13,7 +16,8 @@
       <p mat-card-avatar color="primary">
         {{ card_candidate.percentage }}% Match
       </p>
-    </div>
+    </div><br/>
+    
   </mat-card-header>
 
   <mat-card-content>

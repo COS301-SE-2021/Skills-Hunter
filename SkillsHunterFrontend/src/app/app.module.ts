@@ -83,6 +83,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ConnectionServiceModule } from 'ng-connection-service';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 
 @NgModule({
@@ -144,7 +145,8 @@ import { ConnectionServiceModule } from 'ng-connection-service';
     SidebarComponent,
     FooterComponent,
     TodoComponent,
-    WorkExpComponent
+    WorkExpComponent,
+    ViewProfileComponent
   ],
   imports: [
     BrowserModule,
