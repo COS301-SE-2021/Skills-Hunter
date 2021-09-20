@@ -9,7 +9,7 @@ export class ProfileInfoService {
 
   constructor(private httpclient: HttpClient) { }
 
-  //send request to back end to register new user
+  //send request to back end to upload img
   postImg(img: File){
     var auth;
     if(localStorage.getItem('rememberMe')=="true"){
@@ -32,7 +32,7 @@ export class ProfileInfoService {
       formData,httpOptions
     );
   }
-
+// call to the backend to updte user details
   userDetailUpdate(formData){
     var auth;
     if(localStorage.getItem('rememberMe')=="true"){
