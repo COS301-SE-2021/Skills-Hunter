@@ -19,8 +19,8 @@ export class ViewProfileComponent implements OnInit {
  
     if(this.data!=""){
       //console.log("in slider: "+this.data);
-  
-  this.user.getUser("ef28e43c-b8e7-492b-880a-08d97c54598a")//this.data.id)
+  //retrieve user details
+  this.user.getUser(this.data.id)
   .subscribe(
     data=>{
      
