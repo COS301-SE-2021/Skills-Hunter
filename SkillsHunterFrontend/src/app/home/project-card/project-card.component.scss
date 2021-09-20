@@ -10,9 +10,10 @@
 }
 
 .project-card {
+  border-radius: 10px;
   color: #003333;
-  width: 600px;
-  background-color: #e6ffff;
+  background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
+  box-shadow: 2px 2px 5px grey;
   margin: 20px;
   display: inline-block;
 }
@@ -30,20 +31,20 @@
 }
 .card-project-find {
   float: left;
-  width: 170px;
+  width: 150px;
   display: var(--visFind);
 }
 
 .card-project-delete {
-  float: none;
-  left: 5%;
-  width: 170px;
+  // float: none;
+  // left: 5%;
+  width: 150px;
   display: var(--visDelete);
 }
 
 .card-project-update {
   float: right;
-  width: 170px;
+  width: 150px;
   display: var(--visUpdate);
 }
 
@@ -62,4 +63,10 @@
 .project-menu-header-image {
   background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
+}
+
+::ng-deep .custom-modalbox {
+  mat-dialog-container {
+    padding: 0;
+  }
 }

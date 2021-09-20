@@ -5,6 +5,7 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
@@ -13,7 +14,6 @@ import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatchCandidateComponent } from './match-candidate/match-candidate.component';
 import { CandidateCardComponent } from './match-candidate/candidate-card/candidate-card.component';
-import { SearchAndFilterCandidatePipe } from './Pipes/search-and-filter-candidate.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectCRUDService } from './services/project-crud.service';
 import { RegisterComponent } from './register/register.component';
@@ -27,7 +27,6 @@ import { AddSkillsComponent } from './add-skills/add-skills.component';
 import { AddSkillsCollectionComponent } from './add-skills-collection/add-skills-collection.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatCardModule } from '@angular/material/card';
 import { AdminBoardComponent } from './admin-board/admin-board.component';
 import { BoardContentComponent } from './board-content/board-content.component';
@@ -43,7 +42,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { UserAdvancedSearchComponent } from './user-control/user-advanced-search/user-advanced-search.component';
 import { UserCardComponent } from './user-control/user-card/user-card.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { SkillCardComponent } from './skill-control/skill-card/skill-card.component';
 import { AdminProjectCardComponent } from './project-control/admin-project-card/admin-project-card.component';
 import { ProjectAdvancedSearchComponent } from './project-control/project-advanced-search/project-advanced-search.component';
@@ -64,6 +63,26 @@ import { ProfileImgComponent } from './profile/profile-img/profile-img.component
 import { ShowProjectSkillComponent } from './project-control/show-project-skill/show-project-skill.component';
 import { AddSkillCategoryComponent } from './createproject/add-skill-category/add-skill-category.component';
 import { AddSkillCollectionComponent } from './createproject/add-skill-collection/add-skill-collection.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { ShowProjectCollectionComponent } from './project-control/show-project-collection/show-project-collection.component';
+import { NewSkillComponent } from './skill-control/new-skill/new-skill.component';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { NotificationResponseComponent } from './notifications/notification-response/notification-response.component';
+import { ApplicationsComponent } from './applications/applications.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { ContentAnimateDirective } from './shared/directives/content-animate.directive';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TodoComponent } from './todo/todo.component';
+import { WorkExpComponent } from './profile/work-exp/work-exp.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ConnectionServiceModule } from 'ng-connection-service';
 
 
 @NgModule({
@@ -76,7 +95,6 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     RegisterComponent,
     MatchCandidateComponent,
     CandidateCardComponent,
-    SearchAndFilterCandidatePipe,
     UpdateProjectComponent,
     ProjectCardComponent,
     AdminPortalComponent,
@@ -84,7 +102,6 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     AddSkillsComponent,
     AddSkillsCollectionComponent,
     ProfileComponent,
-    SidebarComponent,
     AdminBoardComponent,
     BoardContentComponent,
     ProjectControlComponent,
@@ -114,7 +131,20 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     ProfileImgComponent,
     ShowProjectSkillComponent,
     AddSkillCategoryComponent,
-    AddSkillCollectionComponent
+    AddSkillCollectionComponent,
+    ShowProjectCollectionComponent,
+    NewSkillComponent,
+    NotificationMenuComponent,
+    NotificationsComponent,
+    NotificationResponseComponent,
+    ApplicationsComponent,
+    SpinnerComponent,
+    ContentAnimateDirective,
+    NavbarComponent,
+    SidebarComponent,
+    FooterComponent,
+    TodoComponent,
+    WorkExpComponent
   ],
   imports: [
     BrowserModule,
@@ -138,10 +168,18 @@ import { AddSkillCollectionComponent } from './createproject/add-skill-collectio
     MatSidenavModule,
     MatCardModule,
     MatDialogModule,
-
+    MatChipsModule,
+    SelectDropDownModule,
+    NgbModule,
+    MatSnackBarModule ,
+    MatNativeDateModule,
+    ConnectionServiceModule
   ],
-  providers: [],
+  providers: [
+    MatNativeDateModule,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+  ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

@@ -1,24 +1,48 @@
 <mat-card class="candidate-card">
-    <mat-card-header>
-      <div mat-card-avatar class="candidate-menu-header-image"></div>
-      <mat-card-title>{{card_candidate.name}}</mat-card-title>
-      <mat-card-subtitle>{{card_candidate.job}}</mat-card-subtitle>
-    </mat-card-header>
+  <mat-card-header>
+    <div mat-card-avatar class="candidate-menu-header-image"></div>
 
-    <mat-card-content>
-        <p>
-            {{card_candidate.description}}
-        </p>
-    </mat-card-content>
+    <!-- <mat-icon mat-card-avatar>home</mat-icon> -->
 
-    <mat-card class="candidate-card-skills">
-        <mat-card-title>Skills</mat-card-title>
-        <mat-chip-list aria-label="Candidate Skills">
-            <mat-chip color="primary" selected>{{card_candidate.skills}}</mat-chip>
-        </mat-chip-list>        
-    </mat-card>
+    <mat-card-title
+      >{{ card_candidate.name }} {{ card_candidate.surname }}</mat-card-title
+    >
+    <mat-card-subtitle>{{ card_candidate.email }}</mat-card-subtitle>
 
-    <mat-card-actions>
-            <button class="candidate-invite" (click)="inviteCandidate()" mat-raised-button color="accent">Invite To Project</button>
-    </mat-card-actions>
+    <div class="percent">
+      <p mat-card-avatar color="primary">
+        {{ card_candidate.percentage }}% Match
+      </p>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+      {{ card_candidate.description }}
+    </p>
+  </mat-card-content>
+
+  <mat-card class="candidate-card-skills">
+    <mat-card-title>Skills</mat-card-title>
+    <mat-chip-list aria-label="Candidate Skills">
+      <mat-chip
+        *ngFor="let skill of card_candidate.matchingSkills"
+        selected
+        color="primary"
+      >
+        {{ skill.name }}
+      </mat-chip>
+    </mat-chip-list>
+  </mat-card>
+
+  <mat-card-actions>
+    <button
+      class="candidate-invite"
+      (click)="inviteCandidate(card_candidate.userId)"
+      mat-raised-button
+      color="accent"
+    >
+      Invite To Project
+    </button>
+  </mat-card-actions>
 </mat-card>

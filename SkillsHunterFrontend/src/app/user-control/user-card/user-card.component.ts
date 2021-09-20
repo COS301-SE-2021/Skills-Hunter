@@ -4,6 +4,7 @@ import { User } from '../../classes/User';
 import { ImageDisplayComponent } from '../image-display/image-display.component';
 import { ShowSkillsComponent } from '../show-skills/show-skills.component';
 import { getUserResponse } from 'src/app/api-message-class/message';
+import { AdminService } from 'src/app/services/admin.service';
 
 export interface DialogData{
   url: string;
@@ -16,11 +17,16 @@ export interface DialogData{
 })
 export class UserCardComponent implements OnInit {
   @Input() user: getUserResponse;
+  imageUrl: string;
   userTypes:String[] = ["Candidate","Project Owner","Organisation","Admin"];
   @Output() onDeleteUser: EventEmitter<getUserResponse> = new EventEmitter();
-  constructor(public dialog: MatDialog) { }
+  
+  constructor(public dialog: MatDialog,private adminService:AdminService) {
+    
+   }
 
   ngOnInit(): void {
+    this.setImageUrl();
   }
 
   onDelete(user): void{
@@ -32,19 +38,29 @@ export class UserCardComponent implements OnInit {
     configDialog.backdropClass = 'backGround';
     configDialog.width = '35%';
     configDialog.height = '70%';
-    configDialog.data = {url: 'https://material.angular.io/assets/img/examples/shiba1.jpg'};
+    configDialog.data = {url: this.imageUrl};
 
     const dialogRef = this.dialog.open(ImageDisplayComponent,configDialog);
   }
 
   showSkills(): void{
-    const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '35%';
-    configDialog.height = '70%';
-    configDialog.data = this.user.userId;
+    
+    this.adminService.getUserSkills(this.user.userId).subscribe(result =>{
+      const configDialog = new MatDialogConfig();
+      configDialog.backdropClass = 'backGround';
+      configDialog.width = '50%';
+      configDialog.height = '70%';
+      configDialog.data = result;
+  
+      const dialogRef = this.dialog.open(ShowSkillsComponent,configDialog);  
+    });   
+  }
 
-    const dialogRef = this.dialog.open(ShowSkillsComponent,configDialog);    
+  setImageUrl(): void{
+    this.adminService.getImage(this.user.userId).subscribe(result=>{
+      this.imageUrl = this.adminService.getApiUrl() + result.result.path;
+      console.log(this.imageUrl);
+    });
   }
 
 }

@@ -1,27 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ProfileInfoService } from '../services/profile-info.service';
-import { MatDialogRef,MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import {AdminService } from  '../services/admin.service';
+import {
+  MatDialogRef,
+  MatDialog,
+  MatDialogConfig,
+} from '@angular/material/dialog';
 import { AddSkillComponent } from './add-skill/add-skill.component';
+import {WorkExpComponent} from './work-exp/work-exp.component';
 import { ProfileImgComponent } from './profile-img/profile-img.component';
 import { ProjectCRUDService } from './../services/project-crud.service';
 import { JsonpClientBackend } from '@angular/common/http';
+import {MatPaginator} from '@angular/material/paginator';
+import { MatTableDataSource} from '@angular/material/table';
+import { SliderComponent } from './slider/slider.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-
-  imageUrl: string = "/assets/images/profile.png";
+@ViewChild(MatPaginator, { static: false }) paginator:MatPaginator;
+  imageUrl = "/assets/images/profile.png";
   fileToUpload: File = null;
 
-  constructor(private service: ProjectCRUDService,private profileService: ProfileInfoService,private dialog: MatDialog) { }
-
-  firstFormGroup: FormGroup;
+  constructor(private service: ProjectCRUDService,private profileService: ProfileInfoService,private imageService: AdminService,private dialog: MatDialog,private _formBuilder: FormBuilder) { }
+  isLinear = true;
+ 
   secondFormGroup: FormGroup;
-
+//variables below used to display table of skills
    noElements=0;
   ELEMENT_DATA= [
   ];
@@ -29,56 +38,91 @@ export class ProfileComponent implements OnInit {
   dataSource = this.ELEMENT_DATA;
 
   returned;
-  array2=[];
+  array2 = [];
+
+  //variables below used to display table of work experience
+  noElements2=0;
+  work_DATA= [
+  ];
+  displayedColumns2: string[] = ['No', 'organisation', 'role','description', 'from','to','actions'];
+  dataSourceWork = this.work_DATA;
 
   ngOnInit(): void {
+    console.log(localStorage.getItem('userID'));
+   // 
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['']
+    });
+    console.log("abv");
+     //check where data is stored
+    if(localStorage.getItem('rememberMe')=='true'){
+console.log("in here");
+      this.firstFormGroup.controls['name'].setValue(localStorage.getItem('name'));
+      this.firstFormGroup.controls['surname'].setValue(localStorage.getItem('surname'));
+      this.firstFormGroup.controls['email'].setValue(localStorage.getItem('email'));
+      this.firstFormGroup.controls['phone'].setValue(localStorage.getItem('phone'));
+      this.firstFormGroup.controls['open'].setValue(localStorage.getItem('openForWork'));
+  
+      //retrieve profile image
+      this.imageService.getImage(localStorage.getItem('userID')).subscribe((data) => {
+        if (data) {
+          //status==200)
+          console.log("img"+data.result);
+          if(data.result!=null){
+            this.imageUrl=this.imageService.getApiUrl() + data.result.path;
+          }
+        } else {
+          //alert that couldnt fetch data
+        }
+      });
 
-    document.getElementById('tool').style.display = "block";
-    document.getElementById('side').style.display = "block";
-    document.getElementById('adminlist').style.display = "none";
-     document.getElementById('houseAdmin').style.display = "none";
-     
-    this.personalDetailsForm.controls['name'].setValue(localStorage.getItem('name'));
-    this.personalDetailsForm.controls['surname'].setValue(localStorage.getItem('surname'));
-    this.personalDetailsForm.controls['email'].setValue(localStorage.getItem('email'));
-    this.personalDetailsForm.controls['phone'].setValue(localStorage.getItem('phone'));
-    this.personalDetailsForm.controls['open'].setValue(localStorage.getItem('openForWork'));
-
+    }else{
+      console.log("in else");
+      this.firstFormGroup.controls['name'].setValue(sessionStorage.getItem('name'));
+      this.firstFormGroup.controls['surname'].setValue(sessionStorage.getItem('surname'));
+      this.firstFormGroup.controls['email'].setValue(sessionStorage.getItem('email'));
+      this.firstFormGroup.controls['phone'].setValue(sessionStorage.getItem('phone'));
+      this.firstFormGroup.controls['open'].setValue(sessionStorage.getItem('openForWork'));
+      console.log(this.imageService.getImage("img"+sessionStorage.getItem('userID')));
+      
+      //retrieve profile image
+      this.imageService.getImage(sessionStorage.getItem('userID')).subscribe((data) => {
+        if (data) {
+          console.log("img"+data.result);
+          if(data.result!=null){
+            this.imageUrl=this.imageService.getApiUrl() + data.result.path;
+          }
+        } else {
+          //alert that couldnt fetch data
+        }
+      });
+    }
+   
     if(localStorage.getItem('role')=='1'){
       document.getElementById('toggleB').style.display = "none";
       document.getElementById('tablecont').style.display = "none";
       document.getElementById('addskillBtn').style.display = "none";
       
     }
-    this.service.getIndividualsSkills()
-    .subscribe(
-      data=>{
-        
-        if(data)//status==200)
-        {
-          console.log(data);
-         
-        }
-        else{
-          //alert that couldnt fetch data
-        }
-      });
+    this.service.getIndividualsSkills().subscribe((data) => {
+      if (data) {
+        //status==200)
+        console.log(data);
+      } else {
+        //alert that couldnt fetch data
+      }
+    });
 
-      this.service.getskills()
-      .subscribe(
-        data=>{
-          
-          if(data)//status==200)
-          {
-            console.log(data);
-            this.returned=data;
-            this.array2=this.returned.skills;
-
-          }
-          else{
-            //alert that couldnt fetch data
-          }
-        });
+    this.service.getSkills().subscribe((data) => {
+      if (data) {
+        //status==200)
+        console.log(data);
+        this.returned = data;
+        this.array2 = this.returned.skills;
+      } else {
+        //alert that couldnt fetch data
+      }
+    });
   }
 
   personalDetailsForm = new FormGroup({
@@ -92,67 +136,79 @@ export class ProfileComponent implements OnInit {
     ]),
     role: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required,Validators.pattern('[- +()0-9]+')]),
+    phone: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[- +()0-9]+'),
+    ]),
     password: new FormControl('', [Validators.required]),
+    open: new FormControl(''),
+  });
+
+  firstFormGroup=new FormGroup({
+    name: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z ]*$'),
+    ]),
+    surname: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z ]*$'),
+    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required,Validators.pattern('[- +()0-9]+')]),
     open: new FormControl('')
   });
 
+  linksFormGroup=new FormGroup({
+    link: new FormControl(''),
+    github: new FormControl('')
+  });
   viewImg(){
  
     const configDialog = new MatDialogConfig();
-    const dialogRef = this.dialog.open(ProfileImgComponent,
-      {   width: '40%',
-         height:'80%',
-        data: { img: this.imageUrl}
-      });
-   // console.log("back");
-    dialogRef.afterClosed().subscribe(data => {
-   
-      if(data !=undefined)
-      {
-        this.imageUrl=data.img;
-      //return the skill and the value to profile then send request to backend
-      }
-      else{ 
-        console.log("returned empty:");
-      }//dialog closed
+    const dialogRef = this.dialog.open(ProfileImgComponent, {
+      width: '40%',
+      height: '80%',
+      data: { img: this.imageUrl },
+    });
+    // console.log("back");
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data != undefined) {
+        this.imageUrl = data.img;
+        //return the skill and the value to profile then send request to backend
+      } else {
+        console.log('returned empty:');
+      } //dialog closed
     });
   }
 
-  addskill(){
-    
-    console.log("val: "+document.getElementById("toggleB"));
+  addskill() {
+    console.log('val: ' + document.getElementById('toggleB'));
     const configDialog = new MatDialogConfig();
-    const dialogRef = this.dialog.open(AddSkillComponent,
-      {   width: '40%',
-         height:'80%'
-      });
-   // console.log("back");
-    dialogRef.afterClosed().subscribe(returnedData => {
-   
-      if(returnedData !=undefined)
-      {
-        console.log("profile: "+returnedData.data.selectedSkill);
-        console.log("rate: "+returnedData.data.rateValue);
+    const dialogRef = this.dialog.open(AddSkillComponent, {
+      width: '40%',
+      height: '80%',
+    });
+    // console.log("back");
+    dialogRef.afterClosed().subscribe((returnedData) => {
+      if (returnedData != undefined) {
+        console.log('profile: ' + returnedData.data.selectedSkill);
+        console.log('rate: ' + returnedData.data.rateValue);
         //first check if skill is already in the list
         var key=false;
         for(let j=0;j<this.ELEMENT_DATA.length;j++){
 
-          if(this.ELEMENT_DATA[j].name=returnedData.data.selectedSkill)
+          if(this.ELEMENT_DATA[j].name==returnedData.data.selectedSkill)
           {
             key=true;
           }
         }
-        if(!key){
-
-        
-        this.noElements++;
-        console.log("element"+JSON.stringify(this.ELEMENT_DATA[0]));
-        var arr=[];
-        for(let i=0;i<this.ELEMENT_DATA.length;i++)
-        {
-              arr.push(this.ELEMENT_DATA[i]);
-            }
+        if (!key) {
+          this.noElements++;
+          console.log('element' + JSON.stringify(this.ELEMENT_DATA[0]));
+          var arr = [];
+          for (let i = 0; i < this.ELEMENT_DATA.length; i++) {
+            arr.push(this.ELEMENT_DATA[i]);
+          }
 
           arr.push({
                 No:this.noElements,
@@ -164,13 +220,95 @@ export class ProfileComponent implements OnInit {
         //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
         this.dataSource =this.ELEMENT_DATA;
       }
+      else{
+        alert("Skill already exists");
+      }
       //return the skill and the value to profile then send request to backend
       }
       else{ 
         console.log("returned empty:");
       }//dialog closed
     });
-   
+  }
+
+  //parameter n is a number indicating position of details on table
+  deleteSkill(n){
+
+    if(confirm(`Are you sure to delete ${this.ELEMENT_DATA[n-1].name} from the list?`)) {
+     
+      var arr=[];
+      var f=false;
+      for(let j=0;j<this.ELEMENT_DATA.length;j++)
+      {
+          if(j==(n-1)){
+            f=true;
+          }
+
+          if(j!=(n-1)){
+
+            if(f){// adjust numbering after element is deleted
+              this.ELEMENT_DATA[j].No=this.ELEMENT_DATA[j].No-1;
+            }
+            arr.push(this.ELEMENT_DATA[j]);
+          }  
+      }
+
+      this.ELEMENT_DATA=arr;
+      this.dataSource =this.ELEMENT_DATA;
+      this.noElements--;
+    }
+   }
+
+   //edit skill rating
+   //parameter n is a number indicating position of details on table
+   editSkill(n){
+    console.log("inx"+n);
+    var key=false;
+    var i=0;
+    var dataToEdit;
+    //find data that needs to be edited
+    while(!key){
+
+     if(this.ELEMENT_DATA[i].No==n){
+       dataToEdit=this.ELEMENT_DATA[i];
+       key=true;
+     }
+     i++;
+    }
+  
+    const dialogRef = this.dialog.open(SliderComponent,
+      {   width: '25%',
+         height:'27%',
+        data:this.ELEMENT_DATA[i-1].rating
+      });
+console.log("v: "+this.ELEMENT_DATA[i-1].rating);
+
+     dialogRef.afterClosed().subscribe(returnedData => {
+  
+       if(returnedData !=undefined && returnedData.data !=-1)
+       {
+         var arr=[];
+         for(let j=0;j<this.ELEMENT_DATA.length;j++)
+         {
+             if(j==(i-1)){
+              this.ELEMENT_DATA[j].rating=returnedData.data;
+               
+             }
+               arr.push(this.ELEMENT_DATA[j]);
+            }
+ 
+         this.ELEMENT_DATA=arr;
+
+         //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
+         this.dataSource =this.ELEMENT_DATA;
+    
+       //return the skill and the value to profile then send request to backend
+       }
+       else{ 
+         console.log("returned empty:");
+       }//dialog closed
+     });
+
   }
 
   onSubmit(){
@@ -192,13 +330,12 @@ export class ProfileComponent implements OnInit {
             });
           }
       }
-
     }
 
-    var o=false;
+    var o = false;
 
-    if(this.personalDetailsForm.get('open').value=="true"){
-      o=true;
+    if (this.personalDetailsForm.get('open').value == 'true') {
+      o = true;
     }
 
     var obj= {
@@ -208,8 +345,8 @@ export class ProfileComponent implements OnInit {
        phoneNumber: this.personalDetailsForm.get('phone').value,
        startDate: "2021-08-17T21:16:36.745Z",
        openForWork:o,
-       existingSkills:arrRequest
-
+       existingSkills:arrRequest,
+       externalWorkExperiences:this.work_DATA
      };
      console.log(JSON.stringify(obj));
 
@@ -234,4 +371,181 @@ export class ProfileComponent implements OnInit {
     
    }
  
+   addExperience(){
+     
+    const configDialog = new MatDialogConfig();
+    const dialogRef = this.dialog.open(WorkExpComponent,
+      {   width: '40%',
+         height:'80%',
+         data:""
+      });
+   // console.log("back");
+    dialogRef.afterClosed().subscribe(returnedData => {
+   
+      if(returnedData !=undefined && returnedData.data !=-1)
+      {
+        console.log("in back");
+        // console.log("prof: "+JSON.stringify(returnedD.data));
+        //console.log("prof: "+JSON.stringify(returnedD.data.organisation));
+       console.log("prof: "+returnedData.data.organisation);
+       
+        //first check if organisation is already in the list
+        var key=false;
+        for(let j=0;j<this.work_DATA.length;j++){
+
+          if(this.work_DATA[j].organisation==returnedData.data.organisation)
+          {
+            key=true;
+          }
+        }
+        if(!key){
+
+        
+        this.noElements2++;
+        var temp;
+        var arr=[];
+        for(let i=0;i<this.work_DATA.length;i++)
+        {
+              arr.push(this.work_DATA[i]);
+            }
+
+            if(returnedData.data.end==null){
+              temp="present";
+            }
+            else{
+              temp=String(returnedData.data.end).substring(4, 15);
+            }
+ 
+          arr.push({
+            No:this.noElements2,
+            organisation:returnedData.data.organisation,
+            role: returnedData.data.role,
+            description: returnedData.data.description,
+            start: String(returnedData.data.start).substring(4, 15),
+            end: temp,
+            realStart:returnedData.data.start,
+            realEnd:returnedData.data.end
+                });
+
+        this.work_DATA=arr;
+        //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
+        this.dataSourceWork =this.work_DATA;
+
+      }else{
+        alert("organisation already exists");
+      }
+      //return the skill and the value to profile then send request to backend
+      }
+      else{ 
+        console.log("returned empty:");
+      }//dialog closed
+    });
+   }
+ 
+   //edit work information
+   //parameter n is a number indicating position of details on table
+   edit(n){
+     console.log(n);
+     var key=false;
+     var i=0;
+     var dataToEdit;
+     //find data that needs to be edited
+     while(!key){
+
+      if(this.work_DATA[i].No==n){
+        dataToEdit=this.work_DATA[i];
+        key=true;
+      }
+      i++;
+     }
+   
+     const dialogRef = this.dialog.open(WorkExpComponent,
+      {   width: '40%',
+         height:'80%',
+        data:dataToEdit
+      });
+
+      dialogRef.afterClosed().subscribe(returnedData => {
+   
+        if(returnedData !=undefined && returnedData.data !=-1)
+        {
+          
+         
+          //first check if organisation is already in the list
+          var key=false;
+          for(let j=0;j<this.work_DATA.length;j++){
+  
+            if(this.work_DATA[j].organisation==returnedData.data.organisation)
+            {
+              key=true;
+            }
+          }
+          var temp;
+          var arr=[];
+          for(let j=0;j<this.work_DATA.length;j++)
+          {
+              if(j==(i-1)){
+                if(returnedData.data.end==null){
+                  temp="present";
+                }
+                else{
+                  temp=String(returnedData.data.end).substring(4, 15);
+                }
+                arr.push({
+                  No:n,
+                  organisation:returnedData.data.organisation,
+                  role: returnedData.data.role,
+                  description: returnedData.data.description,
+                  start: String(returnedData.data.start).substring(4, 15),
+                  end: temp,
+                  realStart:returnedData.data.start,
+                  realEnd:returnedData.data.end
+                      });
+              }
+              else{
+                arr.push(this.work_DATA[j]);
+              }
+                
+             }
+  
+          this.work_DATA=arr;
+
+          //console.log("element2"+JSON.stringify(this.ELEMENT_DATA[1]));
+          this.dataSourceWork =this.work_DATA;
+     
+        //return the skill and the value to profile then send request to backend
+        }
+        else{ 
+          console.log("returned empty:");
+        }//dialog closed
+      });
+
+   }
+ //parameter n is a number indicating position of details on table
+   delete(n){
+
+    if(confirm(`Are you sure to delete ${this.work_DATA[n-1].organisation} from the list?`)) {
+     
+      var arr=[];
+      var f=false;
+      for(let j=0;j<this.work_DATA.length;j++)
+      {
+          if(j==(n-1)){
+            f=true;
+          }
+
+          if(j!=(n-1)){
+
+            if(f){// adjust numbering after element is deleted
+              this.work_DATA[j].No=this.work_DATA[j].No-1;
+            }
+            arr.push(this.work_DATA[j]);
+          }  
+      }
+
+      this.work_DATA=arr;
+      this.dataSourceWork =this.work_DATA;
+      this.noElements2--;
+    }
+   }
 }

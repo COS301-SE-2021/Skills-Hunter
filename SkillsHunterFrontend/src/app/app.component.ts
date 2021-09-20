@@ -1,36 +1,68 @@
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
+import {Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd, NavigationStart, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy {
-    title = 'SkillsHunterFrontend';
-    mobileQuery: MediaQueryList;
-  
-    fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
-  
-    fillerContent = Array.from({length: 50}, () =>
-        `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
-  
-    private _mobileQueryListener: () => void;
-  
-    constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-      this.mobileQuery = media.matchMedia('(max-width: 600px)');
-      this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-      this.mobileQuery.addListener(this._mobileQueryListener);
-    }
-  
-    ngOnDestroy(): void {
-      this.mobileQuery.removeListener(this._mobileQueryListener);
-    }
-  
-    shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
+export class AppComponent implements OnInit{
+  title = 'SkillsHunterFrontend';
+  showSidebar: boolean = true;
+  showNavbar: boolean = true;
+  showFooter: boolean = true;
+  isLoading: boolean;
+
+
+  constructor(private router: Router) {
+    
+    // Removing Sidebar, Navbar, Footer for Documentation, Error and Auth pages
+    router.events.forEach((event) => {
+      if(event instanceof NavigationStart) {
+        if((event['url'] == '/') || (event['url'] == '/login') ||(event['url'] == '/user-pages/login') || (event['url'] == '/register') || (event['url'] == '/user-pages/register') || (event['url'] == '/error-pages/404') || (event['url'] == '/error-pages/500') ) {
+          this.showSidebar = false;
+          this.showNavbar = false;
+          this.showFooter = false;
+          document.querySelector('.main-panel').classList.add('w-100');
+          document.querySelector('.page-body-wrapper').classList.add('full-page-wrapper');
+          document.querySelector('.content-wrapper').classList.remove('auth', 'auth-img-bg', );
+          document.querySelector('.content-wrapper').classList.remove('auth', 'lock-full-bg');
+          if((event['url'] == '/error-pages/404') || (event['url'] == '/error-pages/500')) {
+            document.querySelector('.content-wrapper').classList.add('p-0');
+          }
+        } else {
+          this.showSidebar = true;
+          this.showNavbar = true;
+          this.showFooter = true;
+          document.querySelector('.main-panel').classList.remove('w-100');
+          document.querySelector('.page-body-wrapper').classList.remove('full-page-wrapper');
+          document.querySelector('.content-wrapper').classList.remove('auth', 'auth-img-bg');
+          document.querySelector('.content-wrapper').classList.remove('p-0');
+        }
+      }
+    });
+
+    // Spinner for lazyload modules
+    router.events.forEach((event) => { 
+      if (event instanceof RouteConfigLoadStart) {
+          this.isLoading = true;
+      } else if (event instanceof RouteConfigLoadEnd) {
+          this.isLoading = false;
+      }
+    });
+
+    //create custom event for when user logs in
   }
+
+  
+  ngOnInit() {
+    // Scroll to top after route change
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0);
+    });
+  }
+}
   

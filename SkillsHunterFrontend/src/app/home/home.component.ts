@@ -1,15 +1,8 @@
+import { AdminService } from 'src/app/services/admin.service';
 import { Component, OnInit } from '@angular/core';
-
-import { Projects } from '../mock-data/mock-projects';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CreateprojectComponent } from './../createproject/createproject.component';
-import { projectService } from '../services/project-edit.service';
-import { Project } from '../classes/Project';
 import { ProjectCRUDService } from '../services/project-crud.service';
-import { MaterialModule } from '../material/material.module';
-import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
-
 
 @Component({
   selector: 'app-home',
@@ -20,13 +13,11 @@ import { AdminPortalComponent } from '../admin-portal/admin-portal.component';
 export class HomeComponent implements OnInit {
   title: string = 'Projects';
   filterQuery: string = '';
-  _projects: Project[] ;//= Projects;
+  _projects = [];
 
   constructor(
     private _router: Router,
-    private dialog: MatDialog,
-    private projectCrud: ProjectCRUDService,
-    private projectData: projectService
+    private projectCrud: ProjectCRUDService
   ) {}
 
   // //this function sets(assigns) the project data from the 'projectService'
@@ -34,46 +25,59 @@ export class HomeComponent implements OnInit {
   // {
   //   this.projectData.projectBeingedited = _project;
   // }
-
+  userType: number = -1;
   ngOnInit(): void {
-
-    document.getElementById('tool').style.display = "block";
-    document.getElementById('side').style.display = "block";
-    document.getElementById('adminlist').style.display = "none";
-     document.getElementById('houseAdmin').style.display = "none";
-
-    //read data of projects
-    var functiontoCall;
-    if(localStorage.getItem('role')=='1'){
-
-      this.projectCrud.getProjectsByProjectOwnerId()
-      .subscribe(
-        data=>{
-          this._projects=data;
-          console.log('Response post', data);
-        }
-      );
-    }else{
-      document.getElementById('creatediv').style.display = "none";
-      this.projectCrud.getAllProjects()
-      .subscribe(
-        data=>{
-          this._projects=data;
-          console.log('Response post', data);
-        }
-      );
+    if (localStorage.getItem('rememberMe') !== null) {
+      if (localStorage.getItem('rememberMe') == 'true') {
+        this.userType = parseInt(localStorage.getItem('role'));
+      } else {
+        this.userType = parseInt(sessionStorage.getItem('role'));
+      }
     }
 
+    // document.getElementById('tool').style.display = 'block';
+    // document.getElementById('side').style.display = 'block';
+    // document.getElementById('adminlist').style.display = 'none';
+    // document.getElementById('houseAdmin').style.display = 'none';
+    console.log('Getting project');
+    //read data of projects:
+    
+//fetch projects
+    if(localStorage.getItem('rememberMe')=='true'){
+     
+      if (localStorage.getItem('role') == '1') {
    
+        this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
+          console.log(data);
+          this._projects = data;
+        });
+      } else {
+        
+        this.projectCrud.getAllProjects().subscribe((data) => {
+          console.log(data);
+          this._projects = data;
+        });
+      }
+
+    }else{
+    
+        if (sessionStorage.getItem('role') == '1') {
+   
+          this.projectCrud.getProjectsByProjectOwnerId().subscribe((data) => {
+            console.log(data);
+            this._projects = data;
+          });
+        } else {
+
+          this.projectCrud.getAllProjects().subscribe((data) => {
+            console.log(data);
+            this._projects = data;
+          });
+        }
+    }
   }
 
   create() {
     this._router.navigate([`createproject`]);
-    /*
-    const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '40%';
-    configDialog.height = '80%';
-    this.dialog.open(CreateprojectComponent, configDialog);*/
   }
 }

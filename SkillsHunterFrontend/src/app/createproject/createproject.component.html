@@ -1,4 +1,3 @@
-
 <mat-card class="create-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
@@ -7,15 +6,8 @@
     </div>
   </mat-card-header>
   <mat-card-content>
-    <mat-horizontal-stepper
-      [linear]="isLinear"
-      
-      #stepper
-    >
-      <mat-step
-        [stepControl]="projectBasicInfo"
-        required
-      >
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="projectBasicInfo" required>
         <mat-card class="stepper-card">
           <mat-card-content>
             <form [formGroup]="projectBasicInfo" class="stepform">
@@ -40,6 +32,16 @@
                 ></textarea>
               </mat-form-field>
 
+              <mat-form-field appearance="outline">
+                <mat-label>Location</mat-label>
+                <input
+                  matInput
+                  placeholder="Hatfield"
+                  formControlName="projectLocation"
+                  required
+                />
+              </mat-form-field>
+
               <button
                 mat-raised-button
                 color="warn"
@@ -54,6 +56,7 @@
                 color="primary"
                 matStepperNext
                 class="next"
+                (click)="captureBasicDetails()"
               >
                 Next
               </button>
@@ -61,10 +64,7 @@
           </mat-card-content>
         </mat-card>
       </mat-step>
-      <mat-step
-        [stepControl]="projectSkillsAndCollections"
-        label="Step 2"
-      >
+      <mat-step [stepControl]="projectSkillsAndCollections" label="Step 2">
         <mat-card class="stepper-card">
           <mat-card-content>
             <h1 class="adding-title">Skills</h1>
@@ -78,17 +78,14 @@
             </button>
             <br />
             <br />
-            <ng-multiselect-dropdown
-              [placeholder]="'Search A Skill'"
-              [settings]="dropdownSettings"
-              [data]="dropdownListForSkills"
-              [(ngModel)]="selectedItemsForSkills"
-              (onSelect)="onItemSelect($event)"
-              (onSelectAll)="onSelectAll($event)"
-              allowRemoteDataSearch
-            >
-            </ng-multiselect-dropdown>
 
+            <ngx-select-dropdown
+              (change)="changeDetectedSkills($event)"
+              [config]="configSkills"
+              [options]="dropdownOptionsSkills"
+              [(ngModel)]="selectedSkills"
+              [multiple]="true"
+            ></ngx-select-dropdown>
             <br />
 
             <button
@@ -104,25 +101,26 @@
             <br />
             <br />
 
-            <ng-multiselect-dropdown
-              [placeholder]="'Search A Collection'"
-              [settings]="dropdownSettings"
-              [data]="dropdownListForCollections"
-              [(ngModel)]="selectedItemsForCollections"
-              (onSelect)="onItemSelect($event)"
-              (onSelectAll)="onSelectAll($event)"
-            >
-            </ng-multiselect-dropdown>
+            <ngx-select-dropdown
+              (change)="changeDetectedCollections($event)"
+              [config]="configCollections"
+              [options]="dropdownOptionsCollections"
+              [(ngModel)]="selectedCollections"
+              [multiple]="true"
+            ></ngx-select-dropdown>
             <br />
             <br />
 
-            <mat-slide-toggle color="primary"
+            <mat-slide-toggle
+              color="primary"
+              [(ngModel)]="isCheckedOpenForApplications"
+              [disabled]="toggleNewSkillsAdded"
               >Project is Open for Application</mat-slide-toggle
             >
             <br />
           </mat-card-content>
         </mat-card>
-        <button mat-stroked-button color="warn" matStepperPrevious class="back">
+        <button mat-raised-button color="warn" matStepperPrevious class="back">
           Back
         </button>
         <button

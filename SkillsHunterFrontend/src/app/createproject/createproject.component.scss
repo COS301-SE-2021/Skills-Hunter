@@ -33,23 +33,23 @@
   float: right;
 }
 
-::ng-deep mat-horizontal-stepper,
-mat-horizontal-stepper {
-  padding: 1em;
-  height: 600px;
-}
+// ::ng-deep mat-horizontal-stepper,
+// mat-horizontal-stepper {
+//   padding: 1em;
+//   height: 500px;
+// }
 
-::ng-deep #cdk-step-content-0-1 {
-  height: 450px;
-}
+// ::ng-deep #cdk-step-content-0-1 {
+//   height: 450px;
+// }
 
 .stepper-card {
   color: purple;
 }
 
 .create-card {
-  width: 50%;
-  height: 670px;
+  width: 45%;
+  height: 630px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
@@ -61,4 +61,10 @@ mat-horizontal-stepper {
 .create-header-image {
   background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
+}
+
+::ng-deep .custom-modalbox {
+  mat-dialog-container {
+    padding: 0;
+  }
 }

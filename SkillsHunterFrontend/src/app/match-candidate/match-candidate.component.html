@@ -1,13 +1,23 @@
-<div>
-<mat-form-field class="example-form-field">
+<!-- <div>
+  <mat-form-field class="example-form-field">
     <mat-label>Search For A Candidate:</mat-label>
-    <input matInput type="text" [(ngModel)]="filterQuery">
-    <button *ngIf="filterQuery" matSuffix mat-icon-button aria-label="Clear" (click)="filterQuery=''">
+    <input matInput type="text" [(ngModel)]="filterQuery" />
+    <button
+      *ngIf="filterQuery"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="filterQuery = ''"
+    >
       <mat-icon>close</mat-icon>
     </button>
-</mat-form-field>
+  </mat-form-field>
+</div> -->
+
+<div class="container">
+  <app-candidate-card
+    *ngFor="let candidate of candidatesList"
+    [card_candidate]="candidate"
+    [selected_project]="projectId"
+  ></app-candidate-card>
 </div>
-
-<!-- <app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery:filterCategory" [card_candidate]="candidate"></app-candidate-card> -->
-<app-candidate-card *ngFor = "let candidate of candidatesList | searchAndFilterCandidate: filterQuery" [card_candidate]="candidate"></app-candidate-card>
-

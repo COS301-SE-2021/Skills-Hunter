@@ -1,83 +1,91 @@
-
-import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { LoginRegisterService } from '../services/login-register.service';
 import { Router } from '@angular/router';
 import { Login } from '../classes/Login';
-import {MatSidenav} from '@angular/material/sidenav';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoginRegisterService } from '../services/login-register.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { roleSet } from '../events/roleSet';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-
-  styleUrls: ['./login.component.scss'],
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private loginService: LoginRegisterService,
-    private _router: Router
-  ) {}
+  email: string = "";
+  password: string = "";  
+  _match: boolean = true;
+  err: boolean = false;
+  errorMessage:string = "";
+  rememberMe: boolean = false;
 
-  ngOnInit(): void {
-    
-    document.getElementById('tool').style.display = "none";
-    document.getElementById('side').style.display = "none";
+  constructor(private loginService: LoginRegisterService,private _router: Router,private _snackBar: MatSnackBar) { }
+
+  ngOnInit() {
   }
 
-  hide = true; // for hiding password in UI
+  onSubmit():void {
+    if(this.password == "" || this.email == ""){
+      this.err = true;
+      if(this.password == "")
+        this.errorMessage = "password field empty.";
 
-  _match = true;
+      if(this.email == "")
+        this.errorMessage = "email field empty.";
+    }else{
+      let profile:Login = {
+        Email : this.email,
+        Password : this.password
+      } 
 
-  LoginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-  });
-
-  onSubmit() {
-    var formData = new Login();
-    
-    formData.Email = this.LoginForm.get('email').value;
-    formData.Password = this.LoginForm.get('password').value;
-
-    this.loginService.login(formData)
-    .subscribe(
-      data=>{
-        
-        if(data.status==200)
-        {
-          this._match=true;
+      this.loginService.login(profile).subscribe(data=>{
+        if(this.rememberMe === false){
+          sessionStorage.setItem('role', data.body.role);
+          sessionStorage.setItem('token', data.body.token);
+          sessionStorage.setItem('name', data.body.name);
+          sessionStorage.setItem('surname', data.body.surname);
+          sessionStorage.setItem('email', data.body.email);
+          sessionStorage.setItem('phone', data.body.phone);
+          sessionStorage.setItem('openForWork', data.body.openForWork);
+          sessionStorage.setItem('userID', data.body.userId);
+        }else{
           localStorage.setItem('role', data.body.role);
-          localStorage.setItem('token',data.body.token);
-          localStorage.setItem('name',data.body.name);
-          localStorage.setItem('surname',data.body.surname);
-          localStorage.setItem('email',data.body.email);
-          localStorage.setItem('phone',data.body.phone);
-          localStorage.setItem('openForWork',data.body.openForWork);
+          localStorage.setItem('token', data.body.token);
+          localStorage.setItem('name', data.body.name);
+          localStorage.setItem('surname', data.body.surname);
+          localStorage.setItem('email', data.body.email);
+          localStorage.setItem('phone', data.body.phone);
+          localStorage.setItem('openForWork', data.body.openForWork);
+          localStorage.setItem('userID',data.body.userId);
+        }
 
-          if(data.body.role==3){
-            this._router.navigate([`user-control`]);
-          }
-          else{
-            this._router.navigate([`home`]);
-          }
-         
+        localStorage.setItem('rememberMe', this.rememberMe.toString());
+
+        document.dispatchEvent(roleSet);
+
+        if(data.body.role == 0)
+          this._router.navigate([`home`]);
+        else if(data.body.role == 1)
+          this._router.navigate([`home`]);
+        else if(data.body.role == 2)
+          this._router.navigate([`home`]);
+        else if(data.body.role == 3)
+          this._router.navigate([`dashboard`]);
+
+
+      },error=>{
+
+        if(error.status == 400){
+          this.err = true;
+          this.errorMessage = "Account does not exist or incorrect password.";
+        }else{
+
+          this._snackBar.open("An error has occurred on the server","",{
+            duration: 5000,
+          });
         }
-        else
-        {
-          this._match=false;
-        }
-      },
-      err =>{
-       
-        if(err.status>=400 && err.status<500){
-          this._match=false;
-        }
-       else
-       {
-         console.log('HTTP Error1', err);//server error
-       }
-      }
-    );
+      });
+    }
   }
+
 }

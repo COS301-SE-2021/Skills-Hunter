@@ -4,14 +4,14 @@
     <mat-radio-group
       aria-labelledby = "example-radio-group-label"
       class="example-radio-group"
-      [(ngModel)]="SelectedUserType">
-      <mat-radio-button class="example-radio-button" *ngFor="let type of Usertype" [value]="type">
-        {{type}}
+      [(ngModel)]="data">
+      <mat-radio-button class="example-radio-button" *ngFor="let type of Usertype" [value]="type.value">
+        {{type.text}}
       </mat-radio-button>
     </mat-radio-group>
 
     <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close] = "SelectedUserType" cdkFocusInitial>Ok</button>
+      <button mat-button [mat-dialog-close] = "data" >Ok</button>
     </div>
   </div>
 </mat-card>

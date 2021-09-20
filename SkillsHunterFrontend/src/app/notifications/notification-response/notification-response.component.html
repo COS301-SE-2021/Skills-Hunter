@@ -1,0 +1,42 @@
+<mat-card class="noti-display-card">
+  <mat-card-header>
+    <mat-card-title> {{ card_notification.subject }}</mat-card-title>
+    <mat-card-subtitle>{{ card_notification.type }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+      {{ card_notification.message }}
+    </p>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="noti-reply-card">
+  <mat-card-content>
+    <div id="noti-reply">
+      <mat-form-field
+        id="noti-reply"
+        appearance="outline"
+        [formGroup]="notificationResponseForm"
+      >
+        <mat-label>Reply Message</mat-label>
+        <textarea
+          matInput
+          placeholder="..."
+          formControlName="notificationResponseMessage"
+          required
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions layout-align="end">
+    <button
+      (click)="captureNotificationResponse()"
+      mat-raised-button
+      color="primary"
+    >
+      Send
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,5 +1,6 @@
-#user-searchbar{
+.user-searchbar{
     width: 100%;
+    color: black;
 }
 
 #btnUserGroup{
@@ -10,13 +11,11 @@
 #btnAdvanced{
     width: 25%;
     margin-top: 20px;
-    background-color: #f5d142;
 }
 
 #btnViewAll{
     width: 25%;
     margin-left: 20px;
-    background-color: #f5d142;
 }
 
 h1,#card{
@@ -24,7 +23,13 @@ h1,#card{
 }
 
 #card{
-    background-color: #e6ffff;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    margin-top: 5%;
+    color: purple;
+    box-shadow: 2px 2px 10px #000000;
+    background-image: linear-gradient(90deg, #f5e6cc 0%, #ebedee 100%);
 }
 
 .user-info{

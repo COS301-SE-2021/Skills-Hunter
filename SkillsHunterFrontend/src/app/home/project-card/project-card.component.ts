@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Project } from 'src/app/classes/Project';
-import { Projects } from 'src/app/mock-data/mock-projects';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { ProjectCRUDService } from 'src/app/services/project-crud.service';
 import { projectService } from 'src/app/services/project-edit.service';
 import { UpdateProjectComponent } from 'src/app/update-project/update-project.component';
-import { Apply } from 'src/app/classes/Apply';
 
 @Component({
   selector: 'app-project-card',
@@ -15,95 +14,94 @@ import { Apply } from 'src/app/classes/Apply';
 export class ProjectCardComponent implements OnInit {
   panelOpenState: boolean = false;
 
-  @Input() card_project: Project;
+  @Input() card_project: any;
 
   constructor(
     private dialog: MatDialog,
     private projectData: projectService,
-    private projectCrud: ProjectCRUDService
+    private projectCrud: ProjectCRUDService,
+    private _snackBar: MatSnackBar,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
-
-    if(localStorage.getItem('role')=='0'){
-      
+    if (localStorage.getItem('role') == '0') {
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visDelete', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
-      document.getElementById("createbtn").style.visibility = "hidden";
-    }
-    else if(localStorage.getItem('role')=='3'){
+      document.getElementById('createbtn').style.visibility = 'hidden';
+    } else if (localStorage.getItem('role') == '3') {
       document.documentElement.style.setProperty('--visFind', 'none');
       document.documentElement.style.setProperty('--visUpdate', 'none');
       document.documentElement.style.setProperty('--visAppl', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
-      document.getElementById("createbtn").style.visibility = "hidden";
-
-    }
-    else{
+      document.getElementById('createbtn').style.visibility = 'hidden';
+    } else {
       document.documentElement.style.setProperty('--visAppl', 'none');
       document.documentElement.style.setProperty('--visCancel', 'none');
     }
-    
-
   }
 
-  get getProjectInfo(): Project {
-    return this.projectData.projectBeingedited;
-  }
-  //this sets project service which holds the data which will be displayed in the update dialog
-  set setProjectInfo(project: Project) {
-    this.projectData.projectBeingedited = project;
-  }
-
-  update(_project: Project) {
-    this.setProjectInfo = _project;
+  update(_project) {
+    console.log('About to update!!');
+    console.log(_project);
     const configDialog = new MatDialogConfig();
-    configDialog.backdropClass = 'backGround';
-    configDialog.width = '40%';
-    configDialog.height = '80%';
+    configDialog.panelClass = 'custom-modalbox';
+    configDialog.data = _project;
     this.dialog.open(UpdateProjectComponent, configDialog);
   }
 
-  delete(_project: Project) {
-    if (confirm(`Are you sure to delete ${_project.name}`)) {
-      /*for (let [i, proj] of Projects.entries()) {
-        if (proj.ProjectId == _project.ProjectId) {
-          Projects.splice(i, 1);
-        }
-      }*/
+  delete(_project) {
+    console.log('About to delete');
+    console.log(_project);
 
-      //the service is called below
-      console.log("here"+_project.projectId);
-        this.projectCrud
-         .deleteProject(_project.projectId) //change so it calls update
-         .subscribe((data) => {
-           console.log('Response post', data);
-         });
-         window.location.reload();
+    var formData = {
+      projectId: _project.projectId,
+    };
+
+    if (confirm(`Are you sure you want to delete ${_project.name}?`)) {
+      this.projectCrud.deleteProject(formData).subscribe((data) => {
+        console.log('Response post', data);
+      });
+      window.location.reload();
+      // this._router.navigate([`home`]);
     }
   }
 
-  apply(_project: Project){
+  apply(_project) {
+    console.log('\nApplying for Project\n');
 
-    console.log(_project.projectId);
-    var formData = new Apply();
-    formData.UserId=localStorage.getItem('userID');
-    formData.ProjectId="3fa85f64-5717-4562-b3fc-2c963f66afa4"//_project.ProjectId;
+    this.projectCrud.getMyUserID().subscribe((userID) => {
+      var formData = {
+        userId: userID,
+        projectId: _project.projectId,
+      };
 
+      // the service is called below;
+      this.projectCrud.applyForProject(formData).subscribe((data) => {
+        console.log('Response post', data);
 
-     //the service is called below;
-       this.projectCrud
-         .applyForProject(formData) //change so it calls update
-         .subscribe((data) => {
-           console.log('Response post', data);
-         });
+        if (data.success == true)
+          this._snackBar.open('Successfully Applied for Project!', '', {
+            duration: 3000,
+          });
+        else {
+          this._snackBar.open('Project Application Failed.', '', {
+            duration: 3000,
+          });
+        }
+      });
+    });
 
-         this.cancel();
+    this.cancel();
   }
 
-  cancel(){
+  match(_project: any) {
+    this._router.navigate(['match-candidate', _project]);
+  }
+
+  cancel() {
     this.dialog.closeAll();
   }
 }

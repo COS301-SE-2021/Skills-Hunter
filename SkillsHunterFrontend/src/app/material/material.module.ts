@@ -22,10 +22,13 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -52,7 +55,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatStepperModule,
     MatSlideToggleModule,
     MatTooltipModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatTabsModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatDividerModule,
@@ -77,7 +83,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatStepperModule,
     MatSlideToggleModule,
     MatTooltipModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatTabsModule,
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule {}
