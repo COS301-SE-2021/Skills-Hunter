@@ -9,23 +9,41 @@ export class ProfileInfoService {
 
   constructor(private httpclient: HttpClient) { }
 
-  //send request to back end to register new user
+  //send request to back end to upload img
   postImg(img: File){
+    var auth;
+    if(localStorage.getItem('rememberMe')=="true"){
+      auth=localStorage.getItem('token');
+    }else{
+      auth=sessionStorage.getItem('token');
+    }
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '+auth
+      })
+    };
     
     const formData: FormData = new FormData();
     formData.append('Image', img, img.name);
     console.log("form: "+formData);
     return this.httpclient.post(
-      'http://localhost:5000/api​/User​/uploadProfileImage',
-      formData,{observe:'response'}
+      'http://localhost:5000/api/User/uploadProfileImage',
+      formData,httpOptions
     );
   }
-
+// call to the backend to updte user details
   userDetailUpdate(formData){
+    var auth;
+    if(localStorage.getItem('rememberMe')=="true"){
+      auth=localStorage.getItem('token');
+    }else{
+      auth=sessionStorage.getItem('token');
+    }
 
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: 'Bearer '+localStorage.getItem('token')
+        Authorization: 'Bearer '+auth
       })
     };
     return this.httpclient.post<any>(

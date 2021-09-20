@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using SkillsHunterAPI.Models.Skill.Entity;
 using SkillsHunterAPI.Models.User.Entity;
+using SkillsHunterAPI.Models.Notification;
 
 namespace SkillsHunterAPI.Data
 {
@@ -26,7 +27,9 @@ namespace SkillsHunterAPI.Data
         public DbSet<Skill> Skills { get; set; }
         public DbSet<ProjectSkill> ProjectSkills { get; set; }
         public DbSet<UserSkill> UserSkills { get; set; }
-        public DbSet<WorkExperience> WorkExperiences { get; set; }
+        public DbSet<ExternalWorkExperience> ExternalWorkExperiences { get; set; }
+        public DbSet<InternalWorkExperience> InternalWorkExperiences { get; set; }
+
         public DbSet<Application> Applications { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<SkillCollection> SkillCollections { get; set; }
@@ -35,6 +38,8 @@ namespace SkillsHunterAPI.Data
         public DbSet<Invitation> Invitations { get; set; }
         public DbSet<SkillCategory> SkillCategories { get; set; }
         public DbSet<UserSkillCollection> UserSkillCollections { get; set; }
+
+        public DbSet<Notification> Notifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -56,8 +61,11 @@ namespace SkillsHunterAPI.Data
             modelBuilder.Entity<UserSkill>().ToTable("UserSkill");
             modelBuilder.Entity<UserSkill>().HasKey("UserSkillId");
 
-            modelBuilder.Entity<WorkExperience>().ToTable("WorkExperience");
-            modelBuilder.Entity<WorkExperience>().HasKey("WorkExperienceId");
+            modelBuilder.Entity<ExternalWorkExperience>().ToTable("ExternalWorkExperience");
+            modelBuilder.Entity<ExternalWorkExperience>().HasKey("ExternalWorkExperienceId");
+
+            modelBuilder.Entity<InternalWorkExperience>().ToTable("InternalWorkExperience");
+            modelBuilder.Entity<InternalWorkExperience>().HasKey("InternalWorkExperienceId");
 
             modelBuilder.Entity<Application>().ToTable("Application");
             modelBuilder.Entity<Application>().HasKey("ApplicationId");
@@ -83,6 +91,9 @@ namespace SkillsHunterAPI.Data
 
             modelBuilder.Entity<UserSkillCollection>().ToTable("UserSkillCollection");
             modelBuilder.Entity<UserSkillCollection>().HasKey("UserSkillCollectionId");
+
+            modelBuilder.Entity<Notification>().ToTable("Notification");
+            modelBuilder.Entity<Notification>().HasKey("NotificationId");
 
         }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getUserSkillResponse, getSkillCollectionResponse,getProjectsResponse, userSkillModel, getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest, updateSkillRequest, skillModel, getImageResponse, categoryModel, createSkillResponse, getCategoryByIdRequest, createSkillRequest } from '../api-message-class/message';
+import { getAllCollectionModel, createCollectionRequest, getUserSkillResponse, getSkillCollectionResponse,getProjectsResponse, userSkillModel, getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest, updateSkillRequest, skillModel, getImageResponse, categoryModel, createSkillResponse, getCategoryByIdRequest, createSkillRequest } from '../api-message-class/message';
 import { Observable, ObservableLike, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
@@ -12,7 +12,8 @@ export class AdminService {
   private header = null;
 
   constructor(private http: HttpClient) {
-    this.header = new HttpHeaders().
+    
+  this.header = new HttpHeaders().
     set('content-type','application/json').
     set('authorization','Bearer ' + localStorage.getItem('token'));
   }
@@ -25,7 +26,7 @@ export class AdminService {
     return this.http.get<getUserResponse>(this.apiUrl + "api/User/getUserById?request=" + id,{headers : this.header})
   }
 
-  creatSkill(nam: string, cat: getCategoryByIdRequest[]): Observable<createSkillResponse>{
+  createSkill(nam: string, cat: getCategoryByIdRequest[]): Observable<createSkillResponse>{
     let request: createSkillRequest = {
       name : nam,
       categories : cat
@@ -38,6 +39,10 @@ export class AdminService {
 
   getImage(id: string): Observable<getImageResponse>{
     return this.http.get<getImageResponse>(this.apiUrl + "api/User/getImageByUserId?userId=" + id,{headers : this.header});
+  }
+
+  getImageWithoutId(): Observable<getImageResponse>{
+    return this.http.get<getImageResponse>(this.apiUrl + "api/User/getImageByUser",{headers : this.header});
   }
 
   updateSkill(skill:skillModel): Observable<any>{
@@ -102,5 +107,13 @@ export class AdminService {
 
     return this.http.post<addCategoryResponse>(this.apiUrl + "api/Admin/addCategory",request,{headers : this.header});
 
+  }
+
+  createCollection(request:createCollectionRequest): Observable<any>{
+    return this.http.post<any>(this.apiUrl + "api/Admin/createSkillCollection",request,{headers : this.header});
+  }
+
+  getAllCollection(): Observable<getAllCollectionModel[]>{
+    return this.http.get<getAllCollectionModel[]>(this.apiUrl + "api/Admin/getAllSkillCollections",{headers : this.header});
   }
 }

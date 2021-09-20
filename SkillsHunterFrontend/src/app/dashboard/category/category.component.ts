@@ -137,7 +137,7 @@ export class CategoryComponent implements OnInit {
       this.adminService.removeCategory(id).subscribe(result =>{
         this.loadData();
         
-        this._snackBar.open("Successfully edited category", "",{
+        this._snackBar.open("Successfully removed category", "",{
           duration: 4000,
         });
 

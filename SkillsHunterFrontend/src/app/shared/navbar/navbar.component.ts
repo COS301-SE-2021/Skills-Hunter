@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AdminService } from 'src/app/services/admin.service';
+import { ConnectionService } from 'ng-connection-service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,9 +15,22 @@ export class NavbarComponent implements OnInit {
   public firstname:string = "";
   public lastname: string = "";
   public userType: number = -1;
-  
-  constructor(config: NgbDropdownConfig) {
+  public imageUrl: string;
+  public isConnected = true;  
+  public noInternetConnection: boolean = false; 
+
+  constructor(config: NgbDropdownConfig,private adminService:AdminService,private connectionService: ConnectionService) {
     config.placement = 'bottom-right';
+
+    this.connectionService.monitor().subscribe(isConnected => {  
+      this.isConnected = isConnected; 
+      if (this.isConnected) {  
+        this.noInternetConnection=false;  
+      }  
+      else {  
+        this.noInternetConnection=true;  
+      }  
+    }) 
   }
 
   ngOnInit() {
@@ -43,6 +58,8 @@ export class NavbarComponent implements OnInit {
       }
       this.ngOnInit();
     });
+
+    this.setImageUrl();
   }
 
   // toggle sidebar in small devices
@@ -70,9 +87,16 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  // toggle right sidebar
-  // toggleRightSidebar() {
-  //   document.querySelector('#right-sidebar').classList.toggle('open');
-  // }
+  setImageUrl(): void{
+    this.adminService.getImageWithoutId().subscribe(result=>{
+      if(result.result != null)
+        this.imageUrl = this.adminService.getApiUrl() + result.result.path;
+      else{
+        this.imageUrl = "assets/images/profile.png";
+      }
+    },error=>{
+      alert("error loading image");
+    });
+  }  
 
 }

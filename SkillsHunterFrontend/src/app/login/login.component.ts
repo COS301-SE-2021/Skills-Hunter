@@ -39,15 +39,7 @@ export class LoginComponent implements OnInit {
       } 
 
       this.loginService.login(profile).subscribe(data=>{
-        if(this.rememberMe === false){
-          sessionStorage.setItem('role', data.body.role);
-          sessionStorage.setItem('token', data.body.token);
-          sessionStorage.setItem('name', data.body.name);
-          sessionStorage.setItem('surname', data.body.surname);
-          sessionStorage.setItem('email', data.body.email);
-          sessionStorage.setItem('phone', data.body.phone);
-          sessionStorage.setItem('openForWork', data.body.openForWork);
-        }else{
+      
           localStorage.setItem('role', data.body.role);
           localStorage.setItem('token', data.body.token);
           localStorage.setItem('name', data.body.name);
@@ -55,9 +47,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('email', data.body.email);
           localStorage.setItem('phone', data.body.phone);
           localStorage.setItem('openForWork', data.body.openForWork);
-        }
+          localStorage.setItem('userID',data.body.userId);
+     
 
-        localStorage.setItem('rememberMe', this.rememberMe.toString());
+        localStorage.setItem('rememberMe', 'true');
 
         document.dispatchEvent(roleSet);
 

@@ -27,6 +27,7 @@
     "compass-mixins": "^0.12.10",
     "jquery": "^3.5.1",
     "ng-click-outside": "^9.0.0",
+    "ng-connection-service": "^1.0.4",
     "ng-multiselect-dropdown": "^0.3.4",
     "ng2-charts": "^2.4.3",
     "ngx-select-dropdown": "^2.1.0",

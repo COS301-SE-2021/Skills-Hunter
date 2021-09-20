@@ -1,6 +1,7 @@
 import { InviteCandidateComponent } from './invite-candidate/invite-candidate.component';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import {ViewProfileComponent} from './../../view-profile/view-profile.component';
 
 @Component({
   selector: 'app-candidate-card',
@@ -26,5 +27,15 @@ export class CandidateCardComponent implements OnInit {
     configDialog.data = _data;
 
     this.dialog.open(InviteCandidateComponent, configDialog);
+  }
+  //opens profile dialog
+  profile(clickedId){
+    console.log("in profile");
+
+    const dialogRef = this.dialog.open(ViewProfileComponent, {
+      width: '80%',
+      height: '80%',
+      data: { id: clickedId },
+    });
   }
 }

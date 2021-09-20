@@ -6,6 +6,9 @@ using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.User.Response;
+using SkillsHunterAPI.Models.Project.Response;
+using SkillsHunterAPI.Models.Project;
+using SkillsHunterAPI.Models.User.Entity;
 
 namespace SkillsHunterAPI.Services
 {
@@ -33,13 +36,15 @@ namespace SkillsHunterAPI.Services
 
         Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId(Guid id);
 
-        Task AddWorkExperience(WorkExperience request);
+        Task AddExternalWorkExperience(ExternalWorkExperience request);
         
-        Task UpdateWorkExperience(Guid workExperienceID, WorkExperience request);
+        Task UpdateExternalWorkExperience(ExternalWorkExperience request);
 
-        Task DeleteWorkExperience(Guid id);
+        Task UpdateInternalWorkExperience(InternalWorkExperience request);
+
+        Task DeleteExternalWorkExperience(Guid id);
         
-        Task<WorkExperience> GetWorkExperience(Guid id);
+        Task<IEnumerable<ExternalWorkExperience>> GetExternalWorkExperiences(Guid userid);
 
         Task<Image> uploadProfileImage(Image request);
 
@@ -54,5 +59,13 @@ namespace SkillsHunterAPI.Services
         Task<Skill> AddNewSkill(AddNewSkillRequest request);
 
         Task CreateUserSkillCollection(CreateSkillCollectionRequest request, Guid currentUser);
+
+        Task<IEnumerable<Application>> GetApplications(Guid applicantId);
+
+        Task<IEnumerable<Invitation>> GetInvitations(Guid inviteeId);
+
+        Task AddInternalWorkExperience(InternalWorkExperience request);
+
+        Task<IEnumerable<InternalWorkExperience>> GetInternalWorkExperiences(Guid userid);
     }
 }

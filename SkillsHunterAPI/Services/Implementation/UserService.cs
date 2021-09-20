@@ -16,6 +16,7 @@ using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Skill.Entity;
 using SkillsHunterAPI.Models.User.Entity;
 using SkillsHunterAPI.Models.User.Response;
+using SkillsHunterAPI.Models.Project;
 
 namespace SkillsHunterAPI.Services
 {
@@ -164,6 +165,8 @@ namespace SkillsHunterAPI.Services
                 user.Email = request.Email;
                 user.Phone = request.PhoneNumber;
                 user.OpenForWork = request.OpenForWork;
+                user.LinkedIn = request.LinkedIn;
+                user.Github = request.Github;
 
                 await _context.SaveChangesAsync();
 
@@ -240,37 +243,120 @@ namespace SkillsHunterAPI.Services
 
         // Crud operations on the Work Experience Model
 
-        public async Task AddWorkExperience(WorkExperience request)
+        public async Task AddExternalWorkExperience(ExternalWorkExperience request)
         {
 
-            request.WorkExperienceId = new Guid();
+            request.ExternalWorkExperienceId = new Guid();
             
-            _context.WorkExperiences.Add(request);
+            _context.ExternalWorkExperiences.Add(request);
             await _context.SaveChangesAsync();
         }
-        
-        public async Task UpdateWorkExperience(Guid workExperienceID, WorkExperience request)
+
+
+        public async Task AddInternalWorkExperience(InternalWorkExperience request)
         {
 
-            WorkExperience result = await _context.WorkExperiences.FindAsync(request.WorkExperienceId);
+            InternalWorkExperience workExperience = new InternalWorkExperience();
+            
+            workExperience.InternalWorkExperienceId = new Guid();
+            workExperience.UserId = request.UserId;
+            workExperience.ProjectId = request.ProjectId;
+            workExperience.Role = request.Role;
+            workExperience.StartDate = DateTime.Now;
+            workExperience.CurrentlyWorking = false;
+            workExperience.EndDate = request.EndDate;
 
-            result.ProjectId = request.ProjectId;
-            result.startDate = request.startDate;
-            result.endDate = request.endDate;
-            result.performanceRating = request.performanceRating;
+            _context.InternalWorkExperiences.Add(workExperience);
+            await _context.SaveChangesAsync();
+           
+            
+            
+        }
 
+        public async Task UpdateExternalWorkExperience(ExternalWorkExperience request)
+        {
+
+            ExternalWorkExperience result = await _context.ExternalWorkExperiences.Where( w=> w.ExternalWorkExperienceId == request.ExternalWorkExperienceId).FirstOrDefaultAsync();
+
+            if(result == null)
+            {
+                await AddExternalWorkExperience(request);
+            }
+            else
+            {
+                result.Description = request.Description;
+                result.RealEnd = request.RealEnd;
+                request.Role = request.Role;
+                result.RealStart = request.RealStart;
+                result.Organisation = request.Organisation;
+                _context.ExternalWorkExperiences.Update(result);
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
+
+        public async Task UpdateInternalWorkExperience(InternalWorkExperience request)
+        {
+
+            InternalWorkExperience result = await _context.InternalWorkExperiences.Where(s => s.InternalWorkExperienceId == request.InternalWorkExperienceId).FirstOrDefaultAsync();
+
+            if (result == null)
+            {
+                await AddInternalWorkExperience(request);
+            }
+            else
+            {
+                result.UserId = request.UserId;
+                result.ProjectId = request.ProjectId;
+                request.Role = request.Role;
+                result.StartDate = request.StartDate;
+                result.EndDate = request.EndDate;
+                result.CurrentlyWorking = result.CurrentlyWorking;
+                _context.InternalWorkExperiences.Update(result);
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
+
+
+        public async Task DeleteExternalWorkExperience(Guid id){
+            var result = await _context.ExternalWorkExperiences.FindAsync(id);
+
+            _context.ExternalWorkExperiences.Remove(result);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteWorkExperience(Guid id){
-            var result = await _context.WorkExperiences.FindAsync(id);
 
-            _context.WorkExperiences.Remove(result);
+        public async Task DeleteInternalWorkExperience(Guid id)
+        {
+            
+            //Check db if the work experience exist
+            var result = await _context.InternalWorkExperiences.FindAsync(id);
+
+            //If work experience found
+            if(result == null)
+            {
+                return;
+            }
+
+            //Delete the work experience from db
+            _context.InternalWorkExperiences.Remove(result);
+
+            //Save changes
             await _context.SaveChangesAsync();
         }
-        
-        public async Task<WorkExperience> GetWorkExperience(Guid id){
-            return await _context.WorkExperiences.FindAsync(id);
+
+
+        public async Task<IEnumerable<ExternalWorkExperience>> GetExternalWorkExperiences(Guid userid)
+        {
+            return await _context.ExternalWorkExperiences.Where(w => w.UserId == userid).ToListAsync();
+        }
+
+        public async Task<IEnumerable<InternalWorkExperience>> GetInternalWorkExperiences(Guid userid)
+        {
+            return await _context.InternalWorkExperiences.Where(s => s.UserId == userid).ToListAsync();
         }
 
         public async Task<Image> uploadProfileImage(Image request){
@@ -313,8 +399,6 @@ namespace SkillsHunterAPI.Services
 
         public async Task<UserSkill> AddUserSkill(AddExistingSkillRequest request, Guid currentUser)
         {
-
-
 
             UserSkill userSkillRequest = new UserSkill();
             userSkillRequest.SkillId = request.SkillId;
@@ -423,6 +507,18 @@ namespace SkillsHunterAPI.Services
             }
 
             return response;
+        }
+
+        public async Task<IEnumerable<Application>> GetApplications(Guid applicantId)
+        {
+            return await _context.Applications.Where(a => a.ApplicantId == applicantId).OrderByDescending(a => a.Date).ToListAsync();
+        }
+
+
+
+        public async Task<IEnumerable<Invitation>> GetInvitations(Guid inviteeId)
+        {
+            return await _context.Invitations.Where(a => a.InviteeId == inviteeId).OrderByDescending(a => a.InviteDate).ToListAsync();
         }
 
     }

@@ -53,7 +53,7 @@ export class InviteCandidateComponent implements OnInit {
           duration: 3000,
         });
       else {
-        this._snackBar.open('Project Application Failed.', '', {
+        this._snackBar.open('Project Application Failed. Already invited', '', {
           duration: 3000,
         });
       }

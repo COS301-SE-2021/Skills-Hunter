@@ -77,14 +77,14 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TodoComponent } from './todo/todo.component';
 import { WorkExpComponent } from './profile/work-exp/work-exp.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ConnectionServiceModule } from 'ng-connection-service';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -144,7 +144,9 @@ import {
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
+    TodoComponent,
     WorkExpComponent,
+    ViewProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -171,8 +173,9 @@ import {
     MatChipsModule,
     SelectDropDownModule,
     NgbModule,
-    MatSnackBarModule,
+    MatSnackBarModule ,
     MatNativeDateModule,
+    ConnectionServiceModule
   ],
   providers: [
     MatNativeDateModule,

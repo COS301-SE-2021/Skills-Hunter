@@ -13,9 +13,18 @@ namespace SkillsHunterAPI.Models.User
         public string Email { get; set; }
         public string Password { get; set; }
         public string Phone { get; set; }
+        public string Github { get; set; }
+        public string LinkedIn { get; set; }
         public DateTime StartDate { get; set; }
         public Boolean OpenForWork { get; set; }
         public UserType UserType { get; set; }
         public List<GetUserSkillResponse> UserSkills { get; set; }
+        public List<ExternalWorkExperience> ExternalWorkExperiences { get; set; }
+
+        public GetUserResponse()
+        {
+            UserSkills = new List<GetUserSkillResponse>();
+            ExternalWorkExperiences = new List<ExternalWorkExperience>();
+        }
     }
 }

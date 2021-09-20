@@ -12,6 +12,7 @@ namespace SkillsHunterAPIUnitTest.Tests
         public ISkillService skillService;
         public ProjectController projectController;
         public UserController userController;
+        public NotificationController notificationController;
 
         public SkillsHunterAPIUnitTestBase()
         {
@@ -19,7 +20,8 @@ namespace SkillsHunterAPIUnitTest.Tests
             projectService = A.Fake<IProjectService>();
             skillService = A.Fake<ISkillService>();
             userController = A.Fake<UserController>();
-            projectController = new ProjectController(projectService, skillService, userController);
+            notificationController = A.Fake<NotificationController>();
+            projectController = new ProjectController(projectService, skillService, userController,notificationController);
         }
     }
 }
