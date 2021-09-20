@@ -16,6 +16,7 @@ namespace SkillsHunterAPI.Models.Project
         public Guid ApplicationId { get; set; }
         public Guid ApplicantId { get; set; }
         public Guid ProjectId { get; set; }
+        public DateTime Date { get; set; }
         public ApplicationStatus Status { get; set; }
     }
 }
