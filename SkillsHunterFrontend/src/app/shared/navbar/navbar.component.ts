@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AdminService } from 'src/app/services/admin.service';
 import { ConnectionService } from 'ng-connection-service';
+import { notification } from 'src/app/api-message-class/message';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -18,8 +20,9 @@ export class NavbarComponent implements OnInit {
   public imageUrl: string;
   public isConnected = true;  
   public noInternetConnection: boolean = false; 
+  public messages:notification[] = [] 
 
-  constructor(config: NgbDropdownConfig,private adminService:AdminService,private connectionService: ConnectionService) {
+  constructor(private _router: Router,config: NgbDropdownConfig,private adminService:AdminService,private connectionService: ConnectionService) {
     config.placement = 'bottom-right';
 
     this.connectionService.monitor().subscribe(isConnected => {  
@@ -33,6 +36,10 @@ export class NavbarComponent implements OnInit {
     }) 
   }
 
+  allMessages(): void{
+    this._router.navigate([`notifications`]);
+  }
+
   ngOnInit() {
       if(localStorage.getItem("rememberMe") !== null){
       if(localStorage.getItem("rememberMe") == "true"){
@@ -44,6 +51,12 @@ export class NavbarComponent implements OnInit {
           this.firstname = sessionStorage.getItem("name");
           this.lastname = sessionStorage.getItem("surname");
       }
+
+      this.adminService.getNotifications().subscribe(result=>{
+        this.messages = result;
+      },error=>{
+
+      })
     }
 
     document.addEventListener("roleSet", () => {

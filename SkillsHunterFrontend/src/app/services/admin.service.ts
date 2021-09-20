@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getAllCollectionModel, createCollectionRequest, getUserSkillResponse, getSkillCollectionResponse,getProjectsResponse, userSkillModel, getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest, updateSkillRequest, skillModel, getImageResponse, categoryModel, createSkillResponse, getCategoryByIdRequest, createSkillRequest } from '../api-message-class/message';
+import { notification, getAllCollectionModel, createCollectionRequest, getUserSkillResponse, getSkillCollectionResponse,getProjectsResponse, userSkillModel, getUserResponse, getSkillsResponse, removeSkillResponse, removeSkillRequest, getCategoriesResponse, removeCategoryResponse, removeCategoryRequest, addCategoryResponse, addCategoryRequest, updateSkillRequest, skillModel, getImageResponse, categoryModel, createSkillResponse, getCategoryByIdRequest, createSkillRequest } from '../api-message-class/message';
 import { Observable, ObservableLike, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
@@ -20,6 +20,10 @@ export class AdminService {
 
   getApiUrl(): string{
     return this.apiUrl;
+  }
+
+  getNotifications(): Observable<notification[]>{
+    return this.http.get<notification[]>(this.apiUrl + "api/Notification/getNotifications",{headers : this.header});
   }
 
   getUser(id: string): Observable<getUserResponse>{

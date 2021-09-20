@@ -61,10 +61,10 @@ const routes: Routes = [
     path: 'match-candidate',
     component: MatchCandidateComponent,
   },
-  {
-    path: 'match-candidate:/project',
-    component: MatchCandidateComponent,
-  },
+  // {
+  //   path: 'match-candidate:/projectId',
+  //   component: MatchCandidateComponent,
+  // },
   {
     path: 'update-project',
     component: UpdateProjectComponent,
