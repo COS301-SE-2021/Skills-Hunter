@@ -720,6 +720,12 @@ namespace SkillsHunterAPI.Services
             return tokens;
         }
 
+        private async Task<MatchCandidateResponse> ProcessInternalWorkExperience(MatchCandidateResponse candidate, List<Skill> projectSkills)
+        {
+
+            return candidate;
+        }
+
         private List<MatchCandidateResponse> sortCandidates(List<MatchCandidateResponse> candidates)
         {
             //List<MatchCandidateResponse> sortedCandidates = new List<MatchCandidateResponse>();
