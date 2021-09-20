@@ -26,11 +26,8 @@ export class MatchCandidateComponent implements OnInit {
       // this.candidatesList = theCandidate;
       this.projectId = params.projectId;
 
-      console.log('PROJECT ID');
-      console.log(this.projectId);
-
       this.projectCrud
-        .obtainMatchingCandidates(params.projectId)
+        .obtainMatchingCandidates(this.projectId)
         .subscribe((data) => {
           console.log('ID DATA');
           console.log(data);
