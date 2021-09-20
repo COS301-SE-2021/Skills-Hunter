@@ -29,7 +29,7 @@
           "build/netstandard1.0/coverlet.collector.targets": {}
         }
       },
-      "FakeItEasy/7.1.0": {
+      "FakeItEasy/7.2.0": {
         "type": "package",
         "dependencies": {
           "Castle.Core": "4.3.1"
@@ -3839,14 +3839,14 @@
         "coverlet.collector.nuspec"
       ]
     },
-    "FakeItEasy/7.1.0": {
-      "sha512": "xn2KC8v1mNpYtN0qiEIuvWnFY7MPzx3INf//+BvJ+banzVSpyGdc58cuQMLOQjNlALHNDTcnuOuJrGtOcN1Gwg==",
+    "FakeItEasy/7.2.0": {
+      "sha512": "lsDeg7jwLiTznWh8wBJUW9W2lULDiv2FJhv/F99BJCORX+nC0yRJ63t313w3sSOVw2dnAU8tDT6IxknFln0kFQ==",
       "type": "package",
-      "path": "fakeiteasy/7.1.0",
+      "path": "fakeiteasy/7.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "fakeiteasy.7.1.0.nupkg.sha512",
+        "fakeiteasy.7.2.0.nupkg.sha512",
         "fakeiteasy.nuspec",
         "images/FakeItEasy.png",
         "lib/net45/FakeItEasy.dll",
@@ -11151,7 +11151,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "FakeItEasy >= 7.1.0",
+      "FakeItEasy >= 7.2.0",
       "Microsoft.AspNetCore >= 2.2.0",
       "Microsoft.NET.Test.Sdk >= 16.11.0",
       "SkillsHunterAPI >= 1.0.0",
@@ -11161,32 +11161,34 @@
     ]
   },
   "packageFolders": {
-    "/Users/mxolisi/.nuget/packages/": {}
+    "C:\\Users\\SbonisoMasilela\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj",
+      "projectUniqueName": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\SkillsHunterUserUnitTest.csproj",
       "projectName": "SkillsHunterUserUnitTest",
-      "projectPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/SkillsHunterUserUnitTest.csproj",
-      "packagesPath": "/Users/mxolisi/.nuget/packages/",
-      "outputPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterUserUnitTest/obj/",
+      "projectPath": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\SkillsHunterUserUnitTest.csproj",
+      "packagesPath": "C:\\Users\\SbonisoMasilela\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterUserUnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/mxolisi/.config/NuGet/NuGet.Config"
+        "C:\\Users\\SbonisoMasilela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj": {
-              "projectPath": "/Users/mxolisi/Documents/GitHub/Skills-Hunter/SkillsHunterAPI/SkillsHunterAPI.csproj"
+            "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj": {
+              "projectPath": "C:\\Users\\SbonisoMasilela\\Desktop\\Capstone\\Skills-Hunter\\SkillsHunterAPI\\SkillsHunterAPI.csproj"
             }
           }
         }
@@ -11203,7 +11205,7 @@
         "dependencies": {
           "FakeItEasy": {
             "target": "Package",
-            "version": "[7.1.0, )"
+            "version": "[7.2.0, )"
           },
           "Microsoft.AspNetCore": {
             "target": "Package",
@@ -11245,19 +11247,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Detected package downgrade: FakeItEasy from 7.2.0 to 7.1.0. Reference the package directly from the project to select a different version. \n SkillsHunterUserUnitTest -> SkillsHunterAPI -> FakeItEasy (>= 7.2.0) \n SkillsHunterUserUnitTest -> FakeItEasy (>= 7.1.0)",
-      "libraryId": "FakeItEasy",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    }
-  ]
+  }
 }

@@ -8,6 +8,7 @@ using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.User.Response;
 using SkillsHunterAPI.Models.Project.Response;
 using SkillsHunterAPI.Models.Project;
+using SkillsHunterAPI.Models.User.Entity;
 
 namespace SkillsHunterAPI.Services
 {
@@ -39,6 +40,8 @@ namespace SkillsHunterAPI.Services
         
         Task UpdateExternalWorkExperience(ExternalWorkExperience request);
 
+        Task UpdateInternalWorkExperience(InternalWorkExperience request);
+
         Task DeleteExternalWorkExperience(Guid id);
         
         Task<IEnumerable<ExternalWorkExperience>> GetExternalWorkExperiences(Guid userid);
@@ -58,5 +61,11 @@ namespace SkillsHunterAPI.Services
         Task CreateUserSkillCollection(CreateSkillCollectionRequest request, Guid currentUser);
 
         Task<IEnumerable<Application>> GetApplications(Guid applicantId);
+
+        Task<IEnumerable<Invitation>> GetInvitations(Guid inviteeId);
+
+        Task AddInternalWorkExperience(InternalWorkExperience request);
+
+        Task<IEnumerable<InternalWorkExperience>> GetInternalWorkExperiences(Guid userid);
     }
 }
