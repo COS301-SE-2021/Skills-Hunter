@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ProjectCRUDService } from '../services/project-crud.service';
 
 // export interface Invitation  {
 //   invitationId: string,
@@ -17,9 +18,23 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./applications.component.scss'],
 })
 export class ApplicationsComponent implements OnInit {
-  constructor() {}
+  constructor(private projectCrud: ProjectCRUDService) {}
 
-  ngOnInit(): void {}
+  selected_project = 'a62d3f98-d227-452c-0b46-08d97c0cc7a2';
+
+  ngOnInit(): void {
+    this.projectCrud
+      .getApplicationsForProject(this.selected_project)
+      .subscribe((data) => {
+        console.log(data);
+      });
+
+    this.projectCrud
+      .getInvitationsForProject(this.selected_project)
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 
   displayedColumns: string[] = ['invitation_date', 'invitation_message'];
   dataSource = new MatTableDataSource(invitations);
