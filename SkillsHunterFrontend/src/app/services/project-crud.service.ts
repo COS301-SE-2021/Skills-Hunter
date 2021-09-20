@@ -56,22 +56,6 @@ export class ProjectCRUDService {
     );
   }
 
-  getInvitationsForProject(projectID: any): Observable<any[]> {
-    return this.httpclient.get<any[]>(
-      'http://localhost:5000/api/Project/getInvitationsByProjectId?projectId=' +
-        projectID,
-      this.httpOptions
-    );
-  }
-
-  getApplicationsForProject(projectID: any): Observable<any[]> {
-    return this.httpclient.get<any[]>(
-      'http://localhost:5000/api/Project/getApplicationsByProjectId?projectId=' +
-        projectID,
-      this.httpOptions
-    );
-  }
-
   getAllUserInvitations(): Observable<any[]> {
     return this.httpclient.get<any[]>(
       'http://localhost:5000/api/User/getInvitations',
@@ -112,6 +96,36 @@ export class ProjectCRUDService {
   obtainMatchingCandidates(formData: any): Observable<any[]> {
     return this.httpclient.get<any[]>(
       'localhost:5000/api/Project/MatchCandidates?projectId=' + formData,
+      this.httpOptions
+    );
+  }
+
+  getInvitationsForProject(projectID: any): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/Project/getInvitationsByProjectId?projectId=' +
+        projectID,
+      this.httpOptions
+    );
+  }
+
+  getApplicationsForProject(projectID: any): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/Project/getApplicationsByProjectId?projectId=' +
+        projectID,
+      this.httpOptions
+    );
+  }
+
+  getUserApplications(): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api/User/getApplications',
+      this.httpOptions
+    );
+  }
+
+  getUserInvitations(): Observable<any[]> {
+    return this.httpclient.get<any[]>(
+      'http://localhost:5000/api​/User​/getInvitations',
       this.httpOptions
     );
   }

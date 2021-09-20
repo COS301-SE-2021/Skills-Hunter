@@ -20,6 +20,12 @@ import { ProjectCRUDService } from '../services/project-crud.service';
 export class ApplicationsComponent implements OnInit {
   constructor(private projectCrud: ProjectCRUDService) {}
 
+  arrUserInvitationsReceived = [];
+  arrUserApplicationsSent = [];
+
+  arrProjectApplicationsReceived = [];
+  arrProjectInvitationsSent = [];
+
   selected_project = 'a62d3f98-d227-452c-0b46-08d97c0cc7a2';
 
   ngOnInit(): void {
@@ -27,13 +33,25 @@ export class ApplicationsComponent implements OnInit {
       .getApplicationsForProject(this.selected_project)
       .subscribe((data) => {
         console.log(data);
+        this.arrProjectApplicationsReceived = data;
       });
 
     this.projectCrud
       .getInvitationsForProject(this.selected_project)
       .subscribe((data) => {
         console.log(data);
+        this.arrProjectInvitationsSent = data;
       });
+
+    this.projectCrud.getUserApplications().subscribe((data) => {
+      console.log(data);
+      this.arrUserApplicationsSent = data;
+    });
+
+    this.projectCrud.getUserInvitations().subscribe((data) => {
+      console.log(data);
+      this.arrUserInvitationsReceived = data;
+    });
   }
 
   displayedColumns: string[] = ['invitation_date', 'invitation_message'];

@@ -28,16 +28,34 @@
     >
       Create Project
     </button>
+
+    <button
+      mat-stroked-button
+      id="userbtn"
+      color="accent"
+      (click)="showUserInvitationsAndApplications()"
+    >
+      User I/A
+    </button>
+
+    <button
+      mat-stroked-button
+      id="recruiterbtn"
+      color="accent"
+      (click)="showRecruiterInvitationsAndApplications()"
+    >
+      Recruiter I/A
+    </button>
+
     <!-- </div> -->
   </div>
 
-    <div class="row mt-5">
-      <div class="col-md-3 grid-margin stretch-card" *ngFor="let project of _projects">
-      <app-project-card
-        
-        [card_project]="project"
-        
-      ></app-project-card>
-      </div>
+  <div class="row mt-5">
+    <div
+      class="col-md-3 grid-margin stretch-card"
+      *ngFor="let project of _projects"
+    >
+      <app-project-card [card_project]="project"></app-project-card>
     </div>
+  </div>
 </div>

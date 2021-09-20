@@ -84,6 +84,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ConnectionServiceModule } from 'ng-connection-service';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { ApplicationsAndInvitationsCandidateComponent } from './applications-and-invitations-candidate/applications-and-invitations-candidate.component';
+import { ApplicationsAndInvitationsRecruiterComponent } from './applications-and-invitations-recruiter/applications-and-invitations-recruiter.component';
 
 
 @NgModule({
@@ -146,7 +148,9 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
     FooterComponent,
     TodoComponent,
     WorkExpComponent,
-    ViewProfileComponent
+    ViewProfileComponent,
+    ApplicationsAndInvitationsCandidateComponent,
+    ApplicationsAndInvitationsRecruiterComponent
   ],
   imports: [
     BrowserModule,

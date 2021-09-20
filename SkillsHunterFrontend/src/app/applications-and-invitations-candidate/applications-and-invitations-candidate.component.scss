@@ -1,0 +1,53 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.filterDIV {
+  padding-top: 50px;
+  display: inline-block;
+  padding-right: 20px;
+}
+
+.container {
+  margin: auto;
+  margin-top: 70px;
+  width: 85%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #e0e0e0;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.example-container {
+  min-height: 400px;
+  overflow: auto;
+}
+
+.mat-row .mat-cell {
+  // border-bottom: 1px solid transparent;
+  // border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: purple;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}

@@ -73,4 +73,12 @@ export class HomeComponent implements OnInit {
   create() {
     this._router.navigate([`createproject`]);
   }
+
+  showUserInvitationsAndApplications() {
+    this._router.navigate([`applications-and-invitations-candidate`]);
+  }
+
+  showRecruiterInvitationsAndApplications() {
+    this._router.navigate([`applications-and-invitations-recruiter`]);
+  }
 }

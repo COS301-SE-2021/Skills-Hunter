@@ -27,6 +27,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { ApplicationsComponent } from './applications/applications.component';
 import { WorkExpComponent } from './profile/work-exp/work-exp.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { ApplicationsAndInvitationsCandidateComponent } from './applications-and-invitations-candidate/applications-and-invitations-candidate.component';
+import { ApplicationsAndInvitationsRecruiterComponent } from './applications-and-invitations-recruiter/applications-and-invitations-recruiter.component';
 
 const routes: Routes = [
   {
@@ -61,10 +63,10 @@ const routes: Routes = [
     path: 'match-candidate',
     component: MatchCandidateComponent,
   },
-  // {
-  //   path: 'match-candidate:/projectId',
-  //   component: MatchCandidateComponent,
-  // },
+  {
+    path: 'match-candidate:/projectId',
+    component: MatchCandidateComponent,
+  },
   {
     path: 'update-project',
     component: UpdateProjectComponent,
@@ -154,10 +156,6 @@ const routes: Routes = [
   //   component: NotificationsComponent,
   // },
   {
-    path: '',
-    component: ApplicationsComponent,
-  },
-  {
     path: 'skill-collection-control',
     component: SkillCollectionControlComponent,
   },
@@ -168,6 +166,14 @@ const routes: Routes = [
   {
     path: 'viewprofile',
     component: ViewProfileComponent,
+  },
+  {
+    path: 'applications-and-invitations-candidate',
+    component: ApplicationsAndInvitationsCandidateComponent,
+  },
+  {
+    path: 'applications-and-invitations-recruiter',
+    component: ApplicationsAndInvitationsRecruiterComponent,
   },
 ];
 
