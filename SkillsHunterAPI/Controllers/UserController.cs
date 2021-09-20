@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Http;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.User.Request;
 using SkillsHunterAPI.Models.User.Response;
+using SkillsHunterAPI.Models.Project;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -156,6 +157,27 @@ namespace SkillsHunterAPI.Controllers
                     await _userService.UpdateUserSkill(UserSkillToUpdate);
                 }
             }
+
+            //Updating the External work experience
+            if(request.ExternalWorkExperiences != null)
+            {
+                //Updating existing work experience
+                foreach(ExternalWorkExperience externalWorkExperience in request.ExternalWorkExperiences)
+                {
+                    await _userService.UpdateExternalWorkExperience(externalWorkExperience);
+                }
+
+                //Removing work experience that needs to be removed
+                List<ExternalWorkExperience> experiencesFromDB = (List<ExternalWorkExperience>)await _userService.GetExternalWorkExperiences(LoggedInUser);
+
+                foreach (ExternalWorkExperience externalWorkExperience in request.ExternalWorkExperiences)
+                {
+                    if (!experiencesFromDB.Contains(externalWorkExperience))
+                    {
+                        await _userService.DeleteExternalWorkExperience(externalWorkExperience.ExternalWorkExperienceId);
+                    }
+                }
+            }
             
 
             UpdateUserResponse response = new UpdateUserResponse();
@@ -220,6 +242,7 @@ namespace SkillsHunterAPI.Controllers
             GetUserSkillsRequest skillsRequest = new GetUserSkillsRequest();
             skillsRequest.UserId = request;
             response.UserSkills = (List<GetUserSkillResponse>)await _userService.GetUserSkillsByUserId(user.UserId);
+            response.ExternalWorkExperiences = (List<ExternalWorkExperience>)await _userService.GetExternalWorkExperiences(user.UserId);
 
             return response;
         }
@@ -408,6 +431,21 @@ namespace SkillsHunterAPI.Controllers
         public async Task<IEnumerable<GetUserSkillResponse>> GetUserSkillsByUserId([FromQuery] Guid  userId)
         {
             return await _userService.GetUserSkillsByUserId(userId);
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/getApplications")]
+        public async Task<IEnumerable<Application>> GetApplications()
+        {
+            return await _userService.GetApplications(GetCurrentUserId());
+        }
+
+
+        [HttpGet]
+        [Route("api/[controller]/getInvitations")]
+        public async Task<IEnumerable<Invitation>> GetInvitations()
+        {
+            return await _userService.GetInvitations(GetCurrentUserId());
         }
 
     }

@@ -46,7 +46,7 @@ namespace SkillsHunterAPI.Services
 
         Task<ProjectSkillCollection> GetCollection(Guid CollectionId);
 
-        Task<ProjectSkillCollection> UpdateCollection(ProjectSkillCollection request);
+        Task<ProjectSkillCollection> UpdateProjectSkillCollection(CreateSkillCollectionRequest request);
 
         Task RemoveCollection(Guid CollectionId);
 
@@ -55,5 +55,15 @@ namespace SkillsHunterAPI.Services
         Task<List<ProjectSkillCollection>> GetCollectionsByProject(Guid ProjectId);
 
         Task<Skill> AddNewSkill(AddSkillRequest addSkillRequest);
+
+
+        //Matching algorithm
+        Task<List<MatchCandidateResponse>> MatchCandidates(Guid projectId, string userId = null);
+
+        Task<List<GetApplicationsResponse>> GetApplicationsByProjectId(Guid projectId);
+
+        Task<IEnumerable<Invitation>> GetInvitationsByProjectId(Guid projectId);
+
+
     }
 }
