@@ -31,43 +31,12 @@
             </div>
 	    </div>        
 
-        <div class="table-responsive mt-5">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>
-                  Name
-                </th>
-                <th>
-                  Description
-                </th>
-                <th>
-                  Owner
-                </th>
-                <th>
-                  Open
-                </th>
-               
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor = "let project of show">
-                <td>
-                  {{project.name}}
-                </td>
-                <td>
-                  {{project.description}}	
-                </td>
-                <td>
-                  {{project.owner}}
-                </td>
-                <td>
-                  {{project.openForApplication == true ? 'Yes' : 'No'}}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="row mt-5">
+        <app-project *ngFor = "let project of show" class="col-lg-3 grid-margin stretch-card p-1  skill-card" [project] = "project">
+          
+        </app-project>
+      </div>
+
       </div>
     </div>
   </div>	

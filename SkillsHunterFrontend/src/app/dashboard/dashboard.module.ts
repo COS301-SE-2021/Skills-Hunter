@@ -15,6 +15,7 @@ import { SkillCollectionComponent } from './skill-collection/skill-collection.co
 import { MatIconModule } from '@angular/material/icon';
 import { GeneralComponent } from './general/general.component';
 import { UserComponent } from './users/user/user.component';
+import { ProjectComponent } from './projects/project/project.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UserComponent } from './users/user/user.component';
     CategoryComponent,
     SkillCollectionComponent,
     GeneralComponent,
-    UserComponent
+    UserComponent,
+    ProjectComponent
   ],
   imports: [
     CommonModule,

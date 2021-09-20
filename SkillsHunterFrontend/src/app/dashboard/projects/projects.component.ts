@@ -25,13 +25,6 @@ export class ProjectsComponent implements OnInit {
         this.show = result;
       },
       (error) => {
-        this.notification =
-          'An error has occurred while retrieving all users from server';
-        this.notificationType = 3;
-
-        setTimeout(function () {
-          this.notificationType = 0;
-        }, 3000);
       }
     );
   }
