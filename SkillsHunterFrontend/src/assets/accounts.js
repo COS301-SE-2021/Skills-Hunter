@@ -1,4 +1,5 @@
 const http = require('http')
+const fs = require('fs')
 
 var accounts = [{
 	                name: "Joseph",
@@ -195,6 +196,10 @@ for(let count = 0; count < accounts.length; count++){
     create(accounts[count]);
 }
 
+for(let count = 0; count < accounts.length; count++){
+    authenticate(accounts[count]);
+}
+
 function create(user){
     const data = JSON.stringify(user)
 
@@ -227,7 +232,9 @@ function create(user){
 
 
 
-function authenticate(user){
+function authenticate(user,userNo){
+    var userObject;
+
     const data = JSON.stringify({
         email: user.email,
         password: user.password    
@@ -248,7 +255,9 @@ function authenticate(user){
       console.log(`statusCode: ${res.statusCode}`)
 
       res.on('data', d => {
-        process.stdout.write(d)
+        //process.stdout.write(d)
+        userObject = JSON.parse(d)
+        uploadImage(userObject.token,userObject.name)
       })
     })
 
@@ -259,4 +268,38 @@ function authenticate(user){
     req.write(data)
     req.end()  
 }
+
+function uploadImage(token,name){
+    var Image = {
+        'file': fs.createReadStream('images/faces/'+ name + '.jpg')    
+    };
+
+    const options = {
+      hostname: 'localhost',
+      port: 5000,
+      path: '/api/User/uploadProfileImage',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization' : 'Bearer ' + token
+      },
+      formData: Image
+    }
+
+    const req = http.request(options, res => {
+      console.log(`statusCode: ${res.statusCode}`)
+
+      res.on('data', d => {
+        process.stdout.write(d)
+      })
+    })
+
+    req.on('error', error => {
+      console.error(error)
+    })
+
+    req.write(JSON.stringify(Image))
+    req.end()
+}
+
 

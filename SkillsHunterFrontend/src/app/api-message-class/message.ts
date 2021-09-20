@@ -182,3 +182,19 @@ export interface getImageResponse
 export interface createSkillResponse{
     added: skillModel;
 }
+
+export interface notification{
+    notificationId: string;
+
+    recepientId: string;
+
+    initiatorId: string;
+
+    subject: string;
+        
+    message: string;
+
+    isRead: boolean;
+
+    dateSent: string;  
+}
