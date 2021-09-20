@@ -17,6 +17,7 @@ export class ProjectCRUDService {
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
+      'Access-Control-Allow-Origin': '*',
     }),
   };
 
