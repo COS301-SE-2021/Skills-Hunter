@@ -15,6 +15,7 @@ using SkillsHunterAPI.Models.Notification;
 using SkillsHunterAPI.Services.Interface;
 using SkillsHunterAPI.Models.Project.Entity;
 using Microsoft.ML;
+using SkillsHunterAPI.Models.User.Entity;
 
 namespace SkillsHunterAPI.Services
 {
@@ -722,7 +723,7 @@ namespace SkillsHunterAPI.Services
 
         private async Task<MatchCandidateResponse> ProcessInternalWorkExperience(MatchCandidateResponse candidate, List<Skill> projectSkills)
         {
-
+            //List<InternalWorkExperience> internalWorkExperiences = _context.InternalWorkExperiences.Where(i => i.UserId == )
             return candidate;
         }
 
