@@ -153,26 +153,12 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getSkills")]
         public async Task<IActionResult> GetSkills()
         {
-            var query = GetSkillsQuery();
-            var result = _mediator.Send(query);
+            var query = new GetSkillsQuery();
+
+            var result =await _mediator.Send(query);
+
             return Ok(result);
             
-            /*try
-            {
-                // Get categories code here
-                List<Skill> result = (List<Skill>)await _adminService.GetSkills();
-
-                return Ok(new GetSkillsResponse()
-                {
-                    skills = result.ToArray()
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-
-                return StatusCode(500, $"Internal server error: {error}");
-            }*/
         }
 
         [Authorize(Roles = "Admin")]
@@ -243,26 +229,12 @@ namespace SkillsHunterAPI.Controllers
 
 
             var query = new GetCategoriesQuery();
+
             var result = await _mediator.Send(query);
+
             return Ok(result);
 
 
-            /*try
-            {
-                // Get categories code here
-                List<Category> result = (List<Category>)await _adminService.GetCategories();
-
-                return Ok(new GetCategoriesResponse()
-                {
-                    category = result.ToArray()
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-
-                return StatusCode(500, $"Internal server error: {error}");
-            }*/
         }
 
         [Authorize(Roles = "Admin")]
