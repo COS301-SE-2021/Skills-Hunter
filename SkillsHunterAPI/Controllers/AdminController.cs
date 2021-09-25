@@ -77,31 +77,14 @@ namespace SkillsHunterAPI.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/[controller]/addCategory")]
-        public async Task<IActionResult> AddCategory([FromBody] AddCategoryRequest request)
+        public async Task<IActionResult> AddCategory([FromBody] AddCategoryCommand command)
         {
 
-            try
-            {
-                // Add category code here
-                Category category = new Category();
+            var result = await _mediator.Send(command);
 
-                category.Name = request.Name;
+            return CreatedAtAction("GetCategory", new { result.Name }, result);
+            
 
-                category.Description = request.Description;
-
-                Category result = await _adminService.AddCategory(category);
-
-                return Ok(new AddCategoryResponse()
-                {
-                    Added = result
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-
-                return BadRequest(error.Message);
-            }
         }
 
 

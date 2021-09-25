@@ -26,7 +26,7 @@ namespace SkillsHunterAPIUnitTest.Tests
         {
             // Arrange
 
-            AddCategoryRequest request = new AddCategoryRequest()
+            AddCategoryCommand request = new AddCategoryCommand()
             {
                 Name = "Web styling",
                 Description = "Designing and styling web pages"
