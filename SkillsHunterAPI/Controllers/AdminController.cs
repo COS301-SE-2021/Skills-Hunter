@@ -153,9 +153,9 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getSkills")]
         public async Task<IActionResult> GetSkills()
         {
-            var query = GetSkillsQuery();
-            var result = _mediator.Send(query);
-            return Ok(result);
+            //var query = GetSkillsQuery();
+            //var result = _mediator.Send(query);
+            return Ok();
             
             /*try
             {

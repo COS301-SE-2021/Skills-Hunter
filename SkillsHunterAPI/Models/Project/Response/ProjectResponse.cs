@@ -15,5 +15,10 @@ namespace SkillsHunterAPI.Models.Project.Response
         public bool OpenForApplication { get; set; }
         public DateTime DateCreated { get; set; }
         public GetProjectSkillsResponse ProjectSkills { get; set; }
+
+        public ProjectResponse()
+        {
+            ProjectSkills = new GetProjectSkillsResponse();
+        }
     }
 }

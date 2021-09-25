@@ -8,8 +8,11 @@ namespace SkillsHunterAPI.Models.Project.Response
     {
         public List<GetProjectSkillResponse> Skills { get; set; }
         public List<GetProjectSkillCollectionResponse> SkillCollections {get; set;}
+
         public GetProjectSkillsResponse()
         {
+            Skills = new List<GetProjectSkillResponse>();
+            SkillCollections = new List<GetProjectSkillCollectionResponse>();
         }
     }
 }

@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Notification;
+using MediatR;
+using SkillsHunterAPI.Queries;
+using SkillsHunterAPI.Queries.Project;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -26,13 +29,17 @@ namespace SkillsHunterAPI.Controllers
         private UserController _userController;
         private NotificationController _notificationController;
 
-        public ProjectController(IProjectService projectService, ISkillService skillService, UserController userController,NotificationController notificationController)
+        private readonly IMediator _mediator;
+
+        public ProjectController(IProjectService projectService, ISkillService skillService, UserController userController,NotificationController notificationController, IMediator mediator)
         {
             _projectService = projectService;
             _skillService = skillService;
             _userController = userController;
             _notificationController = notificationController;
             //InitControllers();
+
+            _mediator = mediator;
         }
 
 
@@ -63,7 +70,7 @@ namespace SkillsHunterAPI.Controllers
 
             foreach (Project project in projects)
             {
-                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
+                ProjectResponse retrievedProject = await GetProject(project.ProjectId);
 
                 if (retrievedProject != null)
                 {
@@ -79,27 +86,12 @@ namespace SkillsHunterAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/[controller]/getProject/{id}")]
-        public async Task<ProjectResponse> GetProject(string id)
+        [Route("api/[controller]/getProject")]
+        public async Task<ProjectResponse> GetProject([FromQuery] Guid projectId)
         {
-            Guid projectId = new Guid(id);
-            Project project = await _projectService.GetProject(projectId);
-
-            ProjectResponse projectResponse = new ProjectResponse();
-            //projectResponse.ProjectSkills = new List<SkillRR>();
-
-            if (project == null) {
-                return null;
-            }
-
-            projectResponse.ProjectId = project.ProjectId;
-            projectResponse.Owner = project.Owner;
-            projectResponse.Name = project.Name;
-            projectResponse.Description = project.Description;
-            projectResponse.DateCreated = project.DateCreated;
-            projectResponse.OpenForApplication = project.OpenForApplication;
-
-            projectResponse.ProjectSkills = await GetProjectSkillsByProjectId(project.ProjectId);
+            var query = new GetProjectByProjectIdQuery(projectId);
+            var result = await _mediator.Send(query);
+            return result;
 
             /*List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkillsByProjectId(projectId);
 
@@ -121,7 +113,7 @@ namespace SkillsHunterAPI.Controllers
              }*/
 
 
-            return projectResponse;
+            //return projectResponse;
         }
 
 
@@ -147,7 +139,7 @@ namespace SkillsHunterAPI.Controllers
 
             foreach (Project project in projects)
             {
-                ProjectResponse retrievedProject = await GetProject(project.ProjectId.ToString());
+                ProjectResponse retrievedProject = await GetProject(project.ProjectId);
 
                 if (retrievedProject != null && retrievedProject.Owner == LoggedInOwner)
                 {
@@ -258,7 +250,7 @@ namespace SkillsHunterAPI.Controllers
             await _projectService.UpdateProject(PID, ProjectToUpdate);
 
 
-            List<ProjectSkill> projectSkillsFromDB = (List<ProjectSkill>) await _projectService.GetProjectSkillsByProjectId(PID);
+            List<GetProjectSkillResponse> projectSkillsFromDB = await _projectService.GetProjectSkillsByProjectId(PID);
 
 
             
@@ -279,7 +271,7 @@ namespace SkillsHunterAPI.Controllers
 
             
 
-            foreach (ProjectSkill projectSkill in projectSkillsFromDB)
+            foreach (GetProjectSkillResponse projectSkill in projectSkillsFromDB)
             {
                 AddExistingSkillRequest projectSkillRevised = new AddExistingSkillRequest();
                 projectSkillRevised.SkillId = projectSkill.SkillId;
