@@ -14,7 +14,7 @@ namespace SkillsHunterAPI.Services
     public interface IProjectService
     {
         //This methods of this interface defined the operations that can be performed on Project and skill entities
-        Task<IEnumerable<Project>> GetProjects();
+        Task<List<Project>> GetProjects();
 
         Task<Project> GetProject(Guid id);
 

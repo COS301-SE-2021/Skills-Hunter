@@ -57,7 +57,7 @@ namespace SkillsHunterAPI.Services
             return await _context.Projects.FindAsync(id);
         }
 
-        public async Task<IEnumerable<Project>> GetProjects()
+        public async Task<List<Project>> GetProjects()
         {
             return await _context.Projects.ToListAsync();
         }

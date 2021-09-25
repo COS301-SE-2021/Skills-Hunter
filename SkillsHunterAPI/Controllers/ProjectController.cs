@@ -64,22 +64,9 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getProjects")]
         public async Task<IEnumerable<ProjectResponse>> GetProjects()
         {
-            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
-
-            List<Project> projects = (List<Project>)await _projectService.GetProjects();
-
-            foreach (Project project in projects)
-            {
-                ProjectResponse retrievedProject = await GetProject(project.ProjectId);
-
-                if (retrievedProject != null)
-                {
-                    projectResponses.Add(retrievedProject);
-                }
-                
-            }
-
-            return projectResponses;
+            var query = new GetAllProjectsQuery();
+            var result = await _mediator.Send(query);
+            return result;
         }
 
 
