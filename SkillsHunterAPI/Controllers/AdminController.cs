@@ -200,26 +200,13 @@ namespace SkillsHunterAPI.Controllers
         public async Task<IActionResult> GetCategory([FromBody] GetCategoryRequest request)
         {
 
-            try
-            {
-                // Get category code here
-                Guid id = new Guid(request.Id);
+            Guid categoryId = new Guid(request.Id);
+            var query = new GetCategoryByIdQuery(categoryId);
 
-                Category result = await _adminService.GetCategory(id);
+            var result = await _mediator.Send(query);
 
-                return Ok(new GetCategoryResponse()
-                {
-                    Id = result.CategoryId,
-                    Name = result.Name,
-                    Description = result.Description
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
+            return result != null ? Ok(result) : NotFound();
 
-                return NotFound(error.Message);
-            }
         }
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
@@ -319,19 +306,14 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getAllSkillCollections")]
         public async Task<IActionResult> GetAllSkillCollections()
         {
-            try
-            {
-                // Get collections code here
-                List<GetSkillCollectionResponse> result = (List<GetSkillCollectionResponse>)await _adminService.getAllSkillCollections();
 
-                return Ok(result);
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
+            var query = new GetAllSkillCollectionsQuery();
 
-                return BadRequest(error.Message);
-            }
+            var result = await _mediator.Send(query);
+
+            return Ok(result);
+            
+
         }
     }
 }
