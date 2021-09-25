@@ -64,8 +64,8 @@ namespace SkillsHunterAPI.Data
             modelBuilder.Entity<ExternalWorkExperience>().ToTable("ExternalWorkExperience");
             modelBuilder.Entity<ExternalWorkExperience>().HasKey("ExternalWorkExperienceId");
 
-            modelBuilder.Entity<ExternalWorkExperience>().ToTable("InternalWorkExperience");
-            modelBuilder.Entity<ExternalWorkExperience>().HasKey("InternalWorkExperienceId");
+            modelBuilder.Entity<InternalWorkExperience>().ToTable("InternalWorkExperience");
+            modelBuilder.Entity<InternalWorkExperience>().HasKey("InternalWorkExperienceId");
 
             modelBuilder.Entity<Application>().ToTable("Application");
             modelBuilder.Entity<Application>().HasKey("ApplicationId");

@@ -29,6 +29,7 @@ using System.IO;
 using SkillsHunterAPI.Hubs;
 using SkillsHunterAPI.Services.Interface;
 using SkillsHunterAPI.Services.Implementation;
+using MediatR;
 
 namespace SkillsHunterAPI
 {
@@ -61,6 +62,9 @@ namespace SkillsHunterAPI
             //added this recently for notificcations and SignalR
             services.AddTransient<INotificationService, NotificationService>();
             services.AddTransient<IUserConnectionManager, UserConnectionManager>();
+
+            //For mediator
+            services.AddMediatR(typeof(Startup));
 
 
 

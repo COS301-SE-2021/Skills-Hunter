@@ -14,10 +14,11 @@ namespace SkillsHunterAPIUnitTest.Tests
 
         private readonly Mock<IAdminService> mockService = new Mock<IAdminService>();
         private readonly AdminController testController;
+        //private readonly IMediator _mediator;
 
         public AdminUnitTest()
         {
-            testController = new AdminController(mockService.Object);
+            //testController = new AdminController(mockService.Object);
         }
 
         [Fact]
