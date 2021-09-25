@@ -10,6 +10,8 @@ using SkillsHunterAPI.Models.Skill.Response;
 using SkillsHunterAPI.Models.Skill.Request;
 using SkillsHunterAPI.Models.Skill.Entity;
 using SkillsHunterAPI.Models.Project.Request;
+using SkillsHunterAPI.Queries;
+using MediatR;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -19,10 +21,12 @@ namespace SkillsHunterAPI.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IAdminService _adminService;
+        private readonly IMediator _mediator;
 
-        public AdminController(IAdminService adminService)
+        public AdminController(IAdminService adminService, IMediator mediator)
         {
             _adminService = adminService;
+            _mediator = mediator;
         }
 
 
@@ -149,7 +153,11 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getSkills")]
         public async Task<IActionResult> GetSkills()
         {
-            try
+            var query = GetSkillsQuery();
+            var result = _mediator.Send(query);
+            return Ok(result);
+            
+            /*try
             {
                 // Get categories code here
                 List<Skill> result = (List<Skill>)await _adminService.GetSkills();
@@ -164,7 +172,7 @@ namespace SkillsHunterAPI.Controllers
                 // return error message if there was an exception code here
 
                 return StatusCode(500, $"Internal server error: {error}");
-            }
+            }*/
         }
 
         [Authorize(Roles = "Admin")]
@@ -205,6 +213,7 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getCategory")]
         public async Task<IActionResult> GetCategory([FromBody] GetCategoryRequest request)
         {
+
             try
             {
                 // Get category code here
@@ -231,7 +240,14 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getCategories")]
         public async Task<IActionResult> GetCategories()
         {
-            try
+
+
+            var query = new GetCategoriesQuery();
+            var result = await _mediator.Send(query);
+            return Ok(result);
+
+
+            /*try
             {
                 // Get categories code here
                 List<Category> result = (List<Category>)await _adminService.GetCategories();
@@ -246,7 +262,7 @@ namespace SkillsHunterAPI.Controllers
                 // return error message if there was an exception code here
 
                 return StatusCode(500, $"Internal server error: {error}");
-            }
+            }*/
         }
 
         [Authorize(Roles = "Admin")]
