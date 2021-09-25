@@ -34,26 +34,15 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getSkill")]
         public async Task<IActionResult> GetSkill([FromBody] GetSkillRequest request)
         {
-            try
-            {
-                // Get skill code here
-                Guid id = new Guid(request.Id);
 
-                Skill result = await _adminService.GetSkill(id);
+            Guid SkillId = new Guid(request.Id);
 
-                return Ok(new GetSkillResponse()
-                {
-                    Id = result.SkillId,
-                    Name = result.Name,
-                    Status = result.Status
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
+            var query = new GetSkillByIdQuery(SkillId);
 
-                return NotFound(error.Message);
-            }
+            var result = await _mediator.Send(query);
+
+            return result != null ? Ok(result) : NotFound();
+            
         }
 
         [HttpPost]

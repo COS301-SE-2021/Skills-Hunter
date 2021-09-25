@@ -24,10 +24,10 @@ namespace SkillsHunterAPI.Handlers
         public async Task<GetSkillCollectionResponse> Handle(GetAllSkillCollectionsQuery request, CancellationToken cancellationToken)
         {
                 // Get collections code here
-                List<GetSkillCollectionResponse> result = (List<GetSkillCollectionResponse>)await _adminService.getAllSkillCollections();
+                var result = await _adminService.getAllSkillCollections();
 
             GetSkillCollectionResponse response = new();
-            //response.Skills = result;
+            //response.Name = result.;
 
             return response;
 
