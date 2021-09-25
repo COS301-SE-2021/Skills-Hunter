@@ -34,9 +34,9 @@ namespace SkillsHunterAPI.Services
 
         Task<GetProjectSkillResponse> GetProjectSkill(Guid SkillId, Guid ProjectId);
 
-        Task<IEnumerable<GetProjectSkillResponse>> GetProjectSkillsByProjectId(Guid projectId);
+        Task<List<GetProjectSkillResponse>> GetProjectSkillsByProjectId(Guid projectId);
 
-        Task<IEnumerable<GetProjectSkillCollectionResponse>> GetProjectSkillCollectionsByProjectId(Guid projectId);
+        Task<List<GetProjectSkillCollectionResponse>> GetProjectSkillCollectionsByProjectId(Guid projectId);
 
         bool ApplyForProject(Guid userId,Guid projectId);
         
