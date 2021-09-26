@@ -66,7 +66,7 @@ namespace SkillsHunterAPIUnitTest.Tests
             // Arrange
             Guid CatId = Guid.NewGuid();
 
-            AddSkillRequest request = new AddSkillRequest()
+            AddSkillCommand request = new AddSkillCommand()
             {
                 Name = "Java Web Development",
             };
@@ -126,7 +126,7 @@ namespace SkillsHunterAPIUnitTest.Tests
 
             // Act
             
-            var result = await testController.RemoveCategory(request.CategoryId);
+            var result = await testController.RemoveCategory(request);
 
             // Assert
 
