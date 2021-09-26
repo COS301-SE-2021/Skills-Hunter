@@ -53,7 +53,7 @@ export interface createSkillCollectionRequest
     name: string,
     description: string,
     weight: number,
-    skills :
+    skills :getSkillId[]
 
 }
 
