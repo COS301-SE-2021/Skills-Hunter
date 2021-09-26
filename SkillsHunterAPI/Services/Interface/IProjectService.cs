@@ -14,17 +14,17 @@ namespace SkillsHunterAPI.Services
     public interface IProjectService
     {
         //This methods of this interface defined the operations that can be performed on Project and skill entities
-        Task<IEnumerable<Project>> GetProjects();
+        Task<List<Project>> GetProjects();
 
         Task<Project> GetProject(Guid id);
 
-        Task<IEnumerable<Project>> GetProjectsByOwnerId();
+        Task<List<Project>> GetProjectsByOwnerId(Guid ownerId);
 
         Task<Project> CreateProject(Project project);
 
         Task UpdateProject(Guid id, Project project);
 
-        Task DeleteProject(Guid id);
+        Task<bool> DeleteProject(Guid id);
 
         Task AddProjectSkill(ProjectSkill projectSkill);
 
@@ -34,9 +34,9 @@ namespace SkillsHunterAPI.Services
 
         Task<GetProjectSkillResponse> GetProjectSkill(Guid SkillId, Guid ProjectId);
 
-        Task<IEnumerable<GetProjectSkillResponse>> GetProjectSkillsByProjectId(Guid projectId);
+        Task<List<GetProjectSkillResponse>> GetProjectSkillsByProjectId(Guid projectId);
 
-        Task<IEnumerable<GetProjectSkillCollectionResponse>> GetProjectSkillCollectionsByProjectId(Guid projectId);
+        Task<List<GetProjectSkillCollectionResponse>> GetProjectSkillCollectionsByProjectId(Guid projectId);
 
         bool ApplyForProject(Guid userId,Guid projectId);
         

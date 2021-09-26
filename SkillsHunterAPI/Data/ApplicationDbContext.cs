@@ -40,6 +40,7 @@ namespace SkillsHunterAPI.Data
         public DbSet<UserSkillCollection> UserSkillCollections { get; set; }
 
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<EducationalBackground> EducationalBackgrounds { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -94,6 +95,9 @@ namespace SkillsHunterAPI.Data
 
             modelBuilder.Entity<Notification>().ToTable("Notification");
             modelBuilder.Entity<Notification>().HasKey("NotificationId");
+
+            modelBuilder.Entity<EducationalBackground>().ToTable("EducationalBackground");
+            modelBuilder.Entity<EducationalBackground>().HasKey("EducationalBackgroundId");
 
         }
 

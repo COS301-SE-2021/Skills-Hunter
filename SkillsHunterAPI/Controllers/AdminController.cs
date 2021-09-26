@@ -96,9 +96,7 @@ namespace SkillsHunterAPI.Controllers
         public async Task<IActionResult> GetSkills()
         {
             var query = new GetSkillsQuery();
-
             var result =await _mediator.Send(query);
-
             return Ok(result);
             
         }

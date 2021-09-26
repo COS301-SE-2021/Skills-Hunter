@@ -15,6 +15,7 @@ using SkillsHunterAPI.Models.Notification;
 using SkillsHunterAPI.Services.Interface;
 using SkillsHunterAPI.Models.Project.Entity;
 using Microsoft.ML;
+using SkillsHunterAPI.Models.User.Entity;
 
 namespace SkillsHunterAPI.Services
 {
@@ -44,11 +45,18 @@ namespace SkillsHunterAPI.Services
             return project;
         }
 
-        public async Task DeleteProject(Guid id)
+        public async Task<bool> DeleteProject(Guid id)
         {
             var ProjectToDelete = await _context.Projects.FindAsync(id);
+
+            if(ProjectToDelete == null)
+            {
+                return false;
+            }
             _context.Projects.Remove(ProjectToDelete);
             await _context.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<Project> GetProject(Guid id)
@@ -56,14 +64,14 @@ namespace SkillsHunterAPI.Services
             return await _context.Projects.FindAsync(id);
         }
 
-        public async Task<IEnumerable<Project>> GetProjects()
+        public async Task<List<Project>> GetProjects()
         {
             return await _context.Projects.ToListAsync();
         }
 
-        public async Task<IEnumerable<Project>> GetProjectsByOwnerId()
+        public async Task<List<Project>> GetProjectsByOwnerId(Guid ownerId)
         {
-            return await _context.Projects.ToListAsync();
+            return await _context.Projects.Where(p => p.Owner == ownerId).ToListAsync();
         }
 
         public async Task UpdateProject(Guid projectId, Project project)
@@ -109,7 +117,7 @@ namespace SkillsHunterAPI.Services
             return await _context.ProjectSkills.FindAsync(id);
         }
 
-        public async Task<IEnumerable<GetProjectSkillResponse>> GetProjectSkillsByProjectId(Guid projectId)
+        public async Task<List<GetProjectSkillResponse>> GetProjectSkillsByProjectId(Guid projectId)
         {
             List<GetProjectSkillResponse> response = new List<GetProjectSkillResponse>();
             List<ProjectSkill> projectSkills = await _context.ProjectSkills.Where(ss => ss.ProjectId == projectId).ToListAsync();
@@ -148,7 +156,7 @@ namespace SkillsHunterAPI.Services
 
             return null;
         }
-        public async Task<IEnumerable<GetProjectSkillCollectionResponse>> GetProjectSkillCollectionsByProjectId(Guid projectId)
+        public async Task<List<GetProjectSkillCollectionResponse>> GetProjectSkillCollectionsByProjectId(Guid projectId)
         {
 
             List<GetProjectSkillCollectionResponse> response = new List<GetProjectSkillCollectionResponse>();
@@ -376,6 +384,14 @@ namespace SkillsHunterAPI.Services
 
         public async Task<Skill> AddNewSkill(AddSkillRequest addSkillRequest)
         {
+
+            //Checking if the skill exists
+            Skill existingSkill = await _context.Skills.Where(s => s.Name == addSkillRequest.Name).FirstOrDefaultAsync();
+
+            if (existingSkill != null)
+            {
+                return existingSkill;
+            }
             //Adding the new skill
             Skill skill = new Skill();
             skill.SkillId = new Guid();
@@ -718,6 +734,12 @@ namespace SkillsHunterAPI.Services
                 }
             }
             return tokens;
+        }
+
+        private async Task<MatchCandidateResponse> ProcessInternalWorkExperience(MatchCandidateResponse candidate, List<Skill> projectSkills)
+        {
+            //List<InternalWorkExperience> internalWorkExperiences = _context.InternalWorkExperiences.Where(i => i.UserId == )
+            return candidate;
         }
 
         private List<MatchCandidateResponse> sortCandidates(List<MatchCandidateResponse> candidates)

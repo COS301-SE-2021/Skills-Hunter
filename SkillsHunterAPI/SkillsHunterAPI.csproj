@@ -28,12 +28,40 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.10" />
     <PackageReference Include="Moq" Version="4.16.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="FakeItEasy" Version="7.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Models\Project\Requests\" />
+    <None Remove="Commands\Project\" />
+    <None Remove="Commands\User\" />
+    <None Remove="Commands\Admin\" />
+    <None Remove="Commands\Notification\" />
+    <None Remove="Handlers\Project\" />
+    <None Remove="Handlers\Admin\" />
+    <None Remove="Handlers\User\" />
+    <None Remove="Handlers\Notification\" />
+    <None Remove="Queries\User\" />
+    <None Remove="Queries\Project\" />
+    <None Remove="Queries\Notification\" />
+    <None Remove="Queries\Admin\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Commands\Project\" />
+    <Folder Include="Commands\User\" />
+    <Folder Include="Commands\Admin\" />
+    <Folder Include="Commands\Notification\" />
+    <Folder Include="Handlers\Project\" />
+    <Folder Include="Handlers\Admin\" />
+    <Folder Include="Handlers\User\" />
+    <Folder Include="Handlers\Notification\" />
+    <Folder Include="Queries\User\" />
+    <Folder Include="Queries\Project\" />
+    <Folder Include="Queries\Notification\" />
+    <Folder Include="Queries\Admin\" />
   </ItemGroup>
 </Project>

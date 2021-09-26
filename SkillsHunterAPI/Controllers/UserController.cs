@@ -48,7 +48,7 @@ namespace SkillsHunterAPI.Controllers
                 throw new Exception("Could not retrieve current user id");
             }
 
-            return result;         
+            return result;       
         }
 
         [AllowAnonymous]
