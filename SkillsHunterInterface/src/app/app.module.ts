@@ -25,12 +25,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 //Fontawesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
     ToolBarComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
