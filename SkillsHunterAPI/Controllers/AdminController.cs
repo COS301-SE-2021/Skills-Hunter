@@ -75,28 +75,13 @@ namespace SkillsHunterAPI.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/[controller]/removeSkill")]
-        public async Task<IActionResult> RemoveSkill([FromBody] RemoveSkillRequest request)
+        public async Task<IActionResult> RemoveSkill([FromBody] RemoveSkillCommand command)
         {
-            
-            try
-            {
-                // Remove category code here
 
-                //Guid id = new Guid(request.SkillId);
-                Skill result = await _adminService.RemoveSkill(request.SkillId);
+            var result = await _mediator.Send(command);
 
-                return Ok(new RemoveSkillResponse()
-                {
-                    Success = true,
-                    Removed = result
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
+            return CreatedAtAction("RemoveSkill", new { result.Success }, result);
 
-                return NotFound(error.Message);
-            }
         }
 
 
@@ -184,33 +169,12 @@ namespace SkillsHunterAPI.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/updateCategory")]
-        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryRequest request)
+        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryCommand command)
         {
-            try
-            {
-                // Update category code here
-                Guid id = new Guid(request.Id);
-                Category category = new Category();
+            var result = await _mediator.Send(command);
 
-                category.Name = request.Name;
+            return CreatedAtAction("UpdateCategory", new { result.Name }, result);
 
-                category.Description = request.Description;
-
-                Category result = await _adminService.UpdateCategory(id, category);
-
-                return Ok(new UpdateCategoryResponse()
-                {
-                    Id = result.CategoryId,
-                    Name = result.Name,
-                    Description = result.Description
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-
-                return NotFound(error.Message);
-            }
         }
 
         [Authorize(Roles = "Admin")]
