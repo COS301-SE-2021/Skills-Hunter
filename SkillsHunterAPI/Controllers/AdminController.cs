@@ -47,31 +47,14 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/createSkill")]
-        public async Task<IActionResult> CreateSkill([FromBody] AddSkillRequest request)
+        public async Task<IActionResult> CreateSkill([FromBody] AddSkillCommand command)
         {
-            try
-            {
-                // Add skill code here
-                Skill skill = new Skill();
-                skill.Name = request.Name;
-                skill.Status = SkillStatus.Accepted;
 
-                Skill result = await _adminService.CreateSkill(skill);
+            var result = await _mediator.Send(command);
 
-                //Link skill with Categories
-                await _adminService.AddCategoriesToSkill(skill.SkillId, request.Categories);
+            return CreatedAtAction("GetSkill", new { result.Name }, result);
 
-                return Ok(new AddSkillResponse()
-                {
-                    Added = result
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
 
-                return BadRequest(error.Message);
-            }
         }
 
         [Authorize(Roles = "Admin")]
@@ -229,15 +212,15 @@ namespace SkillsHunterAPI.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/removeCategory")]
-        public async Task<IActionResult> RemoveCategory([FromQuery]Guid request)
+        public async Task<IActionResult> RemoveCategory([FromBody] RemoveCategoryRequest request)
         {
             try
             {
                 // Remove category code here
 
-                Category result = await _adminService.RemoveCategory(request);
+                Category result = await _adminService.RemoveCategory(request.CategoryId);
 
                 return Ok(new RemoveCategoryResponse()
                 {
