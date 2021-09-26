@@ -17,6 +17,7 @@ using SkillsHunterAPI.Models.Notification;
 using MediatR;
 using SkillsHunterAPI.Queries;
 using SkillsHunterAPI.Queries.Project;
+using SkillsHunterAPI.Commands.Project;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -97,68 +98,19 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/createProject")]
-        public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] CreateProjectRequest projectRequest)
+        public async Task<ActionResult<ProjectResponse>> CreateProject([FromBody] CreateProjectCommand projectRequest)
         {
             ProjectResponse projectResponse = new ProjectResponse();
 
             InitControllers();
-            Project newProject = new Project();
-            newProject.Description = projectRequest.Description;
-            newProject.Location = projectRequest.Location;
-            newProject.OpenForApplication = projectRequest.OpenForApplication;
-            newProject.Owner = _userController.GetCurrentUserId();
-            newProject.Name = projectRequest.Name;
-            newProject.DateCreated = DateTime.Now;
+            //newProject.Owner = _userController.GetCurrentUserId();
+            projectRequest.Owner = _userController.GetCurrentUserId();
 
-            //Adding the project to the database;
-            newProject = await _projectService.CreateProject(newProject);
+            //var query = new C(LoggedInOwner);
+            var result = await _mediator.Send(projectRequest);
+            return Ok(result);
 
-
-            //Adding skills from the list of existing skills
-            foreach (AddExistingSkillRequest skill in projectRequest.ExistingSkills)
-            {
-                ProjectSkill projectSkill = new ProjectSkill();
-                projectSkill.ProjectId = newProject.ProjectId;
-                projectSkill.SkillId = skill.SkillId;
-                projectSkill.Weight = skill.Weight;
-                await _projectService.AddProjectSkill(projectSkill);
-            }
-
-            //Adding new skills
-            foreach (AddNewSkillRequest skill in projectRequest.NewSkills)
-            {
-                AddSkillRequest skillToAdd = new AddSkillRequest();
-                skillToAdd.Categories = skill.Categories;
-                skillToAdd.Name = skill.Name;
-                Skill newSkill = await _projectService.AddNewSkill(skillToAdd);
-
-                //Checking if the new skill was created before linking it with the project
-                if (newSkill != null)
-                {
-                    ProjectSkill projectSkill = new ProjectSkill();
-                    projectSkill.ProjectId = newProject.ProjectId;
-                    projectSkill.SkillId = newSkill.SkillId;
-                    projectSkill.Weight = skill.Weight;
-                    await _projectService.AddProjectSkill(projectSkill);
-                }
-
-            }
-
-            //Adding skills from collections
-            foreach (CreateSkillCollectionRequest collection in projectRequest.SkillCollections)
-            {
-                await _projectService.CreateCollection(collection, newProject.ProjectId);
-            }
-
-            List<GetProjectSkillResponse> projectSkills = (List<GetProjectSkillResponse>)await _projectService.GetProjectSkillsByProjectId(newProject.ProjectId);
-
-
-            //projectResponse.ProjectSkills = (ProjectSkill[])await _projectService.GetProjectSkills(newProject.ProjectId);
-
-            //var newProject = await _projectService.CreateProject(projectRequest);
-            return CreatedAtAction(nameof(GetProject), new { id = newProject.ProjectId }, newProject);
-            //return newProject;
-            //return projectResponse;
+            //return CreatedAtAction(nameof(GetProject), new { id = newProject.ProjectId }, newProject);
         }
 
         [HttpPut]
@@ -245,9 +197,9 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/deleteProject")]
-        public async Task<ActionResult> DeleteProject([FromBody]DeleteProjectRequest deleteProjectRequest)
+        public async Task<ActionResult> DeleteProject([FromQuery]Guid projectId)
         {
-            Guid projectId = deleteProjectRequest.ProjectId;
+            //Guid projectId = deleteProjectRequest.ProjectId;
             var projectToDelete = await _projectService.GetProject(projectId);
             List<GetProjectSkillResponse> projectSkills = (List<GetProjectSkillResponse>)await _projectService.GetProjectSkillsByProjectId(projectId);
 

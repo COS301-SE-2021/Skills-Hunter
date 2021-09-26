@@ -48,6 +48,7 @@ namespace SkillsHunterAPI.Services
         public async Task DeleteProject(Guid id)
         {
             var ProjectToDelete = await _context.Projects.FindAsync(id);
+            if(ProjectToDelete == null)
             _context.Projects.Remove(ProjectToDelete);
             await _context.SaveChangesAsync();
         }
@@ -377,6 +378,14 @@ namespace SkillsHunterAPI.Services
 
         public async Task<Skill> AddNewSkill(AddSkillRequest addSkillRequest)
         {
+
+            //Checking if the skill exists
+            Skill existingSkill = await _context.Skills.Where(s => s.Name == addSkillRequest.Name).FirstOrDefaultAsync();
+
+            if (existingSkill != null)
+            {
+                return existingSkill;
+            }
             //Adding the new skill
             Skill skill = new Skill();
             skill.SkillId = new Guid();
