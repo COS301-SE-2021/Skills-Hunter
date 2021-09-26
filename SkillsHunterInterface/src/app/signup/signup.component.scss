@@ -59,6 +59,12 @@ a{
     color: var(--bottleGreen);
 }
 
-.mat-form-field-appearance-legacy .mat-form-field-underline {
-    background-color: var(--bottleGreen);
+input[type=text]:active {
+    .mat-form-field.mat-focused .mat-form-field-ripple {
+        background-color: var(--babyBlue);
+    }
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: var(--babyBlue) !important;
 }
