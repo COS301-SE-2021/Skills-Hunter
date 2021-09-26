@@ -79,28 +79,6 @@ namespace SkillsHunterAPI.Controllers
             var query = new GetProjectByProjectIdQuery(projectId);
             var result = await _mediator.Send(query);
             return result;
-
-            /*List<ProjectSkill> projectSkills = (List<ProjectSkill>)await _projectService.GetProjectSkillsByProjectId(projectId);
-
-            foreach (ProjectSkill projectSkill in projectSkills)
-            {
-                SkillRR skill = new SkillRR();
-
-
-                    skill.SkillId = projectSkill.SkillId;
-                //Skill refSkill = await _skillService.GetSkill(projectSkill.SkillId);  //To be used when the skill service is implemented
-                skill.SkillName = "SkillOne";
-               
-                projectResponse.ProjectSkills.Add(skill);
-            }*/
-
-            /* foreach (ProjectSkill projectSkill in projectSkills)
-             {
-                 projectResponse.ProjectSkills.Add(projectSkill);
-             }*/
-
-
-            //return projectResponse;
         }
 
 
@@ -108,34 +86,12 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getProjectsByOwnerId")]
         public async Task<IEnumerable<ProjectResponse>> GetProjectsByOwnerId()
         {
-            List<ProjectResponse> projectResponses = new List<ProjectResponse>();
-
-            List<Project> projects = (List<Project>)await _projectService.GetProjects();
-
-
-        
-            //This initialize the user controller object to be accessible this side.
             InitControllers();
-
-
-            //This gets identity of the user currently authenticated.
             var LoggedInOwner = _userController.GetCurrentUserId();
+            var query = new GetProjectsByOwnerIdQuery(LoggedInOwner);
+            var result = await _mediator.Send(query);
+            return result;
 
-
-
-
-            foreach (Project project in projects)
-            {
-                ProjectResponse retrievedProject = await GetProject(project.ProjectId);
-
-                if (retrievedProject != null && retrievedProject.Owner == LoggedInOwner)
-                {
-                    projectResponses.Add(retrievedProject);
-                }
-
-            }
-
-            return projectResponses;
         }
 
 

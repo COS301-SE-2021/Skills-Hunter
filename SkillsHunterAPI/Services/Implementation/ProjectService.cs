@@ -62,9 +62,9 @@ namespace SkillsHunterAPI.Services
             return await _context.Projects.ToListAsync();
         }
 
-        public async Task<IEnumerable<Project>> GetProjectsByOwnerId()
+        public async Task<List<Project>> GetProjectsByOwnerId(Guid ownerId)
         {
-            return await _context.Projects.ToListAsync();
+            return await _context.Projects.Where(p => p.Owner == ownerId).ToListAsync();
         }
 
         public async Task UpdateProject(Guid projectId, Project project)
