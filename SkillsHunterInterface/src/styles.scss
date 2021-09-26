@@ -1,4 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root{
+  --first-Color: rgb(34, 108, 117);
+  --second-Color: rgb(29, 64, 105);
+  --dark-Color : black;
+  --green-Color: rgb(122, 124, 16);
+}
+
+body{
+    /*background-image: url('assets/NoviceSphereLogo.jpeg');*/
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin:0;
+    height: 100%;
+}
+
+html{
+  height: 100%;
+}
