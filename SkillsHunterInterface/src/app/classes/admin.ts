@@ -27,3 +27,7 @@ export interface getSkillsResponse{
 export interface getCategoryId{
     categoryId: string
 }
+
+export interface getSkillId{
+    skillId: string
+}
