@@ -1,19 +1,22 @@
 //@import '~bootstrap/dist/css/bootstrap.min.css';
 
 :root{
-  --first-Color: rgb(34, 108, 117);
-  --second-Color: rgb(29, 64, 105);
-  --dark-Color : black;
-  --green-Color: rgb(122, 124, 16);
+    --primary: rgb(61, 160, 218);
+    --secondary:purple;
+    --bottleGreen: #003333;
+    --babyBlue: #5fbebe;
+    --lightGrey: whitesmoke;
+    --midGrey: rgb(139, 139, 139);
 }
 
 body{
     /*background-image: url('assets/NoviceSphereLogo.jpeg');*/
-    background-color: black;
+    background-color: blue;
     background-repeat: no-repeat;
     background-size: cover;
     margin:0;
     height: 100%;
+    color: white;
 }
 
 html{

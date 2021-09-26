@@ -1,11 +1,12 @@
 mat-drawer-container{
     /*background-image: url('./../assets/NoviceSphereLogo.jpeg');*/
-    background-color: var(--dark-Color);
+    background-color: var(--lightGrey);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     margin:0;
     height: 100%;
     width: 100%;
+    color: black;
 }
 
 mat-drawer{
@@ -22,7 +23,7 @@ mat-drawer{
 }
 
 mat-drawer-content{
-    background-color: white;
+    background-color: var(--lightGrey);
 }
 app-side-nav{
     width: 100%;
