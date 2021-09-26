@@ -32,7 +32,7 @@ namespace SkillsHunterAdminUnitTest
                 Description = "Designing and styling web pages"
             };
 
-            var RequestObject = new AddCategoryRequest()
+            var RequestObject = new AddCategoryCommand()
             {
                 Name = "Web styling",
                 Description = "Designing and styling web pages"

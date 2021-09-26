@@ -1,0 +1,10 @@
+<mat-drawer-container class="drawer-container" autosize>
+  <mat-drawer #drawer mode="side">
+    <app-side-nav [inputDrawer] = "drawer"></app-side-nav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-tool-bar [inputDrawer] = "drawer"></app-tool-bar>
+    <router-outlet></router-outlet>
+    <!--app-footer></app-footer-->
+  </mat-drawer-content>
+</mat-drawer-container>

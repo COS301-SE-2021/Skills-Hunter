@@ -1,0 +1,33 @@
+mat-toolbar{
+    //color: white;
+    //background-color: var(--dark-Color);
+    background-color: var(--bottleGreen);
+    color: white;
+}
+
+
+.logo{
+    //margin-bottom: 15px;
+    max-width: 55px;
+    max-height: 55px;
+}
+
+/*.spacer {
+    flex: 1 1 auto;
+}*/
+
+/*h1{
+    color: white;
+}*/
+
+div[class*='col'] a{
+    margin: 0px;
+    padding: 0px;
+}
+
+@media screen and (max-width: 705px) {
+    .col{
+        display: none;
+    }
+}
+

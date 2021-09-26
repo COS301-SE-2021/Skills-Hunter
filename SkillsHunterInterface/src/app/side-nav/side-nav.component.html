@@ -1,0 +1,21 @@
+
+<div id="Side-nav">
+    <h1>Menu</h1>
+    <mat-divider></mat-divider>
+    <h3>Quick links</h3>
+    <mat-selection-list  [multiple]="false">
+    <mat-list-option ><a routerLink="/home" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">Home</a></mat-list-option>
+    <mat-list-option ><a routerLink="/home" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">My applications</a></mat-list-option>
+    <mat-list-option ><a routerLink="/about" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">About</a></mat-list-option>
+    </mat-selection-list >
+    <mat-divider></mat-divider>
+    
+    <h3>Account</h3>
+    <mat-selection-list  [multiple]="false">
+    <mat-list-option ><a routerLink="" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">Notifications</a></mat-list-option>
+    <mat-list-option ><a routerLink="" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">My account</a></mat-list-option>
+    <mat-list-option ><a routerLink="/login" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">Login</a></mat-list-option>
+    <mat-list-option ><a routerLink="/signup" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">Signup</a></mat-list-option>
+    <mat-list-option ><a routerLink="/logout" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">Logout</a></mat-list-option>
+    </mat-selection-list >
+</div>

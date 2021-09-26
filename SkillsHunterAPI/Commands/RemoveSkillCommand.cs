@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MediatR;
 
-namespace SkillsHunterAPI.Queries
+namespace SkillsHunterAPI.Commands
 {
-    public class GetSkillsQuery : IRequest<GetSkillsResponse>
+    public class RemoveSkillCommand : IRequest<RemoveSkillResponse>
     {
+        public Guid SkillId { get; set; }
     }
 }

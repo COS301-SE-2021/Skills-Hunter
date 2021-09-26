@@ -1,0 +1,23 @@
+//@import '~bootstrap/dist/css/bootstrap.min.css';
+
+:root{
+    --primary: rgb(61, 160, 218);
+    --secondary:purple;
+    --bottleGreen: #003333;
+    --babyBlue: #5fbebe;
+    --lightGrey: whitesmoke;
+    --midGrey: rgb(139, 139, 139);
+}
+
+body{
+    /*background-image: url('assets/NoviceSphereLogo.jpeg');*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin:0;
+    height: 100%;
+    color: white;
+}
+
+html{
+  height: 100%;
+}

@@ -1,0 +1,22 @@
+#Side-nav{
+    color: white;
+    background-color: var(--babyBlue);
+}
+
+mat-list-option:hover{
+    background-color: var(--second-Color);
+    color: white; 
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    background-color: var(--second-Color);
+}
+
+h3{
+    color: black;
+}
