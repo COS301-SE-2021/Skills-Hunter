@@ -12,6 +12,7 @@ using SkillsHunterAPI.Models.Skill.Entity;
 using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Queries;
 using MediatR;
+using SkillsHunterAPI.Commands;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -76,6 +77,7 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/removeSkill")]
         public async Task<IActionResult> RemoveSkill([FromBody] RemoveSkillRequest request)
         {
+            
             try
             {
                 // Remove category code here
@@ -214,27 +216,13 @@ namespace SkillsHunterAPI.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/removeCategory")]
-        public async Task<IActionResult> RemoveCategory([FromBody] RemoveCategoryRequest request)
+        public async Task<IActionResult> RemoveCategory([FromBody] RemoveCategoryCommand command)
         {
-            try
-            {
-                // Remove category code here
 
-                Category result = await _adminService.RemoveCategory(request.CategoryId);
+            var result = await _mediator.Send(command);
 
-                return Ok(new RemoveCategoryResponse()
-                {
-                    Id = result.CategoryId,
-                    Name = result.Name,
-                    Description = result.Description
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
+            return CreatedAtAction("RemoveCategory", new { result.Name }, result);
 
-                return NotFound(error.Message);
-            }
         }
 
         [Authorize(Roles = "Admin")]
