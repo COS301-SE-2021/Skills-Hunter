@@ -45,12 +45,18 @@ namespace SkillsHunterAPI.Services
             return project;
         }
 
-        public async Task DeleteProject(Guid id)
+        public async Task<bool> DeleteProject(Guid id)
         {
             var ProjectToDelete = await _context.Projects.FindAsync(id);
+
             if(ProjectToDelete == null)
+            {
+                return false;
+            }
             _context.Projects.Remove(ProjectToDelete);
             await _context.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<Project> GetProject(Guid id)

@@ -24,7 +24,7 @@ namespace SkillsHunterAPI.Services
 
         Task UpdateProject(Guid id, Project project);
 
-        Task DeleteProject(Guid id);
+        Task<bool> DeleteProject(Guid id);
 
         Task AddProjectSkill(ProjectSkill projectSkill);
 

@@ -199,30 +199,17 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/deleteProject")]
         public async Task<ActionResult> DeleteProject([FromQuery]Guid projectId)
         {
-            //Guid projectId = deleteProjectRequest.ProjectId;
-            var projectToDelete = await _projectService.GetProject(projectId);
-            List<GetProjectSkillResponse> projectSkills = (List<GetProjectSkillResponse>)await _projectService.GetProjectSkillsByProjectId(projectId);
+            var query = new DeleteProjectCommand(projectId);
+            var result = await _mediator.Send(query);
 
-
-
-            /*This checks if the project exists, if not then it returns not found */
-
-            if (projectToDelete == null)
+            if(result == true)
+            {
+                return Ok();
+            }
+            else
             {
                 return NotFound();
             }
-
-
-            //This calls the service to delete the project from the db
-            await _projectService.DeleteProject(projectToDelete.ProjectId);
-
-
-            /*This calls the service to delete project skill from the db*/
-            foreach(GetProjectSkillResponse projectSkill in projectSkills)
-            {
-                await _projectService.RemoveProjectSkill(projectSkill.ProjectSkillId);
-            }
-            return NoContent();
         }
 
 

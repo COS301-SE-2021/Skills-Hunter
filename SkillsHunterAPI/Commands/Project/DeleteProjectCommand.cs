@@ -3,10 +3,13 @@ using MediatR;
 
 namespace SkillsHunterAPI.Commands.Project
 {
-    public class DeleteProjectCommand: IRequest<bool>
+    public class DeleteProjectCommand : IRequest<bool>
     {
-        public DeleteProjectCommand()
+        public Guid ProjectId { get; }
+
+        public DeleteProjectCommand(Guid proj)
         {
+            ProjectId = proj;
         }
     }
 }
