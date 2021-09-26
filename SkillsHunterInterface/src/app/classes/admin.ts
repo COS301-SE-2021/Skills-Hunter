@@ -17,6 +17,47 @@ export interface createCategoryRequest{
     description: string
 }
 
+
+export interface removeCategoryRequest
+{
+    categoryId:String
+}
+
+
+export interface removeSkillRequest
+{
+    skillId:String
+}
+
+
+export interface updateSkillRequest
+{
+    id: string,
+    name: string,
+    categoryId: string,
+    status: number
+}
+
+
+export interface updateCategoryRequest
+{
+    id: string,
+    name: string,
+    description: string
+}
+
+
+
+export interface createSkillCollectionRequest
+{   projectSkillCollectionId: string,
+    name: string,
+    description: string,
+    weight: number,
+    skills :
+
+}
+
+
 //Responses
 
 export interface getSkillsResponse{
