@@ -12,6 +12,7 @@ using SkillsHunterAPI.Models.Skill.Entity;
 using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Queries;
 using MediatR;
+using SkillsHunterAPI.Commands;
 
 namespace SkillsHunterAPI.Controllers
 {
@@ -34,112 +35,53 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getSkill")]
         public async Task<IActionResult> GetSkill([FromBody] GetSkillRequest request)
         {
-            try
-            {
-                // Get skill code here
-                Guid id = new Guid(request.Id);
 
-                Skill result = await _adminService.GetSkill(id);
+            Guid SkillId = new Guid(request.Id);
 
-                return Ok(new GetSkillResponse()
-                {
-                    Id = result.SkillId,
-                    Name = result.Name,
-                    Status = result.Status
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
+            var query = new GetSkillByIdQuery(SkillId);
 
-                return NotFound(error.Message);
-            }
+            var result = await _mediator.Send(query);
+
+            return result != null ? Ok(result) : NotFound();
+            
         }
 
         [HttpPost]
         [Route("api/[controller]/createSkill")]
-        public async Task<IActionResult> CreateSkill([FromBody] AddSkillRequest request)
+        public async Task<IActionResult> CreateSkill([FromBody] AddSkillCommand command)
         {
-            try
-            {
-                // Add skill code here
-                Skill skill = new Skill();
-                skill.Name = request.Name;
-                skill.Status = SkillStatus.Accepted;
 
-                Skill result = await _adminService.CreateSkill(skill);
+            var result = await _mediator.Send(command);
 
-                //Link skill with Categories
-                await _adminService.AddCategoriesToSkill(skill.SkillId, request.Categories);
+            return CreatedAtAction("GetSkill", new { result.Name }, result);
 
-                return Ok(new AddSkillResponse()
-                {
-                    Added = result
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
 
-                return BadRequest(error.Message);
-            }
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/[controller]/addCategory")]
-        public async Task<IActionResult> AddCategory([FromBody] AddCategoryRequest request)
+        public async Task<IActionResult> AddCategory([FromBody] AddCategoryCommand command)
         {
 
-            try
-            {
-                // Add category code here
-                Category category = new Category();
+            var result = await _mediator.Send(command);
 
-                category.Name = request.Name;
+            return CreatedAtAction("GetCategory", new { result.Name }, result);
+            
 
-                category.Description = request.Description;
-
-                Category result = await _adminService.AddCategory(category);
-
-                return Ok(new AddCategoryResponse()
-                {
-                    Added = result
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-
-                return BadRequest(error.Message);
-            }
         }
 
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/[controller]/removeSkill")]
-        public async Task<IActionResult> RemoveSkill([FromBody] RemoveSkillRequest request)
+        public async Task<IActionResult> RemoveSkill([FromBody] RemoveSkillCommand command)
         {
-            try
-            {
-                // Remove category code here
 
-                //Guid id = new Guid(request.SkillId);
-                Skill result = await _adminService.RemoveSkill(request.SkillId);
+            var result = await _mediator.Send(command);
 
-                return Ok(new RemoveSkillResponse()
-                {
-                    Success = true,
-                    Removed = result
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
+            return CreatedAtAction("RemoveSkill", new { result.Success }, result);
 
-                return NotFound(error.Message);
-            }
         }
 
 
@@ -153,60 +95,23 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getSkills")]
         public async Task<IActionResult> GetSkills()
         {
-            var query = GetSkillsQuery();
-            var result = _mediator.Send(query);
+            var query = new GetSkillsQuery();
+
+            var result =await _mediator.Send(query);
+
             return Ok(result);
             
-            /*try
-            {
-                // Get categories code here
-                List<Skill> result = (List<Skill>)await _adminService.GetSkills();
-
-                return Ok(new GetSkillsResponse()
-                {
-                    skills = result.ToArray()
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-
-                return StatusCode(500, $"Internal server error: {error}");
-            }*/
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/updateSkill")]
-        public async Task<IActionResult> UpdateSkill([FromBody] UpdateSkillRequest request)
+        public async Task<IActionResult> UpdateSkill([FromBody] UpdateSkillCommand command)
         {
-            try
-            {
-                // Update skill code here
-                Guid id = new Guid(request.Id);
-                Skill skill = new Skill();
+            var result = await _mediator.Send(command);
 
-                skill.Name = request.Name;
+            return CreatedAtAction("UpdateSkill", new { result.Name }, result);
 
-                //skill.CategoryId = new Guid(request.CategoryId);
-
-                skill.Status = request.Status;
-
-                Skill result = await _adminService.UpdateSkill(id, skill);
-
-                return Ok(new UpdateSkillResponse()
-                {
-                    Id = result.SkillId,
-                    Name = result.Name,
-                    Status = result.Status
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-
-                return NotFound(error.Message);
-            }
         }
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
@@ -214,26 +119,13 @@ namespace SkillsHunterAPI.Controllers
         public async Task<IActionResult> GetCategory([FromBody] GetCategoryRequest request)
         {
 
-            try
-            {
-                // Get category code here
-                Guid id = new Guid(request.Id);
+            Guid categoryId = new Guid(request.Id);
+            var query = new GetCategoryByIdQuery(categoryId);
 
-                Category result = await _adminService.GetCategory(id);
+            var result = await _mediator.Send(query);
 
-                return Ok(new GetCategoryResponse()
-                {
-                    Id = result.CategoryId,
-                    Name = result.Name,
-                    Description = result.Description
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
+            return result != null ? Ok(result) : NotFound();
 
-                return NotFound(error.Message);
-            }
         }
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
@@ -243,84 +135,35 @@ namespace SkillsHunterAPI.Controllers
 
 
             var query = new GetCategoriesQuery();
+
             var result = await _mediator.Send(query);
+
             return Ok(result);
 
 
-            /*try
-            {
-                // Get categories code here
-                List<Category> result = (List<Category>)await _adminService.GetCategories();
-
-                return Ok(new GetCategoriesResponse()
-                {
-                    category = result.ToArray()
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-
-                return StatusCode(500, $"Internal server error: {error}");
-            }*/
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/updateCategory")]
-        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryRequest request)
+        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryCommand command)
         {
-            try
-            {
-                // Update category code here
-                Guid id = new Guid(request.Id);
-                Category category = new Category();
+            var result = await _mediator.Send(command);
 
-                category.Name = request.Name;
+            return CreatedAtAction("UpdateCategory", new { result.Name }, result);
 
-                category.Description = request.Description;
-
-                Category result = await _adminService.UpdateCategory(id, category);
-
-                return Ok(new UpdateCategoryResponse()
-                {
-                    Id = result.CategoryId,
-                    Name = result.Name,
-                    Description = result.Description
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-
-                return NotFound(error.Message);
-            }
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
+        [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/removeCategory")]
-        public async Task<IActionResult> RemoveCategory([FromQuery]Guid request)
+        public async Task<IActionResult> RemoveCategory([FromBody] RemoveCategoryCommand command)
         {
-            try
-            {
-                // Remove category code here
 
-                Category result = await _adminService.RemoveCategory(request);
+            var result = await _mediator.Send(command);
 
-                return Ok(new RemoveCategoryResponse()
-                {
-                    Id = result.CategoryId,
-                    Name = result.Name,
-                    Description = result.Description
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
+            return CreatedAtAction("RemoveCategory", new { result.Name }, result);
 
-                return NotFound(error.Message);
-            }
         }
 
         [Authorize(Roles = "Admin")]
@@ -347,19 +190,14 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getAllSkillCollections")]
         public async Task<IActionResult> GetAllSkillCollections()
         {
-            try
-            {
-                // Get collections code here
-                List<GetSkillCollectionResponse> result = (List<GetSkillCollectionResponse>)await _adminService.getAllSkillCollections();
 
-                return Ok(result);
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
+            var query = new GetAllSkillCollectionsQuery();
 
-                return BadRequest(error.Message);
-            }
+            var result = await _mediator.Send(query);
+
+            return Ok(result);
+            
+
         }
     }
 }

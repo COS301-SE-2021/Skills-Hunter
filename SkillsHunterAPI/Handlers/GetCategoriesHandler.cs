@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace SkillsHunterAPI.Handlers
 {
     public class GetCategoriesHandler : IRequestHandler<GetCategoriesQuery, GetCategoriesResponse>
@@ -28,9 +29,5 @@ namespace SkillsHunterAPI.Handlers
 
         }
 
-        /*Task<List<GetCategoriesResponse>> IRequestHandler<GetCategoriesQuery, List<GetCategoriesResponse>>.Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }*/
     }
 }
