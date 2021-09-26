@@ -106,35 +106,12 @@ namespace SkillsHunterAPI.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]//This tells ASP.Net that the method will handle http get request with an argument
         [Route("api/[controller]/updateSkill")]
-        public async Task<IActionResult> UpdateSkill([FromBody] UpdateSkillRequest request)
+        public async Task<IActionResult> UpdateSkill([FromBody] UpdateSkillCommand command)
         {
-            try
-            {
-                // Update skill code here
-                Guid id = new Guid(request.Id);
-                Skill skill = new Skill();
+            var result = await _mediator.Send(command);
 
-                skill.Name = request.Name;
+            return CreatedAtAction("UpdateSkill", new { result.Name }, result);
 
-                //skill.CategoryId = new Guid(request.CategoryId);
-
-                skill.Status = request.Status;
-
-                Skill result = await _adminService.UpdateSkill(id, skill);
-
-                return Ok(new UpdateSkillResponse()
-                {
-                    Id = result.SkillId,
-                    Name = result.Name,
-                    Status = result.Status
-                });
-            }
-            catch (Exception error)
-            {
-                // return error message if there was an exception code here
-
-                return NotFound(error.Message);
-            }
         }
 
         [HttpGet]//This tells ASP.Net that the method will handle http get request with an argument
