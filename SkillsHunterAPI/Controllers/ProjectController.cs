@@ -281,7 +281,7 @@ namespace SkillsHunterAPI.Controllers
             newNotification.IsRead = false;
             newNotification.DateSent = DateTime.Now;
 
-            if (InviteStatus)
+            if (InviteStatus.Result)
             {
                 inviteCandidateResponse.Success = true;
   
