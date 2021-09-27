@@ -38,9 +38,9 @@ namespace SkillsHunterAPI.Services
 
         Task<List<GetProjectSkillCollectionResponse>> GetProjectSkillCollectionsByProjectId(Guid projectId);
 
-        bool ApplyForProject(Guid userId,Guid projectId);
+        Task<bool> ApplyForProject(Guid userId,Guid projectId);
         
-        bool InviteCandidate(Guid userId,Guid projectId, Guid inviteeId, String message);
+        Task<bool> InviteCandidate(Guid userId,Guid projectId, Guid inviteeId, String message);
         
         Task<ProjectSkillCollection> CreateCollection(CreateSkillCollectionRequest request, Guid projectId);
 
