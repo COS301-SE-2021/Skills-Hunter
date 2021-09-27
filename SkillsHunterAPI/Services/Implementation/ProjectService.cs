@@ -202,20 +202,16 @@ namespace SkillsHunterAPI.Services
             return response;
         }
 
-        public  bool ApplyForProject(Guid userId,Guid ProjectId)
+        public async Task<bool> ApplyForProject(Guid userId,Guid ProjectId)
         {
-            bool applicationSuccess = false;
-
-
             Application applicationFromDB = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
-            User userFromDB = _context.Users.Where(ss => ss.UserId == userId).FirstOrDefault();
+            User userFromDB = await _context.Users.Where(ss => ss.UserId == userId).FirstOrDefaultAsync();
             Project projectFromDB = _context.Projects.Where(ss => ss.ProjectId == ProjectId).FirstOrDefault();
+
             if (applicationFromDB != null || userFromDB == null || projectFromDB == null)
             {
                 return false;
             }
-
-            
 
             Application newApplication = new Application();
             newApplication.ApplicationId = new Guid();
@@ -223,7 +219,7 @@ namespace SkillsHunterAPI.Services
             newApplication.ApplicantId = userId;
 
              _context.Applications.Add(newApplication);
-             _context.SaveChangesAsync();
+             await _context.SaveChangesAsync();
 
             //Application application = _context.Applications.Where(ss => ss.ApplicantId == userId && ss.ProjectId == ProjectId).FirstOrDefault();
 
@@ -245,7 +241,7 @@ namespace SkillsHunterAPI.Services
             newNotification.DateSent = DateTime.Now;
 
 
-             _notificationService.SendNotifications(newNotification);
+             await _notificationService.SendNotifications(newNotification);
 
            
             return true;
@@ -253,15 +249,12 @@ namespace SkillsHunterAPI.Services
 
 
 
-        public bool InviteCandidate(Guid userId, Guid ProjectId, Guid inviteeId, String message)
+        public async Task<bool> InviteCandidate(Guid userId, Guid ProjectId, Guid inviteeId, String message)
         {
-            bool invitationSuccess = false;
-
-
             Invitation existingInvitations = _context.Invitations.Where(ss => ss.InviteeId == inviteeId && ss.ProjectId == ProjectId).FirstOrDefault();
-            User ownerFromDB = _context.Users.Where(ss => ss.UserId == userId).FirstOrDefault();
-            User inviteeFromDB = _context.Users.Where(ss => ss.UserId == inviteeId).FirstOrDefault();
-            Project projectFromDB = _context.Projects.Where(ss => ss.ProjectId == ProjectId).FirstOrDefault();
+            User ownerFromDB = await _context.Users.Where(ss => ss.UserId == userId).FirstOrDefaultAsync();
+            User inviteeFromDB = await _context.Users.Where(ss => ss.UserId == inviteeId).FirstOrDefaultAsync();
+            Project projectFromDB = await _context.Projects.Where(ss => ss.ProjectId == ProjectId).FirstOrDefaultAsync();
 
 
             if (existingInvitations != null || ownerFromDB == null || inviteeFromDB == null || projectFromDB == null || projectFromDB.Owner != userId)
@@ -280,7 +273,7 @@ namespace SkillsHunterAPI.Services
             newInvitation.InvitationId = new Guid();
 
             _context.Add(newInvitation);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
 
             //Invitation invitation = _context.Invitations.Where(ss => ss.InviteeId == inviteeId && ss.ProjectId == ProjectId).FirstOrDefault();

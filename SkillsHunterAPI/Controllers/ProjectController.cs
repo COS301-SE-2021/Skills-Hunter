@@ -199,8 +199,8 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/deleteProject")]
         public async Task<ActionResult> DeleteProject([FromQuery]Guid projectId)
         {
-            var query = new DeleteProjectCommand(projectId);
-            var result = await _mediator.Send(query);
+            var command = new DeleteProjectCommand(projectId);
+            var result = await _mediator.Send(command);
 
             if(result == true)
             {
@@ -242,23 +242,22 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/applyForProject")]
-        public Task<ApplyForProjectResponse> ApplyForProject([FromBody] ApplyForProjectRequest request)
+        public async Task<ActionResult> ApplyForProject([FromBody] ApplyForProjectRequest request)
         {
-            ApplyForProjectResponse applyForProjectResponse = new ApplyForProjectResponse();
+            InitControllers();
 
-             var reqStatus = _projectService.ApplyForProject(request.UserId, request.ProjectId);
+            Guid user = _userController.GetCurrentUserId();
+            var command = new ApplyForProjectCommand(user, request.ProjectId);
+            var result = _mediator.Send(command);
 
-            if (reqStatus)
+            if(result.Result == true)
             {
-                applyForProjectResponse.Success = true;
+                return Ok();
             }
             else
             {
-                applyForProjectResponse.Success = false;
+                return BadRequest();
             }
-
-
-            return Task.FromResult(applyForProjectResponse);
         }
 
 
@@ -282,7 +281,7 @@ namespace SkillsHunterAPI.Controllers
             newNotification.IsRead = false;
             newNotification.DateSent = DateTime.Now;
 
-            if (InviteStatus)
+            if (InviteStatus.Result)
             {
                 inviteCandidateResponse.Success = true;
   
