@@ -242,15 +242,15 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/applyForProject")]
-        public async Task<ActionResult> ApplyForProject([FromBody] ApplyForProjectRequest request)
+        public async Task<ActionResult> ApplyForProject([FromQuery] Guid projectId)
         {
             InitControllers();
 
             Guid user = _userController.GetCurrentUserId();
-            var command = new ApplyForProjectCommand(user, request.ProjectId);
-            var result = _mediator.Send(command);
+            var command = new ApplyForProjectCommand(user, projectId);
+            var result = await _mediator.Send(command);
 
-            if(result.Result == true)
+            if(result == true)
             {
                 return Ok();
             }
