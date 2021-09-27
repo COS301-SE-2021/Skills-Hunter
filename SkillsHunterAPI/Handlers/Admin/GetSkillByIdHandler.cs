@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SkillsHunterAPI.Handlers
+namespace SkillsHunterAPI.Handlers.Admin
 {
     public class GetSkillByIdHandler : IRequestHandler<GetSkillByIdQuery, GetSkillResponse>
     {

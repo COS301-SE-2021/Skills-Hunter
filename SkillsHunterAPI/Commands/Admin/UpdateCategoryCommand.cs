@@ -6,11 +6,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SkillsHunterAPI.Commands
+namespace SkillsHunterAPI.Commands.Admin
 {
-    public class RemoveCategoryCommand : IRequest<RemoveCategoryResponse>
+    public class UpdateCategoryCommand : IRequest<UpdateCategoryResponse>
     {
         [Required(ErrorMessage = "Id is required")]
-        public Guid CategoryId { get; set; }
+        public String Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

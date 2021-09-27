@@ -3,8 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using SkillsHunterAPI.Models.Skill.Request;
 using MediatR;
+using SkillsHunterAPI.Models.Skill;
 
-namespace SkillsHunterAPI.Models.Skill
+namespace SkillsHunterAPI.Commands.Admin
 {
     //This model request class contains attributes required to add a skill to the system
     public class AddSkillCommand :IRequest<GetSkillResponse>

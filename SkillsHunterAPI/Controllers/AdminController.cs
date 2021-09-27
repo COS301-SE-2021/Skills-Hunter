@@ -13,6 +13,7 @@ using SkillsHunterAPI.Models.Project.Request;
 using SkillsHunterAPI.Queries;
 using MediatR;
 using SkillsHunterAPI.Commands;
+using SkillsHunterAPI.Commands.Admin;
 
 namespace SkillsHunterAPI.Controllers
 {

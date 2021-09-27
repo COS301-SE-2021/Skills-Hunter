@@ -50,13 +50,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="Commands\Project\" />
     <Folder Include="Commands\User\" />
-    <Folder Include="Commands\Admin\" />
     <Folder Include="Commands\Notification\" />
     <Folder Include="Handlers\Project\" />
-    <Folder Include="Handlers\Admin\" />
     <Folder Include="Handlers\User\" />
     <Folder Include="Handlers\Notification\" />
     <Folder Include="Queries\User\" />

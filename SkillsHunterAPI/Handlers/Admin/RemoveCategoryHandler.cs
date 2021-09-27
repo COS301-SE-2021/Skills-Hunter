@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using SkillsHunterAPI.Commands;
+using SkillsHunterAPI.Commands.Admin;
 using SkillsHunterAPI.Models.Skill;
 using SkillsHunterAPI.Services;
 using System;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SkillsHunterAPI.Handlers
+namespace SkillsHunterAPI.Handlers.Admin
 {
     public class RemoveCategoryHandler : IRequestHandler<RemoveCategoryCommand, RemoveCategoryResponse>
     {
