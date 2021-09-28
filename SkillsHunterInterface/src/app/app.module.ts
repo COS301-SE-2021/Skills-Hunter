@@ -23,6 +23,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatRadioModule} from '@angular/material/radio';
 
 //Fontawesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -78,6 +79,7 @@ import { SkillAdvancedSearchComponent } from './skill-management/skill-advanced-
     FlexLayoutModule,
     FontAwesomeModule,
     MatDialogModule,
+    MatRadioModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
