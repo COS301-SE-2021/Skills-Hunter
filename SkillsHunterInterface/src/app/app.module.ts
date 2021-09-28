@@ -31,6 +31,8 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
+import { ProjectManagementComponent } from './project-management/project-management.component';
+import { UpdateProjectComponent } from './project-management/update-project/update-project.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { CreateProjectComponent } from './create-project/create-project.componen
     LoginComponent,
     HomeComponent,
     CreateProjectComponent,
+    ProjectManagementComponent,
+    UpdateProjectComponent,
   ],
   imports: [
     BrowserModule,
