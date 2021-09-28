@@ -6,6 +6,7 @@ using SkillsHunterAPI.Services;
 using Xunit;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SkillsHunterAPI.Commands.Admin;
 
 namespace SkillsHunterAPIUnitTest.Tests
 {

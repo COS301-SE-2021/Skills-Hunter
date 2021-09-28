@@ -5,6 +5,12 @@ export interface skill{
     status: number
 }
 
+export class Category{
+    categoryid: string;
+    name: string;
+    description: string;
+}
+
 
 //Requets
 export interface createSkillRequest{

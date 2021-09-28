@@ -7,6 +7,7 @@ using SkillsHunterAPI.Controllers;
 using SkillsHunterAPI.Services;
 using SkillsHunterAPI.Models.Skill;
 using FakeItEasy;
+using SkillsHunterAPI.Commands.Admin;
 
 namespace SkillsHunterAdminUnitTest
 {

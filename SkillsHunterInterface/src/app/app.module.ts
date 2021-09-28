@@ -30,9 +30,16 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { CreateProjectComponent } from './create-project/create-project.component';
+
 import { ProjectManagementComponent } from './project-management/project-management.component';
 import { UpdateProjectComponent } from './project-management/update-project/update-project.component';
+
+import { SkillManagementComponent } from './skill-management/skill-management.component';
+import { EditSkillComponent } from './skill-management/edit-skill/edit-skill.component';
+import { SkillComponent } from './skill-management/skill/skill.component';
+import { AddSkillComponent } from './skill-management/add-skill/add-skill.component';
+import { CreateProjectComponent } from './project-management/create-project/create-project.component';
+import { SkillAdvancedSearchComponent } from './skill-management/skill-advanced-search/skill-advanced-search.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +52,11 @@ import { UpdateProjectComponent } from './project-management/update-project/upda
     CreateProjectComponent,
     ProjectManagementComponent,
     UpdateProjectComponent,
+    SkillManagementComponent,
+    EditSkillComponent,
+    SkillComponent,
+    AddSkillComponent,
+    SkillAdvancedSearchComponent
   ],
   imports: [
     BrowserModule,
