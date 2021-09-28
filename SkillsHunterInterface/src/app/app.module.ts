@@ -23,6 +23,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatTableModule} from '@angular/material/table';
+
 
 //Fontawesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -30,9 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { CreateProjectComponent } from './create-project/create-project.component';
 import { ProjectManagementComponent } from './project-management/project-management.component';
-import { UpdateProjectComponent } from './project-management/update-project/update-project.component';
 
 @NgModule({
   declarations: [
@@ -42,9 +42,7 @@ import { UpdateProjectComponent } from './project-management/update-project/upda
     SignupComponent,
     LoginComponent,
     HomeComponent,
-    CreateProjectComponent,
     ProjectManagementComponent,
-    UpdateProjectComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +64,7 @@ import { UpdateProjectComponent } from './project-management/update-project/upda
     FlexLayoutModule,
     FontAwesomeModule,
     MatDialogModule,
+    MatTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
