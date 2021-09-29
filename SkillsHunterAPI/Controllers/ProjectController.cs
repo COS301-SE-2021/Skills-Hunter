@@ -103,10 +103,7 @@ namespace SkillsHunterAPI.Controllers
             ProjectResponse projectResponse = new ProjectResponse();
 
             InitControllers();
-            //newProject.Owner = _userController.GetCurrentUserId();
             projectRequest.Owner = _userController.GetCurrentUserId();
-
-            //var query = new C(LoggedInOwner);
             var result = await _mediator.Send(projectRequest);
             return Ok(result);
 
@@ -164,8 +161,6 @@ namespace SkillsHunterAPI.Controllers
 
             }
 
-            
-
             foreach (GetProjectSkillResponse projectSkill in projectSkillsFromDB)
             {
                 AddExistingSkillRequest projectSkillRevised = new AddExistingSkillRequest();
@@ -188,9 +183,6 @@ namespace SkillsHunterAPI.Controllers
                 await _projectService.CreateCollection(collection, projectId);
             }
 
-
-
-
             return NoContent();
         }
 
@@ -212,7 +204,6 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-
         [HttpPost]
         [Route("api/[controller]/addProjectSkill")]
         public async Task<ActionResult> AddProjectSkill([FromBody] ProjectSkill projectSkill)
@@ -221,24 +212,22 @@ namespace SkillsHunterAPI.Controllers
             return NoContent();
         }
 
-
         [HttpPost]
         [Route("api/[controller]/deleteProjectSkill/{id}")]
-        public async Task<ActionResult> RemoveProjectSkill(string id)
+        public async Task<ActionResult> RemoveProjectSkill(Guid id)
         {
-            //var projectSkill = await _projectService.GetProjectSkill(id);
+            var projectSkill = await _projectService.GetProjectSkill(id);
 
-            //if (projectSkill == null)
-            //{
-            //    return NotFound();
-            //}
-            //else
-            //{
-            //    await _projectService.RemoveProjectSkill(id);
-            //}
+            if (projectSkill == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                await _projectService.RemoveProjectSkill(id);
+            }
             return NoContent();
         }
-
 
         [HttpPost]
         [Route("api/[controller]/applyForProject")]
@@ -260,42 +249,23 @@ namespace SkillsHunterAPI.Controllers
             }
         }
 
-
         [HttpPost]
         [Route("api/[controller]/inviteCandidate")]
-        public async Task<InviteCandidateResponse> InviteCandidateAsync([FromBody] InviteCandidateRequest request)
+        public async Task<ActionResult> InviteCandidateAsync([FromBody] InviteCandidateCommand request)
         {
-            //This create an Invite candidate response object
-            InviteCandidateResponse inviteCandidateResponse = new InviteCandidateResponse();
+            InitControllers();
+            request.UserId = _userController.GetCurrentUserId();
+            var result = _mediator.Send(request);
 
-
-            var InviteStatus = _projectService.InviteCandidate(request.UserId, request.ProjectId, request.InviteeId, request.Message);
-            var Subject = "Project Invitation";
-
-
-            Notification newNotification = new Notification();
-            newNotification.InitiatorId = request.UserId;
-            newNotification.RecepientId = request.InviteeId;
-            newNotification.Subject = Subject;
-            newNotification.Message = request.Message;
-            newNotification.IsRead = false;
-            newNotification.DateSent = DateTime.Now;
-
-            if (InviteStatus.Result)
+            if (result.Result == true)
             {
-                inviteCandidateResponse.Success = true;
-  
+                return Ok();
             }
             else
             {
-                inviteCandidateResponse.Success = false;
+                return BadRequest();
             }
-
-            await _notificationController.SendNotifications(newNotification);
-
-            return inviteCandidateResponse;
         }
-
 
         [HttpPost]
         [Route("api/[controller]/createCollection")]
