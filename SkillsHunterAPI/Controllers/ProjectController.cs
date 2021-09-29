@@ -442,9 +442,9 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getApplicationsByProjectId")]
         public async Task<IEnumerable<GetApplicationsResponse>> getApplicationsByProjectId([FromQuery] Guid projectId)
         {
-            List<GetApplicationsResponse> response = await _projectService.GetApplicationsByProjectId(projectId);
-
-            return response;
+            var query = new GetApplicationsByProjectIdQuery(projectId);
+            var result = await _mediator.Send(query);
+            return result;
         }
 
 
