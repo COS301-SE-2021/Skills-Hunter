@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { createProjectRequest } from '../classes/project';
+import { CreateProjectComponent } from './create-project/create-project.component';
 
 @Component({
   selector: 'app-project-management',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectManagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
+
+  openCreateProjectDialog(): void {
+    //this.newProject;
+    const dialogRef = this.dialog.open(CreateProjectComponent, {
+      //width: '250px',
+     //data: {newProject:this.newProject}
+     //data: this.newProject
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //console.log('The dialog was closed');
+     // console.log(result);
+      //this.newProject = result;
+    });
+  }
+
 
 }

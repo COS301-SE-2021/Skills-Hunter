@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CreateProjectComponent } from './project-management/create-project/create-project.component';
+import { ProjectManagementComponent } from './project-management/project-management.component';
 import { UpdateProjectComponent } from './project-management/update-project/update-project.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent
+  },
+  {
+    path:'projectManagement',
+    component: ProjectManagementComponent
   },
   {
     path:'createProject',

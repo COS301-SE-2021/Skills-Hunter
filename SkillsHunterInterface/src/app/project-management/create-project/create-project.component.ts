@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { createProjectRequest } from 'src/app/classes/project';
 
 @Component({
   selector: 'app-create-project',
@@ -10,9 +12,11 @@ export class CreateProjectComponent implements OnInit {
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  isEditable = false;
+  isEditable = true;
+
+  newProject: createProjectRequest;
   
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, public dialogRef: MatDialogRef<CreateProjectComponent>) { }
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
@@ -21,5 +25,16 @@ export class CreateProjectComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  createProject(): void{  
+
+    console.log(this.newProject);
+
+    this.dialogRef.close();
   }
 }

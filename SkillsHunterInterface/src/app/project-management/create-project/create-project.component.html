@@ -1,10 +1,19 @@
+<button class="close" mat-button (click)="onNoClick()">Cancel</button>
 <mat-stepper linear #stepper>
     <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
+      <form [formGroup]="firstFormGroup" class="row">
+        <ng-template matStepLabel>Project details</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Name</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="firstCtrl" placeholder="Skills Hunter" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Location</mat-label>
+          <input matInput placeholder="Hatfield, Pretoria, South Africa" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea matInput required></textarea>
         </mat-form-field>
         <div>
           <button mat-button matStepperNext>Next</button>
@@ -13,7 +22,7 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
+        <ng-template matStepLabel>Skills</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Address</mat-label>
           <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
@@ -30,7 +39,7 @@
       <p>You are now done.</p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="createProject()">Submit</button>
       </div>
     </mat-step>
   </mat-stepper>
