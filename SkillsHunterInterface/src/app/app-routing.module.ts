@@ -6,6 +6,7 @@ import { CreateProjectComponent } from './project-management/create-project/crea
 import { ProjectManagementComponent } from './project-management/project-management.component';
 import { UpdateProjectComponent } from './project-management/update-project/update-project.component';
 import { SignupComponent } from './signup/signup.component';
+import { SkillManagementComponent } from './skill-management/skill-management.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path:'createProject',
     component: CreateProjectComponent
+  },
+  {
+    path:'skillManagement',
+    component: SkillManagementComponent
   },
   {
     path:'updateProject',
