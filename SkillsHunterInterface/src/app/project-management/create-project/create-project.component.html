@@ -1,46 +1,99 @@
-<button class="close" mat-button (click)="onNoClick()">Cancel</button>
-<mat-stepper linear #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup" class="row">
-        <ng-template matStepLabel>Project details</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Skills Hunter" required>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Location</mat-label>
-          <input matInput placeholder="Hatfield, Pretoria, South Africa" required>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Description</mat-label>
-          <textarea matInput required></textarea>
-        </mat-form-field>
+
+<div class="create-project-body">
+  <div class="row">
+    <div class=" col-3 offset-5"><h1>Create Project</h1></div>
+    <div class="offset-2 col-auto">
+      <button class="close" mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+  </div>
+  <div>
+    <mat-stepper linear #stepper>
+      <mat-step>
+        <ng-template matStepLabel>Instructions</ng-template>
+        <h3>Steps on how to create a new project:</h3>
+        <ol>
+          <li>
+            Project details
+            <ul>
+              <li>In this section you will be required to provide the following information
+                <ul>
+                  <li class="row">
+                    <b class="col-auto">Name: </b>
+                    <div class="col-auto">This will be the name used to refer to your project</div>
+                  </li>
+                  <li class="row">
+                    <b class="col-auto">Description:</b>
+                    <div class="col-auto">Gives an insight of what the project is about. The description must be written in plain English that can be understood by any normal person.</div>
+                  </li>
+                  <li class="row">
+                    <b class="col-auto">Open for application</b>
+                    <div class="col-12">This field specifies if the project should be open for applications</div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Skills
+          </li>
+          <li>
+            Done
+          </li>
+        </ol>
+          
+        <mat-divider></mat-divider>
         <div>
           <button mat-button matStepperNext>Next</button>
         </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Skills</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
+      </mat-step>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup" class="row">
+          <ng-template matStepLabel>Project details</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="firstCtrl" placeholder="Skills Hunter" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Location</mat-label>
+            <input matInput placeholder="Hatfield, Pretoria, South Africa" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matInput required></textarea>
+          </mat-form-field>
+          <mat-slide-toggle>Open for applications</mat-slide-toggle>
+          <mat-divider></mat-divider>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Skills</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                    required>
+          </mat-form-field>
+          <mat-divider></mat-divider>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <mat-divider></mat-divider>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button (click)="createProject()">Submit</button>
         </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="createProject()">Submit</button>
-      </div>
-    </mat-step>
-  </mat-stepper>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>
   

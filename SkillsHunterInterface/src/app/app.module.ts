@@ -24,10 +24,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 //Fontawesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -80,6 +81,7 @@ import { SkillAdvancedSearchComponent } from './skill-management/skill-advanced-
     FontAwesomeModule,
     MatDialogModule,
     MatRadioModule,
+    MatSlideToggleModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
@@ -87,7 +89,9 @@ import { SkillAdvancedSearchComponent } from './skill-management/skill-advanced-
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}} // for dialogs
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
