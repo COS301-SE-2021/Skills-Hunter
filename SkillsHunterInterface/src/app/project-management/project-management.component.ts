@@ -18,6 +18,7 @@ export class ProjectManagementComponent implements OnInit {
   openCreateProjectDialog(): void {
     //this.newProject;
     const dialogRef = this.dialog.open(CreateProjectComponent, {
+      backdropClass: 'create-project-dialog'
       //width: '250px',
      //data: {newProject:this.newProject}
      //data: this.newProject

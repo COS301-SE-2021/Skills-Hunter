@@ -1,0 +1,29 @@
+
+
+mat-card{
+    background-color: var(--first-Color);  
+}
+
+.project-card{
+    margin-bottom: 5%;
+    margin-left: 5%;
+    //background-color: rgb(31, 88, 31);
+    background-color: var(--lightGrey);
+    color: grey;
+}
+
+.search-bar-card{
+    margin-left: 3%;
+    margin-right: 5%;
+    //background-color: var(--dark-Color);
+    background-color: var(--first-Color);
+}
+
+mat-card-actions> button{
+    background-color: var(--first-Color);
+    margin-top: 2%;
+}
+
+/*mat-dialog-container {
+    background: var(--lightGrey);
+ }*/
