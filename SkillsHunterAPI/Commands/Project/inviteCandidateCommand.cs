@@ -5,10 +5,10 @@ namespace SkillsHunterAPI.Commands.Project
 {
     public class InviteCandidateCommand : IRequest<bool>
     {
-        public Guid UserId { get; }
-        public Guid ProjectId { get; }
-        public Guid InviteeId { get; }
-        public string Message { get; }
+        public Guid UserId { get; set; }
+        public Guid ProjectId { get; set; }
+        public Guid InviteeId { get; set; }
+        public string Message { get; set; }
 
         public InviteCandidateCommand(Guid user, Guid project, Guid invitee, string mes)
         {
