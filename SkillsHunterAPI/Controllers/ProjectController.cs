@@ -452,7 +452,9 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/getInvitationsByProjectId")]
         public async Task<IEnumerable<Invitation>> GetInvitationsByProjectId([FromQuery] Guid projectId)
         {
-            return await _projectService.GetInvitationsByProjectId(projectId);
+            var query = new GetInvitationsByProjectIdQuery(projectId);
+            var result = await _mediator.Send(query);
+            return result;
 
         }
 
