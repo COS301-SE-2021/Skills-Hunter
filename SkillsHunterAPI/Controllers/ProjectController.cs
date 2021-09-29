@@ -432,9 +432,10 @@ namespace SkillsHunterAPI.Controllers
         [Route("api/[controller]/MatchCandidates")]
         public async Task<IEnumerable<MatchCandidateResponse>> MatchCandidates([FromQuery]Guid projectId)
         {
-            List<MatchCandidateResponse> response = await _projectService.MatchCandidates(projectId);
 
-            return response;
+            var query = new MatchCandidatesQuery(projectId);
+            var result = await _mediator.Send(query);
+            return result;
         }
 
         [HttpGet]
