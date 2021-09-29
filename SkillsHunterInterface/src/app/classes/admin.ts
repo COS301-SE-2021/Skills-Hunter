@@ -12,6 +12,13 @@ export class Category{
 }
 
 
+export class createSkillCollectionRequest
+{
+    skillCollectionId: string;
+    name : string;
+    description : string;
+}
+
 //Requets
 export interface createSkillRequest{
     name: string,
