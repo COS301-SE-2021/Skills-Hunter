@@ -26,6 +26,7 @@ import {MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 //Fontawesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -84,6 +85,7 @@ import { SkillAdvancedSearchComponent } from './skill-management/skill-advanced-
     MatRadioModule,
     MatSlideToggleModule,
     HttpClientModule,
+    MatExpansionModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

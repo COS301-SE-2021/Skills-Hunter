@@ -1,6 +1,21 @@
+.mat-form-field + .mat-form-field {
+    margin-left: 8px;
+}
+
+.project-management-body{
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    //background-color: var(--babyBlue);
+}
+
+mat-expansion-panel{
+    background-color: var(--babyBlue);
+    color: black;
+}
 
 
-mat-card{
+/*mat-card{
     background-color: var(--first-Color);  
 }
 

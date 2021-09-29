@@ -10,6 +10,8 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 })
 export class ProjectManagementComponent implements OnInit {
 
+  panelOpenState = false; //For the project expansion pannel
+
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
