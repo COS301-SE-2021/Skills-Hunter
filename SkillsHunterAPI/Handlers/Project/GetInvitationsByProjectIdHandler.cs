@@ -17,7 +17,7 @@ namespace SkillsHunterAPI.Handlers.Project
 
         async Task<List<Invitation>> IRequestHandler<GetInvitationsByProjectIdQuery, List<Invitation>>.Handle(GetInvitationsByProjectIdQuery request, CancellationToken cancellationToken)
         {
-            await _projectService.GetInvitationsByProjectId(request.ProjectId);
+            return (List<Invitation>)await _projectService.GetInvitationsByProjectId(request.ProjectId);
         }
     }
 }
