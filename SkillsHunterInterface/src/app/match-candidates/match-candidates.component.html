@@ -1,0 +1,24 @@
+<br>
+<br>
+<div class="row match-body">
+    <mat-card class=" accommodations-card col-10 col-sm-5 col-md-3" *ngFor="let x of [].constructor(10)">
+        <mat-card-header>
+          <mat-card-title>candidate X</mat-card-title>
+          <mat-card-subtitle>67%</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="../../assets/profile-pic.png" alt="Photo of accommodation X">
+        <mat-card-content>
+            <div><b>Matching skills:</b></div>
+            <br>
+          <div class="row">
+            <div class="col-auto">Angular:67%</div>
+            <div class="col-auto">React:96%</div>
+            <div class="col-auto">Vue:34%</div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" routerLink="/matchCandidates" routerLinkActive="active">View account</button>
+          <button mat-raised-button color="primary" (click)="openDialog()">Invite</button>
+        </mat-card-actions>
+    </mat-card>    
+</div>

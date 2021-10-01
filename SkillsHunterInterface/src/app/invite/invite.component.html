@@ -1,0 +1,16 @@
+<div class="application-body">
+    <h1 mat-dialog-title>Invite candidate X</h1>
+    <div mat-dialog-content>
+    <!--p>What's your favorite animal?</p-->
+    <div class="row">
+        <mat-form-field class="col-12" appearance="fill">
+        <mat-label>Invitation message</mat-label>
+        <textarea matInput></textarea>
+        </mat-form-field>
+    </div>
+    </div>
+    <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Send invitattion</button>
+    </div>
+</div>

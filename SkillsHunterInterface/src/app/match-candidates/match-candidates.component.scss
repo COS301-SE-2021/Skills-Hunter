@@ -1,0 +1,48 @@
+mat-card{
+    background-color: var(--first-Color);  
+}
+
+.accommodations-card{
+    margin-bottom: 5%;
+    margin-left: 5%;
+    //background-color: rgb(31, 88, 31);
+    background-color: var(--babyBlue);
+    color: black;
+}
+
+.search-bar-card{
+    margin-left: 3%;
+    margin-right: 5%;
+    //background-color: var(--dark-Color);
+    background-color: var(--first-Color);
+}
+
+mat-form-field{
+    background-color: var(--first-Color);
+    border-radius: 10%;
+}
+
+.university-name{
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.accommodations-card{
+    color: black;
+}
+
+mat-card-actions> button{
+    background-color: var(--first-Color);
+    margin-top: 2%;
+}
+
+mat-dialog-container {
+    background: var(--first-Color);
+ }
+
+.natch-body{
+    margin-left: 10%;
+    margin-top: 10%;
+}
+

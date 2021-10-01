@@ -10,7 +10,7 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 })
 export class ProjectManagementComponent implements OnInit {
 
-  panelOpenState = false; //For the project expansion pannel
+  collectionPanelOpenState = false; //For the project expansion pannel
   projectPanelOpenState = false;
 
   constructor(public dialog: MatDialog) { }
@@ -21,8 +21,8 @@ export class ProjectManagementComponent implements OnInit {
   openCreateProjectDialog(): void {
     //this.newProject;
     const dialogRef = this.dialog.open(CreateProjectComponent, {
-      backdropClass: 'create-project-dialog'
-      //width: '250px',
+      backdropClass: 'create-project-dialog',
+      height: '60%',
      //data: {newProject:this.newProject}
      //data: this.newProject
     });

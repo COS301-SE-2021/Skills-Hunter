@@ -44,6 +44,8 @@ import { SkillComponent } from './skill-management/skill/skill.component';
 import { AddSkillComponent } from './skill-management/add-skill/add-skill.component';
 import { CreateProjectComponent } from './project-management/create-project/create-project.component';
 import { SkillAdvancedSearchComponent } from './skill-management/skill-advanced-search/skill-advanced-search.component';
+import { MatchCandidatesComponent } from './match-candidates/match-candidates.component';
+import { InviteComponent } from './invite/invite.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { SkillAdvancedSearchComponent } from './skill-management/skill-advanced-
     EditSkillComponent,
     SkillComponent,
     AddSkillComponent,
-    SkillAdvancedSearchComponent
+    SkillAdvancedSearchComponent,
+    MatchCandidatesComponent,
+    InviteComponent
   ],
   imports: [
     BrowserModule,
