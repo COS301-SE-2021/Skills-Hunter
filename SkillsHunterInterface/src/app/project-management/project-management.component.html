@@ -1,11 +1,11 @@
 
-<div class="project-management-body">
+<div class="management-body">
     <button mat-raised-button color="primary" (click)="openCreateProjectDialog()">Create Project</button><br><br>
     <div class="row projects">
         <div class="col-12 col-md-4" *ngFor="let x of [].constructor(10)">
           <mat-accordion class="project-expansion-pannel">
-            <mat-expansion-panel (opened)="panelOpenState = true"
-                                 (closed)="panelOpenState = false">
+            <mat-expansion-panel (opened)="projectPanelOpenState = true"
+                                 (closed)="projectPanelOpenState = false">
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   Project X
@@ -14,7 +14,61 @@
                   short description
                 </mat-panel-description>
               </mat-expansion-panel-header>
-              <p>Project data</p>
+              <div class="row">
+                <div class="col-12 mb-2"><b>Skills:</b></div>
+                <div class="col-auto">C++</div>
+                <div class="col-auto">C#</div>
+                <div class="col-auto">MSSQL</div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-12 mb-2"><b>Skill collections:</b></div>
+                <div class="col-12 mb-2">
+                  <mat-accordion>
+                    <mat-expansion-panel (opened)="collectionPanelOpenState = true"
+                                         (closed)="collectionPanelOpenState = false">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Frontend
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          2 skills
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <div class="row">
+                        <div class="col-auto">Angular</div>
+                        <div class="col-auto">React</div>
+                        <div class="col-auto">Vue</div>
+                      </div>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+                <div class="col-12 mb-2">
+                  <mat-accordion>
+                    <mat-expansion-panel (opened)="collectionPanelOpenState = true"
+                                         (closed)="collectionPanelOpenState = false">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Backend
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          3 skills
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <div class="row">
+                        <div class="col-auto">.Net core</div>
+                        <div class="col-auto">NodeJS</div>
+                        <div class="col-auto">JSON</div>
+                      </div>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+              </div>
+              <div class="row">
+                <button class="col-auto" mat-raised-button color="warn">Remove</button>
+                <button class="col-auto" mat-raised-button color="accent">Update</button>
+                <button class="col-auto" mat-raised-button color="accent">Match candidates</button>
+              </div>
             </mat-expansion-panel>
           </mat-accordion>
           <br>

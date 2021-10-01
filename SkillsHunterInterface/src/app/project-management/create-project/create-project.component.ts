@@ -20,10 +20,12 @@ export class CreateProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      //firstCtrl: ['', Validators.required]
+      firstCtrl: ['']
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      //secondCtrl: ['', Validators.required]
+      secondCtrl: ['']
     });
   }
 

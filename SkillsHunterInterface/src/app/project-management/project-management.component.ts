@@ -11,6 +11,7 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 export class ProjectManagementComponent implements OnInit {
 
   panelOpenState = false; //For the project expansion pannel
+  projectPanelOpenState = false;
 
   constructor(public dialog: MatDialog) { }
 
