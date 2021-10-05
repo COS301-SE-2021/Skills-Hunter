@@ -33,7 +33,7 @@
         <br/>
         <a href="#" id="forgot">Forgot Your Password?</a>
         <div class="form-group" >
-        <button id="login" class="btn btn-primary" [disabled]="LoginForm.controls['email'].invalid || LoginForm.controls['password'].invalid" type="submit" >Login</button><br><br>
+        <button id="login" mat-raised-button type="submit" [disabled]="LoginForm.controls['email'].invalid || LoginForm.controls['password'].invalid" type="submit" >Login</button><br><br>
         <p *ngIf="!_match" class="alert alert-danger"> 
             Invalid Username or Password !              
         </p> 

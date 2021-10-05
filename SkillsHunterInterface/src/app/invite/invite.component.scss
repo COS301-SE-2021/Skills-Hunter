@@ -1,0 +1,12 @@
+.application-body{
+    width: 80%;
+    align-items: center;
+    text-align: center;
+    padding-left: 10%;
+    //background-color: var(--first-Color);
+    //color: white;
+}
+
+.application-body:parent{
+    background-color: var(--first-Color);
+}

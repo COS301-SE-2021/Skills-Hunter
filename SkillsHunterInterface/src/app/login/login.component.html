@@ -3,21 +3,43 @@
       <mat-card class="row">
           <mat-card-title class="col-12">Login</mat-card-title>
           <mat-card-content class="col-10 offset-1">
-            <form class="row" >
-    
-              <mat-form-field class="col-12">
-                  <input matInput type="email" placeholder="email address">
+            <form  [formGroup]="LoginForm" (ngSubmit)="onSubmit()" class="LoginForm">
+              <mat-form-field class="field">
+                  <mat-label>Email</mat-label>
+                  <input formControlName="email" matInput required>
+                  <!-- mat-error is for validation -->
+                  <mat-error *ngIf="LoginForm.controls['email'].hasError('email')  && !LoginForm.controls['email'].hasError('required')">
+                      Please Enter A Valid Email Address
+                  </mat-error>
+                  <mat-error *ngIf="LoginForm.controls['email'].hasError('required')">
+                      email address is <strong>required</strong>
+                  </mat-error>           
               </mat-form-field>
-            
-              <mat-form-field class="col-12">
-                  <input matInput type="password" placeholder="Password"  >
+              <br/>
+      
+             <mat-form-field class="field" color="accent">
+                  <mat-label>Password</mat-label>
+                  <input formControlName="password" matInput required [type]="hide ? 'password' : 'text'" >
+                  <mat-error *ngIf="LoginForm.controls['password'].hasError('required')">
+                      Password is <strong>required</strong>
+                  </mat-error>
+                  
+                  <button id="pbutton"  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+                  <mat-icon id="pIcon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                  
               </mat-form-field>
-    
-                <button mat-raised-button type="submit" class="form-submit-button">Login account</button>
-    
-                <a routerLink="" >Forgot password?</a>
-                <a routerLink="/signup" >Create account</a>
-            </form>
+              <br/>
+              <a href="#" id="forgot">Forgot Your Password?</a>
+              <div class="form-group" >
+              <button id="login" mat-raised-button type="submit" [disabled]="LoginForm.controls['email'].invalid || LoginForm.controls['password'].invalid" type="submit" >Login</button><br><br>
+              <p *ngIf="!_match" class="alert alert-danger"> 
+                  Invalid Username or Password !              
+              </p> 
+                  <p id="accountLink"><a id="registerlink" [routerLink]="['/register']">Don't Have An Account Yet? Register </a></p>  
+              </div>
+      
+          </form>
           </mat-card-content>
       </mat-card>
     </div>
