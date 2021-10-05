@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   hide = true; // for hiding password in UI
 
   _match = true;
-
   LoginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
@@ -36,7 +35,8 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     
-    this.formData.Email = this.LoginForm.get('email').value;
+    this.formData = new loginRequest();
+    this.formData.Email = this.LoginForm.get('email').value.toString();
     this.formData.Password = this.LoginForm.get('password').value;
 
     this.loginService.login(this.formData)
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
             this._router.navigate([`home`]);
           }
           else if(data.body.role == 1){
-            this._router.navigate([`project-management`]);
+            this._router.navigate([`projectManagement`]);
           }
           else{
             this._router.navigate([`home`]);
