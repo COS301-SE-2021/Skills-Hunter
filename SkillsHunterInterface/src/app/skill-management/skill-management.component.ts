@@ -24,15 +24,22 @@ export class SkillManagementComponent implements OnInit {
   constructor(public dialog: MatDialog,private adminService: AdminService) { }
 
   ngOnInit(): void {
-    /*document.getElementById('tool').style.display = "block";
+    document.getElementById('tool').style.display = "block";
     document.getElementById('side').style.display = "block";
     document.getElementById('userlist').style.display = "none"; 
-    document.getElementById('house').style.display = "none";*/
+    document.getElementById('house').style.display = "none";
   }
 
 
   viewAll(): void{
     this.adminService.getSkills().subscribe(apiValue => {
+      this.data = apiValue.skills;
+      this.ngOnInit();
+    });
+  }
+
+  New(): void{
+    this.adminService.getCategories().subscribe(apiValue => {
       this.data = apiValue.skills;
       this.ngOnInit();
     });

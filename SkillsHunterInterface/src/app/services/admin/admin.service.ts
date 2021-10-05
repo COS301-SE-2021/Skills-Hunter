@@ -11,7 +11,7 @@ export class AdminService {
   private header ;
 
   constructor(private http: HttpClient) {
-    localStorage.setItem('token', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQyNmIyZjhkLTFkZmItNDMxYi0wODE4LTA4ZDk3YmRjMzUxZiIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTYzMjk1MTA3NCwiZXhwIjoxNjMzMDM3NDc0LCJpYXQiOjE2MzI5NTEwNzR9.oyGB8hPCWuXCVG8Xj4Ar5triA1DSK4NSLVsw0aUvED4");
+    localStorage.setItem('token', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjczMmVkOGNhLTA5MWEtNDE0ZS02N2Q2LTA4ZDk4MDIxMzI0ZiIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTYzMzQ2NzQ2MiwiZXhwIjoxNjMzNTUzODYyLCJpYXQiOjE2MzM0Njc0NjJ9.smButnOGRB56Jyn2hh4c8uBij5H97SeO5DD94DCu4JM");
     this.header = new HttpHeaders().
     set('content-type','application/json').
     set('authorization','Bearer ' + localStorage.getItem('token'));

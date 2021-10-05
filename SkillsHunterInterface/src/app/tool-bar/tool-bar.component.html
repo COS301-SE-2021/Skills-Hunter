@@ -8,11 +8,29 @@
       <div class="col-10 col-sm-auto">
         SkillsHunter
       </div>
-  
+      
+      <button id="house"
+      mat-icon-button
+      class="toolbar-icon favorite-icon"
+      aria-label="Example icon-button with heart icon">
+
+      <mat-icon [routerLink]="['/home']" routerLinkActive="router-link-active">home</mat-icon>
+    </button>
+    <button id="houseAdmin"
+      mat-icon-button
+      class="toolbar-icon favorite-icon"
+      aria-label="Example icon-button with heart icon">
+
+      <mat-icon [routerLink]="['/user-control']" routerLinkActive="router-link-active">home</mat-icon>
+    </button>
+
       <div class="col col-sm-auto">
         <a mat-button routerLink="/login" routerLinkActive="active">Login</a>
       </div>
       <div class="col col-sm-auto">
         <a mat-button routerLink="/signup" routerLinkActive="active">Signup</a>
       </div>
+
+
+
   </mat-toolbar>

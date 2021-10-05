@@ -1,21 +1,20 @@
 
 <div id="Side-nav">
-    <h1>Menu</h1>
-    <mat-divider></mat-divider>
-    <h3>Quick links</h3>
-    <mat-selection-list  [multiple]="false">
-    <mat-list-option ><a routerLink="/home" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">Home</a></mat-list-option>
-    <mat-list-option ><a routerLink="/home" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">My applications</a></mat-list-option>
-    <mat-list-option ><a routerLink="/about" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">About</a></mat-list-option>
-    </mat-selection-list >
-    <mat-divider></mat-divider>
-    
-    <h3>Account</h3>
-    <mat-selection-list  [multiple]="false">
-    <mat-list-option ><a routerLink="" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">Notifications</a></mat-list-option>
-    <mat-list-option ><a routerLink="" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">My account</a></mat-list-option>
-    <mat-list-option ><a routerLink="/login" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">Login</a></mat-list-option>
-    <mat-list-option ><a routerLink="/signup" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">Signup</a></mat-list-option>
-    <mat-list-option ><a routerLink="/logout" class="menu-link" routerLinkActive="active" (click)= "inputDrawer.toggle()">Logout</a></mat-list-option>
-    </mat-selection-list >
+    <mat-nav-list>
+      
+        <div id="adminlist">
+          <!--<li><a routerLink = "/statistics"><b>Statistics</b></a></li>-->
+          <a mat-list-item routerLink = "/user-control"><strong>User Control</strong></a>
+          <a mat-list-item routerLink = "/project-control"><strong>Project Control</strong></a>
+          <a mat-list-item routerLink = "/skill-control"><strong>Skill Control</strong></a>
+          <a mat-list-item routerLink = "/category-control"><strong>Category Control</strong></a>
+          <a mat-list-item routerLink = "/skill-collection-control"><strong>Skill Collection Control</strong></a>
+        </div>
+        <div id="userlist">
+          <!--<li><a routerLink = "/statistics"><b>Statistics</b></a></li>-->
+          <a mat-list-item routerLink = "/home"><strong>Projects</strong></a>
+          <a mat-list-item routerLink = "/profile"><strong>Profile</strong></a>
+          
+        </div>
+      </mat-nav-list>
 </div>
