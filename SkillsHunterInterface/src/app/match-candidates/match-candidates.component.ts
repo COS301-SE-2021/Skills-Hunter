@@ -12,8 +12,7 @@ import { ProjectService } from '../services/project/project.service';
 })
 export class MatchCandidatesComponent implements OnInit {
 
-  animal: string;
-  name: string;
+  message: string;
   candidates: matchingCandidate[];
   projectId: string;
 
@@ -22,12 +21,12 @@ export class MatchCandidatesComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(InviteComponent, {
       width: '50%',
-      data: {name: this.name, animal: this.animal}
+      data: {message: this.message}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //this.animal = result;
+      this.message = result;
+      //console.log(this.message);
     });
   }
 
