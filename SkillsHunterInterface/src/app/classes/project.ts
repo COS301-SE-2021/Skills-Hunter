@@ -1,15 +1,15 @@
 import { getCategoryId, getSkillId } from "./admin";
 
 //Entity
-export interface project{
-    projectId: string,
-    name: string,
-    description: string,
-    owner: string,
-    location: string,
-    openForApplications: boolean,
-    dateCreated: Date,
-    skills: projectSkillAndCollection
+export class project{
+    projectId: string;
+    name: string;
+    description: string;
+    owner: string;
+    location: string;
+    openForApplications: boolean;
+    dateCreated: Date;
+    skills: projectSkillAndCollection;
 }
 
 export interface projectSkill{

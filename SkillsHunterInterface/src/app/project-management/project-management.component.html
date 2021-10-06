@@ -2,63 +2,41 @@
 <div class="management-body">
     <button mat-raised-button color="primary" (click)="openCreateProjectDialog()">Create Project</button><br><br>
     <div class="row projects">
-        <div class="col-12 col-md-4" *ngFor="let x of [].constructor(10)">
+        <div class="col-12 col-md-4" *ngFor="let project of projects;">
           <mat-accordion class="project-expansion-pannel">
             <mat-expansion-panel (opened)="projectPanelOpenState = true"
                                  (closed)="projectPanelOpenState = false">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  Project X
+                  {{project.name}}
                 </mat-panel-title>
                 <mat-panel-description>
-                  short description
+                  {{project.description}}
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <div class="row">
                 <div class="col-12 mb-2"><b>Skills:</b></div>
-                <div class="col-auto">C++</div>
-                <div class="col-auto">C#</div>
-                <div class="col-auto">MSSQL</div>
+                <div class="col-auto" *ngFor="let skill of project.projectSkills.skills;">
+                  {{skill.name}}
+                </div>
               </div>
               <br>
               <div class="row">
                 <div class="col-12 mb-2"><b>Skill collections:</b></div>
-                <div class="col-12 mb-2">
+                <div class="col-12 mb-2" *ngFor="let skillCollection of project.projectSkills.skillCollections;">
                   <mat-accordion>
                     <mat-expansion-panel (opened)="collectionPanelOpenState = true"
                                          (closed)="collectionPanelOpenState = false">
                       <mat-expansion-panel-header>
                         <mat-panel-title>
-                          Frontend
+                          {{skillCollection.name}}
                         </mat-panel-title>
                         <mat-panel-description>
-                          2 skills
+                          {{skillCollection.skills.length}}
                         </mat-panel-description>
                       </mat-expansion-panel-header>
                       <div class="row">
-                        <div class="col-auto">Angular</div>
-                        <div class="col-auto">React</div>
-                        <div class="col-auto">Vue</div>
-                      </div>
-                    </mat-expansion-panel>
-                  </mat-accordion>
-                </div>
-                <div class="col-12 mb-2">
-                  <mat-accordion>
-                    <mat-expansion-panel (opened)="collectionPanelOpenState = true"
-                                         (closed)="collectionPanelOpenState = false">
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          Backend
-                        </mat-panel-title>
-                        <mat-panel-description>
-                          3 skills
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-                      <div class="row">
-                        <div class="col-auto">.Net core</div>
-                        <div class="col-auto">NodeJS</div>
-                        <div class="col-auto">JSON</div>
+                        <div class="col-auto" *ngFor="let skill of skillCollection.skills;">{{skill.name}}</div>
                       </div>
                     </mat-expansion-panel>
                   </mat-accordion>
