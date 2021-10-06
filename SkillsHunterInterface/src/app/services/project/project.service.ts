@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { matchingCandidate, project } from 'src/app/classes/project';
+import { inviteCandidateRequest, matchingCandidate, project } from 'src/app/classes/project';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,9 @@ export class ProjectService {
 
   matchCandidates(projectId): Observable<matchingCandidate[]>{
     return this.http.get<matchingCandidate[]>(this.apiUrl + "MatchCandidates?projectId=" + projectId , {headers : this.header});
+  }
+
+  inviteCandidate(request: inviteCandidateRequest): Observable<any>{
+    return this.http.post<any>(this.apiUrl + "inviteCandidate",request,{headers : this.header});
   }
 }

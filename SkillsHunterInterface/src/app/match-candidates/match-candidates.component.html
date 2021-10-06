@@ -22,7 +22,7 @@
         </mat-card-content>
         <mat-card-actions>
           <button mat-raised-button color="primary" routerLink="/matchCandidates" routerLinkActive="active">View account</button>
-          <button mat-raised-button color="primary" (click)="openDialog()">Invite</button>
+          <button mat-raised-button color="primary" (click)="openDialog(candidate.userId)">Invite</button>
         </mat-card-actions>
     </mat-card>    
 </div>

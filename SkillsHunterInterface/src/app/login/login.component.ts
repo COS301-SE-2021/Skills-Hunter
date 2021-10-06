@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
         if(data.status==200)
         {
           this._match=true;
+          localStorage.setItem('userId', data.body.userId);
           localStorage.setItem('role', data.body.role);
           localStorage.setItem('token',data.body.token);
           localStorage.setItem('name',data.body.name);

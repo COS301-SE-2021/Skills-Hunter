@@ -10,12 +10,12 @@ namespace SkillsHunterAPI.Commands.Project
         public Guid InviteeId { get; set; }
         public string Message { get; set; }
 
-        public InviteCandidateCommand(Guid user, Guid project, Guid invitee, string mes)
+        /*public InviteCandidateCommand(Guid user, Guid project, Guid invitee, string mes)
         {
             UserId = user;
             ProjectId = project;
             InviteeId = invitee;
             Message = mes;
-        }
+        }*/
     }
 }

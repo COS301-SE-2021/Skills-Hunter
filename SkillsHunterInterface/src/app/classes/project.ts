@@ -38,10 +38,11 @@ export interface createProjectRequest{
     skillCollections: createCollection[]
 }
 
-export interface inviteCandidateRequest{
-    projectId: string,
-    inviteeId: string,
-    message: string
+export class inviteCandidateRequest{
+    UserId: any;
+    projectId: any;
+    inviteeId: any;
+    message: any;
 }
 
 //Response

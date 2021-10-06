@@ -251,10 +251,10 @@ namespace SkillsHunterAPI.Controllers
 
         [HttpPost]
         [Route("api/[controller]/inviteCandidate")]
-        public async Task<ActionResult> InviteCandidateAsync([FromBody] InviteCandidateCommand request)
+        public async Task<ActionResult> InviteCandidate([FromBody] InviteCandidateCommand request)
         {
             InitControllers();
-            request.UserId = _userController.GetCurrentUserId();
+            //request.UserId = _userController.GetCurrentUserId();
             var result = _mediator.Send(request);
 
             if (result.Result == true)
