@@ -1,1 +1,9 @@
-<p>skill works!</p>
+<mat-card class="skill-card">
+    <span class = "skill-name"><b>Name  :  </b></span><span class = "skill-value">{{skill.name}}</span><br/>
+    <span class = "skill-name"><b>Category  :  </b></span><span  class = "skill-value">{{getCategory(skill.categoryId)}}</span><br/>
+    <span class = "skill-name"><b>Status  :  </b></span><span class = "skill-value">{{(skill.status == 0) ? 'Accepted' : ((skill.status == 1) ? 'Pending' : 'Declined')}}</span>
+
+    <!-- button mat-raised-button id = "btnDelete" (click) = "onEdit()">Edit</button> -->
+
+
+  </mat-card>
