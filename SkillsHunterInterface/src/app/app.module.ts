@@ -46,6 +46,9 @@ import { CreateProjectComponent } from './project-management/create-project/crea
 import { SkillAdvancedSearchComponent } from './skill-management/skill-advanced-search/skill-advanced-search.component';
 import { MatchCandidatesComponent } from './match-candidates/match-candidates.component';
 import { InviteComponent } from './invite/invite.component';
+import { CategoryManagementComponent } from './category-management/category-management.component';
+import { CategoryCardComponent } from './category-management/category-card/category-card.component';
+import { NewCategoryComponent } from './category-management/new-category/new-category.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,10 @@ import { InviteComponent } from './invite/invite.component';
     AddSkillComponent,
     SkillAdvancedSearchComponent,
     MatchCandidatesComponent,
-    InviteComponent
+    InviteComponent,
+    CategoryManagementComponent,
+    CategoryCardComponent,
+    NewCategoryComponent
   ],
   imports: [
     BrowserModule,

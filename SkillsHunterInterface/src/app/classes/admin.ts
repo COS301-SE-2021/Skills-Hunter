@@ -2,11 +2,12 @@
 export interface skill{
     skillId: string,
     name: string,
-    status: number
+    status: number,
+    categoryId: string
 }
 
 export class Category{
-    categoryid: string;
+    categoryId: string;
     name: string;
     description: string;
 }
@@ -84,4 +85,8 @@ export interface getCategoryId{
 
 export interface getSkillId{
     skillId: string
+}
+
+export interface getCategoriesResponse{
+    category: Category[];
 }

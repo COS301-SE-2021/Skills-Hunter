@@ -13,5 +13,5 @@
         <button mat-raised-button color="primary" id = "btnAdd" (click)="New()">New</button>
     </div>
 
-    <app-skill-card *ngFor = "let skill of data" [skill] = "skill" class = "user-info" (onDeleteUser)="deleteUser(skill)"></app-skill-card>
+    <app-skill *ngFor = "let skill of data" [skill] = "skill" class = "user-info" (onDeleteUser)="deleteUser(skill)"></app-skill>
 </mat-card>
