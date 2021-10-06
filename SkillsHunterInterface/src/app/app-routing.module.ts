@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoryManagementComponent } from './category-management/category-management.component';
 import { HomeComponent } from './home/home.component';
 import { InviteComponent } from './invite/invite.component';
 import { LoginComponent } from './login/login.component';
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path:'skillManagement',
     component: SkillManagementComponent
+  },
+  {
+    path: 'categoryManagement', 
+    component: CategoryManagementComponent
   },
   {
     path:'updateProject',
