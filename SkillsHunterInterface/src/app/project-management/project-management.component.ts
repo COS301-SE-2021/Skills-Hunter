@@ -18,13 +18,13 @@ export class ProjectManagementComponent implements OnInit {
   constructor(public dialog: MatDialog, private projectService: ProjectService, private _router: Router) { }
 
   projects: project[];
-  
+
   ngOnInit(): void {
     this.projectService.getProjectByOwnerId()
     .subscribe(
       data=>{ 
         this.projects = data;
-        console.log(this.projects);
+        //console.log(this.projects);
       },
       err =>{
        
@@ -55,6 +55,11 @@ export class ProjectManagementComponent implements OnInit {
       //this.newProject = result;
     });
   }
+
+  onMatch(proj:string) {
+    this._router.navigate(['matchCandidates', proj]); (1)
+  }
+  
 
 
 }

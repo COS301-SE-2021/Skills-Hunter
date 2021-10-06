@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { project } from 'src/app/classes/project';
+import { matchingCandidate, project } from 'src/app/classes/project';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,10 @@ export class ProjectService {
   }
 
   getProjectByOwnerId(): Observable<project[]>{
-    return this.http.get<any[]>(this.apiUrl + "getProjectsByOwnerId" , {headers : this.header});
+    return this.http.get<project[]>(this.apiUrl + "getProjectsByOwnerId" , {headers : this.header});
+  }
+
+  matchCandidates(projectId): Observable<matchingCandidate[]>{
+    return this.http.get<matchingCandidate[]>(this.apiUrl + "MatchCandidates?projectId=" + projectId , {headers : this.header});
   }
 }

@@ -45,13 +45,13 @@ export interface inviteCandidateRequest{
 }
 
 //Response
-export interface matchingCandidate{
-    percentage: number,
-    userId: string,
-    name: string,
-    surname: string,
-    email: string,
-    matchingSkills: matchingSkill[]
+export class matchingCandidate{
+    percentage: number;
+    userId: string;
+    name: string;
+    surname: string;
+    email: string;
+    matchingSkills: matchingSkill[];
 }
 
 export interface getApplications{

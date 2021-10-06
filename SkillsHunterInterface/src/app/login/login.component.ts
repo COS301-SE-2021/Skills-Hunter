@@ -54,6 +54,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('phone',data.body.phone);
           localStorage.setItem('openForWork',data.body.openForWork);
 
+          document.getElementById('tool').style.display = "block";
+          document.getElementById('side').style.display = "block";
+
           if(data.body.role==3){
             this._router.navigate([`home`]);
           }

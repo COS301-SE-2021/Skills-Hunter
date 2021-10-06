@@ -45,7 +45,7 @@ const routes: Routes = [
     component: UpdateProjectComponent
   },
   {
-    path:'matchCandidates',
+    path:'matchCandidates/:projectId',
     component: MatchCandidatesComponent
   },
   {
